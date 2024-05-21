@@ -636,6 +636,40 @@
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
+        <member name="T:View.Sdk.Processor.ViewProcessorSdk">
+            <summary>
+            View Processing Pipeline SDK.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ViewProcessorSdk.Logger">
+            <summary>
+            Method to invoke to send log messages.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Processor.ViewProcessorSdk.#ctor(System.String,System.String)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="endpoint">Endpoint URL.</param>
+            <param name="apiKey">API key.</param>
+        </member>
+        <member name="M:View.Sdk.Processor.ViewProcessorSdk.ValidateConnectivity(System.Threading.CancellationToken)">
+            <summary>
+            Validate connectivity.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Boolean indicating success.</returns>
+        </member>
+        <member name="M:View.Sdk.Processor.ViewProcessorSdk.Process(View.Sdk.Shared.Processing.ObjectMetadata,View.Sdk.Shared.Udr.MetadataRule,View.Sdk.Shared.Embeddings.EmbeddingsRule,System.Threading.CancellationToken)">
+            <summary>
+            Process a document.
+            </summary>
+            <param name="obj">Object metadata.</param>
+            <param name="mdRule">Metadata rule.</param>
+            <param name="embedRule">Embeddings rule.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
         <member name="T:View.Sdk.Shared.Embeddings.DeleteRequest">
             <summary>
             Delete request.
