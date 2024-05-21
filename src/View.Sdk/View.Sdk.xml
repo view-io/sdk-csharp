@@ -1,0 +1,3464 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>View.Sdk</name>
+    </assembly>
+    <members>
+        <member name="T:View.Sdk.Constants">
+            <summary>
+            Constants.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Constants.JsonContentType">
+            <summary>
+            JSON content-type.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.DocumentProcessor.ViewDocumentProcessorSdk">
+            <summary>
+            View document processor SDK.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DocumentProcessor.ViewDocumentProcessorSdk.Logger">
+            <summary>
+            Method to invoke to send log messages.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.DocumentProcessor.ViewDocumentProcessorSdk.#ctor(System.String)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="endpoint">Endpoint URL of the form http://localhost:8321/.</param>
+        </member>
+        <member name="M:View.Sdk.DocumentProcessor.ViewDocumentProcessorSdk.ValidateConnectivity(System.Threading.CancellationToken)">
+            <summary>
+            Validate connectivity.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Boolean indicating success.</returns>
+        </member>
+        <member name="M:View.Sdk.DocumentProcessor.ViewDocumentProcessorSdk.ProcessDocument(View.Sdk.Shared.Udr.UdrDocumentRequest,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Process document.
+            </summary>
+            <param name="doc">Document request.</param>
+            <param name="filename">Filename containing data.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Document response.</returns>
+        </member>
+        <member name="M:View.Sdk.DocumentProcessor.ViewDocumentProcessorSdk.ProcessDataTable(View.Sdk.Shared.Udr.DataTableRequest,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Process data table.
+            </summary>
+            <param name="dt">Data table request.</param>
+            <param name="filename">Filename containing data.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Document response.</returns>
+        </member>
+        <member name="T:View.Sdk.Langchain.ViewLangchainProxySdk">
+            <summary>
+            View Langchain Proxy SDK.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Langchain.ViewLangchainProxySdk.Logger">
+            <summary>
+            Method to invoke to send log messages.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Langchain.ViewLangchainProxySdk.#ctor(System.String,System.String)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="endpoint">Endpoint URL.</param>
+            <param name="apiKey">API key.</param>
+        </member>
+        <member name="M:View.Sdk.Langchain.ViewLangchainProxySdk.ValidateConnectivity(System.Threading.CancellationToken)">
+            <summary>
+            Validate connectivity.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Boolean indicating success.</returns>
+        </member>
+        <member name="M:View.Sdk.Langchain.ViewLangchainProxySdk.PreloadModels(System.Collections.Generic.List{System.String},System.Threading.CancellationToken)">
+            <summary>
+            Preload models.
+            </summary>
+            <param name="models">List of models.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="M:View.Sdk.Langchain.ViewLangchainProxySdk.GenerateEmbeddings(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Generate embeddings.
+            </summary>
+            <param name="model">Model.</param>
+            <param name="text">Text.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="T:View.Sdk.Lexi.ViewLexiSdk">
+            <summary>
+            View Lexi search SDK.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Lexi.ViewLexiSdk.Logger">
+            <summary>
+            Method to invoke to send log messages.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.#ctor(System.String,System.String)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="endpoint">Endpoint URL.</param>
+        </member>
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.ValidateConnectivity(System.Threading.CancellationToken)">
+            <summary>
+            Validate connectivity.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Boolean indicating success.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveCollections(System.Threading.CancellationToken)">
+            <summary>
+            Retrieve collections.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>List of collection.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveCollection(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve a collection.
+            </summary>
+            <param name="collectionGuid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Collection.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveCollectionStatistics(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve collection statistics.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Collection statistics.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.CreateCollection(View.Sdk.Shared.Search.Collection,System.Threading.CancellationToken)">
+            <summary>
+            Create collection.
+            </summary>
+            <param name="collection">Collection.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Collection.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.DeleteCollection(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete collection.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveDocuments(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve documents.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>List of source documents.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveDocument(System.String,System.String,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve document.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="documentGuid">Document GUID.</param>
+            <param name="includeData">Flag to indiate whether or not source document data should be included.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Source document.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveDocumentStatistics(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve document statistics.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="documentGuid">Document GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Source document statistics.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.UploadDocument(View.Sdk.Shared.Search.SourceDocument,System.Threading.CancellationToken)">
+            <summary>
+            Upload a document.
+            </summary>
+            <param name="document">Source document.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Source document.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.DeleteDocument(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a document.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="documentGuid">Document GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.Enumerate(System.String,View.Sdk.Shared.Search.EnumerationQuery,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate a collection.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="query">Query.</param>
+            <param name="token">Token.</param>
+            <returns>Enumeration result.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.Search(System.String,View.Sdk.Shared.Search.SearchQuery,System.Threading.CancellationToken)">
+            <summary>
+            Search a collection.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="query">Query.</param>
+            <param name="token"></param>
+            <returns>Search result.</returns>
+        </member>
+        <member name="T:View.Sdk.Orchestrator.ViewOrchestratorSdk">
+            <summary>
+            View Orchestrator SDK.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Orchestrator.ViewOrchestratorSdk.Logger">
+            <summary>
+            Method to invoke to send log messages.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="accessKey">Access key.</param>
+            <param name="endpoint">Endpoint URL.</param>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.ValidateConnectivity(System.Threading.CancellationToken)">
+            <summary>
+            Validate connectivity.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Boolean indicating success.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.CreateTenant(View.Sdk.Shared.Orchestrator.TenantMetadata,System.Threading.CancellationToken)">
+            <summary>
+            Create a tenant.
+            </summary>
+            <param name="tenant">Tenant.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Tenant.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.RetrieveTenant(System.Threading.CancellationToken)">
+            <summary>
+            Read a tenant.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Tenant.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.UpdateTenant(View.Sdk.Shared.Orchestrator.TenantMetadata,System.Threading.CancellationToken)">
+            <summary>
+            Update a tenant.
+            </summary>
+            <param name="tenant">Tenant.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Tenant.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.CreateUser(View.Sdk.Shared.Orchestrator.UserMaster,System.Threading.CancellationToken)">
+            <summary>
+            Create a user.
+            </summary>
+            <param name="user">User.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>User.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.ExistsUser(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a user exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.RetrieveUser(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a user.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>User.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.RetrieveUsers(System.Threading.CancellationToken)">
+            <summary>
+            Read users.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Users.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.UpdateUser(View.Sdk.Shared.Orchestrator.UserMaster,System.Threading.CancellationToken)">
+            <summary>
+            Update a user.
+            </summary>
+            <param name="user">User.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>User.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.DeleteUser(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a user.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.CreateCredential(View.Sdk.Shared.Orchestrator.Credential,System.Threading.CancellationToken)">
+            <summary>
+            Create a credential.
+            </summary>
+            <param name="cred">Credential.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Credential.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.ExistsCredential(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a credential exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.RetrieveCredential(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a credential.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Credential.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.RetrieveCredentials(System.Threading.CancellationToken)">
+            <summary>
+            Read credentials.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Credentials.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.UpdateCredential(View.Sdk.Shared.Orchestrator.Credential,System.Threading.CancellationToken)">
+            <summary>
+            Update a credential.
+            </summary>
+            <param name="cred">Credential.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Credential.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.DeleteCredential(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a credential.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.CreateTrigger(View.Sdk.Shared.Orchestrator.Trigger,System.Threading.CancellationToken)">
+            <summary>
+            Create a trigger.
+            </summary>
+            <param name="trigger">Trigger.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Trigger.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.ExistsTrigger(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a trigger exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.RetrieveTrigger(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a trigger.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Trigger.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.RetrieveTriggers(System.Threading.CancellationToken)">
+            <summary>
+            Read triggers.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Triggers.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.UpdateTrigger(View.Sdk.Shared.Orchestrator.Trigger,System.Threading.CancellationToken)">
+            <summary>
+            Update a trigger.
+            </summary>
+            <param name="trigger">Trigger.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Trigger.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.DeleteTrigger(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a trigger.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.CreateStep(View.Sdk.Shared.Orchestrator.StepMetadata,System.Threading.CancellationToken)">
+            <summary>
+            Create a step.
+            </summary>
+            <param name="step">Step.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Step.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.ExistsStep(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a step exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.RetrieveStep(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a step.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Step.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.RetrieveSteps(System.Threading.CancellationToken)">
+            <summary>
+            Read steps.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Steps.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.UpdateStep(View.Sdk.Shared.Orchestrator.StepMetadata,System.Threading.CancellationToken)">
+            <summary>
+            Update a step.
+            </summary>
+            <param name="step">Step.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Step.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.DeleteStep(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a step.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.CreateDataFlow(View.Sdk.Shared.Orchestrator.DataFlow,System.Threading.CancellationToken)">
+            <summary>
+            Create a data flow.
+            </summary>
+            <param name="flow">DataFlow.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>DataFlow.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.ExistsDataFlow(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a data flow exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.RetrieveDataFlow(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a data flow.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>DataFlow.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.RetrieveDataFlows(System.Threading.CancellationToken)">
+            <summary>
+            Read data flows.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>DataFlows.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.UpdateDataFlow(View.Sdk.Shared.Orchestrator.DataFlow,System.Threading.CancellationToken)">
+            <summary>
+            Update a data flow.
+            </summary>
+            <param name="flow">DataFlow.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>DataFlow.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.DeleteDataFlow(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a data flow.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.RetrieveDataFlowLogs(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read data flow logs.
+            </summary>
+            <param name="dataFlowGuid">Data flow GUID.</param>
+            <param name="requestGuid">Request GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>List of DataFlowLog.</returns>
+        </member>
+        <member name="T:View.Sdk.Pgvector.DatabaseSettings">
+            <summary>
+            Database settings.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Pgvector.DatabaseSettings.Model">
+            <summary>
+            Model.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Pgvector.DatabaseSettings.Dimensionality">
+            <summary>
+            Dimensionality.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Pgvector.DatabaseSettings.VectorRepositoryType">
+            <summary>
+            Vector repository type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Pgvector.DatabaseSettings.VectorDatabaseHostname">
+            <summary>
+            Vector database hostname.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Pgvector.DatabaseSettings.VectorDatabasePort">
+            <summary>
+            Vector database port.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Pgvector.DatabaseSettings.VectorDatabaseName">
+            <summary>
+            Vector database name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Pgvector.DatabaseSettings.VectorDatabaseTable">
+            <summary>
+            Vector database table.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Pgvector.DatabaseSettings.VectorDatabaseUser">
+            <summary>
+            Vector database user.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Pgvector.DatabaseSettings.VectorDatabasePassword">
+            <summary>
+            Vector database password.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Pgvector.DatabaseSettings.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Pgvector.ViewPgvProxySdk">
+            <summary>
+            View PostgreSQL Pgvector Proxy SDK.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Pgvector.ViewPgvProxySdk.Logger">
+            <summary>
+            Method to invoke to send log messages.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Pgvector.ViewPgvProxySdk.#ctor(System.String)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="endpoint">Endpoint URL.</param>
+        </member>
+        <member name="M:View.Sdk.Pgvector.ViewPgvProxySdk.ValidateConnectivity(System.Threading.CancellationToken)">
+            <summary>
+            Validate connectivity.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Boolean indicating success.</returns>
+        </member>
+        <member name="M:View.Sdk.Pgvector.ViewPgvProxySdk.WriteDocument(View.Sdk.Pgvector.DatabaseSettings,View.Sdk.Shared.Embeddings.EmbeddingsDocument,System.Threading.CancellationToken)">
+            <summary>
+            Write a document.
+            </summary>
+            <param name="settings">Database settings.</param>
+            <param name="document">Embeddings document.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Pgvector.ViewPgvProxySdk.DeleteDocument(View.Sdk.Pgvector.DatabaseSettings,View.Sdk.Shared.Embeddings.DeleteRequest,System.Threading.CancellationToken)">
+            <summary>
+            Delete a document.
+            </summary>
+            <param name="settings">Database settings.</param>
+            <param name="delReq">Delete request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Pgvector.ViewPgvProxySdk.TruncateTable(View.Sdk.Pgvector.DatabaseSettings,View.Sdk.Shared.Embeddings.DeleteRequest,System.Threading.CancellationToken)">
+            <summary>
+            Truncate table.
+            </summary>
+            <param name="settings">Database settings.</param>
+            <param name="delReq">Delete request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Pgvector.ViewPgvProxySdk.SimilaritySearch(View.Sdk.Pgvector.DatabaseSettings,View.Sdk.Shared.Embeddings.SearchRequest,System.Threading.CancellationToken)">
+            <summary>
+            Similarity search.
+            </summary>
+            <param name="settings">Database settings.</param>
+            <param name="searchReq">Search request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Pgvector.ViewPgvProxySdk.RawQuery(View.Sdk.Pgvector.DatabaseSettings,View.Sdk.Shared.Embeddings.QueryRequest,System.Threading.CancellationToken)">
+            <summary>
+            Raw query.
+            </summary>
+            <param name="settings">Database settings.</param>
+            <param name="queryReq">Query request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="T:View.Sdk.Shared.Embeddings.DeleteRequest">
+            <summary>
+            Delete request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.DeleteRequest.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.DeleteRequest.BucketGUID">
+            <summary>
+            Bucket GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.DeleteRequest.Key">
+            <summary>
+            Key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.DeleteRequest.Version">
+            <summary>
+            Version.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.DeleteRequest.ObjectGUID">
+            <summary>
+            Object GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.DeleteRequest.VectorRepositoryType">
+            <summary>
+            Vector repository type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.DeleteRequest.VectorDatabaseHostname">
+            <summary>
+            Vector database hostname.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.DeleteRequest.VectorDatabaseName">
+            <summary>
+            Vector database name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.DeleteRequest.VectorDatabaseTable">
+            <summary>
+            Vector database table name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.DeleteRequest.VectorDatabasePort">
+            <summary>
+            Vector database port.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.DeleteRequest.VectorDatabaseUser">
+            <summary>
+            Vector database user.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.DeleteRequest.VectorDatabasePassword">
+            <summary>
+            Vector database password.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.DeleteRequest.Dimensionality">
+            <summary>
+            Dimensionality of embeddings.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Embeddings.DeleteRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Embeddings.EmbeddingsDocument">
+            <summary>
+            Embeddings document.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsDocument.Success">
+            <summary>
+            Indicates if the parser was successful.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsDocument.Exception">
+            <summary>
+            Exception, if any.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsDocument.Timestamp">
+            <summary>
+            Timestamps.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsDocument.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsDocument.BucketGUID">
+            <summary>
+            Bucket GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsDocument.ObjectGUID">
+            <summary>
+            Object GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsDocument.ObjectKey">
+            <summary>
+            Object key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsDocument.ObjectVersion">
+            <summary>
+            Object version.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsDocument.EmbeddingsRule">
+            <summary>
+            Embeddings rule.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsDocument.SemanticCells">
+            <summary>
+            Semantic cells.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Embeddings.EmbeddingsDocument.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Embeddings.EmbeddingsGeneratorEnum">
+            <summary>
+            Embeddings provider.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Embeddings.EmbeddingsGeneratorEnum.OpenAI">
+            <summary>
+            OpenAI.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Embeddings.EmbeddingsGeneratorEnum.LCProxy">
+            <summary>
+            Langchain proxy.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Embeddings.EmbeddingsRequest">
+            <summary>
+            Embeddings request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRequest.Model">
+            <summary>
+            Model.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRequest.Text">
+            <summary>
+            Text.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRequest.Endpoint">
+            <summary>
+            Endpoint URL, e.g. http://localhost:8301/.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRequest.ApiKey">
+            <summary>
+            API key.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Embeddings.EmbeddingsRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Embeddings.EmbeddingsResult">
+            <summary>
+            Embeddings result.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsResult.Success">
+            <summary>
+            Boolean indicating whether or not the operation was successful.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsResult.Timestamp">
+            <summary>
+            Timestamps.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsResult.Exception">
+            <summary>
+            Exception, if any.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsResult.StatusCode">
+            <summary>
+            HTTP status code.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsResult.Url">
+            <summary>
+            URL.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsResult.Model">
+            <summary>
+            Model used to generate embeddings.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsResult.Embeddings">
+            <summary>
+            Embeddings.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Embeddings.EmbeddingsResult.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Embeddings.EmbeddingsRule">
+            <summary>
+            Embeddings rule.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRule.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRule.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRule.BucketGUID">
+            <summary>
+            Bucket GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRule.OwnerGUID">
+            <summary>
+            Owner GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRule.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRule.ContentType">
+            <summary>
+            Content-type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRule.Prefix">
+            <summary>
+            Prefix.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRule.Suffix">
+            <summary>
+            Suffix.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRule.TargetBucketGUID">
+            <summary>
+            Target bucket GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRule.EmbeddingsGenerator">
+            <summary>
+            Embeddings generator.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRule.GeneratorUrl">
+            <summary>
+            Embeddings generator URL.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRule.GeneratorApiKey">
+            <summary>
+            Embeddings provider API key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRule.Model">
+            <summary>
+            Embeddings model.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRule.Dimensionality">
+            <summary>
+            Dimensionality of embeddings.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRule.VectorRepositoryType">
+            <summary>
+            Vector repository type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRule.VectorStoreUrl">
+            <summary>
+            Vector store URL.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRule.VectorDatabaseHostname">
+            <summary>
+            Vector database hostname.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRule.VectorDatabaseName">
+            <summary>
+            Vector database name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRule.VectorDatabaseTable">
+            <summary>
+            Vector database table name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRule.VectorDatabasePort">
+            <summary>
+            Vector database port.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRule.VectorDatabaseUser">
+            <summary>
+            Vector database user.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRule.VectorDatabasePassword">
+            <summary>
+            Vector database password.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRule.MaxContentLength">
+            <summary>
+            Maximum content length.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRule.RetentionMinutes">
+            <summary>
+            The number of minutes to retain the generated document.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRule.CreatedUtc">
+            <summary>
+            Creation timestamp.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Embeddings.EmbeddingsRule.#ctor">
+            <summary>
+            Instantiate the object.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Embeddings.MatchedDocument">
+            <summary>
+            Matched document.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.MatchedDocument.Id">
+            <summary>
+            Database row ID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.MatchedDocument.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.MatchedDocument.BucketGUID">
+            <summary>
+            Bucket GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.MatchedDocument.ObjectGUID">
+            <summary>
+            Object GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.MatchedDocument.ObjectKey">
+            <summary>
+            Object key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.MatchedDocument.ObjectVersion">
+            <summary>
+            Object version.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.MatchedDocument.Embeddings">
+            <summary>
+            Embeddings.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Embeddings.MatchedDocument.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Embeddings.MatchedDocument.FromDataTable(System.Data.DataTable)">
+            <summary>
+            Instantiate from DataRow.
+            </summary>
+            <param name="dt">DataTable.</param>
+            <returns>MatchedDocument.</returns>
+        </member>
+        <member name="T:View.Sdk.Shared.Embeddings.PreloadRequest">
+            <summary>
+            Preload request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.PreloadRequest.Models">
+            <summary>
+            Model.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.PreloadRequest.ApiKey">
+            <summary>
+            API key.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Embeddings.PreloadRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Embeddings.QueryRequest">
+            <summary>
+            Query request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.QueryRequest.Query">
+            <summary>
+            Query.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.QueryRequest.VectorRepositoryType">
+            <summary>
+            Vector repository type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.QueryRequest.VectorDatabaseHostname">
+            <summary>
+            Vector database hostname.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.QueryRequest.VectorDatabaseName">
+            <summary>
+            Vector database name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.QueryRequest.VectorDatabaseTable">
+            <summary>
+            Vector database table name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.QueryRequest.VectorDatabasePort">
+            <summary>
+            Vector database port.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.QueryRequest.VectorDatabaseUser">
+            <summary>
+            Vector database user.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.QueryRequest.VectorDatabasePassword">
+            <summary>
+            Vector database password.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.QueryRequest.Dimensionality">
+            <summary>
+            Dimensionality of embeddings.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Embeddings.QueryRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Embeddings.QueryResult">
+            <summary>
+            Query result.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.QueryResult.Success">
+            <summary>
+            Boolean indicating whether or not the operation was successful.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.QueryResult.Timestamp">
+            <summary>
+            Timestamps.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.QueryResult.Exception">
+            <summary>
+            Exception, if any.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.QueryResult.StatusCode">
+            <summary>
+            HTTP status code.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.QueryResult.Query">
+            <summary>
+            Query.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.QueryResult.Result">
+            <summary>
+            Result.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Embeddings.QueryResult.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Embeddings.RepositoryTypeEnum">
+            <summary>
+            Repository type.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Embeddings.RepositoryTypeEnum.Pgvector">
+            <summary>
+            Pgvector.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Embeddings.SearchRequest">
+            <summary>
+            Search request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.SearchRequest.SearchType">
+            <summary>
+            Search type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.SearchRequest.VectorRepositoryType">
+            <summary>
+            Vector repository type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.SearchRequest.VectorDatabaseHostname">
+            <summary>
+            Vector database hostname.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.SearchRequest.VectorDatabaseName">
+            <summary>
+            Vector database name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.SearchRequest.VectorDatabaseTable">
+            <summary>
+            Vector database table name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.SearchRequest.VectorDatabasePort">
+            <summary>
+            Vector database port.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.SearchRequest.VectorDatabaseUser">
+            <summary>
+            Vector database user.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.SearchRequest.VectorDatabasePassword">
+            <summary>
+            Vector database password.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.SearchRequest.Dimensionality">
+            <summary>
+            Dimensionality of embeddings.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.SearchRequest.StartIndex">
+            <summary>
+            Starting index.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.SearchRequest.MaxResults">
+            <summary>
+            Maximum number of results to retrieve.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.SearchRequest.Embeddings">
+            <summary>
+            Embeddings.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Embeddings.SearchRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Embeddings.SearchResult">
+            <summary>
+            Search result.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.SearchResult.Success">
+            <summary>
+            Indicates if the parser was successful.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.SearchResult.Exception">
+            <summary>
+            Exception, if any.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.SearchResult.Timestamp">
+            <summary>
+            Timestamps.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.SearchResult.Documents">
+            <summary>
+            Matched documents.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Embeddings.SearchResult.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Embeddings.SearchTypeEnum">
+            <summary>
+            Search type.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Embeddings.SearchTypeEnum.InnerProduct">
+            <summary>
+            InnerProduct.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Embeddings.SearchTypeEnum.Cosine">
+            <summary>
+            Cosine.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Embeddings.SearchTypeEnum.NearestNeighbor">
+            <summary>
+            NearestNeighbor.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Embeddings.SemanticCell">
+            <summary>
+            Semantic cell.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.SemanticCell.Success">
+            <summary>
+            Boolean indicating success.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.SemanticCell.Exception">
+            <summary>
+            Exception.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.SemanticCell.Text">
+            <summary>
+            Text.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.SemanticCell.Tokens">
+            <summary>
+            Tokens.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.SemanticCell.Embeddings">
+            <summary>
+            Embeddings.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Embeddings.SemanticCell.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Helpers.HashHelper">
+            <summary>
+            Hash methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Helpers.HashHelper.MD5Hash(System.Byte[])">
+            <summary>
+            Generate an MD5 hash.
+            </summary>
+            <param name="data">Data.</param>
+            <returns>MD5 hash.</returns>
+        </member>
+        <member name="M:View.Sdk.Shared.Helpers.HashHelper.MD5Hash(System.IO.Stream)">
+            <summary>
+            Generate an MD5 hash.
+            </summary>
+            <param name="stream">Stream.</param>
+            <returns>MD5 hash.</returns>
+        </member>
+        <member name="M:View.Sdk.Shared.Helpers.HashHelper.SHA1Hash(System.Byte[])">
+            <summary>
+            Generate a SHA1 hash of a byte array.
+            </summary>
+            <param name="data">Data.</param>
+            <returns>SHA1 hash.</returns>
+        </member>
+        <member name="M:View.Sdk.Shared.Helpers.HashHelper.SHA1Hash(System.IO.Stream)">
+            <summary>
+            Generate a SHA1 hash.
+            </summary>
+            <param name="stream">Stream.</param>
+            <returns>MD5 hash.</returns>
+        </member>
+        <member name="M:View.Sdk.Shared.Helpers.HashHelper.SHA256Hash(System.Byte[])">
+            <summary>
+            Generate a SHA256 hash of a byte array.
+            </summary>
+            <param name="data">Data.</param>
+            <returns>SHA256 hash.</returns>
+        </member>
+        <member name="M:View.Sdk.Shared.Helpers.HashHelper.SHA256Hash(System.IO.Stream)">
+            <summary>
+            Generate a SHA256 hash.
+            </summary>
+            <param name="stream">Stream.</param>
+            <returns>MD5 hash.</returns>
+        </member>
+        <member name="T:View.Sdk.Shared.Orchestrator.Credential">
+            <summary>
+            Credentials.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.Credential.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.Credential.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.Credential.UserGUID">
+            <summary>
+            User GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.Credential.AccessKey">
+            <summary>
+            Access key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.Credential.SecretKey">
+            <summary>
+            Secret key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.Credential.Active">
+            <summary>
+            Active.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.Credential.CreatedUtc">
+            <summary>
+            Creation timestamp, in UTC.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Orchestrator.Credential.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Orchestrator.DataFlow">
+            <summary>
+            Data flow, i.e. a collection of steps and paths.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.DataFlow.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.DataFlow.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.DataFlow.TriggerGUID">
+            <summary>
+            Trigger GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.DataFlow.StepGUID">
+            <summary>
+            Step GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.DataFlow.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.DataFlow.Notes">
+            <summary>
+            Notes.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.DataFlow.CreatedUtc">
+            <summary>
+            Creation timestamp, in UTC time.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.DataFlow.Step">
+            <summary>
+            Entry step.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Orchestrator.DataFlow.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Orchestrator.DataFlowLog">
+            <summary>
+            Data flow log.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.DataFlowLog.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.DataFlowLog.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.DataFlowLog.DataFlowGUID">
+            <summary>
+            Data flow GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.DataFlowLog.RequestGUID">
+            <summary>
+            Request GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.DataFlowLog.TriggerGUID">
+            <summary>
+            Trigger GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.DataFlowLog.StepGUID">
+            <summary>
+            Step GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.DataFlowLog.StartUtc">
+            <summary>
+            Start time, in UTC.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.DataFlowLog.EndUtc">
+            <summary>
+            End time, in UTC.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.DataFlowLog.TotalMs">
+            <summary>
+            Run time, in milliseconds.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.DataFlowLog.Result">
+            <summary>
+            Result, e.g. Success, Failure, Exception.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.DataFlowLog.NextStepGUID">
+            <summary>
+            GUID of the next step, if any.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.DataFlowLog.Notes">
+            <summary>
+            Notes.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.DataFlowLog.CreatedUtc">
+            <summary>
+            Creation timestamp, in UTC time.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Orchestrator.DataFlowLog.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Orchestrator.HttpMethodEnum">
+            <summary>
+            HTTP method enum.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Orchestrator.HttpMethodEnum.UNKNOWN">
+            <summary>
+            UNKNOWN.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Orchestrator.HttpMethodEnum.GET">
+            <summary>
+            GET.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Orchestrator.HttpMethodEnum.PUT">
+            <summary>
+            PUT.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Orchestrator.HttpMethodEnum.POST">
+            <summary>
+            POST.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Orchestrator.HttpMethodEnum.DELETE">
+            <summary>
+            DELETE.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Orchestrator.HttpMethodEnum.PATCH">
+            <summary>
+            PATCH.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Orchestrator.StepMetadata">
+            <summary>
+            Data flow step.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.StepMetadata.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.StepMetadata.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.StepMetadata.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.StepMetadata.Success">
+            <summary>
+            GUID of the step to invoke when successful.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.StepMetadata.Failure">
+            <summary>
+            GUID of the step to invoke when failed.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.StepMetadata.Exception">
+            <summary>
+            GUID of the step to invoke the event of an exception.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.StepMetadata.Runtime">
+            <summary>
+            Runtime for the step.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.StepMetadata.StepArchiveFilename">
+            <summary>
+            Archive filename, in ZIP format.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.StepMetadata.StepEntrypointFilename">
+            <summary>
+            Filename to open to access the entrypoint.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.StepMetadata.StepEntrypointType">
+            <summary>
+            Type (e.g. class) to open to access the entrypoint.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.StepMetadata.MD5Hash">
+            <summary>
+            MD5.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.StepMetadata.SHA1Hash">
+            <summary>
+            SHA1.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.StepMetadata.SHA256Hash">
+            <summary>
+            SHA256.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.StepMetadata.Notes">
+            <summary>
+            Notes.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.StepMetadata.DebugAssemblyLoad">
+            <summary>
+            Enable or disable assembly load debugging.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.StepMetadata.CreatedUtc">
+            <summary>
+            Creation timestamp, in UTC time.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.StepMetadata.Package">
+            <summary>
+            Package file (zip) contents.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.StepMetadata.SuccessStep">
+            <summary>
+            Step to execute when successful.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.StepMetadata.FailureStep">
+            <summary>
+            Step to execute when failed.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.StepMetadata.ExceptionStep">
+            <summary>
+            Step to execute when an exception is encountered.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Orchestrator.StepMetadata.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Orchestrator.StepResultEnum">
+            <summary>
+            Data flow step result.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Orchestrator.StepResultEnum.Success">
+            <summary>
+            Success.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Orchestrator.StepResultEnum.Failure">
+            <summary>
+            Failure.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Orchestrator.StepResultEnum.Exception">
+            <summary>
+            Exception.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Orchestrator.StepRuntimeEnum">
+            <summary>
+            Data flow step runtime.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Orchestrator.StepRuntimeEnum.Dotnet8">
+            <summary>
+            Dotnet8.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Orchestrator.TenantMetadata">
+            <summary>
+            Tenant metadata.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.TenantMetadata.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.TenantMetadata.ParentGUID">
+            <summary>
+            Parent GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.TenantMetadata.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.TenantMetadata.Active">
+            <summary>
+            Active.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.TenantMetadata.CreatedUtc">
+            <summary>
+            Creation timestamp, in UTC time.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Orchestrator.TenantMetadata.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Orchestrator.Trigger">
+            <summary>
+            Data flow trigger, i.e. the event that invokes a data flow.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.Trigger.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.Trigger.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.Trigger.TriggerType">
+            <summary>
+            Type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.Trigger.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.Trigger.HttpMethod">
+            <summary>
+            HTTP method.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.Trigger.HttpUrlPrefix">
+            <summary>
+            HTTP relative URL prefix, i.e. /mydataflow will match /mydataflow1 and /mydataflow/1.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.Trigger.Notes">
+            <summary>
+            Notes.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.Trigger.CreatedUtc">
+            <summary>
+            Creation timestamp, in UTC time.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Orchestrator.Trigger.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Orchestrator.TriggerTypeEnum">
+            <summary>
+            Trigger type.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Orchestrator.TriggerTypeEnum.HTTP">
+            <summary>
+            HTTP.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Orchestrator.UserMaster">
+            <summary>
+            User.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.UserMaster.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.UserMaster.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.UserMaster.FirstName">
+            <summary>
+            First name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.UserMaster.LastName">
+            <summary>
+            Last name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.UserMaster.FullName">
+            <summary>
+            Full name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.UserMaster.Notes">
+            <summary>
+            Notes.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.UserMaster.Email">
+            <summary>
+            Email.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.UserMaster.PasswordSha256">
+            <summary>
+            Password SHA256.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.UserMaster.Active">
+            <summary>
+            Active.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.UserMaster.CreatedUtc">
+            <summary>
+            Creation time, in UTC.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Orchestrator.UserMaster.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Processing.ApiErrorEnum">
+            <summary>
+            API error codes.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Processing.ApiErrorEnum.NoUdrConnectivity">
+            <summary>
+            No connectivity to the UDR endpoint.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Processing.ApiErrorEnum.UdrGenerationFailed">
+            <summary>
+            UDR generation failed.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Processing.ApiErrorEnum.NoDataCatalogConnectivity">
+            <summary>
+            No data catalog connectivity.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Processing.ApiErrorEnum.DataCatalogPersistFailed">
+            <summary>
+            Persisting data in the data catalog failed.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Processing.ApiErrorEnum.UnknownDataCatalogType">
+            <summary>
+            Unknown data catalog type.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Processing.ApiErrorEnum.UnknownEmbeddingsGeneratorType">
+            <summary>
+            Unknown embeddings generator type.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Processing.ApiErrorEnum.EmbeddingsPersistFailed">
+            <summary>
+            Embeddings persistence failed.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Processing.ApiErrorEnum.AuthenticationFailed">
+            <summary>
+            Authentication failed.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Processing.ApiErrorEnum.AuthorizationFailed">
+            <summary>
+            Authorization failed.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Processing.ApiErrorEnum.BadRequest">
+            <summary>
+            Bad request.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Processing.ApiErrorEnum.Conflict">
+            <summary>
+            Conflict.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Processing.ApiErrorEnum.DeserializationError">
+            <summary>
+            DeserializationError.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Processing.ApiErrorEnum.Inactive">
+            <summary>
+            Inactive.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Processing.ApiErrorEnum.InternalError">
+            <summary>
+            Internal error.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Processing.ApiErrorEnum.InvalidRange">
+            <summary>
+            Invalid range.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Processing.ApiErrorEnum.InUse">
+            <summary>
+            In use.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Processing.ApiErrorEnum.NotEmpty">
+            <summary>
+            Not empty.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Processing.ApiErrorEnum.NotFound">
+            <summary>
+            Not found.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Processing.ApiErrorEnum.TooLarge">
+            <summary>
+            Request too large.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Processing.ApiErrorResponse">
+            <summary>
+            API error response.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ApiErrorResponse.Error">
+            <summary>
+            Error.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ApiErrorResponse.Message">
+            <summary>
+            Human-readable message.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ApiErrorResponse.StatusCode">
+            <summary>
+            HTTP status code.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ApiErrorResponse.Context">
+            <summary>
+            Additional contextual information.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ApiErrorResponse.Description">
+            <summary>
+            Description.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ApiErrorResponse.Exception">
+            <summary>
+            Exception object.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Processing.ApiErrorResponse.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Processing.ApiErrorResponse.#ctor(View.Sdk.Shared.Processing.ApiErrorEnum,System.Object,System.String,System.Exception)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="error">Error code.</param>
+            <param name="context">Context.</param>
+            <param name="description">Description.</param>
+            <param name="exception">Exception.</param>
+        </member>
+        <member name="T:View.Sdk.Shared.Processing.DataCatalogTypeEnum">
+            <summary>
+            Data catalog type.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Processing.DataCatalogTypeEnum.Lexi">
+            <summary>
+            Lexi.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Processing.ObjectMetadata">
+            <summary>
+            Object metadata.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ObjectMetadata.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ObjectMetadata.ParentGUID">
+            <summary>
+            Parent GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ObjectMetadata.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ObjectMetadata.TenantName">
+            <summary>
+            Tenant name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ObjectMetadata.NodeGUID">
+            <summary>
+            Node GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ObjectMetadata.PoolGUID">
+            <summary>
+            Pool GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ObjectMetadata.BucketGUID">
+            <summary>
+            Bucket GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ObjectMetadata.BucketName">
+            <summary>
+            Bucket name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ObjectMetadata.OwnerGUID">
+            <summary>
+            Owner GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ObjectMetadata.Key">
+            <summary>
+            Key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ObjectMetadata.Version">
+            <summary>
+            Version.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ObjectMetadata.IsLatest">
+            <summary>
+            Boolean indicating if this is the latest version.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ObjectMetadata.IsDeleteMarker">
+            <summary>
+            Boolean indicating if this is a delete marker.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ObjectMetadata.IsLocal">
+            <summary>
+            Boolean indicating if the object is local.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ObjectMetadata.ContentType">
+            <summary>
+            Content-type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ObjectMetadata.DocumentType">
+            <summary>
+            Document type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ObjectMetadata.ContentLength">
+            <summary>
+            Content length.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ObjectMetadata.SourceUrl">
+            <summary>
+            Source URL.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ObjectMetadata.ExpirationUtc">
+            <summary>
+            Expiration timestamp, in UTC.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ObjectMetadata.CreatedUtc">
+            <summary>
+            Creation timestamp, in UTC.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ObjectMetadata.Data">
+            <summary>
+            Data.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Processing.ObjectMetadata.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Processing.ProcessorContext">
+            <summary>
+            Processor context.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ProcessorContext.Request">
+            <summary>
+            Request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ProcessorContext.Response">
+            <summary>
+            Response.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Processing.ProcessorContext.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Processing.ProcessorRequest">
+            <summary>
+            Processor request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ProcessorRequest.Object">
+            <summary>
+            Object metadata.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ProcessorRequest.MetadataRule">
+            <summary>
+            Metadata rule.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ProcessorRequest.EmbeddingsRule">
+            <summary>
+            Embeddings rule.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Processing.ProcessorRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Processing.ProcessorResponse">
+            <summary>
+            Processor response.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ProcessorResponse.DataFlowRequestGUID">
+            <summary>
+            Data flow request GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ProcessorResponse.Success">
+            <summary>
+            Boolean indicating success.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ProcessorResponse.Timestamp">
+            <summary>
+            Timestamps.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ProcessorResponse.Error">
+            <summary>
+            Error response, if any.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ProcessorResponse.Udr">
+            <summary>
+            UDR document.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ProcessorResponse.Source">
+            <summary>
+            Source document in data catalog.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ProcessorResponse.Vector">
+            <summary>
+            Embeddings document.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Processing.ProcessorResponse.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Search.Collection">
+            <summary>
+            Collection.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.Collection.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.Collection.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.Collection.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.Collection.AdditionalData">
+            <summary>
+            Additional data.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.Collection.CreatedUtc">
+            <summary>
+            Creation timestamp, in UTC time.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Search.Collection.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Search.CollectionStatistics">
+            <summary>
+            Collection statistics.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.CollectionStatistics.Collection">
+            <summary>
+            Collection.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.CollectionStatistics.DocumentCount">
+            <summary>
+            Number of source documents.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.CollectionStatistics.TotalBytes">
+            <summary>
+            Total number of bytes.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.CollectionStatistics.TermCount">
+            <summary>
+            Term count.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.CollectionStatistics.KeyValueCount">
+            <summary>
+            Key-value count.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Search.CollectionStatistics.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Search.EnumerationQuery">
+            <summary>
+            Object used to enumerate an index.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.EnumerationQuery.GUID">
+            <summary>
+            The GUID of the enumeration operation.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.EnumerationQuery.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.EnumerationQuery.CollectionGUID">
+            <summary>
+            The GUID of the collection to query.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.EnumerationQuery.MaxResults">
+            <summary>
+            Maximum number of results to retrieve.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.EnumerationQuery.ContinuationToken">
+            <summary>
+            Continuation token.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.EnumerationQuery.Filters">
+            <summary>
+            Search filters to apply to enumeration.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.EnumerationQuery.OrderBy">
+            <summary>
+            Order by.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Search.EnumerationQuery.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Search.EnumerationResult">
+            <summary>
+            Object returned as the result of an enumeration against an index.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.EnumerationResult.Success">
+            <summary>
+            Indicates if the statistics operation was successful.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.EnumerationResult.Exception">
+            <summary>
+            Exception.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.EnumerationResult.Timestamp">
+            <summary>
+            Start and end timestamps.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.EnumerationResult.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.EnumerationResult.CollectionGUID">
+            <summary>
+            The GUID of the collection that was queried.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.EnumerationResult.Query">
+            <summary>
+            The enumeration query performed.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.EnumerationResult.Documents">
+            <summary>
+            Source documents that matched the query.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.EnumerationResult.EndOfResults">
+            <summary>
+            Boolean indicating end of results.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.EnumerationResult.ContinuationToken">
+            <summary>
+            Continuation token to use when continuing the search.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.EnumerationResult.RecordsRemaining">
+            <summary>
+            Number of candidate records remaining in the enumeration.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Search.EnumerationResult.#ctor">
+            <summary>
+            Instantiates the object.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Search.EnumerationResult.#ctor(View.Sdk.Shared.Search.EnumerationQuery)">
+            <summary>
+            Instantiates the object.
+            </summary>
+            <param name="query">Enumeration query.</param>
+        </member>
+        <member name="T:View.Sdk.Shared.Search.MatchedDocument">
+            <summary>
+            A document matching a search query.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.MatchedDocument.GUID">
+            <summary>
+            Globally-unique identifier for the source document.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.MatchedDocument.DocumentType">
+            <summary>
+            The type of document.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.MatchedDocument.Score">
+            <summary>
+            The score of the document, between 0 and 1, over both terms and filters.  Only relevant when optional terms or filters are supplied in the search.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.MatchedDocument.TermsScore">
+            <summary>
+            The terms score of the document, between 0 and 1, when optional terms are supplied.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.MatchedDocument.FiltersScore">
+            <summary>
+            The filters score of the document, between 0 and 1, when optional filters are supplied.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.MatchedDocument.Metadata">
+            <summary>
+            Source document metadata, if requested.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Search.MatchedDocument.#ctor">
+            <summary>
+            Instantiates the object.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Search.OrderByEnum">
+            <summary>
+            Order by enumeration.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Search.OrderByEnum.CreatedAscending">
+            <summary>
+            CreatedAscending.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Search.OrderByEnum.CreatedDescending">
+            <summary>
+            CreatedDescending.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Search.QueryFilter">
+            <summary>
+            A filter for the query.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.QueryFilter.Terms">
+            <summary>
+            List of terms upon which to match.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.QueryFilter.Filter">
+            <summary>
+            List of filters upon which to match.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Search.QueryFilter.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Search.SearchCondition">
+            <summary>
+            Available conditions for search filters.
+            </summary> 
+        </member>
+        <member name="F:View.Sdk.Shared.Search.SearchCondition.Equals">
+            <summary>
+            The left and right terms are equal to one another.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Search.SearchCondition.NotEquals">
+            <summary>
+            The left and right terms are not equal to one another.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Search.SearchCondition.GreaterThan">
+            <summary>
+            The left term is greater than the right term.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Search.SearchCondition.GreaterThanOrEqualTo">
+            <summary>
+            The left term is greater than or equal to the right term.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Search.SearchCondition.LessThan">
+            <summary>
+            The left term is less than the right term.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Search.SearchCondition.LessThanOrEqualTo">
+            <summary>
+            The left term is less than or equal to the right term.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Search.SearchCondition.IsNull">
+            <summary>
+            The left term is null.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Search.SearchCondition.IsNotNull">
+            <summary>
+            The left term is not null.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Search.SearchCondition.Contains">
+            <summary>
+            The left term is contained within the right term (list).
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Search.SearchCondition.ContainsNot">
+            <summary>
+            The left term is not contained within the right term (list).
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Search.SearchCondition.StartsWith">
+            <summary>
+            The left term starts with the right term.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Search.SearchCondition.EndsWith">
+            <summary>
+            The left term ends with the right term.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Search.SearchFilter">
+            <summary>
+            A search filter.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SearchFilter.Field">
+            <summary>
+            The field upon which to match.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SearchFilter.Condition">
+            <summary>
+            The condition by which the parsed document's content is evaluated against the supplied value.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SearchFilter.Value">
+            <summary>
+            The value to be evaluated using the specified condition against the parsed document's content.
+            When using GreaterThan, GreaterThanOrEqualTo, LessThan, or LessThanOrEqualTo, the value supplied must be convertible to decimal.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Search.SearchFilter.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Search.SearchFilter.#ctor(System.String,View.Sdk.Shared.Search.SearchCondition,System.String)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="field">Field.</param>
+            <param name="condition">SearchCondition.</param>
+            <param name="value">Value.</param>
+        </member>
+        <member name="M:View.Sdk.Shared.Search.SearchFilter.EvaluateValue(System.Object)">
+            <summary>
+            Evaluates a value against the search filter.
+            </summary>
+            <param name="value">Value.</param>
+            <returns>True if matched.</returns>
+        </member>
+        <member name="T:View.Sdk.Shared.Search.SearchQuery">
+            <summary>
+            Object used to search a collection.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SearchQuery.GUID">
+            <summary>
+            The GUID of the search operation.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SearchQuery.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SearchQuery.CollectionGUID">
+            <summary>
+            Collection GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SearchQuery.MaxResults">
+            <summary>
+            Maximum number of results to retrieve.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SearchQuery.ContinuationToken">
+            <summary>
+            Continuation token.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SearchQuery.Required">
+            <summary>
+            Required terms and search filter that must be satisfied to include a document in the results.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SearchQuery.Optional">
+            <summary>
+            Optional terms and search filter that may match on documents but are not required.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SearchQuery.Exclude">
+            <summary>
+            Terms and search filter that must be excluded from the results.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SearchQuery.OrderBy">
+            <summary>
+            Order by.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Search.SearchQuery.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Search.SearchResult">
+            <summary>
+            Object returned as the result of a search against a collection.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SearchResult.Success">
+            <summary>
+            Indicates if the statistics operation was successful.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SearchResult.Exception">
+            <summary>
+            Exception.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SearchResult.Timestamp">
+            <summary>
+            Timestamps.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SearchResult.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SearchResult.CollectionGUID">
+            <summary>
+            The GUID of the collection that was queried.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SearchResult.Query">
+            <summary>
+            The search query performed.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SearchResult.EndOfResults">
+            <summary>
+            Boolean indicating end of results.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SearchResult.ContinuationToken">
+            <summary>
+            Continuation token to use when continuing the search.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SearchResult.RecordsRemaining">
+            <summary>
+            Number of candidate records remaining in the search.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SearchResult.NotSatisfiable">
+            <summary>
+            Required query terms and search filters that are not able to be satisfied.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SearchResult.Documents">
+            <summary>
+            Documents that matched the query.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Search.SearchResult.#ctor">
+            <summary>
+            Instantiates the object.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Search.SearchResult.#ctor(View.Sdk.Shared.Search.SearchQuery)">
+            <summary>
+            Instantiates the object.
+            </summary>
+            <param name="query">Search query.</param>
+        </member>
+        <member name="M:View.Sdk.Shared.Search.SearchResult.SortMatchesByScore">
+            <summary>
+            Sort matches by score.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Search.SourceDocument">
+            <summary>
+            Source document.
+            </summary> 
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SourceDocument.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SourceDocument.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SourceDocument.BucketGUID">
+            <summary>
+            Bucket GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SourceDocument.CollectionGUID">
+            <summary>
+            Collection GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SourceDocument.ObjectGUID">
+            <summary>
+            Object GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SourceDocument.ObjectKey">
+            <summary>
+            Key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SourceDocument.ObjectVersion">
+            <summary>
+            Version.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SourceDocument.ContentType">
+            <summary>
+            Content-type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SourceDocument.DocumentType">
+            <summary>
+            Document type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SourceDocument.SourceUrl">
+            <summary>
+            Source URL.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SourceDocument.ContentLength">
+            <summary>
+            Content length.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SourceDocument.CreatedUtc">
+            <summary>
+            Creation timestamp, in UTC time.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SourceDocument.UdrDocument">
+            <summary>
+            UDR document.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Search.SourceDocument.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Search.SourceDocumentStatistics">
+            <summary>
+            Source document statistics.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SourceDocumentStatistics.SourceDocument">
+            <summary>
+            Source document.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SourceDocumentStatistics.TermCount">
+            <summary>
+            Term count.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SourceDocumentStatistics.KeyValueCount">
+            <summary>
+            Key-value count.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Search.SourceDocumentStatistics.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Udr.DataNode">
+            <summary>
+            A node of data from a parsed document.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.DataNode.Key">
+            <summary>
+            The key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.DataNode.Type">
+            <summary>
+            The DataType associated with the key-value pair.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.DataNode.Data">
+            <summary>
+            The data associated with the key.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Udr.DataNode.#ctor">
+            <summary>
+            Instantiates the DataNode.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Udr.DataNode.#ctor(System.String,System.Object,View.Sdk.Shared.Udr.DataTypeEnum)">
+            <summary>
+            Instantiates the DataNode.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="data">The data associated with the key.</param>
+            <param name="type">The DataType associated with the key-value pair.</param>
+        </member>
+        <member name="M:View.Sdk.Shared.Udr.DataNode.TypeFromValue(System.Object)">
+            <summary>
+            Retrieve the DataType of the supplied value.
+            </summary>
+            <param name="val">The object to evaluate.</param>
+            <returns>DataType.</returns>
+        </member>
+        <member name="T:View.Sdk.Shared.Udr.DataTableRequest">
+            <summary>
+            Data table processing request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.DataTableRequest.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.DataTableRequest.DatabaseType">
+            <summary>
+            Database type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.DataTableRequest.Hostname">
+            <summary>
+            Hostname.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.DataTableRequest.Port">
+            <summary>
+            Port.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.DataTableRequest.Username">
+            <summary>
+            Username.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.DataTableRequest.Password">
+            <summary>
+            Password.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.DataTableRequest.DatabaseName">
+            <summary>
+            Database name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.DataTableRequest.Query">
+            <summary>
+            Query.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.DataTableRequest.IncludeFlattened">
+            <summary>
+            True to include a flattened representation of the source document.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.DataTableRequest.CaseInsensitive">
+            <summary>
+            True to enable case insensitive processing.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.DataTableRequest.TopTerms">
+            <summary>
+            Number of top terms to include.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.DataTableRequest.AdditionalData">
+            <summary>
+            Additional data, not used by the service.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.DataTableRequest.Metadata">
+            <summary>
+            Metadata, attached to the result.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.DataTableRequest.SqliteFileData">
+            <summary>
+            Sqlite file data.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Udr.DataTableRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Udr.DataTypeEnum">
+            <summary>
+            Types of data supported.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Udr.DataTypeEnum.Object">
+            <summary>
+            Object.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Udr.DataTypeEnum.Array">
+            <summary>
+            Array.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Udr.DataTypeEnum.Timestamp">
+            <summary>
+            Timestamp.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Udr.DataTypeEnum.Integer">
+            <summary>
+            Integer.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Udr.DataTypeEnum.Long">
+            <summary>
+            Long.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Udr.DataTypeEnum.Decimal">
+            <summary>
+            Decimal.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Udr.DataTypeEnum.Double">
+            <summary>
+            Double.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Udr.DataTypeEnum.Float">
+            <summary>
+            Float.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Udr.DataTypeEnum.String">
+            <summary>
+            String.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Udr.DataTypeEnum.Boolean">
+            <summary>
+            Boolean.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Udr.DataTypeEnum.Binary">
+            <summary>
+            Binary.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Udr.DataTypeEnum.Null">
+            <summary>
+            Null.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Udr.DataTypeEnum.Unknown">
+            <summary>
+            Unknown.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Udr.DocumentTypeEnum">
+            <summary>
+            Data type associated with an input object or file.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Udr.DocumentTypeEnum.Unknown">
+            <summary>
+            Unknown.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Udr.DocumentTypeEnum.Csv">
+            <summary>
+            CSV.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Udr.DocumentTypeEnum.DataTable">
+            <summary>
+            DataTable.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Udr.DocumentTypeEnum.Docx">
+            <summary>
+            DOCX, Word document.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Udr.DocumentTypeEnum.Html">
+            <summary>
+            HTML.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Udr.DocumentTypeEnum.Json">
+            <summary>
+            JSON.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Udr.DocumentTypeEnum.Parquet">
+            <summary>
+            Parquet.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Udr.DocumentTypeEnum.Pdf">
+            <summary>
+            PDF.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Udr.DocumentTypeEnum.Pptx">
+            <summary>
+            PPTX, PowerPoint presentation.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Udr.DocumentTypeEnum.Sqlite">
+            <summary>
+            Sqlite database file.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Udr.DocumentTypeEnum.Text">
+            <summary>
+            Text.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Udr.DocumentTypeEnum.Xlsx">
+            <summary>
+            XLSX, Excel spreadsheet.
+            </summary> 
+        </member>
+        <member name="F:View.Sdk.Shared.Udr.DocumentTypeEnum.Xml">
+            <summary>
+            XML.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Udr.MetadataRule">
+            <summary>
+            Metadata rule.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.MetadataRule.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.MetadataRule.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.MetadataRule.BucketGUID">
+            <summary>
+            Bucket GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.MetadataRule.OwnerGUID">
+            <summary>
+            Owner GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.MetadataRule.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.MetadataRule.ContentType">
+            <summary>
+            Content-type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.MetadataRule.Prefix">
+            <summary>
+            Prefix.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.MetadataRule.Suffix">
+            <summary>
+            Suffix.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.MetadataRule.DataFlowEndpoint">
+            <summary>
+            Data flow endpoint.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.MetadataRule.UdrEndpoint">
+            <summary>
+            UDR endpoint.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.MetadataRule.DataCatalogType">
+            <summary>
+            Data catalog type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.MetadataRule.DataCatalogEndpoint">
+            <summary>
+            Data catalog endpoint.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.MetadataRule.DataCatalogCollection">
+            <summary>
+            Data catalog collection identifier.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.MetadataRule.TopTerms">
+            <summary>
+            Number of top terms to request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.MetadataRule.CaseInsensitive">
+            <summary>
+            Enable or disable case insensitive text processing.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.MetadataRule.IncludeFlattened">
+            <summary>
+            Enable or disable inclusion of flattened representation of processed content.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.MetadataRule.TargetBucketGUID">
+            <summary>
+            Target bucket GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.MetadataRule.MaxContentLength">
+            <summary>
+            Maximum content length.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.MetadataRule.RetentionMinutes">
+            <summary>
+            The number of minutes to retain the generated document.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.MetadataRule.CreatedUtc">
+            <summary>
+            Creation timestamp.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Udr.MetadataRule.#ctor">
+            <summary>
+            Instantiate the object.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Udr.Posting">
+            <summary>
+            A posting from a parsed document.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.Posting.Term">
+            <summary>
+            The token.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.Posting.Count">
+            <summary>
+            The frequency with which the token occurs.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.Posting.AbsolutePositions">
+            <summary>
+            The absolute positions in the token list where the token appears.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.Posting.RelativePositions">
+            <summary>
+            The relative positions in the token list where the token appears.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Udr.Posting.#ctor">
+            <summary>
+            Instantiates the Token.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Udr.Posting.#ctor(System.String)">
+            <summary>
+            Instantiates the Token.
+            </summary>
+            <param name="value">The token.</param>
+        </member>
+        <member name="T:View.Sdk.Shared.Udr.SchemaResult">
+            <summary>
+            Schema result.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.SchemaResult.Type">
+            <summary>
+            Data type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.SchemaResult.Rows">
+            <summary>
+            Number of rows.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.SchemaResult.Columns">
+            <summary>
+            Number of columns.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.SchemaResult.Irregular">
+            <summary>
+            Flag to indicate if the geometry of the object is irregular.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.SchemaResult.MaxDepth">
+            <summary>
+            Maximum depth observed in the object.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.SchemaResult.NumObjects">
+            <summary>
+            Number of objects.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.SchemaResult.NumArrays">
+            <summary>
+            Number of arrays.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.SchemaResult.NumKeyValues">
+            <summary>
+            Number of key values.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.SchemaResult.Schema">
+            <summary>
+            Schema of the document.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.SchemaResult.Metadata">
+            <summary>
+            Metadata.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.SchemaResult.Flattened">
+            <summary>
+            Flattened representation of the object.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Udr.SchemaResult.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Udr.TypeResult">
+            <summary>
+            Type detection results.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.TypeResult.MimeType">
+            <summary>
+            MIME type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.TypeResult.Extension">
+            <summary>
+            Extension.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.TypeResult.Type">
+            <summary>
+            Data type.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Udr.TypeResult.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Udr.UdrDocument">
+            <summary>
+            UDR document.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.UdrDocument.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.UdrDocument.Success">
+            <summary>
+            Indicates if the parser was successful.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.UdrDocument.Exception">
+            <summary>
+            Exception, if any.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.UdrDocument.Timestamp">
+            <summary>
+            Start and end timestamps.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.UdrDocument.AdditionalData">
+            <summary>
+            Additional data, not used by the service.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.UdrDocument.Metadata">
+            <summary>
+            Metadata, attached to the result.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.UdrDocument.Key">
+            <summary>
+            Key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.UdrDocument.TypeResult">
+            <summary>
+            Document type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.UdrDocument.Terms">
+            <summary>
+            Terms identified through text extraction.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.UdrDocument.TopTerms">
+            <summary>
+            Top terms and their count.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.UdrDocument.Postings">
+            <summary>
+            Postings.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.UdrDocument.Schema">
+            <summary>
+            Schema.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Udr.UdrDocument.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Udr.UdrDocument.GetTopTerms(System.Int32)">
+            <summary>
+            Retrieve top terms.
+            </summary>
+            <param name="count">Number of top terms to retrieve.</param>
+            <returns>Dictionary containing terms and their counts.</returns>
+        </member>
+        <member name="T:View.Sdk.Shared.Udr.UdrDocumentRequest">
+            <summary>
+            UDR document request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.UdrDocumentRequest.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.UdrDocumentRequest.Key">
+            <summary>
+            Key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.UdrDocumentRequest.ContentType">
+            <summary>
+            Content-type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.UdrDocumentRequest.IncludeFlattened">
+            <summary>
+            True to include a flattened representation of the source document.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.UdrDocumentRequest.CaseInsensitive">
+            <summary>
+            True to enable case insensitive processing.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.UdrDocumentRequest.TopTerms">
+            <summary>
+            Number of top terms to include.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.UdrDocumentRequest.AdditionalData">
+            <summary>
+            Additional data, not used by the service.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.UdrDocumentRequest.Metadata">
+            <summary>
+            Metadata, attached to the result.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Udr.UdrDocumentRequest.Data">
+            <summary>
+            Data.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Udr.UdrDocumentRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+    </members>
+</doc>
