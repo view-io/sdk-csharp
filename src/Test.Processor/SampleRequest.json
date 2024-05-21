@@ -42,7 +42,7 @@
     "TargetBucketGUID": "embeddings",
     "EmbeddingsGenerator": "LCProxy",
     "GeneratorUrl": "http://localhost:8301/",
-    "GeneratorApiKey": "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",
+    "GeneratorApiKey": "[huggingface access token]",
     "Model": "all-MiniLM-L6-v2",
     "Dimensionality": 384,
     "VectorRepositoryType": "Pgvector",
