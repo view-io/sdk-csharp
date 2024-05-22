@@ -103,36 +103,48 @@
 
             string url = _Endpoint;
 
-            using (RestRequest req = new RestRequest(url, HttpMethod.Post))
+            try
             {
-                req.ContentType = Constants.JsonContentType;
-
-                LexiEmbeddingsRequest procReq = new LexiEmbeddingsRequest
+                using (RestRequest req = new RestRequest(url, HttpMethod.Post))
                 {
-                    Results = results,
-                    EmbeddingsRule = embedRule
-                };
+                    req.ContentType = Constants.JsonContentType;
 
-                using (RestResponse resp = await req.SendAsync(_Serializer.SerializeJson(procReq, true), token).ConfigureAwait(false))
-                {
-                    if (resp != null && resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                    LexiEmbeddingsRequest procReq = new LexiEmbeddingsRequest
                     {
-                        Log("success status from " + url + ": " + resp.StatusCode);
-                        LexiEmbeddingsResponse procResp = _Serializer.DeserializeJson<LexiEmbeddingsResponse>(resp.DataAsString);
-                        return procResp;
-                    }
-                    else if (resp != null)
+                        Results = results,
+                        EmbeddingsRule = embedRule
+                    };
+
+                    using (RestResponse resp = await req.SendAsync(_Serializer.SerializeJson(procReq, true), token).ConfigureAwait(false))
                     {
-                        Log("non-success status from " + url + ": " + resp.StatusCode + Environment.NewLine + resp.DataAsString);
-                        LexiEmbeddingsResponse procResp = _Serializer.DeserializeJson<LexiEmbeddingsResponse>(resp.DataAsString);
-                        return procResp;
-                    }
-                    else
-                    {
-                        Log("no response from " + url);
-                        return null;
+                        if (resp != null && resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                        {
+                            Log("success status from " + url + ": " + resp.StatusCode);
+                            LexiEmbeddingsResponse procResp = _Serializer.DeserializeJson<LexiEmbeddingsResponse>(resp.DataAsString);
+                            return procResp;
+                        }
+                        else if (resp != null)
+                        {
+                            Log("non-success status from " + url + ": " + resp.StatusCode + Environment.NewLine + resp.DataAsString);
+                            LexiEmbeddingsResponse procResp = _Serializer.DeserializeJson<LexiEmbeddingsResponse>(resp.DataAsString);
+                            return procResp;
+                        }
+                        else
+                        {
+                            Log("no response from " + url);
+                            return null;
+                        }
                     }
                 }
+            }
+            catch (HttpRequestException hre)
+            {
+                Log("exception while interacting with " + url + ": " + hre.Message);
+                return new LexiEmbeddingsResponse
+                {
+                    Success = false,
+                    Error = new ApiErrorResponse(ApiErrorEnum.InternalError, null, null, hre)
+                };
             }
         }
 
