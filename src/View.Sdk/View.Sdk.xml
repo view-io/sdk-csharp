@@ -636,6 +636,38 @@
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
+        <member name="T:View.Sdk.Processor.ViewLexiEmbeddingsSdk">
+            <summary>
+            View SDK for generating embeddings with Lexi search results.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ViewLexiEmbeddingsSdk.Logger">
+            <summary>
+            Method to invoke to send log messages.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Processor.ViewLexiEmbeddingsSdk.#ctor(System.String)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="endpoint">Endpoint URL.</param>
+        </member>
+        <member name="M:View.Sdk.Processor.ViewLexiEmbeddingsSdk.ValidateConnectivity(System.Threading.CancellationToken)">
+            <summary>
+            Validate connectivity.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Boolean indicating success.</returns>
+        </member>
+        <member name="M:View.Sdk.Processor.ViewLexiEmbeddingsSdk.Process(View.Sdk.Shared.Search.SearchResult,View.Sdk.Shared.Embeddings.EmbeddingsRule,System.Threading.CancellationToken)">
+            <summary>
+            Process a document.
+            </summary>
+            <param name="results">Search results.</param>
+            <param name="embedRule">Embeddings rule.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
         <member name="T:View.Sdk.Processor.ViewProcessorSdk">
             <summary>
             View Processing Pipeline SDK.
@@ -646,12 +678,11 @@
             Method to invoke to send log messages.
             </summary>
         </member>
-        <member name="M:View.Sdk.Processor.ViewProcessorSdk.#ctor(System.String,System.String)">
+        <member name="M:View.Sdk.Processor.ViewProcessorSdk.#ctor(System.String)">
             <summary>
             Instantiate.
             </summary>
             <param name="endpoint">Endpoint URL.</param>
-            <param name="apiKey">API key.</param>
         </member>
         <member name="M:View.Sdk.Processor.ViewProcessorSdk.ValidateConnectivity(System.Threading.CancellationToken)">
             <summary>
@@ -2076,6 +2107,81 @@
         <member name="F:View.Sdk.Shared.Processing.DataCatalogTypeEnum.Lexi">
             <summary>
             Lexi.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Processing.LexiEmbeddingsContext">
+            <summary>
+            Lexi embeddings context.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.LexiEmbeddingsContext.Request">
+            <summary>
+            Request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.LexiEmbeddingsContext.Response">
+            <summary>
+            Response.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Processing.LexiEmbeddingsContext.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Processing.LexiEmbeddingsRequest">
+            <summary>
+            Lexi embeddings request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.LexiEmbeddingsRequest.Results">
+            <summary>
+            Search results.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.LexiEmbeddingsRequest.EmbeddingsRule">
+            <summary>
+            Embeddings rule.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Processing.LexiEmbeddingsRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Processing.LexiEmbeddingsResponse">
+            <summary>
+            Lexi embeddings response.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.LexiEmbeddingsResponse.DataFlowRequestGUID">
+            <summary>
+            Data flow request GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.LexiEmbeddingsResponse.Success">
+            <summary>
+            Boolean indicating success.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.LexiEmbeddingsResponse.Timestamp">
+            <summary>
+            Timestamps.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.LexiEmbeddingsResponse.Error">
+            <summary>
+            Error response, if any.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.LexiEmbeddingsResponse.Vector">
+            <summary>
+            Embeddings document.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Processing.LexiEmbeddingsResponse.#ctor">
+            <summary>
+            Instantiate.
             </summary>
         </member>
         <member name="T:View.Sdk.Shared.Processing.ObjectMetadata">

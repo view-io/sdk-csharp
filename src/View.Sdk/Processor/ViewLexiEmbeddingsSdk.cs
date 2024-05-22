@@ -10,12 +10,13 @@
     using View.Serializer;
     using View.Sdk.Shared.Embeddings;
     using View.Sdk.Shared.Processing;
+    using View.Sdk.Shared.Search;
     using View.Sdk.Shared.Udr;
 
     /// <summary>
-    /// View Processing Pipeline SDK.
+    /// View SDK for generating embeddings with Lexi search results.
     /// </summary>
-    public class ViewProcessorSdk
+    public class ViewLexiEmbeddingsSdk
     {
         #region Public-Members
 
@@ -28,9 +29,9 @@
 
         #region Private-Members
 
-        private string _Header = "[ViewProcessorSdk] ";
+        private string _Header = "[ViewLexiEmbeddingsSdk] ";
         private Uri _Uri = null;
-        private string _Endpoint = "http://localhost:8501/processor";
+        private string _Endpoint = "http://localhost:8501/lexi/embeddings";
         private SerializationHelper _Serializer = new SerializationHelper();
         
         #endregion
@@ -41,7 +42,7 @@
         /// Instantiate.
         /// </summary>
         /// <param name="endpoint">Endpoint URL.</param>
-        public ViewProcessorSdk(string endpoint = "http://localhost:8501/processor")
+        public ViewLexiEmbeddingsSdk(string endpoint = "http://localhost:8501/lexi/embeddings")
         {
             if (string.IsNullOrEmpty(endpoint)) throw new ArgumentNullException(nameof(endpoint));
 
@@ -88,19 +89,17 @@
         /// <summary>
         /// Process a document.
         /// </summary>
-        /// <param name="obj">Object metadata.</param>
-        /// <param name="mdRule">Metadata rule.</param>
+        /// <param name="results">Search results.</param>
         /// <param name="embedRule">Embeddings rule.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Task.</returns>
-        public async Task<ProcessorResponse> Process(
-            ObjectMetadata obj, 
-            MetadataRule mdRule, 
+        public async Task<LexiEmbeddingsResponse> Process(
+            View.Sdk.Shared.Search.SearchResult results, 
             EmbeddingsRule embedRule, 
             CancellationToken token = default)
         {
-            if (obj == null) throw new ArgumentNullException(nameof(obj));
-            if (mdRule == null) throw new ArgumentNullException(nameof(mdRule));
+            if (results == null) throw new ArgumentNullException(nameof(results));
+            if (embedRule == null) throw new ArgumentNullException(nameof(embedRule));
 
             string url = _Endpoint;
 
@@ -108,10 +107,9 @@
             {
                 req.ContentType = Constants.JsonContentType;
 
-                ProcessorRequest procReq = new ProcessorRequest
+                LexiEmbeddingsRequest procReq = new LexiEmbeddingsRequest
                 {
-                    Object = obj,
-                    MetadataRule = mdRule,
+                    Results = results,
                     EmbeddingsRule = embedRule
                 };
 
@@ -120,13 +118,13 @@
                     if (resp != null && resp.StatusCode >= 200 && resp.StatusCode <= 299)
                     {
                         Log("success status from " + url + ": " + resp.StatusCode);
-                        ProcessorResponse procResp = _Serializer.DeserializeJson<ProcessorResponse>(resp.DataAsString);
+                        LexiEmbeddingsResponse procResp = _Serializer.DeserializeJson<LexiEmbeddingsResponse>(resp.DataAsString);
                         return procResp;
                     }
                     else if (resp != null)
                     {
                         Log("non-success status from " + url + ": " + resp.StatusCode + Environment.NewLine + resp.DataAsString);
-                        ProcessorResponse procResp = _Serializer.DeserializeJson<ProcessorResponse>(resp.DataAsString);
+                        LexiEmbeddingsResponse procResp = _Serializer.DeserializeJson<LexiEmbeddingsResponse>(resp.DataAsString);
                         return procResp;
                     }
                     else
