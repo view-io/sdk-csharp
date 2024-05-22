@@ -33,6 +33,11 @@
         public string TenantGUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
+        /// Collection GUID.
+        /// </summary>
+        public string CollectionGUID { get; set; } = Guid.NewGuid().ToString();
+
+        /// <summary>
         /// Bucket GUID.
         /// </summary>
         public string BucketGUID { get; set; } = Guid.NewGuid().ToString();

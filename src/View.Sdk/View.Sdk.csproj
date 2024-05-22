@@ -7,7 +7,7 @@
 		<DocumentationFile>View.Sdk.xml</DocumentationFile>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Title>SDKs, shared classes, and dependencies for View.io services.</Title>
-		<Version>0.2.8</Version>
+		<Version>0.2.9</Version>
 		<Authors>View Systems Inc.</Authors>
 		<Company>View Systems Inc.</Company>
 		<Product>View.Sdk</Product>

@@ -801,6 +801,11 @@
             Tenant GUID.
             </summary>
         </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsDocument.CollectionGUID">
+            <summary>
+            Collection GUID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsDocument.BucketGUID">
             <summary>
             Bucket GUID.
