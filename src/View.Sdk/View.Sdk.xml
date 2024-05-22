@@ -711,6 +711,11 @@
             Tenant GUID.
             </summary>
         </member>
+        <member name="P:View.Sdk.Shared.Embeddings.DeleteRequest.CollectionGUID">
+            <summary>
+            Collection GUID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Shared.Embeddings.DeleteRequest.BucketGUID">
             <summary>
             Bucket GUID.
