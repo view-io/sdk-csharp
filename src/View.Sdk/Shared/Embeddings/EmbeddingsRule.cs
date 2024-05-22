@@ -93,6 +93,11 @@
         }
 
         /// <summary>
+        /// Data flow endpoint.
+        /// </summary>
+        public string DataFlowEndpoint { get; set; } = "http://localhost:8501/embeddings";
+
+        /// <summary>
         /// Vector repository type.
         /// </summary>
         public RepositoryTypeEnum VectorRepositoryType { get; set; } = RepositoryTypeEnum.Pgvector;

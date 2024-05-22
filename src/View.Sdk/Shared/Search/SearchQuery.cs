@@ -2,6 +2,7 @@
 {
     using System;
     using System.Text.Json.Serialization;
+    using View.Sdk.Shared.Embeddings;
 
     /// <summary>
     /// Object used to search a collection.
@@ -108,6 +109,12 @@
         /// </summary>
         [JsonPropertyOrder(9)]
         public OrderByEnum OrderBy { get; set; } = OrderByEnum.CreatedDescending;
+
+        /// <summary>
+        /// Embeddings rule.
+        /// </summary>
+        [JsonPropertyOrder(10)]
+        public EmbeddingsRule EmbeddingsRule { get; set; } = null;
 
         #endregion
 

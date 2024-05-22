@@ -42,6 +42,11 @@
             }
         }
 
+        /// <summary>
+        /// Embeddings documents generated from matched documents.
+        /// </summary>
+        public List<EmbeddingsDocument> Embeddings { get; set; } = null;
+
         #endregion
 
         #region Private-Members

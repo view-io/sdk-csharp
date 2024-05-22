@@ -970,6 +970,11 @@
             Dimensionality of embeddings.
             </summary>
         </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRule.DataFlowEndpoint">
+            <summary>
+            Data flow endpoint.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsRule.VectorRepositoryType">
             <summary>
             Vector repository type.
@@ -1300,6 +1305,11 @@
         <member name="P:View.Sdk.Shared.Embeddings.SearchResult.Documents">
             <summary>
             Matched documents.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.SearchResult.Embeddings">
+            <summary>
+            Embeddings documents generated from matched documents.
             </summary>
         </member>
         <member name="M:View.Sdk.Shared.Embeddings.SearchResult.#ctor">
@@ -2683,6 +2693,11 @@
         <member name="P:View.Sdk.Shared.Search.SearchQuery.OrderBy">
             <summary>
             Order by.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SearchQuery.EmbeddingsRule">
+            <summary>
+            Embeddings rule.
             </summary>
         </member>
         <member name="M:View.Sdk.Shared.Search.SearchQuery.#ctor">

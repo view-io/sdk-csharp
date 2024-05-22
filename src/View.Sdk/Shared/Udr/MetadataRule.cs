@@ -1,10 +1,8 @@
 ﻿namespace View.Sdk.Shared.Udr
 {
     using System;
-    using System.Security.Cryptography;
     using System.Text.Json.Serialization;
     using View.Sdk.Shared.Processing;
-
 
     /// <summary>
     /// Metadata rule.
