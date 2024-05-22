@@ -2176,7 +2176,7 @@
         </member>
         <member name="P:View.Sdk.Shared.Processing.LexiEmbeddingsResponse.Vector">
             <summary>
-            Embeddings document.
+            Embeddings documents.
             </summary>
         </member>
         <member name="M:View.Sdk.Shared.Processing.LexiEmbeddingsResponse.#ctor">

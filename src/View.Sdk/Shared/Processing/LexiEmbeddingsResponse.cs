@@ -38,15 +38,27 @@
         public ApiErrorResponse Error { get; set; } = null;
 
         /// <summary>
-        /// Embeddings document.
+        /// Embeddings documents.
         /// </summary>
-        public EmbeddingsDocument Vector { get; set; } = null;
+        public List<EmbeddingsDocument> Vector
+        {
+            get
+            {
+                return _Vectors;
+            }
+            set
+            {
+                if (value == null) value = new List<EmbeddingsDocument>();
+                _Vectors = value;
+            }
+        }
 
         #endregion
 
         #region Private-Members
 
         private string _RequestGuid = Guid.NewGuid().ToString();
+        private List<EmbeddingsDocument> _Vectors = new List<EmbeddingsDocument>();
 
         #endregion
 
