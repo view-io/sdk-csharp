@@ -27,6 +27,11 @@
         public Timestamp Timestamp { get; set; } = new Timestamp();
 
         /// <summary>
+        /// Data flow request GUID.
+        /// </summary>
+        public string DataFlowRequestGUID { get; set; } = null;
+
+        /// <summary>
         /// Matched documents.
         /// </summary>
         public List<MatchedDocument> Documents
