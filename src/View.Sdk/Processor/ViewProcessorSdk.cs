@@ -23,7 +23,17 @@
         /// Method to invoke to send log messages.
         /// </summary>
         public Action<string> Logger { get; set; } = null;
-         
+
+        /// <summary>
+        /// Enable or disable logging of request bodies.
+        /// </summary>
+        public bool LogRequests { get; set; } = false;
+
+        /// <summary>
+        /// Enable or disable logging of response bodies.
+        /// </summary>
+        public bool LogResponses { get; set; } = false;
+
         #endregion
 
         #region Private-Members
@@ -117,17 +127,27 @@
                         EmbeddingsRule = embedRule
                     };
 
-                    using (RestResponse resp = await req.SendAsync(_Serializer.SerializeJson(procReq, true), token).ConfigureAwait(false))
+                    string json = _Serializer.SerializeJson(procReq, true);
+
+                    if (LogRequests) Log("request body: " + Environment.NewLine + json);
+
+                    using (RestResponse resp = await req.SendAsync(json, token).ConfigureAwait(false))
                     {
                         if (resp != null && resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
                             Log("success status from " + url + ": " + resp.StatusCode);
+
+                            if (LogResponses) Log("response body: " + Environment.NewLine + resp.DataAsString);
+
                             ProcessorResponse procResp = _Serializer.DeserializeJson<ProcessorResponse>(resp.DataAsString);
                             return procResp;
                         }
                         else if (resp != null)
                         {
                             Log("non-success status from " + url + ": " + resp.StatusCode + Environment.NewLine + resp.DataAsString);
+
+                            if (LogResponses) Log("response body: " + Environment.NewLine + resp.DataAsString);
+
                             ProcessorResponse procResp = _Serializer.DeserializeJson<ProcessorResponse>(resp.DataAsString);
                             return procResp;
                         }

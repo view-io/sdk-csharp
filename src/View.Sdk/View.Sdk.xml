@@ -646,6 +646,16 @@
             Method to invoke to send log messages.
             </summary>
         </member>
+        <member name="P:View.Sdk.Processor.ViewLexiEmbeddingsSdk.LogRequests">
+            <summary>
+            Enable or disable logging of request bodies.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ViewLexiEmbeddingsSdk.LogResponses">
+            <summary>
+            Enable or disable logging of response bodies.
+            </summary>
+        </member>
         <member name="M:View.Sdk.Processor.ViewLexiEmbeddingsSdk.#ctor(System.String)">
             <summary>
             Instantiate.
@@ -676,6 +686,16 @@
         <member name="P:View.Sdk.Processor.ViewProcessorSdk.Logger">
             <summary>
             Method to invoke to send log messages.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ViewProcessorSdk.LogRequests">
+            <summary>
+            Enable or disable logging of request bodies.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ViewProcessorSdk.LogResponses">
+            <summary>
+            Enable or disable logging of response bodies.
             </summary>
         </member>
         <member name="M:View.Sdk.Processor.ViewProcessorSdk.#ctor(System.String)">

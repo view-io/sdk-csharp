@@ -95,7 +95,7 @@
         /// <summary>
         /// Data flow endpoint.
         /// </summary>
-        public string DataFlowEndpoint { get; set; } = "http://localhost:8501/embeddings";
+        public string DataFlowEndpoint { get; set; } = "http://localhost:8501/processor";
 
         /// <summary>
         /// Vector repository type.
