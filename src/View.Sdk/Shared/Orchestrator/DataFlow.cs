@@ -47,6 +47,22 @@
         public DateTime CreatedUtc { get; set; } = DateTime.UtcNow;
 
         /// <summary>
+        /// Number of days to retain log entries and logfiles.
+        /// </summary>
+        public int LogRetentionDays
+        {
+            get
+            {
+                return _LogRetentionDays;
+            }
+            set
+            {
+                if (value < 0) throw new ArgumentOutOfRangeException(nameof(LogRetentionDays));
+                _LogRetentionDays = value;
+            }
+        }
+
+        /// <summary>
         /// Entry step.
         /// </summary>
         public StepMetadata Step { get; set; } = null;
@@ -54,6 +70,8 @@
         #endregion
 
         #region Private-Members
+
+        private int _LogRetentionDays = 7;
 
         #endregion
 

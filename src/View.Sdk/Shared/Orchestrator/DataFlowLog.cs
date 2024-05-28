@@ -1,6 +1,8 @@
 ﻿namespace View.Sdk.Shared.Orchestrator
 {
     using System;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.ComponentModel.DataAnnotations;
     using System.Text.Json.Serialization;
 
     /// <summary>
@@ -80,6 +82,11 @@
         /// Notes.
         /// </summary>
         public string Notes { get; set; } = null;
+
+        /// <summary>
+        /// Timestamp when logs will expire, in UTC time.
+        /// </summary>
+        public DateTime LogExpirationUtc { get; set; } = DateTime.UtcNow.AddDays(7);
 
         /// <summary>
         /// Creation timestamp, in UTC time.

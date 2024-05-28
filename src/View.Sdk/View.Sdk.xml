@@ -1579,6 +1579,11 @@
             Creation timestamp, in UTC time.
             </summary>
         </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.DataFlow.LogRetentionDays">
+            <summary>
+            Number of days to retain log entries and logfiles.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Shared.Orchestrator.DataFlow.Step">
             <summary>
             Entry step.
@@ -1652,6 +1657,11 @@
         <member name="P:View.Sdk.Shared.Orchestrator.DataFlowLog.Notes">
             <summary>
             Notes.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.DataFlowLog.LogExpirationUtc">
+            <summary>
+            Timestamp when logs will expire, in UTC time.
             </summary>
         </member>
         <member name="P:View.Sdk.Shared.Orchestrator.DataFlowLog.CreatedUtc">
