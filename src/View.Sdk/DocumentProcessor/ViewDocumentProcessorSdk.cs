@@ -108,17 +108,31 @@
                 {
                     if (resp != null)
                     {
-                        if (resp.StatusCode == 200)
+                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            Log("success reported from " + url + ": " + resp.ContentLength + " bytes");
-                            UdrDocument docResp = _Serializer.DeserializeJson<UdrDocument>(resp.DataAsString);
-                            return docResp;
+                            Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            if (!String.IsNullOrEmpty(resp.DataAsString))
+                            {
+                                UdrDocument docResp = _Serializer.DeserializeJson<UdrDocument>(resp.DataAsString);
+                                return docResp;
+                            }
+                            else
+                            {
+                                return null;
+                            }    
                         }
                         else
                         {
-                            Log("non-success reported from " + url + ": " + resp.StatusCode);
-                            UdrDocument docResp = _Serializer.DeserializeJson<UdrDocument>(resp.DataAsString);
-                            return docResp;
+                            Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            if (!String.IsNullOrEmpty(resp.DataAsString))
+                            {
+                                UdrDocument docResp = _Serializer.DeserializeJson<UdrDocument>(resp.DataAsString);
+                                return docResp;
+                            }
+                            else
+                            {
+                                return null;
+                            }
                         }
                     }
                     else

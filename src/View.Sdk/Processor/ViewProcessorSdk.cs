@@ -133,23 +133,40 @@
 
                     using (RestResponse resp = await req.SendAsync(json, token).ConfigureAwait(false))
                     {
-                        if (resp != null && resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                        if (resp != null)
                         {
-                            Log("success status from " + url + ": " + resp.StatusCode);
+                            if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                            {
+                                Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
 
-                            if (LogResponses) Log("response body: " + Environment.NewLine + resp.DataAsString);
+                                if (!String.IsNullOrEmpty(resp.DataAsString))
+                                {
+                                    if (LogResponses) Log("response body: " + Environment.NewLine + resp.DataAsString);
 
-                            ProcessorResponse procResp = _Serializer.DeserializeJson<ProcessorResponse>(resp.DataAsString);
-                            return procResp;
-                        }
-                        else if (resp != null)
-                        {
-                            Log("non-success status from " + url + ": " + resp.StatusCode + Environment.NewLine + resp.DataAsString);
+                                    ProcessorResponse procResp = _Serializer.DeserializeJson<ProcessorResponse>(resp.DataAsString);
+                                    return procResp;
+                                }
+                                else
+                                {
+                                    return null;
+                                }
+                            }
+                            else
+                            {
+                                Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
 
-                            if (LogResponses) Log("response body: " + Environment.NewLine + resp.DataAsString);
+                                if (!String.IsNullOrEmpty(resp.DataAsString))
+                                {
+                                    if (LogResponses) Log("response body: " + Environment.NewLine + resp.DataAsString);
 
-                            ProcessorResponse procResp = _Serializer.DeserializeJson<ProcessorResponse>(resp.DataAsString);
-                            return procResp;
+                                    ProcessorResponse procResp = _Serializer.DeserializeJson<ProcessorResponse>(resp.DataAsString);
+                                    return procResp;
+                                }
+                                else
+                                {
+                                    return null;
+                                }
+                            }
                         }
                         else
                         {

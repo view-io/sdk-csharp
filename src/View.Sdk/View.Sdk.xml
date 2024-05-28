@@ -513,6 +513,15 @@
             <param name="token">Cancellation token.</param>
             <returns>List of DataFlowLog.</returns>
         </member>
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.RetrieveDataFlowLogfile(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read data flow logfile.
+            </summary>
+            <param name="dataFlowGuid">Data flow GUID.</param>
+            <param name="requestGuid">Request GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Log file.</returns>
+        </member>
         <member name="T:View.Sdk.Pgvector.DatabaseSettings">
             <summary>
             Database settings.

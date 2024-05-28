@@ -112,15 +112,18 @@
 
                 using (RestResponse resp = await req.SendAsync(_Serializer.SerializeJson(preloadReq, true), token).ConfigureAwait(false))
                 {
-                    if (resp != null && resp.StatusCode == 200)
+                    if (resp != null)
                     {
-                        Log("success preloading models from " + url + ": " + resp.StatusCode);
-                        return true;
-                    }
-                    else if (resp != null)
-                    {
-                        Log("non-success status from " + url + ": " + resp.StatusCode);
-                        return false;
+                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                        {
+                            Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            return true;
+                        }
+                        else
+                        {
+                            Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            return false;
+                        }
                     }
                     else
                     {
@@ -158,23 +161,33 @@
 
                 using (RestResponse resp = await req.SendAsync(_Serializer.SerializeJson(embeddingsReq, true), token).ConfigureAwait(false))
                 {
-                    if (resp != null && resp.StatusCode == 200)
+                    if (resp != null)
                     {
-                        Log("success status from " + url + ": " + resp.StatusCode);
-                        EmbeddingsResult result = _Serializer.DeserializeJson<EmbeddingsResult>(resp.DataAsString);
-                        result.StatusCode = resp.StatusCode;
-                        return result;
-                    }
-                    else if (resp != null)
-                    {
-                        Log("non-success status from " + url + ": " + resp.StatusCode + Environment.NewLine + resp.DataAsString);
-                        EmbeddingsResult result = new EmbeddingsResult();
-                        result.Success = false;
-                        result.Url = url;
-                        result.Model = model;
-                        result.Embeddings = null;
-                        result.StatusCode = resp.StatusCode;
-                        return result;
+                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                        {
+                            Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            if (!String.IsNullOrEmpty(resp.DataAsString))
+                            {
+                                EmbeddingsResult result = _Serializer.DeserializeJson<EmbeddingsResult>(resp.DataAsString);
+                                result.StatusCode = resp.StatusCode;
+                                return result;
+                            }
+                            else
+                            {
+                                return null;
+                            }
+                        }
+                        else
+                        {
+                            Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            EmbeddingsResult result = new EmbeddingsResult();
+                            result.Success = false;
+                            result.Url = url;
+                            result.Model = model;
+                            result.Embeddings = null;
+                            result.StatusCode = resp.StatusCode;
+                            return result;
+                        }
                     }
                     else
                     {

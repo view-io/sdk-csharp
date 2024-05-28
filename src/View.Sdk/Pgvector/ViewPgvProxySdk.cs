@@ -104,14 +104,25 @@
 
                 using (RestResponse resp = await req.SendAsync(_Serializer.SerializeJson(document, true), token).ConfigureAwait(false))
                 {
-                    if (resp != null && resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                    if (resp != null)
                     {
-                        return _Serializer.DeserializeJson<List<EmbeddingsDocument>>(resp.DataAsString);
-                    }
-                    else if (resp != null)
-                    {
-                        Log("non-success status from " + url + ": " + resp.StatusCode);
-                        return null;
+                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                        {
+                            Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            if (!String.IsNullOrEmpty(resp.DataAsString))
+                            {
+                                return _Serializer.DeserializeJson<List<EmbeddingsDocument>>(resp.DataAsString);
+                            }
+                            else
+                            {
+                                return null;
+                            }
+                        }
+                        else
+                        {
+                            Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            return null;
+                        }
                     }
                     else
                     {
@@ -142,14 +153,18 @@
 
                 using (RestResponse resp = await req.SendAsync(_Serializer.SerializeJson(delReq, true), token).ConfigureAwait(false))
                 {
-                    if (resp != null && resp.StatusCode == 200)
+                    if (resp != null)
                     {
-                        return true;
-                    }
-                    else if (resp != null)
-                    {
-                        Log("non-success status from " + url + ": " + resp.StatusCode);
-                        return false;
+                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                        {
+                            Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            return true;
+                        }
+                        else
+                        {
+                            Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            return false;
+                        }
                     }
                     else
                     {
@@ -180,14 +195,18 @@
 
                 using (RestResponse resp = await req.SendAsync(_Serializer.SerializeJson(delReq, true), token).ConfigureAwait(false))
                 {
-                    if (resp != null && resp.StatusCode == 200)
+                    if (resp != null)
                     {
-                        return true;
-                    }
-                    else if (resp != null)
-                    {
-                        Log("non-success status from " + url + ": " + resp.StatusCode);
-                        return false;
+                        Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            return false;
+                        }
                     }
                     else
                     {
@@ -218,14 +237,25 @@
 
                 using (RestResponse resp = await req.SendAsync(_Serializer.SerializeJson(searchReq, true), token).ConfigureAwait(false))
                 {
-                    if (resp != null && resp.StatusCode == 200)
+                    if (resp != null)
                     {
-                        return _Serializer.DeserializeJson<List<EmbeddingsDocument>>(resp.DataAsString);
-                    }
-                    else if (resp != null)
-                    {
-                        Log("non-success status from " + url + ": " + resp.StatusCode);
-                        return null;
+                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                        {
+                            Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            if (!String.IsNullOrEmpty(resp.DataAsString))
+                            {
+                                return _Serializer.DeserializeJson<List<EmbeddingsDocument>>(resp.DataAsString);
+                            }
+                            else
+                            {
+                                return null;
+                            }
+                        }
+                        else
+                        {
+                            Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            return null;
+                        }
                     }
                     else
                     {
@@ -256,14 +286,18 @@
 
                 using (RestResponse resp = await req.SendAsync(_Serializer.SerializeJson(queryReq, true), token).ConfigureAwait(false))
                 {
-                    if (resp != null && resp.StatusCode == 200)
+                    if (resp != null)
                     {
-                        return resp.DataAsString;
-                    }
-                    else if (resp != null)
-                    {
-                        Log("non-success status from " + url + ": " + resp.StatusCode);
-                        return null;
+                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                        {
+                            Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            return resp.DataAsString;
+                        }
+                        else
+                        {
+                            Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            return null;
+                        }
                     }
                     else
                     {
