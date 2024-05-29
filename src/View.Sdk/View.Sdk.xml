@@ -1846,7 +1846,12 @@
         </member>
         <member name="F:View.Sdk.Shared.Orchestrator.StepRuntimeEnum.Dotnet8">
             <summary>
-            Dotnet8.
+            net8.0.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Orchestrator.StepRuntimeEnum.Python3_12">
+            <summary>
+            Python 3.12.
             </summary>
         </member>
         <member name="T:View.Sdk.Shared.Orchestrator.TenantMetadata">

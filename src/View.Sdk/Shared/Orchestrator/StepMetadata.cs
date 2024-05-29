@@ -11,7 +11,6 @@
     /// </summary>
     public class StepMetadata
     {
-
         #region Public-Members
 
         /// <summary>
