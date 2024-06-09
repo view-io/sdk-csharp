@@ -1789,6 +1789,18 @@
             Enable or disable assembly load debugging.
             </summary>
         </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.StepMetadata.VirtualEnvironment">
+            <summary>
+            Virtual environment name.
+            Used for Python steps.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Orchestrator.StepMetadata.DependenciesFile">
+            <summary>
+            Dependencies file.
+            Used for Python steps, generally set to requirements.txt.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Shared.Orchestrator.StepMetadata.CreatedUtc">
             <summary>
             Creation timestamp, in UTC time.
@@ -2925,11 +2937,6 @@
             Number of candidate records remaining in the search.
             </summary>
         </member>
-        <member name="P:View.Sdk.Shared.Search.SearchResult.NotSatisfiable">
-            <summary>
-            Required query terms and search filters that are not able to be satisfied.
-            </summary>
-        </member>
         <member name="P:View.Sdk.Shared.Search.SearchResult.Documents">
             <summary>
             Documents that matched the query.
@@ -3677,6 +3684,31 @@
         <member name="M:View.Sdk.Shared.Udr.UdrDocumentRequest.#ctor">
             <summary>
             Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Storage.MultiDeleteErrorEnum">
+            <summary>
+            Multi delete error codes.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Storage.MultiDeleteErrorEnum.ObjectNotFound">
+            <summary>
+            ObjectNotFound.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Storage.MultiDeleteErrorEnum.PoolNotFound">
+            <summary>
+            PoolNotFound.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Storage.MultiDeleteErrorEnum.BucketNotFound">
+            <summary>
+            BucketNotFound.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Storage.MultiDeleteErrorEnum.InternalError">
+            <summary>
+            InternalError.
             </summary>
         </member>
     </members>

@@ -122,6 +122,18 @@
         public bool DebugAssemblyLoad { get; set; } = false;
 
         /// <summary>
+        /// Virtual environment name.
+        /// Used for Python steps.
+        /// </summary>
+        public string VirtualEnvironment { get; set; } = null;
+
+        /// <summary>
+        /// Dependencies file.
+        /// Used for Python steps, generally set to requirements.txt.
+        /// </summary>
+        public string DependenciesFile { get; set; } = null;
+
+        /// <summary>
         /// Creation timestamp, in UTC time.
         /// </summary>
         public DateTime CreatedUtc { get; set; } = DateTime.UtcNow;

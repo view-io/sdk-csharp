@@ -7,11 +7,11 @@
 		<DocumentationFile>View.Sdk.xml</DocumentationFile>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Title>SDKs, shared classes, and dependencies for View.io services.</Title>
-		<Version>0.2.15</Version>
+		<Version>0.2.17</Version>
 		<Authors>View Systems Inc.</Authors>
 		<Company>View Systems Inc.</Company>
 		<Product>View.Sdk</Product>
-		<Description>View.io is currently in ALPHA.  SDK, shared classes, and dependencies for interacting with View.io services.</Description>
+		<Description>View.io is currently in BETA.  SDK, shared classes, and dependencies for interacting with View.io services.</Description>
 		<Copyright>(c)2024 View Systems Inc.</Copyright>
 		<PackageProjectUrl>https://github.com/view-io/viewsdk</PackageProjectUrl>
 		<PackageIcon>logo.png</PackageIcon>

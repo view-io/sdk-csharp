@@ -84,12 +84,6 @@
         }
 
         /// <summary>
-        /// Required query terms and search filters that are not able to be satisfied.
-        /// </summary>
-        [JsonPropertyOrder(10)]
-        public QueryFilter NotSatisfiable { get; set; } = null;
-
-        /// <summary>
         /// Documents that matched the query.
         /// </summary>
         [JsonPropertyOrder(999)]
