@@ -10,6 +10,11 @@
     public enum RepositoryTypeEnum
     {
         /// <summary>
+        /// Mysql.
+        /// </summary>
+        [EnumMember(Value = "Mysql")]
+        Mysql,
+        /// <summary>
         /// Pgvector.
         /// </summary>
         [EnumMember(Value = "Pgvector")]

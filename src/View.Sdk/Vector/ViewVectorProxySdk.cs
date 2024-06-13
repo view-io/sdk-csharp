@@ -1,4 +1,4 @@
-﻿namespace View.Sdk.Pgvector
+﻿namespace View.Sdk.Vector
 {
     using System;
     using System.Collections.Generic;
@@ -11,9 +11,9 @@
     using View.Sdk.Shared.Embeddings;
 
     /// <summary>
-    /// View PostgreSQL Pgvector Proxy SDK.
+    /// View Vector Proxy SDK.
     /// </summary>
-    public class ViewPgvProxySdk
+    public class ViewVectorProxySdk
     {
         #region Public-Members
 
@@ -39,7 +39,7 @@
         /// Instantiate.
         /// </summary>
         /// <param name="endpoint">Endpoint URL.</param>
-        public ViewPgvProxySdk(string endpoint = "http://localhost:8311/")
+        public ViewVectorProxySdk(string endpoint = "http://localhost:8311/")
         {
             if (string.IsNullOrEmpty(endpoint)) throw new ArgumentNullException(nameof(endpoint));
 

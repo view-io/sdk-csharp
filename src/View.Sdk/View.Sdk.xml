@@ -522,129 +522,6 @@
             <param name="token">Cancellation token.</param>
             <returns>Log file.</returns>
         </member>
-        <member name="T:View.Sdk.Pgvector.DatabaseSettings">
-            <summary>
-            Database settings.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Pgvector.DatabaseSettings.Model">
-            <summary>
-            Model.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Pgvector.DatabaseSettings.Dimensionality">
-            <summary>
-            Dimensionality.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Pgvector.DatabaseSettings.VectorRepositoryType">
-            <summary>
-            Vector repository type.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Pgvector.DatabaseSettings.VectorDatabaseHostname">
-            <summary>
-            Vector database hostname.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Pgvector.DatabaseSettings.VectorDatabasePort">
-            <summary>
-            Vector database port.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Pgvector.DatabaseSettings.VectorDatabaseName">
-            <summary>
-            Vector database name.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Pgvector.DatabaseSettings.VectorDatabaseTable">
-            <summary>
-            Vector database table.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Pgvector.DatabaseSettings.VectorDatabaseUser">
-            <summary>
-            Vector database user.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Pgvector.DatabaseSettings.VectorDatabasePassword">
-            <summary>
-            Vector database password.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Pgvector.DatabaseSettings.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Pgvector.ViewPgvProxySdk">
-            <summary>
-            View PostgreSQL Pgvector Proxy SDK.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Pgvector.ViewPgvProxySdk.Logger">
-            <summary>
-            Method to invoke to send log messages.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Pgvector.ViewPgvProxySdk.#ctor(System.String)">
-            <summary>
-            Instantiate.
-            </summary>
-            <param name="endpoint">Endpoint URL.</param>
-        </member>
-        <member name="M:View.Sdk.Pgvector.ViewPgvProxySdk.ValidateConnectivity(System.Threading.CancellationToken)">
-            <summary>
-            Validate connectivity.
-            </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>Boolean indicating success.</returns>
-        </member>
-        <member name="M:View.Sdk.Pgvector.ViewPgvProxySdk.WriteDocument(View.Sdk.Pgvector.DatabaseSettings,View.Sdk.Shared.Embeddings.EmbeddingsDocument,System.Threading.CancellationToken)">
-            <summary>
-            Write a document.
-            </summary>
-            <param name="settings">Database settings.</param>
-            <param name="document">Embeddings document.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:View.Sdk.Pgvector.ViewPgvProxySdk.DeleteDocument(View.Sdk.Pgvector.DatabaseSettings,View.Sdk.Shared.Embeddings.DeleteRequest,System.Threading.CancellationToken)">
-            <summary>
-            Delete a document.
-            </summary>
-            <param name="settings">Database settings.</param>
-            <param name="delReq">Delete request.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:View.Sdk.Pgvector.ViewPgvProxySdk.TruncateTable(View.Sdk.Pgvector.DatabaseSettings,View.Sdk.Shared.Embeddings.DeleteRequest,System.Threading.CancellationToken)">
-            <summary>
-            Truncate table.
-            </summary>
-            <param name="settings">Database settings.</param>
-            <param name="delReq">Delete request.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:View.Sdk.Pgvector.ViewPgvProxySdk.SimilaritySearch(View.Sdk.Pgvector.DatabaseSettings,View.Sdk.Shared.Embeddings.SearchRequest,System.Threading.CancellationToken)">
-            <summary>
-            Similarity search.
-            </summary>
-            <param name="settings">Database settings.</param>
-            <param name="searchReq">Search request.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:View.Sdk.Pgvector.ViewPgvProxySdk.RawQuery(View.Sdk.Pgvector.DatabaseSettings,View.Sdk.Shared.Embeddings.QueryRequest,System.Threading.CancellationToken)">
-            <summary>
-            Raw query.
-            </summary>
-            <param name="settings">Database settings.</param>
-            <param name="queryReq">Query request.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
         <member name="T:View.Sdk.Processor.ViewLexiEmbeddingsSdk">
             <summary>
             View SDK for generating embeddings with Lexi search results.
@@ -1275,6 +1152,11 @@
         <member name="T:View.Sdk.Shared.Embeddings.RepositoryTypeEnum">
             <summary>
             Repository type.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Embeddings.RepositoryTypeEnum.Mysql">
+            <summary>
+            Mysql.
             </summary>
         </member>
         <member name="F:View.Sdk.Shared.Embeddings.RepositoryTypeEnum.Pgvector">
@@ -3710,6 +3592,129 @@
             <summary>
             InternalError.
             </summary>
+        </member>
+        <member name="T:View.Sdk.Vector.DatabaseSettings">
+            <summary>
+            Database settings.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.DatabaseSettings.Model">
+            <summary>
+            Model.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.DatabaseSettings.Dimensionality">
+            <summary>
+            Dimensionality.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.DatabaseSettings.VectorRepositoryType">
+            <summary>
+            Vector repository type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.DatabaseSettings.VectorDatabaseHostname">
+            <summary>
+            Vector database hostname.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.DatabaseSettings.VectorDatabasePort">
+            <summary>
+            Vector database port.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.DatabaseSettings.VectorDatabaseName">
+            <summary>
+            Vector database name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.DatabaseSettings.VectorDatabaseTable">
+            <summary>
+            Vector database table.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.DatabaseSettings.VectorDatabaseUser">
+            <summary>
+            Vector database user.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.DatabaseSettings.VectorDatabasePassword">
+            <summary>
+            Vector database password.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.DatabaseSettings.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Vector.ViewVectorProxySdk">
+            <summary>
+            View Vector Proxy SDK.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.ViewVectorProxySdk.Logger">
+            <summary>
+            Method to invoke to send log messages.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.#ctor(System.String)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="endpoint">Endpoint URL.</param>
+        </member>
+        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.ValidateConnectivity(System.Threading.CancellationToken)">
+            <summary>
+            Validate connectivity.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Boolean indicating success.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.WriteDocument(View.Sdk.Vector.DatabaseSettings,View.Sdk.Shared.Embeddings.EmbeddingsDocument,System.Threading.CancellationToken)">
+            <summary>
+            Write a document.
+            </summary>
+            <param name="settings">Database settings.</param>
+            <param name="document">Embeddings document.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.DeleteDocument(View.Sdk.Vector.DatabaseSettings,View.Sdk.Shared.Embeddings.DeleteRequest,System.Threading.CancellationToken)">
+            <summary>
+            Delete a document.
+            </summary>
+            <param name="settings">Database settings.</param>
+            <param name="delReq">Delete request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.TruncateTable(View.Sdk.Vector.DatabaseSettings,View.Sdk.Shared.Embeddings.DeleteRequest,System.Threading.CancellationToken)">
+            <summary>
+            Truncate table.
+            </summary>
+            <param name="settings">Database settings.</param>
+            <param name="delReq">Delete request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.SimilaritySearch(View.Sdk.Vector.DatabaseSettings,View.Sdk.Shared.Embeddings.SearchRequest,System.Threading.CancellationToken)">
+            <summary>
+            Similarity search.
+            </summary>
+            <param name="settings">Database settings.</param>
+            <param name="searchReq">Search request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.RawQuery(View.Sdk.Vector.DatabaseSettings,View.Sdk.Shared.Embeddings.QueryRequest,System.Threading.CancellationToken)">
+            <summary>
+            Raw query.
+            </summary>
+            <param name="settings">Database settings.</param>
+            <param name="queryReq">Query request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
         </member>
     </members>
 </doc>

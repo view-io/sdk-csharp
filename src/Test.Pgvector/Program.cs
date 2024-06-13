@@ -5,7 +5,7 @@
     using System.IO;
     using System.Threading.Tasks;
     using GetSomeInput;
-    using View.Sdk.Pgvector;
+    using View.Sdk.Vector;
     using View.Sdk.Shared.Embeddings;
     using View.Sdk.Shared.Udr;
     using View.Serializer;
@@ -16,14 +16,14 @@
 
         private static bool _RunForever = true;
         private static string _Endpoint = "http://localhost:8311/";
-        private static ViewPgvProxySdk _Sdk = null;
+        private static ViewVectorProxySdk _Sdk = null;
         private static SerializationHelper _Serializer = new SerializationHelper();
         private static bool _EnableLogging = true;
 
         public static void Main(string[] args)
         {
             _Endpoint = Inputty.GetString("Endpoint    :", _Endpoint, false);
-            _Sdk = new ViewPgvProxySdk(_Endpoint);
+            _Sdk = new ViewVectorProxySdk(_Endpoint);
             if (_EnableLogging) _Sdk.Logger = Console.WriteLine;
 
             while (_RunForever)

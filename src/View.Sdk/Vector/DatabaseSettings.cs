@@ -1,4 +1,4 @@
-﻿namespace View.Sdk.Pgvector
+﻿namespace View.Sdk.Vector
 {
     using System;
     using View.Sdk.Shared.Embeddings;
