@@ -1,18 +1,18 @@
-﻿namespace View.Sdk.Shared.Search
+﻿namespace View.Sdk.Shared.Embeddings
 {
     using System;
-    using System.Text.Json.Serialization;
-    using View.Sdk.Shared.Embeddings;
+    using System.Collections.Generic;
+    using System.Text.Json.Serialization; 
 
     /// <summary>
-    /// Object used to search a collection.
+    /// Object used to enumerate a table.
     /// </summary>
-    public class SearchQuery
+    public class EnumerationQuery
     {
         #region Public-Members
 
         /// <summary>
-        /// The GUID of the search operation.
+        /// The GUID of the enumeration operation.
         /// </summary>
         [JsonPropertyOrder(1)]
         public string GUID { get; set; } = Guid.NewGuid().ToString();
@@ -24,14 +24,15 @@
         public string TenantGUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
-        /// Collection GUID.
+        /// The GUID of the collection to query.
         /// </summary>
         [JsonPropertyOrder(3)]
-        public string CollectionGUID { get; set; } = Guid.NewGuid().ToString();
+        public string CollectionGUID { get; set; } = null;
 
         /// <summary>
         /// Maximum number of results to retrieve.
         /// </summary>
+        [JsonPropertyOrder(4)]
         public int MaxResults
         {
             get
@@ -41,7 +42,7 @@
             set
             {
                 if (value < 1) throw new ArgumentException("MaxResults must be greater than zero.");
-                if (value > 100) throw new ArgumentException("MaxResults must be one hundred or less.");
+                if (value > 1000) throw new ArgumentException("MaxResults must be one thousand or less.");
                 _MaxResults = value;
             }
         }
@@ -49,41 +50,20 @@
         /// <summary>
         /// Continuation token.
         /// </summary>
+        [JsonPropertyOrder(5)]
         public string ContinuationToken { get; set; } = null;
 
         /// <summary>
         /// Order by.
         /// </summary>
+        [JsonPropertyOrder(7)]
         public OrderByEnum OrderBy { get; set; } = OrderByEnum.CreatedDescending;
-
-        /// <summary>
-        /// Required terms and search filter that must be satisfied to include a document in the results.
-        /// </summary>
-        public QueryFilter Filter
-        {
-            get
-            {
-                return _Filter;
-            }
-            set
-            {
-                if (value == null) _Filter = new QueryFilter();
-                else _Filter = value;
-            }
-        }
-
-        /// <summary>
-        /// Embeddings rule.
-        /// </summary>
-        public EmbeddingsRule EmbeddingsRule { get; set; } = null;
 
         #endregion
 
         #region Private-Members
 
-        private int _MaxResults = 10;
-
-        private QueryFilter _Filter = new QueryFilter();
+        private int _MaxResults = 1000;
 
         #endregion
 
@@ -92,7 +72,7 @@
         /// <summary>
         /// Instantiate.
         /// </summary>
-        public SearchQuery()
+        public EnumerationQuery()
         {
             GUID = Guid.NewGuid().ToString();
         }
@@ -105,6 +85,6 @@
 
         #region Private-Methods
 
-        #endregion
+        #endregion 
     }
 }

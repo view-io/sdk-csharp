@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
-		<Version>0.3.0.1</Version>
+		<Version>0.3.0.4</Version>
 		<ApplicationIcon>Assets\icon.ico</ApplicationIcon>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<DocumentationFile>View.Sdk.xml</DocumentationFile>
@@ -11,14 +11,14 @@
 		<Authors>View Systems Inc.</Authors>
 		<Company>View Systems Inc.</Company>
 		<Product>View.Sdk</Product>
-		<Description>View.io is currently in BETA.  SDK, shared classes, and dependencies for interacting with View.io services.</Description>
+		<Description>View.io is currently in BETA.  SDK, shared classes, supporting classes, and dependencies for interacting with View.io services.</Description>
 		<Copyright>(c)2024 View Systems Inc.</Copyright>
 		<PackageProjectUrl>https://github.com/view-io/viewsdk</PackageProjectUrl>
 		<PackageIcon>logo.png</PackageIcon>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/view-io/viewsdk</RepositoryUrl>
 		<RepositoryType>github</RepositoryType>
-		<PackageReleaseNotes>(ALPHA) Initial release.</PackageReleaseNotes>
+		<PackageReleaseNotes>(BETA) Initial release.</PackageReleaseNotes>
 		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>

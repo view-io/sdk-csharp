@@ -982,6 +982,112 @@
             Instantiate the object.
             </summary>
         </member>
+        <member name="T:View.Sdk.Shared.Embeddings.EnumerationQuery">
+            <summary>
+            Object used to enumerate a table.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EnumerationQuery.GUID">
+            <summary>
+            The GUID of the enumeration operation.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EnumerationQuery.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EnumerationQuery.CollectionGUID">
+            <summary>
+            The GUID of the collection to query.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EnumerationQuery.MaxResults">
+            <summary>
+            Maximum number of results to retrieve.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EnumerationQuery.ContinuationToken">
+            <summary>
+            Continuation token.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EnumerationQuery.OrderBy">
+            <summary>
+            Order by.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Embeddings.EnumerationQuery.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Embeddings.EnumerationResult">
+            <summary>
+            Object returned as the result of an enumeration against a table.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EnumerationResult.Success">
+            <summary>
+            Indicates if the statistics operation was successful.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EnumerationResult.Exception">
+            <summary>
+            Exception.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EnumerationResult.Timestamp">
+            <summary>
+            Start and end timestamps.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EnumerationResult.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EnumerationResult.CollectionGUID">
+            <summary>
+            The GUID of the collection that was queried.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EnumerationResult.Query">
+            <summary>
+            The enumeration query performed.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EnumerationResult.Documents">
+            <summary>
+            Source documents that matched the query.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EnumerationResult.EndOfResults">
+            <summary>
+            Boolean indicating end of results.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EnumerationResult.ContinuationToken">
+            <summary>
+            Continuation token to use when continuing the search.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EnumerationResult.RecordsRemaining">
+            <summary>
+            Number of candidate records remaining in the enumeration.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Embeddings.EnumerationResult.#ctor">
+            <summary>
+            Instantiates the object.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Embeddings.EnumerationResult.#ctor(View.Sdk.Shared.Embeddings.EnumerationQuery)">
+            <summary>
+            Instantiates the object.
+            </summary>
+            <param name="query">Enumeration query.</param>
+        </member>
         <member name="T:View.Sdk.Shared.Embeddings.MatchedDocument">
             <summary>
             Matched document.
@@ -1033,6 +1139,21 @@
             </summary>
             <param name="dt">DataTable.</param>
             <returns>MatchedDocument.</returns>
+        </member>
+        <member name="T:View.Sdk.Shared.Embeddings.OrderByEnum">
+            <summary>
+            Order by enumeration.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Embeddings.OrderByEnum.CreatedAscending">
+            <summary>
+            CreatedAscending.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Embeddings.OrderByEnum.CreatedDescending">
+            <summary>
+            CreatedDescending.
+            </summary>
         </member>
         <member name="T:View.Sdk.Shared.Embeddings.PreloadRequest">
             <summary>
@@ -2588,15 +2709,146 @@
             List of terms upon which to match.
             </summary>
         </member>
-        <member name="P:View.Sdk.Shared.Search.QueryFilter.Filter">
+        <member name="P:View.Sdk.Shared.Search.QueryFilter.MimeTypes">
             <summary>
-            List of filters upon which to match.
+            List of content-types on which to match.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.QueryFilter.Prefixes">
+            <summary>
+            List of key prefix values on which to match.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.QueryFilter.Suffixes">
+            <summary>
+            List of key suffix values on which to match.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.QueryFilter.SchemaFilters">
+            <summary>
+            List of schema filters upon which to match.
             </summary>
         </member>
         <member name="M:View.Sdk.Shared.Search.QueryFilter.#ctor">
             <summary>
             Instantiate.
             </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Search.SchemaCondition">
+            <summary>
+            Available conditions for search filters.
+            </summary> 
+        </member>
+        <member name="F:View.Sdk.Shared.Search.SchemaCondition.Exists">
+            <summary>
+            The property exists.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Search.SchemaCondition.Equals">
+            <summary>
+            The left and right terms are equal to one another.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Search.SchemaCondition.NotEquals">
+            <summary>
+            The left and right terms are not equal to one another.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Search.SchemaCondition.GreaterThan">
+            <summary>
+            The left term is greater than the right term.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Search.SchemaCondition.GreaterThanOrEqualTo">
+            <summary>
+            The left term is greater than or equal to the right term.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Search.SchemaCondition.LessThan">
+            <summary>
+            The left term is less than the right term.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Search.SchemaCondition.LessThanOrEqualTo">
+            <summary>
+            The left term is less than or equal to the right term.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Search.SchemaCondition.IsNull">
+            <summary>
+            The left term is null.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Search.SchemaCondition.IsNotNull">
+            <summary>
+            The left term is not null.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Search.SchemaCondition.Contains">
+            <summary>
+            The left term is contained within the right term (list).
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Search.SchemaCondition.ContainsNot">
+            <summary>
+            The left term is not contained within the right term (list).
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Search.SchemaCondition.StartsWith">
+            <summary>
+            The left term starts with the right term.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Search.SchemaCondition.EndsWith">
+            <summary>
+            The left term ends with the right term.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Search.SchemaCondition.IsType">
+            <summary>
+            The element is of a given type.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Shared.Search.SchemaFilter">
+            <summary>
+            A search filter.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SchemaFilter.Property">
+            <summary>
+            The schema element upon which to evaluate.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SchemaFilter.Condition">
+            <summary>
+            The condition by which the schema element, or its value, is evaluated.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SchemaFilter.Value">
+            <summary>
+            The value to be evaluated using the specified condition against the specified schema element.
+            When using GreaterThan, GreaterThanOrEqualTo, LessThan, or LessThanOrEqualTo, the value supplied must be convertible to decimal.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Search.SchemaFilter.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Search.SchemaFilter.#ctor(System.String,View.Sdk.Shared.Search.SchemaCondition,System.String)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="field">Field.</param>
+            <param name="condition">Condition.</param>
+            <param name="value">Value.</param>
+        </member>
+        <member name="M:View.Sdk.Shared.Search.SchemaFilter.EvaluateValue(System.Object)">
+            <summary>
+            Evaluates a value against the search filter.
+            </summary>
+            <param name="value">Value.</param>
+            <returns>True if matched.</returns>
         </member>
         <member name="T:View.Sdk.Shared.Search.SearchCondition">
             <summary>
@@ -2734,24 +2986,14 @@
             Continuation token.
             </summary>
         </member>
-        <member name="P:View.Sdk.Shared.Search.SearchQuery.Required">
-            <summary>
-            Required terms and search filter that must be satisfied to include a document in the results.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Shared.Search.SearchQuery.Optional">
-            <summary>
-            Optional terms and search filter that may match on documents but are not required.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Shared.Search.SearchQuery.Exclude">
-            <summary>
-            Terms and search filter that must be excluded from the results.
-            </summary>
-        </member>
         <member name="P:View.Sdk.Shared.Search.SearchQuery.OrderBy">
             <summary>
             Order by.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.SearchQuery.Filter">
+            <summary>
+            Required terms and search filter that must be satisfied to include a document in the results.
             </summary>
         </member>
         <member name="P:View.Sdk.Shared.Search.SearchQuery.EmbeddingsRule">

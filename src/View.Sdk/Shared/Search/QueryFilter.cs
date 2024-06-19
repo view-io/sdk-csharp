@@ -28,19 +28,67 @@
         }
 
         /// <summary>
-        /// List of filters upon which to match.
+        /// List of content-types on which to match.
         /// </summary>
-        [JsonPropertyOrder(2)]
-        public List<SearchFilter> Filter
+        public List<string> MimeTypes
         {
             get
             {
-                return _Filter;
+                return _MimeTypes;
             }
             set
             {
-                if (value == null) _Filter = new List<SearchFilter>();
-                else _Filter = value;
+                if (value == null) _MimeTypes = new List<string>();
+                else _MimeTypes = value;
+            }
+        }
+
+        /// <summary>
+        /// List of key prefix values on which to match.
+        /// </summary>
+        public List<string> Prefixes
+        {
+            get
+            {
+                return _Prefixes;
+            }
+            set
+            {
+                if (value == null) _Prefixes = new List<string>();
+                else _Prefixes = value;
+            }
+        }
+
+        /// <summary>
+        /// List of key suffix values on which to match.
+        /// </summary>
+        public List<string> Suffixes
+        {
+            get
+            {
+                return _Suffixes;
+            }
+            set
+            {
+                if (value == null) _Suffixes = new List<string>();
+                else _Suffixes = value;
+            }
+        }
+
+        /// <summary>
+        /// List of schema filters upon which to match.
+        /// </summary>
+        [JsonPropertyOrder(2)]
+        public List<SchemaFilter> SchemaFilters
+        {
+            get
+            {
+                return _SchemaFilters;
+            }
+            set
+            {
+                if (value == null) _SchemaFilters = new List<SchemaFilter>();
+                else _SchemaFilters = value;
             }
         }
 
@@ -49,7 +97,10 @@
         #region Private-Members
 
         private List<string> _Terms = new List<string>();
-        private List<SearchFilter> _Filter = new List<SearchFilter>();
+        private List<string> _MimeTypes = new List<string>();
+        private List<string> _Prefixes = new List<string>();
+        private List<string> _Suffixes = new List<string>();
+        private List<SchemaFilter> _SchemaFilters = new List<SchemaFilter>();
 
         #endregion
 
