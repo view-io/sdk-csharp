@@ -987,21 +987,6 @@
             Object used to enumerate a table.
             </summary>
         </member>
-        <member name="P:View.Sdk.Shared.Embeddings.EnumerationQuery.GUID">
-            <summary>
-            The GUID of the enumeration operation.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Shared.Embeddings.EnumerationQuery.TenantGUID">
-            <summary>
-            Tenant GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Shared.Embeddings.EnumerationQuery.CollectionGUID">
-            <summary>
-            The GUID of the collection to query.
-            </summary>
-        </member>
         <member name="P:View.Sdk.Shared.Embeddings.EnumerationQuery.MaxResults">
             <summary>
             Maximum number of results to retrieve.
@@ -1015,6 +1000,41 @@
         <member name="P:View.Sdk.Shared.Embeddings.EnumerationQuery.OrderBy">
             <summary>
             Order by.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EnumerationQuery.VectorRepositoryType">
+            <summary>
+            Vector repository type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EnumerationQuery.VectorDatabaseHostname">
+            <summary>
+            Vector database hostname.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EnumerationQuery.VectorDatabaseName">
+            <summary>
+            Vector database name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EnumerationQuery.VectorDatabaseTable">
+            <summary>
+            Vector database table name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EnumerationQuery.VectorDatabasePort">
+            <summary>
+            Vector database port.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EnumerationQuery.VectorDatabaseUser">
+            <summary>
+            Vector database user.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EnumerationQuery.VectorDatabasePassword">
+            <summary>
+            Vector database password.
             </summary>
         </member>
         <member name="M:View.Sdk.Shared.Embeddings.EnumerationQuery.#ctor">
@@ -1040,16 +1060,6 @@
         <member name="P:View.Sdk.Shared.Embeddings.EnumerationResult.Timestamp">
             <summary>
             Start and end timestamps.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Shared.Embeddings.EnumerationResult.TenantGUID">
-            <summary>
-            Tenant GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Shared.Embeddings.EnumerationResult.CollectionGUID">
-            <summary>
-            The GUID of the collection that was queried.
             </summary>
         </member>
         <member name="P:View.Sdk.Shared.Embeddings.EnumerationResult.Query">

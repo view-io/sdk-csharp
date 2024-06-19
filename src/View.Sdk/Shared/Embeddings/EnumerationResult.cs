@@ -31,18 +31,6 @@
         public Timestamp Timestamp { get; set; } = new Timestamp();
 
         /// <summary>
-        /// Tenant GUID.
-        /// </summary>
-        [JsonPropertyOrder(4)]
-        public string TenantGUID { get; set; } = Guid.NewGuid().ToString();
-
-        /// <summary>
-        /// The GUID of the collection that was queried.
-        /// </summary>
-        [JsonPropertyOrder(5)]
-        public string CollectionGUID { get; set; } = null;
-
-        /// <summary>
         /// The enumeration query performed.
         /// </summary>
         [JsonPropertyOrder(6)]
