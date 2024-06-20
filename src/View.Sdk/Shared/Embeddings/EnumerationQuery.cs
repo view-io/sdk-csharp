@@ -14,7 +14,6 @@
         /// <summary>
         /// Maximum number of results to retrieve.
         /// </summary>
-        [JsonPropertyOrder(4)]
         public int MaxResults
         {
             get
@@ -32,13 +31,26 @@
         /// <summary>
         /// Continuation token.
         /// </summary>
-        [JsonPropertyOrder(5)]
         public string ContinuationToken { get; set; } = null;
+
+        /// <summary>
+        /// Tenant GUID.
+        /// </summary>
+        public string TenantGUID { get; set; } = null;
+
+        /// <summary>
+        /// Bucket GUID.
+        /// </summary>
+        public string BucketGUID { get; set; } = null;
+
+        /// <summary>
+        /// Collection GUID.
+        /// </summary>
+        public string CollectionGUID { get; set; } = null;
 
         /// <summary>
         /// Order by.
         /// </summary>
-        [JsonPropertyOrder(7)]
         public OrderByEnum OrderBy { get; set; } = OrderByEnum.CreatedDescending;
 
         /// <summary>

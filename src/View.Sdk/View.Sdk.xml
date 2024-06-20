@@ -997,6 +997,21 @@
             Continuation token.
             </summary>
         </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EnumerationQuery.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EnumerationQuery.BucketGUID">
+            <summary>
+            Bucket GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EnumerationQuery.CollectionGUID">
+            <summary>
+            Collection GUID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Shared.Embeddings.EnumerationQuery.OrderBy">
             <summary>
             Order by.
