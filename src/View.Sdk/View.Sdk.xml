@@ -1153,6 +1153,11 @@
             Embeddings.
             </summary>
         </member>
+        <member name="P:View.Sdk.Shared.Embeddings.MatchedDocument.CreatedUtc">
+            <summary>
+            Creation timestamp.
+            </summary>
+        </member>
         <member name="M:View.Sdk.Shared.Embeddings.MatchedDocument.#ctor">
             <summary>
             Instantiate.

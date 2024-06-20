@@ -72,6 +72,11 @@
             }
         }
 
+        /// <summary>
+        /// Creation timestamp.
+        /// </summary>
+        public DateTime CreatedUtc { get; set; } = DateTime.UtcNow;
+
         #endregion
 
         #region Private-Members
