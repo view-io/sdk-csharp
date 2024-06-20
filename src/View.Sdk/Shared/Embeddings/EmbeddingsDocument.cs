@@ -2,6 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Data;
+    using System.Linq;
     using Timestamps;
     using View.Sdk.Shared.Embeddings;
 
@@ -26,6 +28,11 @@
         /// Timestamps.
         /// </summary>
         public Timestamp Timestamp { get; set; } = new Timestamp();
+
+        /// <summary>
+        /// ID.
+        /// </summary>
+        public int? Id { get; set; } = null;
 
         /// <summary>
         /// Tenant GUID.
@@ -99,6 +106,49 @@
         public EmbeddingsDocument()
         {
 
+        }
+
+        /// <summary>
+        /// Instantiate from DataRow.
+        /// </summary>
+        /// <param name="row">DataRow.</param>
+        /// <returns>EmbeddingsDocument.</returns>
+        public static EmbeddingsDocument FromDataRow(DataRow row)
+        {
+            if (row == null) return null;
+
+            EmbeddingsDocument doc = new EmbeddingsDocument
+            {
+                Id = Convert.ToInt32(row["id"]),
+                TenantGUID = row["tenant_guid"] != null ? row["tenant_guid"].ToString() : null,
+                BucketGUID = row["bucket_guid"] != null ? row["bucket_guid"].ToString() : null,
+                ObjectGUID = row["object_guid"] != null ? row["object_guid"].ToString() : null,
+                ObjectKey = row["object_key"] != null ? row["object_key"].ToString() : null,
+                ObjectVersion = row["object_version"] != null ? row["object_version"].ToString() : null,
+                CreatedUtc = row["created_utc"] != null ? Convert.ToDateTime(row["created_utc"].ToString()) : DateTime.UtcNow
+            };
+
+            return doc;
+        }
+
+        /// <summary>
+        /// Instantiate from DataTable.
+        /// </summary>
+        /// <param name="dt">DataTable.</param>
+        /// <returns>List of EmbeddingsDocument.</returns>
+        public static List<EmbeddingsDocument> FromDataTable(DataTable dt)
+        {
+            if (dt == null) return null;
+
+            List<EmbeddingsDocument> ret = new List<EmbeddingsDocument>();
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                EmbeddingsDocument doc = EmbeddingsDocument.FromDataRow(dt.Rows[i]);
+                ret.Add(doc);
+            }
+
+            return ret;
         }
 
         #endregion

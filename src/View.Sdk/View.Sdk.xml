@@ -707,6 +707,11 @@
             Timestamps.
             </summary>
         </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsDocument.Id">
+            <summary>
+            ID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsDocument.TenantGUID">
             <summary>
             Tenant GUID.
@@ -756,6 +761,20 @@
             <summary>
             Instantiate.
             </summary>
+        </member>
+        <member name="M:View.Sdk.Shared.Embeddings.EmbeddingsDocument.FromDataRow(System.Data.DataRow)">
+            <summary>
+            Instantiate from DataRow.
+            </summary>
+            <param name="row">DataRow.</param>
+            <returns>EmbeddingsDocument.</returns>
+        </member>
+        <member name="M:View.Sdk.Shared.Embeddings.EmbeddingsDocument.FromDataTable(System.Data.DataTable)">
+            <summary>
+            Instantiate from DataTable.
+            </summary>
+            <param name="dt">DataTable.</param>
+            <returns>List of EmbeddingsDocument.</returns>
         </member>
         <member name="T:View.Sdk.Shared.Embeddings.EmbeddingsGeneratorEnum">
             <summary>
@@ -1168,12 +1187,19 @@
             Instantiate.
             </summary>
         </member>
-        <member name="M:View.Sdk.Shared.Embeddings.MatchedDocument.FromDataTable(System.Data.DataTable)">
+        <member name="M:View.Sdk.Shared.Embeddings.MatchedDocument.FromDataRow(System.Data.DataRow)">
             <summary>
             Instantiate from DataRow.
             </summary>
-            <param name="dt">DataTable.</param>
+            <param name="row">DataRow.</param>
             <returns>MatchedDocument.</returns>
+        </member>
+        <member name="M:View.Sdk.Shared.Embeddings.MatchedDocument.FromDataTable(System.Data.DataTable)">
+            <summary>
+            Instantiate from DataTable.
+            </summary>
+            <param name="dt">DataTable.</param>
+            <returns>List of MatchedDocument.</returns>
         </member>
         <member name="T:View.Sdk.Shared.Embeddings.OrderByEnum">
             <summary>

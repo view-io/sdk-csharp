@@ -99,8 +99,35 @@
         /// <summary>
         /// Instantiate from DataRow.
         /// </summary>
-        /// <param name="dt">DataTable.</param>
+        /// <param name="row">DataRow.</param>
         /// <returns>MatchedDocument.</returns>
+        public static MatchedDocument FromDataRow(DataRow row)
+        {
+            if (row == null) return null;
+
+            MatchedDocument doc = new MatchedDocument
+            {
+                Id = Convert.ToInt32(row["id"]),
+                TenantGUID = row["tenant_guid"] != null ? row["tenant_guid"].ToString() : null,
+                BucketGUID = row["bucket_guid"] != null ? row["bucket_guid"].ToString() : null,
+                ObjectGUID = row["object_guid"] != null ? row["object_guid"].ToString() : null,
+                ObjectKey = row["object_key"] != null ? row["object_key"].ToString() : null,
+                ObjectVersion = row["object_version"] != null ? row["object_version"].ToString() : null,
+                CreatedUtc = row["created_utc"] != null ? Convert.ToDateTime(row["created_utc"].ToString()) : DateTime.UtcNow
+            };
+
+            object embeddingsColumn = row["embedding"];
+            string embeddingsStr = embeddingsColumn.ToString().Replace("[", "").Replace("]", "");
+            List<string> embeddingsSplit = embeddingsStr.Split(',').ToList();
+            doc.Embeddings = embeddingsSplit.Select(float.Parse).ToList();
+            return doc;
+        }
+
+        /// <summary>
+        /// Instantiate from DataTable.
+        /// </summary>
+        /// <param name="dt">DataTable.</param>
+        /// <returns>List of MatchedDocument.</returns>
         public static List<MatchedDocument> FromDataTable(DataTable dt)
         {
             if (dt == null) return null;
@@ -109,21 +136,7 @@
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                MatchedDocument doc = new MatchedDocument
-                {
-                    Id = Convert.ToInt32(dt.Rows[i]["id"]),
-                    TenantGUID = dt.Rows[i]["tenant_guid"] != null ? dt.Rows[i]["tenant_guid"].ToString() : null,
-                    BucketGUID = dt.Rows[i]["bucket_guid"] != null ? dt.Rows[i]["bucket_guid"].ToString() : null,
-                    ObjectGUID = dt.Rows[i]["object_guid"] != null ? dt.Rows[i]["object_guid"].ToString() : null,
-                    ObjectKey = dt.Rows[i]["object_key"] != null ? dt.Rows[i]["object_key"].ToString() : null,
-                    ObjectVersion = dt.Rows[i]["object_version"] != null ? dt.Rows[i]["object_version"].ToString() : null,
-                    CreatedUtc = dt.Rows[i]["created_utc"] != null ? Convert.ToDateTime(dt.Rows[i]["created_utc"].ToString()) : DateTime.UtcNow
-                };
-
-                object embeddingsColumn = dt.Rows[i]["embedding"];
-                string embeddingsStr = embeddingsColumn.ToString().Replace("[", "").Replace("]", "");
-                List<string> embeddingsSplit = embeddingsStr.Split(',').ToList();
-                doc.Embeddings = embeddingsSplit.Select(float.Parse).ToList();
+                MatchedDocument doc = MatchedDocument.FromDataRow(dt.Rows[i]);
                 ret.Add(doc);
             }
 
