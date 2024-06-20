@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Data;
     using System.Linq;
+    using System.Text.Json.Serialization;
     using Timestamps;
     using View.Sdk.Shared.Embeddings;
 
@@ -17,7 +18,7 @@
         /// <summary>
         /// Indicates if the parser was successful.
         /// </summary>
-        public bool Success { get; set; } = true;
+        public bool? Success { get; set; } = true;
 
         /// <summary>
         /// Exception, if any.
@@ -32,6 +33,7 @@
         /// <summary>
         /// ID.
         /// </summary>
+        [JsonIgnore]
         public int? Id { get; set; } = null;
 
         /// <summary>
@@ -72,18 +74,7 @@
         /// <summary>
         /// Semantic cells.
         /// </summary>
-        public List<SemanticCell> SemanticCells
-        {
-            get
-            {
-                return _SemanticCells;
-            }
-            set
-            {
-                if (value == null) _SemanticCells = new List<SemanticCell>();
-                else _SemanticCells = value;
-            }
-        }
+        public List<SemanticCell> SemanticCells { get; set; } = new List<SemanticCell>();
 
         /// <summary>
         /// Creation timestamp in UTC.

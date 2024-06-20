@@ -87,13 +87,11 @@
         /// <summary>
         /// Write a document.
         /// </summary>
-        /// <param name="settings">Database settings.</param>
         /// <param name="document">Embeddings document.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Task.</returns>
-        public async Task<List<EmbeddingsDocument>> WriteDocument(DatabaseSettings settings, EmbeddingsDocument document, CancellationToken token = default)
+        public async Task<List<EmbeddingsDocument>> WriteDocument(EmbeddingsDocument document, CancellationToken token = default)
         {
-            if (settings == null) throw new ArgumentNullException(nameof(settings));
             if (document == null) throw new ArgumentNullException(nameof(document));
 
             string url = _Endpoint + "v1.0/documents";
@@ -136,13 +134,11 @@
         /// <summary>
         /// Delete a document.
         /// </summary>
-        /// <param name="settings">Database settings.</param>
         /// <param name="delReq">Delete request.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Task.</returns>
-        public async Task<bool> DeleteDocument(DatabaseSettings settings, DeleteRequest delReq, CancellationToken token = default)
+        public async Task<bool> DeleteDocument(DeleteRequest delReq, CancellationToken token = default)
         {
-            if (settings == null) throw new ArgumentNullException(nameof(settings));
             if (delReq == null) throw new ArgumentNullException(nameof(delReq));
 
             string url = _Endpoint + "v1.0/documents";
@@ -178,13 +174,11 @@
         /// <summary>
         /// Truncate table.
         /// </summary>
-        /// <param name="settings">Database settings.</param>
         /// <param name="delReq">Delete request.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Task.</returns>
-        public async Task<bool> TruncateTable(DatabaseSettings settings, DeleteRequest delReq, CancellationToken token = default)
+        public async Task<bool> TruncateTable(DeleteRequest delReq, CancellationToken token = default)
         {
-            if (settings == null) throw new ArgumentNullException(nameof(settings));
             if (delReq == null) throw new ArgumentNullException(nameof(delReq));
 
             string url = _Endpoint + "v1.0/documents?truncate";
@@ -218,15 +212,60 @@
         }
 
         /// <summary>
+        /// Enumerate a table.
+        /// </summary>
+        /// <param name="query">Enumeration query.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Enumeration result.</returns>
+        public async Task<EnumerationResult> EnumerateTable(EnumerationQuery query, CancellationToken token = default)
+        {
+            if (query == null) throw new ArgumentNullException(nameof(query));
+
+            string url = _Endpoint + "v1.0/documents?enumerate";
+
+            using (RestRequest req = new RestRequest(url, HttpMethod.Post))
+            {
+                req.ContentType = Constants.JsonContentType;
+
+                using (RestResponse resp = await req.SendAsync(_Serializer.SerializeJson(query, true), token).ConfigureAwait(false))
+                {
+                    if (resp != null)
+                    {
+                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                        {
+                            Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            if (!String.IsNullOrEmpty(resp.DataAsString))
+                            {
+                                return _Serializer.DeserializeJson<EnumerationResult>(resp.DataAsString);
+                            }
+                            else
+                            {
+                                return null;
+                            }
+                        }
+                        else
+                        {
+                            Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            return null;
+                        }
+                    }
+                    else
+                    {
+                        Log("no response from " + url);
+                        return null;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Similarity search.
         /// </summary>
-        /// <param name="settings">Database settings.</param>
         /// <param name="searchReq">Search request.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Task.</returns>
-        public async Task<List<EmbeddingsDocument>> SimilaritySearch(DatabaseSettings settings, SearchRequest searchReq, CancellationToken token = default)
+        public async Task<List<EmbeddingsDocument>> SimilaritySearch(SearchRequest searchReq, CancellationToken token = default)
         {
-            if (settings == null) throw new ArgumentNullException(nameof(settings));
             if (searchReq == null) throw new ArgumentNullException(nameof(searchReq));
 
             string url = _Endpoint + "v1.0/search/similarity";
@@ -269,13 +308,11 @@
         /// <summary>
         /// Raw query.
         /// </summary>
-        /// <param name="settings">Database settings.</param>
         /// <param name="queryReq">Query request.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Task.</returns>
-        public async Task<string> RawQuery(DatabaseSettings settings, QueryRequest queryReq, CancellationToken token = default)
+        public async Task<string> RawQuery(QueryRequest queryReq, CancellationToken token = default)
         {
-            if (settings == null) throw new ArgumentNullException(nameof(settings));
             if (queryReq == null) throw new ArgumentNullException(nameof(queryReq));
 
             string url = _Endpoint + "v1.0/query";

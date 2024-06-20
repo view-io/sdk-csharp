@@ -3979,47 +3979,50 @@
             <param name="token">Cancellation token.</param>
             <returns>Boolean indicating success.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.WriteDocument(View.Sdk.Vector.DatabaseSettings,View.Sdk.Shared.Embeddings.EmbeddingsDocument,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.WriteDocument(View.Sdk.Shared.Embeddings.EmbeddingsDocument,System.Threading.CancellationToken)">
             <summary>
             Write a document.
             </summary>
-            <param name="settings">Database settings.</param>
             <param name="document">Embeddings document.</param>
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.DeleteDocument(View.Sdk.Vector.DatabaseSettings,View.Sdk.Shared.Embeddings.DeleteRequest,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.DeleteDocument(View.Sdk.Shared.Embeddings.DeleteRequest,System.Threading.CancellationToken)">
             <summary>
             Delete a document.
             </summary>
-            <param name="settings">Database settings.</param>
             <param name="delReq">Delete request.</param>
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.TruncateTable(View.Sdk.Vector.DatabaseSettings,View.Sdk.Shared.Embeddings.DeleteRequest,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.TruncateTable(View.Sdk.Shared.Embeddings.DeleteRequest,System.Threading.CancellationToken)">
             <summary>
             Truncate table.
             </summary>
-            <param name="settings">Database settings.</param>
             <param name="delReq">Delete request.</param>
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.SimilaritySearch(View.Sdk.Vector.DatabaseSettings,View.Sdk.Shared.Embeddings.SearchRequest,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.EnumerateTable(View.Sdk.Shared.Embeddings.EnumerationQuery,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate a table.
+            </summary>
+            <param name="query">Enumeration query.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.SimilaritySearch(View.Sdk.Shared.Embeddings.SearchRequest,System.Threading.CancellationToken)">
             <summary>
             Similarity search.
             </summary>
-            <param name="settings">Database settings.</param>
             <param name="searchReq">Search request.</param>
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.RawQuery(View.Sdk.Vector.DatabaseSettings,View.Sdk.Shared.Embeddings.QueryRequest,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.RawQuery(View.Sdk.Shared.Embeddings.QueryRequest,System.Threading.CancellationToken)">
             <summary>
             Raw query.
             </summary>
-            <param name="settings">Database settings.</param>
             <param name="queryReq">Query request.</param>
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
