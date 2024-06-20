@@ -1076,6 +1076,11 @@
             Vector database password.
             </summary>
         </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EnumerationQuery.Dimensionality">
+            <summary>
+            Dimensionality of embeddings.
+            </summary>
+        </member>
         <member name="M:View.Sdk.Shared.Embeddings.EnumerationQuery.#ctor">
             <summary>
             Instantiate.

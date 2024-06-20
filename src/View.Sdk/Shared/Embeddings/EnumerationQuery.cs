@@ -99,12 +99,29 @@
         /// </summary>
         public string VectorDatabasePassword { get; set; } = null;
 
+        /// <summary>
+        /// Dimensionality of embeddings.
+        /// </summary>
+        public int Dimensionality
+        {
+            get
+            {
+                return _Dimensionality;
+            }
+            set
+            {
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(Dimensionality));
+                _Dimensionality = value;
+            }
+        }
+
         #endregion
 
         #region Private-Members
 
         private int _MaxResults = 1000;
         private int _VectorDatabasePort = 5432;
+        private int _Dimensionality = 384;
 
         #endregion
 
