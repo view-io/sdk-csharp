@@ -747,6 +747,11 @@
             Semantic cells.
             </summary>
         </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsDocument.CreatedUtc">
+            <summary>
+            Creation timestamp in UTC.
+            </summary>
+        </member>
         <member name="M:View.Sdk.Shared.Embeddings.EmbeddingsDocument.#ctor">
             <summary>
             Instantiate.
