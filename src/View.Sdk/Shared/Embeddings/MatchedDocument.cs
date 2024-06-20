@@ -116,7 +116,8 @@
                     BucketGUID = dt.Rows[i]["bucket_guid"] != null ? dt.Rows[i]["bucket_guid"].ToString() : null,
                     ObjectGUID = dt.Rows[i]["object_guid"] != null ? dt.Rows[i]["object_guid"].ToString() : null,
                     ObjectKey = dt.Rows[i]["object_key"] != null ? dt.Rows[i]["object_key"].ToString() : null,
-                    ObjectVersion = dt.Rows[i]["object_version"] != null ? dt.Rows[i]["object_version"].ToString() : null
+                    ObjectVersion = dt.Rows[i]["object_version"] != null ? dt.Rows[i]["object_version"].ToString() : null,
+                    CreatedUtc = dt.Rows[i]["created_utc"] != null ? Convert.ToDateTime(dt.Rows[i]["created_utc"].ToString()) : DateTime.UtcNow
                 };
 
                 object embeddingsColumn = dt.Rows[i]["embedding"];
