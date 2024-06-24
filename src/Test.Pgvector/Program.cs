@@ -2,12 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.IO;
     using System.Threading.Tasks;
     using GetSomeInput;
     using View.Sdk.Vector;
     using View.Sdk.Shared.Embeddings;
-    using View.Sdk.Shared.Udr;
     using View.Serializer;
 
     public static class Program
@@ -115,7 +113,6 @@
             if (String.IsNullOrEmpty(requestJson)) return;
 
             List<EmbeddingsDocument> docs = await _Sdk.WriteDocument(
-                _Serializer.DeserializeJson<DatabaseSettings>(dbSettingsJson),
                 _Serializer.DeserializeJson<EmbeddingsDocument>(requestJson)
                 );
 
@@ -131,7 +128,6 @@
             if (String.IsNullOrEmpty(requestJson)) return;
 
             await _Sdk.DeleteDocument(
-                _Serializer.DeserializeJson<DatabaseSettings>(dbSettingsJson),
                 _Serializer.DeserializeJson<DeleteRequest>(requestJson)
                 );
         }
@@ -145,7 +141,6 @@
             if (String.IsNullOrEmpty(requestJson)) return;
 
             await _Sdk.TruncateTable(
-                _Serializer.DeserializeJson<DatabaseSettings>(dbSettingsJson),
                 _Serializer.DeserializeJson<DeleteRequest>(requestJson)
                 );
         }
@@ -159,7 +154,6 @@
             if (String.IsNullOrEmpty(requestJson)) return;
 
             List<EmbeddingsDocument> docs = await _Sdk.SimilaritySearch(
-                _Serializer.DeserializeJson<DatabaseSettings>(dbSettingsJson),
                 _Serializer.DeserializeJson<SearchRequest>(requestJson)
                 );
 
@@ -175,7 +169,6 @@
             if (String.IsNullOrEmpty(requestJson)) return;
 
             string ret = await _Sdk.RawQuery(
-                _Serializer.DeserializeJson<DatabaseSettings>(dbSettingsJson),
                 _Serializer.DeserializeJson<QueryRequest>(requestJson)
                 );
 

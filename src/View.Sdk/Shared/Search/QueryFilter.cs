@@ -1,5 +1,6 @@
 ﻿namespace View.Sdk.Shared.Search
 {
+    using System;
     using System.Collections.Generic;
     using System.Text.Json.Serialization;
 
@@ -11,9 +12,18 @@
         #region Public-Members
 
         /// <summary>
+        /// Timestamp, in UTC time, after which an entry must have been created.
+        /// </summary>
+        public DateTime? CreatedAfter { get; set; } = null;
+
+        /// <summary>
+        /// Timestamp, in UTC time, before which an entry must have been created.
+        /// </summary>
+        public DateTime? CreatedBefore { get; set; } = null;
+
+        /// <summary>
         /// List of terms upon which to match.
         /// </summary>
-        [JsonPropertyOrder(1)]
         public List<string> Terms
         {
             get

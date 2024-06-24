@@ -2770,6 +2770,16 @@
             A filter for the query.
             </summary>
         </member>
+        <member name="P:View.Sdk.Shared.Search.QueryFilter.CreatedAfter">
+            <summary>
+            Timestamp, in UTC time, after which an entry must have been created.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Search.QueryFilter.CreatedBefore">
+            <summary>
+            Timestamp, in UTC time, before which an entry must have been created.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Shared.Search.QueryFilter.Terms">
             <summary>
             List of terms upon which to match.
