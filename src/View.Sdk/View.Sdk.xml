@@ -3911,6 +3911,48 @@
             InternalError.
             </summary>
         </member>
+        <member name="T:View.Sdk.TypeDetector.ViewTypeDetectorSdk">
+            <summary>
+            View Type Detector SDK.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.TypeDetector.ViewTypeDetectorSdk.Logger">
+            <summary>
+            Method to invoke to send log messages.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.TypeDetector.ViewTypeDetectorSdk.LogRequests">
+            <summary>
+            Enable or disable logging of request bodies.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.TypeDetector.ViewTypeDetectorSdk.LogResponses">
+            <summary>
+            Enable or disable logging of response bodies.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.TypeDetector.ViewTypeDetectorSdk.#ctor(System.String)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="endpoint">Endpoint URL.</param>
+        </member>
+        <member name="M:View.Sdk.TypeDetector.ViewTypeDetectorSdk.ValidateConnectivity(System.Threading.CancellationToken)">
+            <summary>
+            Validate connectivity.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Boolean indicating success.</returns>
+        </member>
+        <member name="M:View.Sdk.TypeDetector.ViewTypeDetectorSdk.Process(System.Byte[],System.String,System.Threading.CancellationToken)">
+            <summary>
+            Determine a document type.
+            </summary>
+            <param name="data">Data.</param>
+            <param name="contentType">Content-type.  CSV content-types are inferred using this header's value.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>TypeResult.</returns>
+        </member>
         <member name="T:View.Sdk.Vector.DatabaseSettings">
             <summary>
             Database settings.
