@@ -3841,6 +3841,11 @@
             GUID.
             </summary>
         </member>
+        <member name="P:View.Sdk.Shared.Udr.UdrDocumentRequest.Type">
+            <summary>
+            Document type.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Shared.Udr.UdrDocumentRequest.Key">
             <summary>
             Key.

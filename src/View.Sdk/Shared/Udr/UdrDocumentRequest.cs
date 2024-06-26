@@ -27,6 +27,11 @@
         }
 
         /// <summary>
+        /// Document type.
+        /// </summary>
+        public DocumentTypeEnum Type { get; set; } = DocumentTypeEnum.Unknown;
+
+        /// <summary>
         /// Key.
         /// </summary>
         public string Key { get; set; } = null;
