@@ -4,6 +4,7 @@
     using System.IO;
     using System.Threading.Tasks;
     using GetSomeInput;
+    using View.Sdk;
     using View.Sdk.DocumentProcessor;
     using View.Sdk.Shared.Udr;
     using View.Serializer;
@@ -12,15 +13,15 @@
     {
         private static bool _RunForever = true;
         private static string _Endpoint = "http://localhost:8321/";
-        private static ViewDocumentProcessorSdk _Sdk = null;
+        private static ViewUdrGeneratorSdk _Sdk = null;
         private static SerializationHelper _Serializer = new SerializationHelper();
         private static bool _EnableLogging = true;
 
         public static void Main(string[] args)
         {
             _Endpoint = Inputty.GetString("Endpoint:", _Endpoint, false);
-            _Sdk = new ViewDocumentProcessorSdk(_Endpoint);
-            if (_EnableLogging) _Sdk.Logger = Console.WriteLine;
+            _Sdk = new ViewUdrGeneratorSdk(_Endpoint);
+            if (_EnableLogging) _Sdk.Logger = EmitLogMessage;
 
             while (_RunForever)
             {
@@ -171,6 +172,11 @@
             else if (filename.EndsWith(".xml")) return "application/xml";
 
             return "application/octet-stream";
+        }
+
+        private static void EmitLogMessage(Severity sev, string msg)
+        {
+            if (!String.IsNullOrEmpty(msg)) Console.WriteLine(sev.ToString() + " " + msg);
         }
     }
 }

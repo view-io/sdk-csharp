@@ -12,14 +12,9 @@
     /// <summary>
     /// View Type Detector SDK.
     /// </summary>
-    public class ViewTypeDetectorSdk
+    public class ViewTypeDetectorSdk : ViewSdkBase
     {
         #region Public-Members
-
-        /// <summary>
-        /// Method to invoke to send log messages.
-        /// </summary>
-        public Action<string> Logger { get; set; } = null;
 
         /// <summary>
         /// Enable or disable logging of request bodies.
@@ -35,11 +30,6 @@
 
         #region Private-Members
 
-        private string _Header = "[ViewTypeDetectorSdk] ";
-        private Uri _Uri = null;
-        private string _Endpoint = "http://localhost:8501/processor/typedetector";
-        private SerializationHelper _Serializer = new SerializationHelper();
-
         #endregion
 
         #region Constructors-and-Factories
@@ -48,49 +38,14 @@
         /// Instantiate.
         /// </summary>
         /// <param name="endpoint">Endpoint URL.</param>
-        public ViewTypeDetectorSdk(string endpoint = "http://localhost:8501/processor/typedetector")
+        public ViewTypeDetectorSdk(string endpoint = "http://localhost:8501/processor/typedetector") : base(endpoint)
         {
-            if (string.IsNullOrEmpty(endpoint)) throw new ArgumentNullException(nameof(endpoint));
-
-            _Uri = new Uri(endpoint);
-            _Endpoint = _Uri.ToString();
+            Header = "[ViewTypeDetectorSdk] ";
         }
 
         #endregion
 
         #region Public-Methods
-
-        /// <summary>
-        /// Validate connectivity.
-        /// </summary>
-        /// <param name="token">Cancellation token.</param>
-        /// <returns>Boolean indicating success.</returns>
-        public async Task<bool> ValidateConnectivity(CancellationToken token = default)
-        {
-            string url = _Endpoint;
-
-            using (RestRequest req = new RestRequest(url, HttpMethod.Head))
-            {
-                using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
-                {
-                    if (resp != null && resp.StatusCode == 200)
-                    {
-                        Log("success reported from " + url);
-                        return true;
-                    }
-                    else if (resp != null)
-                    {
-                        Log("non-success reported from " + url + ": " + resp.StatusCode);
-                        return false;
-                    }
-                    else
-                    {
-                        Log("no response from " + url);
-                        return false;
-                    }
-                }
-            }
-        }
 
         /// <summary>
         /// Determine a document type.
@@ -107,7 +62,7 @@
             if (data == null || data.Length < 1) throw new ArgumentException("No data supplied for content type detection.");
             if (String.IsNullOrEmpty(contentType)) contentType = "application/octet-stream";
 
-            string url = _Endpoint;
+            string url = Endpoint;
 
             try
             {
@@ -115,7 +70,7 @@
                 {
                     req.ContentType = contentType;
 
-                    if (LogRequests) Log("request body: " + Environment.NewLine + Encoding.UTF8.GetString(data));
+                    if (LogRequests) Log(Severity.Debug, "request body: " + Environment.NewLine + Encoding.UTF8.GetString(data));
 
                     using (RestResponse resp = await req.SendAsync(data, token).ConfigureAwait(false))
                     {
@@ -123,13 +78,13 @@
                         {
                             if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                             {
-                                Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                                Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
 
                                 if (!String.IsNullOrEmpty(resp.DataAsString))
                                 {
-                                    if (LogResponses) Log("response body: " + Environment.NewLine + resp.DataAsString);
+                                    if (LogResponses) Log(Severity.Debug, "response body: " + Environment.NewLine + resp.DataAsString);
 
-                                    TypeResult tr = _Serializer.DeserializeJson<TypeResult>(resp.DataAsString);
+                                    TypeResult tr = Serializer.DeserializeJson<TypeResult>(resp.DataAsString);
                                     return tr;
                                 }
                                 else
@@ -139,13 +94,13 @@
                             }
                             else
                             {
-                                Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                                Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
 
                                 if (!String.IsNullOrEmpty(resp.DataAsString))
                                 {
-                                    if (LogResponses) Log("response body: " + Environment.NewLine + resp.DataAsString);
+                                    if (LogResponses) Log(Severity.Warn, "response body: " + Environment.NewLine + resp.DataAsString);
 
-                                    TypeResult tr = _Serializer.DeserializeJson<TypeResult>(resp.DataAsString);
+                                    TypeResult tr = Serializer.DeserializeJson<TypeResult>(resp.DataAsString);
                                     return tr;
                                 }
                                 else
@@ -156,7 +111,7 @@
                         }
                         else
                         {
-                            Log("no response from " + url);
+                            Log(Severity.Warn, "no response from " + url);
                             return null;
                         }
                     }
@@ -164,7 +119,7 @@
             }
             catch (HttpRequestException hre)
             {
-                Log("exception while interacting with " + url + ": " + hre.Message);
+                Log(Severity.Warn, "exception while interacting with " + url + ": " + hre.Message);
 
                 return new TypeResult
                 {
@@ -178,12 +133,6 @@
         #endregion
 
         #region Private-Methods
-
-        private void Log(string msg)
-        {
-            if (String.IsNullOrEmpty(msg)) return;
-            Logger?.Invoke(_Header + msg);
-        }
 
         #endregion
     }

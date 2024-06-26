@@ -14,55 +14,9 @@
             JSON content-type.
             </summary>
         </member>
-        <member name="T:View.Sdk.DocumentProcessor.ViewDocumentProcessorSdk">
-            <summary>
-            View document processor SDK.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DocumentProcessor.ViewDocumentProcessorSdk.Logger">
-            <summary>
-            Method to invoke to send log messages.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.DocumentProcessor.ViewDocumentProcessorSdk.#ctor(System.String)">
-            <summary>
-            Instantiate.
-            </summary>
-            <param name="endpoint">Endpoint URL of the form http://localhost:8321/.</param>
-        </member>
-        <member name="M:View.Sdk.DocumentProcessor.ViewDocumentProcessorSdk.ValidateConnectivity(System.Threading.CancellationToken)">
-            <summary>
-            Validate connectivity.
-            </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>Boolean indicating success.</returns>
-        </member>
-        <member name="M:View.Sdk.DocumentProcessor.ViewDocumentProcessorSdk.ProcessDocument(View.Sdk.Shared.Udr.UdrDocumentRequest,System.String,System.Threading.CancellationToken)">
-            <summary>
-            Process document.
-            </summary>
-            <param name="doc">Document request.</param>
-            <param name="filename">Filename containing data.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Document response.</returns>
-        </member>
-        <member name="M:View.Sdk.DocumentProcessor.ViewDocumentProcessorSdk.ProcessDataTable(View.Sdk.Shared.Udr.DataTableRequest,System.String,System.Threading.CancellationToken)">
-            <summary>
-            Process data table.
-            </summary>
-            <param name="dt">Data table request.</param>
-            <param name="filename">Filename containing data.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Document response.</returns>
-        </member>
         <member name="T:View.Sdk.Langchain.ViewLangchainProxySdk">
             <summary>
             View Langchain Proxy SDK.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Langchain.ViewLangchainProxySdk.Logger">
-            <summary>
-            Method to invoke to send log messages.
             </summary>
         </member>
         <member name="M:View.Sdk.Langchain.ViewLangchainProxySdk.#ctor(System.String,System.String)">
@@ -71,13 +25,6 @@
             </summary>
             <param name="endpoint">Endpoint URL.</param>
             <param name="apiKey">API key.</param>
-        </member>
-        <member name="M:View.Sdk.Langchain.ViewLangchainProxySdk.ValidateConnectivity(System.Threading.CancellationToken)">
-            <summary>
-            Validate connectivity.
-            </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>Boolean indicating success.</returns>
         </member>
         <member name="M:View.Sdk.Langchain.ViewLangchainProxySdk.PreloadModels(System.Collections.Generic.List{System.String},System.Threading.CancellationToken)">
             <summary>
@@ -101,24 +48,12 @@
             View Lexi search SDK.
             </summary>
         </member>
-        <member name="P:View.Sdk.Lexi.ViewLexiSdk.Logger">
-            <summary>
-            Method to invoke to send log messages.
-            </summary>
-        </member>
         <member name="M:View.Sdk.Lexi.ViewLexiSdk.#ctor(System.String,System.String)">
             <summary>
             Instantiate.
             </summary>
             <param name="tenantGuid">Tenant GUID.</param>
             <param name="endpoint">Endpoint URL.</param>
-        </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.ValidateConnectivity(System.Threading.CancellationToken)">
-            <summary>
-            Validate connectivity.
-            </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>Boolean indicating success.</returns>
         </member>
         <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveCollections(System.Threading.CancellationToken)">
             <summary>
@@ -226,11 +161,6 @@
             View Orchestrator SDK.
             </summary>
         </member>
-        <member name="P:View.Sdk.Orchestrator.ViewOrchestratorSdk.Logger">
-            <summary>
-            Method to invoke to send log messages.
-            </summary>
-        </member>
         <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.#ctor(System.String,System.String,System.String)">
             <summary>
             Instantiate.
@@ -238,13 +168,6 @@
             <param name="tenantGuid">Tenant GUID.</param>
             <param name="accessKey">Access key.</param>
             <param name="endpoint">Endpoint URL.</param>
-        </member>
-        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.ValidateConnectivity(System.Threading.CancellationToken)">
-            <summary>
-            Validate connectivity.
-            </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>Boolean indicating success.</returns>
         </member>
         <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.CreateTenant(View.Sdk.Shared.Orchestrator.TenantMetadata,System.Threading.CancellationToken)">
             <summary>
@@ -527,11 +450,6 @@
             View SDK for generating embeddings with Lexi search results.
             </summary>
         </member>
-        <member name="P:View.Sdk.Processor.ViewLexiEmbeddingsSdk.Logger">
-            <summary>
-            Method to invoke to send log messages.
-            </summary>
-        </member>
         <member name="P:View.Sdk.Processor.ViewLexiEmbeddingsSdk.LogRequests">
             <summary>
             Enable or disable logging of request bodies.
@@ -548,13 +466,6 @@
             </summary>
             <param name="endpoint">Endpoint URL.</param>
         </member>
-        <member name="M:View.Sdk.Processor.ViewLexiEmbeddingsSdk.ValidateConnectivity(System.Threading.CancellationToken)">
-            <summary>
-            Validate connectivity.
-            </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>Boolean indicating success.</returns>
-        </member>
         <member name="M:View.Sdk.Processor.ViewLexiEmbeddingsSdk.Process(View.Sdk.Shared.Search.SearchResult,View.Sdk.Shared.Embeddings.EmbeddingsRule,System.Threading.CancellationToken)">
             <summary>
             Process a document.
@@ -567,11 +478,6 @@
         <member name="T:View.Sdk.Processor.ViewProcessorSdk">
             <summary>
             View Processing Pipeline SDK.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.ViewProcessorSdk.Logger">
-            <summary>
-            Method to invoke to send log messages.
             </summary>
         </member>
         <member name="P:View.Sdk.Processor.ViewProcessorSdk.LogRequests">
@@ -590,13 +496,6 @@
             </summary>
             <param name="endpoint">Endpoint URL.</param>
         </member>
-        <member name="M:View.Sdk.Processor.ViewProcessorSdk.ValidateConnectivity(System.Threading.CancellationToken)">
-            <summary>
-            Validate connectivity.
-            </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>Boolean indicating success.</returns>
-        </member>
         <member name="M:View.Sdk.Processor.ViewProcessorSdk.Process(View.Sdk.Shared.Processing.ObjectMetadata,View.Sdk.Shared.Udr.MetadataRule,View.Sdk.Shared.Embeddings.EmbeddingsRule,System.Threading.CancellationToken)">
             <summary>
             Process a document.
@@ -606,6 +505,46 @@
             <param name="embedRule">Embeddings rule.</param>
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
+        </member>
+        <member name="T:View.Sdk.Severity">
+            <summary>
+            Message severity.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Severity.Debug">
+            <summary>
+            Debug messages.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Severity.Info">
+            <summary>
+            Informational messages.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Severity.Warn">
+            <summary>
+            Warning messages.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Severity.Error">
+            <summary>
+            Error messages.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Severity.Alert">
+            <summary>
+            Alert messages.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Severity.Critical">
+            <summary>
+            Critical messages.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Severity.Emergency">
+            <summary>
+            Emergency messages.
+            </summary>
         </member>
         <member name="T:View.Sdk.Shared.Embeddings.DeleteRequest">
             <summary>
@@ -3921,11 +3860,6 @@
             View Type Detector SDK.
             </summary>
         </member>
-        <member name="P:View.Sdk.TypeDetector.ViewTypeDetectorSdk.Logger">
-            <summary>
-            Method to invoke to send log messages.
-            </summary>
-        </member>
         <member name="P:View.Sdk.TypeDetector.ViewTypeDetectorSdk.LogRequests">
             <summary>
             Enable or disable logging of request bodies.
@@ -3942,13 +3876,6 @@
             </summary>
             <param name="endpoint">Endpoint URL.</param>
         </member>
-        <member name="M:View.Sdk.TypeDetector.ViewTypeDetectorSdk.ValidateConnectivity(System.Threading.CancellationToken)">
-            <summary>
-            Validate connectivity.
-            </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>Boolean indicating success.</returns>
-        </member>
         <member name="M:View.Sdk.TypeDetector.ViewTypeDetectorSdk.Process(System.Byte[],System.String,System.Threading.CancellationToken)">
             <summary>
             Determine a document type.
@@ -3957,6 +3884,35 @@
             <param name="contentType">Content-type.  CSV content-types are inferred using this header's value.</param>
             <param name="token">Cancellation token.</param>
             <returns>TypeResult.</returns>
+        </member>
+        <member name="T:View.Sdk.DocumentProcessor.ViewUdrGeneratorSdk">
+            <summary>
+            View document processor SDK.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.DocumentProcessor.ViewUdrGeneratorSdk.#ctor(System.String)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="endpoint">Endpoint URL of the form http://localhost:8321/.</param>
+        </member>
+        <member name="M:View.Sdk.DocumentProcessor.ViewUdrGeneratorSdk.ProcessDocument(View.Sdk.Shared.Udr.UdrDocumentRequest,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Process document.
+            </summary>
+            <param name="doc">Document request.</param>
+            <param name="filename">Filename containing data.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Document response.</returns>
+        </member>
+        <member name="M:View.Sdk.DocumentProcessor.ViewUdrGeneratorSdk.ProcessDataTable(View.Sdk.Shared.Udr.DataTableRequest,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Process data table.
+            </summary>
+            <param name="dt">Data table request.</param>
+            <param name="filename">Filename containing data.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Document response.</returns>
         </member>
         <member name="T:View.Sdk.Vector.DatabaseSettings">
             <summary>
@@ -4018,23 +3974,11 @@
             View Vector Proxy SDK.
             </summary>
         </member>
-        <member name="P:View.Sdk.Vector.ViewVectorProxySdk.Logger">
-            <summary>
-            Method to invoke to send log messages.
-            </summary>
-        </member>
         <member name="M:View.Sdk.Vector.ViewVectorProxySdk.#ctor(System.String)">
             <summary>
             Instantiate.
             </summary>
             <param name="endpoint">Endpoint URL.</param>
-        </member>
-        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.ValidateConnectivity(System.Threading.CancellationToken)">
-            <summary>
-            Validate connectivity.
-            </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>Boolean indicating success.</returns>
         </member>
         <member name="M:View.Sdk.Vector.ViewVectorProxySdk.WriteDocument(View.Sdk.Shared.Embeddings.EmbeddingsDocument,System.Threading.CancellationToken)">
             <summary>
@@ -4083,6 +4027,51 @@
             <param name="queryReq">Query request.</param>
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
+        </member>
+        <member name="T:View.Sdk.ViewSdkBase">
+            <summary>
+            View SDK base class.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewSdkBase.Logger">
+            <summary>
+            Method to invoke to send log messages.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewSdkBase.Header">
+            <summary>
+            Header to prepend to log messages.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewSdkBase.Endpoint">
+            <summary>
+            Endpoint URL.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewSdkBase.Serializer">
+            <summary>
+            Serialization helper.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.ViewSdkBase.#ctor(System.String)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="endpoint">Endpoint.</param>
+        </member>
+        <member name="M:View.Sdk.ViewSdkBase.Log(View.Sdk.Severity,System.String)">
+            <summary>
+            Emit a log message.
+            </summary>
+            <param name="sev">Severity.</param>
+            <param name="msg">Message.</param>
+        </member>
+        <member name="M:View.Sdk.ViewSdkBase.ValidateConnectivity(System.Threading.CancellationToken)">
+            <summary>
+            Validate connectivity.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Boolean indicating success.</returns>
         </member>
     </members>
 </doc>

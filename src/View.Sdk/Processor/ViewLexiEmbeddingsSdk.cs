@@ -16,14 +16,9 @@
     /// <summary>
     /// View SDK for generating embeddings with Lexi search results.
     /// </summary>
-    public class ViewLexiEmbeddingsSdk
+    public class ViewLexiEmbeddingsSdk : ViewSdkBase
     {
         #region Public-Members
-
-        /// <summary>
-        /// Method to invoke to send log messages.
-        /// </summary>
-        public Action<string> Logger { get; set; } = null;
 
         /// <summary>
         /// Enable or disable logging of request bodies.
@@ -39,11 +34,6 @@
 
         #region Private-Members
 
-        private string _Header = "[ViewLexiEmbeddingsSdk] ";
-        private Uri _Uri = null;
-        private string _Endpoint = "http://localhost:8501/lexi/embeddings";
-        private SerializationHelper _Serializer = new SerializationHelper();
-        
         #endregion
 
         #region Constructors-and-Factories
@@ -52,49 +42,16 @@
         /// Instantiate.
         /// </summary>
         /// <param name="endpoint">Endpoint URL.</param>
-        public ViewLexiEmbeddingsSdk(string endpoint = "http://localhost:8501/lexi/embeddings")
+        public ViewLexiEmbeddingsSdk(string endpoint = "http://localhost:8501/lexi/embeddings") : base(endpoint)
         {
             if (string.IsNullOrEmpty(endpoint)) throw new ArgumentNullException(nameof(endpoint));
 
-            _Uri = new Uri(endpoint);
-            _Endpoint = _Uri.ToString();
+            Header = "[ViewLexiEmbeddingsSdk] ";
         }
 
         #endregion
 
         #region Public-Methods
-
-        /// <summary>
-        /// Validate connectivity.
-        /// </summary>
-        /// <param name="token">Cancellation token.</param>
-        /// <returns>Boolean indicating success.</returns>
-        public async Task<bool> ValidateConnectivity(CancellationToken token = default)
-        {
-            string url = _Endpoint;
-
-            using (RestRequest req = new RestRequest(url))
-            {
-                using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
-                {
-                    if (resp != null && resp.StatusCode == 200)
-                    {
-                        Log("success reported from " + url);
-                        return true;
-                    }
-                    else if (resp != null)
-                    {
-                        Log("non-success reported from " + url + ": " + resp.StatusCode);
-                        return false;
-                    }
-                    else
-                    {
-                        Log("no response from " + url);
-                        return false;
-                    }
-                }
-            }
-        }
 
         /// <summary>
         /// Process a document.
@@ -111,7 +68,7 @@
             if (results == null) throw new ArgumentNullException(nameof(results));
             if (embedRule == null) throw new ArgumentNullException(nameof(embedRule));
 
-            string url = _Endpoint;
+            string url = Endpoint;
 
             try
             {
@@ -125,9 +82,9 @@
                         EmbeddingsRule = embedRule
                     };
 
-                    string json = _Serializer.SerializeJson(procReq, true);
+                    string json = Serializer.SerializeJson(procReq, true);
 
-                    if (LogRequests) Log("request body: " + Environment.NewLine + json);
+                    if (LogRequests) Log(Severity.Debug, "request body: " + Environment.NewLine + json);
 
                     using (RestResponse resp = await req.SendAsync(json, token).ConfigureAwait(false))
                     {
@@ -135,13 +92,13 @@
                         {
                             if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                             {
-                                Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                                Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
 
                                 if (!String.IsNullOrEmpty(resp.DataAsString))
                                 {
-                                    if (LogResponses) Log("response body: " + Environment.NewLine + resp.DataAsString);
+                                    if (LogResponses) Log(Severity.Debug, "response body: " + Environment.NewLine + resp.DataAsString);
 
-                                    LexiEmbeddingsResponse procResp = _Serializer.DeserializeJson<LexiEmbeddingsResponse>(resp.DataAsString);
+                                    LexiEmbeddingsResponse procResp = Serializer.DeserializeJson<LexiEmbeddingsResponse>(resp.DataAsString);
                                     return procResp;
                                 }
                                 else
@@ -151,13 +108,13 @@
                             }
                             else
                             {
-                                Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                                Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
 
                                 if (!String.IsNullOrEmpty(resp.DataAsString))
                                 {
-                                    if (LogResponses) Log("response body: " + Environment.NewLine + resp.DataAsString);
+                                    if (LogResponses) Log(Severity.Debug, "response body: " + Environment.NewLine + resp.DataAsString);
 
-                                    LexiEmbeddingsResponse procResp = _Serializer.DeserializeJson<LexiEmbeddingsResponse>(resp.DataAsString);
+                                    LexiEmbeddingsResponse procResp = Serializer.DeserializeJson<LexiEmbeddingsResponse>(resp.DataAsString);
                                     return procResp;
                                 }
                                 else
@@ -168,7 +125,7 @@
                         }
                         else
                         {
-                            Log("no response from " + url);
+                            Log(Severity.Warn, "no response from " + url);
                             return null;
                         }
                     }
@@ -176,7 +133,7 @@
             }
             catch (HttpRequestException hre)
             {
-                Log("exception while interacting with " + url + ": " + hre.Message);
+                Log(Severity.Warn, "exception while interacting with " + url + ": " + hre.Message);
                 return new LexiEmbeddingsResponse
                 {
                     Success = false,
@@ -188,12 +145,6 @@
         #endregion
 
         #region Private-Methods
-
-        private void Log(string msg)
-        {
-            if (String.IsNullOrEmpty(msg)) return;
-            Logger?.Invoke(_Header + msg);
-        }
 
         #endregion
     }

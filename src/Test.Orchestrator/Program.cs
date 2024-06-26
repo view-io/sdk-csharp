@@ -6,6 +6,7 @@
     using System.Net;
     using System.Threading.Tasks;
     using GetSomeInput;
+    using View.Sdk;
     using View.Sdk.Orchestrator;
     using View.Sdk.Shared.Orchestrator;
     using View.Sdk.Shared.Search;
@@ -28,7 +29,7 @@
             _AccessKey      = Inputty.GetString("Access key  :", _AccessKey, false);
 
             _Sdk = new ViewOrchestratorSdk(_TenantGuid, _AccessKey, _Endpoint);
-            if (_EnableLogging) _Sdk.Logger = Console.WriteLine;
+            if (_EnableLogging) _Sdk.Logger = EmitLogMessage;
 
             while (_RunForever)
             {
@@ -210,6 +211,11 @@
             Console.WriteLine("  delete flow       Delete a flow");
             Console.WriteLine("  exists flow       Check if a flow exists");
             Console.WriteLine("");
+        }
+
+        private static void EmitLogMessage(Severity sev, string msg)
+        {
+            if (!String.IsNullOrEmpty(msg)) Console.WriteLine(sev.ToString() + " " + msg);
         }
 
         private static void EnumerateResponse(object obj)

@@ -15,24 +15,15 @@
     /// <summary>
     /// View Lexi search SDK.
     /// </summary>
-    public class ViewLexiSdk
+    public class ViewLexiSdk : ViewSdkBase
     {
         #region Public-Members
 
-        /// <summary>
-        /// Method to invoke to send log messages.
-        /// </summary>
-        public Action<string> Logger { get; set; } = null;
-         
         #endregion
 
         #region Private-Members
 
-        private string _Header = "[ViewLexiSdk] ";
-        private Uri _Uri = null;
         private string _TenantGuid = Guid.NewGuid().ToString();
-        private string _Endpoint = "http://localhost:8201/";
-        private SerializationHelper _Serializer = new SerializationHelper();
         
         #endregion
 
@@ -43,52 +34,18 @@
         /// </summary>
         /// <param name="tenantGuid">Tenant GUID.</param>
         /// <param name="endpoint">Endpoint URL.</param>
-        public ViewLexiSdk(string tenantGuid, string endpoint = "http://localhost:8201/")
+        public ViewLexiSdk(string tenantGuid, string endpoint = "http://localhost:8201/") : base(endpoint)
         {
             if (string.IsNullOrEmpty(tenantGuid)) throw new ArgumentNullException(nameof(tenantGuid));
-            if (string.IsNullOrEmpty(endpoint)) throw new ArgumentNullException(nameof(endpoint));
+
+            Header = "[ViewLexiSdk] ";
 
             _TenantGuid = tenantGuid;
-            _Uri = new Uri(endpoint);
-            _Endpoint = _Uri.ToString();
-            if (!_Endpoint.EndsWith("/")) _Endpoint += "/";
         }
 
         #endregion
 
         #region Public-Methods
-
-        /// <summary>
-        /// Validate connectivity.
-        /// </summary>
-        /// <param name="token">Cancellation token.</param>
-        /// <returns>Boolean indicating success.</returns>
-        public async Task<bool> ValidateConnectivity(CancellationToken token = default)
-        {
-            string url = _Endpoint;
-
-            using (RestRequest req = new RestRequest(url))
-            {
-                using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
-                {
-                    if (resp != null && resp.StatusCode == 200)
-                    {
-                        Log("success reported from " + url);
-                        return true;
-                    }
-                    else if (resp != null)
-                    {
-                        Log("non-success reported from " + url + ": " + resp.StatusCode);
-                        return false;
-                    }
-                    else
-                    {
-                        Log("no response from " + url);
-                        return false;
-                    }
-                }
-            }
-        }
 
         #region Collections
 
@@ -99,7 +56,7 @@
         /// <returns>List of collection.</returns>
         public async Task<List<Collection>> RetrieveCollections(CancellationToken token = default)
         {
-            string url = _Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections";
+            string url = Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections";
 
             using (RestRequest req = new RestRequest(url))
             {
@@ -109,10 +66,10 @@
                     {
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
-                                return _Serializer.DeserializeJson<List<Collection>>(resp.DataAsString);
+                                return Serializer.DeserializeJson<List<Collection>>(resp.DataAsString);
                             }
                             else
                             {
@@ -121,13 +78,13 @@
                         }
                         else
                         {
-                            Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             return null;
                         }
                     }
                     else
                     {
-                        Log("no response from " + url);
+                        Log(Severity.Warn, "no response from " + url);
                         return null;
                     }
                 }
@@ -144,7 +101,7 @@
         {
             if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
 
-            string url = _Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections/" + collectionGuid;
+            string url = Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections/" + collectionGuid;
 
             using (RestRequest req = new RestRequest(url))
             {
@@ -154,10 +111,10 @@
                     {
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
-                                return _Serializer.DeserializeJson<Collection>(resp.DataAsString);
+                                return Serializer.DeserializeJson<Collection>(resp.DataAsString);
                             }
                             else
                             {
@@ -166,13 +123,13 @@
                         }
                         else
                         {
-                            Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             return null;
                         }
                     }
                     else
                     {
-                        Log("no response from " + url);
+                        Log(Severity.Warn, "no response from " + url);
                         return null;
                     }
                 }
@@ -189,7 +146,7 @@
         {
             if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
 
-            string url = _Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections/" + collectionGuid + "?stats";
+            string url = Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections/" + collectionGuid + "?stats";
 
             using (RestRequest req = new RestRequest(url))
             {
@@ -199,10 +156,10 @@
                     {
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
-                                return _Serializer.DeserializeJson<CollectionStatistics>(resp.DataAsString);
+                                return Serializer.DeserializeJson<CollectionStatistics>(resp.DataAsString);
                             }
                             else
                             {
@@ -211,13 +168,13 @@
                         }
                         else
                         {
-                            Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             return null;
                         }
                     }
                     else
                     {
-                        Log("no response from " + url);
+                        Log(Severity.Warn, "no response from " + url);
                         return null;
                     }
                 }
@@ -234,30 +191,30 @@
         {
             if (collection == null) throw new ArgumentNullException(nameof(collection));
 
-            string url = _Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections";
+            string url = Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections";
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Put))
             {
                 req.ContentType = Constants.JsonContentType;
 
-                using (RestResponse resp = await req.SendAsync(_Serializer.SerializeJson(collection, true), token).ConfigureAwait(false))
+                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(collection, true), token).ConfigureAwait(false))
                 {
                     if (resp != null)
                     {
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return _Serializer.DeserializeJson<Collection>(resp.DataAsString);
+                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            return Serializer.DeserializeJson<Collection>(resp.DataAsString);
                         }
                         else
                         {
-                            Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             return null;
                         }
                     }
                     else
                     {
-                        Log("no response from " + url);
+                        Log(Severity.Warn, "no response from " + url);
                         return null;
                     }
                 }
@@ -274,7 +231,7 @@
         {
             if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
 
-            string url = _Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections/" + collectionGuid;
+            string url = Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections/" + collectionGuid;
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Delete))
             {
@@ -284,16 +241,16 @@
                     {
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                         }
                         else
                         {
-                            Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                         }
                     }
                     else
                     {
-                        Log("no response from " + url);
+                        Log(Severity.Warn, "no response from " + url);
                     }
 
                     return;
@@ -315,7 +272,7 @@
         {
             if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
 
-            string url = _Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections/" + collectionGuid + "/documents";
+            string url = Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections/" + collectionGuid + "/documents";
 
             using (RestRequest req = new RestRequest(url))
             {
@@ -325,10 +282,10 @@
                     {
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
-                                return _Serializer.DeserializeJson<List<SourceDocument>>(resp.DataAsString);
+                                return Serializer.DeserializeJson<List<SourceDocument>>(resp.DataAsString);
                             }
                             else
                             {
@@ -337,13 +294,13 @@
                         }
                         else
                         {
-                            Log("non-success status from " + url + ": " + resp.StatusCode);
+                            Log(Severity.Warn, "non-success status from " + url + ": " + resp.StatusCode);
                             return null;
                         }
                     }
                     else
                     {
-                        Log("no response from " + url);
+                        Log(Severity.Warn, "no response from " + url);
                         return null;
                     }
                 }
@@ -363,7 +320,7 @@
             if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
             if (String.IsNullOrEmpty(documentGuid)) throw new ArgumentNullException(nameof(documentGuid));
 
-            string url = _Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections/" + collectionGuid + "/documents/" + documentGuid;
+            string url = Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections/" + collectionGuid + "/documents/" + documentGuid;
 
             if (includeData) url += "?incldata";
 
@@ -375,10 +332,10 @@
                     {
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
-                                return _Serializer.DeserializeJson<SourceDocument>(resp.DataAsString);
+                                return Serializer.DeserializeJson<SourceDocument>(resp.DataAsString);
                             }
                             else
                             {
@@ -387,13 +344,13 @@
                         }
                         else
                         {
-                            Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             return null;
                         }
                     }
                     else
                     {
-                        Log("no response from " + url);
+                        Log(Severity.Warn, "no response from " + url);
                         return null;
                     }
                 }
@@ -412,7 +369,7 @@
             if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
             if (String.IsNullOrEmpty(documentGuid)) throw new ArgumentNullException(nameof(documentGuid));
 
-            string url = _Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections/" + collectionGuid + "/documents/" + documentGuid + "?stats";
+            string url = Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections/" + collectionGuid + "/documents/" + documentGuid + "?stats";
 
             using (RestRequest req = new RestRequest(url))
             {
@@ -422,10 +379,10 @@
                     {
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
-                                return _Serializer.DeserializeJson<SourceDocumentStatistics>(resp.DataAsString);
+                                return Serializer.DeserializeJson<SourceDocumentStatistics>(resp.DataAsString);
                             }
                             else
                             {
@@ -434,13 +391,13 @@
                         }
                         else
                         {
-                            Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             return null;
                         }
                     }
                     else
                     {
-                        Log("no response from " + url);
+                        Log(Severity.Warn, "no response from " + url);
                         return null;
                     }
                 }
@@ -457,22 +414,22 @@
         {
             if (document == null) throw new ArgumentNullException(nameof(document));
 
-            string url = _Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections/" + document.CollectionGUID + "/documents";
+            string url = Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections/" + document.CollectionGUID + "/documents";
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Put))
             {
                 req.ContentType = Constants.JsonContentType;
 
-                using (RestResponse resp = await req.SendAsync(_Serializer.SerializeJson(document, true), token).ConfigureAwait(false))
+                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(document, true), token).ConfigureAwait(false))
                 {
                     if (resp != null)
                     {
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
-                                return _Serializer.DeserializeJson<SourceDocument>(resp.DataAsString);
+                                return Serializer.DeserializeJson<SourceDocument>(resp.DataAsString);
                             }
                             else
                             {
@@ -481,13 +438,13 @@
                         }
                         else
                         {
-                            Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             return null;
                         }
                     }
                     else
                     {
-                        Log("no response from " + url);
+                        Log(Severity.Warn, "no response from " + url);
                         return null;
                     }
                 }
@@ -506,7 +463,7 @@
             if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
             if (String.IsNullOrEmpty(documentGuid)) throw new ArgumentNullException(nameof(documentGuid));
 
-            string url = _Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections/" + collectionGuid + "/documents/" + documentGuid;
+            string url = Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections/" + collectionGuid + "/documents/" + documentGuid;
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Delete))
             {
@@ -516,16 +473,16 @@
                     {
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                         }
                         else
                         {
-                            Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                         }
                     }
                     else
                     {
-                        Log("no response from " + url);
+                        Log(Severity.Warn, "no response from " + url);
                     }
 
                     return;
@@ -549,22 +506,22 @@
             if (query == null) throw new ArgumentNullException(nameof(query));
             if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
 
-            string url = _Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections/" + collectionGuid + "?enumerate";
+            string url = Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections/" + collectionGuid + "?enumerate";
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Post))
             {
                 req.ContentType = Constants.JsonContentType;
 
-                using (RestResponse resp = await req.SendAsync(_Serializer.SerializeJson(query, true), token).ConfigureAwait(false))
+                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(query, true), token).ConfigureAwait(false))
                 {
                     if (resp != null)
                     {
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
-                                return _Serializer.DeserializeJson<EnumerationResult>(resp.DataAsString);
+                                return Serializer.DeserializeJson<EnumerationResult>(resp.DataAsString);
                             }
                             else
                             {
@@ -573,13 +530,13 @@
                         }
                         else
                         {
-                            Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             return null;
                         }
                     }
                     else
                     {
-                        Log("no response from " + url);
+                        Log(Severity.Warn, "no response from " + url);
                         return null;
                     }
                 }
@@ -602,22 +559,22 @@
             if (query == null) throw new ArgumentNullException(nameof(query));
             if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
 
-            string url = _Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections/" + collectionGuid + "?search";
+            string url = Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections/" + collectionGuid + "?search";
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Post))
             {
                 req.ContentType = Constants.JsonContentType;
 
-                using (RestResponse resp = await req.SendAsync(_Serializer.SerializeJson(query, true), token).ConfigureAwait(false))
+                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(query, true), token).ConfigureAwait(false))
                 {
                     if (resp != null)
                     {
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
-                                return _Serializer.DeserializeJson<SearchResult>(resp.DataAsString);
+                                return Serializer.DeserializeJson<SearchResult>(resp.DataAsString);
                             }
                             else
                             {
@@ -626,13 +583,13 @@
                         }
                         else
                         {
-                            Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             return null;
                         }
                     }
                     else
                     {
-                        Log("no response from " + url);
+                        Log(Severity.Warn, "no response from " + url);
                         return null;
                     }
                 }
@@ -644,12 +601,6 @@
         #endregion
 
         #region Private-Methods
-
-        private void Log(string msg)
-        {
-            if (String.IsNullOrEmpty(msg)) return;
-            Logger?.Invoke(_Header + msg);
-        }
 
         #endregion
     }

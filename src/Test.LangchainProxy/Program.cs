@@ -5,6 +5,7 @@
     using System.IO;
     using System.Threading.Tasks;
     using GetSomeInput;
+    using View.Sdk;
     using View.Sdk.Langchain;
     using View.Sdk.Shared.Embeddings;
     using View.Sdk.Shared.Udr;
@@ -27,7 +28,7 @@
             _ApiKey   = Inputty.GetString("API key  :", _ApiKey, true);
 
             _Sdk = new ViewLangchainProxySdk(_Endpoint, _ApiKey);
-            if (_EnableLogging) _Sdk.Logger = Console.WriteLine;
+            if (_EnableLogging) _Sdk.Logger = EmitLogMessage;
 
             while (_RunForever)
             {
@@ -116,6 +117,11 @@
 
             EmbeddingsResult result = await _Sdk.GenerateEmbeddings(model, text);
             EnumerateResponse(result);
+        }
+
+        private static void EmitLogMessage(Severity sev, string msg)
+        {
+            if (!String.IsNullOrEmpty(msg)) Console.WriteLine(sev.ToString() + " " + msg);
         }
 
 #pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.

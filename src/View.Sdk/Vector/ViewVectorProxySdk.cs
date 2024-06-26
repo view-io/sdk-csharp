@@ -13,24 +13,14 @@
     /// <summary>
     /// View Vector Proxy SDK.
     /// </summary>
-    public class ViewVectorProxySdk
+    public class ViewVectorProxySdk : ViewSdkBase
     {
         #region Public-Members
 
-        /// <summary>
-        /// Method to invoke to send log messages.
-        /// </summary>
-        public Action<string> Logger { get; set; } = null;
-         
         #endregion
 
         #region Private-Members
 
-        private string _Header = "[ViewPgvProxySdk] ";
-        private Uri _Uri = null;
-        private string _Endpoint = "http://localhost:8311/";
-        private SerializationHelper _Serializer = new SerializationHelper();
-        
         #endregion
 
         #region Constructors-and-Factories
@@ -39,50 +29,14 @@
         /// Instantiate.
         /// </summary>
         /// <param name="endpoint">Endpoint URL.</param>
-        public ViewVectorProxySdk(string endpoint = "http://localhost:8311/")
+        public ViewVectorProxySdk(string endpoint = "http://localhost:8311/") : base(endpoint)
         {
-            if (string.IsNullOrEmpty(endpoint)) throw new ArgumentNullException(nameof(endpoint));
-
-            _Uri = new Uri(endpoint);
-            _Endpoint = _Uri.ToString();
-            if (!_Endpoint.EndsWith("/")) _Endpoint += "/";
+            Header = "[ViewPgvProxySdk] ";
         }
 
         #endregion
 
         #region Public-Methods
-
-        /// <summary>
-        /// Validate connectivity.
-        /// </summary>
-        /// <param name="token">Cancellation token.</param>
-        /// <returns>Boolean indicating success.</returns>
-        public async Task<bool> ValidateConnectivity(CancellationToken token = default)
-        {
-            string url = _Endpoint;
-
-            using (RestRequest req = new RestRequest(url))
-            {
-                using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
-                {
-                    if (resp != null && resp.StatusCode == 200)
-                    {
-                        Log("success reported from " + url);
-                        return true;
-                    }
-                    else if (resp != null)
-                    {
-                        Log("non-success reported from " + url + ": " + resp.StatusCode);
-                        return false;
-                    }
-                    else
-                    {
-                        Log("no response from " + url);
-                        return false;
-                    }
-                }
-            }
-        }
 
         /// <summary>
         /// Write a document.
@@ -94,22 +48,22 @@
         {
             if (document == null) throw new ArgumentNullException(nameof(document));
 
-            string url = _Endpoint + "v1.0/documents";
+            string url = Endpoint + "v1.0/documents";
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Post))
             {
                 req.ContentType = Constants.JsonContentType;
 
-                using (RestResponse resp = await req.SendAsync(_Serializer.SerializeJson(document, true), token).ConfigureAwait(false))
+                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(document, true), token).ConfigureAwait(false))
                 {
                     if (resp != null)
                     {
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
-                                return _Serializer.DeserializeJson<List<EmbeddingsDocument>>(resp.DataAsString);
+                                return Serializer.DeserializeJson<List<EmbeddingsDocument>>(resp.DataAsString);
                             }
                             else
                             {
@@ -118,13 +72,13 @@
                         }
                         else
                         {
-                            Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             return null;
                         }
                     }
                     else
                     {
-                        Log("no response from " + url);
+                        Log(Severity.Warn, "no response from " + url);
                         return null;
                     }
                 }
@@ -141,30 +95,30 @@
         {
             if (delReq == null) throw new ArgumentNullException(nameof(delReq));
 
-            string url = _Endpoint + "v1.0/documents";
+            string url = Endpoint + "v1.0/documents";
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Delete))
             {
                 req.ContentType = Constants.JsonContentType;
 
-                using (RestResponse resp = await req.SendAsync(_Serializer.SerializeJson(delReq, true), token).ConfigureAwait(false))
+                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(delReq, true), token).ConfigureAwait(false))
                 {
                     if (resp != null)
                     {
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             return true;
                         }
                         else
                         {
-                            Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             return false;
                         }
                     }
                     else
                     {
-                        Log("no response from " + url);
+                        Log(Severity.Warn, "no response from " + url);
                         return false;
                     }
                 }
@@ -181,30 +135,30 @@
         {
             if (delReq == null) throw new ArgumentNullException(nameof(delReq));
 
-            string url = _Endpoint + "v1.0/documents?truncate";
+            string url = Endpoint + "v1.0/documents?truncate";
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Delete))
             {
                 req.ContentType = Constants.JsonContentType;
 
-                using (RestResponse resp = await req.SendAsync(_Serializer.SerializeJson(delReq, true), token).ConfigureAwait(false))
+                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(delReq, true), token).ConfigureAwait(false))
                 {
                     if (resp != null)
                     {
-                        Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                        Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
                             return true;
                         }
                         else
                         {
-                            Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             return false;
                         }
                     }
                     else
                     {
-                        Log("no response from " + url);
+                        Log(Severity.Warn, "no response from " + url);
                         return false;
                     }
                 }
@@ -221,22 +175,22 @@
         {
             if (query == null) throw new ArgumentNullException(nameof(query));
 
-            string url = _Endpoint + "v1.0/documents?enumerate";
+            string url = Endpoint + "v1.0/documents?enumerate";
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Post))
             {
                 req.ContentType = Constants.JsonContentType;
 
-                using (RestResponse resp = await req.SendAsync(_Serializer.SerializeJson(query, true), token).ConfigureAwait(false))
+                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(query, true), token).ConfigureAwait(false))
                 {
                     if (resp != null)
                     {
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
-                                return _Serializer.DeserializeJson<EnumerationResult>(resp.DataAsString);
+                                return Serializer.DeserializeJson<EnumerationResult>(resp.DataAsString);
                             }
                             else
                             {
@@ -245,13 +199,13 @@
                         }
                         else
                         {
-                            Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             return null;
                         }
                     }
                     else
                     {
-                        Log("no response from " + url);
+                        Log(Severity.Warn, "no response from " + url);
                         return null;
                     }
                 }
@@ -268,22 +222,22 @@
         {
             if (searchReq == null) throw new ArgumentNullException(nameof(searchReq));
 
-            string url = _Endpoint + "v1.0/search/similarity";
+            string url = Endpoint + "v1.0/search/similarity";
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Put))
             {
                 req.ContentType = Constants.JsonContentType;
 
-                using (RestResponse resp = await req.SendAsync(_Serializer.SerializeJson(searchReq, true), token).ConfigureAwait(false))
+                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(searchReq, true), token).ConfigureAwait(false))
                 {
                     if (resp != null)
                     {
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
-                                return _Serializer.DeserializeJson<List<EmbeddingsDocument>>(resp.DataAsString);
+                                return Serializer.DeserializeJson<List<EmbeddingsDocument>>(resp.DataAsString);
                             }
                             else
                             {
@@ -292,13 +246,13 @@
                         }
                         else
                         {
-                            Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             return null;
                         }
                     }
                     else
                     {
-                        Log("no response from " + url);
+                        Log(Severity.Warn, "no response from " + url);
                         return null;
                     }
                 }
@@ -315,30 +269,30 @@
         {
             if (queryReq == null) throw new ArgumentNullException(nameof(queryReq));
 
-            string url = _Endpoint + "v1.0/query";
+            string url = Endpoint + "v1.0/query";
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Post))
             {
                 req.ContentType = Constants.JsonContentType;
 
-                using (RestResponse resp = await req.SendAsync(_Serializer.SerializeJson(queryReq, true), token).ConfigureAwait(false))
+                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(queryReq, true), token).ConfigureAwait(false))
                 {
                     if (resp != null)
                     {
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             return resp.DataAsString;
                         }
                         else
                         {
-                            Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             return null;
                         }
                     }
                     else
                     {
-                        Log("no response from " + url);
+                        Log(Severity.Warn, "no response from " + url);
                         return null;
                     }
                 }
@@ -348,12 +302,6 @@
         #endregion
 
         #region Private-Methods
-
-        private void Log(string msg)
-        {
-            if (String.IsNullOrEmpty(msg)) return;
-            Logger?.Invoke(_Header + msg);
-        }
 
         #endregion
     }

@@ -9,6 +9,7 @@
     using View.Sdk.TypeDetector;
     using View.Sdk.Shared.Udr;
     using View.Serializer;
+    using View.Sdk;
 
     public static class Program
     {
@@ -25,7 +26,7 @@
             _Endpoint = Inputty.GetString("Endpoint :", _Endpoint, false);
 
             _Sdk = new ViewTypeDetectorSdk(_Endpoint);
-            if (_EnableLogging) _Sdk.Logger = Console.WriteLine;
+            if (_EnableLogging) _Sdk.Logger = EmitLogMessage;
 
             while (_RunForever)
             {
@@ -76,6 +77,11 @@
             else
                 Console.WriteLine("(null)");
             Console.WriteLine("");
+        }
+
+        private static void EmitLogMessage(Severity sev, string msg)
+        {
+            if (!String.IsNullOrEmpty(msg)) Console.WriteLine(sev.ToString() + " " + msg);
         }
 
         private static async Task TestConnectivity()

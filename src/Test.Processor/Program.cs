@@ -6,6 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
     using GetSomeInput;
+    using View.Sdk;
     using View.Sdk.Processor;
     using View.Sdk.Shared.Processing;
     using View.Serializer;
@@ -25,7 +26,7 @@
             _Endpoint = Inputty.GetString("Endpoint :", _Endpoint, false);
 
             _Sdk = new ViewProcessorSdk(_Endpoint);
-            if (_EnableLogging) _Sdk.Logger = Console.WriteLine;
+            if (_EnableLogging) _Sdk.Logger = EmitLogMessage;
 
             while (_RunForever)
             {
@@ -75,6 +76,11 @@
             else
                 Console.WriteLine("(null)");
             Console.WriteLine("");
+        }
+
+        private static void EmitLogMessage(Severity sev, string msg)
+        {
+            if (!String.IsNullOrEmpty(msg)) Console.WriteLine(sev.ToString() + " " + msg);
         }
 
         private static async Task TestConnectivity()

@@ -5,6 +5,7 @@
     using System.IO;
     using System.Threading.Tasks;
     using GetSomeInput;
+    using View.Sdk;
     using View.Sdk.Lexi;
     using View.Sdk.Shared.Search;
     using View.Serializer;
@@ -23,7 +24,7 @@
             _TenantGuid     = Inputty.GetString("Tenant GUID :", _TenantGuid, false);
             _Endpoint       = Inputty.GetString("Endpoint    :", _Endpoint, false);
             _Sdk = new ViewLexiSdk(_TenantGuid, _Endpoint);
-            if (_EnableLogging) _Sdk.Logger = Console.WriteLine;
+            if (_EnableLogging) _Sdk.Logger = EmitLogMessage;
 
             while (_RunForever)
             {
@@ -111,6 +112,11 @@
             Console.WriteLine("  enumerate     Enumerate collection");
             Console.WriteLine("  search        Search collection");
             Console.WriteLine("");
+        }
+
+        private static void EmitLogMessage(Severity sev, string msg)
+        {
+            if (!String.IsNullOrEmpty(msg)) Console.WriteLine(sev.ToString() + " " + msg);
         }
 
         private static void EnumerateResponse(object obj)

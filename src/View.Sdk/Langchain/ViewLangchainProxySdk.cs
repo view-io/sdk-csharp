@@ -13,24 +13,15 @@
     /// <summary>
     /// View Langchain Proxy SDK.
     /// </summary>
-    public class ViewLangchainProxySdk
+    public class ViewLangchainProxySdk : ViewSdkBase
     {
         #region Public-Members
 
-        /// <summary>
-        /// Method to invoke to send log messages.
-        /// </summary>
-        public Action<string> Logger { get; set; } = null;
-         
         #endregion
 
         #region Private-Members
 
-        private string _Header = "[ViewLcProxySdk] ";
-        private Uri _Uri = null;
-        private string _Endpoint = "http://localhost:8301/";
         private string _ApiKey = null;
-        private SerializationHelper _Serializer = new SerializationHelper();
         
         #endregion
 
@@ -41,13 +32,9 @@
         /// </summary>
         /// <param name="endpoint">Endpoint URL.</param>
         /// <param name="apiKey">API key.</param>
-        public ViewLangchainProxySdk(string endpoint = "http://localhost:8301/", string apiKey = null)
+        public ViewLangchainProxySdk(string endpoint = "http://localhost:8301/", string apiKey = null) : base(endpoint)
         {
-            if (string.IsNullOrEmpty(endpoint)) throw new ArgumentNullException(nameof(endpoint));
-
-            _Uri = new Uri(endpoint);
-            _Endpoint = _Uri.ToString();
-            if (!_Endpoint.EndsWith("/")) _Endpoint += "/";
+            Header = "[ViewLcProxySdk] ";
 
             _ApiKey = apiKey;
         }
@@ -55,38 +42,6 @@
         #endregion
 
         #region Public-Methods
-
-        /// <summary>
-        /// Validate connectivity.
-        /// </summary>
-        /// <param name="token">Cancellation token.</param>
-        /// <returns>Boolean indicating success.</returns>
-        public async Task<bool> ValidateConnectivity(CancellationToken token = default)
-        {
-            string url = _Endpoint;
-
-            using (RestRequest req = new RestRequest(url))
-            {
-                using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
-                {
-                    if (resp != null && resp.StatusCode == 200)
-                    {
-                        Log("success reported from " + url);
-                        return true;
-                    }
-                    else if (resp != null)
-                    {
-                        Log("non-success reported from " + url + ": " + resp.StatusCode);
-                        return false;
-                    }
-                    else
-                    {
-                        Log("no response from " + url);
-                        return false;
-                    }
-                }
-            }
-        }
 
         /// <summary>
         /// Preload models.
@@ -98,7 +53,7 @@
         {
             if (models == null || models.Count < 1) throw new ArgumentNullException(nameof(models));
 
-            string url = _Endpoint + "v1.0/preload/";
+            string url = Endpoint + "v1.0/preload/";
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Post))
             {
@@ -110,24 +65,24 @@
                     ApiKey = _ApiKey
                 };
 
-                using (RestResponse resp = await req.SendAsync(_Serializer.SerializeJson(preloadReq, true), token).ConfigureAwait(false))
+                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(preloadReq, true), token).ConfigureAwait(false))
                 {
                     if (resp != null)
                     {
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             return true;
                         }
                         else
                         {
-                            Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             return false;
                         }
                     }
                     else
                     {
-                        Log("no response from " + url);
+                        Log(Severity.Warn, "no response from " + url);
                         return false;
                     }
                 }
@@ -146,7 +101,7 @@
             if (String.IsNullOrEmpty(model)) throw new ArgumentNullException(nameof(model));
             if (String.IsNullOrEmpty(text)) throw new ArgumentNullException(nameof(text));
 
-            string url = _Endpoint + "v1.0/embeddings/";
+            string url = Endpoint + "v1.0/embeddings/";
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Post))
             {
@@ -159,16 +114,16 @@
                     ApiKey = _ApiKey
                 };
 
-                using (RestResponse resp = await req.SendAsync(_Serializer.SerializeJson(embeddingsReq, true), token).ConfigureAwait(false))
+                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(embeddingsReq, true), token).ConfigureAwait(false))
                 {
                     if (resp != null)
                     {
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            Log("success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
-                                EmbeddingsResult result = _Serializer.DeserializeJson<EmbeddingsResult>(resp.DataAsString);
+                                EmbeddingsResult result = Serializer.DeserializeJson<EmbeddingsResult>(resp.DataAsString);
                                 result.StatusCode = resp.StatusCode;
                                 return result;
                             }
@@ -179,7 +134,7 @@
                         }
                         else
                         {
-                            Log("non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             EmbeddingsResult result = new EmbeddingsResult();
                             result.Success = false;
                             result.Url = url;
@@ -191,7 +146,7 @@
                     }
                     else
                     {
-                        Log("no response from " + url);
+                        Log(Severity.Warn, "no response from " + url);
                         return null;
                     }
                 }
@@ -201,12 +156,6 @@
         #endregion
 
         #region Private-Methods
-
-        private void Log(string msg)
-        {
-            if (String.IsNullOrEmpty(msg)) return;
-            Logger?.Invoke(_Header + msg);
-        }
 
         #endregion
     }
