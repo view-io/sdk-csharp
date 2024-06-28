@@ -3512,6 +3512,11 @@
             Data flow endpoint.
             </summary>
         </member>
+        <member name="P:View.Sdk.Shared.Udr.MetadataRule.TypeDetectorEndpoint">
+            <summary>
+            Type detector endpoint.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Shared.Udr.MetadataRule.UdrEndpoint">
             <summary>
             UDR endpoint.

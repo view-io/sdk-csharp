@@ -1,6 +1,8 @@
 ﻿namespace View.Sdk.Shared.Udr
 {
     using System;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.ComponentModel.DataAnnotations;
     using System.Text.Json.Serialization;
     using View.Sdk.Shared.Processing;
 
@@ -56,6 +58,11 @@
         /// Data flow endpoint.
         /// </summary>
         public string DataFlowEndpoint { get; set; } = "http://localhost:8501/processor";
+
+        /// <summary>
+        /// Type detector endpoint.
+        /// </summary>
+        public string TypeDetectorEndpoint { get; set; } = "http://localhost:8501/processor/typedetector";
 
         /// <summary>
         /// UDR endpoint.
