@@ -3758,6 +3758,11 @@
             Start and end timestamps.
             </summary>
         </member>
+        <member name="P:View.Sdk.Shared.Udr.UdrDocument.Error">
+            <summary>
+            Error response, if any.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Shared.Udr.UdrDocument.AdditionalData">
             <summary>
             Additional data, not used by the service.

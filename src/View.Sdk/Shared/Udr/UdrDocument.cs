@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Timestamps;
+    using View.Sdk.Shared.Processing;
 
     /// <summary>
     /// UDR document.
@@ -31,6 +32,11 @@
         /// Start and end timestamps.
         /// </summary>
         public Timestamp Timestamp { get; set; } = new Timestamp();
+
+        /// <summary>
+        /// Error response, if any.
+        /// </summary>
+        public ApiErrorResponse Error { get; set; } = null;
 
         /// <summary>
         /// Additional data, not used by the service.
