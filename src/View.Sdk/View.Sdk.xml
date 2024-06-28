@@ -2448,6 +2448,11 @@
             Error response, if any.
             </summary>
         </member>
+        <member name="P:View.Sdk.Shared.Processing.ProcessorResponse.Type">
+            <summary>
+            Type result.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Shared.Processing.ProcessorResponse.Udr">
             <summary>
             UDR document.

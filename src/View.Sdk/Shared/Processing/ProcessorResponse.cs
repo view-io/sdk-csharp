@@ -38,6 +38,11 @@
         public ApiErrorResponse Error { get; set; } = null;
 
         /// <summary>
+        /// Type result.
+        /// </summary>
+        public TypeResult Type { get; set; } = null;
+
+        /// <summary>
         /// UDR document.
         /// </summary>
         public UdrDocument Udr { get; set; } = null;
