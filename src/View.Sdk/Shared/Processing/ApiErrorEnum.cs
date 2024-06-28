@@ -10,6 +10,17 @@
     public enum ApiErrorEnum
     {
         /// <summary>
+        /// No connectivity to the type detection endpoint.
+        /// </summary>
+        [EnumMember(Value = "NoTypeDetectorConnectivity")]
+        NoTypeDetectorConnectivity,
+        /// <summary>
+        /// Unable to discern type of supplied data.
+        /// </summary>
+        [EnumMember(Value = "UnknownTypeSupplied")]
+        UnknownTypeSupplied,
+
+        /// <summary>
         /// No connectivity to the UDR endpoint.
         /// </summary>
         [EnumMember(Value = "NoUdrConnectivity")]

@@ -2034,6 +2034,16 @@
             API error codes.
             </summary>
         </member>
+        <member name="F:View.Sdk.Shared.Processing.ApiErrorEnum.NoTypeDetectorConnectivity">
+            <summary>
+            No connectivity to the type detection endpoint.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Processing.ApiErrorEnum.UnknownTypeSupplied">
+            <summary>
+            Unable to discern type of supplied data.
+            </summary>
+        </member>
         <member name="F:View.Sdk.Shared.Processing.ApiErrorEnum.NoUdrConnectivity">
             <summary>
             No connectivity to the UDR endpoint.
