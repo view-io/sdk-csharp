@@ -104,6 +104,11 @@
             }
         }
 
+        /// <summary>
+        /// Metadata rule.
+        /// </summary>
+        public MetadataRule MetadataRule { get; set; } = null;
+
         #endregion
 
         #region Private-Members

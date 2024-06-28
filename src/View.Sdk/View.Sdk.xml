@@ -3870,6 +3870,11 @@
             Data.
             </summary>
         </member>
+        <member name="P:View.Sdk.Shared.Udr.UdrDocumentRequest.MetadataRule">
+            <summary>
+            Metadata rule.
+            </summary>
+        </member>
         <member name="M:View.Sdk.Shared.Udr.UdrDocumentRequest.#ctor">
             <summary>
             Instantiate.
