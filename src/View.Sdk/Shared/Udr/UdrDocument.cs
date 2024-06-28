@@ -61,7 +61,7 @@
         /// <summary>
         /// Document type.
         /// </summary>
-        public TypeResult TypeResult { get; set; }
+        public DocumentTypeEnum Type { get; set; }
 
         /// <summary>
         /// Terms identified through text extraction.

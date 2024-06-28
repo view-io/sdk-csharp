@@ -2034,6 +2034,26 @@
             API error codes.
             </summary>
         </member>
+        <member name="F:View.Sdk.Shared.Processing.ApiErrorEnum.NoObjectMetadata">
+            <summary>
+            No object metadata supplied.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Processing.ApiErrorEnum.NoObjectData">
+            <summary>
+            No object data supplied.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Processing.ApiErrorEnum.NoMetadataRule">
+            <summary>
+            No metadata rule supplied.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Shared.Processing.ApiErrorEnum.RequiredPropertiesMissing">
+            <summary>
+            Required properties were missing.
+            </summary>
+        </member>
         <member name="F:View.Sdk.Shared.Processing.ApiErrorEnum.NoTypeDetectorConnectivity">
             <summary>
             No connectivity to the type detection endpoint.
@@ -3753,7 +3773,7 @@
             Key.
             </summary>
         </member>
-        <member name="P:View.Sdk.Shared.Udr.UdrDocument.TypeResult">
+        <member name="P:View.Sdk.Shared.Udr.UdrDocument.Type">
             <summary>
             Document type.
             </summary>

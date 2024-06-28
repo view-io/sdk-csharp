@@ -10,6 +10,27 @@
     public enum ApiErrorEnum
     {
         /// <summary>
+        /// No object metadata supplied.
+        /// </summary>
+        [EnumMember(Value = "NoObjectMetadata")]
+        NoObjectMetadata,
+        /// <summary>
+        /// No object data supplied.
+        /// </summary>
+        [EnumMember(Value = "NoObjectData")]
+        NoObjectData,
+        /// <summary>
+        /// No metadata rule supplied.
+        /// </summary>
+        [EnumMember(Value = "NoMetadataRule")]
+        NoMetadataRule,
+        /// <summary>
+        /// Required properties were missing.
+        /// </summary>
+        [EnumMember(Value = "RequiredPropertiesMissing")]
+        RequiredPropertiesMissing,
+
+        /// <summary>
         /// No connectivity to the type detection endpoint.
         /// </summary>
         [EnumMember(Value = "NoTypeDetectorConnectivity")]
