@@ -17,12 +17,12 @@
         {
             get
             {
-                return _Guid.ToString();
+                return _GUID.ToString();
             }
             set
             {
                 if (String.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(GUID));
-                _Guid = value;
+                _GUID = value;
             }
         }
 
@@ -113,7 +113,7 @@
 
         #region Private-Members
 
-        private string _Guid = null;
+        private string _GUID = Guid.NewGuid().ToString();
         private int _TopTerms = 10;
         private Dictionary<string, object> _Metadata = new Dictionary<string, object>(StringComparer.InvariantCultureIgnoreCase);
         private byte[] _Data = Array.Empty<byte>();

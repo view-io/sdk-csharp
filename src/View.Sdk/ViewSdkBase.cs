@@ -54,7 +54,6 @@
             set
             {
                 Uri uri = new Uri(value);
-                if (!value.EndsWith("/")) value += "/";
                 _Endpoint = value;
             }
         }

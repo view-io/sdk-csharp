@@ -41,15 +41,12 @@
         /// Process document.
         /// </summary>
         /// <param name="doc">Document request.</param>
-        /// <param name="filename">Filename containing data.</param>
+        /// <param name="filename">Filename containing data.  Setting this value will overwrite the 'Data' property in the document request.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Document response.</returns>
         public async Task<UdrDocument> ProcessDocument(UdrDocumentRequest doc, string filename = null, CancellationToken token = default)
         {
             if (doc == null) throw new ArgumentNullException(nameof(doc));
-
-            if (String.IsNullOrEmpty(filename) && (doc.Data == null || doc.Data.Length < 1))
-                throw new ArgumentException("Either a filename must be supplied or the document request 'Data' property must be populated.");
 
             if (!String.IsNullOrEmpty(filename))
                 doc.Data = await File.ReadAllBytesAsync(filename, token).ConfigureAwait(false);
