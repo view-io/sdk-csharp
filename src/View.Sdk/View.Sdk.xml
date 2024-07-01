@@ -686,6 +686,11 @@
             Embeddings rule.
             </summary>
         </member>
+        <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsDocument.Content">
+            <summary>
+            Content.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Shared.Embeddings.EmbeddingsDocument.SemanticCells">
             <summary>
             Semantic cells.

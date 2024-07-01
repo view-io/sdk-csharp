@@ -72,6 +72,11 @@
         public EmbeddingsRule EmbeddingsRule { get; set; } = null;
 
         /// <summary>
+        /// Content.
+        /// </summary>
+        public string Content { get; set; } = null;
+
+        /// <summary>
         /// Semantic cells.
         /// </summary>
         public List<SemanticCell> SemanticCells { get; set; } = new List<SemanticCell>();
@@ -116,6 +121,7 @@
                 ObjectGUID = row["object_guid"] != null ? row["object_guid"].ToString() : null,
                 ObjectKey = row["object_key"] != null ? row["object_key"].ToString() : null,
                 ObjectVersion = row["object_version"] != null ? row["object_version"].ToString() : null,
+                Content = row["content"] != null ? row["content"].ToString() : null,
                 CreatedUtc = row["created_utc"] != null ? Convert.ToDateTime(row["created_utc"].ToString()) : DateTime.UtcNow
             };
 
