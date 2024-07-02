@@ -118,6 +118,21 @@
         public string SourceUrl { get; set; } = null;
 
         /// <summary>
+        /// MD5.
+        /// </summary>
+        public string MD5Hash { get; set; } = string.Empty;
+
+        /// <summary>
+        /// SHA1.
+        /// </summary>
+        public string SHA1Hash { get; set; } = null;
+
+        /// <summary>
+        /// SHA256.
+        /// </summary>
+        public string SHA256Hash { get; set; } = null;
+
+        /// <summary>
         /// Expiration timestamp, in UTC.
         /// </summary>
         public DateTime? ExpirationUtc { get; set; } = null;

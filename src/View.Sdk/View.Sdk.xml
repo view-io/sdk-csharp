@@ -2393,6 +2393,21 @@
             Source URL.
             </summary>
         </member>
+        <member name="P:View.Sdk.Shared.Processing.ObjectMetadata.MD5Hash">
+            <summary>
+            MD5.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ObjectMetadata.SHA1Hash">
+            <summary>
+            SHA1.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ObjectMetadata.SHA256Hash">
+            <summary>
+            SHA256.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Shared.Processing.ObjectMetadata.ExpirationUtc">
             <summary>
             Expiration timestamp, in UTC.
