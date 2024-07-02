@@ -2413,6 +2413,16 @@
             Expiration timestamp, in UTC.
             </summary>
         </member>
+        <member name="P:View.Sdk.Shared.Processing.ObjectMetadata.LastAccessUtc">
+            <summary>
+            Last access timestamp, in UTC.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Shared.Processing.ObjectMetadata.LastModifiedUtc">
+            <summary>
+            Last modified timestamp, in UTC.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Shared.Processing.ObjectMetadata.CreatedUtc">
             <summary>
             Creation timestamp, in UTC.

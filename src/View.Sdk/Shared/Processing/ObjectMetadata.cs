@@ -138,6 +138,16 @@
         public DateTime? ExpirationUtc { get; set; } = null;
 
         /// <summary>
+        /// Last access timestamp, in UTC.
+        /// </summary>
+        public DateTime LastAccessUtc { get; set; } = DateTime.UtcNow;
+
+        /// <summary>
+        /// Last modified timestamp, in UTC.
+        /// </summary>
+        public DateTime LastModifiedUtc { get; set; } = DateTime.UtcNow;
+
+        /// <summary>
         /// Creation timestamp, in UTC.
         /// </summary>
         public DateTime CreatedUtc { get; set; } = DateTime.UtcNow;
