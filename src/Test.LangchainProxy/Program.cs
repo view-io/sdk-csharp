@@ -6,11 +6,9 @@
     using System.Threading.Tasks;
     using GetSomeInput;
     using View.Sdk;
-    using View.Sdk.Langchain;
-    using View.Sdk.Shared.Embeddings;
-    using View.Sdk.Shared.Udr;
+    using View.Sdk.Vector;
     using View.Serializer;
-    
+
     public static class Program
     {
 #pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.

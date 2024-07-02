@@ -8,8 +8,6 @@
     using GetSomeInput;
     using View.Sdk;
     using View.Sdk.Orchestrator;
-    using View.Sdk.Shared.Orchestrator;
-    using View.Sdk.Shared.Search;
     using View.Serializer;
 
     public static class Program

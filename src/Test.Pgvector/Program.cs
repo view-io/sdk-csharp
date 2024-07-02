@@ -5,7 +5,6 @@
     using System.Threading.Tasks;
     using GetSomeInput;
     using View.Sdk.Vector;
-    using View.Sdk.Shared.Embeddings;
     using View.Serializer;
     using View.Sdk;
 

@@ -5,10 +5,9 @@
     using System.Threading.Tasks;
     using GetSomeInput;
     using View.Sdk;
-    using View.Sdk.DocumentProcessor;
-    using View.Sdk.Shared.Udr;
+    using View.Sdk.Processor;
     using View.Serializer;
-    
+
     public static class Program
     {
         private static bool _RunForever = true;

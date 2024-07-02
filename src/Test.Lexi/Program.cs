@@ -7,7 +7,6 @@
     using GetSomeInput;
     using View.Sdk;
     using View.Sdk.Lexi;
-    using View.Sdk.Shared.Search;
     using View.Serializer;
 
     public static class Program

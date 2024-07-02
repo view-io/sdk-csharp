@@ -7,11 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using RestWrapper;
-    using View.Serializer;
-    using View.Sdk.Shared.Embeddings;
-    using View.Sdk.Shared.Processing;
-    using View.Sdk.Shared.Search;
-    using View.Sdk.Shared.Udr;
+    using View.Sdk;
 
     /// <summary>
     /// View SDK for generating embeddings with Lexi search results.
@@ -61,7 +57,7 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>Task.</returns>
         public async Task<LexiEmbeddingsResponse> Process(
-            View.Sdk.Shared.Search.SearchResult results, 
+            SearchResult results, 
             EmbeddingsRule embedRule, 
             CancellationToken token = default)
         {

@@ -1,0 +1,79 @@
+﻿namespace View.Sdk
+{
+    using System;
+    using System.Collections.Generic;
+    using Timestamps;
+
+    /// <summary>
+    /// Lexi embeddings response.
+    /// </summary>
+    public class LexiEmbeddingsResponse
+    {
+        #region Public-Members
+
+        /// <summary>
+        /// Data flow request GUID.
+        /// </summary>
+        public string DataFlowRequestGUID { get; set; } = null;
+
+        /// <summary>
+        /// Boolean indicating success.
+        /// </summary>
+        public bool Success { get; set; } = true;
+
+        /// <summary>
+        /// Timestamps.
+        /// </summary>
+        public Timestamp Timestamp { get; set; } = new Timestamp();
+
+        /// <summary>
+        /// Error response, if any.
+        /// </summary>
+        public ApiErrorResponse Error { get; set; } = null;
+
+        /// <summary>
+        /// Embeddings documents.
+        /// </summary>
+        public List<EmbeddingsDocument> Vector
+        {
+            get
+            {
+                return _Vectors;
+            }
+            set
+            {
+                if (value == null) value = new List<EmbeddingsDocument>();
+                _Vectors = value;
+            }
+        }
+
+        #endregion
+
+        #region Private-Members
+
+        private string _RequestGuid = Guid.NewGuid().ToString();
+        private List<EmbeddingsDocument> _Vectors = new List<EmbeddingsDocument>();
+
+        #endregion
+
+        #region Constructors-and-Factories
+
+        /// <summary>
+        /// Instantiate.
+        /// </summary>
+        public LexiEmbeddingsResponse()
+        {
+
+        }
+
+        #endregion
+
+        #region Public-Methods
+
+        #endregion
+
+        #region Private-Methods
+
+        #endregion
+    }
+}

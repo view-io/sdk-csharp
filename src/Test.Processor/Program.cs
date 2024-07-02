@@ -8,7 +8,6 @@
     using GetSomeInput;
     using View.Sdk;
     using View.Sdk.Processor;
-    using View.Sdk.Shared.Processing;
     using View.Serializer;
 
     public static class Program

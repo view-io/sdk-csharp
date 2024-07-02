@@ -10,7 +10,6 @@
     using System.Threading.Tasks;
     using View.Serializer;
     using View.Sdk;
-    using View.Sdk.Shared.Search;
 
     /// <summary>
     /// View Lexi search SDK.

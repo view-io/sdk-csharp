@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using View.Serializer;
-    using View.Sdk.Shared.Orchestrator;
+    using View.Sdk;
 
     /// <summary>
     /// View Orchestrator SDK.

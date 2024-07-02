@@ -8,7 +8,7 @@
     using System.Threading.Tasks;
     using RestWrapper;
     using View.Serializer;
-    using View.Sdk.Shared.Embeddings;
+    using View.Sdk;
 
     /// <summary>
     /// View Vector Proxy SDK.

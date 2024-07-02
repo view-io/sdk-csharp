@@ -1,35 +1,18 @@
-﻿namespace View.Sdk.Vector
+﻿namespace View.Sdk
 {
     using System;
-    using View.Sdk;
 
     /// <summary>
-    /// Database settings.
+    /// Query request.
     /// </summary>
-    public class DatabaseSettings
+    public class QueryRequest
     {
         #region Public-Members
 
         /// <summary>
-        /// Model.
+        /// Query.
         /// </summary>
-        public string Model { get; set; } = "all-MiniLM-L6-v2";
-
-        /// <summary>
-        /// Dimensionality.
-        /// </summary>
-        public int Dimensionality
-        {
-            get
-            {
-                return _Dimensionality;
-            }
-            set
-            {
-                if (value < 1) throw new ArgumentOutOfRangeException(nameof(Dimensionality));
-                _Dimensionality = value;
-            }
-        }
+        public string Query { get; set; } = null;
 
         /// <summary>
         /// Vector repository type.
@@ -39,7 +22,17 @@
         /// <summary>
         /// Vector database hostname.
         /// </summary>
-        public string VectorDatabaseHostname { get; set; } = "localhost";
+        public string VectorDatabaseHostname { get; set; } = null;
+
+        /// <summary>
+        /// Vector database name.
+        /// </summary>
+        public string VectorDatabaseName { get; set; } = null;
+
+        /// <summary>
+        /// Vector database table name.
+        /// </summary>
+        public string VectorDatabaseTable { get; set; } = null;
 
         /// <summary>
         /// Vector database port.
@@ -58,31 +51,37 @@
         }
 
         /// <summary>
-        /// Vector database name.
-        /// </summary>
-        public string VectorDatabaseName { get; set; } = "vectordb";
-
-        /// <summary>
-        /// Vector database table.
-        /// </summary>
-        public string VectorDatabaseTable { get; set; } = "vectors";
-
-        /// <summary>
         /// Vector database user.
         /// </summary>
-        public string VectorDatabaseUser { get; set; } = "postgres";
+        public string VectorDatabaseUser { get; set; } = null;
 
         /// <summary>
         /// Vector database password.
         /// </summary>
-        public string VectorDatabasePassword { get; set; } = "password";
-         
+        public string VectorDatabasePassword { get; set; } = null;
+
+        /// <summary>
+        /// Dimensionality of embeddings.
+        /// </summary>
+        public int Dimensionality
+        {
+            get
+            {
+                return _Dimensionality;
+            }
+            set
+            {
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(Dimensionality));
+                _Dimensionality = value;
+            }
+        }
+
         #endregion
 
         #region Private-Members
 
-        private int _Dimensionality = 384;
         private int _VectorDatabasePort = 5432;
+        private int _Dimensionality = 384;
 
         #endregion
 
@@ -91,9 +90,8 @@
         /// <summary>
         /// Instantiate.
         /// </summary>
-        public DatabaseSettings()
+        public QueryRequest()
         {
-
         }
 
         #endregion

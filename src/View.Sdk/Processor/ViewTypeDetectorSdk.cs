@@ -1,19 +1,18 @@
 ﻿namespace View.Sdk.Processor
 {
     using System;
-    using System.Collections.Generic;
-    using System.Net;
     using System.Net.Http;
+    using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
     using RestWrapper;
-    using View.Serializer;
     using View.Sdk;
+    using View.Serializer;
 
     /// <summary>
-    /// View Processing Pipeline SDK.
+    /// View Type Detector SDK.
     /// </summary>
-    public class ViewProcessorSdk : ViewSdkBase
+    public class ViewTypeDetectorSdk : ViewSdkBase
     {
         #region Public-Members
 
@@ -39,11 +38,9 @@
         /// Instantiate.
         /// </summary>
         /// <param name="endpoint">Endpoint URL.</param>
-        public ViewProcessorSdk(string endpoint = "http://localhost:8501/processor") : base(endpoint)
+        public ViewTypeDetectorSdk(string endpoint = "http://localhost:8501/processor/typedetector") : base(endpoint)
         {
-            if (string.IsNullOrEmpty(endpoint)) throw new ArgumentNullException(nameof(endpoint));
-
-            Header = "[ViewProcessorSdk] ";
+            Header = "[ViewTypeDetectorSdk] ";
         }
 
         #endregion
@@ -51,21 +48,19 @@
         #region Public-Methods
 
         /// <summary>
-        /// Process a document.
+        /// Determine a document type.
         /// </summary>
-        /// <param name="obj">Object metadata.</param>
-        /// <param name="mdRule">Metadata rule.</param>
-        /// <param name="embedRule">Embeddings rule.</param>
+        /// <param name="data">Data.</param>
+        /// <param name="contentType">Content-type.  CSV content-types are inferred using this header's value.</param>
         /// <param name="token">Cancellation token.</param>
-        /// <returns>Task.</returns>
-        public async Task<ProcessorResponse> Process(
-            ObjectMetadata obj, 
-            MetadataRule mdRule, 
-            EmbeddingsRule embedRule, 
+        /// <returns>TypeResult.</returns>
+        public async Task<TypeResult> Process(
+            byte[] data,
+            string contentType = null,
             CancellationToken token = default)
         {
-            if (obj == null) throw new ArgumentNullException(nameof(obj));
-            if (mdRule == null) throw new ArgumentNullException(nameof(mdRule));
+            if (data == null || data.Length < 1) throw new ArgumentException("No data supplied for content type detection.");
+            if (string.IsNullOrEmpty(contentType)) contentType = "application/octet-stream";
 
             string url = Endpoint;
 
@@ -73,20 +68,11 @@
             {
                 using (RestRequest req = new RestRequest(url, HttpMethod.Post))
                 {
-                    req.ContentType = Constants.JsonContentType;
+                    req.ContentType = contentType;
 
-                    ProcessorRequest procReq = new ProcessorRequest
-                    {
-                        Object = obj,
-                        MetadataRule = mdRule,
-                        EmbeddingsRule = embedRule
-                    };
+                    if (LogRequests) Log(Severity.Debug, "request body: " + Environment.NewLine + Encoding.UTF8.GetString(data));
 
-                    string json = Serializer.SerializeJson(procReq, true);
-
-                    if (LogRequests) Log(Severity.Debug, "request body: " + Environment.NewLine + json);
-
-                    using (RestResponse resp = await req.SendAsync(json, token).ConfigureAwait(false))
+                    using (RestResponse resp = await req.SendAsync(data, token).ConfigureAwait(false))
                     {
                         if (resp != null)
                         {
@@ -94,12 +80,12 @@
                             {
                                 Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
 
-                                if (!String.IsNullOrEmpty(resp.DataAsString))
+                                if (!string.IsNullOrEmpty(resp.DataAsString))
                                 {
                                     if (LogResponses) Log(Severity.Debug, "response body: " + Environment.NewLine + resp.DataAsString);
 
-                                    ProcessorResponse procResp = Serializer.DeserializeJson<ProcessorResponse>(resp.DataAsString);
-                                    return procResp;
+                                    TypeResult tr = Serializer.DeserializeJson<TypeResult>(resp.DataAsString);
+                                    return tr;
                                 }
                                 else
                                 {
@@ -110,12 +96,12 @@
                             {
                                 Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
 
-                                if (!String.IsNullOrEmpty(resp.DataAsString))
+                                if (!string.IsNullOrEmpty(resp.DataAsString))
                                 {
-                                    if (LogResponses) Log(Severity.Debug, "response body: " + Environment.NewLine + resp.DataAsString);
+                                    if (LogResponses) Log(Severity.Warn, "response body: " + Environment.NewLine + resp.DataAsString);
 
-                                    ProcessorResponse procResp = Serializer.DeserializeJson<ProcessorResponse>(resp.DataAsString);
-                                    return procResp;
+                                    TypeResult tr = Serializer.DeserializeJson<TypeResult>(resp.DataAsString);
+                                    return tr;
                                 }
                                 else
                                 {
@@ -134,10 +120,12 @@
             catch (HttpRequestException hre)
             {
                 Log(Severity.Warn, "exception while interacting with " + url + ": " + hre.Message);
-                return new ProcessorResponse
+
+                return new TypeResult
                 {
-                    Success = false,
-                    Error = new ApiErrorResponse(ApiErrorEnum.InternalError, null, null, hre)
+                    MimeType = "application/octet-stream",
+                    Extension = null,
+                    Type = DocumentTypeEnum.Unknown
                 };
             }
         }
@@ -145,7 +133,7 @@
         #endregion
 
         #region Private-Methods
-         
+
         #endregion
     }
 }

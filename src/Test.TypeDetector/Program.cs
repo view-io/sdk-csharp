@@ -6,10 +6,9 @@
     using System.Text;
     using System.Threading.Tasks;
     using GetSomeInput;
-    using View.Sdk.TypeDetector;
-    using View.Sdk.Shared.Udr;
     using View.Serializer;
     using View.Sdk;
+    using View.Sdk.Processor;
 
     public static class Program
     {
