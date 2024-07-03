@@ -1310,6 +1310,19 @@
             <param name="stream">Stream.</param>
             <returns>MD5 hash.</returns>
         </member>
+        <member name="T:View.Sdk.Helpers.TimeHelper">
+            <summary>
+            Time helper.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Helpers.TimeHelper.TotalMsBetween(System.DateTime,System.DateTime)">
+            <summary>
+            Determine the total number of milliseconds between a start and end time.
+            </summary>
+            <param name="start">Start time.</param>
+            <param name="end">End time.</param>
+            <returns>Milliseconds.</returns>
+        </member>
         <member name="T:View.Sdk.HttpMethodEnum">
             <summary>
             HTTP method enum.
