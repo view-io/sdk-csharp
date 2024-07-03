@@ -32,6 +32,11 @@
         }
 
         /// <summary>
+        /// GUID.
+        /// </summary>
+        public string GUID { get; set; } = Guid.NewGuid().ToString();
+
+        /// <summary>
         /// Tenant GUID.
         /// </summary>
         public string TenantGUID { get; set; } = Guid.NewGuid().ToString();

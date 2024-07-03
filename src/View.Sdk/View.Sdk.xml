@@ -1556,6 +1556,11 @@
             Database row ID.
             </summary>
         </member>
+        <member name="P:View.Sdk.MatchedDocument.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.MatchedDocument.TenantGUID">
             <summary>
             Tenant GUID.
