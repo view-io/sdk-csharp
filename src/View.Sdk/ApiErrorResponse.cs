@@ -134,11 +134,6 @@
         /// </summary>
         public string Description { get; set; } = null;
 
-        /// <summary>
-        /// Exception object.
-        /// </summary>
-        public Exception Exception { get; set; } = null;
-
         #endregion
 
         #region Private-Members
@@ -161,13 +156,12 @@
         /// <param name="error">Error code.</param>
         /// <param name="context">Context.</param>
         /// <param name="description">Description.</param>
-        /// <param name="exception">Exception.</param>
-        public ApiErrorResponse(ApiErrorEnum error, object context = null, string description = null, Exception exception = null)
+        /// 
+        public ApiErrorResponse(ApiErrorEnum error, object context = null, string description = null)
         {
             Error = error;
             Context = context;
             Description = description;
-            Exception = exception;
         }
 
         #endregion

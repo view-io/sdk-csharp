@@ -137,7 +137,7 @@
                 return new ProcessorResponse
                 {
                     Success = false,
-                    Error = new ApiErrorResponse(ApiErrorEnum.InternalError, null, null, hre)
+                    Error = new ApiErrorResponse(ApiErrorEnum.InternalError, null, null)
                 };
             }
         }

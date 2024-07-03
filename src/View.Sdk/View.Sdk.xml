@@ -164,24 +164,19 @@
             Description.
             </summary>
         </member>
-        <member name="P:View.Sdk.ApiErrorResponse.Exception">
-            <summary>
-            Exception object.
-            </summary>
-        </member>
         <member name="M:View.Sdk.ApiErrorResponse.#ctor">
             <summary>
             Instantiate.
             </summary>
         </member>
-        <member name="M:View.Sdk.ApiErrorResponse.#ctor(View.Sdk.ApiErrorEnum,System.Object,System.String,System.Exception)">
+        <member name="M:View.Sdk.ApiErrorResponse.#ctor(View.Sdk.ApiErrorEnum,System.Object,System.String)">
             <summary>
             Instantiate.
             </summary>
             <param name="error">Error code.</param>
             <param name="context">Context.</param>
             <param name="description">Description.</param>
-            <param name="exception">Exception.</param>
+            
         </member>
         <member name="T:View.Sdk.Collection">
             <summary>

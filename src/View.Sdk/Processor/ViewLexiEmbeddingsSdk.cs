@@ -133,7 +133,7 @@
                 return new LexiEmbeddingsResponse
                 {
                     Success = false,
-                    Error = new ApiErrorResponse(ApiErrorEnum.InternalError, null, null, hre)
+                    Error = new ApiErrorResponse(ApiErrorEnum.InternalError, null, null)
                 };
             }
         }
