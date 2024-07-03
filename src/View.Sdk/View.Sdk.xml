@@ -178,6 +178,61 @@
             <param name="description">Description.</param>
             
         </member>
+        <member name="T:View.Sdk.AuthenticationResultEnum">
+            <summary>
+            Authentication result.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.AuthenticationResultEnum.Success">
+            <summary>
+            Success.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.AuthenticationResultEnum.NotFound">
+            <summary>
+            NotFound.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.AuthenticationResultEnum.Inactive">
+            <summary>
+            Inactive.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.AuthenticationResultEnum.Invalid">
+            <summary>
+            Invalid.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.AuthorizationResultEnum">
+            <summary>
+            Authorization result.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.AuthorizationResultEnum.Permitted">
+            <summary>
+            Permitted.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.AuthorizationResultEnum.DeniedImplicit">
+            <summary>
+            DeniedImplicit.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.AuthorizationResultEnum.DeniedExplicit">
+            <summary>
+            DeniedExplicit.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.AuthorizationResultEnum.NotFound">
+            <summary>
+            NotFound.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.AuthorizationResultEnum.Conflict">
+            <summary>
+            Conflict.
+            </summary>
+        </member>
         <member name="T:View.Sdk.Collection">
             <summary>
             Collection.
@@ -1257,6 +1312,18 @@
             Instantiates the object.
             </summary>
             <param name="query">Enumeration query.</param>
+        </member>
+        <member name="T:View.Sdk.Extensions.StreamExtensions">
+            <summary>
+            Stream extensions.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Extensions.StreamExtensions.ToBytes(System.IO.Stream)">
+            <summary>
+            Convert stream to bytes.
+            </summary>
+            <param name="stream">Stream.</param>
+            <returns>Byte array.</returns>
         </member>
         <member name="T:View.Sdk.Helpers.HashHelper">
             <summary>

@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
-		<Version>0.4.0.8</Version>
+		<Version>0.4.0.10</Version>
 		<ApplicationIcon>Assets\icon.ico</ApplicationIcon>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<DocumentationFile>View.Sdk.xml</DocumentationFile>
@@ -53,7 +53,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Inputty" Version="1.0.12" />
 		<PackageReference Include="RestWrapper" Version="3.0.20" />
 		<PackageReference Include="View.Serializer" Version="1.0.0" />
 	</ItemGroup>
