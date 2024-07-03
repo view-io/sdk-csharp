@@ -15,43 +15,31 @@
         /// <summary>
         /// Indicates if the statistics operation was successful.
         /// </summary>
-        [JsonPropertyOrder(1)]
         public bool Success { get; set; } = false;
-
-        /// <summary>
-        /// Exception.
-        /// </summary>
-        [JsonPropertyOrder(2)]
-        public Exception Exception { get; set; } = null;
 
         /// <summary>
         /// Start and end timestamps.
         /// </summary>
-        [JsonPropertyOrder(3)]
         public Timestamp Timestamp { get; set; } = new Timestamp();
 
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        [JsonPropertyOrder(4)]
         public string TenantGUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// The GUID of the collection that was queried.
         /// </summary>
-        [JsonPropertyOrder(5)]
         public string CollectionGUID { get; set; } = null;
 
         /// <summary>
         /// The enumeration query performed.
         /// </summary>
-        [JsonPropertyOrder(6)]
         public EnumerationQuery Query { get; set; } = null;
 
         /// <summary>
         /// Source documents that matched the query.
         /// </summary>
-        [JsonPropertyOrder(7)]
         public List<SourceDocument> SourceDocuments
         {
             get
@@ -68,7 +56,6 @@
         /// <summary>
         /// Source documents that matched the query.
         /// </summary>
-        [JsonPropertyOrder(8)]
         public List<EmbeddingsDocument> EmbeddingsDocuments
         {
             get
@@ -85,19 +72,16 @@
         /// <summary>
         /// Boolean indicating end of results.
         /// </summary>
-        [JsonPropertyOrder(9)]
         public bool EndOfResults { get; set; } = true;
 
         /// <summary>
         /// Continuation token to use when continuing the search.
         /// </summary>
-        [JsonPropertyOrder(10)]
         public string ContinuationToken { get; set; } = null;
 
         /// <summary>
         /// Number of candidate records remaining in the enumeration.
         /// </summary>
-        [JsonPropertyOrder(11)]
         public long RecordsRemaining
         {
             get

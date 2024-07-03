@@ -18,11 +18,6 @@
         public bool Success { get; set; } = false;
 
         /// <summary>
-        /// Exception, if any.
-        /// </summary>
-        public Exception Exception { get; set; } = null;
-
-        /// <summary>
         /// Timestamps.
         /// </summary>
         public Timestamp Timestamp { get; set; } = new Timestamp();

@@ -947,11 +947,6 @@
             Timestamps.
             </summary>
         </member>
-        <member name="P:View.Sdk.EmbeddingsResult.Exception">
-            <summary>
-            Exception, if any.
-            </summary>
-        </member>
         <member name="P:View.Sdk.EmbeddingsResult.StatusCode">
             <summary>
             HTTP status code.
@@ -1210,11 +1205,6 @@
         <member name="P:View.Sdk.EnumerationResult.Success">
             <summary>
             Indicates if the statistics operation was successful.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EnumerationResult.Exception">
-            <summary>
-            Exception.
             </summary>
         </member>
         <member name="P:View.Sdk.EnumerationResult.Timestamp">
@@ -2602,11 +2592,6 @@
             Timestamps.
             </summary>
         </member>
-        <member name="P:View.Sdk.QueryResult.Exception">
-            <summary>
-            Exception, if any.
-            </summary>
-        </member>
         <member name="P:View.Sdk.QueryResult.StatusCode">
             <summary>
             HTTP status code.
@@ -3057,11 +3042,6 @@
         <member name="P:View.Sdk.SearchResult.Success">
             <summary>
             Indicates if the parser was successful.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SearchResult.Exception">
-            <summary>
-            Exception, if any.
             </summary>
         </member>
         <member name="P:View.Sdk.SearchResult.Timestamp">
@@ -3604,11 +3584,6 @@
         <member name="P:View.Sdk.UdrDocument.Success">
             <summary>
             Indicates if the parser was successful.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.UdrDocument.Exception">
-            <summary>
-            Exception, if any.
             </summary>
         </member>
         <member name="P:View.Sdk.UdrDocument.Timestamp">

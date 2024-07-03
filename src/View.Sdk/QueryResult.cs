@@ -22,11 +22,6 @@
         public Timestamp Timestamp { get; set; } = new Timestamp();
 
         /// <summary>
-        /// Exception, if any.
-        /// </summary>
-        public Exception Exception { get; set; } = null;
-
-        /// <summary>
         /// HTTP status code.
         /// </summary>
         public int StatusCode
