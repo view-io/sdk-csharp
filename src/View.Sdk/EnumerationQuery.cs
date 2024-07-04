@@ -49,6 +49,21 @@
         public string ContinuationToken { get; set; } = null;
 
         /// <summary>
+        /// Prefix.
+        /// </summary>
+        public string Prefix { get; set; } = null;
+
+        /// <summary>
+        /// Suffix.
+        /// </summary>
+        public string Suffix { get; set; } = null;
+
+        /// <summary>
+        /// Marker.
+        /// </summary>
+        public string Marker { get; set; } = null;
+
+        /// <summary>
         /// Search filters to apply to enumeration.
         /// </summary>
         public List<SearchFilter> Filters

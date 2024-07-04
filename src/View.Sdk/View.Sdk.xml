@@ -1232,6 +1232,21 @@
             Continuation token.
             </summary>
         </member>
+        <member name="P:View.Sdk.EnumerationQuery.Prefix">
+            <summary>
+            Prefix.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationQuery.Suffix">
+            <summary>
+            Suffix.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationQuery.Marker">
+            <summary>
+            Marker.
+            </summary>
+        </member>
         <member name="P:View.Sdk.EnumerationQuery.Filters">
             <summary>
             Search filters to apply to enumeration.
