@@ -48,20 +48,36 @@
                     case ApiErrorEnum.TooLarge:
                         return "The size of your request exceeds the maximum allowed by this server.";
 
+                    case ApiErrorEnum.NoTypeDetectorConnectivity:
+                        return "Unable to establish a connection to the type detector.";
+                    case ApiErrorEnum.UnknownTypeSupplied:
+                        return "An unrecognizable data type was supplied.";
+
                     case ApiErrorEnum.NoUdrConnectivity:
                         return "Unable to establish a connection to the UDR endpoint.";
                     case ApiErrorEnum.UdrGenerationFailed:
                         return "Unable to generate UDR document.";
+
                     case ApiErrorEnum.NoDataCatalogConnectivity:
                         return "Unable to establish a connection to the data catalog endpoint.";
                     case ApiErrorEnum.DataCatalogPersistFailed:
                         return "Unable to persist data within the data catalog.";
                     case ApiErrorEnum.UnknownDataCatalogType:
                         return "An unknown data catalog type was encountered.";
+
                     case ApiErrorEnum.UnknownEmbeddingsGeneratorType:
                         return "An unknown embeddings generator type was encountered.";
                     case ApiErrorEnum.EmbeddingsPersistFailed:
                         return "Unable to persist embeddings within the vectore store.";
+
+                    case ApiErrorEnum.NoObjectMetadata:
+                        return "No object metadata was supplied.";
+                    case ApiErrorEnum.NoObjectData:
+                        return "No object data was supplied.";
+                    case ApiErrorEnum.NoMetadataRule:
+                        return "No metadata rule was supplied.";
+                    case ApiErrorEnum.RequiredPropertiesMissing:
+                        return "A required property was missing from the request.";
 
                     default:
                         return "An unknown error code '" + Error.ToString() + "' was encountered.";
