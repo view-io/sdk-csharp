@@ -1247,6 +1247,21 @@
             Marker.
             </summary>
         </member>
+        <member name="P:View.Sdk.EnumerationQuery.Delimiter">
+            <summary>
+            Delimiter.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationQuery.Token">
+            <summary>
+            Token.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationQuery.IncludeOwners">
+            <summary>
+            Include owners.
+            </summary>
+        </member>
         <member name="P:View.Sdk.EnumerationQuery.Filters">
             <summary>
             Search filters to apply to enumeration.

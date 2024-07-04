@@ -64,6 +64,21 @@
         public string Marker { get; set; } = null;
 
         /// <summary>
+        /// Delimiter.
+        /// </summary>
+        public string Delimiter { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Token.
+        /// </summary>
+        public string Token { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Include owners.
+        /// </summary>
+        public bool IncludeOwners { get; set; } = true; // S3 compatibility
+
+        /// <summary>
         /// Search filters to apply to enumeration.
         /// </summary>
         public List<SearchFilter> Filters
