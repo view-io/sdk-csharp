@@ -178,6 +178,21 @@
             <param name="description">Description.</param>
             
         </member>
+        <member name="T:View.Sdk.ApiVersionEnum">
+            <summary>
+            API versions.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.ApiVersionEnum.Unknown">
+            <summary>
+            Unknown.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.ApiVersionEnum.V1_0">
+            <summary>
+            V1.0.
+            </summary>
+        </member>
         <member name="T:View.Sdk.AuthenticationResultEnum">
             <summary>
             Authentication result.
