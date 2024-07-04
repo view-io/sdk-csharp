@@ -1167,6 +1167,41 @@
             Instantiate the object.
             </summary>
         </member>
+        <member name="T:View.Sdk.EnumerationOrderEnum">
+            <summary>
+            Enumeration order.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.EnumerationOrderEnum.CreatedAscending">
+            <summary>
+            CreatedAscending.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.EnumerationOrderEnum.CreatedDescending">
+            <summary>
+            CreatedDescending.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.EnumerationOrderEnum.LastAccessAscending">
+            <summary>
+            LastAccessAscending.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.EnumerationOrderEnum.LastAccessDescending">
+            <summary>
+            LastAccessDescending.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.EnumerationOrderEnum.KeyAscending">
+            <summary>
+            KeyAscending.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.EnumerationOrderEnum.KeyDescending">
+            <summary>
+            KeyDescending.
+            </summary>
+        </member>
         <member name="T:View.Sdk.EnumerationQuery">
             <summary>
             Object used to enumerate a table.
