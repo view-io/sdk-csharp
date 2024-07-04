@@ -1492,9 +1492,9 @@
             The enumeration query performed.
             </summary>
         </member>
-        <member name="P:View.Sdk.EnumerationResult.MaxKeys">
+        <member name="P:View.Sdk.EnumerationResult.MaxResults">
             <summary>
-            Maximum number of keys to retrieve.
+            Maximum number of results to retrieve.
             </summary>
         </member>
         <member name="P:View.Sdk.EnumerationResult.IterationsRequired">

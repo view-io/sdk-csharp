@@ -59,18 +59,18 @@
         public EnumerationQuery Query { get; set; } = null;
 
         /// <summary>
-        /// Maximum number of keys to retrieve.
+        /// Maximum number of results to retrieve.
         /// </summary>
-        public int MaxKeys
+        public int MaxResults
         {
             get
             {
-                return _MaxKeys;
+                return _MaxResults;
             }
             set
             {
-                if (value < 1) throw new ArgumentOutOfRangeException(nameof(MaxKeys));
-                _MaxKeys = value;
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(MaxResults));
+                _MaxResults = value;
             }
         }
 
@@ -175,7 +175,7 @@
 
         #region Private-Members
 
-        private int _MaxKeys = 1000;
+        private int _MaxResults = 1000;
         private int _IterationsRequired = 0;
         private long _RecordsRemaining = 0;
         private ObjectStatistics _Statistics = new ObjectStatistics();
