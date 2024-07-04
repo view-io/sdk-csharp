@@ -51,9 +51,9 @@
         public string ContinuationToken { get; set; } = null;
 
         /// <summary>
-        /// Order by.
+        /// Ordering.
         /// </summary>
-        public OrderByEnum OrderBy { get; set; } = OrderByEnum.CreatedDescending;
+        public EnumerationOrderEnum Ordering { get; set; } = EnumerationOrderEnum.CreatedDescending;
 
         /// <summary>
         /// Required terms and search filter that must be satisfied to include a document in the results.

@@ -2568,21 +2568,6 @@
             <param name="token">Cancellation token.</param>
             <returns>Log file.</returns>
         </member>
-        <member name="T:View.Sdk.OrderByEnum">
-            <summary>
-            Order by enumeration.
-            </summary>
-        </member>
-        <member name="F:View.Sdk.OrderByEnum.CreatedAscending">
-            <summary>
-            CreatedAscending.
-            </summary>
-        </member>
-        <member name="F:View.Sdk.OrderByEnum.CreatedDescending">
-            <summary>
-            CreatedDescending.
-            </summary>
-        </member>
         <member name="T:View.Sdk.Posting">
             <summary>
             A posting from a parsed document.
@@ -3321,9 +3306,9 @@
             Continuation token.
             </summary>
         </member>
-        <member name="P:View.Sdk.SearchQuery.OrderBy">
+        <member name="P:View.Sdk.SearchQuery.Ordering">
             <summary>
-            Order by.
+            Ordering.
             </summary>
         </member>
         <member name="P:View.Sdk.SearchQuery.Filter">
