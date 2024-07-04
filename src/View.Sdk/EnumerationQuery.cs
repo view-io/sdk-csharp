@@ -103,7 +103,7 @@
         /// <summary>
         /// Order by.
         /// </summary>
-        public OrderByEnum OrderBy { get; set; } = OrderByEnum.CreatedDescending;
+        public EnumerationOrderEnum OrderBy { get; set; } = EnumerationOrderEnum.CreatedDescending;
 
         /// <summary>
         /// Vector repository type.
