@@ -70,7 +70,7 @@
             {
                 using (RestRequest req = new RestRequest(url, HttpMethod.Post))
                 {
-                    req.ContentType = Constants.JsonContentType;
+                    req.ContentType = "application/json";
 
                     LexiEmbeddingsRequest procReq = new LexiEmbeddingsRequest
                     {

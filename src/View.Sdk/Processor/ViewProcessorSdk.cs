@@ -73,7 +73,7 @@
             {
                 using (RestRequest req = new RestRequest(url, HttpMethod.Post))
                 {
-                    req.ContentType = Constants.JsonContentType;
+                    req.ContentType = "application/json";
 
                     ProcessorRequest procReq = new ProcessorRequest
                     {

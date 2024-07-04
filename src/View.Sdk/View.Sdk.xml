@@ -318,16 +318,6 @@
             Instantiate.
             </summary>
         </member>
-        <member name="T:View.Sdk.Constants">
-            <summary>
-            Constants.
-            </summary>
-        </member>
-        <member name="F:View.Sdk.Constants.JsonContentType">
-            <summary>
-            JSON content-type.
-            </summary>
-        </member>
         <member name="T:View.Sdk.Credential">
             <summary>
             Credentials.

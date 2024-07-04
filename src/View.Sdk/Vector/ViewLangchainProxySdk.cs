@@ -57,7 +57,7 @@
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Post))
             {
-                req.ContentType = Constants.JsonContentType;
+                req.ContentType = "application/json";
 
                 PreloadRequest preloadReq = new PreloadRequest
                 {
@@ -105,7 +105,7 @@
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Post))
             {
-                req.ContentType = Constants.JsonContentType;
+                req.ContentType = "application/json";
 
                 EmbeddingsRequest embeddingsReq = new EmbeddingsRequest
                 {

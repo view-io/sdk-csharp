@@ -53,7 +53,7 @@
 
             string url = Endpoint + "v1.0/document";
 
-            using (RestRequest req = new RestRequest(url, HttpMethod.Put, Constants.JsonContentType))
+            using (RestRequest req = new RestRequest(url, HttpMethod.Put, "application/json"))
             {
                 using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(doc, true), token).ConfigureAwait(false))
                 {
@@ -120,7 +120,7 @@
 
             string url = Endpoint + "v1.0/datatable";
 
-            using (RestRequest req = new RestRequest(url, HttpMethod.Put, Constants.JsonContentType))
+            using (RestRequest req = new RestRequest(url, HttpMethod.Put, "application/json"))
             {
                 using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(dt, true), token).ConfigureAwait(false))
                 {

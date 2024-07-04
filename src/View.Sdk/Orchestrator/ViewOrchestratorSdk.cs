@@ -64,7 +64,7 @@
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Put))
             {
-                req.ContentType = Constants.JsonContentType;
+                req.ContentType = "application/json";
                 req.Authorization.BearerToken = _AccessKey;
 
                 using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(tenant, true), token).ConfigureAwait(false))
@@ -157,7 +157,7 @@
             using (RestRequest req = new RestRequest(url, HttpMethod.Put))
             {
                 req.Authorization.BearerToken = _AccessKey;
-                req.ContentType = Constants.JsonContentType;
+                req.ContentType = "application/json";
 
                 using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(tenant, true), token).ConfigureAwait(false))
                 {
@@ -209,7 +209,7 @@
             using (RestRequest req = new RestRequest(url, HttpMethod.Put))
             {
                 req.Authorization.BearerToken = _AccessKey;
-                req.ContentType = Constants.JsonContentType;
+                req.ContentType = "application/json";
 
                 using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(user, true), token).ConfigureAwait(false))
                 {
@@ -388,7 +388,7 @@
             using (RestRequest req = new RestRequest(url, HttpMethod.Put))
             {
                 req.Authorization.BearerToken = _AccessKey;
-                req.ContentType = Constants.JsonContentType;
+                req.ContentType = "application/json";
 
                 using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(user, true), token).ConfigureAwait(false))
                 {
@@ -479,7 +479,7 @@
             using (RestRequest req = new RestRequest(url, HttpMethod.Put))
             {
                 req.Authorization.BearerToken = _AccessKey;
-                req.ContentType = Constants.JsonContentType;
+                req.ContentType = "application/json";
 
                 using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(cred, true), token).ConfigureAwait(false))
                 {
@@ -658,7 +658,7 @@
             using (RestRequest req = new RestRequest(url, HttpMethod.Put))
             {
                 req.Authorization.BearerToken = _AccessKey;
-                req.ContentType = Constants.JsonContentType;
+                req.ContentType = "application/json";
 
                 using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(cred, true), token).ConfigureAwait(false))
                 {
@@ -749,7 +749,7 @@
             using (RestRequest req = new RestRequest(url, HttpMethod.Put))
             {
                 req.Authorization.BearerToken = _AccessKey;
-                req.ContentType = Constants.JsonContentType;
+                req.ContentType = "application/json";
 
                 using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(trigger, true), token).ConfigureAwait(false))
                 {
@@ -928,7 +928,7 @@
             using (RestRequest req = new RestRequest(url, HttpMethod.Put))
             {
                 req.Authorization.BearerToken = _AccessKey;
-                req.ContentType = Constants.JsonContentType;
+                req.ContentType = "application/json";
 
                 using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(trigger, true), token).ConfigureAwait(false))
                 {
@@ -1019,7 +1019,7 @@
             using (RestRequest req = new RestRequest(url, HttpMethod.Put))
             {
                 req.Authorization.BearerToken = _AccessKey;
-                req.ContentType = Constants.JsonContentType;
+                req.ContentType = "application/json";
 
                 using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(step, true), token).ConfigureAwait(false))
                 {
@@ -1198,7 +1198,7 @@
             using (RestRequest req = new RestRequest(url, HttpMethod.Put))
             {
                 req.Authorization.BearerToken = _AccessKey;
-                req.ContentType = Constants.JsonContentType;
+                req.ContentType = "application/json";
 
                 using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(step, true), token).ConfigureAwait(false))
                 {
@@ -1289,7 +1289,7 @@
             using (RestRequest req = new RestRequest(url, HttpMethod.Put))
             {
                 req.Authorization.BearerToken = _AccessKey;
-                req.ContentType = Constants.JsonContentType;
+                req.ContentType = "application/json";
 
                 using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(flow, true), token).ConfigureAwait(false))
                 {
@@ -1468,7 +1468,7 @@
             using (RestRequest req = new RestRequest(url, HttpMethod.Put))
             {
                 req.Authorization.BearerToken = _AccessKey;
-                req.ContentType = Constants.JsonContentType;
+                req.ContentType = "application/json";
 
                 using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(flow, true), token).ConfigureAwait(false))
                 {
