@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Text.Json.Serialization;
+    using Timestamps;
 
     /// <summary>
     /// Object used to enumerate a table.
@@ -12,14 +13,34 @@
         #region Public-Members
 
         /// <summary>
+        /// Timestamp.
+        /// </summary>
+        public Timestamp Timestamp { get; set; } = new Timestamp();
+
+        /// <summary>
+        /// Tenant.
+        /// </summary>
+        public TenantMetadata Tenant { get; set; } = null;
+
+        /// <summary>
         /// Tenant GUID.
         /// </summary>
         public string TenantGUID { get; set; } = null;
 
         /// <summary>
+        /// Bucket.
+        /// </summary>
+        public BucketMetadata Bucket { get; set; } = null;
+
+        /// <summary>
         /// Bucket GUID.
         /// </summary>
         public string BucketGUID { get; set; } = null;
+
+        /// <summary>
+        /// Collection.
+        /// </summary>
+        public Collection Collection { get; set; } = null;
 
         /// <summary>
         /// Collection GUID.
@@ -103,7 +124,7 @@
         /// <summary>
         /// Order by.
         /// </summary>
-        public EnumerationOrderEnum OrderBy { get; set; } = EnumerationOrderEnum.CreatedDescending;
+        public EnumerationOrderEnum Ordering { get; set; } = EnumerationOrderEnum.CreatedDescending;
 
         /// <summary>
         /// Vector repository type.

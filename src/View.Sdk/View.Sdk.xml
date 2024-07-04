@@ -248,6 +248,111 @@
             Conflict.
             </summary>
         </member>
+        <member name="T:View.Sdk.BucketCategoryEnum">
+            <summary>
+            Bucket category.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.BucketCategoryEnum.Data">
+            <summary>
+            Data.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.BucketCategoryEnum.Metadata">
+            <summary>
+            Metadata.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.BucketCategoryEnum.Embeddings">
+            <summary>
+            Embeddings.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.BucketMetadata">
+            <summary>
+            Bucket metadata.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketMetadata.Id">
+            <summary>
+            ID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketMetadata.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketMetadata.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketMetadata.PoolGUID">
+            <summary>
+            Pool GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketMetadata.OwnerGUID">
+            <summary>
+            Owner GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketMetadata.Category">
+            <summary>
+            Bucket category.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketMetadata.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketMetadata.RegionString">
+            <summary>
+            Region string.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketMetadata.Versioning">
+            <summary>
+            Enable or disable versioning.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketMetadata.RetentionMinutes">
+            <summary>
+            Retention, in minutes.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketMetadata.MaxUploadSize">
+            <summary>
+            Maximum upload size.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketMetadata.MaxMultipartUploadSeconds">
+            <summary>
+            Maximum multipart upload seconds.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketMetadata.LastAccessUtc">
+            <summary>
+            Last access, UTC time.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketMetadata.CreatedUtc">
+            <summary>
+            Created, UTC time.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketMetadata.Owner">
+            <summary>
+            Owner.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.BucketMetadata.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
         <member name="T:View.Sdk.Collection">
             <summary>
             Collection.
@@ -1207,14 +1312,34 @@
             Object used to enumerate a table.
             </summary>
         </member>
+        <member name="P:View.Sdk.EnumerationQuery.Timestamp">
+            <summary>
+            Timestamp.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationQuery.Tenant">
+            <summary>
+            Tenant.
+            </summary>
+        </member>
         <member name="P:View.Sdk.EnumerationQuery.TenantGUID">
             <summary>
             Tenant GUID.
             </summary>
         </member>
+        <member name="P:View.Sdk.EnumerationQuery.Bucket">
+            <summary>
+            Bucket.
+            </summary>
+        </member>
         <member name="P:View.Sdk.EnumerationQuery.BucketGUID">
             <summary>
             Bucket GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationQuery.Collection">
+            <summary>
+            Collection.
             </summary>
         </member>
         <member name="P:View.Sdk.EnumerationQuery.CollectionGUID">
@@ -1267,7 +1392,7 @@
             Search filters to apply to enumeration.
             </summary>
         </member>
-        <member name="P:View.Sdk.EnumerationQuery.OrderBy">
+        <member name="P:View.Sdk.EnumerationQuery.Ordering">
             <summary>
             Order by.
             </summary>
@@ -1332,9 +1457,19 @@
             Start and end timestamps.
             </summary>
         </member>
+        <member name="P:View.Sdk.EnumerationResult.Tenant">
+            <summary>
+            Tenant metadata.
+            </summary>
+        </member>
         <member name="P:View.Sdk.EnumerationResult.TenantGUID">
             <summary>
             Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationResult.Collection">
+            <summary>
+            Collection.
             </summary>
         </member>
         <member name="P:View.Sdk.EnumerationResult.CollectionGUID">
@@ -1342,9 +1477,74 @@
             The GUID of the collection that was queried.
             </summary>
         </member>
+        <member name="P:View.Sdk.EnumerationResult.Bucket">
+            <summary>
+            Bucket metadata.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationResult.BucketGUID">
+            <summary>
+            Bucket GUID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.EnumerationResult.Query">
             <summary>
             The enumeration query performed.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationResult.MaxKeys">
+            <summary>
+            Maximum number of keys to retrieve.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationResult.IterationsRequired">
+            <summary>
+            Iterations required.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationResult.Statistics">
+            <summary>
+            Object statistics.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationResult.Prefix">
+            <summary>
+            Prefix.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationResult.Marker">
+            <summary>
+            Marker.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationResult.Delimiter">
+            <summary>
+            Delimiter.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationResult.Token">
+            <summary>
+            Token.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationResult.NextToken">
+            <summary>
+            Next token.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationResult.SharedPrefixes">
+            <summary>
+            Shared prefixes.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationResult.Objects">
+            <summary>
+            Object metadata.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationResult.DeleteMarkers">
+            <summary>
+            Delete markers.
             </summary>
         </member>
         <member name="P:View.Sdk.EnumerationResult.SourceDocuments">
@@ -2051,6 +2251,33 @@
             <summary>
             Instantiate.
             </summary>
+        </member>
+        <member name="T:View.Sdk.ObjectStatistics">
+            <summary>
+            Object statistics.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ObjectStatistics.Objects">
+            <summary>
+            Number of objects.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ObjectStatistics.Bytes">
+            <summary>
+            Number of bytes.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.ObjectStatistics.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.ObjectStatistics.#ctor(System.Int32,System.Int64)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="objects">Number of objects.</param>
+            <param name="bytes">Number of bytes.</param>
         </member>
         <member name="T:View.Sdk.Orchestrator.ViewOrchestratorSdk">
             <summary>

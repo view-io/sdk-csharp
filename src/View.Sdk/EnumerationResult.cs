@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Text.Json.Serialization;
     using Timestamps;
+    using View.Sdk;
 
     /// <summary>
     /// Object returned as the result of an enumeration against a table.
@@ -23,9 +24,19 @@
         public Timestamp Timestamp { get; set; } = new Timestamp();
 
         /// <summary>
+        /// Tenant metadata.
+        /// </summary>
+        public TenantMetadata Tenant { get; set; } = null;
+
+        /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public string TenantGUID { get; set; } = Guid.NewGuid().ToString();
+        public string TenantGUID { get; set; } = null;
+
+        /// <summary>
+        /// Collection.
+        /// </summary>
+        public Collection Collection { get; set; } = null;
 
         /// <summary>
         /// The GUID of the collection that was queried.
@@ -33,41 +44,106 @@
         public string CollectionGUID { get; set; } = null;
 
         /// <summary>
+        /// Bucket metadata.
+        /// </summary>
+        public BucketMetadata Bucket { get; set; } = null;
+
+        /// <summary>
+        /// Bucket GUID.
+        /// </summary>
+        public string BucketGUID { get; set; } = null;
+
+        /// <summary>
         /// The enumeration query performed.
         /// </summary>
         public EnumerationQuery Query { get; set; } = null;
 
         /// <summary>
-        /// Source documents that matched the query.
+        /// Maximum number of keys to retrieve.
         /// </summary>
-        public List<SourceDocument> SourceDocuments
+        public int MaxKeys
         {
             get
             {
-                return _SourceDocuments;
+                return _MaxKeys;
             }
             set
             {
-                if (value == null) _SourceDocuments = new List<SourceDocument>();
-                else _SourceDocuments = value;
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(MaxKeys));
+                _MaxKeys = value;
             }
         }
 
         /// <summary>
-        /// Source documents that matched the query.
+        /// Iterations required.
         /// </summary>
-        public List<EmbeddingsDocument> EmbeddingsDocuments
+        public int IterationsRequired
         {
             get
             {
-                return _EmbeddingsDocuments;
+                return _IterationsRequired;
             }
             set
             {
-                if (value == null) _EmbeddingsDocuments = new List<EmbeddingsDocument>();
-                else _EmbeddingsDocuments = value;
+                if (value < 0) throw new ArgumentOutOfRangeException(nameof(IterationsRequired));
+                _IterationsRequired = value;
             }
         }
+
+        /// <summary>
+        /// Object statistics.
+        /// </summary>
+        public ObjectStatistics Statistics { get; set; } = null;
+
+        /// <summary>
+        /// Prefix.
+        /// </summary>
+        public string Prefix { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Marker.
+        /// </summary>
+        public string Marker { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Delimiter.
+        /// </summary>
+        public string Delimiter { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Token.
+        /// </summary>
+        public string Token { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Next token.
+        /// </summary>
+        public string NextToken { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Shared prefixes.
+        /// </summary>
+        public List<string> SharedPrefixes { get; set; } = null;
+
+        /// <summary>
+        /// Object metadata.
+        /// </summary>
+        public List<ObjectMetadata> Objects { get; set; } = null;
+
+        /// <summary>
+        /// Delete markers.
+        /// </summary>
+        public List<ObjectMetadata> DeleteMarkers { get; set; } = null;
+
+        /// <summary>
+        /// Source documents that matched the query.
+        /// </summary>
+        public List<SourceDocument> SourceDocuments { get; set; } = null;
+
+        /// <summary>
+        /// Source documents that matched the query.
+        /// </summary>
+        public List<EmbeddingsDocument> EmbeddingsDocuments { get; set; } = null;
 
         /// <summary>
         /// Boolean indicating end of results.
@@ -99,9 +175,13 @@
 
         #region Private-Members
 
-        private List<SourceDocument> _SourceDocuments = new List<SourceDocument>();
-        private List<EmbeddingsDocument> _EmbeddingsDocuments = new List<EmbeddingsDocument>();
+        private int _MaxKeys = 1000;
+        private int _IterationsRequired = 0;
         private long _RecordsRemaining = 0;
+        private ObjectStatistics _Statistics = new ObjectStatistics();
+        private List<ObjectMetadata> _Objects = new List<ObjectMetadata>();
+        private List<ObjectMetadata> _DeleteMarkers = new List<ObjectMetadata>();
+        private List<string> _SharedPrefixes = new List<string>();
 
         #endregion
 
