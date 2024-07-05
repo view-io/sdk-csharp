@@ -1,11 +1,12 @@
 ﻿namespace View.Sdk
 {
-    using RestWrapper;
     using System;
     using System.Net.Http;
     using System.Threading.Tasks;
     using System.Threading;
+    using RestWrapper;
     using View.Serializer;
+    using System.Collections.Generic;
 
     /// <summary>
     /// View SDK base class.
@@ -39,6 +40,37 @@
                     if (!value.EndsWith(" ")) value += " ";
                     _Header = value;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Tenant GUID.
+        /// </summary>
+        public string TenantGUID
+        {
+            get
+            {
+                return _TenantGUID;
+            }
+            set
+            {
+                if (String.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(TenantGUID));
+                _TenantGUID = value;
+            }
+        }
+
+        /// <summary>
+        /// Access key.
+        /// </summary>
+        public string AccessKey
+        {
+            get
+            {
+                return _AccessKey;
+            }
+            set
+            {
+                _AccessKey = value;
             }
         }
 
@@ -83,6 +115,8 @@
         #region Private-Members
 
         private string _Header = "[ViewSdkBase] ";
+        private string _TenantGUID = null;
+        private string _AccessKey = null;
         private string _Endpoint = null;
         private SerializationHelper _Serializer = new SerializationHelper();
 
@@ -98,6 +132,36 @@
         {
             if (String.IsNullOrEmpty(endpoint)) throw new ArgumentNullException(nameof(endpoint));
 
+            Endpoint = endpoint;
+        }
+
+        /// <summary>
+        /// Instantiate.
+        /// </summary>
+        /// <param name="accessKey">Access key.</param>
+        /// <param name="endpoint">Endpoint.</param>
+        public ViewSdkBase(string accessKey, string endpoint)
+        {
+            if (String.IsNullOrEmpty(accessKey)) throw new ArgumentNullException(nameof(accessKey));
+            if (String.IsNullOrEmpty(endpoint)) throw new ArgumentNullException(nameof(endpoint));
+
+            AccessKey = accessKey;
+            Endpoint = endpoint;
+        }
+
+        /// <summary>
+        /// Instantiate.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="accessKey">Access key.</param>
+        /// <param name="endpoint">Endpoint.</param>
+        public ViewSdkBase(string tenantGuid, string accessKey, string endpoint)
+        {
+            if (String.IsNullOrEmpty(tenantGuid)) throw new ArgumentNullException(nameof(tenantGuid));
+            if (String.IsNullOrEmpty(endpoint)) throw new ArgumentNullException(nameof(endpoint));
+
+            TenantGUID = tenantGuid;
+            AccessKey = accessKey;
             Endpoint = endpoint;
         }
 
@@ -144,6 +208,271 @@
                         Log(Severity.Warn, "no response from " + url);
                         return false;
                     }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Create an object.
+        /// </summary>
+        /// <typeparam name="T">Type.</typeparam>
+        /// <param name="url">URL.</param>
+        /// <param name="obj">Object.</param>
+        /// <param name="token"></param>
+        /// <returns>Instance.</returns>
+        public async Task<T> Create<T>(string url, T obj, CancellationToken token = default) where T : class
+        {
+            if (obj == null) throw new ArgumentNullException(nameof(obj));
+            if (String.IsNullOrEmpty(url)) throw new ArgumentNullException(nameof(url));
+
+            using (RestRequest req = new RestRequest(url, HttpMethod.Put))
+            {
+                req.Authorization.BearerToken = _AccessKey;
+                req.ContentType = "application/json";
+
+                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(obj, true), token).ConfigureAwait(false))
+                {
+                    if (resp != null)
+                    {
+                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                        {
+                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            if (!String.IsNullOrEmpty(resp.DataAsString))
+                            {
+                                return Serializer.DeserializeJson<T>(resp.DataAsString);
+                            }
+                            else
+                            {
+                                return null;
+                            }
+                        }
+                        else
+                        {
+                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            return null;
+                        }
+                    }
+                    else
+                    {
+                        Log(Severity.Warn, "no response from " + url);
+                        return null;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Check if an object exists.
+        /// </summary>
+        /// <param name="url">URL.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>True if exists.</returns>
+        public async Task<bool> Exists(string url, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(url)) throw new ArgumentNullException(nameof(url));
+
+            using (RestRequest req = new RestRequest(url, HttpMethod.Head))
+            {
+                req.Authorization.BearerToken = _AccessKey;
+
+                using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
+                {
+                    if (resp != null)
+                    {
+                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                        {
+                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            return true;
+                        }
+                        else
+                        {
+                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        Log(Severity.Warn, "no response from " + url);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Read an object.
+        /// </summary>
+        /// <typeparam name="T">Type.</typeparam>
+        /// <param name="url">URL.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Instance.</returns>
+        public async Task<T> Retrieve<T>(string url, CancellationToken token = default) where T : class
+        {
+            if (String.IsNullOrEmpty(url)) throw new ArgumentNullException(nameof(url));
+
+            using (RestRequest req = new RestRequest(url))
+            {
+                req.Authorization.BearerToken = _AccessKey;
+
+                using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
+                {
+                    if (resp != null)
+                    {
+                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                        {
+                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            if (!String.IsNullOrEmpty(resp.DataAsString))
+                            {
+                                return Serializer.DeserializeJson<T>(resp.DataAsString);
+                            }
+                            else
+                            {
+                                return null;
+                            }
+                        }
+                        else
+                        {
+                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            return null;
+                        }
+                    }
+                    else
+                    {
+                        Log(Severity.Warn, "no response from " + url);
+                        return null;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Read objects.
+        /// </summary>
+        /// <typeparam name="T">Type.</typeparam>
+        /// <param name="url">URL.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>List.</returns>
+        public async Task<List<T>> RetrieveMany<T>(string url, CancellationToken token = default) where T : class
+        {
+            if (String.IsNullOrEmpty(url)) throw new ArgumentNullException(nameof(url));
+
+            using (RestRequest req = new RestRequest(url))
+            {
+                req.Authorization.BearerToken = _AccessKey;
+
+                using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
+                {
+                    if (resp != null)
+                    {
+                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                        {
+                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            if (!String.IsNullOrEmpty(resp.DataAsString))
+                            {
+                                return Serializer.DeserializeJson<List<T>>(resp.DataAsString);
+                            }
+                            else
+                            {
+                                return null;
+                            }
+                        }
+                        else
+                        {
+                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            return null;
+                        }
+                    }
+                    else
+                    {
+                        Log(Severity.Warn, "no response from " + url);
+                        return null;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Update an object.
+        /// </summary>
+        /// <typeparam name="T">Type.</typeparam>
+        /// <param name="url">URL.</param>
+        /// <param name="obj">Object.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Instance.</returns>
+        public async Task<T> Update<T>(string url, T obj, CancellationToken token = default) where T : class
+        {
+            if (String.IsNullOrEmpty(url)) throw new ArgumentNullException(nameof(url));
+            if (obj == null) throw new ArgumentNullException(nameof(obj));
+
+            using (RestRequest req = new RestRequest(url, HttpMethod.Put))
+            {
+                req.Authorization.BearerToken = _AccessKey;
+                req.ContentType = "application/json";
+
+                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(obj, true), token).ConfigureAwait(false))
+                {
+                    if (resp != null)
+                    {
+                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                        {
+                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            if (!String.IsNullOrEmpty(resp.DataAsString))
+                            {
+                                return Serializer.DeserializeJson<T>(resp.DataAsString);
+                            }
+                            else
+                            {
+                                return null;
+                            }
+                        }
+                        else
+                        {
+                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            return null;
+                        }
+                    }
+                    else
+                    {
+                        Log(Severity.Warn, "no response from " + url);
+                        return null;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Delete an object.
+        /// </summary>
+        /// <param name="url">URL.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Task.</returns>
+        public async Task Delete(string url, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(url)) throw new ArgumentNullException(nameof(url));
+
+            using (RestRequest req = new RestRequest(url, HttpMethod.Delete))
+            {
+                req.Authorization.BearerToken = _AccessKey;
+
+                using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
+                {
+                    if (resp != null)
+                    {
+                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                        {
+                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                        }
+                        else
+                        {
+                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                        }
+                    }
+                    else
+                    {
+                        Log(Severity.Warn, "no response from " + url);
+                    }
+
+                    return;
                 }
             }
         }

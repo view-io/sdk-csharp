@@ -89,18 +89,7 @@
         /// <summary>
         /// Embeddings.
         /// </summary>
-        public List<float> Embeddings
-        {
-            get
-            {
-                return _Embeddings;
-            }
-            set
-            {
-                if (value == null) _Embeddings = new List<float>();
-                else _Embeddings = value;
-            }
-        }
+        public List<float> Embeddings { get; set; } = null;
 
         /// <summary>
         /// Creation timestamp.
@@ -112,7 +101,6 @@
         #region Private-Members
 
         private int _Id = 0;
-        private List<float> _Embeddings = new List<float>();
 
         #endregion
 

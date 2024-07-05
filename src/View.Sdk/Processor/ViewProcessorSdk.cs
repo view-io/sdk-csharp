@@ -41,8 +41,6 @@
         /// <param name="endpoint">Endpoint URL.</param>
         public ViewProcessorSdk(string endpoint = "http://localhost:8501/processor") : base(endpoint)
         {
-            if (string.IsNullOrEmpty(endpoint)) throw new ArgumentNullException(nameof(endpoint));
-
             Header = "[ViewProcessorSdk] ";
         }
 

@@ -423,6 +423,599 @@
             Instantiate.
             </summary>
         </member>
+        <member name="T:View.Sdk.CompressionTypeEnum">
+            <summary>
+            Compression type.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.CompressionTypeEnum.None">
+            <summary>
+            None.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.CompressionTypeEnum.Gzip">
+            <summary>
+            Gzip.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.CompressionTypeEnum.Deflate">
+            <summary>
+            Deflate.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.CompressionTypeEnum.Adaptive">
+            <summary>
+            Adaptive.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Configuration.ViewConfigurationSdk">
+            <summary>
+            View Configuration SDK.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="accessKey">Access key.</param>
+            <param name="endpoint">Endpoint URL.</param>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateNode(View.Sdk.Node,System.Threading.CancellationToken)">
+            <summary>
+            Create a node.
+            </summary>
+            <param name="node">Node.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Node.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsNode(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a node exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveNode(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a node.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Node.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveNodes(System.Threading.CancellationToken)">
+            <summary>
+            Read nodes.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Nodes.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.UpdateNode(View.Sdk.Node,System.Threading.CancellationToken)">
+            <summary>
+            Update a node.
+            </summary>
+            <param name="node">Node.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Node.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteNode(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a node.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveTenant(System.Threading.CancellationToken)">
+            <summary>
+            Read a tenant.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Tenant.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.UpdateTenant(View.Sdk.TenantMetadata,System.Threading.CancellationToken)">
+            <summary>
+            Update a tenant.
+            </summary>
+            <param name="tenant">Tenant.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Tenant.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateUser(View.Sdk.UserMaster,System.Threading.CancellationToken)">
+            <summary>
+            Create a user.
+            </summary>
+            <param name="user">User.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>User.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsUser(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a user exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveUser(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a user.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>User.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveUsers(System.Threading.CancellationToken)">
+            <summary>
+            Read users.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Users.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.UpdateUser(View.Sdk.UserMaster,System.Threading.CancellationToken)">
+            <summary>
+            Update a user.
+            </summary>
+            <param name="user">User.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>User.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteUser(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a user.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateCredential(View.Sdk.Credential,System.Threading.CancellationToken)">
+            <summary>
+            Create a credential.
+            </summary>
+            <param name="cred">Credential.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Credential.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsCredential(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a credential exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveCredential(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a credential.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Credential.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveCredentials(System.Threading.CancellationToken)">
+            <summary>
+            Read nodes.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Nodes.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.UpdateCredential(View.Sdk.Credential,System.Threading.CancellationToken)">
+            <summary>
+            Update a credential.
+            </summary>
+            <param name="cred">Credential.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Credential.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteCredential(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a credential.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreatePool(View.Sdk.StoragePool,System.Threading.CancellationToken)">
+            <summary>
+            Create a pool.
+            </summary>
+            <param name="pool">Pool.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Pool.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsPool(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a pool exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrievePool(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a pool.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Pool.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrievePools(System.Threading.CancellationToken)">
+            <summary>
+            Read pools.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Pools.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.UpdatePool(View.Sdk.StoragePool,System.Threading.CancellationToken)">
+            <summary>
+            Update a pool.
+            </summary>
+            <param name="pool">Pool.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Pool.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeletePool(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a pool.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateBucket(View.Sdk.BucketMetadata,System.Threading.CancellationToken)">
+            <summary>
+            Create a bucket.
+            </summary>
+            <param name="bucket">Bucket.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Bucket.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsBucket(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a bucket exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveBucket(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a bucket.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Bucket.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveBuckets(System.Threading.CancellationToken)">
+            <summary>
+            Read buckets.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Buckets.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.UpdateBucket(View.Sdk.BucketMetadata,System.Threading.CancellationToken)">
+            <summary>
+            Update a bucket.
+            </summary>
+            <param name="bucket">Bucket.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Bucket.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteBucket(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a bucket.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateEncryptionKey(View.Sdk.EncryptionKey,System.Threading.CancellationToken)">
+            <summary>
+            Create an encryption key.
+            </summary>
+            <param name="key">Encryption key.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Encryption key.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsEncryptionKey(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if an encryption key exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveEncryptionKey(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read an encryption key.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Encryption key.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveEncryptionKeys(System.Threading.CancellationToken)">
+            <summary>
+            Read encryption keys.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Encryption keys.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.UpdateEncryptionKey(View.Sdk.EncryptionKey,System.Threading.CancellationToken)">
+            <summary>
+            Update an encryption key.
+            </summary>
+            <param name="key">Encryption key.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Encryption key.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteEncryptionKey(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete an encryption key.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateMetadataRule(View.Sdk.MetadataRule,System.Threading.CancellationToken)">
+            <summary>
+            Create a metadata rule.
+            </summary>
+            <param name="rule">Metadata rule.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Metadata rule.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsMetadataRule(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a metadata rule exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveMetadataRule(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a metadata rule.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Metadata rule.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveMetadataRules(System.Threading.CancellationToken)">
+            <summary>
+            Read metadata rules.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Metadata rules.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.UpdateMetadataRule(View.Sdk.MetadataRule,System.Threading.CancellationToken)">
+            <summary>
+            Update a metadata rule.
+            </summary>
+            <param name="rule">Metadata rule.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Metadata rule.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteMetadataRule(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a metadata rule.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateEmbeddingsRule(View.Sdk.EmbeddingsRule,System.Threading.CancellationToken)">
+            <summary>
+            Create a embeddings rule.
+            </summary>
+            <param name="rule">Embeddings rule.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Embeddings rule.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsEmbeddingsRule(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a embeddings rule exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveEmbeddingsRule(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a embeddings rule.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Embeddings rule.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveEmbeddingsRules(System.Threading.CancellationToken)">
+            <summary>
+            Read embeddings rules.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Embeddings rules.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.UpdateEmbeddingsRule(View.Sdk.EmbeddingsRule,System.Threading.CancellationToken)">
+            <summary>
+            Update a embeddings rule.
+            </summary>
+            <param name="rule">Embeddings rule.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Embeddings rule.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteEmbeddingsRule(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a embeddings rule.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsWebhookEvent(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a webhook event exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveWebhookEvent(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a webhook event.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Embeddings rule.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveWebhookEvents(System.Threading.CancellationToken)">
+            <summary>
+            Read webhook events.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Webhook events.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateWebhookRule(View.Sdk.WebhookRule,System.Threading.CancellationToken)">
+            <summary>
+            Create a webhook rule.
+            </summary>
+            <param name="rule">Webhook rule.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Webhook rule.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsWebhookRule(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a webhook rule exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveWebhookRule(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a webhook rule.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Webhook rule.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveWebhookRules(System.Threading.CancellationToken)">
+            <summary>
+            Read webhook rules.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Webhook rules.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.UpdateWebhookRule(View.Sdk.WebhookRule,System.Threading.CancellationToken)">
+            <summary>
+            Update a webhook rule.
+            </summary>
+            <param name="rule">Webhook rule.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Webhook rule.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteWebhookRule(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a webhook rule.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateWebhookTarget(View.Sdk.WebhookTarget,System.Threading.CancellationToken)">
+            <summary>
+            Create a webhook target.
+            </summary>
+            <param name="target">Webhook target.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Webhook target.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsWebhookTarget(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a webhook target exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveWebhookTarget(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a webhook target.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Webhook target.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveWebhookTargets(System.Threading.CancellationToken)">
+            <summary>
+            Read webhook targets.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Webhook targets.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.UpdateWebhookTarget(View.Sdk.WebhookTarget,System.Threading.CancellationToken)">
+            <summary>
+            Update a webhook target.
+            </summary>
+            <param name="target">Webhook target.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Webhook target.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteWebhookTarget(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a webhook target.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateViewEndpoint(View.Sdk.ViewEndpoint,System.Threading.CancellationToken)">
+            <summary>
+            Create a View endpoint.
+            </summary>
+            <param name="endpoint">View endpoint.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>View endpoint.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsViewEndpoint(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a View endpoint exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveViewEndpoint(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a View endpoint.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>View endpoint.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveViewEndpoints(System.Threading.CancellationToken)">
+            <summary>
+            Read View endpoints.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>View endpoints.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.UpdateViewEndpoint(View.Sdk.ViewEndpoint,System.Threading.CancellationToken)">
+            <summary>
+            Update a View endpoint.
+            </summary>
+            <param name="endpoint">View endpoint.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>View endpoint.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteViewEndpoint(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a View endpoint.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
         <member name="T:View.Sdk.Credential">
             <summary>
             Credentials.
@@ -1272,6 +1865,111 @@
             Instantiate the object.
             </summary>
         </member>
+        <member name="T:View.Sdk.EncryptionKey">
+            <summary>
+            Encryption key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EncryptionKey.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EncryptionKey.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EncryptionKey.OwnerGUID">
+            <summary>
+            Owner GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EncryptionKey.KeyBase64">
+            <summary>
+            Key in base64 form.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EncryptionKey.KeyHex">
+            <summary>
+            Key in hex form.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EncryptionKey.IvBase64">
+            <summary>
+            Initialization vector in base64 form.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EncryptionKey.IvHex">
+            <summary>
+            Initialization vector in hex form.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EncryptionKey.SaltBase64">
+            <summary>
+            Salt in base64 form.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EncryptionKey.SaltHex">
+            <summary>
+            Salt in hex form.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EncryptionKey.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EncryptionKey.Description">
+            <summary>
+            Description.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EncryptionKey.CreatedUtc">
+            <summary>
+            Creation timestamp, in UTC time.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EncryptionKey.Owner">
+            <summary>
+            Owner.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EncryptionKey.Key">
+            <summary>
+            Key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EncryptionKey.Iv">
+            <summary>
+            IV.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EncryptionKey.Salt">
+            <summary>
+            Salt.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.EncryptionKey.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.EncryptionTypeEnum">
+            <summary>
+            Encryption type.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.EncryptionTypeEnum.None">
+            <summary>
+            No encryption.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.EncryptionTypeEnum.Local">
+            <summary>
+            Local encryption.
+            </summary>
+        </member>
         <member name="T:View.Sdk.EnumerationOrderEnum">
             <summary>
             Enumeration order.
@@ -1583,6 +2281,26 @@
             </summary>
             <param name="query">Enumeration query.</param>
         </member>
+        <member name="T:View.Sdk.Expiration">
+            <summary>
+            Expiration.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Expiration.ExpirationUtc">
+            <summary>
+            Expiration timestamp, in UTC time.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Expiration.RetentionMinutes">
+            <summary>
+            Retention minutes.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Expiration.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
         <member name="T:View.Sdk.Extensions.StreamExtensions">
             <summary>
             Stream extensions.
@@ -1770,11 +2488,12 @@
             View Lexi search SDK.
             </summary>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.#ctor(System.String,System.String)">
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.#ctor(System.String,System.String,System.String)">
             <summary>
             Instantiate.
             </summary>
             <param name="tenantGuid">Tenant GUID.</param>
+            <param name="accessKey">Access key.</param>
             <param name="endpoint">Endpoint URL.</param>
         </member>
         <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveCollections(System.Threading.CancellationToken)">
@@ -2112,6 +2831,101 @@
             InternalError.
             </summary>
         </member>
+        <member name="T:View.Sdk.MultiDeleteRequest">
+            <summary>
+            Multi-delete request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.MultiDeleteRequest.Quiet">
+            <summary>
+            Enable quiet mode.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.MultiDeleteRequest.Objects">
+            <summary>
+            Object metadata.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.MultiDeleteRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.MultiDeleteResult">
+            <summary>
+            Multi-delete request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.MultiDeleteResult.Request">
+            <summary>
+            Request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.MultiDeleteResult.Quiet">
+            <summary>
+            Enable quiet mode.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.MultiDeleteResult.Deleted">
+            <summary>
+            List of deleted objects.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.MultiDeleteResult.Errors">
+            <summary>
+            List of error objects.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.MultiDeleteResult.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Node">
+            <summary>
+            Node.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Node.Id">
+            <summary>
+            ID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Node.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Node.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Node.Hostname">
+            <summary>
+            Hostname.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Node.InstanceType">
+            <summary>
+            Software instance type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Node.LastStartUtc">
+            <summary>
+            Last start timestamp, in UTC time.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Node.CreatedUtc">
+            <summary>
+            Creation timestamp, in UTC time.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Node.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
         <member name="T:View.Sdk.ObjectMetadata">
             <summary>
             Object metadata.
@@ -2279,6 +3093,21 @@
             <param name="objects">Number of objects.</param>
             <param name="bytes">Number of bytes.</param>
         </member>
+        <member name="T:View.Sdk.ObjectWriteModeEnum">
+            <summary>
+            Specify whether the object key or GUID is used to write to the storage pool as the object identifier.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.ObjectWriteModeEnum.KEY">
+            <summary>
+            Object key.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.ObjectWriteModeEnum.GUID">
+            <summary>
+            Object GUID.
+            </summary>
+        </member>
         <member name="T:View.Sdk.Orchestrator.ViewOrchestratorSdk">
             <summary>
             View Orchestrator SDK.
@@ -2291,123 +3120,6 @@
             <param name="tenantGuid">Tenant GUID.</param>
             <param name="accessKey">Access key.</param>
             <param name="endpoint">Endpoint URL.</param>
-        </member>
-        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.CreateTenant(View.Sdk.TenantMetadata,System.Threading.CancellationToken)">
-            <summary>
-            Create a tenant.
-            </summary>
-            <param name="tenant">Tenant.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Tenant.</returns>
-        </member>
-        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.RetrieveTenant(System.Threading.CancellationToken)">
-            <summary>
-            Read a tenant.
-            </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>Tenant.</returns>
-        </member>
-        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.UpdateTenant(View.Sdk.TenantMetadata,System.Threading.CancellationToken)">
-            <summary>
-            Update a tenant.
-            </summary>
-            <param name="tenant">Tenant.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Tenant.</returns>
-        </member>
-        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.CreateUser(View.Sdk.UserMaster,System.Threading.CancellationToken)">
-            <summary>
-            Create a user.
-            </summary>
-            <param name="user">User.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>User.</returns>
-        </member>
-        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.ExistsUser(System.String,System.Threading.CancellationToken)">
-            <summary>
-            Check if a user exists.
-            </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.RetrieveUser(System.String,System.Threading.CancellationToken)">
-            <summary>
-            Read a user.
-            </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>User.</returns>
-        </member>
-        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.RetrieveUsers(System.Threading.CancellationToken)">
-            <summary>
-            Read users.
-            </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>Users.</returns>
-        </member>
-        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.UpdateUser(View.Sdk.UserMaster,System.Threading.CancellationToken)">
-            <summary>
-            Update a user.
-            </summary>
-            <param name="user">User.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>User.</returns>
-        </member>
-        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.DeleteUser(System.String,System.Threading.CancellationToken)">
-            <summary>
-            Delete a user.
-            </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.CreateCredential(View.Sdk.Credential,System.Threading.CancellationToken)">
-            <summary>
-            Create a credential.
-            </summary>
-            <param name="cred">Credential.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Credential.</returns>
-        </member>
-        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.ExistsCredential(System.String,System.Threading.CancellationToken)">
-            <summary>
-            Check if a credential exists.
-            </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.RetrieveCredential(System.String,System.Threading.CancellationToken)">
-            <summary>
-            Read a credential.
-            </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Credential.</returns>
-        </member>
-        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.RetrieveCredentials(System.Threading.CancellationToken)">
-            <summary>
-            Read credentials.
-            </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>Credentials.</returns>
-        </member>
-        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.UpdateCredential(View.Sdk.Credential,System.Threading.CancellationToken)">
-            <summary>
-            Update a credential.
-            </summary>
-            <param name="cred">Credential.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Credential.</returns>
-        </member>
-        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.DeleteCredential(System.String,System.Threading.CancellationToken)">
-            <summary>
-            Delete a credential.
-            </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
         </member>
         <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.CreateTrigger(View.Sdk.Trigger,System.Threading.CancellationToken)">
             <summary>
@@ -2487,14 +3199,6 @@
             <param name="token">Cancellation token.</param>
             <returns>Steps.</returns>
         </member>
-        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.UpdateStep(View.Sdk.StepMetadata,System.Threading.CancellationToken)">
-            <summary>
-            Update a step.
-            </summary>
-            <param name="step">Step.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Step.</returns>
-        </member>
         <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.DeleteStep(System.String,System.Threading.CancellationToken)">
             <summary>
             Delete a step.
@@ -2533,14 +3237,6 @@
             </summary>
             <param name="token">Cancellation token.</param>
             <returns>DataFlows.</returns>
-        </member>
-        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.UpdateDataFlow(View.Sdk.DataFlow,System.Threading.CancellationToken)">
-            <summary>
-            Update a data flow.
-            </summary>
-            <param name="flow">DataFlow.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>DataFlow.</returns>
         </member>
         <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.DeleteDataFlow(System.String,System.Threading.CancellationToken)">
             <summary>
@@ -3556,6 +4252,46 @@
             Emergency messages.
             </summary>
         </member>
+        <member name="T:View.Sdk.SoftwareInstanceTypeEnum">
+            <summary>
+            Software instance type.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.SoftwareInstanceTypeEnum.ConfigServer">
+            <summary>
+            ConfigServer.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.SoftwareInstanceTypeEnum.DataConnectorServer">
+            <summary>
+            DataConnectorServer.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.SoftwareInstanceTypeEnum.DocumentProcessorServer">
+            <summary>
+            DocumentProcessorServer.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.SoftwareInstanceTypeEnum.LexiServer">
+            <summary>
+            LexiServer.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.SoftwareInstanceTypeEnum.OrchestratorServer">
+            <summary>
+            OrchestratorServer.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.SoftwareInstanceTypeEnum.PostgresVectorProxy">
+            <summary>
+            PostgresVectorProxy.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.SoftwareInstanceTypeEnum.StorageServer">
+            <summary>
+            StorageServer.
+            </summary>
+        </member>
         <member name="T:View.Sdk.SourceDocument">
             <summary>
             Source document.
@@ -3584,6 +4320,11 @@
         <member name="P:View.Sdk.SourceDocument.ObjectGUID">
             <summary>
             Object GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SourceDocument.DataFlowRequestGUID">
+            <summary>
+            Data flow request GUID.
             </summary>
         </member>
         <member name="P:View.Sdk.SourceDocument.ObjectKey">
@@ -3619,6 +4360,11 @@
         <member name="P:View.Sdk.SourceDocument.CreatedUtc">
             <summary>
             Creation timestamp, in UTC time.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SourceDocument.ExpirationUtc">
+            <summary>
+            Expiration timestamp, if any, in UTC time.
             </summary>
         </member>
         <member name="P:View.Sdk.SourceDocument.UdrDocument">
@@ -3812,6 +4558,349 @@
             <summary>
             Python 3.12.
             </summary>
+        </member>
+        <member name="T:View.Sdk.StoragePool">
+            <summary>
+            Storage pool.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.StoragePool.Id">
+            <summary>
+            Database row ID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.StoragePool.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.StoragePool.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.StoragePool.EncryptionKeyGUID">
+            <summary>
+            Encryption key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.StoragePool.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.StoragePool.Provider">
+            <summary>
+            Provider.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.StoragePool.WriteMode">
+            <summary>
+            Object key write mode.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.StoragePool.UseSsl">
+            <summary>
+            Enable or disable SSL.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.StoragePool.Endpoint">
+            <summary>
+            Endpoint URL for the storage pool provider.
+            This value should be of the form [protocol]://[hostname]:[port]/ where [protocol] is either http or https.
+            This value is required for both Azure and any AWS S3 compatible storage systems (such as Minio).
+            </summary> 
+        </member>
+        <member name="P:View.Sdk.StoragePool.AccessKey">
+            <summary>
+            Access key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.StoragePool.SecretKey">
+            <summary>
+            Secret key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.StoragePool.AwsRegion">
+            <summary>
+            AWS region.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.StoragePool.AwsBucket">
+            <summary>
+            AWS bucket.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.StoragePool.AwsBaseDomain">
+            <summary>
+            Base URL for AWS S3 compatible storage platforms.  
+            This value should be of the form '.hostname.com' to identify 'bucket' as the bucket in 'bucket.hostname.com'.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.StoragePool.AwsBaseUrl">
+            <summary>
+            Base URL to use for objects, i.e. https://[bucketname].s3.[regionname].amazonaws.com/.
+            For non-S3 endpoints, use {bucket} and {key} to indicate where these values should be inserted, i.e. http://{bucket}.[hostname]:[port]/{key} or https://[hostname]:[port]/{bucket}/key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.StoragePool.DiskDirectory">
+            <summary>
+            Disk directory.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.StoragePool.AzureAccount">
+            <summary>
+            Azure account.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.StoragePool.AzureContainer">
+            <summary>
+            Azure container.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.StoragePool.Compress">
+            <summary>
+            Compression type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.StoragePool.EnableReadCaching">
+            <summary>
+            Flag to enable or disable read caching.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.StoragePool.CreatedUtc">
+            <summary>
+            Creation timestamp, in UTC.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.StoragePool.#ctor">
+            <summary>
+            Instantiate the object.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Storage.ViewStorageSdk">
+            <summary>
+            View Storage SDK.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Storage.ViewStorageSdk.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="accessKey">Access key.</param>
+            <param name="endpoint">Endpoint URL.</param>
+        </member>
+        <member name="M:View.Sdk.Storage.ViewStorageSdk.CreateTenant(View.Sdk.TenantMetadata,System.Threading.CancellationToken)">
+            <summary>
+            Create a tenant.
+            </summary>
+            <param name="tenant">Tenant.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Tenant.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.ViewStorageSdk.RetrieveTenant(System.Threading.CancellationToken)">
+            <summary>
+            Read a tenant.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Tenant.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.ViewStorageSdk.UpdateTenant(View.Sdk.TenantMetadata,System.Threading.CancellationToken)">
+            <summary>
+            Update a tenant.
+            </summary>
+            <param name="tenant">Tenant.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Tenant.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.ViewStorageSdk.CreateUser(View.Sdk.UserMaster,System.Threading.CancellationToken)">
+            <summary>
+            Create a user.
+            </summary>
+            <param name="user">User.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>User.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.ViewStorageSdk.ExistsUser(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a user exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.ViewStorageSdk.RetrieveUser(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a user.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>User.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.ViewStorageSdk.RetrieveUsers(System.Threading.CancellationToken)">
+            <summary>
+            Read users.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Users.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.ViewStorageSdk.UpdateUser(View.Sdk.UserMaster,System.Threading.CancellationToken)">
+            <summary>
+            Update a user.
+            </summary>
+            <param name="user">User.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>User.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.ViewStorageSdk.DeleteUser(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a user.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.ViewStorageSdk.CreateCredential(View.Sdk.Credential,System.Threading.CancellationToken)">
+            <summary>
+            Create a credential.
+            </summary>
+            <param name="cred">Credential.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Credential.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.ViewStorageSdk.ExistsCredential(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a credential exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.ViewStorageSdk.RetrieveCredential(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a credential.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Credential.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.ViewStorageSdk.RetrieveCredentials(System.Threading.CancellationToken)">
+            <summary>
+            Read credentials.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Credentials.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.ViewStorageSdk.UpdateCredential(View.Sdk.Credential,System.Threading.CancellationToken)">
+            <summary>
+            Update a credential.
+            </summary>
+            <param name="cred">Credential.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Credential.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.ViewStorageSdk.DeleteCredential(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a credential.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.ViewStorageSdk.CreateStoragePool(View.Sdk.StoragePool,System.Threading.CancellationToken)">
+            <summary>
+            Create a storage pool.
+            </summary>
+            <param name="pool">Storage pool.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Storage pool.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.ViewStorageSdk.ExistsStoragePool(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a storage pool exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.ViewStorageSdk.RetrieveStoragePool(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a storage pool.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Storage pool.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.ViewStorageSdk.RetrieveStoragePools(System.Threading.CancellationToken)">
+            <summary>
+            Read storage pools.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Storage pools.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.ViewStorageSdk.UpdateStoragePools(View.Sdk.StoragePool,System.Threading.CancellationToken)">
+            <summary>
+            Update a storage pool.
+            </summary>
+            <param name="pool">Storage pool.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Storage pool.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.ViewStorageSdk.DeleteStoragePools(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a storage pool.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.ViewStorageSdk.CreateViewEndpoint(View.Sdk.Credential,System.Threading.CancellationToken)">
+            <summary>
+            Create a View endpoint.
+            </summary>
+            <param name="ep">ViewEndpoint.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>ViewEndpoint.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.ViewStorageSdk.ExistsViewEndpoint(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a View endpoint exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.ViewStorageSdk.RetrieveViewEndpoint(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a View endpoint.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>ViewEndpoint.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.ViewStorageSdk.RetrieveViewEndpoints(System.Threading.CancellationToken)">
+            <summary>
+            Read View endpoints.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>List of ViewEndpoint.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.ViewStorageSdk.UpdateViewEndpoint(View.Sdk.Credential,System.Threading.CancellationToken)">
+            <summary>
+            Update a View endpoint.
+            </summary>
+            <param name="ep">ViewEndpoint.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>ViewEndpoint.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.ViewStorageSdk.DeleteViewEndpoint(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a View endpoint.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
         </member>
         <member name="T:View.Sdk.TenantMetadata">
             <summary>
@@ -4278,6 +5367,96 @@
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
+        <member name="T:View.Sdk.ViewEndpoint">
+            <summary>
+            View storage server endpoint.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewEndpoint.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewEndpoint.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewEndpoint.OwnerGUID">
+            <summary>
+            Owner GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewEndpoint.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewEndpoint.UseSsl">
+            <summary>
+            Boolean flag to enable or disable SSL.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewEndpoint.S3Url">
+            <summary>
+            S3 URL.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewEndpoint.S3Uri">
+            <summary>
+            S3 URI.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewEndpoint.S3BaseUrl">
+            <summary>
+            S3 base URL.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewEndpoint.RestUrl">
+            <summary>
+            REST URL.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewEndpoint.RestUri">
+            <summary>
+            REST URI.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewEndpoint.BucketName">
+            <summary>
+            Bucket name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewEndpoint.Region">
+            <summary>
+            Region.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewEndpoint.AccessKey">
+            <summary>
+            Access key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewEndpoint.SecretKey">
+            <summary>
+            Secret key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewEndpoint.ApiKey">
+            <summary>
+            API key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewEndpoint.CreatedUtc">
+            <summary>
+            Created.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.ViewEndpoint.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
         <member name="T:View.Sdk.ViewSdkBase">
             <summary>
             View SDK base class.
@@ -4291,6 +5470,16 @@
         <member name="P:View.Sdk.ViewSdkBase.Header">
             <summary>
             Header to prepend to log messages.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewSdkBase.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewSdkBase.AccessKey">
+            <summary>
+            Access key.
             </summary>
         </member>
         <member name="P:View.Sdk.ViewSdkBase.Endpoint">
@@ -4309,6 +5498,21 @@
             </summary>
             <param name="endpoint">Endpoint.</param>
         </member>
+        <member name="M:View.Sdk.ViewSdkBase.#ctor(System.String,System.String)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="accessKey">Access key.</param>
+            <param name="endpoint">Endpoint.</param>
+        </member>
+        <member name="M:View.Sdk.ViewSdkBase.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="accessKey">Access key.</param>
+            <param name="endpoint">Endpoint.</param>
+        </member>
         <member name="M:View.Sdk.ViewSdkBase.Log(View.Sdk.Severity,System.String)">
             <summary>
             Emit a log message.
@@ -4322,6 +5526,395 @@
             </summary>
             <param name="token">Cancellation token.</param>
             <returns>Boolean indicating success.</returns>
+        </member>
+        <member name="M:View.Sdk.ViewSdkBase.Create``1(System.String,``0,System.Threading.CancellationToken)">
+            <summary>
+            Create an object.
+            </summary>
+            <typeparam name="T">Type.</typeparam>
+            <param name="url">URL.</param>
+            <param name="obj">Object.</param>
+            <param name="token"></param>
+            <returns>Instance.</returns>
+        </member>
+        <member name="M:View.Sdk.ViewSdkBase.Exists(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if an object exists.
+            </summary>
+            <param name="url">URL.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.ViewSdkBase.Retrieve``1(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read an object.
+            </summary>
+            <typeparam name="T">Type.</typeparam>
+            <param name="url">URL.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Instance.</returns>
+        </member>
+        <member name="M:View.Sdk.ViewSdkBase.RetrieveMany``1(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read objects.
+            </summary>
+            <typeparam name="T">Type.</typeparam>
+            <param name="url">URL.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>List.</returns>
+        </member>
+        <member name="M:View.Sdk.ViewSdkBase.Update``1(System.String,``0,System.Threading.CancellationToken)">
+            <summary>
+            Update an object.
+            </summary>
+            <typeparam name="T">Type.</typeparam>
+            <param name="url">URL.</param>
+            <param name="obj">Object.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Instance.</returns>
+        </member>
+        <member name="M:View.Sdk.ViewSdkBase.Delete(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete an object.
+            </summary>
+            <param name="url">URL.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="T:View.Sdk.WebhookEvent">
+            <summary>
+            Webhook event.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookEvent.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookEvent.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookEvent.TargetGUID">
+            <summary>
+            Target GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookEvent.RuleGUID">
+            <summary>
+            Rule GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookEvent.EventType">
+            <summary>
+            Event type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookEvent.ContentLength">
+            <summary>
+            Content length.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookEvent.TimeoutMs">
+            <summary>
+            Timeout in milliseconds.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookEvent.Url">
+            <summary>
+            URL.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookEvent.Uri">
+            <summary>
+            URI.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookEvent.ContentType">
+            <summary>
+            Content type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookEvent.ExpectStatus">
+            <summary>
+            HTTP status to expect on success.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookEvent.RetryIntervalMs">
+            <summary>
+            Retry interval in milliseconds.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookEvent.Attempt">
+            <summary>
+            Attempt number.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookEvent.MaxAttempts">
+            <summary>
+            Maximum attempts.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookEvent.HttpStatus">
+            <summary>
+            HTTP status last received.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookEvent.CreatedUtc">
+            <summary>
+            Timestamp from creation, in UTC time.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookEvent.AddedUtc">
+            <summary>
+            Timestamp when added, UTC.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookEvent.LastAttemptUtc">
+            <summary>
+            Timestamp when last attempted, UTC.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookEvent.NextAttemptUtc">
+            <summary>
+            Timestamp for next attempt, UTC.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookEvent.LastFailureUtc">
+            <summary>
+            Timestamp for last failure, UTC.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookEvent.SuccessUtc">
+            <summary>
+            Timestamp for success, UTC.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookEvent.FailedUtc">
+            <summary>
+            Timestamp for failed, UTC.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.WebhookEvent.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.WebhookEventArgs">
+            <summary>
+            Webhook event arguments.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookEventArgs.Event">
+            <summary>
+            Webhook event.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookEventArgs.Status">
+            <summary>
+            Status.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.WebhookEventArgs.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.WebhookEventStatusEnum">
+            <summary>
+            Webhook event status enumeration.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.WebhookEventStatusEnum.Created">
+            <summary>
+            Created.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.WebhookEventStatusEnum.AttemptFailed">
+            <summary>
+            AttemptFailed.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.WebhookEventStatusEnum.TaskFailed">
+            <summary>
+            TaskFailed.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.WebhookEventStatusEnum.Succeeded">
+            <summary>
+            Succeeded.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.WebhookEventStatusEnum.Expired">
+            <summary>
+            Expired.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.WebhookEventTypeEnum">
+            <summary>
+            Webhook event type enumeration.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.WebhookEventTypeEnum.Unknown">
+            <summary>
+            Unknown.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.WebhookEventTypeEnum.ObjectWrite">
+            <summary>
+            ObjectWrite.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.WebhookEventTypeEnum.UdrDocumentGenerated">
+            <summary>
+            UdrDocumentGenerated.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.WebhookEventTypeEnum.EmbeddingsGenerated">
+            <summary>
+            EmbeddingsGenerated.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.WebhookRule">
+            <summary>
+            Webhook rule.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookRule.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookRule.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookRule.TargetGUID">
+            <summary>
+            Target GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookRule.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookRule.EventType">
+            <summary>
+            Event type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookRule.MaxAttempts">
+            <summary>
+            Maximum number of attempts.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookRule.RetryIntervalMs">
+            <summary>
+            Retry interval in milliseconds.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookRule.TimeoutMs">
+            <summary>
+            Timeout in milliseconds.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookRule.CreatedUtc">
+            <summary>
+            Timestamp from creation, in UTC time.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.WebhookRule.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.WebhookTarget">
+            <summary>
+            Webhook target.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookTarget.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookTarget.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookTarget.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookTarget.Url">
+            <summary>
+            URL.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookTarget.Uri">
+            <summary>
+            URI.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookTarget.ContentType">
+            <summary>
+            Content type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookTarget.ExpectStatus">
+            <summary>
+            HTTP status to expect for the request to be considered successful.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.WebhookTarget.CreatedUtc">
+            <summary>
+            Timestamp from creation, in UTC time.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.WebhookTarget.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Models.NodeGroup">
+            <summary>
+            Node group.
+            </summary>
+        </member>
+        <member name="P:View.Models.NodeGroup.Id">
+            <summary>
+            ID.
+            </summary>
+        </member>
+        <member name="P:View.Models.NodeGroup.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Models.NodeGroup.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Models.NodeGroup.NodeGUID">
+            <summary>
+            Node GUID.
+            </summary>
+        </member>
+        <member name="P:View.Models.NodeGroup.CreatedUtc">
+            <summary>
+            Creation timestamp, in UTC time.
+            </summary>
+        </member>
+        <member name="M:View.Models.NodeGroup.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
         </member>
     </members>
 </doc>

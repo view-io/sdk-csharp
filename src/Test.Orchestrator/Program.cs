@@ -49,54 +49,6 @@
                         TestConnectivity().Wait();
                         break;
 
-                    case "write tenant":
-                        WriteTenant().Wait();
-                        break;
-                    case "update tenant":
-                        UpdateTenant().Wait();
-                        break;
-                    case "read tenant":
-                        ReadTenant().Wait();
-                        break;
-
-                    case "write user":
-                        WriteUser().Wait();
-                        break;
-                    case "update user":
-                        UpdateUser().Wait();
-                        break;
-                    case "read users":
-                        ReadUsers().Wait();
-                        break;
-                    case "read user":
-                        ReadUser().Wait();
-                        break;
-                    case "delete user":
-                        DeleteUser().Wait();
-                        break;
-                    case "exists user":
-                        ExistsUser().Wait();
-                        break;
-
-                    case "write cred":
-                        WriteCredential().Wait();
-                        break;
-                    case "update cred":
-                        UpdateCredential().Wait();
-                        break;
-                    case "read creds":
-                        ReadCredentials().Wait();
-                        break;
-                    case "read cred":
-                        ReadCredential().Wait();
-                        break;
-                    case "delete cred":
-                        DeleteCredential().Wait();
-                        break;
-                    case "exists cred":
-                        ExistsCredential().Wait();
-                        break;
-
                     case "write trigger":
                         WriteTrigger().Wait();
                         break;
@@ -119,9 +71,6 @@
                     case "write step":
                         WriteStep().Wait();
                         break;
-                    case "update step":
-                        UpdateStep().Wait();
-                        break;
                     case "read steps":
                         ReadSteps().Wait();
                         break;
@@ -137,9 +86,6 @@
 
                     case "write flow":
                         WriteFlow().Wait();
-                        break;
-                    case "update flow":
-                        UpdateFlow().Wait();
                         break;
                     case "read flows":
                         ReadFlows().Wait();
@@ -169,24 +115,6 @@
             Console.WriteLine("  cls              Clear the screen");
             Console.WriteLine("  conn             Test connectivity");
             Console.WriteLine("");
-            Console.WriteLine("  write tenant      Create a tenant");
-            Console.WriteLine("  update tenant     Update a tenant");
-            Console.WriteLine("  read tenant       Read tenant metadata");
-            Console.WriteLine("");
-            Console.WriteLine("  write user        Create a user");
-            Console.WriteLine("  update user       Update a user");
-            Console.WriteLine("  read users        Read all users");
-            Console.WriteLine("  read user         Read a user");
-            Console.WriteLine("  delete user       Delete a user");
-            Console.WriteLine("  exists user       Check if a user exists");
-            Console.WriteLine("");
-            Console.WriteLine("  write cred        Create a credential");
-            Console.WriteLine("  update cred       Update a credential");
-            Console.WriteLine("  read creds        Read all credentials");
-            Console.WriteLine("  read cred         Read a credential");
-            Console.WriteLine("  delete cred       Delete a credential");
-            Console.WriteLine("  exists cred       Check if a credential exists");
-            Console.WriteLine("");
             Console.WriteLine("  write trigger     Create a trigger");
             Console.WriteLine("  update trigger    Update a trigger");
             Console.WriteLine("  read triggers     Read all trigger");
@@ -195,14 +123,12 @@
             Console.WriteLine("  exists trigger    Check if a trigger exists");
             Console.WriteLine("");
             Console.WriteLine("  write step        Create a step");
-            Console.WriteLine("  update step       Update a step");
             Console.WriteLine("  read steps        Read all steps");
             Console.WriteLine("  read step         Read a step");
             Console.WriteLine("  delete step       Delete a step");
             Console.WriteLine("  exists step       Check if a step exists");
             Console.WriteLine("");
             Console.WriteLine("  write flow        Create a flow");
-            Console.WriteLine("  update flow       Update a flow");
             Console.WriteLine("  read flows        Read all flows");
             Console.WriteLine("  read flow         Read a flow");
             Console.WriteLine("  read flow logs    Read flow logs");
@@ -250,107 +176,6 @@
 
             Console.WriteLine("");
         }
-
-        #region Tenants
-
-        private static async Task WriteTenant()
-        {
-            TenantMetadata obj = BuildObject<TenantMetadata>();
-            EnumerateResponse(await _Sdk.CreateTenant(obj));
-        }
-
-        private static async Task UpdateTenant()
-        {
-            TenantMetadata obj = BuildObject<TenantMetadata>();
-            EnumerateResponse(await _Sdk.UpdateTenant(obj));
-        }
-
-        private static async Task ReadTenant()
-        {
-            EnumerateResponse(await _Sdk.RetrieveTenant());
-        }
-
-        #endregion
-
-        #region Users
-
-        private static async Task WriteUser()
-        {
-            UserMaster obj = BuildObject<UserMaster>();
-            EnumerateResponse(await _Sdk.CreateUser(obj));
-        }
-
-        private static async Task UpdateUser()
-        {
-            UserMaster obj = BuildObject<UserMaster>();
-            EnumerateResponse(await _Sdk.UpdateUser(obj));
-        }
-
-        private static async Task ReadUsers()
-        {
-            EnumerateResponse(await _Sdk.RetrieveUsers());
-        }
-
-        private static async Task ReadUser()
-        {
-            string guid = GetGuid("GUID:");
-            EnumerateResponse(await _Sdk.RetrieveUser(guid));
-        }
-
-        private static async Task DeleteUser()
-        {
-            string guid = GetGuid("GUID:");
-            await _Sdk.DeleteUser(guid);
-        }
-
-        private static async Task ExistsUser()
-        {
-            string guid = GetGuid("GUID:");
-            bool exists = await _Sdk.ExistsUser(guid);
-            Console.WriteLine("Exists: " + exists);
-        }
-
-        #endregion
-
-        #region Credentials
-
-        private static async Task WriteCredential()
-        {
-            Credential obj = BuildObject<Credential>();
-            EnumerateResponse(await _Sdk.CreateCredential(obj));
-        }
-
-        private static async Task UpdateCredential()
-        {
-            Credential obj = BuildObject<Credential>();
-            EnumerateResponse(await _Sdk.UpdateCredential(obj));
-        }
-
-        private static async Task ReadCredentials()
-        {
-            EnumerateResponse(await _Sdk.RetrieveCredentials());
-        }
-
-        private static async Task ReadCredential()
-        {
-            string guid = GetGuid("GUID:");
-            EnumerateResponse(await _Sdk.RetrieveCredential(guid));
-        }
-
-        private static async Task DeleteCredential()
-        {
-            string guid = GetGuid("GUID:");
-            await _Sdk.DeleteCredential(guid);
-        }
-
-        private static async Task ExistsCredential()
-        {
-            string guid = GetGuid("GUID:");
-            bool exists = await _Sdk.ExistsCredential(guid);
-            Console.WriteLine("Exists: " + exists);
-        }
-
-        #endregion
 
         #region Triggers
 
@@ -400,12 +225,6 @@
             EnumerateResponse(await _Sdk.CreateStep(obj));
         }
 
-        private static async Task UpdateStep()
-        {
-            StepMetadata obj = BuildObject<StepMetadata>();
-            EnumerateResponse(await _Sdk.UpdateStep(obj));
-        }
-
         private static async Task ReadSteps()
         {
             EnumerateResponse(await _Sdk.RetrieveSteps());
@@ -438,12 +257,6 @@
         {
             DataFlow obj = BuildObject<DataFlow>();
             EnumerateResponse(await _Sdk.CreateDataFlow(obj));
-        }
-
-        private static async Task UpdateFlow()
-        {
-            DataFlow obj = BuildObject<DataFlow>();
-            EnumerateResponse(await _Sdk.UpdateDataFlow(obj));
         }
 
         private static async Task ReadFlows()

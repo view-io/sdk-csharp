@@ -22,8 +22,6 @@
 
         #region Private-Members
 
-        private string _TenantGuid = Guid.NewGuid().ToString();
-        
         #endregion
 
         #region Constructors-and-Factories
@@ -32,14 +30,11 @@
         /// Instantiate.
         /// </summary>
         /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="accessKey">Access key.</param>
         /// <param name="endpoint">Endpoint URL.</param>
-        public ViewLexiSdk(string tenantGuid, string endpoint = "http://localhost:8201/") : base(endpoint)
+        public ViewLexiSdk(string tenantGuid, string accessKey, string endpoint = "http://localhost:8201/") : base(tenantGuid, accessKey, endpoint)
         {
-            if (string.IsNullOrEmpty(tenantGuid)) throw new ArgumentNullException(nameof(tenantGuid));
-
             Header = "[ViewLexiSdk] ";
-
-            _TenantGuid = tenantGuid;
         }
 
         #endregion
@@ -55,39 +50,8 @@
         /// <returns>List of collection.</returns>
         public async Task<List<Collection>> RetrieveCollections(CancellationToken token = default)
         {
-            string url = Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections";
-
-            using (RestRequest req = new RestRequest(url))
-            {
-                using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
-                {
-                    if (resp != null)
-                    {
-                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                        {
-                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
-                            {
-                                return Serializer.DeserializeJson<List<Collection>>(resp.DataAsString);
-                            }
-                            else
-                            {
-                                return null;
-                            }
-                        }
-                        else
-                        {
-                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return null;
-                        }
-                    }
-                    else
-                    {
-                        Log(Severity.Warn, "no response from " + url);
-                        return null;
-                    }
-                }
-            }
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections";
+            return await RetrieveMany<Collection>(url, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -99,40 +63,8 @@
         public async Task<Collection> RetrieveCollection(string collectionGuid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
-
-            string url = Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections/" + collectionGuid;
-
-            using (RestRequest req = new RestRequest(url))
-            {
-                using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
-                {
-                    if (resp != null)
-                    {
-                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                        {
-                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
-                            {
-                                return Serializer.DeserializeJson<Collection>(resp.DataAsString);
-                            }
-                            else
-                            {
-                                return null;
-                            }
-                        }
-                        else
-                        {
-                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return null;
-                        }
-                    }
-                    else
-                    {
-                        Log(Severity.Warn, "no response from " + url);
-                        return null;
-                    }
-                }
-            }
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections/" + collectionGuid;
+            return await Retrieve<Collection>(url, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -144,40 +76,8 @@
         public async Task<CollectionStatistics> RetrieveCollectionStatistics(string collectionGuid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
-
-            string url = Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections/" + collectionGuid + "?stats";
-
-            using (RestRequest req = new RestRequest(url))
-            {
-                using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
-                {
-                    if (resp != null)
-                    {
-                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                        {
-                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
-                            {
-                                return Serializer.DeserializeJson<CollectionStatistics>(resp.DataAsString);
-                            }
-                            else
-                            {
-                                return null;
-                            }
-                        }
-                        else
-                        {
-                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return null;
-                        }
-                    }
-                    else
-                    {
-                        Log(Severity.Warn, "no response from " + url);
-                        return null;
-                    }
-                }
-            }
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections/" + collectionGuid + "?stats";
+            return await Retrieve<CollectionStatistics>(url, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -189,35 +89,8 @@
         public async Task<Collection> CreateCollection(Collection collection, CancellationToken token = default)
         {
             if (collection == null) throw new ArgumentNullException(nameof(collection));
-
-            string url = Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections";
-
-            using (RestRequest req = new RestRequest(url, HttpMethod.Put))
-            {
-                req.ContentType = "application/json";
-
-                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(collection, true), token).ConfigureAwait(false))
-                {
-                    if (resp != null)
-                    {
-                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                        {
-                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return Serializer.DeserializeJson<Collection>(resp.DataAsString);
-                        }
-                        else
-                        {
-                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return null;
-                        }
-                    }
-                    else
-                    {
-                        Log(Severity.Warn, "no response from " + url);
-                        return null;
-                    }
-                }
-            }
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections";
+            return await Create<Collection>(url, collection, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -229,32 +102,8 @@
         public async Task DeleteCollection(string collectionGuid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
-
-            string url = Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections/" + collectionGuid;
-
-            using (RestRequest req = new RestRequest(url, HttpMethod.Delete))
-            {
-                using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
-                {
-                    if (resp != null)
-                    {
-                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                        {
-                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                        }
-                        else
-                        {
-                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                        }
-                    }
-                    else
-                    {
-                        Log(Severity.Warn, "no response from " + url);
-                    }
-
-                    return;
-                }
-            }
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections/" + collectionGuid;
+            await Delete(url, token).ConfigureAwait(false);
         }
 
         #endregion
@@ -270,40 +119,8 @@
         public async Task<List<SourceDocument>> RetrieveDocuments(string collectionGuid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
-
-            string url = Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections/" + collectionGuid + "/documents";
-
-            using (RestRequest req = new RestRequest(url))
-            {
-                using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
-                {
-                    if (resp != null)
-                    {
-                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                        {
-                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
-                            {
-                                return Serializer.DeserializeJson<List<SourceDocument>>(resp.DataAsString);
-                            }
-                            else
-                            {
-                                return null;
-                            }
-                        }
-                        else
-                        {
-                            Log(Severity.Warn, "non-success status from " + url + ": " + resp.StatusCode);
-                            return null;
-                        }
-                    }
-                    else
-                    {
-                        Log(Severity.Warn, "no response from " + url);
-                        return null;
-                    }
-                }
-            }
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections/" + collectionGuid + "/documents";
+            return await RetrieveMany<SourceDocument>(url, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -318,42 +135,9 @@
         {
             if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
             if (String.IsNullOrEmpty(documentGuid)) throw new ArgumentNullException(nameof(documentGuid));
-
-            string url = Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections/" + collectionGuid + "/documents/" + documentGuid;
-
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections/" + collectionGuid + "/documents/" + documentGuid;
             if (includeData) url += "?incldata";
-
-            using (RestRequest req = new RestRequest(url))
-            {
-                using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
-                {
-                    if (resp != null)
-                    {
-                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                        {
-                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
-                            {
-                                return Serializer.DeserializeJson<SourceDocument>(resp.DataAsString);
-                            }
-                            else
-                            {
-                                return null;
-                            }
-                        }
-                        else
-                        {
-                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return null;
-                        }
-                    }
-                    else
-                    {
-                        Log(Severity.Warn, "no response from " + url);
-                        return null;
-                    }
-                }
-            }
+            return await Retrieve<SourceDocument>(url, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -367,40 +151,8 @@
         {
             if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
             if (String.IsNullOrEmpty(documentGuid)) throw new ArgumentNullException(nameof(documentGuid));
-
-            string url = Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections/" + collectionGuid + "/documents/" + documentGuid + "?stats";
-
-            using (RestRequest req = new RestRequest(url))
-            {
-                using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
-                {
-                    if (resp != null)
-                    {
-                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                        {
-                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
-                            {
-                                return Serializer.DeserializeJson<SourceDocumentStatistics>(resp.DataAsString);
-                            }
-                            else
-                            {
-                                return null;
-                            }
-                        }
-                        else
-                        {
-                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return null;
-                        }
-                    }
-                    else
-                    {
-                        Log(Severity.Warn, "no response from " + url);
-                        return null;
-                    }
-                }
-            }
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections/" + collectionGuid + "/documents/" + documentGuid + "?stats";
+            return await Retrieve<SourceDocumentStatistics>(url, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -412,42 +164,8 @@
         public async Task<SourceDocument> UploadDocument(SourceDocument document, CancellationToken token = default)
         {
             if (document == null) throw new ArgumentNullException(nameof(document));
-
-            string url = Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections/" + document.CollectionGUID + "/documents";
-
-            using (RestRequest req = new RestRequest(url, HttpMethod.Put))
-            {
-                req.ContentType = "application/json";
-
-                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(document, true), token).ConfigureAwait(false))
-                {
-                    if (resp != null)
-                    {
-                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                        {
-                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
-                            {
-                                return Serializer.DeserializeJson<SourceDocument>(resp.DataAsString);
-                            }
-                            else
-                            {
-                                return null;
-                            }
-                        }
-                        else
-                        {
-                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return null;
-                        }
-                    }
-                    else
-                    {
-                        Log(Severity.Warn, "no response from " + url);
-                        return null;
-                    }
-                }
-            }
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections/" + document.CollectionGUID + "/documents";
+            return await Create<SourceDocument>(url, document, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -461,32 +179,8 @@
         {
             if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
             if (String.IsNullOrEmpty(documentGuid)) throw new ArgumentNullException(nameof(documentGuid));
-
-            string url = Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections/" + collectionGuid + "/documents/" + documentGuid;
-
-            using (RestRequest req = new RestRequest(url, HttpMethod.Delete))
-            {
-                using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
-                {
-                    if (resp != null)
-                    {
-                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                        {
-                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                        }
-                        else
-                        {
-                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                        }
-                    }
-                    else
-                    {
-                        Log(Severity.Warn, "no response from " + url);
-                    }
-
-                    return;
-                }
-            }
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections/" + collectionGuid + "/documents/" + documentGuid;
+            await Delete(url, token).ConfigureAwait(false);
         }
 
         #endregion
@@ -505,7 +199,7 @@
             if (query == null) throw new ArgumentNullException(nameof(query));
             if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
 
-            string url = Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections/" + collectionGuid + "?enumerate";
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections/" + collectionGuid + "?enumerate";
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Post))
             {
@@ -558,7 +252,7 @@
             if (query == null) throw new ArgumentNullException(nameof(query));
             if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
 
-            string url = Endpoint + "v1.0/tenants/" + _TenantGuid + "/collections/" + collectionGuid + "?search";
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections/" + collectionGuid + "?search";
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Post))
             {

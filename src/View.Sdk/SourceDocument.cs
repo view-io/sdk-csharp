@@ -1,6 +1,8 @@
 ﻿namespace View.Sdk
 {
     using System;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// Source document.
@@ -33,6 +35,11 @@
         /// Object GUID.
         /// </summary>
         public string ObjectGUID { get; set; } = Guid.NewGuid().ToString();
+
+        /// <summary>
+        /// Data flow request GUID.
+        /// </summary>
+        public string DataFlowRequestGUID { get; set; } = null;
 
         /// <summary>
         /// Key.
@@ -79,6 +86,11 @@
         /// Creation timestamp, in UTC time.
         /// </summary>
         public DateTime CreatedUtc { get; set; } = DateTime.UtcNow;
+
+        /// <summary>
+        /// Expiration timestamp, if any, in UTC time.
+        /// </summary>
+        public DateTime? ExpirationUtc { get; set; } = null;
 
         /// <summary>
         /// UDR document.

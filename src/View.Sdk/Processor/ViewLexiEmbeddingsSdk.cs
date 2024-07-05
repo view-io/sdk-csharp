@@ -40,8 +40,6 @@
         /// <param name="endpoint">Endpoint URL.</param>
         public ViewLexiEmbeddingsSdk(string endpoint = "http://localhost:8501/lexi/embeddings") : base(endpoint)
         {
-            if (string.IsNullOrEmpty(endpoint)) throw new ArgumentNullException(nameof(endpoint));
-
             Header = "[ViewLexiEmbeddingsSdk] ";
         }
 
