@@ -50,7 +50,7 @@
         public async Task<Node> CreateNode(Node node, CancellationToken token = default)
         {
             if (node == null) throw new ArgumentNullException(nameof(node));
-            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/nodes";
+            string url = Endpoint + "v1.0/nodes";
             return await Create<Node>(url, node, token).ConfigureAwait(false);
         }
 
@@ -63,7 +63,7 @@
         public async Task<bool> ExistsNode(string guid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
-            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/nodes/" + guid;
+            string url = Endpoint + "v1.0/nodes/" + guid;
             return await Exists(url, token).ConfigureAwait(false);
         }
 
@@ -76,7 +76,7 @@
         public async Task<Node> RetrieveNode(string guid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
-            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/nodes/" + guid;
+            string url = Endpoint + "v1.0/nodes/" + guid;
             return await Retrieve<Node>(url, token).ConfigureAwait(false);
         }
 
@@ -87,7 +87,7 @@
         /// <returns>Nodes.</returns>
         public async Task<List<Node>> RetrieveNodes(CancellationToken token = default)
         {
-            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/nodes";
+            string url = Endpoint + "v1.0/nodes";
             return await RetrieveMany<Node>(url, token).ConfigureAwait(false);
         }
 
@@ -100,7 +100,7 @@
         public async Task<Node> UpdateNode(Node node, CancellationToken token = default)
         {
             if (node == null) throw new ArgumentNullException(nameof(node));
-            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/nodes/" + node.GUID;
+            string url = Endpoint + "v1.0/nodes/" + node.GUID;
             return await Update<Node>(url, node, token).ConfigureAwait(false);
         }
 
@@ -113,7 +113,7 @@
         public async Task DeleteNode(string guid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
-            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/nodes/" + guid;
+            string url = Endpoint + "v1.0/nodes/" + guid;
             await Delete(url, token).ConfigureAwait(false);
         }
 
@@ -983,6 +983,86 @@
         {
             if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/viewendpoints/" + guid;
+            await Delete(url, token).ConfigureAwait(false);
+        }
+
+        #endregion
+
+        #region View-Endpoints
+
+        /// <summary>
+        /// Create an object lock.
+        /// </summary>
+        /// <param name="endpoint">Object lock.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Object lock.</returns>
+        public async Task<ObjectLock> CreateObjectLock(ObjectLock endpoint, CancellationToken token = default)
+        {
+            if (endpoint == null) throw new ArgumentNullException(nameof(endpoint));
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/objectlocks";
+            return await Create<ObjectLock>(url, endpoint, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Check if an object lock exists.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>True if exists.</returns>
+        public async Task<bool> ExistsObjectLock(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/objectlocks/" + guid;
+            return await Exists(url, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Read an object lock.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Object lock.</returns>
+        public async Task<ObjectLock> RetrieveObjectLock(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/objectlocks/" + guid;
+            return await Retrieve<ObjectLock>(url, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Read Object locks.
+        /// </summary>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Object locks.</returns>
+        public async Task<List<ObjectLock>> RetrieveObjectLocks(CancellationToken token = default)
+        {
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/objectlocks";
+            return await RetrieveMany<ObjectLock>(url, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Update an object lock.
+        /// </summary>
+        /// <param name="endpoint">Object lock.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Object lock.</returns>
+        public async Task<ObjectLock> UpdateObjectLock(ObjectLock endpoint, CancellationToken token = default)
+        {
+            if (endpoint == null) throw new ArgumentNullException(nameof(endpoint));
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/objectlocks/" + endpoint.GUID;
+            return await Update<ObjectLock>(url, endpoint, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete an object lock.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Task.</returns>
+        public async Task DeleteObjectLock(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/objectlocks/" + guid;
             await Delete(url, token).ConfigureAwait(false);
         }
 

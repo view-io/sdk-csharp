@@ -1016,6 +1016,53 @@
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateObjectLock(View.Sdk.ObjectLock,System.Threading.CancellationToken)">
+            <summary>
+            Create an object lock.
+            </summary>
+            <param name="endpoint">Object lock.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Object lock.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsObjectLock(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if an object lock exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveObjectLock(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read an object lock.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Object lock.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveObjectLocks(System.Threading.CancellationToken)">
+            <summary>
+            Read Object locks.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Object locks.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.UpdateObjectLock(View.Sdk.ObjectLock,System.Threading.CancellationToken)">
+            <summary>
+            Update an object lock.
+            </summary>
+            <param name="endpoint">Object lock.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Object lock.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteObjectLock(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete an object lock.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
         <member name="T:View.Sdk.Credential">
             <summary>
             Credentials.
@@ -2922,6 +2969,71 @@
             </summary>
         </member>
         <member name="M:View.Sdk.Node.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.ObjectLock">
+            <summary>
+            Object lock.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ObjectLock.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ObjectLock.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ObjectLock.NodeGUID">
+            <summary>
+            Node GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ObjectLock.BucketGUID">
+            <summary>
+            Bucket GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ObjectLock.OwnerGUID">
+            <summary>
+            Owner GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ObjectLock.ObjectGUID">
+            <summary>
+            Object GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ObjectLock.Key">
+            <summary>
+            Key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ObjectLock.Version">
+            <summary>
+            Version.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ObjectLock.IsReadLock">
+            <summary>
+            Boolean indicating if this is a read lock.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ObjectLock.IsWriteLock">
+            <summary>
+            Boolean indicating if this is a write lock.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ObjectLock.CreatedUtc">
+            <summary>
+            Creation timestamp, in UTC.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.ObjectLock.#ctor">
             <summary>
             Instantiate.
             </summary>

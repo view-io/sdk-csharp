@@ -20,9 +20,6 @@
 
         #region Private-Members
 
-        private string _TenantGuid = Guid.NewGuid().ToString();
-        private string _AccessKey = null;
-        
         #endregion
 
         #region Constructors-and-Factories

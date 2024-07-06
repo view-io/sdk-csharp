@@ -25,8 +25,8 @@
         public static void Main(string[] args)
         {
             _TenantGuid = Inputty.GetString("Tenant GUID :", _TenantGuid, false);
-            _Endpoint = Inputty.GetString("Endpoint    :", _Endpoint, false);
-            _AccessKey = Inputty.GetString("Access key  :", _AccessKey, false);
+            _Endpoint =   Inputty.GetString("Endpoint    :", _Endpoint, false);
+            _AccessKey =  Inputty.GetString("Access key  :", _AccessKey, false);
 
             _Sdk = new ViewConfigurationSdk(_TenantGuid, _AccessKey, _Endpoint);
             if (_EnableLogging) _Sdk.Logger = EmitLogMessage;
@@ -35,66 +35,53 @@
             {
                 string userInput = Inputty.GetString("Command [?/help]:", null, false);
 
-                switch (userInput)
+                if (userInput.Equals("q"))
                 {
-                    case "q":
-                        _RunForever = false;
-                        break;
-                    case "?":
-                        Menu();
-                        break;
-                    case "cls":
-                        Console.Clear();
-                        break;
-
-                    case "conn":
-                        TestConnectivity().Wait();
-                        break;
-
-                    case "read tenant":
-                        ReadTenant().Wait();
-                        break;
-                    case "update tenant":
-                        UpdateTenant().Wait();
-                        break;
-
-                    case "write user":
-                        WriteUser().Wait();
-                        break;
-                    case "update user":
-                        UpdateUser().Wait();
-                        break;
-                    case "read users":
-                        ReadUsers().Wait();
-                        break;
-                    case "read user":
-                        ReadUser().Wait();
-                        break;
-                    case "delete user":
-                        DeleteUser().Wait();
-                        break;
-                    case "exists user":
-                        ExistsUser().Wait();
-                        break;
-
-                    case "write cred":
-                        WriteCredential().Wait();
-                        break;
-                    case "update cred":
-                        UpdateCredential().Wait();
-                        break;
-                    case "read creds":
-                        ReadCredentials().Wait();
-                        break;
-                    case "read cred":
-                        ReadCredential().Wait();
-                        break;
-                    case "delete cred":
-                        DeleteCredential().Wait();
-                        break;
-                    case "exists cred":
-                        ExistsCredential().Wait();
-                        break;
+                    _RunForever = false;
+                    break; 
+                }
+                else if (userInput.Equals("?"))
+                {
+                    Menu();
+                }
+                else if (userInput.Equals("cls"))
+                {
+                    Console.Clear();
+                }
+                else if (userInput.Equals("conn"))
+                {
+                    TestConnectivity().Wait();
+                }
+                else
+                {
+                    string[] parts = userInput.Split(" ");
+                    if (parts != null && parts.Length == 2)
+                    {
+                        if (parts[0].Equals("write"))
+                        {
+                            Write(parts[1]).Wait();
+                        }
+                        else if (parts[0].Equals("update"))
+                        {
+                            Update(parts[1]).Wait();
+                        }
+                        else if (parts[0].Equals("read"))
+                        {
+                            Read(parts[1]).Wait();
+                        }
+                        else if (parts[0].Equals("reads"))
+                        {
+                            ReadMultiple(parts[1]).Wait();
+                        }
+                        else if (parts[0].Equals("delete"))
+                        {
+                            Delete(parts[1]).Wait();
+                        }
+                        else if (parts[0].Equals("exists"))
+                        {
+                            Exists(parts[1]).Wait();  
+                        }
+                    }
                 }
             }
         }
@@ -108,22 +95,19 @@
             Console.WriteLine("  cls              Clear the screen");
             Console.WriteLine("  conn             Test connectivity");
             Console.WriteLine("");
-            Console.WriteLine("  read tenant       Read tenant metadata");
-            Console.WriteLine("  update tenant     Update a tenant");
+            Console.WriteLine("  [cmd] [type]     Execute an API");
             Console.WriteLine("");
-            Console.WriteLine("  write user        Create a user");
-            Console.WriteLine("  update user       Update a user");
-            Console.WriteLine("  read users        Read all users");
-            Console.WriteLine("  read user         Read a user");
-            Console.WriteLine("  delete user       Delete a user");
-            Console.WriteLine("  exists user       Check if a user exists");
+            Console.WriteLine("Where:");
             Console.WriteLine("");
-            Console.WriteLine("  write cred        Create a credential");
-            Console.WriteLine("  update cred       Update a credential");
-            Console.WriteLine("  read creds        Read all credentials");
-            Console.WriteLine("  read cred         Read a credential");
-            Console.WriteLine("  delete cred       Delete a credential");
-            Console.WriteLine("  exists cred       Check if a credential exists");
+            Console.WriteLine("  [cmd] is one of:");
+            Console.WriteLine("    write  update  read  reads  delete  exists");
+            Console.WriteLine("");
+            Console.WriteLine("  [type] is one of:");
+            Console.WriteLine("    node  tenant  user  cred  pool  bucket  enckey");
+            Console.WriteLine("    mdrule  embedrule  whevent  whrule  whtarget  ve");
+            Console.WriteLine("    lock");
+            Console.WriteLine("");
+            Console.WriteLine("Not all object types support all commands");
             Console.WriteLine("");
         }
 
@@ -143,9 +127,347 @@
             Console.WriteLine("");
         }
 
-        private static string GetGuid(string prompt)
+        private static async Task Write(string type)
         {
-            return Inputty.GetString(prompt, null, false);
+            switch (type)
+            {
+                case "node":
+                    Node node = BuildObject<Node>();
+                    EnumerateResponse(await _Sdk.CreateNode(node));
+                    return;
+                case "tenant":
+                    return;
+                case "user":
+                    UserMaster user = BuildObject<UserMaster>();
+                    EnumerateResponse(await _Sdk.CreateUser(user));
+                    return;
+                case "cred":
+                    Credential cred = BuildObject<Credential>();
+                    EnumerateResponse(await _Sdk.CreateCredential(cred));
+                    return;
+                case "pool":
+                    StoragePool pool = BuildObject<StoragePool>();
+                    EnumerateResponse(await _Sdk.CreatePool(pool));
+                    return;
+                case "bucket":
+                    BucketMetadata bucket = BuildObject<BucketMetadata>();
+                    EnumerateResponse(await _Sdk.CreateBucket(bucket));
+                    return;
+                case "enckey":
+                    EncryptionKey key = BuildObject<EncryptionKey>();
+                    EnumerateResponse(await _Sdk.CreateEncryptionKey(key));
+                    return;
+                case "mdrule":
+                    MetadataRule mdRule = BuildObject<MetadataRule>();
+                    EnumerateResponse(await _Sdk.CreateMetadataRule(mdRule));
+                    return;
+                case "embedrule":
+                    EmbeddingsRule embedRule = BuildObject<EmbeddingsRule>();
+                    EnumerateResponse(await _Sdk.CreateEmbeddingsRule(embedRule));
+                    return;
+                case "whevent":
+                    return;
+                case "whrule":
+                    WebhookRule whRule = BuildObject<WebhookRule>();
+                    EnumerateResponse(await _Sdk.CreateWebhookRule(whRule));
+                    break;
+                case "whtarget":
+                    WebhookTarget whTarget = BuildObject<WebhookTarget>();
+                    EnumerateResponse(await _Sdk.CreateWebhookTarget(whTarget));
+                    break;
+                case "ve":
+                    ViewEndpoint ve = BuildObject<ViewEndpoint>();
+                    EnumerateResponse(await _Sdk.CreateViewEndpoint(ve));
+                    break;
+                case "lock":
+                    break;
+                default:
+                    return;
+            }
+
+            Console.WriteLine("");
+        }
+
+        private static async Task Read(string type)
+        {
+            string guid = Inputty.GetString("GUID:", null, true);
+            if (String.IsNullOrEmpty(guid) && !type.Equals("tenant")) return;
+
+            switch (type)
+            {
+                case "node":
+                    EnumerateResponse(await _Sdk.RetrieveNode(guid));
+                    return;
+                case "tenant":
+                    EnumerateResponse(await _Sdk.RetrieveTenant());
+                    return;
+                case "user":
+                    EnumerateResponse(await _Sdk.RetrieveUser(guid));
+                    return;
+                case "cred":
+                    EnumerateResponse(await _Sdk.RetrieveCredential(guid));
+                    return;
+                case "pool":
+                    EnumerateResponse(await _Sdk.RetrievePool(guid));
+                    return;
+                case "bucket":
+                    EnumerateResponse(await _Sdk.RetrieveBucket(guid));
+                    return;
+                case "enckey":
+                    EnumerateResponse(await _Sdk.RetrieveEncryptionKey(guid));
+                    return;
+                case "mdrule":
+                    EnumerateResponse(await _Sdk.RetrieveMetadataRule(guid));
+                    return;
+                case "embedrule":
+                    EnumerateResponse(await _Sdk.RetrieveEmbeddingsRule(guid));
+                    return;
+                case "whevent":
+                    EnumerateResponse(await _Sdk.RetrieveWebhookEvent(guid));
+                    return;
+                case "whrule":
+                    EnumerateResponse(await _Sdk.RetrieveWebhookRule(guid));
+                    break;
+                case "whtarget":
+                    EnumerateResponse(await _Sdk.RetrieveWebhookTarget(guid));
+                    break;
+                case "ve":
+                    EnumerateResponse(await _Sdk.RetrieveViewEndpoint(guid));
+                    break; ;
+                case "lock":
+                    EnumerateResponse(await _Sdk.RetrieveObjectLock(guid));
+                    break;
+                default:
+                    return;
+            }
+
+            Console.WriteLine("");
+        }
+
+        private static async Task ReadMultiple(string type)
+        {
+            switch (type)
+            {
+                case "node":
+                    EnumerateResponse(await _Sdk.RetrieveNodes());
+                    return;
+                case "tenant":
+                    return;
+                case "user":
+                    EnumerateResponse(await _Sdk.RetrieveUsers());
+                    return;
+                case "cred":
+                    EnumerateResponse(await _Sdk.RetrieveCredentials());
+                    return;
+                case "pool":
+                    EnumerateResponse(await _Sdk.RetrievePools());
+                    return;
+                case "bucket":
+                    EnumerateResponse(await _Sdk.RetrieveBuckets());
+                    return;
+                case "enckey":
+                    EnumerateResponse(await _Sdk.RetrieveEncryptionKeys());
+                    return;
+                case "mdrule":
+                    EnumerateResponse(await _Sdk.RetrieveMetadataRules());
+                    return;
+                case "embedrule":
+                    EnumerateResponse(await _Sdk.RetrieveEmbeddingsRules());
+                    return;
+                case "whevent":
+                    EnumerateResponse(await _Sdk.RetrieveWebhookEvents());
+                    return;
+                case "whrule":
+                    EnumerateResponse(await _Sdk.RetrieveWebhookRules());
+                    break;
+                case "whtarget":
+                    EnumerateResponse(await _Sdk.RetrieveWebhookTargets());
+                    break;
+                case "ve":
+                    EnumerateResponse(await _Sdk.RetrieveViewEndpoints());
+                    break;
+                case "lock":
+                    EnumerateResponse(await _Sdk.RetrieveObjectLocks());
+                    break;
+                default:
+                    return;
+            }
+
+            Console.WriteLine("");
+        }
+
+        private static async Task Update(string type)
+        {
+            switch (type)
+            {
+                case "node":
+                    Node node = BuildObject<Node>();
+                    EnumerateResponse(await _Sdk.UpdateNode(node));
+                    return;
+                case "tenant":
+                    TenantMetadata tenant = BuildObject<TenantMetadata>();
+                    EnumerateResponse(await _Sdk.UpdateTenant(tenant));
+                    return;
+                case "user":
+                    UserMaster user = BuildObject<UserMaster>();
+                    EnumerateResponse(await _Sdk.UpdateUser(user));
+                    return;
+                case "cred":
+                    Credential cred = BuildObject<Credential>();
+                    EnumerateResponse(await _Sdk.UpdateCredential(cred));
+                    return;
+                case "pool":
+                    StoragePool pool = BuildObject<StoragePool>();
+                    EnumerateResponse(await _Sdk.UpdatePool(pool));
+                    return;
+                case "bucket":
+                    BucketMetadata bucket = BuildObject<BucketMetadata>();
+                    EnumerateResponse(await _Sdk.UpdateBucket(bucket));
+                    return;
+                case "enckey":
+                    EncryptionKey key = BuildObject<EncryptionKey>();
+                    EnumerateResponse(await _Sdk.UpdateEncryptionKey(key));
+                    return;
+                case "mdrule":
+                    MetadataRule mdRule = BuildObject<MetadataRule>();
+                    EnumerateResponse(await _Sdk.UpdateMetadataRule(mdRule));
+                    return;
+                case "embedrule":
+                    EmbeddingsRule embedRule = BuildObject<EmbeddingsRule>();
+                    EnumerateResponse(await _Sdk.UpdateEmbeddingsRule(embedRule));
+                    return;
+                case "whevent":
+                    return;
+                case "whrule":
+                    WebhookRule whRule = BuildObject<WebhookRule>();
+                    EnumerateResponse(await _Sdk.UpdateWebhookRule(whRule));
+                    break;
+                case "whtarget":
+                    WebhookTarget whTarget = BuildObject<WebhookTarget>();
+                    EnumerateResponse(await _Sdk.UpdateWebhookTarget(whTarget));
+                    break;
+                case "ve":
+                    ViewEndpoint ve = BuildObject<ViewEndpoint>();
+                    EnumerateResponse(await _Sdk.UpdateViewEndpoint(ve));
+                    break;
+                case "lock":
+                    break;
+                default:
+                    return;
+            }
+
+            Console.WriteLine("");
+        }
+
+        private static async Task Delete(string type)
+        {
+            string guid = Inputty.GetString("GUID:", null, true);
+            if (String.IsNullOrEmpty(guid)) return;
+
+            switch (type)
+            {
+                case "node":
+                    await _Sdk.DeleteNode(guid);
+                    return;
+                case "tenant":
+                    return;
+                case "user":
+                    await _Sdk.DeleteUser(guid);
+                    return;
+                case "cred":
+                    await _Sdk.DeleteCredential(guid);
+                    return;
+                case "pool":
+                    await _Sdk.DeletePool(guid);
+                    return;
+                case "bucket":
+                    await _Sdk.DeleteBucket(guid);
+                    return;
+                case "enckey":
+                    await _Sdk.DeleteEncryptionKey(guid);
+                    return;
+                case "mdrule":
+                    await _Sdk.DeleteMetadataRule(guid);
+                    return;
+                case "embedrule":
+                    await _Sdk.DeleteEmbeddingsRule(guid);
+                    return;
+                case "whevent":
+                    return;
+                case "whrule":
+                    await _Sdk.DeleteWebhookRule(guid);
+                    break;
+                case "whtarget":
+                    await _Sdk.DeleteWebhookTarget(guid);
+                    break;
+                case "ve":
+                    await _Sdk.DeleteViewEndpoint(guid);
+                    break;
+                case "lock":
+                    await _Sdk.DeleteObjectLock(guid);
+                    break;
+                default:
+                    return;
+            }
+
+            Console.WriteLine("");
+        }
+
+        private static async Task Exists(string type)
+        {
+            string guid = Inputty.GetString("GUID:", null, true);
+            if (String.IsNullOrEmpty(guid)) return;
+
+            bool exists = false;
+
+            switch (type)
+            {
+                case "node":
+                    exists = await _Sdk.ExistsNode(guid);
+                    break;
+                case "tenant":
+                    return;
+                case "user":
+                    exists = await _Sdk.ExistsUser(guid);
+                    break;
+                case "cred":
+                    exists = await _Sdk.ExistsCredential(guid);
+                    break;
+                case "pool":
+                    exists = await _Sdk.ExistsPool(guid);
+                    break;
+                case "bucket":
+                    exists = await _Sdk.ExistsBucket(guid);
+                    break;
+                case "enckey":
+                    exists = await _Sdk.ExistsEncryptionKey(guid);
+                    break;
+                case "mdrule":
+                    exists = await _Sdk.ExistsMetadataRule(guid);
+                    break;
+                case "embedrule":
+                    exists = await _Sdk.ExistsEmbeddingsRule(guid);
+                    break;
+                case "whevent":
+                    exists = await _Sdk.ExistsWebhookEvent(guid);
+                    break;
+                case "whrule":
+                    exists = await _Sdk.ExistsWebhookRule(guid);
+                    break;
+                case "whtarget":
+                    exists = await _Sdk.ExistsWebhookTarget(guid);
+                    break;
+                case "ve":
+                    exists = await _Sdk.ExistsViewEndpoint(guid);
+                    break;
+                case "lock":
+                    break;
+                default:
+                    return;
+            }
+
+            Console.WriteLine("Exists: " + exists);
+            Console.WriteLine("");
         }
 
         private static T BuildObject<T>()
@@ -166,101 +488,6 @@
 
             Console.WriteLine("");
         }
-
-        #region Tenants
-
-        private static async Task ReadTenant()
-        {
-            EnumerateResponse(await _Sdk.RetrieveTenant());
-        }
-
-        private static async Task UpdateTenant()
-        {
-            TenantMetadata obj = BuildObject<TenantMetadata>();
-            EnumerateResponse(await _Sdk.UpdateTenant(obj));
-        }
-
-        #endregion
-
-        #region Users
-
-        private static async Task WriteUser()
-        {
-            UserMaster obj = BuildObject<UserMaster>();
-            EnumerateResponse(await _Sdk.CreateUser(obj));
-        }
-
-        private static async Task UpdateUser()
-        {
-            UserMaster obj = BuildObject<UserMaster>();
-            EnumerateResponse(await _Sdk.UpdateUser(obj));
-        }
-
-        private static async Task ReadUsers()
-        {
-            EnumerateResponse(await _Sdk.RetrieveUsers());
-        }
-
-        private static async Task ReadUser()
-        {
-            string guid = GetGuid("GUID:");
-            EnumerateResponse(await _Sdk.RetrieveUser(guid));
-        }
-
-        private static async Task DeleteUser()
-        {
-            string guid = GetGuid("GUID:");
-            await _Sdk.DeleteUser(guid);
-        }
-
-        private static async Task ExistsUser()
-        {
-            string guid = GetGuid("GUID:");
-            bool exists = await _Sdk.ExistsUser(guid);
-            Console.WriteLine("Exists: " + exists);
-        }
-
-        #endregion
-
-        #region Credentials
-
-        private static async Task WriteCredential()
-        {
-            Credential obj = BuildObject<Credential>();
-            EnumerateResponse(await _Sdk.CreateCredential(obj));
-        }
-
-        private static async Task UpdateCredential()
-        {
-            Credential obj = BuildObject<Credential>();
-            EnumerateResponse(await _Sdk.UpdateCredential(obj));
-        }
-
-        private static async Task ReadCredentials()
-        {
-            EnumerateResponse(await _Sdk.RetrieveCredentials());
-        }
-
-        private static async Task ReadCredential()
-        {
-            string guid = GetGuid("GUID:");
-            EnumerateResponse(await _Sdk.RetrieveCredential(guid));
-        }
-
-        private static async Task DeleteCredential()
-        {
-            string guid = GetGuid("GUID:");
-            await _Sdk.DeleteCredential(guid);
-        }
-
-        private static async Task ExistsCredential()
-        {
-            string guid = GetGuid("GUID:");
-            bool exists = await _Sdk.ExistsCredential(guid);
-            Console.WriteLine("Exists: " + exists);
-        }
-
-        #endregion
 
 #pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
     }
