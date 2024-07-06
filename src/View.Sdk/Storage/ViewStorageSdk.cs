@@ -47,6 +47,10 @@
 
         #endregion
 
+        #region Multipart-Uploads
+
+        #endregion
+
         #region Tags
 
         #endregion
