@@ -13,6 +13,8 @@
 #pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
 
         private static bool _RunForever = true;
+        private static string _TenantGUID = "default";
+        private static string _AccessKey = "default";
         private static string _Endpoint = "http://localhost:8311/";
         private static ViewVectorProxySdk _Sdk = null;
         private static SerializationHelper _Serializer = new SerializationHelper();
@@ -20,8 +22,10 @@
 
         public static void Main(string[] args)
         {
-            _Endpoint = Inputty.GetString("Endpoint    :", _Endpoint, false);
-            _Sdk = new ViewVectorProxySdk(_Endpoint);
+            _TenantGUID = Inputty.GetString("Tenant GUID :", _Endpoint, false);
+            _AccessKey =  Inputty.GetString("Access key  :", _Endpoint, false);
+            _Endpoint =   Inputty.GetString("Endpoint    :", _Endpoint, false);
+            _Sdk = new ViewVectorProxySdk(_TenantGUID, _AccessKey, _Endpoint);
             if (_EnableLogging) _Sdk.Logger = EmitLogMessage;
 
             while (_RunForever)

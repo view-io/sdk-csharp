@@ -28,10 +28,12 @@
         /// <summary>
         /// Instantiate.
         /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="accessKey">Access key.</param>
         /// <param name="endpoint">Endpoint URL.</param>
-        public ViewVectorProxySdk(string endpoint = "http://localhost:8311/") : base(endpoint)
+        public ViewVectorProxySdk(string tenantGuid, string accessKey, string endpoint = "http://localhost:8311/") : base(tenantGuid, accessKey, endpoint)
         {
-            Header = "[ViewPgvProxySdk] ";
+            Header = "[ViewVectorProxySdk] ";
         }
 
         #endregion
@@ -48,7 +50,7 @@
         {
             if (document == null) throw new ArgumentNullException(nameof(document));
 
-            string url = Endpoint + "v1.0/documents";
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/documents";
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Post))
             {
@@ -95,7 +97,7 @@
         {
             if (delReq == null) throw new ArgumentNullException(nameof(delReq));
 
-            string url = Endpoint + "v1.0/documents";
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/documents";
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Delete))
             {
@@ -135,7 +137,7 @@
         {
             if (delReq == null) throw new ArgumentNullException(nameof(delReq));
 
-            string url = Endpoint + "v1.0/documents?truncate";
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/documents?truncate";
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Delete))
             {
@@ -175,7 +177,7 @@
         {
             if (query == null) throw new ArgumentNullException(nameof(query));
 
-            string url = Endpoint + "v1.0/documents?enumerate";
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/documents?enumerate";
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Post))
             {
@@ -222,7 +224,7 @@
         {
             if (searchReq == null) throw new ArgumentNullException(nameof(searchReq));
 
-            string url = Endpoint + "v1.0/search/similarity";
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/search/similarity";
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Put))
             {
@@ -269,7 +271,7 @@
         {
             if (queryReq == null) throw new ArgumentNullException(nameof(queryReq));
 
-            string url = Endpoint + "v1.0/query";
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/query";
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Post))
             {

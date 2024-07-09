@@ -5084,10 +5084,12 @@
             View Vector Proxy SDK.
             </summary>
         </member>
-        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.#ctor(System.String)">
+        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.#ctor(System.String,System.String,System.String)">
             <summary>
             Instantiate.
             </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="accessKey">Access key.</param>
             <param name="endpoint">Endpoint URL.</param>
         </member>
         <member name="M:View.Sdk.Vector.ViewVectorProxySdk.WriteDocument(View.Sdk.EmbeddingsDocument,System.Threading.CancellationToken)">
