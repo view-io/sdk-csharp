@@ -56,6 +56,11 @@
         public string ObjectGUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
+        /// Vector repository GUID.
+        /// </summary>
+        public string VectorRepositoryGUID { get; set; } = Guid.NewGuid().ToString();
+
+        /// <summary>
         /// Object key.
         /// </summary>
         public string ObjectKey { get; set; } = null;

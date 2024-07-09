@@ -1603,6 +1603,11 @@
             Object GUID.
             </summary>
         </member>
+        <member name="P:View.Sdk.EmbeddingsDocument.VectorRepositoryGUID">
+            <summary>
+            Vector repository GUID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.EmbeddingsDocument.ObjectKey">
             <summary>
             Object key.
