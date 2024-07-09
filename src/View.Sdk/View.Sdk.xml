@@ -3652,21 +3652,6 @@
             Instantiate.
             </summary>
         </member>
-        <member name="T:View.Sdk.RepositoryTypeEnum">
-            <summary>
-            Repository type.
-            </summary>
-        </member>
-        <member name="F:View.Sdk.RepositoryTypeEnum.Mysql">
-            <summary>
-            Mysql.
-            </summary>
-        </member>
-        <member name="F:View.Sdk.RepositoryTypeEnum.Pgvector">
-            <summary>
-            Pgvector.
-            </summary>
-        </member>
         <member name="T:View.Sdk.SchemaCondition">
             <summary>
             Available conditions for search filters.
