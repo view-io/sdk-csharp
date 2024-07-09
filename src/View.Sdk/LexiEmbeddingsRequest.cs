@@ -19,6 +19,11 @@
         /// </summary>
         public EmbeddingsRule EmbeddingsRule { get; set; } = null;
 
+        /// <summary>
+        /// Vector repository.
+        /// </summary>
+        public VectorRepository VectorRepository { get; set; } = null;
+
         #endregion
 
         #region Private-Members

@@ -2380,6 +2380,11 @@
             Embeddings rule.
             </summary>
         </member>
+        <member name="P:View.Sdk.LexiEmbeddingsRequest.VectorRepository">
+            <summary>
+            Vector repository.
+            </summary>
+        </member>
         <member name="M:View.Sdk.LexiEmbeddingsRequest.#ctor">
             <summary>
             Instantiate.
