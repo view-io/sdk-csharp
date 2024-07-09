@@ -3357,6 +3357,11 @@
             Embeddings rule.
             </summary>
         </member>
+        <member name="P:View.Sdk.ProcessorRequest.VectorRepository">
+            <summary>
+            Vector repository.
+            </summary>
+        </member>
         <member name="M:View.Sdk.ProcessorRequest.#ctor">
             <summary>
             Instantiate.

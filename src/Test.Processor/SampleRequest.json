@@ -35,22 +35,15 @@
   "EmbeddingsRule": {
     "GUID": "embeddingsrule",
     "TenantGUID": "default",
-    "BucketGUID": "data",
+    "BucketGUID": "example-data-bucket",
     "OwnerGUID": "default",
     "Name": "My embeddings rule",
     "ContentType": "text/plain",
     "TargetBucketGUID": "embeddings",
+    "VectorRepositoryGUID": "example-vector-repository",
     "EmbeddingsGenerator": "LCProxy",
     "GeneratorUrl": "http://localhost:8301/",
     "GeneratorApiKey": "[huggingface access token]",
-    "Model": "all-MiniLM-L6-v2",
-    "Dimensionality": 384,
-    "VectorRepositoryType": "Pgvector",
-    "VectorDatabaseHostname": "localhost",
-    "VectorDatabaseName": "vectordb",
-    "VectorDatabaseTable": "vectors",
-    "VectorDatabasePort": 5432,
-    "VectorDatabaseUser": "postgres",
-    "VectorDatabasePassword": "password"
+    "Model": "all-MiniLM-L6-v2"
   }
 }
