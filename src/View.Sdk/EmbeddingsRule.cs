@@ -82,6 +82,11 @@
         public string GeneratorApiKey { get; set; } = null;
 
         /// <summary>
+        /// Vector store URL.
+        /// </summary>
+        public string VectorStoreUrl { get; set; } = "http://localhost:8311/";
+
+        /// <summary>
         /// Maximum content length.
         /// </summary>
         public int MaxContentLength

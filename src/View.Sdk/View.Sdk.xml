@@ -1812,6 +1812,11 @@
             Embeddings provider API key.
             </summary>
         </member>
+        <member name="P:View.Sdk.EmbeddingsRule.VectorStoreUrl">
+            <summary>
+            Vector store URL.
+            </summary>
+        </member>
         <member name="P:View.Sdk.EmbeddingsRule.MaxContentLength">
             <summary>
             Maximum content length.

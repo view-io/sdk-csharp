@@ -45,5 +45,19 @@
     "GeneratorUrl": "http://localhost:8301/",
     "GeneratorApiKey": "[huggingface access token]",
     "Model": "all-MiniLM-L6-v2"
+  },
+  "VectorRepository": {
+    "GUID": "example-vector-repository",
+    "TenantGUID": "default",
+    "Name": "My vector repository",
+    "RepositoryType": "Pgvector",
+    "Model": "all-MiniLM-L6-v2",
+    "Dimensionality": 384,
+    "DatabaseHostname": "localhost",
+    "DatabaseName": "vectordb",
+    "DatabaseTable": "vectors",
+    "DatabasePort": 5432,
+    "DatabaseUser": "postgres",
+    "DatabasePassword": "password"
   }
 }
