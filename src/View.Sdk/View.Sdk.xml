@@ -3453,12 +3453,13 @@
             </summary>
             <param name="endpoint">Endpoint URL.</param>
         </member>
-        <member name="M:View.Sdk.Processor.ViewLexiEmbeddingsSdk.Process(View.Sdk.SearchResult,View.Sdk.EmbeddingsRule,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Processor.ViewLexiEmbeddingsSdk.Process(View.Sdk.SearchResult,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,System.Threading.CancellationToken)">
             <summary>
             Process a document.
             </summary>
             <param name="results">Search results.</param>
             <param name="embedRule">Embeddings rule.</param>
+            <param name="vectorRepo">Vector repository.</param>
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
@@ -3483,13 +3484,14 @@
             </summary>
             <param name="endpoint">Endpoint URL.</param>
         </member>
-        <member name="M:View.Sdk.Processor.ViewProcessorSdk.Process(View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Processor.ViewProcessorSdk.Process(View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,System.Threading.CancellationToken)">
             <summary>
             Process a document.
             </summary>
             <param name="obj">Object metadata.</param>
             <param name="mdRule">Metadata rule.</param>
             <param name="embedRule">Embeddings rule.</param>
+            <param name="vectorRepo">Vector repository.</param>
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>

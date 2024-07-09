@@ -54,12 +54,14 @@
         /// <param name="obj">Object metadata.</param>
         /// <param name="mdRule">Metadata rule.</param>
         /// <param name="embedRule">Embeddings rule.</param>
+        /// <param name="vectorRepo">Vector repository.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Task.</returns>
         public async Task<ProcessorResponse> Process(
             ObjectMetadata obj, 
             MetadataRule mdRule, 
             EmbeddingsRule embedRule, 
+            VectorRepository vectorRepo,
             CancellationToken token = default)
         {
             if (obj == null) throw new ArgumentNullException(nameof(obj));
@@ -77,7 +79,8 @@
                     {
                         Object = obj,
                         MetadataRule = mdRule,
-                        EmbeddingsRule = embedRule
+                        EmbeddingsRule = embedRule,
+                        VectorRepository = vectorRepo
                     };
 
                     string json = Serializer.SerializeJson(procReq, true);

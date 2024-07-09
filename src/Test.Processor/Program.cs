@@ -99,7 +99,7 @@
         {
             string file = Inputty.GetString("Filename:", "./SampleRequest.json", false);
             ProcessorRequest req = _Serializer.DeserializeJson<ProcessorRequest>(File.ReadAllText(file));
-            ProcessorResponse resp = await _Sdk.Process(req.Object, req.MetadataRule, req.EmbeddingsRule);
+            ProcessorResponse resp = await _Sdk.Process(req.Object, req.MetadataRule, req.EmbeddingsRule, req.VectorRepository);
             EnumerateResponse(resp);
         }
 

@@ -52,11 +52,13 @@
         /// </summary>
         /// <param name="results">Search results.</param>
         /// <param name="embedRule">Embeddings rule.</param>
+        /// <param name="vectorRepo">Vector repository.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Task.</returns>
         public async Task<LexiEmbeddingsResponse> Process(
             SearchResult results, 
-            EmbeddingsRule embedRule, 
+            EmbeddingsRule embedRule,
+            VectorRepository vectorRepo,
             CancellationToken token = default)
         {
             if (results == null) throw new ArgumentNullException(nameof(results));
@@ -73,7 +75,8 @@
                     LexiEmbeddingsRequest procReq = new LexiEmbeddingsRequest
                     {
                         Results = results,
-                        EmbeddingsRule = embedRule
+                        EmbeddingsRule = embedRule,
+                        VectorRepository = vectorRepo
                     };
 
                     string json = Serializer.SerializeJson(procReq, true);
