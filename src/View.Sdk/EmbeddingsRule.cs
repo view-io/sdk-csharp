@@ -57,6 +57,16 @@
         public string TargetBucketGUID { get; set; } = null;
 
         /// <summary>
+        /// Vector repository GUID.
+        /// </summary>
+        public string VectorRepositoryGUID { get; set; } = null;
+
+        /// <summary>
+        /// Data flow endpoint.
+        /// </summary>
+        public string DataFlowEndpoint { get; set; } = "http://localhost:8501/processor";
+
+        /// <summary>
         /// Embeddings generator.
         /// </summary>
         public EmbeddingsGeneratorEnum EmbeddingsGenerator { get; set; } = EmbeddingsGeneratorEnum.LCProxy;
@@ -70,83 +80,6 @@
         /// Embeddings provider API key.
         /// </summary>
         public string GeneratorApiKey { get; set; } = null;
-
-        /// <summary>
-        /// Embeddings model.
-        /// </summary>
-        public string Model { get; set; } = "all-MiniLM-L6-v2";
-
-        /// <summary>
-        /// Dimensionality of embeddings.
-        /// </summary>
-        public int Dimensionality
-        {
-            get
-            {
-                return _Dimensionality;
-            }
-            set
-            {
-                if (value < 1) throw new ArgumentOutOfRangeException(nameof(Dimensionality));
-                _Dimensionality = value;
-            }
-        }
-
-        /// <summary>
-        /// Data flow endpoint.
-        /// </summary>
-        public string DataFlowEndpoint { get; set; } = "http://localhost:8501/processor";
-
-        /// <summary>
-        /// Vector repository type.
-        /// </summary>
-        public RepositoryTypeEnum VectorRepositoryType { get; set; } = RepositoryTypeEnum.Pgvector;
-
-        /// <summary>
-        /// Vector store URL.
-        /// </summary>
-        public string VectorStoreUrl { get; set; } = "http://localhost:8311/";
-
-        /// <summary>
-        /// Vector database hostname.
-        /// </summary>
-        public string VectorDatabaseHostname { get; set; } = null;
-
-        /// <summary>
-        /// Vector database name.
-        /// </summary>
-        public string VectorDatabaseName { get; set; } = null;
-
-        /// <summary>
-        /// Vector database table name.
-        /// </summary>
-        public string VectorDatabaseTable { get; set; } = null;
-
-        /// <summary>
-        /// Vector database port.
-        /// </summary>
-        public int VectorDatabasePort
-        {
-            get
-            {
-                return _VectorDatabasePort;
-            }
-            set
-            {
-                if (value < 0 || value > 65535) throw new ArgumentOutOfRangeException(nameof(VectorDatabasePort));
-                _VectorDatabasePort = value;
-            }
-        }
-
-        /// <summary>
-        /// Vector database user.
-        /// </summary>
-        public string VectorDatabaseUser { get; set; } = null;
-
-        /// <summary>
-        /// Vector database password.
-        /// </summary>
-        public string VectorDatabasePassword { get; set; } = null;
 
         /// <summary>
         /// Maximum content length.
@@ -190,8 +123,6 @@
         #region Private-Members
 
         private int? _RetentionMinutes = null;
-        private int _Dimensionality = 384;
-        private int _VectorDatabasePort = 5432;
         private int _MaxContentLength = 16 * 1024 * 1024;
 
         #endregion

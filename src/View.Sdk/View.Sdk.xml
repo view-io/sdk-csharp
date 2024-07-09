@@ -1463,6 +1463,11 @@
             Bucket GUID.
             </summary>
         </member>
+        <member name="P:View.Sdk.DeleteRequest.VectorRepositoryGUID">
+            <summary>
+            Vector repository GUID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.DeleteRequest.Key">
             <summary>
             Key.
@@ -1476,46 +1481,6 @@
         <member name="P:View.Sdk.DeleteRequest.ObjectGUID">
             <summary>
             Object GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DeleteRequest.VectorRepositoryType">
-            <summary>
-            Vector repository type.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DeleteRequest.VectorDatabaseHostname">
-            <summary>
-            Vector database hostname.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DeleteRequest.VectorDatabaseName">
-            <summary>
-            Vector database name.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DeleteRequest.VectorDatabaseTable">
-            <summary>
-            Vector database table name.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DeleteRequest.VectorDatabasePort">
-            <summary>
-            Vector database port.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DeleteRequest.VectorDatabaseUser">
-            <summary>
-            Vector database user.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DeleteRequest.VectorDatabasePassword">
-            <summary>
-            Vector database password.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DeleteRequest.Dimensionality">
-            <summary>
-            Dimensionality of embeddings.
             </summary>
         </member>
         <member name="M:View.Sdk.DeleteRequest.#ctor">
@@ -1822,6 +1787,16 @@
             Target bucket GUID.
             </summary>
         </member>
+        <member name="P:View.Sdk.EmbeddingsRule.VectorRepositoryGUID">
+            <summary>
+            Vector repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EmbeddingsRule.DataFlowEndpoint">
+            <summary>
+            Data flow endpoint.
+            </summary>
+        </member>
         <member name="P:View.Sdk.EmbeddingsRule.EmbeddingsGenerator">
             <summary>
             Embeddings generator.
@@ -1835,61 +1810,6 @@
         <member name="P:View.Sdk.EmbeddingsRule.GeneratorApiKey">
             <summary>
             Embeddings provider API key.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsRule.Model">
-            <summary>
-            Embeddings model.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsRule.Dimensionality">
-            <summary>
-            Dimensionality of embeddings.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsRule.DataFlowEndpoint">
-            <summary>
-            Data flow endpoint.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsRule.VectorRepositoryType">
-            <summary>
-            Vector repository type.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsRule.VectorStoreUrl">
-            <summary>
-            Vector store URL.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsRule.VectorDatabaseHostname">
-            <summary>
-            Vector database hostname.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsRule.VectorDatabaseName">
-            <summary>
-            Vector database name.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsRule.VectorDatabaseTable">
-            <summary>
-            Vector database table name.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsRule.VectorDatabasePort">
-            <summary>
-            Vector database port.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsRule.VectorDatabaseUser">
-            <summary>
-            Vector database user.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsRule.VectorDatabasePassword">
-            <summary>
-            Vector database password.
             </summary>
         </member>
         <member name="P:View.Sdk.EmbeddingsRule.MaxContentLength">
@@ -2092,6 +2012,11 @@
             Collection GUID.
             </summary>
         </member>
+        <member name="P:View.Sdk.EnumerationQuery.VectorRepositoryGUID">
+            <summary>
+            Vector repository GUID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.EnumerationQuery.MaxResults">
             <summary>
             Maximum number of results to retrieve.
@@ -2140,46 +2065,6 @@
         <member name="P:View.Sdk.EnumerationQuery.Ordering">
             <summary>
             Order by.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EnumerationQuery.VectorRepositoryType">
-            <summary>
-            Vector repository type.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EnumerationQuery.VectorDatabaseHostname">
-            <summary>
-            Vector database hostname.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EnumerationQuery.VectorDatabaseName">
-            <summary>
-            Vector database name.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EnumerationQuery.VectorDatabaseTable">
-            <summary>
-            Vector database table name.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EnumerationQuery.VectorDatabasePort">
-            <summary>
-            Vector database port.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EnumerationQuery.VectorDatabaseUser">
-            <summary>
-            Vector database user.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EnumerationQuery.VectorDatabasePassword">
-            <summary>
-            Vector database password.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EnumerationQuery.Dimensionality">
-            <summary>
-            Dimensionality of embeddings.
             </summary>
         </member>
         <member name="M:View.Sdk.EnumerationQuery.#ctor">
@@ -3702,44 +3587,9 @@
             Query.
             </summary>
         </member>
-        <member name="P:View.Sdk.QueryRequest.VectorRepositoryType">
+        <member name="P:View.Sdk.QueryRequest.VectorRepositoryGUID">
             <summary>
-            Vector repository type.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.QueryRequest.VectorDatabaseHostname">
-            <summary>
-            Vector database hostname.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.QueryRequest.VectorDatabaseName">
-            <summary>
-            Vector database name.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.QueryRequest.VectorDatabaseTable">
-            <summary>
-            Vector database table name.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.QueryRequest.VectorDatabasePort">
-            <summary>
-            Vector database port.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.QueryRequest.VectorDatabaseUser">
-            <summary>
-            Vector database user.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.QueryRequest.VectorDatabasePassword">
-            <summary>
-            Vector database password.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.QueryRequest.Dimensionality">
-            <summary>
-            Dimensionality of embeddings.
+            Vector repository GUID.
             </summary>
         </member>
         <member name="M:View.Sdk.QueryRequest.#ctor">
@@ -4144,44 +3994,9 @@
             Search type.
             </summary>
         </member>
-        <member name="P:View.Sdk.SearchRequest.VectorRepositoryType">
+        <member name="P:View.Sdk.SearchRequest.VectorRepositoryGUID">
             <summary>
-            Vector repository type.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SearchRequest.VectorDatabaseHostname">
-            <summary>
-            Vector database hostname.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SearchRequest.VectorDatabaseName">
-            <summary>
-            Vector database name.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SearchRequest.VectorDatabaseTable">
-            <summary>
-            Vector database table name.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SearchRequest.VectorDatabasePort">
-            <summary>
-            Vector database port.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SearchRequest.VectorDatabaseUser">
-            <summary>
-            Vector database user.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SearchRequest.VectorDatabasePassword">
-            <summary>
-            Vector database password.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SearchRequest.Dimensionality">
-            <summary>
-            Dimensionality of embeddings.
+            Vector repository GUID.
             </summary>
         </member>
         <member name="P:View.Sdk.SearchRequest.StartIndex">
@@ -5125,59 +4940,109 @@
             Instantiate.
             </summary>
         </member>
-        <member name="T:View.Sdk.Vector.DatabaseSettings">
+        <member name="T:View.Sdk.VectorRepository">
             <summary>
-            Database settings.
+            Vector repository.
             </summary>
         </member>
-        <member name="P:View.Sdk.Vector.DatabaseSettings.Model">
+        <member name="P:View.Sdk.VectorRepository.GUID">
             <summary>
-            Model.
+            GUID.
             </summary>
         </member>
-        <member name="P:View.Sdk.Vector.DatabaseSettings.Dimensionality">
+        <member name="P:View.Sdk.VectorRepository.TenantGUID">
             <summary>
-            Dimensionality.
+            Tenant GUID.
             </summary>
         </member>
-        <member name="P:View.Sdk.Vector.DatabaseSettings.VectorRepositoryType">
+        <member name="P:View.Sdk.VectorRepository.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorRepository.RepositoryType">
+            <summary>
+            Type of vector repository.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorRepository.EndpointUrl">
+            <summary>
+            Endpoint URL.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorRepository.ApiKey">
+            <summary>
+            API key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorRepository.Model">
+            <summary>
+            Embeddings model.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorRepository.Dimensionality">
+            <summary>
+            Dimensionality of embeddings.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorRepository.DatabaseHostname">
+            <summary>
+            Database hostname.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorRepository.DatabaseName">
+            <summary>
+            Database name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorRepository.DatabaseTable">
+            <summary>
+            Database table name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorRepository.DatabasePort">
+            <summary>
+            Database port.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorRepository.DatabaseUser">
+            <summary>
+            Database user.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorRepository.DatabasePassword">
+            <summary>
+            Database password.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorRepository.CreatedUtc">
+            <summary>
+            Creation timestamp, in UTC time.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.VectorRepository.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.VectorRepositoryTypeEnum">
             <summary>
             Vector repository type.
             </summary>
         </member>
-        <member name="P:View.Sdk.Vector.DatabaseSettings.VectorDatabaseHostname">
+        <member name="F:View.Sdk.VectorRepositoryTypeEnum.MysqlHeatwave">
             <summary>
-            Vector database hostname.
+            MySQL.
             </summary>
         </member>
-        <member name="P:View.Sdk.Vector.DatabaseSettings.VectorDatabasePort">
+        <member name="F:View.Sdk.VectorRepositoryTypeEnum.Oracle23AI">
             <summary>
-            Vector database port.
+            Oracle 23AI.
             </summary>
         </member>
-        <member name="P:View.Sdk.Vector.DatabaseSettings.VectorDatabaseName">
+        <member name="F:View.Sdk.VectorRepositoryTypeEnum.Pgvector">
             <summary>
-            Vector database name.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Vector.DatabaseSettings.VectorDatabaseTable">
-            <summary>
-            Vector database table.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Vector.DatabaseSettings.VectorDatabaseUser">
-            <summary>
-            Vector database user.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Vector.DatabaseSettings.VectorDatabasePassword">
-            <summary>
-            Vector database password.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Vector.DatabaseSettings.#ctor">
-            <summary>
-            Instantiate.
+            Pgvector.
             </summary>
         </member>
         <member name="T:View.Sdk.Vector.ViewLangchainProxySdk">
