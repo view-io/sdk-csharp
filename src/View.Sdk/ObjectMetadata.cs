@@ -61,6 +61,31 @@
         public string OwnerGUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
+        /// Encryption key GUID.
+        /// </summary>
+        public string EncryptionKeyGUID { get; set; } = null;
+
+        /// <summary>
+        /// Data catalog collection.
+        /// </summary>
+        public string CollectionGUID { get; set; } = null;
+
+        /// <summary>
+        /// Data catalog document GUID.
+        /// </summary>
+        public string DataCatalogDocumentGUID { get; set; } = null;
+
+        /// <summary>
+        /// Vector repository GUID.
+        /// </summary>
+        public string VectorRepositoryGUID { get; set; } = null;
+
+        /// <summary>
+        /// Data flow request GUID.
+        /// </summary>
+        public string DataFlowRequestGUID { get; set; } = null;
+
+        /// <summary>
         /// Key.
         /// </summary>
         public string Key { get; set; } = string.Empty;

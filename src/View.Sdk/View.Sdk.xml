@@ -2988,6 +2988,31 @@
             Owner GUID.
             </summary>
         </member>
+        <member name="P:View.Sdk.ObjectMetadata.EncryptionKeyGUID">
+            <summary>
+            Encryption key GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ObjectMetadata.CollectionGUID">
+            <summary>
+            Data catalog collection.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ObjectMetadata.DataCatalogDocumentGUID">
+            <summary>
+            Data catalog document GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ObjectMetadata.VectorRepositoryGUID">
+            <summary>
+            Vector repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ObjectMetadata.DataFlowRequestGUID">
+            <summary>
+            Data flow request GUID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.ObjectMetadata.Key">
             <summary>
             Key.
@@ -4259,6 +4284,11 @@
         <member name="P:View.Sdk.SourceDocument.DataFlowRequestGUID">
             <summary>
             Data flow request GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SourceDocument.VectorRepositoryGUID">
+            <summary>
+            Vector repository GUID.
             </summary>
         </member>
         <member name="P:View.Sdk.SourceDocument.ObjectKey">

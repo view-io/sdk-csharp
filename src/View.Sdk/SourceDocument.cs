@@ -42,6 +42,11 @@
         public string DataFlowRequestGUID { get; set; } = null;
 
         /// <summary>
+        /// Vector repository GUID.
+        /// </summary>
+        public string VectorRepositoryGUID { get; set; } = null;
+
+        /// <summary>
         /// Key.
         /// </summary>
         public string ObjectKey { get; set; } = null;
