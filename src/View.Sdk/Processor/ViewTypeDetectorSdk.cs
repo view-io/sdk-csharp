@@ -70,7 +70,7 @@
                 {
                     req.ContentType = contentType;
 
-                    if (LogRequests) Log(Severity.Debug, "request body: " + Environment.NewLine + Encoding.UTF8.GetString(data));
+                    if (LogRequests) Log(SeverityEnum.Debug, "request body: " + Environment.NewLine + Encoding.UTF8.GetString(data));
 
                     using (RestResponse resp = await req.SendAsync(data, token).ConfigureAwait(false))
                     {
@@ -78,11 +78,11 @@
                         {
                             if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                             {
-                                Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                                Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
 
                                 if (!string.IsNullOrEmpty(resp.DataAsString))
                                 {
-                                    if (LogResponses) Log(Severity.Debug, "response body: " + Environment.NewLine + resp.DataAsString);
+                                    if (LogResponses) Log(SeverityEnum.Debug, "response body: " + Environment.NewLine + resp.DataAsString);
 
                                     TypeResult tr = Serializer.DeserializeJson<TypeResult>(resp.DataAsString);
                                     return tr;
@@ -94,11 +94,11 @@
                             }
                             else
                             {
-                                Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                                Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
 
                                 if (!string.IsNullOrEmpty(resp.DataAsString))
                                 {
-                                    if (LogResponses) Log(Severity.Warn, "response body: " + Environment.NewLine + resp.DataAsString);
+                                    if (LogResponses) Log(SeverityEnum.Warn, "response body: " + Environment.NewLine + resp.DataAsString);
 
                                     TypeResult tr = Serializer.DeserializeJson<TypeResult>(resp.DataAsString);
                                     return tr;
@@ -111,7 +111,7 @@
                         }
                         else
                         {
-                            Log(Severity.Warn, "no response from " + url);
+                            Log(SeverityEnum.Warn, "no response from " + url);
                             return null;
                         }
                     }
@@ -119,7 +119,7 @@
             }
             catch (HttpRequestException hre)
             {
-                Log(Severity.Warn, "exception while interacting with " + url + ": " + hre.Message);
+                Log(SeverityEnum.Warn, "exception while interacting with " + url + ": " + hre.Message);
 
                 return new TypeResult
                 {

@@ -71,18 +71,18 @@
                     {
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             return true;
                         }
                         else
                         {
-                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             return false;
                         }
                     }
                     else
                     {
-                        Log(Severity.Warn, "no response from " + url);
+                        Log(SeverityEnum.Warn, "no response from " + url);
                         return false;
                     }
                 }
@@ -120,7 +120,7 @@
                     {
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             if (!string.IsNullOrEmpty(resp.DataAsString))
                             {
                                 EmbeddingsResult result = Serializer.DeserializeJson<EmbeddingsResult>(resp.DataAsString);
@@ -134,7 +134,7 @@
                         }
                         else
                         {
-                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             EmbeddingsResult result = new EmbeddingsResult();
                             result.Success = false;
                             result.Url = url;
@@ -146,7 +146,7 @@
                     }
                     else
                     {
-                        Log(Severity.Warn, "no response from " + url);
+                        Log(SeverityEnum.Warn, "no response from " + url);
                         return null;
                     }
                 }

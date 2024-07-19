@@ -18,7 +18,7 @@
         /// <summary>
         /// Method to invoke to send log messages.
         /// </summary>
-        public Action<Severity, string> Logger { get; set; } = null;
+        public Action<SeverityEnum, string> Logger { get; set; } = null;
 
         /// <summary>
         /// Header to prepend to log messages.
@@ -174,7 +174,7 @@
         /// </summary>
         /// <param name="sev">Severity.</param>
         /// <param name="msg">Message.</param>
-        public void Log(Severity sev, string msg)
+        public void Log(SeverityEnum sev, string msg)
         {
             if (String.IsNullOrEmpty(msg)) return;
             Logger?.Invoke(sev, _Header + msg);
@@ -195,17 +195,17 @@
                 {
                     if (resp != null && resp.StatusCode == 200)
                     {
-                        Log(Severity.Debug, "success reported from " + url);
+                        Log(SeverityEnum.Debug, "success reported from " + url);
                         return true;
                     }
                     else if (resp != null)
                     {
-                        Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode);
+                        Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode);
                         return false;
                     }
                     else
                     {
-                        Log(Severity.Warn, "no response from " + url);
+                        Log(SeverityEnum.Warn, "no response from " + url);
                         return false;
                     }
                 }
@@ -236,7 +236,7 @@
                     {
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
                                 return Serializer.DeserializeJson<T>(resp.DataAsString);
@@ -248,13 +248,13 @@
                         }
                         else
                         {
-                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             return null;
                         }
                     }
                     else
                     {
-                        Log(Severity.Warn, "no response from " + url);
+                        Log(SeverityEnum.Warn, "no response from " + url);
                         return null;
                     }
                 }
@@ -281,18 +281,18 @@
                     {
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             return true;
                         }
                         else
                         {
-                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             return false;
                         }
                     }
                     else
                     {
-                        Log(Severity.Warn, "no response from " + url);
+                        Log(SeverityEnum.Warn, "no response from " + url);
                         return false;
                     }
                 }
@@ -320,7 +320,7 @@
                     {
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
                                 return Serializer.DeserializeJson<T>(resp.DataAsString);
@@ -332,13 +332,13 @@
                         }
                         else
                         {
-                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             return null;
                         }
                     }
                     else
                     {
-                        Log(Severity.Warn, "no response from " + url);
+                        Log(SeverityEnum.Warn, "no response from " + url);
                         return null;
                     }
                 }
@@ -366,7 +366,7 @@
                     {
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
                                 return Serializer.DeserializeJson<List<T>>(resp.DataAsString);
@@ -378,13 +378,13 @@
                         }
                         else
                         {
-                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             return null;
                         }
                     }
                     else
                     {
-                        Log(Severity.Warn, "no response from " + url);
+                        Log(SeverityEnum.Warn, "no response from " + url);
                         return null;
                     }
                 }
@@ -415,7 +415,7 @@
                     {
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
                                 return Serializer.DeserializeJson<T>(resp.DataAsString);
@@ -427,13 +427,13 @@
                         }
                         else
                         {
-                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             return null;
                         }
                     }
                     else
                     {
-                        Log(Severity.Warn, "no response from " + url);
+                        Log(SeverityEnum.Warn, "no response from " + url);
                         return null;
                     }
                 }
@@ -460,16 +460,16 @@
                     {
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                         }
                         else
                         {
-                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                         }
                     }
                     else
                     {
-                        Log(Severity.Warn, "no response from " + url);
+                        Log(SeverityEnum.Warn, "no response from " + url);
                     }
 
                     return;

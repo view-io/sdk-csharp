@@ -294,18 +294,18 @@
                     {
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             return resp.DataAsString;
                         }
                         else
                         {
-                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             return null;
                         }
                     }
                     else
                     {
-                        Log(Severity.Warn, "no response from " + url);
+                        Log(SeverityEnum.Warn, "no response from " + url);
                         return null;
                     }
                 }

@@ -3,7 +3,7 @@
     /// <summary>
     /// Message severity.
     /// </summary>
-    public enum Severity
+    public enum SeverityEnum
     {
         /// <summary>
         /// Debug messages.

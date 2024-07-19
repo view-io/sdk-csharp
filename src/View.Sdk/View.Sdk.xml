@@ -2255,6 +2255,86 @@
             <param name="stream">Stream.</param>
             <returns>Byte array.</returns>
         </member>
+        <member name="T:View.Sdk.GraphRepository">
+            <summary>
+            Graph repository.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.GraphRepository.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.GraphRepository.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.GraphRepository.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.GraphRepository.RepositoryType">
+            <summary>
+            Type of graph repository.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.GraphRepository.EndpointUrl">
+            <summary>
+            Endpoint URL.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.GraphRepository.ApiKey">
+            <summary>
+            API key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.GraphRepository.Username">
+            <summary>
+            Username.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.GraphRepository.Password">
+            <summary>
+            Password.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.GraphRepository.Hostname">
+            <summary>
+            Hostname.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.GraphRepository.Port">
+            <summary>
+            Port.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.GraphRepository.GraphIdentifier">
+            <summary>
+            Graph identifier.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.GraphRepository.CreatedUtc">
+            <summary>
+            Creation timestamp, in UTC time.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.GraphRepository.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.GraphRepositoryTypeEnum">
+            <summary>
+            Graph repository type.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.GraphRepositoryTypeEnum.LiteGraph">
+            <summary>
+            LiteGraph.
+            </summary>
+        </member>
         <member name="T:View.Sdk.Helpers.HashHelper">
             <summary>
             Hash methods.
@@ -2991,11 +3071,6 @@
         <member name="P:View.Sdk.ObjectMetadata.EncryptionKeyGUID">
             <summary>
             Encryption key GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.ObjectMetadata.CollectionGUID">
-            <summary>
-            Data catalog collection.
             </summary>
         </member>
         <member name="P:View.Sdk.ObjectMetadata.DataCatalogDocumentGUID">
@@ -4171,42 +4246,42 @@
             Instantiate.
             </summary>
         </member>
-        <member name="T:View.Sdk.Severity">
+        <member name="T:View.Sdk.SeverityEnum">
             <summary>
             Message severity.
             </summary>
         </member>
-        <member name="F:View.Sdk.Severity.Debug">
+        <member name="F:View.Sdk.SeverityEnum.Debug">
             <summary>
             Debug messages.
             </summary>
         </member>
-        <member name="F:View.Sdk.Severity.Info">
+        <member name="F:View.Sdk.SeverityEnum.Info">
             <summary>
             Informational messages.
             </summary>
         </member>
-        <member name="F:View.Sdk.Severity.Warn">
+        <member name="F:View.Sdk.SeverityEnum.Warn">
             <summary>
             Warning messages.
             </summary>
         </member>
-        <member name="F:View.Sdk.Severity.Error">
+        <member name="F:View.Sdk.SeverityEnum.Error">
             <summary>
             Error messages.
             </summary>
         </member>
-        <member name="F:View.Sdk.Severity.Alert">
+        <member name="F:View.Sdk.SeverityEnum.Alert">
             <summary>
             Alert messages.
             </summary>
         </member>
-        <member name="F:View.Sdk.Severity.Critical">
+        <member name="F:View.Sdk.SeverityEnum.Critical">
             <summary>
             Critical messages.
             </summary>
         </member>
-        <member name="F:View.Sdk.Severity.Emergency">
+        <member name="F:View.Sdk.SeverityEnum.Emergency">
             <summary>
             Emergency messages.
             </summary>
@@ -5318,7 +5393,7 @@
             <param name="accessKey">Access key.</param>
             <param name="endpoint">Endpoint.</param>
         </member>
-        <member name="M:View.Sdk.ViewSdkBase.Log(View.Sdk.Severity,System.String)">
+        <member name="M:View.Sdk.ViewSdkBase.Log(View.Sdk.SeverityEnum,System.String)">
             <summary>
             Emit a log message.
             </summary>

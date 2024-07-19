@@ -61,7 +61,7 @@
                     {
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            Log(Severity.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             if (!string.IsNullOrEmpty(resp.DataAsString))
                             {
                                 UdrDocument docResp = Serializer.DeserializeJson<UdrDocument>(resp.DataAsString);
@@ -74,7 +74,7 @@
                         }
                         else
                         {
-                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             if (!string.IsNullOrEmpty(resp.DataAsString))
                             {
                                 UdrDocument docResp = Serializer.DeserializeJson<UdrDocument>(resp.DataAsString);
@@ -88,7 +88,7 @@
                     }
                     else
                     {
-                        Log(Severity.Warn, "no response from " + url);
+                        Log(SeverityEnum.Warn, "no response from " + url);
                         return null;
                     }
                 }
@@ -128,20 +128,20 @@
                     {
                         if (resp.StatusCode == 200)
                         {
-                            Log(Severity.Debug, "success reported from " + url + ": " + resp.ContentLength + " bytes");
+                            Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.ContentLength + " bytes");
                             UdrDocument docResp = Serializer.DeserializeJson<UdrDocument>(resp.DataAsString);
                             return docResp;
                         }
                         else
                         {
-                            Log(Severity.Warn, "non-success reported from " + url + ": " + resp.StatusCode);
+                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode);
                             UdrDocument docResp = Serializer.DeserializeJson<UdrDocument>(resp.DataAsString);
                             return docResp;
                         }
                     }
                     else
                     {
-                        Log(Severity.Warn, "no response from " + url);
+                        Log(SeverityEnum.Warn, "no response from " + url);
                         return null;
                     }
                 }

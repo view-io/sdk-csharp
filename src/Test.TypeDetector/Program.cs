@@ -78,7 +78,7 @@
             Console.WriteLine("");
         }
 
-        private static void EmitLogMessage(Severity sev, string msg)
+        private static void EmitLogMessage(SeverityEnum sev, string msg)
         {
             if (!String.IsNullOrEmpty(msg)) Console.WriteLine(sev.ToString() + " " + msg);
         }

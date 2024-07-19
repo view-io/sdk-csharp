@@ -134,6 +134,20 @@
                     case ApiErrorEnum.EmbeddingsPersistFailed:
                         return 500;
 
+                    case ApiErrorEnum.NoTypeDetectorConnectivity:
+                        return 500;
+                    case ApiErrorEnum.UnknownTypeSupplied:
+                        return 400;
+
+                    case ApiErrorEnum.NoObjectMetadata:
+                        return 400;
+                    case ApiErrorEnum.NoObjectData:
+                        return 400;
+                    case ApiErrorEnum.NoMetadataRule:
+                        return 400;
+                    case ApiErrorEnum.RequiredPropertiesMissing:
+                        return 400;
+
                     default:
                         return 500;
                 }
