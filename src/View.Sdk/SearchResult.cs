@@ -56,18 +56,7 @@
         /// <summary>
         /// Documents that matched the query.
         /// </summary>
-        public List<SourceDocument> Documents
-        {
-            get
-            {
-                return _Documents;
-            }
-            set
-            {
-                if (value == null) _Documents = new List<SourceDocument>();
-                else _Documents = value;
-            }
-        }
+        public List<SourceDocument> Documents { get; set; } = null;
 
         /// <summary>
         /// Embeddings documents generated from matched documents.

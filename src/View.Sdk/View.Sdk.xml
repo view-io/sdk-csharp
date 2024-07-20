@@ -1508,6 +1508,11 @@
             Collection GUID.
             </summary>
         </member>
+        <member name="P:View.Sdk.DeleteRequest.SourceDocumentGUID">
+            <summary>
+            Source document GUID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.DeleteRequest.BucketGUID">
             <summary>
             Bucket GUID.

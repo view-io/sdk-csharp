@@ -20,6 +20,11 @@
         public string CollectionGUID { get; set; } = null;
 
         /// <summary>
+        /// Source document GUID.
+        /// </summary>
+        public string SourceDocumentGUID { get; set; } = null;
+
+        /// <summary>
         /// Bucket GUID.
         /// </summary>
         public string BucketGUID { get; set; } = null;
