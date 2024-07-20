@@ -1633,6 +1633,11 @@
             Object version.
             </summary>
         </member>
+        <member name="P:View.Sdk.EmbeddingsDocument.Model">
+            <summary>
+            Model.
+            </summary>
+        </member>
         <member name="P:View.Sdk.EmbeddingsDocument.EmbeddingsRule">
             <summary>
             Embeddings rule.
