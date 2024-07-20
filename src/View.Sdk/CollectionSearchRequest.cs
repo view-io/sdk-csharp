@@ -6,7 +6,7 @@
     /// <summary>
     /// Object used to search a collection.
     /// </summary>
-    public class SearchQuery
+    public class CollectionSearchRequest
     {
         #region Public-Members
 
@@ -91,7 +91,7 @@
         /// <summary>
         /// Instantiate.
         /// </summary>
-        public SearchQuery()
+        public CollectionSearchRequest()
         {
             GUID = Guid.NewGuid().ToString();
         }

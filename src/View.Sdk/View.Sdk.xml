@@ -388,6 +388,56 @@
             Instantiate.
             </summary>
         </member>
+        <member name="T:View.Sdk.CollectionSearchRequest">
+            <summary>
+            Object used to search a collection.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CollectionSearchRequest.GUID">
+            <summary>
+            The GUID of the search operation.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CollectionSearchRequest.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CollectionSearchRequest.CollectionGUID">
+            <summary>
+            Collection GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CollectionSearchRequest.MaxResults">
+            <summary>
+            Maximum number of results to retrieve.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CollectionSearchRequest.ContinuationToken">
+            <summary>
+            Continuation token.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CollectionSearchRequest.Ordering">
+            <summary>
+            Ordering.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CollectionSearchRequest.Filter">
+            <summary>
+            Required terms and search filter that must be satisfied to include a document in the results.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CollectionSearchRequest.EmbeddingsRule">
+            <summary>
+            Embeddings rule.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.CollectionSearchRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
         <member name="T:View.Sdk.CollectionStatistics">
             <summary>
             Collection statistics.
@@ -2047,9 +2097,39 @@
             Collection GUID.
             </summary>
         </member>
+        <member name="P:View.Sdk.EnumerationQuery.SourceDocument">
+            <summary>
+            Source document.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationQuery.SourceDocumentGUID">
+            <summary>
+            Source document GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationQuery.VectorRepository">
+            <summary>
+            Vector repository.
+            </summary>
+        </member>
         <member name="P:View.Sdk.EnumerationQuery.VectorRepositoryGUID">
             <summary>
             Vector repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationQuery.GraphRepository">
+            <summary>
+            Graph repository.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationQuery.GraphRepositoryGUID">
+            <summary>
+            Graph repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationQuery.GraphNodeIdentifier">
+            <summary>
+            Graph node identifier.
             </summary>
         </member>
         <member name="P:View.Sdk.EnumerationQuery.MaxResults">
@@ -2640,7 +2720,7 @@
             <param name="token">Token.</param>
             <returns>Enumeration result.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.Search(System.String,View.Sdk.SearchQuery,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.Search(System.String,View.Sdk.CollectionSearchRequest,System.Threading.CancellationToken)">
             <summary>
             Search a collection.
             </summary>
@@ -2652,46 +2732,6 @@
         <member name="T:View.Sdk.MatchedDocument">
             <summary>
             Matched document.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.MatchedDocument.Id">
-            <summary>
-            Database row ID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.MatchedDocument.GUID">
-            <summary>
-            GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.MatchedDocument.TenantGUID">
-            <summary>
-            Tenant GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.MatchedDocument.BucketGUID">
-            <summary>
-            Bucket GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.MatchedDocument.ObjectGUID">
-            <summary>
-            Object GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.MatchedDocument.ObjectKey">
-            <summary>
-            Object key.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.MatchedDocument.ObjectVersion">
-            <summary>
-            Object version.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.MatchedDocument.DocumentType">
-            <summary>
-            The type of document.
             </summary>
         </member>
         <member name="P:View.Sdk.MatchedDocument.Score">
@@ -2709,39 +2749,15 @@
             The filters score of the document, between 0 and 1, when optional filters are supplied.
             </summary>
         </member>
-        <member name="P:View.Sdk.MatchedDocument.Metadata">
+        <member name="P:View.Sdk.MatchedDocument.SourceDocument">
             <summary>
             Source document metadata, if requested.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.MatchedDocument.Embeddings">
-            <summary>
-            Embeddings.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.MatchedDocument.CreatedUtc">
-            <summary>
-            Creation timestamp.
             </summary>
         </member>
         <member name="M:View.Sdk.MatchedDocument.#ctor">
             <summary>
             Instantiate.
             </summary>
-        </member>
-        <member name="M:View.Sdk.MatchedDocument.FromDataRow(System.Data.DataRow)">
-            <summary>
-            Instantiate from DataRow.
-            </summary>
-            <param name="row">DataRow.</param>
-            <returns>MatchedDocument.</returns>
-        </member>
-        <member name="M:View.Sdk.MatchedDocument.FromDataTable(System.Data.DataTable)">
-            <summary>
-            Instantiate from DataTable.
-            </summary>
-            <param name="dt">DataTable.</param>
-            <returns>List of MatchedDocument.</returns>
         </member>
         <member name="T:View.Sdk.MetadataRule">
             <summary>
@@ -4076,91 +4092,6 @@
             <param name="value">Value.</param>
             <returns>True if matched.</returns>
         </member>
-        <member name="T:View.Sdk.SearchQuery">
-            <summary>
-            Object used to search a collection.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SearchQuery.GUID">
-            <summary>
-            The GUID of the search operation.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SearchQuery.TenantGUID">
-            <summary>
-            Tenant GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SearchQuery.CollectionGUID">
-            <summary>
-            Collection GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SearchQuery.MaxResults">
-            <summary>
-            Maximum number of results to retrieve.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SearchQuery.ContinuationToken">
-            <summary>
-            Continuation token.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SearchQuery.Ordering">
-            <summary>
-            Ordering.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SearchQuery.Filter">
-            <summary>
-            Required terms and search filter that must be satisfied to include a document in the results.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SearchQuery.EmbeddingsRule">
-            <summary>
-            Embeddings rule.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.SearchQuery.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.SearchRequest">
-            <summary>
-            Search request.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SearchRequest.SearchType">
-            <summary>
-            Search type.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SearchRequest.VectorRepositoryGUID">
-            <summary>
-            Vector repository GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SearchRequest.StartIndex">
-            <summary>
-            Starting index.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SearchRequest.MaxResults">
-            <summary>
-            Maximum number of results to retrieve.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SearchRequest.Embeddings">
-            <summary>
-            Embeddings.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.SearchRequest.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
         <member name="T:View.Sdk.SearchResult">
             <summary>
             Search result.
@@ -4176,24 +4107,9 @@
             Timestamps.
             </summary>
         </member>
-        <member name="P:View.Sdk.SearchResult.TenantGUID">
-            <summary>
-            Tenant GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SearchResult.CollectionGUID">
-            <summary>
-            The GUID of the collection that was queried.
-            </summary>
-        </member>
         <member name="P:View.Sdk.SearchResult.DataFlowRequestGUID">
             <summary>
             Data flow request GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SearchResult.Query">
-            <summary>
-            The search query performed.
             </summary>
         </member>
         <member name="P:View.Sdk.SearchResult.EndOfResults">
@@ -4226,26 +4142,6 @@
             Instantiate.
             </summary>
         </member>
-        <member name="T:View.Sdk.SearchTypeEnum">
-            <summary>
-            Search type.
-            </summary>
-        </member>
-        <member name="F:View.Sdk.SearchTypeEnum.InnerProduct">
-            <summary>
-            InnerProduct.
-            </summary>
-        </member>
-        <member name="F:View.Sdk.SearchTypeEnum.Cosine">
-            <summary>
-            Cosine.
-            </summary>
-        </member>
-        <member name="F:View.Sdk.SearchTypeEnum.NearestNeighbor">
-            <summary>
-            NearestNeighbor.
-            </summary>
-        </member>
         <member name="T:View.Sdk.SemanticCell">
             <summary>
             Semantic cell.
@@ -4261,14 +4157,29 @@
             Exception.
             </summary>
         </member>
-        <member name="P:View.Sdk.SemanticCell.Text">
+        <member name="P:View.Sdk.SemanticCell.MD5Hash">
             <summary>
-            Text.
+            MD5.
             </summary>
         </member>
-        <member name="P:View.Sdk.SemanticCell.Tokens">
+        <member name="P:View.Sdk.SemanticCell.SHA1Hash">
             <summary>
-            Tokens.
+            SHA1.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SemanticCell.SHA256Hash">
+            <summary>
+            SHA256.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SemanticCell.Content">
+            <summary>
+            Content.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SemanticCell.Chunks">
+            <summary>
+            Chunks.
             </summary>
         </member>
         <member name="P:View.Sdk.SemanticCell.Embeddings">
@@ -4277,6 +4188,41 @@
             </summary>
         </member>
         <member name="M:View.Sdk.SemanticCell.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.SemanticChunk">
+            <summary>
+            Semantic chunk.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SemanticChunk.MD5Hash">
+            <summary>
+            MD5.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SemanticChunk.SHA1Hash">
+            <summary>
+            SHA1.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SemanticChunk.SHA256Hash">
+            <summary>
+            SHA256.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SemanticChunk.Content">
+            <summary>
+            Content.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SemanticChunk.Embeddings">
+            <summary>
+            Embeddings.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.SemanticChunk.#ctor">
             <summary>
             Instantiate.
             </summary>
@@ -5212,6 +5158,61 @@
             Pgvector.
             </summary>
         </member>
+        <member name="T:View.Sdk.VectorSearchRequest">
+            <summary>
+            Vector search request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorSearchRequest.SearchType">
+            <summary>
+            Search type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorSearchRequest.VectorRepositoryGUID">
+            <summary>
+            Vector repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorSearchRequest.StartIndex">
+            <summary>
+            Starting index.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorSearchRequest.MaxResults">
+            <summary>
+            Maximum number of results to retrieve.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorSearchRequest.Embeddings">
+            <summary>
+            Embeddings.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.VectorSearchRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.VectorSearchTypeEnum">
+            <summary>
+            Vector search type.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.VectorSearchTypeEnum.InnerProduct">
+            <summary>
+            InnerProduct.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.VectorSearchTypeEnum.Cosine">
+            <summary>
+            Cosine.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.VectorSearchTypeEnum.NearestNeighbor">
+            <summary>
+            NearestNeighbor.
+            </summary>
+        </member>
         <member name="T:View.Sdk.Vector.ViewLangchainProxySdk">
             <summary>
             View Langchain Proxy SDK.
@@ -5286,7 +5287,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Enumeration result.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.SimilaritySearch(View.Sdk.SearchRequest,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.SimilaritySearch(View.Sdk.VectorSearchRequest,System.Threading.CancellationToken)">
             <summary>
             Similarity search.
             </summary>

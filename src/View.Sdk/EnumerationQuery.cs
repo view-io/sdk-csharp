@@ -48,9 +48,39 @@
         public string CollectionGUID { get; set; } = null;
 
         /// <summary>
+        /// Source document.
+        /// </summary>
+        public SourceDocument SourceDocument { get; set; } = null;
+        
+        /// <summary>
+        /// Source document GUID.
+        /// </summary>
+        public string SourceDocumentGUID { get; set; } = null;
+
+        /// <summary>
+        /// Vector repository.
+        /// </summary>
+        public VectorRepository VectorRepository { get; set; } = null;
+
+        /// <summary>
         /// Vector repository GUID.
         /// </summary>
         public string VectorRepositoryGUID { get; set; } = null;
+
+        /// <summary>
+        /// Graph repository.
+        /// </summary>
+        public GraphRepository GraphRepository { get; set; } = null;
+
+        /// <summary>
+        /// Graph repository GUID.
+        /// </summary>
+        public string GraphRepositoryGUID { get; set; } = null;
+
+        /// <summary>
+        /// Graph node identifier.
+        /// </summary>
+        public string GraphNodeIdentifier { get; set; } = null;
 
         /// <summary>
         /// Maximum number of results to retrieve.

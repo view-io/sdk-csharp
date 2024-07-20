@@ -157,10 +157,10 @@
             return _Serializer.DeserializeJson<EnumerationQuery>(json);
         }
 
-        private static SearchQuery BuildSearchQuery()
+        private static CollectionSearchRequest BuildSearchQuery()
         {
             string json = Inputty.GetString("Search query JSON :", null, false);
-            return _Serializer.DeserializeJson<SearchQuery>(json);
+            return _Serializer.DeserializeJson<CollectionSearchRequest>(json);
         }
 
         private static async Task TestConnectivity()

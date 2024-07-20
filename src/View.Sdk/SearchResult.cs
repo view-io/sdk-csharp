@@ -23,24 +23,9 @@
         public Timestamp Timestamp { get; set; } = new Timestamp();
 
         /// <summary>
-        /// Tenant GUID.
-        /// </summary>
-        public string TenantGUID { get; set; } = Guid.NewGuid().ToString();
-
-        /// <summary>
-        /// The GUID of the collection that was queried.
-        /// </summary>
-        public string CollectionGUID { get; set; } = null;
-
-        /// <summary>
         /// Data flow request GUID.
         /// </summary>
         public string DataFlowRequestGUID { get; set; } = null;
-
-        /// <summary>
-        /// The search query performed.
-        /// </summary>
-        public SearchQuery Query { get; set; } = null;
 
         /// <summary>
         /// Boolean indicating end of results.

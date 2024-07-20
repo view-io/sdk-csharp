@@ -4,10 +4,10 @@
     using System.Text.Json.Serialization;
 
     /// <summary>
-    /// Search type.
+    /// Vector search type.
     /// </summary>
     [JsonConverter(typeof(JsonStringEnumConverter))]
-    public enum SearchTypeEnum
+    public enum VectorSearchTypeEnum
     {
         /// <summary>
         /// InnerProduct.

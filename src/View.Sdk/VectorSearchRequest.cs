@@ -4,16 +4,16 @@
     using System.Collections.Generic;
 
     /// <summary>
-    /// Search request.
+    /// Vector search request.
     /// </summary>
-    public class SearchRequest
+    public class VectorSearchRequest
     {
         #region Public-Members
 
         /// <summary>
         /// Search type.
         /// </summary>
-        public SearchTypeEnum SearchType { get; set; } = SearchTypeEnum.Cosine;
+        public VectorSearchTypeEnum SearchType { get; set; } = VectorSearchTypeEnum.Cosine;
 
         /// <summary>
         /// Vector repository GUID.
@@ -83,7 +83,7 @@
         /// <summary>
         /// Instantiate.
         /// </summary>
-        public SearchRequest()
+        public VectorSearchRequest()
         {
         }
 

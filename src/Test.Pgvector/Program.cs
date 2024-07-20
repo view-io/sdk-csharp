@@ -163,7 +163,7 @@
             if (String.IsNullOrEmpty(requestJson)) return;
 
             List<EmbeddingsDocument> docs = await _Sdk.SimilaritySearch(
-                _Serializer.DeserializeJson<SearchRequest>(requestJson)
+                _Serializer.DeserializeJson<VectorSearchRequest>(requestJson)
                 );
 
             EnumerateResponse(docs);

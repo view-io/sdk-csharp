@@ -247,7 +247,7 @@
         /// <param name="query">Query.</param>
         /// <param name="token"></param>
         /// <returns>Search result.</returns>
-        public async Task<SearchResult> Search(string collectionGuid, SearchQuery query, CancellationToken token = default)
+        public async Task<SearchResult> Search(string collectionGuid, CollectionSearchRequest query, CancellationToken token = default)
         {
             if (query == null) throw new ArgumentNullException(nameof(query));
             if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));

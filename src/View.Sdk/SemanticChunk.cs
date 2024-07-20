@@ -5,21 +5,11 @@
     using System.Linq;
 
     /// <summary>
-    /// Semantic cell.
+    /// Semantic chunk.
     /// </summary>
-    public class SemanticCell
+    public class SemanticChunk
     {
         #region Public-Members
-
-        /// <summary>
-        /// Boolean indicating success.
-        /// </summary>
-        public bool Success { get; set; } = true;
-
-        /// <summary>
-        /// Exception.
-        /// </summary>
-        public Exception Exception { get; set; } = null;
 
         /// <summary>
         /// MD5.
@@ -53,22 +43,6 @@
         }
 
         /// <summary>
-        /// Chunks.
-        /// </summary>
-        public List<SemanticChunk> Chunks
-        {
-            get
-            {
-                return _Chunks;
-            }
-            set
-            {
-                if (value == null) value = new List<SemanticChunk>();
-                _Chunks = value;
-            }
-        }
-
-        /// <summary>
         /// Embeddings.
         /// </summary>
         public List<float> Embeddings
@@ -89,7 +63,6 @@
         #region Private-Members
 
         private string _Content = null;
-        private List<SemanticChunk> _Chunks = new List<SemanticChunk>();
         private List<float> _Embeddings = new List<float>();
 
         #endregion
@@ -99,7 +72,7 @@
         /// <summary>
         /// Instantiate.
         /// </summary>
-        public SemanticCell()
+        public SemanticChunk()
         {
 
         }

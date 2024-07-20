@@ -220,7 +220,7 @@
         /// <param name="searchReq">Search request.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Task.</returns>
-        public async Task<List<EmbeddingsDocument>> SimilaritySearch(SearchRequest searchReq, CancellationToken token = default)
+        public async Task<List<EmbeddingsDocument>> SimilaritySearch(VectorSearchRequest searchReq, CancellationToken token = default)
         {
             if (searchReq == null) throw new ArgumentNullException(nameof(searchReq));
 
