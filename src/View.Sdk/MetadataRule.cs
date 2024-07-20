@@ -58,15 +58,25 @@
         /// </summary>
         public string DataFlowEndpoint { get; set; } = "http://localhost:8501/processor";
 
+        #region Type-Detection
+
         /// <summary>
         /// Type detector endpoint.
         /// </summary>
         public string TypeDetectorEndpoint { get; set; } = "http://localhost:8501/processor/typedetector";
 
+        #endregion
+
+        #region UDR
+
         /// <summary>
         /// UDR endpoint.
         /// </summary>
         public string UdrEndpoint { get; set; } = "http://localhost:8321/";
+
+        #endregion
+
+        #region Data-Catalog
 
         /// <summary>
         /// Data catalog type.
@@ -82,6 +92,17 @@
         /// Data catalog collection identifier.
         /// </summary>
         public string DataCatalogCollection { get; set; } = null;
+
+        #endregion
+
+        #region Graph
+
+        /// <summary>
+        /// Graph repository GUID.
+        /// </summary>
+        public string GraphRepositoryGUID { get; set; } = null;
+
+        #endregion
 
         /// <summary>
         /// Number of top terms to request.

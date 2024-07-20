@@ -2,6 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.ComponentModel.DataAnnotations;
     using System.Data;
     using System.Linq;
     using System.Text.Json.Serialization;
@@ -43,22 +45,37 @@
         /// <summary>
         /// Collection GUID.
         /// </summary>
-        public string CollectionGUID { get; set; } = Guid.NewGuid().ToString();
+        public string CollectionGUID { get; set; } = null;
+
+        /// <summary>
+        /// Source document GUID.
+        /// </summary>
+        public string SourceDocumentGUID { get; set; } = null;
 
         /// <summary>
         /// Bucket GUID.
         /// </summary>
-        public string BucketGUID { get; set; } = Guid.NewGuid().ToString();
-
-        /// <summary>
-        /// Object GUID.
-        /// </summary>
-        public string ObjectGUID { get; set; } = Guid.NewGuid().ToString();
+        public string BucketGUID { get; set; } = null;
 
         /// <summary>
         /// Vector repository GUID.
         /// </summary>
-        public string VectorRepositoryGUID { get; set; } = Guid.NewGuid().ToString();
+        public string VectorRepositoryGUID { get; set; } = null;
+
+        /// <summary>
+        /// Graph repository GUID.
+        /// </summary>
+        public string GraphRepositoryGUID { get; set; } = null;
+
+        /// <summary>
+        /// Graph node identifier.
+        /// </summary>
+        public string GraphNodeIdentifier { get; set; } = null;
+
+        /// <summary>
+        /// Object GUID.
+        /// </summary>
+        public string ObjectGUID { get; set; } = null;
 
         /// <summary>
         /// Object key.

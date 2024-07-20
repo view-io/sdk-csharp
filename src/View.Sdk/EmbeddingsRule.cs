@@ -1,6 +1,8 @@
 ﻿namespace View.Sdk
 {
     using System;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.ComponentModel.DataAnnotations;
     using System.Text.Json.Serialization;
 
     /// <summary>
@@ -55,6 +57,11 @@
         /// Target bucket GUID.
         /// </summary>
         public string TargetBucketGUID { get; set; } = null;
+
+        /// <summary>
+        /// Graph repository GUID.
+        /// </summary>
+        public string GraphRepositoryGUID { get; set; } = null;
 
         /// <summary>
         /// Vector repository GUID.

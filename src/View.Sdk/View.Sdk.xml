@@ -1593,19 +1593,34 @@
             Collection GUID.
             </summary>
         </member>
+        <member name="P:View.Sdk.EmbeddingsDocument.SourceDocumentGUID">
+            <summary>
+            Source document GUID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.EmbeddingsDocument.BucketGUID">
             <summary>
             Bucket GUID.
             </summary>
         </member>
-        <member name="P:View.Sdk.EmbeddingsDocument.ObjectGUID">
-            <summary>
-            Object GUID.
-            </summary>
-        </member>
         <member name="P:View.Sdk.EmbeddingsDocument.VectorRepositoryGUID">
             <summary>
             Vector repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EmbeddingsDocument.GraphRepositoryGUID">
+            <summary>
+            Graph repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EmbeddingsDocument.GraphNodeIdentifier">
+            <summary>
+            Graph node identifier.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EmbeddingsDocument.ObjectGUID">
+            <summary>
+            Object GUID.
             </summary>
         </member>
         <member name="P:View.Sdk.EmbeddingsDocument.ObjectKey">
@@ -1790,6 +1805,11 @@
         <member name="P:View.Sdk.EmbeddingsRule.TargetBucketGUID">
             <summary>
             Target bucket GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EmbeddingsRule.GraphRepositoryGUID">
+            <summary>
+            Graph repository GUID.
             </summary>
         </member>
         <member name="P:View.Sdk.EmbeddingsRule.VectorRepositoryGUID">
@@ -2793,6 +2813,11 @@
             Data catalog collection identifier.
             </summary>
         </member>
+        <member name="P:View.Sdk.MetadataRule.GraphRepositoryGUID">
+            <summary>
+            Graph repository GUID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.MetadataRule.TopTerms">
             <summary>
             Number of top terms to request.
@@ -3078,9 +3103,14 @@
             Data catalog document GUID.
             </summary>
         </member>
-        <member name="P:View.Sdk.ObjectMetadata.VectorRepositoryGUID">
+        <member name="P:View.Sdk.ObjectMetadata.GraphRepositoryGUID">
             <summary>
-            Vector repository GUID.
+            Graph repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ObjectMetadata.GraphNodeIdentifier">
+            <summary>
+            Graph node identifier.
             </summary>
         </member>
         <member name="P:View.Sdk.ObjectMetadata.DataFlowRequestGUID">
@@ -4361,9 +4391,14 @@
             Data flow request GUID.
             </summary>
         </member>
-        <member name="P:View.Sdk.SourceDocument.VectorRepositoryGUID">
+        <member name="P:View.Sdk.SourceDocument.GraphRepositoryGUID">
             <summary>
-            Vector repository GUID.
+            Graph repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SourceDocument.GraphNodeIdentifier">
+            <summary>
+            Graph node identifier.
             </summary>
         </member>
         <member name="P:View.Sdk.SourceDocument.ObjectKey">
@@ -4394,6 +4429,21 @@
         <member name="P:View.Sdk.SourceDocument.ContentLength">
             <summary>
             Content length.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SourceDocument.MD5Hash">
+            <summary>
+            MD5.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SourceDocument.SHA1Hash">
+            <summary>
+            SHA1.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SourceDocument.SHA256Hash">
+            <summary>
+            SHA256.
             </summary>
         </member>
         <member name="P:View.Sdk.SourceDocument.CreatedUtc">

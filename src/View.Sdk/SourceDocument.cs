@@ -42,9 +42,14 @@
         public string DataFlowRequestGUID { get; set; } = null;
 
         /// <summary>
-        /// Vector repository GUID.
+        /// Graph repository GUID.
         /// </summary>
-        public string VectorRepositoryGUID { get; set; } = null;
+        public string GraphRepositoryGUID { get; set; } = null;
+
+        /// <summary>
+        /// Graph node identifier.
+        /// </summary>
+        public string GraphNodeIdentifier { get; set; } = null;
 
         /// <summary>
         /// Key.
@@ -86,6 +91,21 @@
                 _ContentLength = value;
             }
         }
+
+        /// <summary>
+        /// MD5.
+        /// </summary>
+        public string MD5Hash { get; set; } = string.Empty;
+
+        /// <summary>
+        /// SHA1.
+        /// </summary>
+        public string SHA1Hash { get; set; } = null;
+
+        /// <summary>
+        /// SHA256.
+        /// </summary>
+        public string SHA256Hash { get; set; } = null;
 
         /// <summary>
         /// Creation timestamp, in UTC time.

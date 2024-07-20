@@ -71,9 +71,14 @@
         public string DataCatalogDocumentGUID { get; set; } = null;
 
         /// <summary>
-        /// Vector repository GUID.
+        /// Graph repository GUID.
         /// </summary>
-        public string VectorRepositoryGUID { get; set; } = null;
+        public string GraphRepositoryGUID { get; set; } = null;
+
+        /// <summary>
+        /// Graph node identifier.
+        /// </summary>
+        public string GraphNodeIdentifier { get; set; } = null;
 
         /// <summary>
         /// Data flow request GUID.
