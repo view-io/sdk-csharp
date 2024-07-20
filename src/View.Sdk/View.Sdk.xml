@@ -1538,6 +1538,31 @@
             Instantiate.
             </summary>
         </member>
+        <member name="T:View.Sdk.DocumentScore">
+            <summary>
+            Document score.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DocumentScore.Score">
+            <summary>
+            The score of the document, between 0 and 1, over both terms and filters.  Only relevant when optional terms or filters are supplied in the search.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DocumentScore.TermsScore">
+            <summary>
+            The terms score of the document, between 0 and 1, when optional terms are supplied.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DocumentScore.FiltersScore">
+            <summary>
+            The filters score of the document, between 0 and 1, when optional filters are supplied.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.DocumentScore.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
         <member name="T:View.Sdk.DocumentTypeEnum">
             <summary>
             Data type associated with an input object or file.
@@ -2728,36 +2753,6 @@
             <param name="query">Query.</param>
             <param name="token"></param>
             <returns>Search result.</returns>
-        </member>
-        <member name="T:View.Sdk.MatchedDocument">
-            <summary>
-            Matched document.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.MatchedDocument.Score">
-            <summary>
-            The score of the document, between 0 and 1, over both terms and filters.  Only relevant when optional terms or filters are supplied in the search.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.MatchedDocument.TermsScore">
-            <summary>
-            The terms score of the document, between 0 and 1, when optional terms are supplied.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.MatchedDocument.FiltersScore">
-            <summary>
-            The filters score of the document, between 0 and 1, when optional filters are supplied.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.MatchedDocument.SourceDocument">
-            <summary>
-            Source document metadata, if requested.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.MatchedDocument.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
         </member>
         <member name="T:View.Sdk.MetadataRule">
             <summary>
@@ -4405,6 +4400,11 @@
         <member name="P:View.Sdk.SourceDocument.ExpirationUtc">
             <summary>
             Expiration timestamp, if any, in UTC time.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SourceDocument.Score">
+            <summary>
+            Document score.
             </summary>
         </member>
         <member name="P:View.Sdk.SourceDocument.UdrDocument">

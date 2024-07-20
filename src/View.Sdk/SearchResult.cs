@@ -56,7 +56,7 @@
         /// <summary>
         /// Documents that matched the query.
         /// </summary>
-        public List<MatchedDocument> Documents
+        public List<SourceDocument> Documents
         {
             get
             {
@@ -64,7 +64,7 @@
             }
             set
             {
-                if (value == null) _Documents = new List<MatchedDocument>();
+                if (value == null) _Documents = new List<SourceDocument>();
                 else _Documents = value;
             }
         }
@@ -79,7 +79,7 @@
         #region Private-Members
 
         private long _RecordsRemaining = 0;
-        private List<MatchedDocument> _Documents = new List<MatchedDocument>();
+        private List<SourceDocument> _Documents = new List<SourceDocument>();
 
         #endregion
 

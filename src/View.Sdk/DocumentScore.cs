@@ -1,16 +1,15 @@
-﻿namespace View.Sdk
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.Linq;
-    using System.Text.Json.Serialization;
-    using Timestamps;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
+namespace View.Sdk
+{
     /// <summary>
-    /// Matched document.
+    /// Document score.
     /// </summary>
-    public class MatchedDocument
+    public class DocumentScore
     {
         #region Public-Members
 
@@ -29,11 +28,6 @@
         /// </summary>
         public decimal? FiltersScore { get; set; } = null;
 
-        /// <summary>
-        /// Source document metadata, if requested.
-        /// </summary>
-        public SourceDocument SourceDocument { get; set; } = null;
-
         #endregion
 
         #region Private-Members
@@ -45,7 +39,7 @@
         /// <summary>
         /// Instantiate.
         /// </summary>
-        public MatchedDocument()
+        public DocumentScore()
         {
 
         }

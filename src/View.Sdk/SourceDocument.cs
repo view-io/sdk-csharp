@@ -118,6 +118,11 @@
         public DateTime? ExpirationUtc { get; set; } = null;
 
         /// <summary>
+        /// Document score.
+        /// </summary>
+        public DocumentScore Score { get; set; } = null;
+
+        /// <summary>
         /// UDR document.
         /// </summary>
         public UdrDocument UdrDocument { get; set; } = null;
