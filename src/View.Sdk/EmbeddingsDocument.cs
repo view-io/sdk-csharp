@@ -27,11 +27,6 @@
         public Exception Exception { get; set; } = null;
 
         /// <summary>
-        /// Timestamps.
-        /// </summary>
-        public Timestamp Timestamp { get; set; } = new Timestamp();
-
-        /// <summary>
         /// ID.
         /// </summary>
         [JsonIgnore]
@@ -40,7 +35,7 @@
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public string TenantGUID { get; set; } = Guid.NewGuid().ToString();
+        public string TenantGUID { get; set; } = null;
 
         /// <summary>
         /// Collection GUID.
@@ -105,7 +100,18 @@
         /// <summary>
         /// Semantic cells.
         /// </summary>
-        public List<SemanticCell> SemanticCells { get; set; } = new List<SemanticCell>();
+        public List<SemanticCell> SemanticCells
+        {
+            get
+            {
+                return _SemanticCells;
+            }
+            set
+            {
+                if (value == null) value = new List<SemanticCell>();
+                _SemanticCells = value;
+            }
+        }
 
         /// <summary>
         /// Creation timestamp in UTC.

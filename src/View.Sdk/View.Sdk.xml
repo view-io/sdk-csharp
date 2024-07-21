@@ -1653,11 +1653,6 @@
             Exception, if any.
             </summary>
         </member>
-        <member name="P:View.Sdk.EmbeddingsDocument.Timestamp">
-            <summary>
-            Timestamps.
-            </summary>
-        </member>
         <member name="P:View.Sdk.EmbeddingsDocument.Id">
             <summary>
             ID.
@@ -4157,6 +4152,11 @@
             Exception.
             </summary>
         </member>
+        <member name="P:View.Sdk.SemanticCell.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.SemanticCell.MD5Hash">
             <summary>
             MD5.
@@ -4195,6 +4195,11 @@
         <member name="T:View.Sdk.SemanticChunk">
             <summary>
             Semantic chunk.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SemanticChunk.GUID">
+            <summary>
+            GUID.
             </summary>
         </member>
         <member name="P:View.Sdk.SemanticChunk.MD5Hash">

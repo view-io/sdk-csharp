@@ -12,6 +12,11 @@
         #region Public-Members
 
         /// <summary>
+        /// GUID.
+        /// </summary>
+        public string GUID { get; set; } = Guid.NewGuid().ToString();
+
+        /// <summary>
         /// MD5.
         /// </summary>
         public string MD5Hash { get; set; } = string.Empty;
