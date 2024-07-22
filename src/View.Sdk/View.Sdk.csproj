@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
-		<Version>0.4.0.45</Version>
+		<Version>0.4.0.60</Version>
 		<ApplicationIcon>Assets\icon.ico</ApplicationIcon>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<DocumentationFile>View.Sdk.xml</DocumentationFile>
@@ -23,7 +23,12 @@
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
-
+	
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<NuGetPublishType>remote</NuGetPublishType>
+		<NuGetPublishLocation>https://nuget.view.io</NuGetPublishLocation>
+	</PropertyGroup>
+	
 	<ItemGroup>
 		<Content Include="Assets\icon.ico" />
 	</ItemGroup>
@@ -54,7 +59,11 @@
 
 	<ItemGroup>
 		<PackageReference Include="RestWrapper" Version="3.0.20" />
-		<PackageReference Include="View.Serializer" Version="1.0.0" />
+		<PackageReference Include="SS.NuGet.Publish" Version="1.0.2311.32">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="View.Serializer" Version="1.0.1" />
 	</ItemGroup>
 
 </Project>

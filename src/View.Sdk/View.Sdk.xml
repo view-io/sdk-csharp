@@ -1503,6 +1503,11 @@
             Tenant GUID.
             </summary>
         </member>
+        <member name="P:View.Sdk.DeleteRequest.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.DeleteRequest.CollectionGUID">
             <summary>
             Collection GUID.
@@ -1518,6 +1523,11 @@
             Bucket GUID.
             </summary>
         </member>
+        <member name="P:View.Sdk.DeleteRequest.ObjectGUID">
+            <summary>
+            Object GUID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.DeleteRequest.VectorRepositoryGUID">
             <summary>
             Vector repository GUID.
@@ -1531,11 +1541,6 @@
         <member name="P:View.Sdk.DeleteRequest.Version">
             <summary>
             Version.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DeleteRequest.ObjectGUID">
-            <summary>
-            Object GUID.
             </summary>
         </member>
         <member name="M:View.Sdk.DeleteRequest.#ctor">
@@ -1728,6 +1733,16 @@
             Content.
             </summary>
         </member>
+        <member name="P:View.Sdk.EmbeddingsDocument.Score">
+            <summary>
+            Score.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EmbeddingsDocument.Distance">
+            <summary>
+            Distance.
+            </summary>
+        </member>
         <member name="P:View.Sdk.EmbeddingsDocument.SemanticCells">
             <summary>
             Semantic cells.
@@ -1743,18 +1758,20 @@
             Instantiate.
             </summary>
         </member>
-        <member name="M:View.Sdk.EmbeddingsDocument.FromDataRow(System.Data.DataRow)">
+        <member name="M:View.Sdk.EmbeddingsDocument.FromDataRow(System.Data.DataRow,View.Serializer.SerializationHelper)">
             <summary>
             Instantiate from DataRow.
             </summary>
             <param name="row">DataRow.</param>
+            <param name="serializer">Serializer.</param>
             <returns>EmbeddingsDocument.</returns>
         </member>
-        <member name="M:View.Sdk.EmbeddingsDocument.FromDataTable(System.Data.DataTable)">
+        <member name="M:View.Sdk.EmbeddingsDocument.FromDataTable(System.Data.DataTable,View.Serializer.SerializationHelper)">
             <summary>
             Instantiate from DataTable.
             </summary>
             <param name="dt">DataTable.</param>
+            <param name="serializer">Serializer.</param>
             <returns>List of EmbeddingsDocument.</returns>
         </member>
         <member name="T:View.Sdk.EmbeddingsGeneratorEnum">
@@ -2197,6 +2214,11 @@
             Token.
             </summary>
         </member>
+        <member name="P:View.Sdk.EnumerationQuery.IncludeData">
+            <summary>
+            Include subordinates, for instance, semantic cells and chunks.
+            </summary>
+        </member>
         <member name="P:View.Sdk.EnumerationQuery.IncludeOwners">
             <summary>
             Include owners.
@@ -2232,41 +2254,6 @@
             Start and end timestamps.
             </summary>
         </member>
-        <member name="P:View.Sdk.EnumerationResult.Tenant">
-            <summary>
-            Tenant metadata.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EnumerationResult.TenantGUID">
-            <summary>
-            Tenant GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EnumerationResult.Collection">
-            <summary>
-            Collection.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EnumerationResult.CollectionGUID">
-            <summary>
-            The GUID of the collection that was queried.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EnumerationResult.Bucket">
-            <summary>
-            Bucket metadata.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EnumerationResult.BucketGUID">
-            <summary>
-            Bucket GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EnumerationResult.Query">
-            <summary>
-            The enumeration query performed.
-            </summary>
-        </member>
         <member name="P:View.Sdk.EnumerationResult.MaxResults">
             <summary>
             Maximum number of results to retrieve.
@@ -2282,29 +2269,9 @@
             Object statistics.
             </summary>
         </member>
-        <member name="P:View.Sdk.EnumerationResult.Prefix">
+        <member name="P:View.Sdk.EnumerationResult.ContinuationToken">
             <summary>
-            Prefix.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EnumerationResult.Marker">
-            <summary>
-            Marker.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EnumerationResult.Delimiter">
-            <summary>
-            Delimiter.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EnumerationResult.Token">
-            <summary>
-            Token.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EnumerationResult.NextToken">
-            <summary>
-            Next token.
+            Continuation token.
             </summary>
         </member>
         <member name="P:View.Sdk.EnumerationResult.SharedPrefixes">
@@ -2337,11 +2304,6 @@
             Boolean indicating end of results.
             </summary>
         </member>
-        <member name="P:View.Sdk.EnumerationResult.ContinuationToken">
-            <summary>
-            Continuation token to use when continuing the search.
-            </summary>
-        </member>
         <member name="P:View.Sdk.EnumerationResult.RecordsRemaining">
             <summary>
             Number of candidate records remaining in the enumeration.
@@ -2351,12 +2313,6 @@
             <summary>
             Instantiates the object.
             </summary>
-        </member>
-        <member name="M:View.Sdk.EnumerationResult.#ctor(View.Sdk.EnumerationQuery)">
-            <summary>
-            Instantiates the object.
-            </summary>
-            <param name="query">Enumeration query.</param>
         </member>
         <member name="T:View.Sdk.Expiration">
             <summary>
@@ -4182,19 +4138,9 @@
             Position.
             </summary>
         </member>
-        <member name="P:View.Sdk.SemanticCell.Content">
-            <summary>
-            Content.
-            </summary>
-        </member>
         <member name="P:View.Sdk.SemanticCell.Chunks">
             <summary>
             Chunks.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SemanticCell.Embeddings">
-            <summary>
-            Embeddings.
             </summary>
         </member>
         <member name="M:View.Sdk.SemanticCell.#ctor">
@@ -5228,14 +5174,14 @@
             InnerProduct.
             </summary>
         </member>
-        <member name="F:View.Sdk.VectorSearchTypeEnum.Cosine">
+        <member name="F:View.Sdk.VectorSearchTypeEnum.CosineDistance">
             <summary>
-            Cosine.
+            CosineDistance.
             </summary>
         </member>
-        <member name="F:View.Sdk.VectorSearchTypeEnum.NearestNeighbor">
+        <member name="F:View.Sdk.VectorSearchTypeEnum.L2Distance">
             <summary>
-            NearestNeighbor.
+            L2Distance.
             </summary>
         </member>
         <member name="T:View.Sdk.Vector.ViewLangchainProxySdk">

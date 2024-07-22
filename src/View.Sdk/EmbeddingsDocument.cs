@@ -8,6 +8,7 @@
     using System.Linq;
     using System.Text.Json.Serialization;
     using Timestamps;
+    using View.Serializer;
 
     /// <summary>
     /// Embeddings document.
@@ -103,6 +104,16 @@
         public string Content { get; set; } = null;
 
         /// <summary>
+        /// Score.
+        /// </summary>
+        public decimal? Score { get; set; } = null;
+
+        /// <summary>
+        /// Distance.
+        /// </summary>
+        public decimal? Distance { get; set; } = null;
+
+        /// <summary>
         /// Semantic cells.
         /// </summary>
         public List<SemanticCell> SemanticCells
@@ -145,27 +156,12 @@
         /// Instantiate from DataRow.
         /// </summary>
         /// <param name="row">DataRow.</param>
+        /// <param name="serializer">Serializer.</param>
         /// <returns>EmbeddingsDocument.</returns>
-        public static EmbeddingsDocument FromDataRow(DataRow row)
+        public static EmbeddingsDocument FromDataRow(DataRow row, SerializationHelper serializer)
         {
             if (row == null) return null;
-
-            /*
-"CREATE TABLE IF NOT EXISTS public." + Sanitize(TableName) + " " + Environment.NewLine
-                + "( " + Environment.NewLine
-                + "    cell_guid CHARACTER VARYING(36), " + Environment.NewLine
-                + "    cell_md5 CHARACTER VARYING(32), " + Environment.NewLine
-                + "    cell_sha1 CHARACTER VARYING(40), " + Environment.NewLine
-                + "    cell_sha256 CHARACTER VARYING(64), " + Environment.NewLine
-                + "    chunk_guid CHARACTER VARYING(36), " + Environment.NewLine
-                + "    chunk_md5 CHARACTER VARYING(32), " + Environment.NewLine
-                + "    chunk_sha1 CHARACTER VARYING(40), " + Environment.NewLine
-                + "    chunk_sha256 CHARACTER VARYING(64), " + Environment.NewLine
-                + "    content TEXT, " + Environment.NewLine
-                + "    embedding vector(" + Dimensionality + "), " + Environment.NewLine
-                + "    created_utc TIMESTAMP WITHOUT TIME ZONE " + Environment.NewLine
-                + ")";
-             */
+            if (serializer == null) throw new ArgumentNullException(nameof(serializer));
 
             EmbeddingsDocument doc = new EmbeddingsDocument
             {
@@ -184,19 +180,30 @@
                 CreatedUtc = row["created_utc"] != null ? Convert.ToDateTime(row["created_utc"].ToString()) : DateTime.UtcNow
             };
 
+            if (row.Table.Columns.Contains("score"))
+                doc.Score = row["score"] != null ? Convert.ToDecimal(row["score"].ToString()) : null;
+
+            if (row.Table.Columns.Contains("distance"))
+                doc.Distance = row["distance"] != null ? Convert.ToDecimal(row["distance"].ToString()) : null;
+
             string cellGuid = row["cell_guid"] != null ? row["cell_guid"].ToString() : null;
-            string cellMd5 = row["cell_md5"] != null ? row["cell_guid"].ToString() : null;
-            string cellSha1 = row["cell_sha1"] != null ? row["cell_guid"].ToString() : null;
-            string cellSha256 = row["cell_sha256"] != null ? row["cell_guid"].ToString() : null;
+            string cellMd5 = row["cell_md5"] != null ? row["cell_md5"].ToString() : null;
+            string cellSha1 = row["cell_sha1"] != null ? row["cell_sha1"].ToString() : null;
+            string cellSha256 = row["cell_sha256"] != null ? row["cell_sha256"].ToString() : null;
             int cellPosition = row["cell_position"] != null ? Convert.ToInt32(row["cell_position"]) : 0;
 
             string chunkGuid = row["chunk_guid"] != null ? row["chunk_guid"].ToString() : null;
-            string chunkMd5 = row["chunk_md5"] != null ? row["chunk_guid"].ToString() : null;
-            string chunkSha1 = row["chunk_sha1"] != null ? row["chunk_guid"].ToString() : null;
-            string chunkSha256 = row["chunk_sha256"] != null ? row["chunk_guid"].ToString() : null;
+            string chunkMd5 = row["chunk_md5"] != null ? row["chunk_md5"].ToString() : null;
+            string chunkSha1 = row["chunk_sha1"] != null ? row["chunk_sha1"].ToString() : null;
+            string chunkSha256 = row["chunk_sha256"] != null ? row["chunk_sha256"].ToString() : null;
             int chunkPosition = row["chunk_position"] != null ? Convert.ToInt32(row["chunk_position"]) : 0;
             
             string content = row["content"] != null ? row["content"].ToString() : null;
+            
+            string embeddingsStr = row["embedding"] != null ? row["embedding"].ToString() : null;
+            List<float> embeddings = new List<float>();
+            if (!String.IsNullOrEmpty(embeddingsStr))
+                embeddings = serializer.DeserializeJson<List<float>>(embeddingsStr);
 
             SemanticCell cell = new SemanticCell
             {
@@ -214,7 +221,8 @@
                 SHA1Hash = chunkSha1,
                 SHA256Hash = chunkSha256,
                 Position = chunkPosition,
-                Content = content
+                Content = content,
+                Embeddings = embeddings
             };
 
             cell.Chunks.Add(chunk);
@@ -229,10 +237,12 @@
         /// Instantiate from DataTable.
         /// </summary>
         /// <param name="dt">DataTable.</param>
+        /// <param name="serializer">Serializer.</param>
         /// <returns>List of EmbeddingsDocument.</returns>
-        public static List<EmbeddingsDocument> FromDataTable(DataTable dt)
+        public static List<EmbeddingsDocument> FromDataTable(DataTable dt, SerializationHelper serializer)
         {
             if (dt == null) return null;
+            if (serializer == null) throw new ArgumentNullException(nameof(serializer));
 
             #region Create-Raw-Records
 
@@ -240,7 +250,7 @@
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                EmbeddingsDocument doc = FromDataRow(dt.Rows[i]);
+                EmbeddingsDocument doc = FromDataRow(dt.Rows[i], serializer);
                 raw.Add(doc);
             }
 

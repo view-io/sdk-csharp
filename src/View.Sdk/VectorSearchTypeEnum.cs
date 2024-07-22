@@ -9,20 +9,22 @@
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum VectorSearchTypeEnum
     {
+        // https://docs.timescale.com/ai/latest/key-vector-database-concepts-for-understanding-pgvector/
+
         /// <summary>
         /// InnerProduct.
         /// </summary>
         [EnumMember(Value = "InnerProduct")]
         InnerProduct,
         /// <summary>
-        /// Cosine.
+        /// CosineDistance.
         /// </summary>
-        [EnumMember(Value = "Cosine")]
-        Cosine,
+        [EnumMember(Value = "CosineDistance")]
+        CosineDistance,
         /// <summary>
-        /// NearestNeighbor.
+        /// L2Distance.
         /// </summary>
-        [EnumMember(Value = "NearestNeighbor")]
-        NearestNeighbor,
+        [EnumMember(Value = "L2Distance")]
+        L2Distance,
     }
 }

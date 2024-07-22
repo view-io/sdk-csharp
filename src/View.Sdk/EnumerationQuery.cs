@@ -130,6 +130,11 @@
         public string Token { get; set; } = string.Empty;
 
         /// <summary>
+        /// Include subordinates, for instance, semantic cells and chunks.
+        /// </summary>
+        public bool IncludeData { get; set; } = false;
+
+        /// <summary>
         /// Include owners.
         /// </summary>
         public bool IncludeOwners { get; set; } = true; // S3 compatibility

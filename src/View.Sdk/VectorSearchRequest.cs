@@ -13,7 +13,7 @@
         /// <summary>
         /// Search type.
         /// </summary>
-        public VectorSearchTypeEnum SearchType { get; set; } = VectorSearchTypeEnum.Cosine;
+        public VectorSearchTypeEnum SearchType { get; set; } = VectorSearchTypeEnum.InnerProduct;
 
         /// <summary>
         /// Vector repository GUID.

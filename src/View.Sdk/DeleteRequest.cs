@@ -15,6 +15,11 @@
         public string TenantGUID { get; set; } = null;
 
         /// <summary>
+        /// GUID.
+        /// </summary>
+        public string GUID { get; set; } = null;
+
+        /// <summary>
         /// Collection GUID.
         /// </summary>
         public string CollectionGUID { get; set; } = null;
@@ -30,6 +35,11 @@
         public string BucketGUID { get; set; } = null;
 
         /// <summary>
+        /// Object GUID.
+        /// </summary>
+        public string ObjectGUID { get; set; } = null;
+
+        /// <summary>
         /// Vector repository GUID.
         /// </summary>
         public string VectorRepositoryGUID { get; set; } = null;
@@ -43,11 +53,6 @@
         /// Version.
         /// </summary>
         public string Version { get; set; } = null;
-
-        /// <summary>
-        /// Object GUID.
-        /// </summary>
-        public string ObjectGUID { get; set; } = null;
 
         #endregion
 

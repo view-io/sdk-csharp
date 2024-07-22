@@ -50,18 +50,7 @@
         /// <summary>
         /// Content.
         /// </summary>
-        public string Content
-        {
-            get
-            {
-                return _Content;
-            }
-            set
-            {
-                if (string.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(value));
-                _Content = value.Trim();
-            }
-        }
+        public string Content { get; set; } = null;
 
         /// <summary>
         /// Embeddings.
@@ -74,7 +63,7 @@
             }
             set
             {
-                if (value == null) _Embeddings = new List<float>();
+                if (value == null) value = new List<float>();
                 else _Embeddings = value;
             }
         }
@@ -84,7 +73,6 @@
         #region Private-Members
 
         private int _Position = 0;
-        private string _Content = null;
         private List<float> _Embeddings = new List<float>();
 
         #endregion

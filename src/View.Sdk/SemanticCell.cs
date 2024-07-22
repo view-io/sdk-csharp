@@ -58,22 +58,6 @@
         }
 
         /// <summary>
-        /// Content.
-        /// </summary>
-        public string Content
-        {
-            get
-            {
-                return _Content;
-            }
-            set
-            {
-                if (string.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(value));
-                _Content = value.Trim();
-            }
-        }
-
-        /// <summary>
         /// Chunks.
         /// </summary>
         public List<SemanticChunk> Chunks
@@ -89,30 +73,12 @@
             }
         }
 
-        /// <summary>
-        /// Embeddings.
-        /// </summary>
-        public List<float> Embeddings
-        {
-            get
-            {
-                return _Embeddings;
-            }
-            set
-            {
-                if (value == null) _Embeddings = new List<float>();
-                else _Embeddings = value;
-            }
-        }
-
         #endregion
 
         #region Private-Members
 
         private int _Position = 0;
-        private string _Content = null;
         private List<SemanticChunk> _Chunks = new List<SemanticChunk>();
-        private List<float> _Embeddings = new List<float>();
 
         #endregion
 

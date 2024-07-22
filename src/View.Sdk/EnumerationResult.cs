@@ -24,41 +24,6 @@
         public Timestamp Timestamp { get; set; } = new Timestamp();
 
         /// <summary>
-        /// Tenant metadata.
-        /// </summary>
-        public TenantMetadata Tenant { get; set; } = null;
-
-        /// <summary>
-        /// Tenant GUID.
-        /// </summary>
-        public string TenantGUID { get; set; } = null;
-
-        /// <summary>
-        /// Collection.
-        /// </summary>
-        public Collection Collection { get; set; } = null;
-
-        /// <summary>
-        /// The GUID of the collection that was queried.
-        /// </summary>
-        public string CollectionGUID { get; set; } = null;
-
-        /// <summary>
-        /// Bucket metadata.
-        /// </summary>
-        public BucketMetadata Bucket { get; set; } = null;
-
-        /// <summary>
-        /// Bucket GUID.
-        /// </summary>
-        public string BucketGUID { get; set; } = null;
-
-        /// <summary>
-        /// The enumeration query performed.
-        /// </summary>
-        public EnumerationQuery Query { get; set; } = null;
-
-        /// <summary>
         /// Maximum number of results to retrieve.
         /// </summary>
         public int MaxResults
@@ -96,29 +61,9 @@
         public ObjectStatistics Statistics { get; set; } = null;
 
         /// <summary>
-        /// Prefix.
+        /// Continuation token.
         /// </summary>
-        public string Prefix { get; set; } = string.Empty;
-
-        /// <summary>
-        /// Marker.
-        /// </summary>
-        public string Marker { get; set; } = string.Empty;
-
-        /// <summary>
-        /// Delimiter.
-        /// </summary>
-        public string Delimiter { get; set; } = string.Empty;
-
-        /// <summary>
-        /// Token.
-        /// </summary>
-        public string Token { get; set; } = string.Empty;
-
-        /// <summary>
-        /// Next token.
-        /// </summary>
-        public string NextToken { get; set; } = string.Empty;
+        public string ContinuationToken { get; set; } = null;
 
         /// <summary>
         /// Shared prefixes.
@@ -149,11 +94,6 @@
         /// Boolean indicating end of results.
         /// </summary>
         public bool EndOfResults { get; set; } = true;
-
-        /// <summary>
-        /// Continuation token to use when continuing the search.
-        /// </summary>
-        public string ContinuationToken { get; set; } = null;
 
         /// <summary>
         /// Number of candidate records remaining in the enumeration.
@@ -192,15 +132,6 @@
         /// </summary>
         public EnumerationResult()
         {
-        }
-
-        /// <summary>
-        /// Instantiates the object.
-        /// </summary>
-        /// <param name="query">Enumeration query.</param>
-        public EnumerationResult(EnumerationQuery query)
-        {
-            Query = query;
         }
 
         #endregion
