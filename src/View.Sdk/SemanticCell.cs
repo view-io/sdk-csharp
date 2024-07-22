@@ -42,6 +42,22 @@
         public string SHA256Hash { get; set; } = null;
 
         /// <summary>
+        /// Position.
+        /// </summary>
+        public int Position
+        {
+            get
+            {
+                return _Position;
+            }
+            set
+            {
+                if (value < 0) throw new ArgumentOutOfRangeException(nameof(Position));
+                _Position = value;
+            }
+        }
+
+        /// <summary>
         /// Content.
         /// </summary>
         public string Content
@@ -93,6 +109,7 @@
 
         #region Private-Members
 
+        private int _Position = 0;
         private string _Content = null;
         private List<SemanticChunk> _Chunks = new List<SemanticChunk>();
         private List<float> _Embeddings = new List<float>();

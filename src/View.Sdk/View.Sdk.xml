@@ -1658,6 +1658,11 @@
             ID.
             </summary>
         </member>
+        <member name="P:View.Sdk.EmbeddingsDocument.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.EmbeddingsDocument.TenantGUID">
             <summary>
             Tenant GUID.
@@ -4172,6 +4177,11 @@
             SHA256.
             </summary>
         </member>
+        <member name="P:View.Sdk.SemanticCell.Position">
+            <summary>
+            Position.
+            </summary>
+        </member>
         <member name="P:View.Sdk.SemanticCell.Content">
             <summary>
             Content.
@@ -4215,6 +4225,11 @@
         <member name="P:View.Sdk.SemanticChunk.SHA256Hash">
             <summary>
             SHA256.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SemanticChunk.Position">
+            <summary>
+            Position.
             </summary>
         </member>
         <member name="P:View.Sdk.SemanticChunk.Content">
