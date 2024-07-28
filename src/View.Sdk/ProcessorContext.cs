@@ -45,7 +45,6 @@
 
         #region Private-Members
 
-        private string _RequestGuid = Guid.NewGuid().ToString();
         private ProcessorRequest _Request = new ProcessorRequest();
         private ProcessorResponse _Response = new ProcessorResponse();
 

@@ -12,16 +12,6 @@
         #region Public-Members
 
         /// <summary>
-        /// Boolean indicating success.
-        /// </summary>
-        public bool Success { get; set; } = true;
-
-        /// <summary>
-        /// Exception.
-        /// </summary>
-        public Exception Exception { get; set; } = null;
-
-        /// <summary>
         /// GUID.
         /// </summary>
         public string GUID { get; set; } = Guid.NewGuid().ToString();
@@ -58,6 +48,22 @@
         }
 
         /// <summary>
+        /// Length.
+        /// </summary>
+        public int Length
+        {
+            get
+            {
+                return _Length;
+            }
+            set
+            {
+                if (value < 0) throw new ArgumentOutOfRangeException(nameof(Length));
+                _Length = value;
+            }
+        }
+
+        /// <summary>
         /// Chunks.
         /// </summary>
         public List<SemanticChunk> Chunks
@@ -73,12 +79,30 @@
             }
         }
 
+        /// <summary>
+        /// Children.
+        /// </summary>
+        public List<SemanticCell> Children
+        {
+            get
+            {
+                return _Children;
+            }
+            set
+            {
+                if (value == null) value = new List<SemanticCell>();
+                _Children = value;
+            }
+        }
+
         #endregion
 
         #region Private-Members
 
         private int _Position = 0;
+        private int _Length = 0;
         private List<SemanticChunk> _Chunks = new List<SemanticChunk>();
+        private List<SemanticCell> _Children = new List<SemanticCell>();
 
         #endregion
 

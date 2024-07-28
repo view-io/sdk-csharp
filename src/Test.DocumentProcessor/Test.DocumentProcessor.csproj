@@ -98,9 +98,6 @@
 	  <None Include="Sample\XML\3.xml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	</ItemGroup>
-
-	<ItemGroup>
 	  <None Update="Sample\PDF\1.pdf">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>

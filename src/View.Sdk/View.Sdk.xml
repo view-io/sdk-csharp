@@ -3544,16 +3544,6 @@
             View SDK for generating embeddings with Lexi search results.
             </summary>
         </member>
-        <member name="P:View.Sdk.Processor.ViewLexiEmbeddingsSdk.LogRequests">
-            <summary>
-            Enable or disable logging of request bodies.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.ViewLexiEmbeddingsSdk.LogResponses">
-            <summary>
-            Enable or disable logging of response bodies.
-            </summary>
-        </member>
         <member name="M:View.Sdk.Processor.ViewLexiEmbeddingsSdk.#ctor(System.String)">
             <summary>
             Instantiate.
@@ -3573,16 +3563,6 @@
         <member name="T:View.Sdk.Processor.ViewProcessorSdk">
             <summary>
             View Processing Pipeline SDK.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.ViewProcessorSdk.LogRequests">
-            <summary>
-            Enable or disable logging of request bodies.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.ViewProcessorSdk.LogResponses">
-            <summary>
-            Enable or disable logging of response bodies.
             </summary>
         </member>
         <member name="M:View.Sdk.Processor.ViewProcessorSdk.#ctor(System.String)">
@@ -3605,16 +3585,6 @@
         <member name="T:View.Sdk.Processor.ViewTypeDetectorSdk">
             <summary>
             View Type Detector SDK.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.ViewTypeDetectorSdk.LogRequests">
-            <summary>
-            Enable or disable logging of request bodies.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.ViewTypeDetectorSdk.LogResponses">
-            <summary>
-            Enable or disable logging of response bodies.
             </summary>
         </member>
         <member name="M:View.Sdk.Processor.ViewTypeDetectorSdk.#ctor(System.String)">
@@ -3660,6 +3630,28 @@
             <param name="filename">Filename containing data.</param>
             <param name="token">Cancellation token.</param>
             <returns>Document response.</returns>
+        </member>
+        <member name="T:View.Sdk.Processor.ViewSemanticCellSdk">
+            <summary>
+            View Semantic Cell SDK.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Processor.ViewSemanticCellSdk.#ctor(System.String)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="endpoint">Endpoint URL.</param>
+        </member>
+        <member name="M:View.Sdk.Processor.ViewSemanticCellSdk.Process(View.Sdk.DocumentTypeEnum,System.Byte[],System.Threading.CancellationToken,System.Int32,System.Int32)">
+            <summary>
+            Determine a document type.
+            </summary>
+            <param name="docType">Document type.</param>
+            <param name="data">Data.</param>
+            <param name="token">Cancellation token.</param>
+            <param name="maxChunkContentLength">Maximum chunk content length.</param>
+            <param name="shiftSize">Shift size.</param>
+            <returns>Semantic cell response.</returns>
         </member>
         <member name="T:View.Sdk.QueryFilter">
             <summary>
@@ -4103,16 +4095,6 @@
             Semantic cell.
             </summary>
         </member>
-        <member name="P:View.Sdk.SemanticCell.Success">
-            <summary>
-            Boolean indicating success.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SemanticCell.Exception">
-            <summary>
-            Exception.
-            </summary>
-        </member>
         <member name="P:View.Sdk.SemanticCell.GUID">
             <summary>
             GUID.
@@ -4138,12 +4120,91 @@
             Position.
             </summary>
         </member>
+        <member name="P:View.Sdk.SemanticCell.Length">
+            <summary>
+            Length.
+            </summary>
+        </member>
         <member name="P:View.Sdk.SemanticCell.Chunks">
             <summary>
             Chunks.
             </summary>
         </member>
+        <member name="P:View.Sdk.SemanticCell.Children">
+            <summary>
+            Children.
+            </summary>
+        </member>
         <member name="M:View.Sdk.SemanticCell.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.SemanticCellRequest">
+            <summary>
+            Semantic cell request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SemanticCellRequest.DocumentType">
+            <summary>
+            Document type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SemanticCellRequest.MaxChunkContentLength">
+            <summary>
+            Maximum chunk content length.  Minimum is 256 and maximum is 16384.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SemanticCellRequest.ShiftSize">
+            <summary>
+            Shift size, used to determine overlap amongst neighboring chunks.
+            When set to the same value as the maximum chunk content length, no overlap will exist amongst neighboring chunks.
+            When set to a smaller amount than the maximum chunk content length, overlap will exist amongst neighboring chunks.
+            This value must be equal to or less than the maximum chunk content length.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SemanticCellRequest.Data">
+            <summary>
+            Data.
+            When serializing, convert to a base64-encoded string.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.SemanticCellRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.SemanticCellResponse">
+            <summary>
+            Semantic cell response.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SemanticCellResponse.DataFlowRequestGUID">
+            <summary>
+            Data flow request GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SemanticCellResponse.Success">
+            <summary>
+            Boolean indicating success.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SemanticCellResponse.Timestamp">
+            <summary>
+            Timestamps.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SemanticCellResponse.Error">
+            <summary>
+            Error response, if any.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SemanticCellResponse.SemanticCells">
+            <summary>
+            Semantic cells.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.SemanticCellResponse.#ctor">
             <summary>
             Instantiate.
             </summary>
@@ -4176,6 +4237,21 @@
         <member name="P:View.Sdk.SemanticChunk.Position">
             <summary>
             Position.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SemanticChunk.Start">
+            <summary>
+            Start position.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SemanticChunk.End">
+            <summary>
+            End position.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SemanticChunk.Length">
+            <summary>
+            Length.
             </summary>
         </member>
         <member name="P:View.Sdk.SemanticChunk.Content">
@@ -4877,14 +4953,19 @@
             Top terms and their count.
             </summary>
         </member>
+        <member name="P:View.Sdk.UdrDocument.Schema">
+            <summary>
+            Schema.
+            </summary>
+        </member>
         <member name="P:View.Sdk.UdrDocument.Postings">
             <summary>
             Postings.
             </summary>
         </member>
-        <member name="P:View.Sdk.UdrDocument.Schema">
+        <member name="P:View.Sdk.UdrDocument.SemanticCells">
             <summary>
-            Schema.
+            Semantic cells.
             </summary>
         </member>
         <member name="M:View.Sdk.UdrDocument.#ctor">
@@ -4922,6 +5003,16 @@
         <member name="P:View.Sdk.UdrDocumentRequest.ContentType">
             <summary>
             Content-type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UdrDocumentRequest.SemanticCellSplitCharacter">
+            <summary>
+            Character on which to split semantic cells.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UdrDocumentRequest.MaxChunkContentLength">
+            <summary>
+            Maximum chunk content length.  Minimum is 128 and maximum is 2048.
             </summary>
         </member>
         <member name="P:View.Sdk.UdrDocumentRequest.IncludeFlattened">
@@ -5367,6 +5458,16 @@
         <member name="T:View.Sdk.ViewSdkBase">
             <summary>
             View SDK base class.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewSdkBase.LogRequests">
+            <summary>
+            Enable or disable logging of request bodies.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewSdkBase.LogResponses">
+            <summary>
+            Enable or disable logging of response bodies.
             </summary>
         </member>
         <member name="P:View.Sdk.ViewSdkBase.Logger">

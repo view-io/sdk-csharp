@@ -62,7 +62,7 @@
         /// Document type.
         /// </summary>
         public DocumentTypeEnum Type { get; set; }
-
+         
         /// <summary>
         /// Terms identified through text extraction.
         /// </summary>
@@ -91,6 +91,11 @@
         }
 
         /// <summary>
+        /// Schema.
+        /// </summary>
+        public SchemaResult Schema { get; set; } = null;
+
+        /// <summary>
         /// Postings.
         /// </summary>
         public List<Posting> Postings
@@ -107,9 +112,20 @@
         }
 
         /// <summary>
-        /// Schema.
+        /// Semantic cells.
         /// </summary>
-        public SchemaResult Schema { get; set; } = null;
+        public List<SemanticCell> SemanticCells
+        {
+            get
+            {
+                return _SemanticCells;
+            }
+            set
+            {
+                if (value == null) value = new List<SemanticCell>();
+                _SemanticCells = value;
+            }
+        }
 
         #endregion
 
@@ -118,6 +134,7 @@
         private Dictionary<string, object> _Metadata = new Dictionary<string, object>(StringComparer.InvariantCultureIgnoreCase);
         private List<string> _Terms = new List<string>();
         private List<Posting> _Postings = new List<Posting>();
+        private List<SemanticCell> _SemanticCells = new List<SemanticCell>();
 
         #endregion
 

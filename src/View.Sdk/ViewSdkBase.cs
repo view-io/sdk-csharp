@@ -16,6 +16,16 @@
         #region Public-Members
 
         /// <summary>
+        /// Enable or disable logging of request bodies.
+        /// </summary>
+        public bool LogRequests { get; set; } = false;
+
+        /// <summary>
+        /// Enable or disable logging of response bodies.
+        /// </summary>
+        public bool LogResponses { get; set; } = false;
+
+        /// <summary>
         /// Method to invoke to send log messages.
         /// </summary>
         public Action<SeverityEnum, string> Logger { get; set; } = null;

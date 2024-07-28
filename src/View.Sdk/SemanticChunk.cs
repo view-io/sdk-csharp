@@ -48,6 +48,54 @@
         }
 
         /// <summary>
+        /// Start position.
+        /// </summary>
+        public int Start
+        {
+            get
+            {
+                return _Start;
+            }
+            set
+            {
+                if (value < 0) throw new ArgumentException("Start must be zero or greater.");
+                _Start = value;
+            }
+        }
+
+        /// <summary>
+        /// End position.
+        /// </summary>
+        public int End
+        {
+            get
+            {
+                return _End;
+            }
+            set
+            {
+                if (value < 0) throw new ArgumentException("End must be zero or greater.");
+                _End = value;
+            }
+        }
+
+        /// <summary>
+        /// Length.
+        /// </summary>
+        public int Length
+        {
+            get
+            {
+                return _Length;
+            }
+            set
+            {
+                if (value < 0) throw new ArgumentOutOfRangeException(nameof(Length));
+                _Length = value;
+            }
+        }
+
+        /// <summary>
         /// Content.
         /// </summary>
         public string Content { get; set; } = null;
@@ -73,6 +121,9 @@
         #region Private-Members
 
         private int _Position = 0;
+        private int _Start = 0;
+        private int _End = 0;
+        private int _Length = 0;
         private List<float> _Embeddings = new List<float>();
 
         #endregion
