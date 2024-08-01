@@ -5,10 +5,8 @@
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.VisualBasic;
     using RestWrapper;
     using View.Sdk;
-    using View.Serializer;
 
     /// <summary>
     /// View Semantic Cell SDK.
@@ -29,7 +27,7 @@
         /// Instantiate.
         /// </summary>
         /// <param name="endpoint">Endpoint URL.</param>
-        public ViewSemanticCellSdk(string endpoint = "http://localhost:9341/") : base(endpoint)
+        public ViewSemanticCellSdk(string endpoint = "http://localhost:8341/") : base(endpoint)
         {
             Header = "[ViewSemanticCellSdk] ";
         }
@@ -39,38 +37,28 @@
         #region Public-Methods
 
         /// <summary>
-        /// Determine a document type.
+        /// Extract semantic cells from a document.
         /// </summary>
-        /// <param name="docType">Document type.</param>
-        /// <param name="data">Data.</param>
+        /// <param name="scReq">Semantic cell extraction request.</param>
         /// <param name="token">Cancellation token.</param>
-        /// <param name="maxChunkContentLength">Maximum chunk content length.</param>
-        /// <param name="shiftSize">Shift size.</param>
         /// <returns>Semantic cell response.</returns>
         public async Task<SemanticCellResponse> Process(
-            DocumentTypeEnum docType,
-            byte[] data,
-            CancellationToken token = default,
-            int maxChunkContentLength = 512,
-            int shiftSize = 512)
+            SemanticCellRequest scReq,
+            CancellationToken token = default)
         {
-            if (data == null || data.Length < 1) throw new ArgumentException("No data supplied for semantic cell extraction.");
+            if (scReq == null) throw new ArgumentNullException(nameof(scReq));
+            if (scReq.Data == null || scReq.Data.Length < 1) throw new ArgumentException("No data supplied for semantic cell extraction.");
+            if (scReq.MetadataRule == null) throw new ArgumentNullException(nameof(scReq.MetadataRule));
+            if (String.IsNullOrEmpty(scReq.MetadataRule.SemanticCellEndpoint)) throw new ArgumentNullException(nameof(scReq.MetadataRule.SemanticCellEndpoint));
 
             string url = Endpoint + "v1.0/document";
-
-            SemanticCellRequest scReq = new SemanticCellRequest
-            {
-                DocumentType = docType,
-                Data = data,
-                MaxChunkContentLength = maxChunkContentLength,
-                ShiftSize = shiftSize
-            };
+            string json = Serializer.SerializeJson(scReq, true);
 
             try
             {
                 using (RestRequest req = new RestRequest(url, HttpMethod.Put, "application/json"))
                 {
-                    if (LogRequests) Log(SeverityEnum.Debug, "request body: " + Environment.NewLine + Encoding.UTF8.GetString(data));
+                    if (LogRequests) Log(SeverityEnum.Debug, "request body: " + Environment.NewLine + json);
 
                     using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(scReq, true), token).ConfigureAwait(false))
                     {
@@ -122,6 +110,41 @@
                 Log(SeverityEnum.Warn, "exception while interacting with " + url + ": " + hre.Message);
                 return null;
             }
+        }
+
+        /// <summary>
+        /// Extract semantic cells from a document.
+        /// </summary>
+        /// <param name="docType">Document type.</param>
+        /// <param name="mdRule">Metadata rule.</param>
+        /// <param name="data">Data.</param>
+        /// <param name="maxChunkContentLength">Maximum chunk content length.</param>
+        /// <param name="shiftSize">Shift size.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Semantic cell response.</returns>
+        public async Task<SemanticCellResponse> Process(
+            DocumentTypeEnum docType,
+            MetadataRule mdRule,
+            byte[] data,
+            int maxChunkContentLength = 512,
+            int shiftSize = 512,
+            CancellationToken token = default)
+        {
+            if (data == null || data.Length < 1) throw new ArgumentException("No data supplied for semantic cell extraction.");
+            if (mdRule == null) throw new ArgumentNullException(nameof(mdRule));
+
+            string url = Endpoint + "v1.0/document";
+
+            SemanticCellRequest scReq = new SemanticCellRequest
+            {
+                DocumentType = docType,
+                MetadataRule = mdRule,
+                Data = data,
+                MaxChunkContentLength = maxChunkContentLength,
+                ShiftSize = shiftSize
+            };
+
+            return await Process(scReq);
         }
 
         #endregion

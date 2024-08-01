@@ -67,6 +67,50 @@
 
         #endregion
 
+        #region Semantic-Cell-Extraction
+
+        /// <summary>
+        /// Semantic cell extraction endpoint.
+        /// </summary>
+        public string SemanticCellEndpoint { get; set; } = "http://localhost:8341/";
+
+        /// <summary>
+        /// Maximum chunk content length.  Minimum is 256 and maximum is 16384.
+        /// </summary>
+        public int MaxChunkContentLength
+        {
+            get
+            {
+                return _MaxChunkContentLength;
+            }
+            set
+            {
+                if (value < 256 || value > 16384) throw new ArgumentOutOfRangeException(nameof(MaxChunkContentLength));
+                _MaxChunkContentLength = value;
+            }
+        }
+
+        /// <summary>
+        /// Shift size, used to determine overlap amongst neighboring chunks.
+        /// When set to the same value as the maximum chunk content length, no overlap will exist amongst neighboring chunks.
+        /// When set to a smaller amount than the maximum chunk content length, overlap will exist amongst neighboring chunks.
+        /// This value must be equal to or less than the maximum chunk content length.
+        /// </summary>
+        public int ShiftSize
+        {
+            get
+            {
+                return _ShiftSize;
+            }
+            set
+            {
+                if (value > _MaxChunkContentLength) throw new ArgumentException("ShiftSize must be equal to or less than MaxChunkContentLength.");
+                _ShiftSize = value;
+            }
+        }
+
+        #endregion
+
         #region UDR
 
         /// <summary>
@@ -192,6 +236,8 @@
         private int? _RetentionMinutes = null;
         private int _MaxContentLength = 16 * 1024 * 1024;
         private int _TopTerms = 25;
+        private int _MaxChunkContentLength = 512;
+        private int _ShiftSize = 512;
 
         #endregion
 

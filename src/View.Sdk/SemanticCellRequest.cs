@@ -50,6 +50,11 @@
         }
 
         /// <summary>
+        /// Metadata rule.
+        /// </summary>
+        public MetadataRule MetadataRule { get; set; } = null;
+
+        /// <summary>
         /// Data.
         /// When serializing, convert to a base64-encoded string.
         /// </summary>

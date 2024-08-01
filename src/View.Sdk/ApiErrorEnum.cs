@@ -53,6 +53,17 @@
         UdrGenerationFailed,
 
         /// <summary>
+        /// No connectivity to the semantic cell extraction endpoint.
+        /// </summary>
+        [EnumMember(Value = "NoSemanticCellConnectivity")]
+        NoSemanticCellConnectivity,
+        /// <summary>
+        /// Semantic cell extraction failed.
+        /// </summary>
+        [EnumMember(Value = "SemanticCellExtractionFailed")]
+        SemanticCellExtractionFailed,
+
+        /// <summary>
         /// No data catalog connectivity.
         /// </summary>
         [EnumMember(Value = "NoDataCatalogConnectivity")]
@@ -78,6 +89,11 @@
         /// </summary>
         [EnumMember(Value = "EmbeddingsPersistFailed")]
         EmbeddingsPersistFailed,
+        /// <summary>
+        /// Embeddings generation failed.
+        /// </summary>
+        [EnumMember(Value = "EmbeddingsGenerationFailed")]
+        EmbeddingsGenerationFailed,
 
         /// <summary>
         /// Authentication failed.

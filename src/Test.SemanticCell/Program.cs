@@ -107,8 +107,10 @@
                 typeof(DocumentTypeEnum),
                 Inputty.GetString("Type:", "Text", false)));
 
+            MetadataRule mdRule = _Serializer.DeserializeJson<MetadataRule>(Inputty.GetString("Metadata rule JSON:", null, false));
+
             string file = Inputty.GetString("Filename:", "./SampleRequest.json", false);
-            SemanticCellResponse resp = await _Sdk.Process(docType, File.ReadAllBytes(file));
+            SemanticCellResponse resp = await _Sdk.Process(docType, mdRule, File.ReadAllBytes(file));
             EnumerateResponse(resp);
         }
 

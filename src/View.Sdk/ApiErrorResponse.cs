@@ -58,6 +58,11 @@
                     case ApiErrorEnum.UdrGenerationFailed:
                         return "Unable to generate UDR document.";
 
+                    case ApiErrorEnum.NoSemanticCellConnectivity:
+                        return "Unable to establish a connection to the semantic cell extraction endpoint.";
+                    case ApiErrorEnum.SemanticCellExtractionFailed:
+                        return "Unable to extract semantic cells.";
+
                     case ApiErrorEnum.NoDataCatalogConnectivity:
                         return "Unable to establish a connection to the data catalog endpoint.";
                     case ApiErrorEnum.DataCatalogPersistFailed:
@@ -67,6 +72,8 @@
 
                     case ApiErrorEnum.UnknownEmbeddingsGeneratorType:
                         return "An unknown embeddings generator type was encountered.";
+                    case ApiErrorEnum.EmbeddingsGenerationFailed:
+                        return "Unable to generate embeddings.";
                     case ApiErrorEnum.EmbeddingsPersistFailed:
                         return "Unable to persist embeddings within the vectore store.";
 

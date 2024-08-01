@@ -49,6 +49,16 @@
             UDR generation failed.
             </summary>
         </member>
+        <member name="F:View.Sdk.ApiErrorEnum.NoSemanticCellConnectivity">
+            <summary>
+            No connectivity to the semantic cell extraction endpoint.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.ApiErrorEnum.SemanticCellExtractionFailed">
+            <summary>
+            Semantic cell extraction failed.
+            </summary>
+        </member>
         <member name="F:View.Sdk.ApiErrorEnum.NoDataCatalogConnectivity">
             <summary>
             No data catalog connectivity.
@@ -72,6 +82,11 @@
         <member name="F:View.Sdk.ApiErrorEnum.EmbeddingsPersistFailed">
             <summary>
             Embeddings persistence failed.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.ApiErrorEnum.EmbeddingsGenerationFailed">
+            <summary>
+            Embeddings generation failed.
             </summary>
         </member>
         <member name="F:View.Sdk.ApiErrorEnum.AuthenticationFailed">
@@ -2770,6 +2785,24 @@
             Type detector endpoint.
             </summary>
         </member>
+        <member name="P:View.Sdk.MetadataRule.SemanticCellEndpoint">
+            <summary>
+            Semantic cell extraction endpoint.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.MetadataRule.MaxChunkContentLength">
+            <summary>
+            Maximum chunk content length.  Minimum is 256 and maximum is 16384.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.MetadataRule.ShiftSize">
+            <summary>
+            Shift size, used to determine overlap amongst neighboring chunks.
+            When set to the same value as the maximum chunk content length, no overlap will exist amongst neighboring chunks.
+            When set to a smaller amount than the maximum chunk content length, overlap will exist amongst neighboring chunks.
+            This value must be equal to or less than the maximum chunk content length.
+            </summary>
+        </member>
         <member name="P:View.Sdk.MetadataRule.UdrEndpoint">
             <summary>
             UDR endpoint.
@@ -3642,15 +3675,24 @@
             </summary>
             <param name="endpoint">Endpoint URL.</param>
         </member>
-        <member name="M:View.Sdk.Processor.ViewSemanticCellSdk.Process(View.Sdk.DocumentTypeEnum,System.Byte[],System.Threading.CancellationToken,System.Int32,System.Int32)">
+        <member name="M:View.Sdk.Processor.ViewSemanticCellSdk.Process(View.Sdk.SemanticCellRequest,System.Threading.CancellationToken)">
             <summary>
-            Determine a document type.
+            Extract semantic cells from a document.
+            </summary>
+            <param name="scReq">Semantic cell extraction request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Semantic cell response.</returns>
+        </member>
+        <member name="M:View.Sdk.Processor.ViewSemanticCellSdk.Process(View.Sdk.DocumentTypeEnum,View.Sdk.MetadataRule,System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Extract semantic cells from a document.
             </summary>
             <param name="docType">Document type.</param>
+            <param name="mdRule">Metadata rule.</param>
             <param name="data">Data.</param>
-            <param name="token">Cancellation token.</param>
             <param name="maxChunkContentLength">Maximum chunk content length.</param>
             <param name="shiftSize">Shift size.</param>
+            <param name="token">Cancellation token.</param>
             <returns>Semantic cell response.</returns>
         </member>
         <member name="T:View.Sdk.QueryFilter">
@@ -4161,6 +4203,11 @@
             When set to the same value as the maximum chunk content length, no overlap will exist amongst neighboring chunks.
             When set to a smaller amount than the maximum chunk content length, overlap will exist amongst neighboring chunks.
             This value must be equal to or less than the maximum chunk content length.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SemanticCellRequest.MetadataRule">
+            <summary>
+            Metadata rule.
             </summary>
         </member>
         <member name="P:View.Sdk.SemanticCellRequest.Data">

@@ -96,6 +96,7 @@
             set
             {
                 Uri uri = new Uri(value);
+                value = uri.Scheme + "://" + uri.Host + ":" + uri.Port + uri.PathAndQuery;
                 _Endpoint = value;
             }
         }
