@@ -2441,6 +2441,421 @@
             LiteGraph.
             </summary>
         </member>
+        <member name="T:View.Sdk.Graph.Graph">
+            <summary>
+            Graph.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Graph.Graph.GUID">
+            <summary>
+            Globally-unique identifier.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Graph.Graph.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Graph.Graph.CreatedUtc">
+            <summary>
+            Timestamp from creation, in UTC.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Graph.Graph.#ctor">
+            <summary>
+            Instantiate the object.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Graph.GraphData">
+            <summary>
+            Graph data.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Graph.GraphData.Type">
+            <summary>
+            Node type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Graph.GraphData.TenantMetadata">
+            <summary>
+            Tenant metadata.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Graph.GraphData.StoragePool">
+            <summary>
+            Storage pool.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Graph.GraphData.BucketMetadata">
+            <summary>
+            Bucket metadata.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Graph.GraphData.ObjectMetadata">
+            <summary>
+            Object metadata.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Graph.GraphData.Collection">
+            <summary>
+            Collection.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Graph.GraphData.SourceDocument">
+            <summary>
+            Source document.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Graph.GraphData.VectorRepository">
+            <summary>
+            Vector repository.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Graph.GraphData.SemanticCell">
+            <summary>
+            Semantic cell.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Graph.GraphData.SemanticChunk">
+            <summary>
+            Semantic chunk.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphData.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Graph.GraphEdge">
+            <summary>
+            Graph edge.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Graph.GraphEdge.GUID">
+            <summary>
+            Globally-unique identifier.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Graph.GraphEdge.GraphGUID">
+            <summary>
+            Globally-unique identifier for the graph.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Graph.GraphEdge.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Graph.GraphEdge.From">
+            <summary>
+            Globally-unique identifier of the from node.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Graph.GraphEdge.FromNode">
+            <summary>
+            From node.  This property is only populated when retrieving routes.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Graph.GraphEdge.To">
+            <summary>
+            Globally-unique identifier of the to node.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Graph.GraphEdge.ToNode">
+            <summary>
+            To node.  This property is only populated when retrieving routes.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Graph.GraphEdge.Cost">
+            <summary>
+            Cost.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Graph.GraphEdge.CreatedUtc">
+            <summary>
+            Timestamp from creation, in UTC.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphEdge.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Graph.GraphNode">
+            <summary>
+            Graph node.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Graph.GraphNode.GUID">
+            <summary>
+            Globally-unique identifier.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Graph.GraphNode.GraphGUID">
+            <summary>
+            Globally-unique identifier for the graph.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Graph.GraphNode.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Graph.GraphNode.Data">
+            <summary>
+            Object data.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Graph.GraphNode.CreatedUtc">
+            <summary>
+            Timestamp from creation, in UTC.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphNode.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Graph.GraphNodeTypeEnum">
+            <summary>
+            Graph node type.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Graph.GraphNodeTypeEnum.Unknown">
+            <summary>
+            Unknown.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Graph.GraphNodeTypeEnum.Tenant">
+            <summary>
+            Tenant.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Graph.GraphNodeTypeEnum.StoragePool">
+            <summary>
+            StoragePool.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Graph.GraphNodeTypeEnum.BucketMetadata">
+            <summary>
+            BucketMetadata.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Graph.GraphNodeTypeEnum.ObjectMetadata">
+            <summary>
+            ObjectMetadata.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Graph.GraphNodeTypeEnum.Collection">
+            <summary>
+            Collection.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Graph.GraphNodeTypeEnum.SourceDocument">
+            <summary>
+            SourceDocument.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Graph.GraphNodeTypeEnum.VectorRepository">
+            <summary>
+            VectorRepository.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Graph.GraphNodeTypeEnum.SemanticCell">
+            <summary>
+            SemanticCell.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Graph.GraphNodeTypeEnum.SemanticChunk">
+            <summary>
+            SemanticChunk.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Graph.IGraphSdk">
+            <summary>
+            Graph interface.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Graph.IGraphSdk.GraphExists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a graph exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.IGraphSdk.CreateGraph(System.String,System.Object,System.Threading.CancellationToken)">
+            <summary>
+            Create a graph.
+            </summary>
+            <param name="name">Name.</param>
+            <param name="data">Data.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.IGraphSdk.ReadGraph(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read a graph.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.IGraphSdk.UpdateGraph(View.Sdk.Graph.Graph,System.Threading.CancellationToken)">
+            <summary>
+            Update a graph.
+            </summary>
+            <param name="graph">Graph.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.IGraphSdk.DeleteGraph(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a graph.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:View.Sdk.Graph.IGraphSdk.NodeExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a node exists.
+            </summary>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.IGraphSdk.CreateNode(View.Sdk.Graph.GraphNode,System.Threading.CancellationToken)">
+            <summary>
+            Create a node.
+            </summary>
+            <param name="node">Node.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.IGraphSdk.ReadNode(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read a node.
+            </summary>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="nodeGuid">Node GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.IGraphSdk.ReadNodes(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read nodes.
+            </summary>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Nodes.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.IGraphSdk.DeleteNode(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a node.
+            </summary>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="nodeGuid">Node GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.IGraphSdk.EdgeExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if an edge exists.
+            </summary>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.IGraphSdk.CreateEdge(View.Sdk.Graph.GraphEdge,System.Threading.CancellationToken)">
+            <summary>
+            Create an edge.
+            </summary>
+            <param name="edge">Edge.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Edge.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.IGraphSdk.ReadEdge(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read an edge.
+            </summary>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="edgeGuid">Edge GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Edge.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.IGraphSdk.ReadEdges(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read edges.
+            </summary>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Edges.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.IGraphSdk.DeleteEdge(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete an edge.
+            </summary>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="edgeGuid">Edge GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.IGraphSdk.EdgesFromNode(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve edges from node.
+            </summary>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="nodeGuid">Node GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Edges.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.IGraphSdk.EdgesToNode(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve edges to node.
+            </summary>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="nodeGuid">Node GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Edges.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.IGraphSdk.AllNodeEdges(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve all edges associated with a node.
+            </summary>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="nodeGuid">Node GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Edges.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.IGraphSdk.GetNodeParents(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve parent nodes for a given node, i.e. those nodes that have edges to the given node.
+            </summary>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="nodeGuid">Node GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Nodes.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.IGraphSdk.GetNodeChildren(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve child nodes for a given node, i.e. those nodes to which the given node has edges.
+            </summary>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="nodeGuid">Node GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Nodes.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.IGraphSdk.GetNodeNeighbors(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve neighboring nodes, i.e. those nodes to which the given node has an edge either to or from.
+            </summary>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="nodeGuid">Node GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Nodes.</returns>
+        </member>
         <member name="T:View.Sdk.Graph.ViewLitegraphSdk">
             <summary>
             View LiteGraph SDK.
