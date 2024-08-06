@@ -2441,6 +2441,22 @@
             LiteGraph.
             </summary>
         </member>
+        <member name="T:View.Sdk.Graph.ViewLitegraphSdk">
+            <summary>
+            View LiteGraph SDK.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Graph.ViewLitegraphSdk.Endpoint">
+            <summary>
+            Endpoint.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.#ctor(System.String)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="endpoint">Endpoint.</param>
+        </member>
         <member name="T:View.Sdk.Helpers.HashHelper">
             <summary>
             Hash methods.

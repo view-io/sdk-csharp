@@ -20,8 +20,6 @@
             }
             set
             {
-                if (value != null && value.Value < DateTime.UtcNow) throw new ArgumentOutOfRangeException(nameof(ExpirationUtc));
-
                 _ExpirationUtc = value;
             }
         }
