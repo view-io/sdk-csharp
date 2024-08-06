@@ -2684,12 +2684,11 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.IGraphSdk.CreateGraph(System.String,System.Object,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.IGraphSdk.CreateGraph(System.String,System.Threading.CancellationToken)">
             <summary>
             Create a graph.
             </summary>
             <param name="name">Name.</param>
-            <param name="data">Data.</param>
             <param name="token">Cancellation token.</param>
             <returns>Graph.</returns>
         </member>
@@ -2701,6 +2700,13 @@
             <param name="token">Cancellation token.</param>
             <returns>Graph.</returns>
         </member>
+        <member name="M:View.Sdk.Graph.IGraphSdk.ReadGraphs(System.Threading.CancellationToken)">
+            <summary>
+            Read a graph.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph.</returns>
+        </member>
         <member name="M:View.Sdk.Graph.IGraphSdk.UpdateGraph(View.Sdk.Graph.Graph,System.Threading.CancellationToken)">
             <summary>
             Update a graph.
@@ -2709,11 +2715,12 @@
             <param name="token">Cancellation token.</param>
             <returns>Graph.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.IGraphSdk.DeleteGraph(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.IGraphSdk.DeleteGraph(System.Guid,System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Delete a graph.
             </summary>
             <param name="guid">GUID.</param>
+            <param name="force">Force deletion of subordinate edges and nodes.</param>
             <param name="token">Cancellation token.</param>
         </member>
         <member name="M:View.Sdk.Graph.IGraphSdk.NodeExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
@@ -2871,6 +2878,72 @@
             Instantiate.
             </summary>
             <param name="endpoint">Endpoint.</param>
+        </member>
+        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.GraphExists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.CreateGraph(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.ReadGraph(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.ReadGraphs(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.UpdateGraph(View.Sdk.Graph.Graph,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.DeleteGraph(System.Guid,System.Boolean,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.NodeExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.CreateNode(View.Sdk.Graph.GraphNode,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.ReadNode(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.ReadNodes(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.DeleteNode(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.EdgeExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.CreateEdge(View.Sdk.Graph.GraphEdge,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.ReadEdge(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.ReadEdges(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.DeleteEdge(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.EdgesFromNode(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.EdgesToNode(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.AllNodeEdges(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.GetNodeParents(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.GetNodeChildren(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.GetNodeNeighbors(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
         </member>
         <member name="T:View.Sdk.Helpers.HashHelper">
             <summary>

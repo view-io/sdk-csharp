@@ -24,10 +24,9 @@
         /// Create a graph.
         /// </summary>
         /// <param name="name">Name.</param>
-        /// <param name="data">Data.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Graph.</returns>
-        public Task<Graph> CreateGraph(string name, object data = null, CancellationToken token = default);
+        public Task<Graph> CreateGraph(string name, CancellationToken token = default);
 
         /// <summary>
         /// Read a graph.
@@ -36,6 +35,13 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>Graph.</returns>
         public Task<Graph> ReadGraph(Guid guid, CancellationToken token = default);
+
+        /// <summary>
+        /// Read a graph.
+        /// </summary>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Graph.</returns>
+        public Task<List<Graph>> ReadGraphs(CancellationToken token = default);
 
         /// <summary>
         /// Update a graph.
@@ -49,8 +55,9 @@
         /// Delete a graph.
         /// </summary>
         /// <param name="guid">GUID.</param>
+        /// <param name="force">Force deletion of subordinate edges and nodes.</param>
         /// <param name="token">Cancellation token.</param>
-        public Task DeleteGraph(Guid guid, CancellationToken token = default);
+        public Task DeleteGraph(Guid guid, bool force = false, CancellationToken token = default);
 
         #endregion
 
@@ -88,7 +95,7 @@
         /// <param name="graphGuid">Graph GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Nodes.</returns>
-        public Task<IEnumerable<GraphNode>> ReadNodes(Guid graphGuid, CancellationToken token = default);
+        public Task<List<GraphNode>> ReadNodes(Guid graphGuid, CancellationToken token = default);
 
         /// <summary>
         /// Delete a node.
@@ -118,7 +125,7 @@
         /// <param name="edge">Edge.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Edge.</returns>
-        public Task<GraphNode> CreateEdge(GraphEdge edge, CancellationToken token = default);
+        public Task<GraphEdge> CreateEdge(GraphEdge edge, CancellationToken token = default);
 
         /// <summary>
         /// Read an edge.
@@ -135,7 +142,7 @@
         /// <param name="graphGuid">Graph GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Edges.</returns>
-        public Task<IEnumerable<GraphEdge>> ReadEdges(Guid graphGuid, CancellationToken token = default);
+        public Task<List<GraphEdge>> ReadEdges(Guid graphGuid, CancellationToken token = default);
 
         /// <summary>
         /// Delete an edge.
@@ -157,7 +164,7 @@
         /// <param name="nodeGuid">Node GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Edges.</returns>
-        public Task<IEnumerable<GraphEdge>> EdgesFromNode(Guid graphGuid, Guid nodeGuid, CancellationToken token = default);
+        public Task<List<GraphEdge>> EdgesFromNode(Guid graphGuid, Guid nodeGuid, CancellationToken token = default);
 
         /// <summary>
         /// Retrieve edges to node.
@@ -166,7 +173,7 @@
         /// <param name="nodeGuid">Node GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Edges.</returns>
-        public Task<IEnumerable<GraphEdge>> EdgesToNode(Guid graphGuid, Guid nodeGuid, CancellationToken token = default);
+        public Task<List<GraphEdge>> EdgesToNode(Guid graphGuid, Guid nodeGuid, CancellationToken token = default);
 
         /// <summary>
         /// Retrieve all edges associated with a node.
@@ -175,7 +182,7 @@
         /// <param name="nodeGuid">Node GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Edges.</returns>
-        public Task<IEnumerable<GraphEdge>> AllNodeEdges(Guid graphGuid, Guid nodeGuid, CancellationToken token = default);
+        public Task<List<GraphEdge>> AllNodeEdges(Guid graphGuid, Guid nodeGuid, CancellationToken token = default);
 
         /// <summary>
         /// Retrieve parent nodes for a given node, i.e. those nodes that have edges to the given node.
@@ -184,7 +191,7 @@
         /// <param name="nodeGuid">Node GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Nodes.</returns>
-        public Task<IEnumerable<GraphNode>> GetNodeParents(Guid graphGuid, Guid nodeGuid, CancellationToken token = default);
+        public Task<List<GraphNode>> GetNodeParents(Guid graphGuid, Guid nodeGuid, CancellationToken token = default);
 
         /// <summary>
         /// Retrieve child nodes for a given node, i.e. those nodes to which the given node has edges.
@@ -193,7 +200,7 @@
         /// <param name="nodeGuid">Node GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Nodes.</returns>
-        public Task<IEnumerable<GraphNode>> GetNodeChildren(Guid graphGuid, Guid nodeGuid, CancellationToken token = default);
+        public Task<List<GraphNode>> GetNodeChildren(Guid graphGuid, Guid nodeGuid, CancellationToken token = default);
 
         /// <summary>
         /// Retrieve neighboring nodes, i.e. those nodes to which the given node has an edge either to or from.
@@ -202,7 +209,7 @@
         /// <param name="nodeGuid">Node GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Nodes.</returns>
-        public Task<IEnumerable<GraphNode>> GetNodeNeighbors(Guid graphGuid, Guid nodeGuid, CancellationToken token = default);
+        public Task<List<GraphNode>> GetNodeNeighbors(Guid graphGuid, Guid nodeGuid, CancellationToken token = default);
 
         #endregion
     }
