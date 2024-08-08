@@ -41,17 +41,25 @@
         /// <summary>
         /// Process a document.
         /// </summary>
+        /// <param name="tenant">Tenant metadata.</param>
+        /// <param name="bucket">Bucket metadata.</param>
+        /// <param name="pool">Storage pool metadata.</param>
         /// <param name="obj">Object metadata.</param>
         /// <param name="mdRule">Metadata rule.</param>
         /// <param name="embedRule">Embeddings rule.</param>
         /// <param name="vectorRepo">Vector repository.</param>
+        /// <param name="graphRepo">Graph repository.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Task.</returns>
         public async Task<ProcessorResponse> Process(
+            TenantMetadata tenant,
+            StoragePool pool,
+            BucketMetadata bucket,
             ObjectMetadata obj, 
             MetadataRule mdRule, 
             EmbeddingsRule embedRule, 
             VectorRepository vectorRepo,
+            GraphRepository graphRepo,
             CancellationToken token = default)
         {
             if (obj == null) throw new ArgumentNullException(nameof(obj));
@@ -67,10 +75,14 @@
 
                     ProcessorRequest procReq = new ProcessorRequest
                     {
+                        Tenant = tenant,
+                        Pool = pool,
+                        Bucket = bucket,
                         Object = obj,
                         MetadataRule = mdRule,
                         EmbeddingsRule = embedRule,
-                        VectorRepository = vectorRepo
+                        VectorRepository = vectorRepo,
+                        GraphRepository = graphRepo
                     };
 
                     string json = Serializer.SerializeJson(procReq, true);

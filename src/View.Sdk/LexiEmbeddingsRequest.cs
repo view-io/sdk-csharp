@@ -10,6 +10,16 @@
         #region Public-Members
 
         /// <summary>
+        /// Tenant metadata.
+        /// </summary>
+        public TenantMetadata Tenant { get; set; } = null;
+
+        /// <summary>
+        /// Collection.
+        /// </summary>
+        public Collection Collection { get; set; } = null;
+
+        /// <summary>
         /// Search results.
         /// </summary>
         public SearchResult Results { get; set; } = null;
@@ -23,6 +33,11 @@
         /// Vector repository.
         /// </summary>
         public VectorRepository VectorRepository { get; set; } = null;
+
+        /// <summary>
+        /// Graph repository.
+        /// </summary>
+        public GraphRepository GraphRepository { get; set; } = null;
 
         #endregion
 

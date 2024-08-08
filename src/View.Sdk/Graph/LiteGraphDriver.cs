@@ -7,11 +7,12 @@
     using System.Threading;
     using System.Threading.Tasks;
     using LiteGraph.Sdk;
+    using ExpressionTree;
 
     /// <summary>
-    /// View LiteGraph SDK.
+    /// LiteGraph driver.
     /// </summary>
-    public class ViewLitegraphSdk : IGraphSdk
+    public class LiteGraphDriver : IGraphDriver
     {
         #region Public-Members
 
@@ -41,7 +42,7 @@
         /// Instantiate.
         /// </summary>
         /// <param name="endpoint">Endpoint.</param>
-        public ViewLitegraphSdk(string endpoint = "http://localhost:8701/")
+        public LiteGraphDriver(string endpoint = "http://localhost:8701/")
         {
             if (String.IsNullOrEmpty(endpoint)) throw new ArgumentNullException(nameof(endpoint));
 
@@ -50,6 +51,8 @@
         }
 
         #endregion
+
+        #region Public-Interface-Methods
 
         #region Public-Graph-Methods
 
@@ -134,6 +137,21 @@
             IEnumerable<Node> nodes = await _Sdk.ReadNodes(graphGuid, token).ConfigureAwait(false);
             if (nodes != null) return GraphConverters.LgNodeListToGraphNodeList(nodes.ToList());
             return null;            
+        }
+
+        /// <inheritdoc/>
+        public async Task<List<GraphNode>> SearchNodes(Guid graphGuid, Expr expr, CancellationToken token = default)
+        {
+            SearchRequest req = new SearchRequest
+            {
+                GraphGUID = graphGuid,
+                Expr = expr
+            };
+
+            SearchResult result = await _Sdk.SearchNodes(req, token).ConfigureAwait(false);
+            if (result != null && result.Nodes != null) 
+                return GraphConverters.LgNodeListToGraphNodeList(result.Nodes.ToList());
+            return null;
         }
 
         /// <inheritdoc />
@@ -235,6 +253,8 @@
             if (nodes != null) return GraphConverters.LgNodeListToGraphNodeList(nodes.ToList());
             return null;
         }
+
+        #endregion
 
         #endregion
 

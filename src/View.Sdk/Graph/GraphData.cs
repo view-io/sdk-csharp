@@ -21,7 +21,7 @@
         /// <summary>
         /// Tenant metadata.
         /// </summary>
-        public TenantMetadata TenantMetadata { get; set; } = null;
+        public TenantMetadata Tenant { get; set; } = null;
 
         /// <summary>
         /// Storage pool.
@@ -31,12 +31,12 @@
         /// <summary>
         /// Bucket metadata.
         /// </summary>
-        public BucketMetadata BucketMetadata { get; set; } = null;
+        public BucketMetadata Bucket { get; set; } = null;
 
         /// <summary>
         /// Object metadata.
         /// </summary>
-        public ObjectMetadata ObjectMetadata { get; set; } = null;
+        public ObjectMetadata Object { get; set; } = null;
 
         /// <summary>
         /// Collection.

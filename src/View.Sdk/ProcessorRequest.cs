@@ -11,6 +11,21 @@
         #region Public-Members
 
         /// <summary>
+        /// Tenant metadata.
+        /// </summary>
+        public TenantMetadata Tenant { get; set; } = null;
+
+        /// <summary>
+        /// Storage pool.
+        /// </summary>
+        public StoragePool Pool { get; set; } = null;
+
+        /// <summary>
+        /// Bucket metadata.
+        /// </summary>
+        public BucketMetadata Bucket { get; set; } = null;
+
+        /// <summary>
         /// Object metadata.
         /// </summary>
         public ObjectMetadata Object { get; set; } = null;
@@ -29,6 +44,11 @@
         /// Vector repository.
         /// </summary>
         public VectorRepository VectorRepository { get; set; } = null;
+
+        /// <summary>
+        /// Graph repository.
+        /// </summary>
+        public GraphRepository GraphRepository { get; set; } = null;
 
         #endregion
 

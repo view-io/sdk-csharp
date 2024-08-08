@@ -40,15 +40,21 @@
         /// <summary>
         /// Process a document.
         /// </summary>
+        /// <param name="tenant">Tenant metadata.</param>
+        /// <param name="collection">Collection.</param>
         /// <param name="results">Search results.</param>
         /// <param name="embedRule">Embeddings rule.</param>
         /// <param name="vectorRepo">Vector repository.</param>
+        /// <param name="graphRepo">Graph repository.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Task.</returns>
         public async Task<LexiEmbeddingsResponse> Process(
+            TenantMetadata tenant,
+            Collection collection,
             SearchResult results, 
             EmbeddingsRule embedRule,
             VectorRepository vectorRepo,
+            GraphRepository graphRepo,
             CancellationToken token = default)
         {
             if (results == null) throw new ArgumentNullException(nameof(results));
@@ -64,9 +70,12 @@
 
                     LexiEmbeddingsRequest procReq = new LexiEmbeddingsRequest
                     {
+                        Tenant = tenant,
+                        Collection = collection,
                         Results = results,
                         EmbeddingsRule = embedRule,
-                        VectorRepository = vectorRepo
+                        VectorRepository = vectorRepo,
+                        GraphRepository = graphRepo
                     };
 
                     string json = Serializer.SerializeJson(procReq, true);

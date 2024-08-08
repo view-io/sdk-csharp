@@ -98,8 +98,19 @@
         private static async Task ProcessDocument()
         {
             string file = Inputty.GetString("Filename:", "./SampleRequest.json", false);
+
             ProcessorRequest req = _Serializer.DeserializeJson<ProcessorRequest>(File.ReadAllText(file));
-            ProcessorResponse resp = await _Sdk.Process(req.Object, req.MetadataRule, req.EmbeddingsRule, req.VectorRepository);
+
+            ProcessorResponse resp = await _Sdk.Process(
+                req.Tenant,
+                req.Pool,
+                req.Bucket,
+                req.Object, 
+                req.MetadataRule, 
+                req.EmbeddingsRule, 
+                req.VectorRepository,
+                req.GraphRepository);
+
             EnumerateResponse(resp);
         }
 

@@ -4,11 +4,12 @@
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
+    using ExpressionTree;
 
     /// <summary>
-    /// Graph interface.
+    /// Graph database driver interface.
     /// </summary>
-    public interface IGraphSdk
+    public interface IGraphDriver
     {
         #region Graph-Interface
 
@@ -96,6 +97,15 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>Nodes.</returns>
         public Task<List<GraphNode>> ReadNodes(Guid graphGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Read nodes.
+        /// </summary>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="expr">Expression.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Nodes.</returns>
+        public Task<List<GraphNode>> SearchNodes(Guid graphGuid, Expr expr, CancellationToken token = default);
 
         /// <summary>
         /// Delete a node.

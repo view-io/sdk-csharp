@@ -24,15 +24,15 @@
         [EnumMember(Value = "StoragePool")]
         StoragePool,
         /// <summary>
-        /// BucketMetadata.
+        /// Bucket.
         /// </summary>
-        [EnumMember(Value = "BucketMetadata")]
-        BucketMetadata,
+        [EnumMember(Value = "Bucket")]
+        Bucket,
         /// <summary>
-        /// ObjectMetadata.
+        /// Object.
         /// </summary>
-        [EnumMember(Value = "ObjectMetadata")]
-        ObjectMetadata,
+        [EnumMember(Value = "Object")]
+        Object,
         /// <summary>
         /// Collection.
         /// </summary>

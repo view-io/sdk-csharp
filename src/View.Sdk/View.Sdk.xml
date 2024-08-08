@@ -2476,7 +2476,7 @@
             Node type.
             </summary>
         </member>
-        <member name="P:View.Sdk.Graph.GraphData.TenantMetadata">
+        <member name="P:View.Sdk.Graph.GraphData.Tenant">
             <summary>
             Tenant metadata.
             </summary>
@@ -2486,12 +2486,12 @@
             Storage pool.
             </summary>
         </member>
-        <member name="P:View.Sdk.Graph.GraphData.BucketMetadata">
+        <member name="P:View.Sdk.Graph.GraphData.Bucket">
             <summary>
             Bucket metadata.
             </summary>
         </member>
-        <member name="P:View.Sdk.Graph.GraphData.ObjectMetadata">
+        <member name="P:View.Sdk.Graph.GraphData.Object">
             <summary>
             Object metadata.
             </summary>
@@ -2636,14 +2636,14 @@
             StoragePool.
             </summary>
         </member>
-        <member name="F:View.Sdk.Graph.GraphNodeTypeEnum.BucketMetadata">
+        <member name="F:View.Sdk.Graph.GraphNodeTypeEnum.Bucket">
             <summary>
-            BucketMetadata.
+            Bucket.
             </summary>
         </member>
-        <member name="F:View.Sdk.Graph.GraphNodeTypeEnum.ObjectMetadata">
+        <member name="F:View.Sdk.Graph.GraphNodeTypeEnum.Object">
             <summary>
-            ObjectMetadata.
+            Object.
             </summary>
         </member>
         <member name="F:View.Sdk.Graph.GraphNodeTypeEnum.Collection">
@@ -2671,12 +2671,196 @@
             SemanticChunk.
             </summary>
         </member>
-        <member name="T:View.Sdk.Graph.IGraphSdk">
+        <member name="T:View.Sdk.Graph.GraphSdk">
             <summary>
-            Graph interface.
+            Graph SDK.
             </summary>
         </member>
-        <member name="M:View.Sdk.Graph.IGraphSdk.GraphExists(System.Guid,System.Threading.CancellationToken)">
+        <member name="P:View.Sdk.Graph.GraphSdk.GraphRepository">
+            <summary>
+            Graph repository.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.#ctor(View.Sdk.GraphRepository)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="repo">Graph repository.</param>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.TenantExists(View.Sdk.TenantMetadata)">
+            <summary>
+            Check if a tenant exists.
+            </summary>
+            <param name="tenant">Tenant.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.StoragePoolExists(View.Sdk.StoragePool)">
+            <summary>
+            Check if a storage pool exists.
+            </summary>
+            <param name="pool">Storage pool.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.BucketExists(View.Sdk.BucketMetadata)">
+            <summary>
+            Check if a bucket exists.
+            </summary>
+            <param name="bucket">Bucket.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.ObjectMetadataExists(View.Sdk.ObjectMetadata)">
+            <summary>
+            Check if an object exists.
+            </summary>
+            <param name="obj">Object.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.CollectionExists(View.Sdk.Collection)">
+            <summary>
+            Check if a collection exists.
+            </summary>
+            <param name="coll">Collection.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.SourceDocumentExists(View.Sdk.SourceDocument)">
+            <summary>
+            Check if a source document exists.
+            </summary>
+            <param name="doc">Source document.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.CreateTenant(View.Sdk.TenantMetadata)">
+            <summary>
+            Create a tenant.
+            </summary>
+            <param name="tenant">Tenant.</param>
+            <returns>Graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.CreateStoragePool(View.Sdk.StoragePool)">
+            <summary>
+            Create a storage pool.
+            </summary>
+            <param name="pool">Storage pool.</param>
+            <returns>Graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.CreateBucket(View.Sdk.BucketMetadata)">
+            <summary>
+            Create a bucket.
+            </summary>
+            <param name="bucket">Bucket.</param>
+            <returns>Graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.CreateObjectMetadata(View.Sdk.ObjectMetadata)">
+            <summary>
+            Create an object.
+            </summary>
+            <param name="obj">Object metadata.</param>
+            <returns>Graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.CreateCollection(View.Sdk.Collection)">
+            <summary>
+            Create a collection.
+            </summary>
+            <param name="coll">Collection.</param>
+            <returns>Graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.CreateSourceDocument(View.Sdk.SourceDocument)">
+            <summary>
+            Create a source document.
+            </summary>
+            <param name="doc">Source document.</param>
+            <returns>Graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.ReadTenant(View.Sdk.TenantMetadata)">
+            <summary>
+            Read a tenant graph node.
+            </summary>
+            <param name="tenant">Tenant.</param>
+            <returns>Graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.ReadStoragePool(View.Sdk.StoragePool)">
+            <summary>
+            Read a storage pool graph node.
+            </summary>
+            <param name="pool">Storage pool.</param>
+            <returns>Graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.ReadBucket(View.Sdk.BucketMetadata)">
+            <summary>
+            Read a bucket graph node.
+            </summary>
+            <param name="bucket">Bucket.</param>
+            <returns>Graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.ReadObjectMetadata(View.Sdk.ObjectMetadata)">
+            <summary>
+            Read an object node.
+            </summary>
+            <param name="obj">Object.</param>
+            <returns>Graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.ReadCollection(View.Sdk.Collection)">
+            <summary>
+            Read a collection node.
+            </summary>
+            <param name="coll">Collection.</param>
+            <returns>Graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.ReadSourceDocument(View.Sdk.SourceDocument)">
+            <summary>
+            Read a source document node.
+            </summary>
+            <param name="doc">Source document.</param>
+            <returns>Graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.DeleteTenant(View.Sdk.TenantMetadata)">
+            <summary>
+            Delete a tenant.
+            </summary>
+            <param name="tenant">Tenant.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.DeleteStoragePool(View.Sdk.StoragePool)">
+            <summary>
+            Delete a storage pool.
+            </summary>
+            <param name="pool">Storage pool.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.DeleteBucket(View.Sdk.BucketMetadata)">
+            <summary>
+            Delete a bucket.
+            </summary>
+            <param name="bucket">Bucket.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.DeleteObjectMetadata(View.Sdk.ObjectMetadata)">
+            <summary>
+            Delete an object.
+            </summary>
+            <param name="obj">Object.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.DeleteCollection(View.Sdk.Collection)">
+            <summary>
+            Delete a collection.
+            </summary>
+            <param name="coll">Collection.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.DeleteSourceDocument(View.Sdk.SourceDocument)">
+            <summary>
+            Delete a source document.
+            </summary>
+            <param name="doc">Source document.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="T:View.Sdk.Graph.IGraphDriver">
+            <summary>
+            Graph database driver interface.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Graph.IGraphDriver.GraphExists(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Check if a graph exists.
             </summary>
@@ -2684,7 +2868,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.IGraphSdk.CreateGraph(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.IGraphDriver.CreateGraph(System.String,System.Threading.CancellationToken)">
             <summary>
             Create a graph.
             </summary>
@@ -2692,7 +2876,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Graph.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.IGraphSdk.ReadGraph(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.IGraphDriver.ReadGraph(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read a graph.
             </summary>
@@ -2700,14 +2884,14 @@
             <param name="token">Cancellation token.</param>
             <returns>Graph.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.IGraphSdk.ReadGraphs(System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.IGraphDriver.ReadGraphs(System.Threading.CancellationToken)">
             <summary>
             Read a graph.
             </summary>
             <param name="token">Cancellation token.</param>
             <returns>Graph.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.IGraphSdk.UpdateGraph(View.Sdk.Graph.Graph,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.IGraphDriver.UpdateGraph(View.Sdk.Graph.Graph,System.Threading.CancellationToken)">
             <summary>
             Update a graph.
             </summary>
@@ -2715,7 +2899,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Graph.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.IGraphSdk.DeleteGraph(System.Guid,System.Boolean,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.IGraphDriver.DeleteGraph(System.Guid,System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Delete a graph.
             </summary>
@@ -2723,7 +2907,7 @@
             <param name="force">Force deletion of subordinate edges and nodes.</param>
             <param name="token">Cancellation token.</param>
         </member>
-        <member name="M:View.Sdk.Graph.IGraphSdk.NodeExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.IGraphDriver.NodeExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>
             Check if a node exists.
             </summary>
@@ -2732,7 +2916,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.IGraphSdk.CreateNode(View.Sdk.Graph.GraphNode,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.IGraphDriver.CreateNode(View.Sdk.Graph.GraphNode,System.Threading.CancellationToken)">
             <summary>
             Create a node.
             </summary>
@@ -2740,7 +2924,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Node.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.IGraphSdk.ReadNode(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.IGraphDriver.ReadNode(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read a node.
             </summary>
@@ -2749,7 +2933,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Node.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.IGraphSdk.ReadNodes(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.IGraphDriver.ReadNodes(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read nodes.
             </summary>
@@ -2757,7 +2941,16 @@
             <param name="token">Cancellation token.</param>
             <returns>Nodes.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.IGraphSdk.DeleteNode(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.IGraphDriver.SearchNodes(System.Guid,ExpressionTree.Expr,System.Threading.CancellationToken)">
+            <summary>
+            Read nodes.
+            </summary>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="expr">Expression.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Nodes.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.IGraphDriver.DeleteNode(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>
             Delete a node.
             </summary>
@@ -2766,7 +2959,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.IGraphSdk.EdgeExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.IGraphDriver.EdgeExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>
             Check if an edge exists.
             </summary>
@@ -2775,7 +2968,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.IGraphSdk.CreateEdge(View.Sdk.Graph.GraphEdge,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.IGraphDriver.CreateEdge(View.Sdk.Graph.GraphEdge,System.Threading.CancellationToken)">
             <summary>
             Create an edge.
             </summary>
@@ -2783,7 +2976,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Edge.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.IGraphSdk.ReadEdge(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.IGraphDriver.ReadEdge(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read an edge.
             </summary>
@@ -2792,7 +2985,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Edge.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.IGraphSdk.ReadEdges(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.IGraphDriver.ReadEdges(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read edges.
             </summary>
@@ -2800,7 +2993,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Edges.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.IGraphSdk.DeleteEdge(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.IGraphDriver.DeleteEdge(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>
             Delete an edge.
             </summary>
@@ -2809,7 +3002,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.IGraphSdk.EdgesFromNode(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.IGraphDriver.EdgesFromNode(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>
             Retrieve edges from node.
             </summary>
@@ -2818,7 +3011,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Edges.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.IGraphSdk.EdgesToNode(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.IGraphDriver.EdgesToNode(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>
             Retrieve edges to node.
             </summary>
@@ -2827,7 +3020,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Edges.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.IGraphSdk.AllNodeEdges(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.IGraphDriver.AllNodeEdges(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>
             Retrieve all edges associated with a node.
             </summary>
@@ -2836,7 +3029,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Edges.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.IGraphSdk.GetNodeParents(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.IGraphDriver.GetNodeParents(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>
             Retrieve parent nodes for a given node, i.e. those nodes that have edges to the given node.
             </summary>
@@ -2845,7 +3038,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Nodes.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.IGraphSdk.GetNodeChildren(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.IGraphDriver.GetNodeChildren(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>
             Retrieve child nodes for a given node, i.e. those nodes to which the given node has edges.
             </summary>
@@ -2854,7 +3047,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Nodes.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.IGraphSdk.GetNodeNeighbors(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.IGraphDriver.GetNodeNeighbors(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>
             Retrieve neighboring nodes, i.e. those nodes to which the given node has an edge either to or from.
             </summary>
@@ -2863,86 +3056,89 @@
             <param name="token">Cancellation token.</param>
             <returns>Nodes.</returns>
         </member>
-        <member name="T:View.Sdk.Graph.ViewLitegraphSdk">
+        <member name="T:View.Sdk.Graph.LiteGraphDriver">
             <summary>
-            View LiteGraph SDK.
+            LiteGraph driver.
             </summary>
         </member>
-        <member name="P:View.Sdk.Graph.ViewLitegraphSdk.Endpoint">
+        <member name="P:View.Sdk.Graph.LiteGraphDriver.Endpoint">
             <summary>
             Endpoint.
             </summary>
         </member>
-        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.#ctor(System.String)">
+        <member name="M:View.Sdk.Graph.LiteGraphDriver.#ctor(System.String)">
             <summary>
             Instantiate.
             </summary>
             <param name="endpoint">Endpoint.</param>
         </member>
-        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.GraphExists(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.LiteGraphDriver.GraphExists(System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.CreateGraph(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.LiteGraphDriver.CreateGraph(System.String,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.ReadGraph(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.LiteGraphDriver.ReadGraph(System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.ReadGraphs(System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.LiteGraphDriver.ReadGraphs(System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.UpdateGraph(View.Sdk.Graph.Graph,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.LiteGraphDriver.UpdateGraph(View.Sdk.Graph.Graph,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.DeleteGraph(System.Guid,System.Boolean,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.LiteGraphDriver.DeleteGraph(System.Guid,System.Boolean,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.NodeExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.LiteGraphDriver.NodeExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.CreateNode(View.Sdk.Graph.GraphNode,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.LiteGraphDriver.CreateNode(View.Sdk.Graph.GraphNode,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.ReadNode(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.LiteGraphDriver.ReadNode(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.ReadNodes(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.LiteGraphDriver.ReadNodes(System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.DeleteNode(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.LiteGraphDriver.SearchNodes(System.Guid,ExpressionTree.Expr,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:View.Sdk.Graph.LiteGraphDriver.DeleteNode(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.EdgeExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.LiteGraphDriver.EdgeExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.CreateEdge(View.Sdk.Graph.GraphEdge,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.LiteGraphDriver.CreateEdge(View.Sdk.Graph.GraphEdge,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.ReadEdge(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.LiteGraphDriver.ReadEdge(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.ReadEdges(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.LiteGraphDriver.ReadEdges(System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.DeleteEdge(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.LiteGraphDriver.DeleteEdge(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.EdgesFromNode(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.LiteGraphDriver.EdgesFromNode(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.EdgesToNode(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.LiteGraphDriver.EdgesToNode(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.AllNodeEdges(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.LiteGraphDriver.AllNodeEdges(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.GetNodeParents(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.LiteGraphDriver.GetNodeParents(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.GetNodeChildren(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.LiteGraphDriver.GetNodeChildren(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Graph.ViewLitegraphSdk.GetNodeNeighbors(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.LiteGraphDriver.GetNodeNeighbors(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:View.Sdk.Helpers.HashHelper">
@@ -3065,6 +3261,16 @@
             Lexi embeddings request.
             </summary>
         </member>
+        <member name="P:View.Sdk.LexiEmbeddingsRequest.Tenant">
+            <summary>
+            Tenant metadata.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.LexiEmbeddingsRequest.Collection">
+            <summary>
+            Collection.
+            </summary>
+        </member>
         <member name="P:View.Sdk.LexiEmbeddingsRequest.Results">
             <summary>
             Search results.
@@ -3078,6 +3284,11 @@
         <member name="P:View.Sdk.LexiEmbeddingsRequest.VectorRepository">
             <summary>
             Vector repository.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.LexiEmbeddingsRequest.GraphRepository">
+            <summary>
+            Graph repository.
             </summary>
         </member>
         <member name="M:View.Sdk.LexiEmbeddingsRequest.#ctor">
@@ -4001,6 +4212,21 @@
             Processor request.
             </summary>
         </member>
+        <member name="P:View.Sdk.ProcessorRequest.Tenant">
+            <summary>
+            Tenant metadata.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ProcessorRequest.Pool">
+            <summary>
+            Storage pool.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ProcessorRequest.Bucket">
+            <summary>
+            Bucket metadata.
+            </summary>
+        </member>
         <member name="P:View.Sdk.ProcessorRequest.Object">
             <summary>
             Object metadata.
@@ -4019,6 +4245,11 @@
         <member name="P:View.Sdk.ProcessorRequest.VectorRepository">
             <summary>
             Vector repository.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ProcessorRequest.GraphRepository">
+            <summary>
+            Graph repository.
             </summary>
         </member>
         <member name="M:View.Sdk.ProcessorRequest.#ctor">
@@ -4087,13 +4318,16 @@
             </summary>
             <param name="endpoint">Endpoint URL.</param>
         </member>
-        <member name="M:View.Sdk.Processor.ViewLexiEmbeddingsSdk.Process(View.Sdk.SearchResult,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Processor.ViewLexiEmbeddingsSdk.Process(View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.SearchResult,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Threading.CancellationToken)">
             <summary>
             Process a document.
             </summary>
+            <param name="tenant">Tenant metadata.</param>
+            <param name="collection">Collection.</param>
             <param name="results">Search results.</param>
             <param name="embedRule">Embeddings rule.</param>
             <param name="vectorRepo">Vector repository.</param>
+            <param name="graphRepo">Graph repository.</param>
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
@@ -4108,14 +4342,18 @@
             </summary>
             <param name="endpoint">Endpoint URL.</param>
         </member>
-        <member name="M:View.Sdk.Processor.ViewProcessorSdk.Process(View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Processor.ViewProcessorSdk.Process(View.Sdk.TenantMetadata,View.Sdk.StoragePool,View.Sdk.BucketMetadata,View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Threading.CancellationToken)">
             <summary>
             Process a document.
             </summary>
+            <param name="tenant">Tenant metadata.</param>
+            <param name="bucket">Bucket metadata.</param>
+            <param name="pool">Storage pool metadata.</param>
             <param name="obj">Object metadata.</param>
             <param name="mdRule">Metadata rule.</param>
             <param name="embedRule">Embeddings rule.</param>
             <param name="vectorRepo">Vector repository.</param>
+            <param name="graphRepo">Graph repository.</param>
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
