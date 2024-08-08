@@ -31,6 +31,17 @@
         RequiredPropertiesMissing,
 
         /// <summary>
+        /// No connectivity to the specified graph.
+        /// </summary>
+        [EnumMember(Value = "NoGraphConnectivity")]
+        NoGraphConnectivity,
+        /// <summary>
+        /// A graph operation has failed.
+        /// </summary>
+        [EnumMember(Value = "GraphOperationFailed")]
+        GraphOperationFailed,
+
+        /// <summary>
         /// No connectivity to the type detection endpoint.
         /// </summary>
         [EnumMember(Value = "NoTypeDetectorConnectivity")]
@@ -38,8 +49,8 @@
         /// <summary>
         /// Unable to discern type of supplied data.
         /// </summary>
-        [EnumMember(Value = "UnknownTypeSupplied")]
-        UnknownTypeSupplied,
+        [EnumMember(Value = "UnknownTypeDetected")]
+        UnknownTypeDetected,
 
         /// <summary>
         /// No connectivity to the UDR endpoint.

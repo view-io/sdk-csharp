@@ -50,8 +50,13 @@
 
                     case ApiErrorEnum.NoTypeDetectorConnectivity:
                         return "Unable to establish a connection to the type detector.";
-                    case ApiErrorEnum.UnknownTypeSupplied:
+                    case ApiErrorEnum.UnknownTypeDetected:
                         return "An unrecognizable data type was supplied.";
+
+                    case ApiErrorEnum.NoGraphConnectivity:
+                        return "Unable to establish a connection to the graph repository.";
+                    case ApiErrorEnum.GraphOperationFailed:
+                        return "An operation against the graph repository has failed.";
 
                     case ApiErrorEnum.NoUdrConnectivity:
                         return "Unable to establish a connection to the UDR endpoint.";
@@ -141,9 +146,14 @@
                     case ApiErrorEnum.EmbeddingsPersistFailed:
                         return 500;
 
+                    case ApiErrorEnum.NoGraphConnectivity:
+                        return 500;
+                    case ApiErrorEnum.GraphOperationFailed:
+                        return 500;
+
                     case ApiErrorEnum.NoTypeDetectorConnectivity:
                         return 500;
-                    case ApiErrorEnum.UnknownTypeSupplied:
+                    case ApiErrorEnum.UnknownTypeDetected:
                         return 400;
 
                     case ApiErrorEnum.NoObjectMetadata:

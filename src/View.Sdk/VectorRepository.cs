@@ -105,6 +105,21 @@
         public string DatabasePassword { get; set; } = null;
 
         /// <summary>
+        /// Prefix to prepend to language model prompts.
+        /// </summary>
+        public string PromptPrefix { get; set; } = 
+            "Use the following pieces of context to answer the question at the end.  " +
+            "Documents are sorted by similarity to the question.  " +
+            "If the context is not enough for you to answer the question, " +
+            "politely explain that you don't have relevant context.  " +
+            "Do not try to make up an answer.";
+
+        /// <summary>
+        /// Suffix to append to language model prompts.
+        /// </summary>
+        public string PromptSuffix { get; set; } = null;
+
+        /// <summary>
         /// Creation timestamp, in UTC time.
         /// </summary>
         public DateTime CreatedUtc { get; set; } = DateTime.UtcNow;

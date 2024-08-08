@@ -54,6 +54,16 @@
 
         #region Public-Interface-Methods
 
+        #region Public-General-Methods
+
+        /// <inheritdoc />
+        public async Task<bool> ValidateConnectivity(CancellationToken token = default)
+        {
+            return await _Sdk.ValidateConnectivity(token).ConfigureAwait(false);
+        }
+
+        #endregion
+
         #region Public-Graph-Methods
 
         /// <inheritdoc />
@@ -63,10 +73,10 @@
         }
 
         /// <inheritdoc />
-        public async Task<Graph> CreateGraph(string name, CancellationToken token = default)
+        public async Task<Graph> CreateGraph(Guid guid, string name, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(name)) throw new ArgumentNullException(nameof(name));
-            LiteGraph.Sdk.Graph graph = await _Sdk.CreateGraph(name, token).ConfigureAwait(false);
+            LiteGraph.Sdk.Graph graph = await _Sdk.CreateGraph(guid, name, token).ConfigureAwait(false);
             if (graph != null) return GraphConverters.LgGraphToGraph(graph);
             return null;
         }
@@ -218,6 +228,18 @@
         public async Task<List<GraphEdge>> EdgesToNode(Guid graphGuid, Guid nodeGuid, CancellationToken token = default)
         {
             IEnumerable<LiteGraph.Sdk.Edge> edges = await _Sdk.GetEdgesToNode(graphGuid, nodeGuid, token).ConfigureAwait(false);
+            if (edges != null) return GraphConverters.LgEdgeListToGraphEdgeList(edges.ToList());
+            return null;
+        }
+
+        /// <inheritdoc />
+        public async Task<List<GraphEdge>> EdgesBetweenNodes(
+            Guid graphGuid, 
+            Guid fromNodeGuid, 
+            Guid toNodeGuid, 
+            CancellationToken token = default)
+        {
+            IEnumerable<LiteGraph.Sdk.Edge> edges = await _Sdk.GetEdgesBetween(graphGuid, fromNodeGuid, toNodeGuid, token).ConfigureAwait(false);
             if (edges != null) return GraphConverters.LgEdgeListToGraphEdgeList(edges.ToList());
             return null;
         }

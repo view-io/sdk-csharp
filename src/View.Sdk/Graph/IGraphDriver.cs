@@ -11,6 +11,17 @@
     /// </summary>
     public interface IGraphDriver
     {
+        #region General
+
+        /// <summary>
+        /// Validate connectivity to the repository.
+        /// </summary>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>True if connected.</returns>
+        public Task<bool> ValidateConnectivity(CancellationToken token = default);
+
+        #endregion
+
         #region Graph-Interface
 
         /// <summary>
@@ -24,10 +35,11 @@
         /// <summary>
         /// Create a graph.
         /// </summary>
+        /// <param name="guid">GUID.</param>
         /// <param name="name">Name.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Graph.</returns>
-        public Task<Graph> CreateGraph(string name, CancellationToken token = default);
+        public Task<Graph> CreateGraph(Guid guid, string name, CancellationToken token = default);
 
         /// <summary>
         /// Read a graph.
@@ -184,6 +196,20 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>Edges.</returns>
         public Task<List<GraphEdge>> EdgesToNode(Guid graphGuid, Guid nodeGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Retrieve edges to node.
+        /// </summary>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="fromNodeGuid">From node GUID.</param>
+        /// <param name="toNodeGuid">To node GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Edges.</returns>
+        public Task<List<GraphEdge>> EdgesBetweenNodes(
+            Guid graphGuid, 
+            Guid fromNodeGuid, 
+            Guid toNodeGuid, 
+            CancellationToken token = default);
 
         /// <summary>
         /// Retrieve all edges associated with a node.
