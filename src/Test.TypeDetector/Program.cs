@@ -6,7 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
     using GetSomeInput;
-    using View.Serializer;
+    using View.Sdk.Serialization;
     using View.Sdk;
     using View.Sdk.Processor;
 
@@ -17,7 +17,7 @@
         private static bool _RunForever = true;
         private static string _Endpoint = "http://localhost:8501/processor/typedetector";
         private static ViewTypeDetectorSdk _Sdk = null;
-        private static SerializationHelper _Serializer = new SerializationHelper();
+        private static Serializer _Serializer = new Serializer();
         private static bool _EnableLogging = true;
 
         public static void Main(string[] args)

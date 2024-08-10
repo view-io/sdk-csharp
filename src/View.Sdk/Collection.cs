@@ -1,6 +1,10 @@
 ﻿namespace View.Sdk
 {
     using System;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.ComponentModel.DataAnnotations;
+    using System.Security.Cryptography;
+    using System.Text.Json.Serialization;
 
     /// <summary>
     /// Collection.
@@ -8,6 +12,23 @@
     public class Collection
     {
         #region Public-Members
+
+        /// <summary>
+        /// ID.
+        /// </summary>
+        [JsonIgnore]
+        public int Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(Id));
+                _Id = value;
+            }
+        }
 
         /// <summary>
         /// GUID.
@@ -25,6 +46,11 @@
         public string Name { get; set; } = null;
 
         /// <summary>
+        /// Boolean indicating whether or not source documents can be overwritten.
+        /// </summary>
+        public bool AllowOverwrites { get; set; } = true;
+
+        /// <summary>
         /// Additional data.
         /// </summary>
         public string AdditionalData { get; set; } = null;
@@ -37,6 +63,8 @@
         #endregion
 
         #region Private-Members
+
+        private int _Id = 0;
 
         #endregion
 

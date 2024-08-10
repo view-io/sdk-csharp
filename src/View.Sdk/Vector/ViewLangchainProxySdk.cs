@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using RestWrapper;
-    using View.Serializer;
+    using View.Sdk.Serialization;
     using View.Sdk;
 
     /// <summary>

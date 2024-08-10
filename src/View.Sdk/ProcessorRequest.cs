@@ -26,6 +26,16 @@
         public BucketMetadata Bucket { get; set; } = null;
 
         /// <summary>
+        /// Data repository.
+        /// </summary>
+        public DataRepository DataRepository { get; set; } = null;
+
+        /// <summary>
+        /// Collection.
+        /// </summary>
+        public Collection Collection { get; set; } = null;
+
+        /// <summary>
         /// Object metadata.
         /// </summary>
         public ObjectMetadata Object { get; set; } = null;

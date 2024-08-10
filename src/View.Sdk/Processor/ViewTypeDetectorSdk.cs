@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
     using RestWrapper;
     using View.Sdk;
-    using View.Serializer;
+    using View.Sdk.Serialization;
 
     /// <summary>
     /// View Type Detector SDK.

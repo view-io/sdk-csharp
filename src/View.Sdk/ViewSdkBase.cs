@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Threading;
     using RestWrapper;
-    using View.Serializer;
+    using View.Sdk.Serialization;
     using System.Collections.Generic;
 
     /// <summary>
@@ -104,7 +104,7 @@
         /// <summary>
         /// Serialization helper.
         /// </summary>
-        public SerializationHelper Serializer
+        public Serializer Serializer
         {
             get
             {
@@ -129,7 +129,7 @@
         private string _TenantGUID = null;
         private string _AccessKey = null;
         private string _Endpoint = null;
-        private SerializationHelper _Serializer = new SerializationHelper();
+        private Serializer _Serializer = new Serializer();
 
         #endregion
 

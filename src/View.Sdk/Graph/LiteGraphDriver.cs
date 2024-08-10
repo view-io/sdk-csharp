@@ -6,8 +6,11 @@
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
-    using LiteGraph.Sdk;
     using ExpressionTree;
+    using LiteGraph.Sdk;
+    using View.Sdk.Serialization;
+
+    using Serializer = View.Sdk.Serialization.Serializer;
 
     /// <summary>
     /// LiteGraph driver.
@@ -33,6 +36,7 @@
 
         private LiteGraphSdk _Sdk = null;
         private string _Endpoint = null;
+        private Serializer _Serializer = new Serializer();
 
         #endregion
 
@@ -76,7 +80,7 @@
         public async Task<Graph> CreateGraph(Guid guid, string name, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(name)) throw new ArgumentNullException(nameof(name));
-            LiteGraph.Sdk.Graph graph = await _Sdk.CreateGraph(guid, name, token).ConfigureAwait(false);
+            LiteGraph.Sdk.Graph graph = await _Sdk.CreateGraph(guid, name, null, token).ConfigureAwait(false);
             if (graph != null) return GraphConverters.LgGraphToGraph(graph);
             return null;
         }
@@ -129,7 +133,7 @@
             if (node == null) throw new ArgumentNullException(nameof(node));
             Node created = await _Sdk.CreateNode(
                 GraphConverters.GraphNodeToLgNode(node), token).ConfigureAwait(false);
-            if (created != null) return GraphConverters.LgNodeToGraphNode(created);
+            if (created != null) return GraphConverters.LgNodeToGraphNode(created, _Serializer);
             return null;
         }
 
@@ -137,7 +141,7 @@
         public async Task<GraphNode> ReadNode(Guid graphGuid, Guid nodeGuid, CancellationToken token = default)
         {
             Node node = await _Sdk.ReadNode(graphGuid, nodeGuid, token).ConfigureAwait(false);
-            if (node != null) return GraphConverters.LgNodeToGraphNode(node);
+            if (node != null) return GraphConverters.LgNodeToGraphNode(node, _Serializer);
             return null;
         }
 
@@ -145,7 +149,7 @@
         public async Task<List<GraphNode>> ReadNodes(Guid graphGuid, CancellationToken token = default)
         {
             IEnumerable<Node> nodes = await _Sdk.ReadNodes(graphGuid, token).ConfigureAwait(false);
-            if (nodes != null) return GraphConverters.LgNodeListToGraphNodeList(nodes.ToList());
+            if (nodes != null) return GraphConverters.LgNodeListToGraphNodeList(nodes.ToList(), _Serializer);
             return null;            
         }
 
@@ -160,7 +164,7 @@
 
             SearchResult result = await _Sdk.SearchNodes(req, token).ConfigureAwait(false);
             if (result != null && result.Nodes != null) 
-                return GraphConverters.LgNodeListToGraphNodeList(result.Nodes.ToList());
+                return GraphConverters.LgNodeListToGraphNodeList(result.Nodes.ToList(), _Serializer);
             return null;
         }
 
@@ -256,7 +260,7 @@
         public async Task<List<GraphNode>> GetNodeParents(Guid graphGuid, Guid nodeGuid, CancellationToken token = default)
         {
             IEnumerable<LiteGraph.Sdk.Node> nodes = await _Sdk.GetParentsFromNode(graphGuid, nodeGuid, token).ConfigureAwait(false);
-            if (nodes != null) return GraphConverters.LgNodeListToGraphNodeList(nodes.ToList());
+            if (nodes != null) return GraphConverters.LgNodeListToGraphNodeList(nodes.ToList(), _Serializer);
             return null;
         }
 
@@ -264,7 +268,7 @@
         public async Task<List<GraphNode>> GetNodeChildren(Guid graphGuid, Guid nodeGuid, CancellationToken token = default)
         {
             IEnumerable<LiteGraph.Sdk.Node> nodes = await _Sdk.GetChildrenFromNode(graphGuid, nodeGuid, token).ConfigureAwait(false);
-            if (nodes != null) return GraphConverters.LgNodeListToGraphNodeList(nodes.ToList());
+            if (nodes != null) return GraphConverters.LgNodeListToGraphNodeList(nodes.ToList(), _Serializer);
             return null;
         }
 
@@ -272,7 +276,7 @@
         public async Task<List<GraphNode>> GetNodeNeighbors(Guid graphGuid, Guid nodeGuid, CancellationToken token = default)
         {
             IEnumerable<LiteGraph.Sdk.Node> nodes = await _Sdk.GetNodeNeighbors(graphGuid, nodeGuid, token).ConfigureAwait(false);
-            if (nodes != null) return GraphConverters.LgNodeListToGraphNodeList(nodes.ToList());
+            if (nodes != null) return GraphConverters.LgNodeListToGraphNodeList(nodes.ToList(), _Serializer);
             return null;
         }
 

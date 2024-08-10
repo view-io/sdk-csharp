@@ -8,7 +8,7 @@
     using GetSomeInput;
     using View.Sdk;
     using View.Sdk.Processor;
-    using View.Serializer;
+    using View.Sdk.Serialization;
 
     public static class Program
     {
@@ -17,7 +17,7 @@
         private static bool _RunForever = true;
         private static string _Endpoint = "http://localhost:8501/processor";
         private static ViewProcessorSdk _Sdk = null;
-        private static SerializationHelper _Serializer = new SerializationHelper();
+        private static Serializer _Serializer = new Serializer();
         private static bool _EnableLogging = true;
 
         public static void Main(string[] args)
@@ -103,6 +103,7 @@
 
             ProcessorResponse resp = await _Sdk.Process(
                 req.Tenant,
+                req.Collection,
                 req.Pool,
                 req.Bucket,
                 req.Object, 

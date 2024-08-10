@@ -71,6 +71,21 @@ namespace View.Sdk.Graph
         public GraphNode SourceDocument { get; set; } = null;
 
         /// <summary>
+        /// Data repository.
+        /// </summary>
+        public GraphNode DataRepository { get; set; } = null;
+
+        /// <summary>
+        /// Semantic cells.
+        /// </summary>
+        public List<GraphNode> SemanticCells { get; set; } = null;
+
+        /// <summary>
+        /// Semantic chunks.
+        /// </summary>
+        public List<GraphNode> SemanticChunks { get; set; } = null;
+
+        /// <summary>
         /// Edges.
         /// </summary>
         public List<GraphEdge> Edges

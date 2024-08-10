@@ -8,7 +8,7 @@
     using GetSomeInput;
     using View.Sdk;
     using View.Sdk.Orchestrator;
-    using View.Serializer;
+    using View.Sdk.Serialization;
 
     public static class Program
     {
@@ -17,7 +17,7 @@
         private static string _Endpoint = "http://localhost:8501/";
         private static string _AccessKey = "default";
         private static ViewOrchestratorSdk _Sdk = null;
-        private static SerializationHelper _Serializer = new SerializationHelper();
+        private static Serializer _Serializer = new Serializer();
         private static bool _EnableLogging = true;
 
         public static void Main(string[] args)

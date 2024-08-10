@@ -1,11 +1,5 @@
 ﻿namespace View.Sdk.Graph
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-
     /// <summary>
     /// Graph data.
     /// </summary>
@@ -62,6 +56,11 @@
         /// Semantic chunk.
         /// </summary>
         public SemanticChunk SemanticChunk { get; set; } = null;
+
+        /// <summary>
+        /// Data repository.
+        /// </summary>
+        public DataRepository DataRepository { get; set; } = null;
 
         #endregion
 

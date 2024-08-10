@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
-		<Version>0.4.0.98</Version>
+		<Version>0.4.0.111</Version>
 		<ApplicationIcon>Assets\icon.ico</ApplicationIcon>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<DocumentationFile>View.Sdk.xml</DocumentationFile>
@@ -58,12 +58,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="ExpressionTree" Version="1.0.2" />
 		<PackageReference Include="LiteGraph.Sdk" Version="2.0.9" />
 		<PackageReference Include="SS.NuGet.Publish" Version="1.0.2311.32">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="View.Serializer" Version="1.0.2" />
+		<PackageReference Include="System.Text.Json" Version="8.0.4" />
 	</ItemGroup>
 
 </Project>

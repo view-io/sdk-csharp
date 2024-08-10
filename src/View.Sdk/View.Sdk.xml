@@ -383,6 +383,11 @@
             Collection.
             </summary>
         </member>
+        <member name="P:View.Sdk.Collection.Id">
+            <summary>
+            ID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Collection.GUID">
             <summary>
             GUID.
@@ -396,6 +401,11 @@
         <member name="P:View.Sdk.Collection.Name">
             <summary>
             Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Collection.AllowOverwrites">
+            <summary>
+            Boolean indicating whether or not source documents can be overwritten.
             </summary>
         </member>
         <member name="P:View.Sdk.Collection.AdditionalData">
@@ -1138,6 +1148,441 @@
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
+        <member name="T:View.Sdk.CrawlFilter">
+            <summary>
+            Crawl filter.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlFilter.Id">
+            <summary>
+            ID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlFilter.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlFilter.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlFilter.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlFilter.Prefix">
+            <summary>
+            Prefix.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlFilter.Suffix">
+            <summary>
+            Suffix.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlFilter.MinimumSize">
+            <summary>
+            Minimum size.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlFilter.MaximumSize">
+            <summary>
+            Maximum size.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlFilter.IncludeSubdirectories">
+            <summary>
+            Include or exclude subdirectories.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlFilter.ContentType">
+            <summary>
+            Content type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlFilter.CreatedUtc">
+            <summary>
+            Created.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.CrawlFilter.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.CrawlOperation">
+            <summary>
+            Crawl operation, i.e. an execution of a crawl plan.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.Id">
+            <summary>
+            ID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.CrawlPlanGUID">
+            <summary>
+            Crawl plan GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.CrawlScheduleGUID">
+            <summary>
+            Crawl schedule GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.CrawlFilterGUID">
+            <summary>
+            Crawl filter GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.DataRepositoryGUID">
+            <summary>
+            Data repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.ViewEndpointGUID">
+            <summary>
+            View endpoint GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.MetadataRuleGUID">
+            <summary>
+            Metadata rule GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.EmbeddingsRuleGUID">
+            <summary>
+            Embeddings rule GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.DataFlowEndpoint">
+            <summary>
+            Data flow endpoint.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.ObjectsEnumerated">
+            <summary>
+            Number of objects enumerated.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.BytesEnumerated">
+            <summary>
+            Number of bytes enumerated.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.ObjectsAdded">
+            <summary>
+            Number of objects added since last enumeration.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.BytesAdded">
+            <summary>
+            Number of bytes added since last enumeration.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.ObjectsUpdated">
+            <summary>
+            Number of objects updated since last enumeration.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.BytesUpdated">
+            <summary>
+            Number of bytes updated since last enumeration.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.ObjectsDeleted">
+            <summary>
+            Number of objects deleted since last enumeration.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.BytesDeleted">
+            <summary>
+            Number of bytes deleted since last enumeration.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.EnumerationFile">
+            <summary>
+            Enumeration file.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.ObjectsSuccess">
+            <summary>
+            Number of objects successfully written.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.BytesSuccess">
+            <summary>
+            Number of bytes successfully written
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.ObjectsFailed">
+            <summary>
+            Number of objects unable to be written.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.BytesFailed">
+            <summary>
+            Number of bytes unable to be written.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.State">
+            <summary>
+            Crawl state.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.CreatedUtc">
+            <summary>
+            Created.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.StartUtc">
+            <summary>
+            Started.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.StartEnumerationUtc">
+            <summary>
+            Start of enumeration.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.StartRetrievalUtc">
+            <summary>
+            Start of retrieval.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.FinishEnumerationUtc">
+            <summary>
+            Finished enumeration.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.FinishRetrievalUtc">
+            <summary>
+            Finished retrieval.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.FinishUtc">
+            <summary>
+            Finished.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.AdditionalData">
+            <summary>
+            Additional data.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.CrawlOperation.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.CrawlPlan">
+            <summary>
+            Crawl plan, i.e. the top-level scheduled task with links to repository, schedule, and filter.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlPlan.Id">
+            <summary>
+            ID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlPlan.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlPlan.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlPlan.DataRepositoryGUID">
+            <summary>
+            Data repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlPlan.ViewEndpointGUID">
+            <summary>
+            View endpoint GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlPlan.CrawlScheduleGUID">
+            <summary>
+            Crawl schedule GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlPlan.CrawlFilterGUID">
+            <summary>
+            Crawl filter GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlPlan.MetadataRuleGUID">
+            <summary>
+            Metadata rule GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlPlan.EmbeddingsRuleGUID">
+            <summary>
+            Embeddings rule GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlPlan.DataFlowEndpoint">
+            <summary>
+            Data flow endpoint.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlPlan.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlPlan.EnumerationDirectory">
+            <summary>
+            Directory where enumerations are stored.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlPlan.EnumerationsToRetain">
+            <summary>
+            Number of enumerations to retain.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlPlan.MaxDrainTasks">
+            <summary>
+            Maximum number of tasks to use while writing data to View.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlPlan.ProcessAdditions">
+            <summary>
+            Boolean flag indicating whether or not new files should be uploaded to the specified View endpoint.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlPlan.ProcessDeletions">
+            <summary>
+            Boolean flag indicating whether or not deleted files should be deleted on the specified View endpoint.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlPlan.ProcessUpdates">
+            <summary>
+            Boolean flag indicating whether or not updated files should be uploaded to the specified View endpoint.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlPlan.CreatedUtc">
+            <summary>
+            Created.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.CrawlPlan.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.CrawlSchedule">
+            <summary>
+            Crawl schedule.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlSchedule.Id">
+            <summary>
+            ID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlSchedule.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlSchedule.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlSchedule.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlSchedule.Schedule">
+            <summary>
+            Schedule interval.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlSchedule.Interval">
+            <summary>
+            Interval.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlSchedule.CreatedUtc">
+            <summary>
+            Created.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.CrawlSchedule.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.CrawlStateEnum">
+            <summary>
+            Crawler state.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.CrawlStateEnum.NotStarted">
+            <summary>
+            Not started.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.CrawlStateEnum.Starting">
+            <summary>
+            Starting.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.CrawlStateEnum.Stopped">
+            <summary>
+            Stopped.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.CrawlStateEnum.Canceled">
+            <summary>
+            Canceled.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.CrawlStateEnum.Enumerating">
+            <summary>
+            Enumerating.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.CrawlStateEnum.Retrieving">
+            <summary>
+            Retrieving.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.CrawlStateEnum.Success">
+            <summary>
+            Success.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.CrawlStateEnum.Failed">
+            <summary>
+            Failed.
+            </summary>
+        </member>
         <member name="T:View.Sdk.Credential">
             <summary>
             Credentials.
@@ -1367,6 +1812,192 @@
             </summary>
             <param name="val">The object to evaluate.</param>
             <returns>DataType.</returns>
+        </member>
+        <member name="T:View.Sdk.DataRepository">
+            <summary>
+            Data repository.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.Id">
+            <summary>
+            ID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.OwnerGUID">
+            <summary>
+            Owner GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.RepositoryType">
+            <summary>
+            Repository type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.UseSsl">
+            <summary>
+            Boolean flag to enable or disable SSL.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.IncludeSubdirectories">
+            <summary>
+            Boolean to indicate whether or not subdirectories should be included.
+            Only applicable to CIFS and NFS crawlers.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.DiskDirectory">
+            <summary>
+            Disk directory.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.S3EndpointUrl">
+            <summary>
+            S3 endpoint URL, e.g. http://localhost:8000/
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.S3BaseUrl">
+            <summary>
+            S3 base URL.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.S3AccessKey">
+            <summary>
+            S3 access key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.S3SecretKey">
+            <summary>
+            S3 secret key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.S3BucketName">
+            <summary>
+            Bucket name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.S3Region">
+            <summary>
+            S3 region.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.AzureEndpointUrl">
+            <summary>
+            Azure endpoint URL, e.g. http://localhost:8000/
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.AzureAccountName">
+            <summary>
+            Azure account name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.AzureContainerName">
+            <summary>
+            Azure container name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.AzureAccessKey">
+            <summary>
+            Azure access key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.CifsHostname">
+            <summary>
+            CIFS hostname.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.CifsUsername">
+            <summary>
+            CIFS username.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.CifsPassword">
+            <summary>
+            CIFS password.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.CifsShareName">
+            <summary>
+            CIFS share name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.NfsHostname">
+            <summary>
+            NFS hostname.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.NfsUserId">
+            <summary>
+            NFS user ID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.NfsGroupId">
+            <summary>
+            NFS group ID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.NfsShareName">
+            <summary>
+            NFS share name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.NfsVersion">
+            <summary>
+            NFS version.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.CreatedUtc">
+            <summary>
+            Created.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.DataRepository.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.DataRepositoryTypeEnum">
+            <summary>
+            Data repository type.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.DataRepositoryTypeEnum.File">
+            <summary>
+            File.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.DataRepositoryTypeEnum.CIFS">
+            <summary>
+            CIFS.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.DataRepositoryTypeEnum.NFS">
+            <summary>
+            NFS.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.DataRepositoryTypeEnum.AmazonS3">
+            <summary>
+            Amazon S3.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.DataRepositoryTypeEnum.AzureBlob">
+            <summary>
+            Azure BLOB.
+            </summary>
         </member>
         <member name="T:View.Sdk.DataTableRequest">
             <summary>
@@ -1783,7 +2414,7 @@
             Instantiate.
             </summary>
         </member>
-        <member name="M:View.Sdk.EmbeddingsDocument.FromDataRow(System.Data.DataRow,View.Serializer.SerializationHelper)">
+        <member name="M:View.Sdk.EmbeddingsDocument.FromDataRow(System.Data.DataRow,View.Sdk.Serialization.Serializer)">
             <summary>
             Instantiate from DataRow.
             </summary>
@@ -1791,7 +2422,7 @@
             <param name="serializer">Serializer.</param>
             <returns>EmbeddingsDocument.</returns>
         </member>
-        <member name="M:View.Sdk.EmbeddingsDocument.FromDataTable(System.Data.DataTable,View.Serializer.SerializationHelper)">
+        <member name="M:View.Sdk.EmbeddingsDocument.FromDataTable(System.Data.DataTable,View.Sdk.Serialization.Serializer)">
             <summary>
             Instantiate from DataTable.
             </summary>
@@ -2531,6 +3162,11 @@
             Semantic chunk.
             </summary>
         </member>
+        <member name="P:View.Sdk.Graph.GraphData.DataRepository">
+            <summary>
+            Data repository.
+            </summary>
+        </member>
         <member name="M:View.Sdk.Graph.GraphData.#ctor">
             <summary>
             Instantiate.
@@ -2681,6 +3317,11 @@
             SemanticChunk.
             </summary>
         </member>
+        <member name="F:View.Sdk.Graph.GraphNodeTypeEnum.DataRepository">
+            <summary>
+            Data repository.
+            </summary>
+        </member>
         <member name="T:View.Sdk.Graph.GraphResult">
             <summary>
             Graph result.
@@ -2731,6 +3372,21 @@
             Source document.
             </summary>
         </member>
+        <member name="P:View.Sdk.Graph.GraphResult.DataRepository">
+            <summary>
+            Data repository.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Graph.GraphResult.SemanticCells">
+            <summary>
+            Semantic cells.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Graph.GraphResult.SemanticChunks">
+            <summary>
+            Semantic chunks.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Graph.GraphResult.Edges">
             <summary>
             Edges.
@@ -2769,7 +3425,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if connected.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.InsertStorageServerObject(View.Sdk.TenantMetadata,View.Sdk.StoragePool,View.Sdk.BucketMetadata,View.Sdk.ObjectMetadata,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.GraphSdk.InsertObjectMetadata(View.Sdk.TenantMetadata,View.Sdk.StoragePool,View.Sdk.BucketMetadata,View.Sdk.ObjectMetadata,System.Threading.CancellationToken)">
             <summary>
             Insert object metadata and its associated objects from storage server.
             </summary>
@@ -2777,6 +3433,26 @@
             <param name="pool">Storage pool.</param>
             <param name="bucket">Bucket.</param>
             <param name="obj">Object.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph result.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.InsertObjectMetadata(View.Sdk.TenantMetadata,View.Sdk.DataRepository,View.Sdk.ObjectMetadata,System.Threading.CancellationToken)">
+            <summary>
+            Insert object metadata and its associated objects from crawler.
+            </summary>
+            <param name="tenant">Tenant.</param>
+            <param name="repo">Data repository.</param>
+            <param name="obj">Object metadata.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph result.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.InsertSourceDocument(View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.SourceDocument,System.Threading.CancellationToken)">
+            <summary>
+            Insert source document and its associated objects.
+            </summary>
+            <param name="tenant">Tenant.</param>
+            <param name="collection">Collection.</param>
+            <param name="sourceDoc">Source document.</param>
             <param name="token">Cancellation token.</param>
             <returns>Graph result.</returns>
         </member>
@@ -2825,6 +3501,30 @@
             Check if a source document exists.
             </summary>
             <param name="doc">Source document.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.SemanticCellExists(View.Sdk.SemanticCell,System.Threading.CancellationToken)">
+            <summary>
+            Check if a semantic cell exists.
+            </summary>
+            <param name="cell">Semantic cell.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.SemanticChunkExists(View.Sdk.SemanticChunk,System.Threading.CancellationToken)">
+            <summary>
+            Check if a semantic chunk exists.
+            </summary>
+            <param name="chunk">Semantic chunk.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.DataRepositoryExists(View.Sdk.DataRepository,System.Threading.CancellationToken)">
+            <summary>
+            Check if a data repository exists.
+            </summary>
+            <param name="repo">Data repository.</param>
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
@@ -2885,6 +3585,30 @@
             <param name="token">Cancellation token.</param>
             <returns>Graph node.</returns>
         </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.CreateSemanticCell(View.Sdk.SemanticCell,System.Threading.CancellationToken)">
+            <summary>
+            Create a semantic cell.
+            </summary>
+            <param name="cell">Semantic cell.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.CreateSemanticChunk(View.Sdk.SemanticChunk,System.Threading.CancellationToken)">
+            <summary>
+            Create a semantic chunk.
+            </summary>
+            <param name="chunk">Semantic chunk.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.CreateDataRepository(View.Sdk.DataRepository,System.Threading.CancellationToken)">
+            <summary>
+            Create a data repository.
+            </summary>
+            <param name="repo">Data repository.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph node.</returns>
+        </member>
         <member name="M:View.Sdk.Graph.GraphSdk.ReadGraph(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read graph metadata.
@@ -2941,6 +3665,30 @@
             <param name="token">Cancellation token.</param>
             <returns>Graph node.</returns>
         </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.ReadSemanticCell(View.Sdk.SemanticCell,System.Threading.CancellationToken)">
+            <summary>
+            Read a semantic cell node.
+            </summary>
+            <param name="cell">Semantic cell.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.ReadSemanticChunk(View.Sdk.SemanticChunk,System.Threading.CancellationToken)">
+            <summary>
+            Read a semantic chunk node.
+            </summary>
+            <param name="chunk">Semantic chunk.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.ReadDataRepository(View.Sdk.DataRepository,System.Threading.CancellationToken)">
+            <summary>
+            Read a data repository node.
+            </summary>
+            <param name="repo">Data repository.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph node.</returns>
+        </member>
         <member name="M:View.Sdk.Graph.GraphSdk.DeleteTenant(View.Sdk.TenantMetadata,System.Threading.CancellationToken)">
             <summary>
             Delete a tenant.
@@ -2986,6 +3734,30 @@
             Delete a source document.
             </summary>
             <param name="doc">Source document.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.DeleteSemanticCell(View.Sdk.SemanticCell,System.Threading.CancellationToken)">
+            <summary>
+            Delete a semantic cell.
+            </summary>
+            <param name="cell">Semantic cell.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.DeleteSemanticChunk(View.Sdk.SemanticChunk,System.Threading.CancellationToken)">
+            <summary>
+            Delete a semantic chunk.
+            </summary>
+            <param name="chunk">Semantic chunk.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.DeleteDataRepository(View.Sdk.DataRepository,System.Threading.CancellationToken)">
+            <summary>
+            Delete a data repository.
+            </summary>
+            <param name="repo">Data repository.</param>
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
@@ -4385,6 +5157,16 @@
             Bucket metadata.
             </summary>
         </member>
+        <member name="P:View.Sdk.ProcessorRequest.DataRepository">
+            <summary>
+            Data repository.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ProcessorRequest.Collection">
+            <summary>
+            Collection.
+            </summary>
+        </member>
         <member name="P:View.Sdk.ProcessorRequest.Object">
             <summary>
             Object metadata.
@@ -4500,11 +5282,12 @@
             </summary>
             <param name="endpoint">Endpoint URL.</param>
         </member>
-        <member name="M:View.Sdk.Processor.ViewProcessorSdk.Process(View.Sdk.TenantMetadata,View.Sdk.StoragePool,View.Sdk.BucketMetadata,View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Processor.ViewProcessorSdk.Process(View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.StoragePool,View.Sdk.BucketMetadata,View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Threading.CancellationToken)">
             <summary>
-            Process a document.
+            Process a document.  This variant is used by the storage server.
             </summary>
             <param name="tenant">Tenant metadata.</param>
+            <param name="collection">Collection metadata.</param>
             <param name="bucket">Bucket metadata.</param>
             <param name="pool">Storage pool metadata.</param>
             <param name="obj">Object metadata.</param>
@@ -4513,7 +5296,22 @@
             <param name="vectorRepo">Vector repository.</param>
             <param name="graphRepo">Graph repository.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
+            <returns>Processor response.</returns>
+        </member>
+        <member name="M:View.Sdk.Processor.ViewProcessorSdk.Process(View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.DataRepository,View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Threading.CancellationToken)">
+            <summary>
+            Process a document.  This variant is used by the data crawler.
+            </summary>
+            <param name="tenant">Tenant metadata.</param>
+            <param name="collection">Collection metadata.</param>
+            <param name="repo">Data repository.</param>
+            <param name="obj">Object metadata.</param>
+            <param name="mdRule">Metadata rule.</param>
+            <param name="embedRule">Embeddings rule.</param>
+            <param name="vectorRepo">Vector repository.</param>
+            <param name="graphRepo">Graph repository.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Processor response.</returns>
         </member>
         <member name="T:View.Sdk.Processor.ViewTypeDetectorSdk">
             <summary>
@@ -4693,6 +5491,51 @@
         <member name="M:View.Sdk.QueryResult.#ctor">
             <summary>
             Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.ScheduleIntervalEnum">
+            <summary>
+            Schedule interval enum.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.ScheduleIntervalEnum.OneTime">
+            <summary>
+            OneTime.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.ScheduleIntervalEnum.SecondsInterval">
+            <summary>
+            SecondsInterval.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.ScheduleIntervalEnum.MinutesInterval">
+            <summary>
+            MinutesInterval.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.ScheduleIntervalEnum.HoursInterval">
+            <summary>
+            HoursInterval.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.ScheduleIntervalEnum.DaysInterval">
+            <summary>
+            DaysInterval.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.ScheduleTypeEnum">
+            <summary>
+            Schedule type.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.ScheduleTypeEnum.Scheduled">
+            <summary>
+            Scheduled.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.ScheduleTypeEnum.Interactive">
+            <summary>
+            Interactive.
             </summary>
         </member>
         <member name="T:View.Sdk.SchemaCondition">
@@ -5216,6 +6059,187 @@
             Instantiate.
             </summary>
         </member>
+        <member name="T:View.Sdk.Serialization.DateTimeConverter">
+            <summary>
+            DateTime converter.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Serialization.DateTimeConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Read.
+            </summary>
+            <param name="reader">Reader.</param>
+            <param name="typeToConvert">Type to convert.</param>
+            <param name="options">JSON serializer options.</param>
+            <returns>DateTime.</returns>
+        </member>
+        <member name="M:View.Sdk.Serialization.DateTimeConverter.Write(System.Text.Json.Utf8JsonWriter,System.DateTime,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Write.
+            </summary>
+            <param name="writer">Writer.</param>
+            <param name="dateTimeValue">Value.</param>
+            <param name="options">JSON serializer options.</param>
+        </member>
+        <member name="T:View.Sdk.Serialization.ExceptionConverter`1">
+            <summary>
+            Exception converter.
+            </summary>
+            <typeparam name="TExceptionType">Exception type.</typeparam>
+        </member>
+        <member name="M:View.Sdk.Serialization.ExceptionConverter`1.CanConvert(System.Type)">
+            <summary>
+            Can convert.
+            </summary>
+            <param name="typeToConvert">Type to convert.</param>
+            <returns>True if convertible.</returns>
+        </member>
+        <member name="M:View.Sdk.Serialization.ExceptionConverter`1.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Read.
+            </summary>
+            <param name="reader">Reader.</param>
+            <param name="typeToConvert">Type to convert.</param>
+            <param name="options">JSON serializer options.</param>
+            <returns>Instance.</returns>
+        </member>
+        <member name="M:View.Sdk.Serialization.ExceptionConverter`1.Write(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Write.
+            </summary>
+            <param name="writer">Writer.</param>
+            <param name="value">Value.</param>
+            <param name="options">JSON serializer options.</param>
+        </member>
+        <member name="T:View.Sdk.Serialization.ExpressionConverter">
+            <summary>
+            Expression converter.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Serialization.ExpressionConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Read.
+            </summary>
+            <param name="reader">Reader.</param>
+            <param name="typeToConvert">Type to convert.</param>
+            <param name="options">Options.</param>
+            <returns>Expr.</returns>
+        </member>
+        <member name="M:View.Sdk.Serialization.ExpressionConverter.Write(System.Text.Json.Utf8JsonWriter,ExpressionTree.Expr,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Write.
+            </summary>
+            <param name="writer">Writer.</param>
+            <param name="value">Value.</param>
+            <param name="options">Options.</param>
+        </member>
+        <member name="T:View.Sdk.Serialization.IPAddressConverter">
+            <summary>
+            IP address converter.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Serialization.IPAddressConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Read.
+            </summary>
+            <param name="reader">Reader.</param>
+            <param name="typeToConvert">Type to convert.</param>
+            <param name="options">JSON serializer options.</param>
+            <returns>IPAddress.</returns>
+        </member>
+        <member name="M:View.Sdk.Serialization.IPAddressConverter.Write(System.Text.Json.Utf8JsonWriter,System.Net.IPAddress,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Write.
+            </summary>
+            <param name="writer">Writer.</param>
+            <param name="value">Value.</param>
+            <param name="options">JSON serializer options.</param>
+        </member>
+        <member name="T:View.Sdk.Serialization.NameValueCollectionConverter">
+            <summary>
+            NameValueCollection converter.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Serialization.NameValueCollectionConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Read.
+            </summary>
+            <param name="reader">Reader.</param>
+            <param name="typeToConvert">Type to convert.</param>
+            <param name="options">JSON serializer options.</param>
+            <returns>NameValueCollection.</returns>
+        </member>
+        <member name="M:View.Sdk.Serialization.NameValueCollectionConverter.Write(System.Text.Json.Utf8JsonWriter,System.Collections.Specialized.NameValueCollection,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Write.
+            </summary>
+            <param name="writer">Writer.</param>
+            <param name="value">Value.</param>
+            <param name="options">JSON serializer options.</param>
+        </member>
+        <member name="T:View.Sdk.Serialization.Serializer">
+            <summary>
+            Serializer.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Serialization.Serializer.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Serialization.Serializer.InstantiateConverters">
+            <summary>
+            Instantiation method to support fixups for various environments, e.g. Unity.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Serialization.Serializer.DeserializeJson``1(System.String)">
+            <summary>
+            Deserialize JSON to an instance.
+            </summary>
+            <typeparam name="T">Type.</typeparam>
+            <param name="json">JSON string.</param>
+            <returns>Instance.</returns>
+        </member>
+        <member name="M:View.Sdk.Serialization.Serializer.SerializeJson(System.Object,System.Boolean)">
+            <summary>
+            Serialize object to JSON.
+            </summary>
+            <param name="obj">Object.</param>
+            <param name="pretty">Pretty print.</param>
+            <returns>JSON.</returns>
+        </member>
+        <member name="M:View.Sdk.Serialization.Serializer.CopyObject``1(System.Object)">
+            <summary>
+            Copy an object.
+            </summary>
+            <typeparam name="T">Type.</typeparam>
+            <param name="o">Object.</param>
+            <returns>Instance.</returns>
+        </member>
+        <member name="M:View.Sdk.Serialization.Serializer.DeserializeXml``1(System.Byte[])">
+            <summary>
+            Deserialize XML.
+            </summary>
+            <typeparam name="T">Type.</typeparam>
+            <param name="bytes">XML data.</param>
+            <returns>Instance.</returns>
+        </member>
+        <member name="M:View.Sdk.Serialization.Serializer.DeserializeXml``1(System.String)">
+            <summary>
+            Deserialize XML.
+            </summary>
+            <typeparam name="T">Type.</typeparam>
+            <param name="xml">XML string.</param>
+            <returns>Instance.</returns>
+        </member>
+        <member name="M:View.Sdk.Serialization.Serializer.SerializeXml(System.Object,System.Boolean)">
+            <summary>
+            Serialize XML.
+            </summary>
+            <param name="obj">Object.</param>
+            <param name="pretty">Pretty print.</param>
+            <returns>XML string.</returns>
+        </member>
         <member name="T:View.Sdk.SeverityEnum">
             <summary>
             Message severity.
@@ -5421,14 +6445,54 @@
             Source document.
             </summary>
         </member>
-        <member name="P:View.Sdk.SourceDocumentStatistics.TermCount">
+        <member name="P:View.Sdk.SourceDocumentStatistics.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SourceDocumentStatistics.CollectionGUID">
+            <summary>
+            Collection GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SourceDocumentStatistics.SourceDocumentGUID">
+            <summary>
+            Source document GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SourceDocumentStatistics.Terms">
             <summary>
             Term count.
             </summary>
         </member>
-        <member name="P:View.Sdk.SourceDocumentStatistics.KeyValueCount">
+        <member name="P:View.Sdk.SourceDocumentStatistics.DistinctTerms">
+            <summary>
+            Distinct terms.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SourceDocumentStatistics.KeyValuePairs">
             <summary>
             Key-value count.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SourceDocumentStatistics.SemanticCells">
+            <summary>
+            Semantic cell count.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SourceDocumentStatistics.SemanticCellBytes">
+            <summary>
+            Semantic cell bytes.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SourceDocumentStatistics.SemanticChunks">
+            <summary>
+            Semantic chunk count.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SourceDocumentStatistics.SemanticChunkBytes">
+            <summary>
+            Semantic chunk bytes.
             </summary>
         </member>
         <member name="M:View.Sdk.SourceDocumentStatistics.#ctor">
@@ -5730,6 +6794,11 @@
             Tenant metadata.
             </summary>
         </member>
+        <member name="P:View.Sdk.TenantMetadata.Id">
+            <summary>
+            ID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.TenantMetadata.GUID">
             <summary>
             GUID.
@@ -5743,6 +6812,21 @@
         <member name="P:View.Sdk.TenantMetadata.Name">
             <summary>
             Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.TenantMetadata.Region">
+            <summary>
+            Region.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.TenantMetadata.S3BaseDomain">
+            <summary>
+            S3 base domain.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.TenantMetadata.DefaultPoolGUID">
+            <summary>
+            Default pool GUID.
             </summary>
         </member>
         <member name="P:View.Sdk.TenantMetadata.Active">

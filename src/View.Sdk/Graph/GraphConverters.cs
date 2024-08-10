@@ -2,7 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Text.Json;
     using LiteGraph.Sdk;
+    using View.Sdk.Serialization;
+
+    using Serializer = View.Sdk.Serialization.Serializer;
 
     internal static class GraphConverters
     {
@@ -60,21 +64,25 @@
             };
         }
 
-        internal static GraphNode LgNodeToGraphNode(LiteGraph.Sdk.Node node)
+        internal static GraphNode LgNodeToGraphNode(LiteGraph.Sdk.Node node, Serializer serializer)
         {
             if (node == null) return null;
+
+            GraphData data = null;
+            if (node.Data != null && node.Data.GetType() == typeof(JsonElement))
+                data = new Serializer().DeserializeJson<GraphData>(((JsonElement)(node.Data)).GetRawText());
 
             return new GraphNode
             {
                 GUID = node.GUID,
                 GraphGUID = node.GraphGUID,
                 Name = node.Name,
-                Data = (GraphData)node.Data,
+                Data = data,
                 CreatedUtc = node.CreatedUtc
             };
         }
 
-        internal static List<GraphNode> LgNodeListToGraphNodeList(List<LiteGraph.Sdk.Node> nodes)
+        internal static List<GraphNode> LgNodeListToGraphNodeList(List<LiteGraph.Sdk.Node> nodes, Serializer serializer)
         {
             if (nodes == null) return null;
 
@@ -82,7 +90,7 @@
 
             foreach (LiteGraph.Sdk.Node node in nodes)
             {
-                ret.Add(LgNodeToGraphNode(node));
+                ret.Add(LgNodeToGraphNode(node, serializer));
             }
 
             return ret;

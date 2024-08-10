@@ -8,7 +8,7 @@
     using System.Linq;
     using System.Text.Json.Serialization;
     using Timestamps;
-    using View.Serializer;
+    using View.Sdk.Serialization;
 
     /// <summary>
     /// Embeddings document.
@@ -158,7 +158,7 @@
         /// <param name="row">DataRow.</param>
         /// <param name="serializer">Serializer.</param>
         /// <returns>EmbeddingsDocument.</returns>
-        public static EmbeddingsDocument FromDataRow(DataRow row, SerializationHelper serializer)
+        public static EmbeddingsDocument FromDataRow(DataRow row, Serializer serializer)
         {
             if (row == null) return null;
             if (serializer == null) throw new ArgumentNullException(nameof(serializer));
@@ -239,7 +239,7 @@
         /// <param name="dt">DataTable.</param>
         /// <param name="serializer">Serializer.</param>
         /// <returns>List of EmbeddingsDocument.</returns>
-        public static List<EmbeddingsDocument> FromDataTable(DataTable dt, SerializationHelper serializer)
+        public static List<EmbeddingsDocument> FromDataTable(DataTable dt, Serializer serializer)
         {
             if (dt == null) return null;
             if (serializer == null) throw new ArgumentNullException(nameof(serializer));

@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using GetSomeInput;
     using View.Sdk.Vector;
-    using View.Serializer;
+    using View.Sdk.Serialization;
     using View.Sdk;
 
     public static class Program
@@ -17,7 +17,7 @@
         private static string _AccessKey = "default";
         private static string _Endpoint = "http://localhost:8311/";
         private static ViewVectorProxySdk _Sdk = null;
-        private static SerializationHelper _Serializer = new SerializationHelper();
+        private static Serializer _Serializer = new Serializer();
         private static bool _EnableLogging = true;
 
         public static void Main(string[] args)

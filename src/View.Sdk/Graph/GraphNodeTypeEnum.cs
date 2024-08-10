@@ -57,6 +57,11 @@
         /// SemanticChunk.
         /// </summary>
         [EnumMember(Value = "SemanticChunk")]
-        SemanticChunk
+        SemanticChunk,
+        /// <summary>
+        /// Data repository.
+        /// </summary>
+        [EnumMember(Value = "DataRepository")]
+        DataRepository
     }
 }

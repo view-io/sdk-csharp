@@ -4,9 +4,9 @@
     using System.Text.Json.Serialization;
 
     /// <summary>
-    /// Tenant metadata.
+    /// Crawl schedule.
     /// </summary>
-    public class TenantMetadata
+    public class CrawlSchedule
     {
         #region Public-Members
 
@@ -33,37 +33,38 @@
         public string GUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
-        /// Parent GUID.
+        /// Tenant GUID.
         /// </summary>
-        public string ParentGUID { get; set; } = null;
+        public string TenantGUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Name.
         /// </summary>
-        public string Name { get; set; } = string.Empty;
+        public string Name { get; set; } = "My schedule";
 
         /// <summary>
-        /// Region.
+        /// Schedule interval.
         /// </summary>
-        public string Region { get; set; } = "us-west-1";
+        public ScheduleIntervalEnum Schedule { get; set; } = ScheduleIntervalEnum.DaysInterval;
 
         /// <summary>
-        /// S3 base domain.
+        /// Interval.
         /// </summary>
-        public string S3BaseDomain { get; set; } = string.Empty;
+        public int Interval
+        { 
+            get
+            {
+                return _Interval;
+            }
+            set
+            {
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(Interval));
+                _Interval = value;
+            }
+        }
 
         /// <summary>
-        /// Default pool GUID.
-        /// </summary>
-        public string DefaultPoolGUID { get; set; } = string.Empty;
-
-        /// <summary>
-        /// Active.
-        /// </summary>
-        public bool Active { get; set; } = true;
-
-        /// <summary>
-        /// Creation timestamp, in UTC time.
+        /// Created.
         /// </summary>
         public DateTime CreatedUtc { get; set; } = DateTime.UtcNow;
 
@@ -72,6 +73,7 @@
         #region Private-Members
 
         private int _Id = 0;
+        private int _Interval = 1;
 
         #endregion
 
@@ -80,7 +82,7 @@
         /// <summary>
         /// Instantiate.
         /// </summary>
-        public TenantMetadata()
+        public CrawlSchedule()
         {
 
         }
