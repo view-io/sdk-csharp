@@ -53,6 +53,11 @@
         public string S3BaseDomain { get; set; } = string.Empty;
 
         /// <summary>
+        /// REST base domain.
+        /// </summary>
+        public string RestBaseDomain { get; set; } = string.Empty;
+
+        /// <summary>
         /// Default pool GUID.
         /// </summary>
         public string DefaultPoolGUID { get; set; } = string.Empty;

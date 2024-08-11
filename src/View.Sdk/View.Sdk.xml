@@ -6824,6 +6824,11 @@
             S3 base domain.
             </summary>
         </member>
+        <member name="P:View.Sdk.TenantMetadata.RestBaseDomain">
+            <summary>
+            REST base domain.
+            </summary>
+        </member>
         <member name="P:View.Sdk.TenantMetadata.DefaultPoolGUID">
             <summary>
             Default pool GUID.
