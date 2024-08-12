@@ -143,21 +143,21 @@
             result.Graph = await ReadGraph(Guid.Parse(_GraphRepository.GraphIdentifier)).ConfigureAwait(false);
             if (result.Graph == null)
             {
-                result.Timestamp.AddMessage("Creating graph " + _GraphRepository.GraphIdentifier);
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms creating graph " + _GraphRepository.GraphIdentifier);
                 result.Graph = await CreateGraph(
                     Guid.Parse(_GraphRepository.GraphIdentifier), 
                     _GraphRepository.Name, token).ConfigureAwait(false);
 
                 if (result.Graph == null)
                 {
-                    result.Timestamp.AddMessage("Failed to create graph " + _GraphRepository.GraphIdentifier);
+                    result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms failed to create graph " + _GraphRepository.GraphIdentifier);
                     result.Success = false;
                     return result;
                 }
             }
             else
             {
-                result.Timestamp.AddMessage("Attached to graph " + result.Graph.GUID);
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms attached to graph " + result.Graph.GUID);
             }
 
             #endregion
@@ -167,18 +167,18 @@
             result.Tenant = await ReadTenant(tenant, token).ConfigureAwait(false);
             if (result.Tenant == null)
             {
-                result.Timestamp.AddMessage("Creating node for tenant " + tenant.GUID);
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms creating node for tenant " + tenant.GUID);
                 result.Tenant = await CreateTenant(tenant, token).ConfigureAwait(false);
                 if (result.Tenant == null)
                 {
-                    result.Timestamp.AddMessage("Failed to create node for tenant " + tenant.GUID);
+                    result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms failed to create node for tenant " + tenant.GUID);
                     result.Success = false;
                     return result;
                 }
             }
             else
             {
-                result.Timestamp.AddMessage("Re-using tenant " + tenant.GUID + " node " + result.Tenant.GUID);
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms re-using tenant " + tenant.GUID + " node " + result.Tenant.GUID);
             }
 
             #endregion
@@ -188,18 +188,18 @@
             result.StoragePool = await ReadStoragePool(pool, token).ConfigureAwait(false);
             if (result.StoragePool == null)
             {
-                result.Timestamp.AddMessage("Creating node for storage pool " + pool.GUID);
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms creating node for storage pool " + pool.GUID);
                 result.StoragePool = await CreateStoragePool(pool, token).ConfigureAwait(false);
                 if (result.StoragePool == null)
                 {
-                    result.Timestamp.AddMessage("Failed to create node for storage pool " + pool.GUID);
+                    result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms failed to create node for storage pool " + pool.GUID);
                     result.Success = false;
                     return result;
                 }
             }
             else
             {
-                result.Timestamp.AddMessage("Re-using storage pool " + pool.GUID + " node " + result.StoragePool.GUID);
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms re-using storage pool " + pool.GUID + " node " + result.StoragePool.GUID);
             }
 
             #endregion
@@ -214,7 +214,7 @@
 
             if (edgesPoolTenant == null || edgesPoolTenant.Count < 1)
             {
-                result.Timestamp.AddMessage("Creating edge from storage pool to tenant");
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms creating edge from storage pool to tenant");
                 GraphEdge edgePoolTenant = await _GraphDriver.CreateEdge(
                     new GraphEdge
                     {
@@ -226,7 +226,7 @@
 
                 if (edgePoolTenant == null)
                 {
-                    result.Timestamp.AddMessage("Failed to create edge from storage pool to tenant");
+                    result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms failed to create edge from storage pool to tenant");
                     result.Success = false;
                     return result;
                 }
@@ -235,7 +235,7 @@
             }
             else
             {
-                result.Timestamp.AddMessage("Re-using edge(s) between storage pool and tenant");
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms re-using edge(s) between storage pool and tenant");
                 result.Edges.AddRange(edgesPoolTenant);
             }
 
@@ -246,18 +246,18 @@
             result.Bucket = await ReadBucket(bucket, token).ConfigureAwait(false);
             if (result.Bucket == null)
             {
-                result.Timestamp.AddMessage("Creating node for bucket " + bucket.GUID);
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms creating node for bucket " + bucket.GUID);
                 result.Bucket = await CreateBucket(bucket, token).ConfigureAwait(false);
                 if (result.Bucket == null)
                 {
-                    result.Timestamp.AddMessage("Failed to create node for bucket " + bucket.GUID);
+                    result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms failed to create node for bucket " + bucket.GUID);
                     result.Success = false;
                     return result;
                 }
             }
             else
             {
-                result.Timestamp.AddMessage("Re-using bucket " + bucket.GUID + " node " + result.Bucket.GUID);
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms re-using bucket " + bucket.GUID + " node " + result.Bucket.GUID);
             }
 
             #endregion
@@ -272,7 +272,7 @@
 
             if (edgesBucketPool == null || edgesBucketPool.Count < 1)
             {
-                result.Timestamp.AddMessage("Creating edge from bucket to storage pool");
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms creating edge from bucket to storage pool");
                 GraphEdge edgeBucketPool = await _GraphDriver.CreateEdge(
                     new GraphEdge
                     {
@@ -284,7 +284,7 @@
 
                 if (edgeBucketPool == null)
                 {
-                    result.Timestamp.AddMessage("Failed to create edge from bucket to storage pool");
+                    result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms failed to create edge from bucket to storage pool");
                     result.Success = false;
                     return result;
                 }
@@ -293,7 +293,7 @@
             }
             else
             {
-                result.Timestamp.AddMessage("Re-using edge between bucket and storage pool");
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms re-using edge between bucket and storage pool");
                 result.Edges.AddRange(edgesBucketPool);
             }
 
@@ -304,18 +304,18 @@
             result.Object = await ReadObjectMetadata(obj, token).ConfigureAwait(false);
             if (result.Object == null)
             {
-                result.Timestamp.AddMessage("Creating node for object " + obj.GUID);
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms creating node for object " + obj.GUID);
                 result.Object = await CreateObjectMetadata(obj, token).ConfigureAwait(false);
                 if (result.Object == null)
                 {
-                    result.Timestamp.AddMessage("Failed to create node for object " + obj.GUID);
+                    result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms failed to create node for object " + obj.GUID);
                     result.Success = false;
                     return result;
                 }
             }
             else
             {
-                result.Timestamp.AddMessage("Re-using object " + obj.GUID + " node " + result.Object.GUID);
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms re-using object " + obj.GUID + " node " + result.Object.GUID);
             }
 
             #endregion
@@ -330,7 +330,7 @@
 
             if (edgesObjectBucket == null || edgesObjectBucket.Count < 1)
             {
-                result.Timestamp.AddMessage("Creating edge from object to bucket");
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms creating edge from object to bucket");
                 GraphEdge edgeObjectBucket = await _GraphDriver.CreateEdge(
                     new GraphEdge
                     {
@@ -342,7 +342,7 @@
 
                 if (edgeObjectBucket == null)
                 {
-                    result.Timestamp.AddMessage("Failed to create edge from object to bucket");
+                    result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms failed to create edge from object to bucket");
                     result.Success = false;
                     return result;
                 }
@@ -351,7 +351,7 @@
             }
             else
             {
-                result.Timestamp.AddMessage("Re-using edge between object and bucket");
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms re-using edge between object and bucket");
                 result.Edges.AddRange(edgesObjectBucket);
             }
 
@@ -359,7 +359,7 @@
 
             result.Success = true;
             result.Timestamp.End = DateTime.UtcNow;
-            result.Timestamp.AddMessage("Finished processing after " + result.Timestamp.TotalMs + "ms");
+            result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms finished processing after " + result.Timestamp.TotalMs + "ms");
             return result;
         }
 
@@ -388,21 +388,21 @@
             result.Graph = await ReadGraph(Guid.Parse(_GraphRepository.GraphIdentifier)).ConfigureAwait(false);
             if (result.Graph == null)
             {
-                result.Timestamp.AddMessage("Creating graph " + _GraphRepository.GraphIdentifier);
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms creating graph " + _GraphRepository.GraphIdentifier);
                 result.Graph = await CreateGraph(
                     Guid.Parse(_GraphRepository.GraphIdentifier),
                     _GraphRepository.Name, token).ConfigureAwait(false);
 
                 if (result.Graph == null)
                 {
-                    result.Timestamp.AddMessage("Failed to create graph " + _GraphRepository.GraphIdentifier);
+                    result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms failed to create graph " + _GraphRepository.GraphIdentifier);
                     result.Success = false;
                     return result;
                 }
             }
             else
             {
-                result.Timestamp.AddMessage("Attached to graph " + result.Graph.GUID);
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms attached to graph " + result.Graph.GUID);
             }
 
             #endregion
@@ -412,18 +412,18 @@
             result.Tenant = await ReadTenant(tenant, token).ConfigureAwait(false);
             if (result.Tenant == null)
             {
-                result.Timestamp.AddMessage("Creating node for tenant " + tenant.GUID);
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms creating node for tenant " + tenant.GUID);
                 result.Tenant = await CreateTenant(tenant, token).ConfigureAwait(false);
                 if (result.Tenant == null)
                 {
-                    result.Timestamp.AddMessage("Failed to create node for tenant " + tenant.GUID);
+                    result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms failed to create node for tenant " + tenant.GUID);
                     result.Success = false;
                     return result;
                 }
             }
             else
             {
-                result.Timestamp.AddMessage("Re-using tenant " + tenant.GUID + " node " + result.Tenant.GUID);
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms re-using tenant " + tenant.GUID + " node " + result.Tenant.GUID);
             }
 
             #endregion
@@ -433,18 +433,18 @@
             result.DataRepository = await ReadDataRepository(repo, token).ConfigureAwait(false);
             if (result.DataRepository == null)
             {
-                result.Timestamp.AddMessage("Creating node for data repository " + repo.GUID);
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms creating node for data repository " + repo.GUID);
                 result.DataRepository = await CreateDataRepository(repo, token).ConfigureAwait(false);
                 if (result.DataRepository == null)
                 {
-                    result.Timestamp.AddMessage("Failed to create node for data repository " + repo.GUID);
+                    result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms failed to create node for data repository " + repo.GUID);
                     result.Success = false;
                     return result;
                 }
             }
             else
             {
-                result.Timestamp.AddMessage("Re-using data repository " + repo.GUID + " node " + result.DataRepository.GUID);
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms re-using data repository " + repo.GUID + " node " + result.DataRepository.GUID);
             }
 
             #endregion
@@ -459,7 +459,7 @@
 
             if (edgesRepoTenant == null || edgesRepoTenant.Count < 1)
             {
-                result.Timestamp.AddMessage("Creating edge from data repository to tenant");
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms creating edge from data repository to tenant");
                 GraphEdge edgeRepoTenant = await _GraphDriver.CreateEdge(
                     new GraphEdge
                     {
@@ -471,7 +471,7 @@
 
                 if (edgeRepoTenant == null)
                 {
-                    result.Timestamp.AddMessage("Failed to create edge from data repository to tenant");
+                    result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms failed to create edge from data repository to tenant");
                     result.Success = false;
                     return result;
                 }
@@ -480,7 +480,7 @@
             }
             else
             {
-                result.Timestamp.AddMessage("Re-using edge(s) between data repository and tenant");
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms re-using edge(s) between data repository and tenant");
                 result.Edges.AddRange(edgesRepoTenant);
             }
 
@@ -491,18 +491,18 @@
             result.Object = await ReadObjectMetadata(obj, token).ConfigureAwait(false);
             if (result.Object == null)
             {
-                result.Timestamp.AddMessage("Creating node for object " + obj.GUID);
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms creating node for object " + obj.GUID);
                 result.Object = await CreateObjectMetadata(obj, token).ConfigureAwait(false);
                 if (result.Object == null)
                 {
-                    result.Timestamp.AddMessage("Failed to create node for object " + obj.GUID);
+                    result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms failed to create node for object " + obj.GUID);
                     result.Success = false;
                     return result;
                 }
             }
             else
             {
-                result.Timestamp.AddMessage("Re-using object " + obj.GUID + " node " + result.Object.GUID);
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms re-using object " + obj.GUID + " node " + result.Object.GUID);
             }
 
             #endregion
@@ -517,7 +517,7 @@
 
             if (edgesObjectRepository == null || edgesObjectRepository.Count < 1)
             {
-                result.Timestamp.AddMessage("Creating edge from object to data repository");
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms creating edge from object to data repository");
                 GraphEdge edgeObjectRepository = await _GraphDriver.CreateEdge(
                     new GraphEdge
                     {
@@ -529,7 +529,7 @@
 
                 if (edgeObjectRepository == null)
                 {
-                    result.Timestamp.AddMessage("Failed to create edge from object to data repository");
+                    result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms failed to create edge from object to data repository");
                     result.Success = false;
                     return result;
                 }
@@ -538,7 +538,7 @@
             }
             else
             {
-                result.Timestamp.AddMessage("Re-using edge between object and data repository");
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms re-using edge between object and data repository");
                 result.Edges.AddRange(edgesObjectRepository);
             }
 
@@ -546,7 +546,7 @@
 
             result.Success = true;
             result.Timestamp.End = DateTime.UtcNow;
-            result.Timestamp.AddMessage("Finished processing after " + result.Timestamp.TotalMs + "ms");
+            result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms finished processing after " + result.Timestamp.TotalMs + "ms");
             return result;
         }
 
@@ -575,21 +575,21 @@
             result.Graph = await ReadGraph(Guid.Parse(_GraphRepository.GraphIdentifier)).ConfigureAwait(false);
             if (result.Graph == null)
             {
-                result.Timestamp.AddMessage("Creating graph " + _GraphRepository.GraphIdentifier);
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms creating graph " + _GraphRepository.GraphIdentifier);
                 result.Graph = await CreateGraph(
                     Guid.Parse(_GraphRepository.GraphIdentifier),
                     _GraphRepository.Name, token).ConfigureAwait(false);
 
                 if (result.Graph == null)
                 {
-                    result.Timestamp.AddMessage("Failed to create graph " + _GraphRepository.GraphIdentifier);
+                    result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms failed to create graph " + _GraphRepository.GraphIdentifier);
                     result.Success = false;
                     return result;
                 }
             }
             else
             {
-                result.Timestamp.AddMessage("Attached to graph " + result.Graph.GUID);
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms attached to graph " + result.Graph.GUID);
             }
 
             #endregion
@@ -599,18 +599,18 @@
             result.Tenant = await ReadTenant(tenant, token).ConfigureAwait(false);
             if (result.Tenant == null)
             {
-                result.Timestamp.AddMessage("Creating node for tenant " + tenant.GUID);
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms creating node for tenant " + tenant.GUID);
                 result.Tenant = await CreateTenant(tenant, token).ConfigureAwait(false);
                 if (result.Tenant == null)
                 {
-                    result.Timestamp.AddMessage("Failed to create node for tenant " + tenant.GUID);
+                    result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms failed to create node for tenant " + tenant.GUID);
                     result.Success = false;
                     return result;
                 }
             }
             else
             {
-                result.Timestamp.AddMessage("Re-using tenant " + tenant.GUID + " node " + result.Tenant.GUID);
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms re-using tenant " + tenant.GUID + " node " + result.Tenant.GUID);
             }
 
             #endregion
@@ -620,18 +620,18 @@
             result.Collection = await ReadCollection(collection, token).ConfigureAwait(false);
             if (result.Collection == null)
             {
-                result.Timestamp.AddMessage("Creating node for collection " + collection.GUID);
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms creating node for collection " + collection.GUID);
                 result.Collection = await CreateCollection(collection, token).ConfigureAwait(false);
                 if (result.Collection == null)
                 {
-                    result.Timestamp.AddMessage("Failed to create node for collection " + collection.GUID);
+                    result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms failed to create node for collection " + collection.GUID);
                     result.Success = false;
                     return result;
                 }
             }
             else
             {
-                result.Timestamp.AddMessage("Re-using collection " + collection.GUID + " node " + result.Collection.GUID);
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms re-using collection " + collection.GUID + " node " + result.Collection.GUID);
             }
 
             #endregion
@@ -646,7 +646,7 @@
 
             if (edgesCollTenant == null || edgesCollTenant.Count < 1)
             {
-                result.Timestamp.AddMessage("Creating edge from collection to tenant");
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms creating edge from collection to tenant");
                 GraphEdge edgeCollTenant = await _GraphDriver.CreateEdge(
                     new GraphEdge
                     {
@@ -658,7 +658,7 @@
 
                 if (edgeCollTenant == null)
                 {
-                    result.Timestamp.AddMessage("Failed to create edge from collection to tenant");
+                    result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms failed to create edge from collection to tenant");
                     result.Success = false;
                     return result;
                 }
@@ -667,7 +667,7 @@
             }
             else
             {
-                result.Timestamp.AddMessage("Re-using edge between collection and tenant");
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms re-using edge between collection and tenant");
                 result.Edges.AddRange(edgesCollTenant);
             }
 
@@ -678,18 +678,18 @@
             result.SourceDocument = await ReadSourceDocument(sourceDoc, token).ConfigureAwait(false);
             if (result.SourceDocument == null)
             {
-                result.Timestamp.AddMessage("Creating node for source document " + sourceDoc.GUID);
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms creating node for source document " + sourceDoc.GUID);
                 result.SourceDocument = await CreateSourceDocument(sourceDoc, token).ConfigureAwait(false);
                 if (result.SourceDocument == null)
                 {
-                    result.Timestamp.AddMessage("Failed to create node for source document " + sourceDoc.GUID);
+                    result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms failed to create node for source document " + sourceDoc.GUID);
                     result.Success = false;
                     return result;
                 }
             }
             else
             {
-                result.Timestamp.AddMessage("Re-using source document " + sourceDoc.GUID + " node " + result.SourceDocument.GUID);
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms re-using source document " + sourceDoc.GUID + " node " + result.SourceDocument.GUID);
             }
 
             #endregion
@@ -704,7 +704,7 @@
 
             if (edgesSourceDocColl == null || edgesSourceDocColl.Count < 1)
             {
-                result.Timestamp.AddMessage("Creating edge from source document to collection");
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms creating edge from source document to collection");
                 GraphEdge edgeSourceDocColl = await _GraphDriver.CreateEdge(
                     new GraphEdge
                     {
@@ -716,7 +716,7 @@
 
                 if (edgeSourceDocColl == null)
                 {
-                    result.Timestamp.AddMessage("Failed to create edge from source document to collection");
+                    result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms failed to create edge from source document to collection");
                     result.Success = false;
                     return result;
                 }
@@ -725,44 +725,116 @@
             }
             else
             {
-                result.Timestamp.AddMessage("Re-using edge between source document and collection");
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms re-using edge between source document and collection");
                 result.Edges.AddRange(edgesSourceDocColl);
+            }
+
+            #endregion
+
+            #region Source-Document-to-Object
+
+            if (!String.IsNullOrEmpty(sourceDoc.ObjectGUID))
+            {
+                GraphNode obj = await ReadObjectMetadata(sourceDoc.ObjectGUID).ConfigureAwait(false);
+                if (obj == null)
+                {
+                    result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms unable to find referenced object " + sourceDoc.ObjectGUID);
+                }
+                else
+                {
+                    result.Object = obj;
+
+                    List<GraphEdge> edgesSourceDocObj = await _GraphDriver.EdgesBetweenNodes(
+                        result.Graph.GUID,
+                        result.SourceDocument.GUID,
+                        result.Object.GUID,
+                        token).ConfigureAwait(false);
+
+                    if (edgesSourceDocObj == null || edgesSourceDocObj.Count < 1)
+                    {
+                        result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms creating edge from source document to object");
+                        GraphEdge edgeSourceDocObj = await _GraphDriver.CreateEdge(
+                            new GraphEdge
+                            {
+                                GraphGUID = result.Graph.GUID,
+                                Name = "Source document to object",
+                                From = result.SourceDocument.GUID,
+                                To = result.Object.GUID
+                            }, token).ConfigureAwait(false);
+
+                        if (edgeSourceDocObj == null)
+                        {
+                            result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms failed to create edge from source document to object");
+                            result.Success = false;
+                            return result;
+                        }
+
+                        result.Edges.Add(edgeSourceDocObj);
+                    }
+                    else
+                    {
+                        result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms re-using edge between source document and object");
+                        result.Edges.AddRange(edgesSourceDocObj);
+                    }
+
+                }
+            }
+            else
+            {
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms no object GUID specified in source document");
             }
 
             #endregion
 
             #region Insert-Semantic-Cells
 
-            if (sourceDoc.UdrDocument != null
-                && sourceDoc.UdrDocument.SemanticCells != null
-                && sourceDoc.UdrDocument.SemanticCells.Count > 0)
+            if (sourceDoc.UdrDocument != null)
             {
-                GraphResult semCellResult = await ProcessSemanticCellsInternal(
-                    result.Graph,
-                    result.SourceDocument,
-                    null,
-                    sourceDoc.UdrDocument.SemanticCells,
-                    token).ConfigureAwait(false);
-
-                if (!semCellResult.Success)
+                if (sourceDoc.UdrDocument.SemanticCells != null
+                    && sourceDoc.UdrDocument.SemanticCells.Count > 0)
                 {
-                    result.Timestamp.AddMessage("Failure reported during semantic cell processing");
-                    result.Success = false;
-                    return result;
+                    GraphResult semCellResult = await ProcessSemanticCellsInternal(
+                        result.Graph,
+                        result.SourceDocument,
+                        null,
+                        sourceDoc.UdrDocument.SemanticCells,
+                        token).ConfigureAwait(false);
+
+                    if (!semCellResult.Success)
+                    {
+                        result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms failure reported during semantic cell processing");
+                        result.Success = false;
+                        return result;
+                    }
+                    else
+                    {
+                        foreach (KeyValuePair<DateTime, string> msg in result.Timestamp.Messages)
+                            result.Timestamp.Messages.TryAdd(msg.Key, msg.Value);
+
+                        result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms successfully attached semantic cells to source document");
+                    }
                 }
+                else
+                {
+                    result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms no semantic cells found in supplied UDR document");
+                }
+            }
+            else
+            {
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms no UDR document supplied in source document");
             }
 
             #endregion
 
             result.Success = true;
             result.Timestamp.End = DateTime.UtcNow;
-            result.Timestamp.AddMessage("Finished processing after " + result.Timestamp.TotalMs + "ms");
+            result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms finished processing after " + result.Timestamp.TotalMs + "ms");
             return result;
         }
 
         #endregion
 
-        #region Exists
+        #region Exists-by-Object
 
         /// <summary>
         /// Check if a tenant exists.
@@ -870,6 +942,118 @@
         {
             if (repo == null) throw new ArgumentNullException(nameof(repo));
             return await ExistsInternal(DATAREPOSITORY_TYPE, DATAREPOSITORY_GUID, repo.GUID, token).ConfigureAwait(false);
+        }
+
+        #endregion
+
+        #region Exists-by-GUID
+
+        /// <summary>
+        /// Check if a tenant exists by GUID.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>True if exists.</returns>
+        public async Task<bool> TenantExists(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) return false;
+            return await ExistsInternal(TENANT_TYPE, TENANT_GUID, guid, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Check if a storage pool exists by GUID.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>True if exists.</returns>
+        public async Task<bool> StoragePoolExists(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) return false;
+            return await ExistsInternal(POOL_TYPE, POOL_GUID, guid, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Check if a bucket exists.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>True if exists.</returns>
+        public async Task<bool> BucketExists(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) return false;
+            return await ExistsInternal(BUCKET_TYPE, BUCKET_GUID, guid, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Check if an object exists.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>True if exists.</returns>
+        public async Task<bool> ObjectMetadataExists(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) return false;
+            return await ExistsInternal(OBJECT_TYPE, OBJECT_GUID, guid, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Check if a collection exists.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>True if exists.</returns>
+        public async Task<bool> CollectionExists(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) return false;
+            return await ExistsInternal(COLLECTION_TYPE, COLLECTION_GUID, guid, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Check if a source document exists.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>True if exists.</returns>
+        public async Task<bool> SourceDocumentExists(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) return false;
+            return await ExistsInternal(SOURCEDOC_TYPE, SOURCEDOC_GUID, guid, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Check if a semantic cell exists.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>True if exists.</returns>
+        public async Task<bool> SemanticCellExists(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) return false;
+            return await ExistsInternal(SEMCELL_TYPE, SEMCELL_GUID, guid, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Check if a semantic chunk exists.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>True if exists.</returns>
+        public async Task<bool> SemanticChunkExists(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) return false;
+            return await ExistsInternal(SEMCHUNK_TYPE, SEMCHUNK_GUID, guid, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Check if a data repository exists.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>True if exists.</returns>
+        public async Task<bool> DataRepositoryExists(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) return false;
+            return await ExistsInternal(DATAREPOSITORY_TYPE, DATAREPOSITORY_GUID, guid, token).ConfigureAwait(false);
         }
 
         #endregion
@@ -1089,7 +1273,7 @@
 
         #endregion
 
-        #region Read
+        #region Read-by-Object
 
         /// <summary>
         /// Read graph metadata.
@@ -1230,6 +1414,136 @@
 
         #endregion
 
+        #region Read-by-GUID
+
+        /// <summary>
+        /// Read a tenant graph node.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Graph node.</returns>
+        public async Task<GraphNode> ReadTenant(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) return null;
+            List<GraphNode> nodes = await SearchInternal(TENANT_TYPE, TENANT_GUID, guid, token).ConfigureAwait(false);
+            if (nodes != null && nodes.Count == 1) return nodes[0];
+            return null;
+        }
+
+        /// <summary>
+        /// Read a storage pool graph node.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Graph node.</returns>
+        public async Task<GraphNode> ReadStoragePool(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) return null;
+            List<GraphNode> nodes = await SearchInternal(POOL_TYPE, POOL_GUID, guid, token).ConfigureAwait(false);
+            if (nodes != null && nodes.Count == 1) return nodes[0];
+            return null;
+        }
+
+        /// <summary>
+        /// Read a bucket graph node.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Graph node.</returns>
+        public async Task<GraphNode> ReadBucket(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) return null;
+            List<GraphNode> nodes = await SearchInternal(BUCKET_TYPE, BUCKET_GUID, guid, token).ConfigureAwait(false);
+            if (nodes != null && nodes.Count == 1) return nodes[0];
+            return null;
+        }
+
+        /// <summary>
+        /// Read an object node.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Graph node.</returns>
+        public async Task<GraphNode> ReadObjectMetadata(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) return null;
+            List<GraphNode> nodes = await SearchInternal(OBJECT_TYPE, OBJECT_GUID, guid, token).ConfigureAwait(false);
+            if (nodes != null && nodes.Count == 1) return nodes[0];
+            return null;
+        }
+
+        /// <summary>
+        /// Read a collection node.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Graph node.</returns>
+        public async Task<GraphNode> ReadCollection(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) return null;
+            List<GraphNode> nodes = await SearchInternal(COLLECTION_TYPE, COLLECTION_GUID, guid, token).ConfigureAwait(false);
+            if (nodes != null && nodes.Count == 1) return nodes[0];
+            return null;
+        }
+
+        /// <summary>
+        /// Read a source document node.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Graph node.</returns>
+        public async Task<GraphNode> ReadSourceDocument(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) return null;
+            List<GraphNode> nodes = await SearchInternal(SOURCEDOC_TYPE, SOURCEDOC_GUID, guid, token).ConfigureAwait(false);
+            if (nodes != null && nodes.Count == 1) return nodes[0];
+            return null;
+        }
+
+        /// <summary>
+        /// Read a semantic cell node.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Graph node.</returns>
+        public async Task<GraphNode> ReadSemanticCell(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) return null;
+            List<GraphNode> nodes = await SearchInternal(SEMCELL_TYPE, SEMCELL_GUID, guid, token).ConfigureAwait(false);
+            if (nodes != null && nodes.Count == 1) return nodes[0];
+            return null;
+        }
+
+        /// <summary>
+        /// Read a semantic chunk node.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Graph node.</returns>
+        public async Task<GraphNode> ReadSemanticChunk(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) return null;
+            List<GraphNode> nodes = await SearchInternal(SEMCHUNK_TYPE, SEMCHUNK_GUID, guid, token).ConfigureAwait(false);
+            if (nodes != null && nodes.Count == 1) return nodes[0];
+            return null;
+        }
+
+        /// <summary>
+        /// Read a data repository node.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Graph node.</returns>
+        public async Task<GraphNode> ReadDataRepository(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) return null;
+            List<GraphNode> nodes = await SearchInternal(DATAREPOSITORY_TYPE, DATAREPOSITORY_GUID, guid, token).ConfigureAwait(false);
+            if (nodes != null && nodes.Count == 1) return nodes[0];
+            return null;
+        }
+
+        #endregion
+
         #region Read-Many
 
         // TBD
@@ -1248,7 +1562,7 @@
 
         #endregion
 
-        #region Delete
+        #region Delete-by-Object
 
         /// <summary>
         /// Delete a tenant.
@@ -1387,6 +1701,145 @@
 
         #endregion
 
+        #region Delete-by-GUID
+
+        /// <summary>
+        /// Delete a tenant.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Task.</returns>
+        public async Task DeleteTenant(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) return;
+            List<GraphNode> nodes = await SearchInternal(TENANT_TYPE, TENANT_GUID, guid, token).ConfigureAwait(false);
+            if (nodes != null && nodes.Count > 0)
+                foreach (GraphNode node in nodes)
+                    await _GraphDriver.DeleteNode(node.GraphGUID, node.GUID, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete a storage pool.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Task.</returns>
+        public async Task DeleteStoragePool(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) return;
+            List<GraphNode> nodes = await SearchInternal(POOL_TYPE, POOL_GUID, guid, token).ConfigureAwait(false);
+            if (nodes != null && nodes.Count > 0)
+                foreach (GraphNode node in nodes)
+                    await _GraphDriver.DeleteNode(node.GraphGUID, node.GUID, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete a bucket.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Task.</returns>
+        public async Task DeleteBucket(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) return;
+            List<GraphNode> nodes = await SearchInternal(BUCKET_TYPE, BUCKET_GUID, guid, token).ConfigureAwait(false);
+            if (nodes != null && nodes.Count > 0)
+                foreach (GraphNode node in nodes)
+                    await _GraphDriver.DeleteNode(node.GraphGUID, node.GUID, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete an object.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Task.</returns>
+        public async Task DeleteObjectMetadata(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) return;
+            List<GraphNode> nodes = await SearchInternal(OBJECT_TYPE, OBJECT_GUID, guid, token).ConfigureAwait(false);
+            if (nodes != null && nodes.Count > 0)
+                foreach (GraphNode node in nodes)
+                    await _GraphDriver.DeleteNode(node.GraphGUID, node.GUID, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete a collection.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Task.</returns>
+        public async Task DeleteCollection(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) return;
+            List<GraphNode> nodes = await SearchInternal(COLLECTION_TYPE, COLLECTION_GUID, guid, token).ConfigureAwait(false);
+            if (nodes != null && nodes.Count > 0)
+                foreach (GraphNode node in nodes)
+                    await _GraphDriver.DeleteNode(node.GraphGUID, node.GUID, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete a source document.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Task.</returns>
+        public async Task DeleteSourceDocument(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) return;
+            List<GraphNode> nodes = await SearchInternal(SOURCEDOC_TYPE, SOURCEDOC_GUID, guid, token).ConfigureAwait(false);
+            if (nodes != null && nodes.Count > 0)
+                foreach (GraphNode node in nodes)
+                    await _GraphDriver.DeleteNode(node.GraphGUID, node.GUID, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete a semantic cell.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Task.</returns>
+        public async Task DeleteSemanticCell(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) return;
+            List<GraphNode> nodes = await SearchInternal(SEMCELL_TYPE, SEMCELL_GUID, guid, token).ConfigureAwait(false);
+            if (nodes != null && nodes.Count > 0)
+                foreach (GraphNode node in nodes)
+                    await _GraphDriver.DeleteNode(node.GraphGUID, node.GUID, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete a semantic chunk.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Task.</returns>
+        public async Task DeleteSemanticChunk(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) return;
+            List<GraphNode> nodes = await SearchInternal(SEMCHUNK_TYPE, SEMCHUNK_GUID, guid, token).ConfigureAwait(false);
+            if (nodes != null && nodes.Count > 0)
+                foreach (GraphNode node in nodes)
+                    await _GraphDriver.DeleteNode(node.GraphGUID, node.GUID, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete a data repository.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Task.</returns>
+        public async Task DeleteDataRepository(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) return;
+            List<GraphNode> nodes = await SearchInternal(DATAREPOSITORY_TYPE, DATAREPOSITORY_GUID, guid, token).ConfigureAwait(false);
+            if (nodes != null && nodes.Count > 0)
+                foreach (GraphNode node in nodes)
+                    await _GraphDriver.DeleteNode(node.GraphGUID, node.GUID, token).ConfigureAwait(false);
+        }
+
+        #endregion
+
         #endregion
 
         #region Private-Methods
@@ -1475,18 +1928,18 @@
                 GraphNode cellNode = await ReadSemanticCell(cell, token).ConfigureAwait(false);
                 if (cellNode == null)
                 {
-                    result.Timestamp.AddMessage("Creating node for semantic cell " + cell.GUID);
+                    result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms creating node for semantic cell " + cell.GUID);
                     cellNode = await CreateSemanticCell(cell, token).ConfigureAwait(false);
                     if (cellNode == null)
                     {
-                        result.Timestamp.AddMessage("Failed to create node for semantic cell " + cell.GUID);
+                        result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms failed to create node for semantic cell " + cell.GUID);
                         result.Success = false;
                         return result;
                     }
                 }
                 else
                 {
-                    result.Timestamp.AddMessage("Re-using semantic cell " + cell.GUID + " node " + cellNode.GUID);
+                    result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms re-using semantic cell " + cell.GUID + " node " + cellNode.GUID);
                 }
 
                 result.SemanticCells.Add(cellNode);
@@ -1507,7 +1960,7 @@
 
                     if (edgesCellToParent == null || edgesCellToParent.Count < 1)
                     {
-                        result.Timestamp.AddMessage("Creating edge from cell " + cellNode.GUID + " to parent cell " + parentCellNode.GUID);
+                        result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms creating edge from cell " + cellNode.GUID + " to parent cell " + parentCellNode.GUID);
                         GraphEdge edgeCellParent = await _GraphDriver.CreateEdge(
                             new GraphEdge
                             {
@@ -1519,7 +1972,7 @@
 
                         if (edgeCellParent == null)
                         {
-                            result.Timestamp.AddMessage("Failed to create edge from cell " + cellNode.GUID + " to parent cell " + parentCellNode.GUID);
+                            result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms failed to create edge from cell " + cellNode.GUID + " to parent cell " + parentCellNode.GUID);
                             result.Success = false;
                             return result;
                         }
@@ -1528,7 +1981,7 @@
                     }
                     else
                     {
-                        result.Timestamp.AddMessage("Re-using edge between cell " + cellNode.GUID + " and parent cell " + parentCellNode.GUID);
+                        result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms re-using edge between cell " + cellNode.GUID + " and parent cell " + parentCellNode.GUID);
                         result.Edges.AddRange(edgesCellToParent);
                     }
 
@@ -1546,7 +1999,7 @@
 
                     if (edgesCellToDoc == null || edgesCellToDoc.Count < 1)
                     {
-                        result.Timestamp.AddMessage("Creating edge from cell " + cellNode.GUID + " to source document " + sourceDocumentNode.GUID);
+                        result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms creating edge from cell " + cellNode.GUID + " to source document " + sourceDocumentNode.GUID);
                         GraphEdge edgeCellDoc = await _GraphDriver.CreateEdge(
                             new GraphEdge
                             {
@@ -1558,7 +2011,7 @@
 
                         if (edgeCellDoc == null)
                         {
-                            result.Timestamp.AddMessage("Failed to create edge from cell " + cellNode.GUID + " to source document " + sourceDocumentNode.GUID);
+                            result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms failed to create edge from cell " + cellNode.GUID + " to source document " + sourceDocumentNode.GUID);
                             result.Success = false;
                             return result;
                         }
@@ -1567,7 +2020,7 @@
                     }
                     else
                     {
-                        result.Timestamp.AddMessage("Re-using edge between cell " + cellNode.GUID + " and source document " + sourceDocumentNode.GUID);
+                        result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms re-using edge between cell " + cellNode.GUID + " and source document " + sourceDocumentNode.GUID);
                         result.Edges.AddRange(edgesCellToDoc);
                     }
 
@@ -1587,18 +2040,18 @@
                         GraphNode chunkNode = await ReadSemanticChunk(chunk, token).ConfigureAwait(false);
                         if (chunkNode == null)
                         {
-                            result.Timestamp.AddMessage("Creating node for semantic chunk " + chunk.GUID);
+                            result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms creating node for semantic chunk " + chunk.GUID);
                             chunkNode = await CreateSemanticChunk(chunk, token).ConfigureAwait(false);
                             if (chunkNode == null)
                             {
-                                result.Timestamp.AddMessage("Failed to create node for semantic chunk " + chunk.GUID);
+                                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms failed to create node for semantic chunk " + chunk.GUID);
                                 result.Success = false;
                                 return result;
                             }
                         }
                         else
                         {
-                            result.Timestamp.AddMessage("Re-using semantic chunk " + chunk.GUID + " node " + chunkNode.GUID);
+                            result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms re-using semantic chunk " + chunk.GUID + " node " + chunkNode.GUID);
                         }
 
                         result.SemanticChunks.Add(chunkNode);
@@ -1615,7 +2068,7 @@
 
                         if (edgesChunkToCell == null || edgesChunkToCell.Count < 1)
                         {
-                            result.Timestamp.AddMessage("Creating edge from chunk " + chunkNode.GUID + " to cell " + cellNode.GUID);
+                            result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms creating edge from chunk " + chunkNode.GUID + " to cell " + cellNode.GUID);
                             GraphEdge edgeChunkCell = await _GraphDriver.CreateEdge(
                                 new GraphEdge
                                 {
@@ -1627,7 +2080,7 @@
 
                             if (edgeChunkCell == null)
                             {
-                                result.Timestamp.AddMessage("Failed to create edge from chunk " + chunkNode.GUID + " to cell " + cellNode.GUID);
+                                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms failed to create edge from chunk " + chunkNode.GUID + " to cell " + cellNode.GUID);
                                 result.Success = false;
                                 return result;
                             }
@@ -1636,7 +2089,7 @@
                         }
                         else
                         {
-                            result.Timestamp.AddMessage("Re-using edge between chunk " + chunkNode.GUID + " and cell " + cellNode.GUID);
+                            result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms re-using edge between chunk " + chunkNode.GUID + " and cell " + cellNode.GUID);
                             result.Edges.AddRange(edgesChunkToCell);
                         }
 
@@ -1659,15 +2112,14 @@
 
                     if (!childResult.Success)
                     {
-                        result.Timestamp.AddMessage("Failure reported while processing descendants from cell node " + cellNode.GUID);
+                        result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms failure reported while processing descendants from cell node " + cellNode.GUID);
                         result.Success = false;
                         return result;
                     }
                     else
                     {
-                        if (childResult.Timestamp.Messages.Count > 0)
-                            foreach (KeyValuePair<DateTime, string> msg in childResult.Timestamp.Messages)
-                                result.Timestamp.Messages.Add(msg.Key, msg.Value);
+                        foreach (KeyValuePair<DateTime, string> msg in childResult.Timestamp.Messages)
+                            result.Timestamp.Messages.TryAdd(msg.Key, msg.Value);
 
                         if (childResult.SemanticCells != null && childResult.SemanticCells.Count > 0)
                             result.SemanticCells.AddRange(childResult.SemanticCells);

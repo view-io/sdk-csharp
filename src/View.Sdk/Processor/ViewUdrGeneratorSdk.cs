@@ -102,7 +102,7 @@
         /// <param name="filename">Filename containing data.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Document response.</returns>
-        public async Task<UdrDocument> ProcessDataTable(DataTableRequest dt, string filename = null, CancellationToken token = default)
+        public async Task<UdrDocument> ProcessDataTable(UdrDataTableRequest dt, string filename = null, CancellationToken token = default)
         {
             if (dt == null) throw new ArgumentNullException(nameof(dt));
             if (string.IsNullOrEmpty(dt.DatabaseType)) throw new ArgumentNullException(nameof(dt.DatabaseType));

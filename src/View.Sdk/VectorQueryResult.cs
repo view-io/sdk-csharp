@@ -5,9 +5,9 @@
     using Timestamps;
 
     /// <summary>
-    /// Query result.
+    /// Vector query result.
     /// </summary>
-    public class QueryResult
+    public class VectorQueryResult
     {
         #region Public-Members
 
@@ -61,7 +61,7 @@
         /// <summary>
         /// Instantiate.
         /// </summary>
-        public QueryResult()
+        public VectorQueryResult()
         {
         }
 

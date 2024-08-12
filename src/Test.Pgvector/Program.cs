@@ -137,7 +137,7 @@
             if (String.IsNullOrEmpty(requestJson)) return;
 
             await _Sdk.DeleteDocument(
-                _Serializer.DeserializeJson<DeleteRequest>(requestJson)
+                _Serializer.DeserializeJson<VectorDeleteRequest>(requestJson)
                 );
         }
 
@@ -150,7 +150,7 @@
             if (String.IsNullOrEmpty(requestJson)) return;
 
             await _Sdk.TruncateTable(
-                _Serializer.DeserializeJson<DeleteRequest>(requestJson)
+                _Serializer.DeserializeJson<VectorDeleteRequest>(requestJson)
                 );
         }
 
@@ -178,7 +178,7 @@
             if (String.IsNullOrEmpty(requestJson)) return;
 
             string ret = await _Sdk.RawQuery(
-                _Serializer.DeserializeJson<QueryRequest>(requestJson)
+                _Serializer.DeserializeJson<VectorQueryRequest>(requestJson)
                 );
 
             Console.WriteLine("");

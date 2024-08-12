@@ -3,9 +3,9 @@
     using System;
 
     /// <summary>
-    /// Query request.
+    /// Vector query request.
     /// </summary>
-    public class QueryRequest
+    public class VectorQueryRequest
     {
         #region Public-Members
 
@@ -30,7 +30,7 @@
         /// <summary>
         /// Instantiate.
         /// </summary>
-        public QueryRequest()
+        public VectorQueryRequest()
         {
         }
 

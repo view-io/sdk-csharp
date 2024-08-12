@@ -5,9 +5,9 @@
     using System.Runtime.CompilerServices;
 
     /// <summary>
-    /// Data table processing request.
+    /// UDR data table processing request.
     /// </summary>
-    public class DataTableRequest
+    public class UdrDataTableRequest
     {
         #region Public-Members
 
@@ -174,7 +174,7 @@
         /// <summary>
         /// Instantiate.
         /// </summary>
-        public DataTableRequest()
+        public UdrDataTableRequest()
         {
 
         }

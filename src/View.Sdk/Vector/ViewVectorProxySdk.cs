@@ -93,7 +93,7 @@
         /// <param name="delReq">Delete request.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Task.</returns>
-        public async Task<bool> DeleteDocument(DeleteRequest delReq, CancellationToken token = default)
+        public async Task<bool> DeleteDocument(VectorDeleteRequest delReq, CancellationToken token = default)
         {
             if (delReq == null) throw new ArgumentNullException(nameof(delReq));
 
@@ -133,7 +133,7 @@
         /// <param name="delReq">Delete request.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Task.</returns>
-        public async Task<bool> TruncateTable(DeleteRequest delReq, CancellationToken token = default)
+        public async Task<bool> TruncateTable(VectorDeleteRequest delReq, CancellationToken token = default)
         {
             if (delReq == null) throw new ArgumentNullException(nameof(delReq));
 
@@ -267,7 +267,7 @@
         /// <param name="queryReq">Query request.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Task.</returns>
-        public async Task<string> RawQuery(QueryRequest queryReq, CancellationToken token = default)
+        public async Task<string> RawQuery(VectorQueryRequest queryReq, CancellationToken token = default)
         {
             if (queryReq == null) throw new ArgumentNullException(nameof(queryReq));
 

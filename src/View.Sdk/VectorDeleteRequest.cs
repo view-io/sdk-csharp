@@ -3,9 +3,9 @@
     using System;
 
     /// <summary>
-    /// Delete request.
+    /// Vector delete request.
     /// </summary>
-    public class DeleteRequest
+    public class VectorDeleteRequest
     {
         #region Public-Members
 
@@ -65,7 +65,7 @@
         /// <summary>
         /// Instantiate.
         /// </summary>
-        public DeleteRequest()
+        public VectorDeleteRequest()
         {
         }
 

@@ -103,7 +103,7 @@
          
         private static async Task ProcessDataTable()
         {
-            DataTableRequest req = new DataTableRequest
+            UdrDataTableRequest req = new UdrDataTableRequest
             {
                 GUID            = Inputty.GetString("GUID            :", Guid.NewGuid().ToString(), false),
                 DatabaseType    = Inputty.GetString("Database type   :", "Mysql", false),
@@ -124,7 +124,7 @@
         {
             string filename = Inputty.GetString("Filename        :", "sample/sqlite/1.db", false);
                 
-            DataTableRequest req = new DataTableRequest
+            UdrDataTableRequest req = new UdrDataTableRequest
             {
                 GUID            = Inputty.GetString("GUID            :", Guid.NewGuid().ToString(), false),
                 Query           = Inputty.GetString("Query           :", "SELECT * FROM customers", false),

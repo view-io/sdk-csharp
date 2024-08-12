@@ -1999,86 +1999,6 @@
             Azure BLOB.
             </summary>
         </member>
-        <member name="T:View.Sdk.DataTableRequest">
-            <summary>
-            Data table processing request.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DataTableRequest.GUID">
-            <summary>
-            GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DataTableRequest.DatabaseType">
-            <summary>
-            Database type.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DataTableRequest.Hostname">
-            <summary>
-            Hostname.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DataTableRequest.Port">
-            <summary>
-            Port.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DataTableRequest.Username">
-            <summary>
-            Username.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DataTableRequest.Password">
-            <summary>
-            Password.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DataTableRequest.DatabaseName">
-            <summary>
-            Database name.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DataTableRequest.Query">
-            <summary>
-            Query.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DataTableRequest.IncludeFlattened">
-            <summary>
-            True to include a flattened representation of the source document.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DataTableRequest.CaseInsensitive">
-            <summary>
-            True to enable case insensitive processing.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DataTableRequest.TopTerms">
-            <summary>
-            Number of top terms to include.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DataTableRequest.AdditionalData">
-            <summary>
-            Additional data, not used by the service.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DataTableRequest.Metadata">
-            <summary>
-            Metadata, attached to the result.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DataTableRequest.SqliteFileData">
-            <summary>
-            Sqlite file data.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.DataTableRequest.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
         <member name="T:View.Sdk.DataTypeEnum">
             <summary>
             Types of data supported.
@@ -2147,61 +2067,6 @@
         <member name="F:View.Sdk.DataTypeEnum.Unknown">
             <summary>
             Unknown.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.DeleteRequest">
-            <summary>
-            Delete request.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DeleteRequest.TenantGUID">
-            <summary>
-            Tenant GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DeleteRequest.GUID">
-            <summary>
-            GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DeleteRequest.CollectionGUID">
-            <summary>
-            Collection GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DeleteRequest.SourceDocumentGUID">
-            <summary>
-            Source document GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DeleteRequest.BucketGUID">
-            <summary>
-            Bucket GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DeleteRequest.ObjectGUID">
-            <summary>
-            Object GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DeleteRequest.VectorRepositoryGUID">
-            <summary>
-            Vector repository GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DeleteRequest.Key">
-            <summary>
-            Key.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.DeleteRequest.Version">
-            <summary>
-            Version.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.DeleteRequest.#ctor">
-            <summary>
-            Instantiate.
             </summary>
         </member>
         <member name="T:View.Sdk.DocumentScore">
@@ -3528,6 +3393,78 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.TenantExists(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a tenant exists by GUID.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.StoragePoolExists(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a storage pool exists by GUID.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.BucketExists(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a bucket exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.ObjectMetadataExists(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if an object exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.CollectionExists(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a collection exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.SourceDocumentExists(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a source document exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.SemanticCellExists(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a semantic cell exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.SemanticChunkExists(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a semantic chunk exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.DataRepositoryExists(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a data repository exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
         <member name="M:View.Sdk.Graph.GraphSdk.CreateGraph(System.Guid,System.String,System.Threading.CancellationToken)">
             <summary>
             Create a graph.
@@ -3689,6 +3626,78 @@
             <param name="token">Cancellation token.</param>
             <returns>Graph node.</returns>
         </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.ReadTenant(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a tenant graph node.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.ReadStoragePool(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a storage pool graph node.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.ReadBucket(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a bucket graph node.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.ReadObjectMetadata(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read an object node.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.ReadCollection(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a collection node.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.ReadSourceDocument(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a source document node.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.ReadSemanticCell(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a semantic cell node.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.ReadSemanticChunk(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a semantic chunk node.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.ReadDataRepository(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a data repository node.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph node.</returns>
+        </member>
         <member name="M:View.Sdk.Graph.GraphSdk.DeleteTenant(View.Sdk.TenantMetadata,System.Threading.CancellationToken)">
             <summary>
             Delete a tenant.
@@ -3758,6 +3767,78 @@
             Delete a data repository.
             </summary>
             <param name="repo">Data repository.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.DeleteTenant(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a tenant.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.DeleteStoragePool(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a storage pool.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.DeleteBucket(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a bucket.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.DeleteObjectMetadata(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete an object.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.DeleteCollection(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a collection.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.DeleteSourceDocument(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a source document.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.DeleteSemanticCell(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a semantic cell.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.DeleteSemanticChunk(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a semantic chunk.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.DeleteDataRepository(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a data repository.
+            </summary>
+            <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
@@ -5353,7 +5434,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Document response.</returns>
         </member>
-        <member name="M:View.Sdk.Processor.ViewUdrGeneratorSdk.ProcessDataTable(View.Sdk.DataTableRequest,System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Processor.ViewUdrGeneratorSdk.ProcessDataTable(View.Sdk.UdrDataTableRequest,System.String,System.Threading.CancellationToken)">
             <summary>
             Process data table.
             </summary>
@@ -5434,61 +5515,6 @@
             </summary>
         </member>
         <member name="M:View.Sdk.QueryFilter.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.QueryRequest">
-            <summary>
-            Query request.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.QueryRequest.Query">
-            <summary>
-            Query.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.QueryRequest.VectorRepositoryGUID">
-            <summary>
-            Vector repository GUID.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.QueryRequest.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.QueryResult">
-            <summary>
-            Query result.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.QueryResult.Success">
-            <summary>
-            Boolean indicating whether or not the operation was successful.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.QueryResult.Timestamp">
-            <summary>
-            Timestamps.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.QueryResult.StatusCode">
-            <summary>
-            HTTP status code.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.QueryResult.Query">
-            <summary>
-            Query.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.QueryResult.Result">
-            <summary>
-            Result.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.QueryResult.#ctor">
             <summary>
             Instantiate.
             </summary>
@@ -6934,6 +6960,86 @@
             Instantiate.
             </summary>
         </member>
+        <member name="T:View.Sdk.UdrDataTableRequest">
+            <summary>
+            UDR data table processing request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UdrDataTableRequest.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UdrDataTableRequest.DatabaseType">
+            <summary>
+            Database type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UdrDataTableRequest.Hostname">
+            <summary>
+            Hostname.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UdrDataTableRequest.Port">
+            <summary>
+            Port.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UdrDataTableRequest.Username">
+            <summary>
+            Username.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UdrDataTableRequest.Password">
+            <summary>
+            Password.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UdrDataTableRequest.DatabaseName">
+            <summary>
+            Database name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UdrDataTableRequest.Query">
+            <summary>
+            Query.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UdrDataTableRequest.IncludeFlattened">
+            <summary>
+            True to include a flattened representation of the source document.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UdrDataTableRequest.CaseInsensitive">
+            <summary>
+            True to enable case insensitive processing.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UdrDataTableRequest.TopTerms">
+            <summary>
+            Number of top terms to include.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UdrDataTableRequest.AdditionalData">
+            <summary>
+            Additional data, not used by the service.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UdrDataTableRequest.Metadata">
+            <summary>
+            Metadata, attached to the result.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UdrDataTableRequest.SqliteFileData">
+            <summary>
+            Sqlite file data.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.UdrDataTableRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
         <member name="T:View.Sdk.UdrDocument">
             <summary>
             UDR document.
@@ -7147,6 +7253,116 @@
             </summary>
         </member>
         <member name="M:View.Sdk.UserMaster.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.VectorDeleteRequest">
+            <summary>
+            Vector delete request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorDeleteRequest.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorDeleteRequest.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorDeleteRequest.CollectionGUID">
+            <summary>
+            Collection GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorDeleteRequest.SourceDocumentGUID">
+            <summary>
+            Source document GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorDeleteRequest.BucketGUID">
+            <summary>
+            Bucket GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorDeleteRequest.ObjectGUID">
+            <summary>
+            Object GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorDeleteRequest.VectorRepositoryGUID">
+            <summary>
+            Vector repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorDeleteRequest.Key">
+            <summary>
+            Key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorDeleteRequest.Version">
+            <summary>
+            Version.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.VectorDeleteRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.VectorQueryRequest">
+            <summary>
+            Vector query request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorQueryRequest.Query">
+            <summary>
+            Query.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorQueryRequest.VectorRepositoryGUID">
+            <summary>
+            Vector repository GUID.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.VectorQueryRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.VectorQueryResult">
+            <summary>
+            Vector query result.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorQueryResult.Success">
+            <summary>
+            Boolean indicating whether or not the operation was successful.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorQueryResult.Timestamp">
+            <summary>
+            Timestamps.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorQueryResult.StatusCode">
+            <summary>
+            HTTP status code.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorQueryResult.Query">
+            <summary>
+            Query.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.VectorQueryResult.Result">
+            <summary>
+            Result.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.VectorQueryResult.#ctor">
             <summary>
             Instantiate.
             </summary>
@@ -7371,7 +7587,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.DeleteDocument(View.Sdk.DeleteRequest,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.DeleteDocument(View.Sdk.VectorDeleteRequest,System.Threading.CancellationToken)">
             <summary>
             Delete a document.
             </summary>
@@ -7379,7 +7595,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.TruncateTable(View.Sdk.DeleteRequest,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.TruncateTable(View.Sdk.VectorDeleteRequest,System.Threading.CancellationToken)">
             <summary>
             Truncate table.
             </summary>
@@ -7403,7 +7619,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.RawQuery(View.Sdk.QueryRequest,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.RawQuery(View.Sdk.VectorQueryRequest,System.Threading.CancellationToken)">
             <summary>
             Raw query.
             </summary>
