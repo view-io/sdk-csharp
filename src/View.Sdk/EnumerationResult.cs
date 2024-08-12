@@ -16,7 +16,7 @@
         /// <summary>
         /// Indicates if the statistics operation was successful.
         /// </summary>
-        public bool Success { get; set; } = false;
+        public bool Success { get; set; } = true;
 
         /// <summary>
         /// Start and end timestamps.
