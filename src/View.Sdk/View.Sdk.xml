@@ -6391,6 +6391,11 @@
             Graph node identifier.
             </summary>
         </member>
+        <member name="P:View.Sdk.SourceDocument.DataRepositoryGUID">
+            <summary>
+            Data repository GUID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.SourceDocument.ObjectKey">
             <summary>
             Key.

@@ -52,6 +52,11 @@
         public string GraphNodeIdentifier { get; set; } = null;
 
         /// <summary>
+        /// Data repository GUID.
+        /// </summary>
+        public string DataRepositoryGUID { get; set; } = null;
+
+        /// <summary>
         /// Key.
         /// </summary>
         public string ObjectKey { get; set; } = null;
