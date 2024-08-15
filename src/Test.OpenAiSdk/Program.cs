@@ -1,13 +1,12 @@
-﻿namespace Test.TypeDetector
+﻿namespace Test.OpenAiSdk
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using System.Text;
     using System.Threading.Tasks;
     using GetSomeInput;
     using View.Sdk;
-    using View.Sdk.Processor;
+    using View.Sdk.Vector;
     using View.Sdk.Serialization;
 
     public static class Program
@@ -15,17 +14,18 @@
 #pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
 
         private static bool _RunForever = true;
-        private static string _Endpoint = "http://localhost:8501/processor/typedetector";
-        private static ViewTypeDetectorSdk _Sdk = null;
+        private static string _Endpoint = "https://api.openai.com/v1/";
+        private static string _ApiKey = null;
+        private static string _DefaultModel = "text-embedding-ada-002";
+        private static ViewOpenAiSdk _Sdk = null;
         private static Serializer _Serializer = new Serializer();
-        private static bool _EnableLogging = true;
 
         public static void Main(string[] args)
         {
             _Endpoint = Inputty.GetString("Endpoint :", _Endpoint, false);
+            _ApiKey = Inputty.GetString("API key  :", _ApiKey, true);
 
-            _Sdk = new ViewTypeDetectorSdk(_Endpoint);
-            if (_EnableLogging) _Sdk.Logger = EmitLogMessage;
+            _Sdk = new ViewOpenAiSdk(_Endpoint, _ApiKey);
 
             while (_RunForever)
             {
@@ -47,8 +47,8 @@
                         TestConnectivity().Wait();
                         break;
 
-                    case "process":
-                        Process().Wait();
+                    case "embeddings":
+                        GenerateEmbeddings().Wait();
                         break;
                 }
             }
@@ -62,8 +62,7 @@
             Console.WriteLine("  ?             Help, this menu");
             Console.WriteLine("  cls           Clear the screen");
             Console.WriteLine("  conn          Test connectivity");
-            Console.WriteLine("");
-            Console.WriteLine("  process       Process a type detection request");
+            Console.WriteLine("  embeddings    Generate embeddings");
             Console.WriteLine("");
         }
 
@@ -76,11 +75,6 @@
             else
                 Console.WriteLine("(null)");
             Console.WriteLine("");
-        }
-
-        private static void EmitLogMessage(SeverityEnum sev, string msg)
-        {
-            if (!String.IsNullOrEmpty(msg)) Console.WriteLine(sev.ToString() + " " + msg);
         }
 
         private static async Task TestConnectivity()
@@ -96,17 +90,21 @@
             Console.WriteLine("");
         }
 
-        private static async Task Process()
+        private static async Task GenerateEmbeddings()
         {
-            string file = Inputty.GetString("Filename:", null, true);
-            
-            if (!String.IsNullOrEmpty(file))
-            {
-                string contentType = Inputty.GetString("Content type:", null, true);
+            string model = Inputty.GetString("Model :", _DefaultModel, true);
+            if (String.IsNullOrEmpty(model)) return;
 
-                TypeResult tr = await _Sdk.Process(File.ReadAllBytes(file), contentType);
-                EnumerateResponse(tr);
-            }
+            string text = Inputty.GetString("Text  :", null, true);
+            if (String.IsNullOrEmpty(text)) return;
+
+            EmbeddingsResult result = await _Sdk.Generate(model, text);
+            EnumerateResponse(result);
+        }
+
+        private static void EmitLogMessage(SeverityEnum sev, string msg)
+        {
+            if (!String.IsNullOrEmpty(msg)) Console.WriteLine(sev.ToString() + " " + msg);
         }
 
 #pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.

@@ -58,9 +58,10 @@
             {
                 using (RestRequest req = new RestRequest(url, HttpMethod.Post))
                 {
+                    req.TimeoutMilliseconds = TimeoutMilliseconds;
                     req.ContentType = contentType;
 
-                    if (LogRequests) Log(SeverityEnum.Debug, "request body: " + Environment.NewLine + Encoding.UTF8.GetString(data));
+                    if (LogRequests) Log(SeverityEnum.Debug, "request: " + Environment.NewLine + Encoding.UTF8.GetString(data));
 
                     using (RestResponse resp = await req.SendAsync(data, token).ConfigureAwait(false))
                     {

@@ -117,6 +117,22 @@
             }
         }
 
+        /// <summary>
+        /// Timeout, in milliseconds.  Default is 300 seconds.
+        /// </summary>
+        public int TimeoutMilliseconds
+        {
+            get
+            {
+                return _TimeoutMilliseconds;
+            }
+            set
+            {
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(TimeoutMilliseconds));
+                _TimeoutMilliseconds = value;
+            }
+        }
+
         #endregion
 
         #region Internal-Members
@@ -130,6 +146,7 @@
         private string _AccessKey = null;
         private string _Endpoint = null;
         private Serializer _Serializer = new Serializer();
+        private int _TimeoutMilliseconds = 300 * 1000;
 
         #endregion
 
@@ -202,6 +219,8 @@
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Head))
             {
+                req.TimeoutMilliseconds = TimeoutMilliseconds;
+
                 using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
                 {
                     if (resp != null && resp.StatusCode == 200)
@@ -238,13 +257,19 @@
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Put))
             {
+                req.TimeoutMilliseconds = TimeoutMilliseconds;
                 req.Authorization.BearerToken = _AccessKey;
                 req.ContentType = "application/json";
+
+                string json = Serializer.SerializeJson(obj, true);
+                if (LogRequests) Logger?.Invoke(SeverityEnum.Debug, "request: " + Environment.NewLine + json);
 
                 using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(obj, true), token).ConfigureAwait(false))
                 {
                     if (resp != null)
                     {
+                        if (LogResponses) Logger?.Invoke(SeverityEnum.Debug, "response (status " + resp.StatusCode+ "): " + Environment.NewLine + resp.DataAsString);
+
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
                             Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
@@ -284,12 +309,15 @@
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Head))
             {
+                req.TimeoutMilliseconds = TimeoutMilliseconds;
                 req.Authorization.BearerToken = _AccessKey;
 
                 using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
                 {
                     if (resp != null)
                     {
+                        if (LogResponses) Logger?.Invoke(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
                             Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
@@ -323,12 +351,15 @@
 
             using (RestRequest req = new RestRequest(url))
             {
+                req.TimeoutMilliseconds = TimeoutMilliseconds;
                 req.Authorization.BearerToken = _AccessKey;
 
                 using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
                 {
                     if (resp != null)
                     {
+                        if (LogResponses) Logger?.Invoke(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
                             Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
@@ -369,12 +400,15 @@
 
             using (RestRequest req = new RestRequest(url))
             {
+                req.TimeoutMilliseconds = TimeoutMilliseconds;
                 req.Authorization.BearerToken = _AccessKey;
 
                 using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
                 {
                     if (resp != null)
                     {
+                        if (LogResponses) Logger?.Invoke(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
                             Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
@@ -417,13 +451,19 @@
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Put))
             {
+                req.TimeoutMilliseconds = TimeoutMilliseconds;
                 req.Authorization.BearerToken = _AccessKey;
                 req.ContentType = "application/json";
 
-                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(obj, true), token).ConfigureAwait(false))
+                string json = Serializer.SerializeJson(obj, true);
+                if (LogRequests) Logger?.Invoke(SeverityEnum.Debug, "request: " + Environment.NewLine + json);
+
+                using (RestResponse resp = await req.SendAsync(json, token).ConfigureAwait(false))
                 {
                     if (resp != null)
                     {
+                        if (LogResponses) Logger?.Invoke(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
                             Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
@@ -463,12 +503,15 @@
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Delete))
             {
+                req.TimeoutMilliseconds = TimeoutMilliseconds;
                 req.Authorization.BearerToken = _AccessKey;
 
                 using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
                 {
                     if (resp != null)
                     {
+                        if (LogResponses) Logger?.Invoke(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
                             Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");

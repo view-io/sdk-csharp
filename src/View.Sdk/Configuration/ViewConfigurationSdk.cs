@@ -707,6 +707,287 @@
 
         #endregion
 
+        #region Vector-Repositories
+
+        /// <summary>
+        /// Create a vector repository.
+        /// </summary>
+        /// <param name="repo">Vector repository.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Vector repository.</returns>
+        public async Task<VectorRepository> CreateVectorRepository(VectorRepository repo, CancellationToken token = default)
+        {
+            if (repo == null) throw new ArgumentNullException(nameof(repo));
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories";
+            return await Create<VectorRepository>(url, repo, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Check if a vector repository exists.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>True if exists.</returns>
+        public async Task<bool> ExistsVectorRepository(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + guid;
+            return await Exists(url, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Read a vector repository.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>vector repository.</returns>
+        public async Task<VectorRepository> RetrieveVectorRepository(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + guid;
+            return await Retrieve<VectorRepository>(url, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Read vector repositories.
+        /// </summary>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Vector repositories.</returns>
+        public async Task<List<VectorRepository>> RetrieveVectorRepositories(CancellationToken token = default)
+        {
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories";
+            return await RetrieveMany<VectorRepository>(url, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Update a vector repository.
+        /// </summary>
+        /// <param name="repo">Vector repository.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Vector repository.</returns>
+        public async Task<VectorRepository> UpdateVectorRepository(VectorRepository repo, CancellationToken token = default)
+        {
+            if (repo == null) throw new ArgumentNullException(nameof(repo));
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + repo.GUID;
+            return await Update<VectorRepository>(url, repo, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete a vector repository.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Task.</returns>
+        public async Task DeleteVectorRepository(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + guid;
+            await Delete(url, token).ConfigureAwait(false);
+        }
+
+        #endregion
+
+        #region Graph-Repositories
+
+        /// <summary>
+        /// Create a graph repository.
+        /// </summary>
+        /// <param name="repo">Graph repository.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Graph repository.</returns>
+        public async Task<GraphRepository> CreateGraphRepository(GraphRepository repo, CancellationToken token = default)
+        {
+            if (repo == null) throw new ArgumentNullException(nameof(repo));
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/graphrepositories";
+            return await Create<GraphRepository>(url, repo, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Check if a graph repository exists.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>True if exists.</returns>
+        public async Task<bool> ExistsGraphRepository(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/graphrepositories/" + guid;
+            return await Exists(url, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Read a graph repository.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Graph repository.</returns>
+        public async Task<GraphRepository> RetrieveGraphRepository(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/graphrepositories/" + guid;
+            return await Retrieve<GraphRepository>(url, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Read graph repositories.
+        /// </summary>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Graph repositories.</returns>
+        public async Task<List<GraphRepository>> RetrieveGraphRepositories(CancellationToken token = default)
+        {
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/graphrepositories";
+            return await RetrieveMany<GraphRepository>(url, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Update a graph repository.
+        /// </summary>
+        /// <param name="repo">graph repository.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Graph repository.</returns>
+        public async Task<GraphRepository> UpdateGraphRepository(GraphRepository repo, CancellationToken token = default)
+        {
+            if (repo == null) throw new ArgumentNullException(nameof(repo));
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/graphrepositories/" + repo.GUID;
+            return await Update<GraphRepository>(url, repo, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete a graph repository.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Task.</returns>
+        public async Task DeleteGraphRepository(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/graphrepositories/" + guid;
+            await Delete(url, token).ConfigureAwait(false);
+        }
+
+        #endregion
+
+        #region Collections
+
+        /// <summary>
+        /// Retrieve collections.
+        /// </summary>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>List of collection.</returns>
+        public async Task<List<Collection>> RetrieveCollections(CancellationToken token = default)
+        {
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections";
+            return await RetrieveMany<Collection>(url, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Retrieve a collection.
+        /// </summary>
+        /// <param name="collectionGuid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Collection.</returns>
+        public async Task<Collection> RetrieveCollection(string collectionGuid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections/" + collectionGuid;
+            return await Retrieve<Collection>(url, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Retrieve collection statistics.
+        /// </summary>
+        /// <param name="collectionGuid">Collection GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Collection statistics.</returns>
+        public async Task<CollectionStatistics> RetrieveCollectionStatistics(string collectionGuid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections/" + collectionGuid + "?stats";
+            return await Retrieve<CollectionStatistics>(url, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Create collection.
+        /// </summary>
+        /// <param name="collection">Collection.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Collection.</returns>
+        public async Task<Collection> CreateCollection(Collection collection, CancellationToken token = default)
+        {
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections";
+            return await Create<Collection>(url, collection, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete collection.
+        /// </summary>
+        /// <param name="collectionGuid">Collection GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Task.</returns>
+        public async Task DeleteCollection(string collectionGuid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections/" + collectionGuid;
+            await Delete(url, token).ConfigureAwait(false);
+        }
+
+        #endregion
+
+        #region Data-Repositories
+
+        /// <summary>
+        /// Retrieve data repositories.
+        /// </summary>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>List of data repository.</returns>
+        public async Task<List<DataRepository>> RetrieveDataRepositories(CancellationToken token = default)
+        {
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/datarepositories";
+            return await RetrieveMany<DataRepository>(url, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Retrieve a data repository.
+        /// </summary>
+        /// <param name="repositoryGuid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Data repository.</returns>
+        public async Task<DataRepository> RetrieveDataRepository(string repositoryGuid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(repositoryGuid)) throw new ArgumentNullException(nameof(repositoryGuid));
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/datarepositories/" + repositoryGuid;
+            return await Retrieve<DataRepository>(url, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Create data repository.
+        /// </summary>
+        /// <param name="repository">Data repository.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Data repository.</returns>
+        public async Task<DataRepository> CreateDataRepository(DataRepository repository, CancellationToken token = default)
+        {
+            if (repository == null) throw new ArgumentNullException(nameof(repository));
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/datarepositories";
+            return await Create<DataRepository>(url, repository, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete data repository.
+        /// </summary>
+        /// <param name="repositoryGuid">Data repository GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Task.</returns>
+        public async Task DeleteDataRepository(string repositoryGuid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(repositoryGuid)) throw new ArgumentNullException(nameof(repositoryGuid));
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/datarepositories/" + repositoryGuid;
+            await Delete(url, token).ConfigureAwait(false);
+        }
+
+        #endregion
+
         #region Webhook-Events
 
         /// <summary>
@@ -988,7 +1269,7 @@
 
         #endregion
 
-        #region View-Endpoints
+        #region Object-Locks
 
         /// <summary>
         /// Create an object lock.

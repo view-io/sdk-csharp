@@ -89,6 +89,22 @@
         public string GeneratorApiKey { get; set; } = null;
 
         /// <summary>
+        /// Maximum number of parallel embeddings generation tasks.  Default is 16.
+        /// </summary>
+        public int MaxGeneratorTasks
+        {
+            get
+            {
+                return _MaxGeneratorTasks;
+            }
+            set
+            {
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(MaxGeneratorTasks));
+                _MaxGeneratorTasks = value;
+            }
+        }
+
+        /// <summary>
         /// Vector store URL.
         /// </summary>
         public string VectorStoreUrl { get; set; } = "http://localhost:8311/";
@@ -135,6 +151,7 @@
         #region Private-Members
 
         private int? _RetentionMinutes = null;
+        private int _MaxGeneratorTasks = 16;
         private int _MaxContentLength = 16 * 1024 * 1024;
 
         #endregion

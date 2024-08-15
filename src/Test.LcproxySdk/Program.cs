@@ -1,13 +1,12 @@
-﻿namespace Test.TypeDetector
+﻿namespace Test.LcproxySdk
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using System.Text;
     using System.Threading.Tasks;
     using GetSomeInput;
     using View.Sdk;
-    using View.Sdk.Processor;
+    using View.Sdk.Vector;
     using View.Sdk.Serialization;
 
     public static class Program
@@ -15,17 +14,18 @@
 #pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
 
         private static bool _RunForever = true;
-        private static string _Endpoint = "http://localhost:8501/processor/typedetector";
-        private static ViewTypeDetectorSdk _Sdk = null;
+        private static string _Endpoint = "http://localhost:8301/";
+        private static string _ApiKey = null;
+        private static string _DefaultModel = "all-MiniLM-L6-v2";
+        private static ViewLcproxySdk _Sdk = null;
         private static Serializer _Serializer = new Serializer();
-        private static bool _EnableLogging = true;
 
         public static void Main(string[] args)
         {
             _Endpoint = Inputty.GetString("Endpoint :", _Endpoint, false);
+            _ApiKey   = Inputty.GetString("API key  :", _ApiKey, true);
 
-            _Sdk = new ViewTypeDetectorSdk(_Endpoint);
-            if (_EnableLogging) _Sdk.Logger = EmitLogMessage;
+            _Sdk = new ViewLcproxySdk(_Endpoint, _ApiKey);
 
             while (_RunForever)
             {
@@ -47,10 +47,12 @@
                         TestConnectivity().Wait();
                         break;
 
-                    case "process":
-                        Process().Wait();
+                    case "preload":
+                        PreloadModels().Wait();
                         break;
-                }
+                    case "embeddings":
+                        GenerateEmbeddings().Wait();
+                        break;                }
             }
         }
 
@@ -63,7 +65,8 @@
             Console.WriteLine("  cls           Clear the screen");
             Console.WriteLine("  conn          Test connectivity");
             Console.WriteLine("");
-            Console.WriteLine("  process       Process a type detection request");
+            Console.WriteLine("  preload       Preload models");
+            Console.WriteLine("  embeddings    Generate embeddings");
             Console.WriteLine("");
         }
 
@@ -76,11 +79,6 @@
             else
                 Console.WriteLine("(null)");
             Console.WriteLine("");
-        }
-
-        private static void EmitLogMessage(SeverityEnum sev, string msg)
-        {
-            if (!String.IsNullOrEmpty(msg)) Console.WriteLine(sev.ToString() + " " + msg);
         }
 
         private static async Task TestConnectivity()
@@ -96,17 +94,31 @@
             Console.WriteLine("");
         }
 
-        private static async Task Process()
+        private static async Task PreloadModels()
         {
-            string file = Inputty.GetString("Filename:", null, true);
-            
-            if (!String.IsNullOrEmpty(file))
-            {
-                string contentType = Inputty.GetString("Content type:", null, true);
+            List<string> models = Inputty.GetStringList("Model name:", false);
+            if (models == null || models.Count < 1) return;
 
-                TypeResult tr = await _Sdk.Process(File.ReadAllBytes(file), contentType);
-                EnumerateResponse(tr);
-            }
+            bool success = await _Sdk.PreloadModels(models);
+            Console.WriteLine(success);
+            Console.WriteLine("");
+        }
+
+        private static async Task GenerateEmbeddings()
+        {
+            string model = Inputty.GetString("Model :", _DefaultModel, true);
+            if (String.IsNullOrEmpty(model)) return;
+
+            string text = Inputty.GetString("Text  :", null, true);
+            if (String.IsNullOrEmpty(text)) return;
+
+            EmbeddingsResult result = await _Sdk.Generate(model, text);
+            EnumerateResponse(result);
+        }
+
+        private static void EmitLogMessage(SeverityEnum sev, string msg)
+        {
+            if (!String.IsNullOrEmpty(msg)) Console.WriteLine(sev.ToString() + " " + msg);
         }
 
 #pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.

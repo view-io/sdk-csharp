@@ -46,7 +46,9 @@
         /// <param name="document">Embeddings document.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Task.</returns>
-        public async Task<List<EmbeddingsDocument>> WriteDocument(EmbeddingsDocument document, CancellationToken token = default)
+        public async Task<List<EmbeddingsDocument>> WriteDocument(
+            EmbeddingsDocument document, 
+            CancellationToken token = default)
         {
             if (document == null) throw new ArgumentNullException(nameof(document));
 
@@ -93,7 +95,9 @@
         /// <param name="delReq">Delete request.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Task.</returns>
-        public async Task<bool> DeleteDocument(VectorDeleteRequest delReq, CancellationToken token = default)
+        public async Task<bool> DeleteDocument(
+            VectorDeleteRequest delReq, 
+            CancellationToken token = default)
         {
             if (delReq == null) throw new ArgumentNullException(nameof(delReq));
 
@@ -133,7 +137,9 @@
         /// <param name="delReq">Delete request.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Task.</returns>
-        public async Task<bool> TruncateTable(VectorDeleteRequest delReq, CancellationToken token = default)
+        public async Task<bool> TruncateTable(
+            VectorDeleteRequest delReq, 
+            CancellationToken token = default)
         {
             if (delReq == null) throw new ArgumentNullException(nameof(delReq));
 
@@ -173,7 +179,9 @@
         /// <param name="query">Enumeration query.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Enumeration result.</returns>
-        public async Task<EnumerationResult> EnumerateTable(EnumerationQuery query, CancellationToken token = default)
+        public async Task<EnumerationResult> EnumerateTable(
+            EnumerationQuery query, 
+            CancellationToken token = default)
         {
             if (query == null) throw new ArgumentNullException(nameof(query));
 
@@ -220,7 +228,9 @@
         /// <param name="searchReq">Search request.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Task.</returns>
-        public async Task<List<EmbeddingsDocument>> SimilaritySearch(VectorSearchRequest searchReq, CancellationToken token = default)
+        public async Task<List<EmbeddingsDocument>> SimilaritySearch(
+            VectorSearchRequest searchReq, 
+            CancellationToken token = default)
         {
             if (searchReq == null) throw new ArgumentNullException(nameof(searchReq));
 
@@ -267,7 +277,9 @@
         /// <param name="queryReq">Query request.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Task.</returns>
-        public async Task<string> RawQuery(VectorQueryRequest queryReq, CancellationToken token = default)
+        public async Task<string> RawQuery(
+            VectorQueryRequest queryReq, 
+            CancellationToken token = default)
         {
             if (queryReq == null) throw new ArgumentNullException(nameof(queryReq));
 

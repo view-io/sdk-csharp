@@ -4,9 +4,9 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using GetSomeInput;
+    using View.Sdk;
     using View.Sdk.Vector;
     using View.Sdk.Serialization;
-    using View.Sdk;
 
     public static class Program
     {

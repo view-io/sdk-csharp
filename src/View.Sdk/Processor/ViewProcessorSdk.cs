@@ -74,6 +74,7 @@
             {
                 using (RestRequest req = new RestRequest(url, HttpMethod.Post))
                 {
+                    req.TimeoutMilliseconds = TimeoutMilliseconds;
                     req.ContentType = "application/json";
 
                     ProcessorRequest procReq = new ProcessorRequest
@@ -90,17 +91,16 @@
                     };
 
                     string json = Serializer.SerializeJson(procReq, true);
-
-                    if (LogRequests) Log(SeverityEnum.Debug, "request body: " + Environment.NewLine + json);
+                    if (LogRequests) Logger?.Invoke(SeverityEnum.Debug, "request: " + Environment.NewLine + json);
 
                     using (RestResponse resp = await req.SendAsync(json, token).ConfigureAwait(false))
                     {
                         if (resp != null)
                         {
+                            if (LogResponses) Logger?.Invoke(SeverityEnum.Debug, "response (status " + resp.StatusCode + "):" + Environment.NewLine + resp.DataAsString);
+
                             if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                             {
-                                Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-
                                 if (!String.IsNullOrEmpty(resp.DataAsString))
                                 {
                                     if (LogResponses) Log(SeverityEnum.Debug, "response body: " + Environment.NewLine + resp.DataAsString);
@@ -119,8 +119,6 @@
 
                                 if (!String.IsNullOrEmpty(resp.DataAsString))
                                 {
-                                    if (LogResponses) Log(SeverityEnum.Debug, "response body: " + Environment.NewLine + resp.DataAsString);
-
                                     ProcessorResponse procResp = Serializer.DeserializeJson<ProcessorResponse>(resp.DataAsString);
                                     return procResp;
                                 }
@@ -182,6 +180,7 @@
             {
                 using (RestRequest req = new RestRequest(url, HttpMethod.Post))
                 {
+                    req.TimeoutMilliseconds = TimeoutMilliseconds;
                     req.ContentType = "application/json";
 
                     ProcessorRequest procReq = new ProcessorRequest
@@ -197,21 +196,20 @@
                     };
 
                     string json = Serializer.SerializeJson(procReq, true);
-
-                    if (LogRequests) Log(SeverityEnum.Debug, "request body: " + Environment.NewLine + json);
+                    if (LogRequests) Logger?.Invoke(SeverityEnum.Debug, "request: " + Environment.NewLine + json);
 
                     using (RestResponse resp = await req.SendAsync(json, token).ConfigureAwait(false))
                     {
                         if (resp != null)
                         {
+                            if (LogResponses) Logger?.Invoke(SeverityEnum.Debug, "response (status " + resp.StatusCode + "):" + Environment.NewLine + resp.DataAsString);
+
                             if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                             {
                                 Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
 
                                 if (!String.IsNullOrEmpty(resp.DataAsString))
                                 {
-                                    if (LogResponses) Log(SeverityEnum.Debug, "response body: " + Environment.NewLine + resp.DataAsString);
-
                                     ProcessorResponse procResp = Serializer.DeserializeJson<ProcessorResponse>(resp.DataAsString);
                                     return procResp;
                                 }
@@ -226,8 +224,6 @@
 
                                 if (!String.IsNullOrEmpty(resp.DataAsString))
                                 {
-                                    if (LogResponses) Log(SeverityEnum.Debug, "response body: " + Environment.NewLine + resp.DataAsString);
-
                                     ProcessorResponse procResp = Serializer.DeserializeJson<ProcessorResponse>(resp.DataAsString);
                                     return procResp;
                                 }

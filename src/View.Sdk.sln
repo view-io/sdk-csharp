@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "View.Sdk", "View.Sdk\View.S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.DocumentProcessor", "Test.DocumentProcessor\Test.DocumentProcessor.csproj", "{BE55D55D-99FC-4F92-8AEB-4CE3D43AADA6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.LangchainProxy", "Test.LangchainProxy\Test.LangchainProxy.csproj", "{46791B8A-279B-49E6-81D0-45BEBD4BDB91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.LcproxySdk", "Test.LcproxySdk\Test.LcproxySdk.csproj", "{46791B8A-279B-49E6-81D0-45BEBD4BDB91}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.Lexi", "Test.Lexi\Test.Lexi.csproj", "{54F93A35-4493-46D0-B71C-40DC5684000D}"
 EndProject
@@ -21,7 +21,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.TypeDetector", "Test.T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.Configuration", "Test.Configuration\Test.Configuration.csproj", "{8D0AB500-099C-47DC-8740-D84145611026}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.SemanticCell", "Test.SemanticCell\Test.SemanticCell.csproj", "{198E75BD-056C-4477-BDC3-CCE1C29F374E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.SemanticCell", "Test.SemanticCell\Test.SemanticCell.csproj", "{198E75BD-056C-4477-BDC3-CCE1C29F374E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.OpenAiSdk", "Test.OpenAiSdk\Test.OpenAiSdk.csproj", "{6654A4DC-2193-45D4-ADC6-08C90F2D64E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.EmbeddingsSdk", "Test.EmbeddingsSdk\Test.EmbeddingsSdk.csproj", "{1307025E-EDE6-4AAD-A71C-87491944F18F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +73,14 @@ Global
 		{198E75BD-056C-4477-BDC3-CCE1C29F374E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{198E75BD-056C-4477-BDC3-CCE1C29F374E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{198E75BD-056C-4477-BDC3-CCE1C29F374E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6654A4DC-2193-45D4-ADC6-08C90F2D64E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6654A4DC-2193-45D4-ADC6-08C90F2D64E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6654A4DC-2193-45D4-ADC6-08C90F2D64E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6654A4DC-2193-45D4-ADC6-08C90F2D64E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1307025E-EDE6-4AAD-A71C-87491944F18F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1307025E-EDE6-4AAD-A71C-87491944F18F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1307025E-EDE6-4AAD-A71C-87491944F18F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1307025E-EDE6-4AAD-A71C-87491944F18F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

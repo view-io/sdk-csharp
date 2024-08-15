@@ -937,6 +937,170 @@
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateVectorRepository(View.Sdk.VectorRepository,System.Threading.CancellationToken)">
+            <summary>
+            Create a vector repository.
+            </summary>
+            <param name="repo">Vector repository.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Vector repository.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsVectorRepository(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a vector repository exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveVectorRepository(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a vector repository.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>vector repository.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveVectorRepositories(System.Threading.CancellationToken)">
+            <summary>
+            Read vector repositories.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Vector repositories.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.UpdateVectorRepository(View.Sdk.VectorRepository,System.Threading.CancellationToken)">
+            <summary>
+            Update a vector repository.
+            </summary>
+            <param name="repo">Vector repository.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Vector repository.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteVectorRepository(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a vector repository.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateGraphRepository(View.Sdk.GraphRepository,System.Threading.CancellationToken)">
+            <summary>
+            Create a graph repository.
+            </summary>
+            <param name="repo">Graph repository.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph repository.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsGraphRepository(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a graph repository exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveGraphRepository(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a graph repository.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph repository.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveGraphRepositories(System.Threading.CancellationToken)">
+            <summary>
+            Read graph repositories.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph repositories.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.UpdateGraphRepository(View.Sdk.GraphRepository,System.Threading.CancellationToken)">
+            <summary>
+            Update a graph repository.
+            </summary>
+            <param name="repo">graph repository.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph repository.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteGraphRepository(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a graph repository.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveCollections(System.Threading.CancellationToken)">
+            <summary>
+            Retrieve collections.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>List of collection.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveCollection(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve a collection.
+            </summary>
+            <param name="collectionGuid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Collection.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveCollectionStatistics(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve collection statistics.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Collection statistics.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateCollection(View.Sdk.Collection,System.Threading.CancellationToken)">
+            <summary>
+            Create collection.
+            </summary>
+            <param name="collection">Collection.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Collection.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteCollection(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete collection.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveDataRepositories(System.Threading.CancellationToken)">
+            <summary>
+            Retrieve data repositories.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>List of data repository.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveDataRepository(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve a data repository.
+            </summary>
+            <param name="repositoryGuid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Data repository.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateDataRepository(View.Sdk.DataRepository,System.Threading.CancellationToken)">
+            <summary>
+            Create data repository.
+            </summary>
+            <param name="repository">Data repository.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Data repository.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteDataRepository(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete data repository.
+            </summary>
+            <param name="repositoryGuid">Data repository GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
         <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsWebhookEvent(System.String,System.Threading.CancellationToken)">
             <summary>
             Check if a webhook event exists.
@@ -2310,76 +2474,6 @@
             Langchain proxy.
             </summary>
         </member>
-        <member name="T:View.Sdk.EmbeddingsRequest">
-            <summary>
-            Embeddings request.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsRequest.Model">
-            <summary>
-            Model.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsRequest.Text">
-            <summary>
-            Text.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsRequest.Endpoint">
-            <summary>
-            Endpoint URL, e.g. http://localhost:8301/.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsRequest.ApiKey">
-            <summary>
-            API key.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.EmbeddingsRequest.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.EmbeddingsResult">
-            <summary>
-            Embeddings result.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsResult.Success">
-            <summary>
-            Boolean indicating whether or not the operation was successful.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsResult.Timestamp">
-            <summary>
-            Timestamps.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsResult.StatusCode">
-            <summary>
-            HTTP status code.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsResult.Url">
-            <summary>
-            URL.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsResult.Model">
-            <summary>
-            Model used to generate embeddings.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsResult.Embeddings">
-            <summary>
-            Embeddings.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.EmbeddingsResult.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
         <member name="T:View.Sdk.EmbeddingsRule">
             <summary>
             Embeddings rule.
@@ -2458,6 +2552,11 @@
         <member name="P:View.Sdk.EmbeddingsRule.GeneratorApiKey">
             <summary>
             Embeddings provider API key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EmbeddingsRule.MaxGeneratorTasks">
+            <summary>
+            Maximum number of parallel embeddings generation tasks.  Default is 16.
             </summary>
         </member>
         <member name="P:View.Sdk.EmbeddingsRule.VectorStoreUrl">
@@ -5178,26 +5277,6 @@
             </summary>
             <param name="value">The token.</param>
         </member>
-        <member name="T:View.Sdk.PreloadRequest">
-            <summary>
-            Preload request.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.PreloadRequest.Models">
-            <summary>
-            Model.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.PreloadRequest.ApiKey">
-            <summary>
-            API key.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.PreloadRequest.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
         <member name="T:View.Sdk.ProcessorContext">
             <summary>
             Processor context.
@@ -7542,19 +7621,182 @@
             L2Distance.
             </summary>
         </member>
-        <member name="T:View.Sdk.Vector.ViewLangchainProxySdk">
+        <member name="T:View.Sdk.EmbeddingsResult">
+            <summary>
+            Embeddings result.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EmbeddingsResult.Success">
+            <summary>
+            Boolean indicating whether or not the operation was successful.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EmbeddingsResult.Timestamp">
+            <summary>
+            Timestamps.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EmbeddingsResult.StatusCode">
+            <summary>
+            HTTP status code.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EmbeddingsResult.Url">
+            <summary>
+            URL.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EmbeddingsResult.Model">
+            <summary>
+            Model used to generate embeddings.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EmbeddingsResult.Embeddings">
+            <summary>
+            Embeddings.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.EmbeddingsResult.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Vector.OpenAiEmbeddingsResult">
+            <summary>
+            OpenAI embeddings result.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.OpenAiEmbeddingsResult.Embeddings">
+            <summary>
+            Embeddings.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.OpenAiEmbeddingsResult.Index">
+            <summary>
+            Index.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.OpenAiEmbeddingsResult.ObjectType">
+            <summary>
+            Object type.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.OpenAiEmbeddingsResult.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Vector.OpenAiResult`1">
+            <summary>
+            OpenAI result.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.OpenAiResult`1.Data">
+            <summary>
+            Data.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.OpenAiResult`1.ModelName">
+            <summary>
+            Model name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.OpenAiResult`1.ObjectType">
+            <summary>
+            Object type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.OpenAiResult`1.Usage">
+            <summary>
+            Usage details.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.OpenAiResult`1.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Vector.ViewEmbeddingsSdk">
+            <summary>
+            View embeddings generator SDK.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.ViewEmbeddingsSdk.Generator">
+            <summary>
+            Embeddings generator.  Default is LCProxy.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.ViewEmbeddingsSdk.ApiKey">
+            <summary>
+            API key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.ViewEmbeddingsSdk.Endpoint">
+            <summary>
+            Endpoint URL.  Default is http://localhost:8301/.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.ViewEmbeddingsSdk.MaxParallelTasks">
+            <summary>
+            Maximum number of parallel tasks.  Default is 16.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.ViewEmbeddingsSdk.#ctor(View.Sdk.EmbeddingsGeneratorEnum,System.String,System.String,System.Int32)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="generator">Embeddings generator.</param>
+            <param name="endpoint">Endpoint URL.</param>
+            <param name="apiKey">API key.</param>
+            <param name="maxParallelTasks">Maximum number of parallel tasks.</param>
+        </member>
+        <member name="M:View.Sdk.Vector.ViewEmbeddingsSdk.ValidateConnectivity(System.Threading.CancellationToken)">
+            <summary>
+            Validate connectivity.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>True if connected.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.ViewEmbeddingsSdk.Process(System.Collections.Generic.List{View.Sdk.SemanticCell},System.String,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Process semantic cells and generate embeddings.
+            </summary>
+            <param name="cells">Semantic cells.</param>
+            <param name="model">Model.</param>
+            <param name="timeoutMs">Timeout, in milliseconds.  Default is 60,000 milliseconds (1 minute).</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Semantic cells, where chunks have embeddings.</returns>
+        </member>
+        <member name="T:View.Sdk.Vector.ViewLcproxySdk">
             <summary>
             View Langchain Proxy SDK.
             </summary>
         </member>
-        <member name="M:View.Sdk.Vector.ViewLangchainProxySdk.#ctor(System.String,System.String)">
+        <member name="P:View.Sdk.Vector.ViewLcproxySdk.Endpoint">
+            <summary>
+            Endpoint URL.  Default is http://localhost:8301/.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.ViewLcproxySdk.ApiKey">
+            <summary>
+            API key for Huggingface.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.ViewLcproxySdk.#ctor(System.String,System.String)">
             <summary>
             Instantiate.
             </summary>
-            <param name="endpoint">Endpoint URL.</param>
+            <param name="endpoint">Endpoint URL.  Default is http://localhost:8301/.</param>
             <param name="apiKey">API key.</param>
         </member>
-        <member name="M:View.Sdk.Vector.ViewLangchainProxySdk.PreloadModels(System.Collections.Generic.List{System.String},System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewLcproxySdk.ValidateConnectivity(System.Threading.CancellationToken)">
+            <summary>
+            Validate connectivity.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>True if connected.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.ViewLcproxySdk.PreloadModels(System.Collections.Generic.List{System.String},System.Threading.CancellationToken)">
             <summary>
             Preload models.
             </summary>
@@ -7562,14 +7804,54 @@
             <param name="token">Cancellation token.</param>
             <returns>True if successful.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.ViewLangchainProxySdk.GenerateEmbeddings(System.String,System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewLcproxySdk.Generate(System.String,System.String,System.Int32,System.Threading.CancellationToken)">
             <summary>
             Generate embeddings.
             </summary>
             <param name="model">Model.</param>
             <param name="text">Text.</param>
+            <param name="timeoutMs">Timeout in milliseconds.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
+            <returns>Embeddings result.</returns>
+        </member>
+        <member name="T:View.Sdk.Vector.ViewOpenAiSdk">
+            <summary>
+            OpenAI embeddings generator.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.ViewOpenAiSdk.Endpoint">
+            <summary>
+            Base URL, e.g. https://api.openai.com/v1/
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.ViewOpenAiSdk.ApiKey">
+            <summary>
+            API key.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.ViewOpenAiSdk.#ctor(System.String,System.String)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="endpoint">Base URL.  Default is https://api.openai.com/v1/.</param>
+            <param name="apiKey">API key.</param>
+        </member>
+        <member name="M:View.Sdk.Vector.ViewOpenAiSdk.ValidateConnectivity(System.Threading.CancellationToken)">
+            <summary>
+            Validate connectivity.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>True if connected.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.ViewOpenAiSdk.Generate(System.String,System.String,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Generate embeddings.
+            </summary>
+            <param name="model">Model.</param>
+            <param name="text">Text.</param>
+            <param name="timeoutMs">Timeout in milliseconds.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Embeddings result.</returns>
         </member>
         <member name="T:View.Sdk.Vector.ViewVectorProxySdk">
             <summary>
@@ -7765,6 +8047,11 @@
         <member name="P:View.Sdk.ViewSdkBase.Serializer">
             <summary>
             Serialization helper.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewSdkBase.TimeoutMilliseconds">
+            <summary>
+            Timeout, in milliseconds.  Default is 300 seconds.
             </summary>
         </member>
         <member name="M:View.Sdk.ViewSdkBase.#ctor(System.String)">

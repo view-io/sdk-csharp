@@ -55,6 +55,8 @@
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Put, "application/json"))
             {
+                req.TimeoutMilliseconds = TimeoutMilliseconds;
+
                 using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(doc, true), token).ConfigureAwait(false))
                 {
                     if (resp != null)
@@ -122,6 +124,8 @@
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Put, "application/json"))
             {
+                req.TimeoutMilliseconds = TimeoutMilliseconds;
+
                 using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(dt, true), token).ConfigureAwait(false))
                 {
                     if (resp != null)

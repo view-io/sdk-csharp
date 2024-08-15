@@ -1,4 +1,4 @@
-﻿namespace Test.LangchainProxy
+﻿namespace Test.EmbeddingsSdk
 {
     using System;
     using System.Collections.Generic;
@@ -14,19 +14,49 @@
 #pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
 
         private static bool _RunForever = true;
-        private static string _Endpoint = "http://localhost:8301/";
+
+        private static EmbeddingsGeneratorEnum _GeneratorType = EmbeddingsGeneratorEnum.LCProxy;
+
+        private static string _Endpoint = null;
+        private static string _EndpointLcproxy = "http://localhost:8301/";
+        private static string _EndpointOpenAi = "https://api.openai.com/v1/";
+
         private static string _ApiKey = null;
-        private static ViewLangchainProxySdk _Sdk = null;
+
+        private static string _DefaultModel = null;
+        private static string _DefaultLcproxyModel = "all-MiniLM-L6-v2";
+        private static string _DefaultOpenAiModel = "text-embedding-ada-002";
+
+        private static int _MaxTasks = 4;
+        private static int _TimeoutMs = 60000;
+
+        private static ViewEmbeddingsSdk _Sdk = null;
         private static Serializer _Serializer = new Serializer();
-        private static bool _EnableLogging = true;
 
         public static void Main(string[] args)
         {
-            _Endpoint = Inputty.GetString("Endpoint :", _Endpoint, false);
-            _ApiKey   = Inputty.GetString("API key  :", _ApiKey, true);
+            _GeneratorType = (EmbeddingsGeneratorEnum)(Enum.Parse(
+                typeof(EmbeddingsGeneratorEnum),
+                Inputty.GetString("Generator type [LCProxy/OpenAI]:", "LCProxy", false)));
 
-            _Sdk = new ViewLangchainProxySdk(_Endpoint, _ApiKey);
-            if (_EnableLogging) _Sdk.Logger = EmitLogMessage;
+            if (_GeneratorType == EmbeddingsGeneratorEnum.LCProxy)
+            {
+                _Endpoint = Inputty.GetString("Endpoint :", _EndpointLcproxy, false);
+                _DefaultModel = _DefaultLcproxyModel;
+            }
+            else if (_GeneratorType == EmbeddingsGeneratorEnum.OpenAI)
+            {
+                _Endpoint = Inputty.GetString("Endpoint :", _EndpointOpenAi, false);
+                _DefaultModel = _DefaultOpenAiModel;
+            }
+            else
+            {
+                throw new ArgumentException("Unknown embeddings generator '" + _GeneratorType.ToString() + "'.");
+            }
+
+            _ApiKey = Inputty.GetString("API key  :", _ApiKey, true);
+
+            _Sdk = new ViewEmbeddingsSdk(_GeneratorType, _Endpoint, _ApiKey, _MaxTasks);
 
             while (_RunForever)
             {
@@ -48,12 +78,10 @@
                         TestConnectivity().Wait();
                         break;
 
-                    case "preload":
-                        PreloadModels().Wait();
-                        break;
                     case "embeddings":
                         GenerateEmbeddings().Wait();
-                        break;                }
+                        break;
+                }
             }
         }
 
@@ -65,8 +93,6 @@
             Console.WriteLine("  ?             Help, this menu");
             Console.WriteLine("  cls           Clear the screen");
             Console.WriteLine("  conn          Test connectivity");
-            Console.WriteLine("");
-            Console.WriteLine("  preload       Preload models");
             Console.WriteLine("  embeddings    Generate embeddings");
             Console.WriteLine("");
         }
@@ -95,25 +121,18 @@
             Console.WriteLine("");
         }
 
-        private static async Task PreloadModels()
-        {
-            List<string> models = Inputty.GetStringList("Model name:", false);
-            if (models == null || models.Count < 1) return;
-
-            bool success = await _Sdk.PreloadModels(models);
-            Console.WriteLine(success);
-            Console.WriteLine("");
-        }
-
         private static async Task GenerateEmbeddings()
         {
-            string model = Inputty.GetString("Model :", null, true);
+            string model = Inputty.GetString("Model :", _DefaultModel, true);
             if (String.IsNullOrEmpty(model)) return;
 
-            string text = Inputty.GetString("Text  :", null, true);
-            if (String.IsNullOrEmpty(text)) return;
+            string file = Inputty.GetString ("File  :", "sample.json", true);
+            if (String.IsNullOrEmpty(file)) return;
+            if (!File.Exists(file)) return;
 
-            EmbeddingsResult result = await _Sdk.GenerateEmbeddings(model, text);
+            List<SemanticCell> cells = _Serializer.DeserializeJson<List<SemanticCell>>(File.ReadAllText(file));
+
+            List<SemanticCell> result = await _Sdk.Process(cells, model, _TimeoutMs);
             EnumerateResponse(result);
         }
 

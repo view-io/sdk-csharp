@@ -1082,17 +1082,7 @@
         public async Task<GraphNode> CreateTenant(TenantMetadata tenant, CancellationToken token = default)
         {
             if (tenant == null) throw new ArgumentNullException(nameof(tenant));
-            GraphNode node = new GraphNode
-            {
-                GraphGUID = Guid.Parse(GraphRepository.GraphIdentifier),
-                Name = "Tenant " + tenant.Name,
-                Data = new GraphData
-                {
-                    Type = GraphNodeTypeEnum.Tenant,
-                    Tenant = tenant
-                }
-            };
-            return await _GraphDriver.CreateNode(node, token).ConfigureAwait(false);
+            return await CreateNodeInternal(GraphNodeTypeEnum.Tenant, "Tenant " + tenant.Name, tenant, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1104,17 +1094,7 @@
         public async Task<GraphNode> CreateStoragePool(StoragePool pool, CancellationToken token = default)
         {
             if (pool == null) throw new ArgumentNullException(nameof(pool));
-            GraphNode node = new GraphNode
-            {
-                GraphGUID = Guid.Parse(GraphRepository.GraphIdentifier),
-                Name = "Storage pool " + pool.Name,
-                Data = new GraphData
-                {
-                    Type = GraphNodeTypeEnum.StoragePool,
-                    StoragePool = pool
-                }
-            };
-            return await _GraphDriver.CreateNode(node, token).ConfigureAwait(false);
+            return await CreateNodeInternal(GraphNodeTypeEnum.StoragePool, "Storage pool " + pool.Name, pool, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1126,17 +1106,7 @@
         public async Task<GraphNode> CreateBucket(BucketMetadata bucket, CancellationToken token = default)
         {
             if (bucket == null) throw new ArgumentNullException(nameof(bucket));
-            GraphNode node = new GraphNode
-            {
-                GraphGUID = Guid.Parse(GraphRepository.GraphIdentifier),
-                Name = "Bucket " + bucket.Name,
-                Data = new GraphData
-                {
-                    Type = GraphNodeTypeEnum.Bucket,
-                    Bucket = bucket
-                }
-            };
-            return await _GraphDriver.CreateNode(node, token).ConfigureAwait(false);
+            return await CreateNodeInternal(GraphNodeTypeEnum.Bucket, "Bucket " + bucket.Name, bucket, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1148,17 +1118,7 @@
         public async Task<GraphNode> CreateObjectMetadata(ObjectMetadata obj, CancellationToken token = default)
         {
             if (obj == null) throw new ArgumentNullException(nameof(obj));
-            GraphNode node = new GraphNode
-            {
-                GraphGUID = Guid.Parse(GraphRepository.GraphIdentifier),
-                Name = "Object " + obj.Key + ":" + obj.Version,
-                Data = new GraphData
-                {
-                    Type = GraphNodeTypeEnum.Object,
-                    Object = obj
-                }
-            };
-            return await _GraphDriver.CreateNode(node, token).ConfigureAwait(false);
+            return await CreateNodeInternal(GraphNodeTypeEnum.Object, "Object " + obj.Key + ":" + obj.Version, obj, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1170,17 +1130,7 @@
         public async Task<GraphNode> CreateCollection(Collection coll, CancellationToken token = default)
         {
             if (coll == null) throw new ArgumentNullException(nameof(coll));
-            GraphNode node = new GraphNode
-            {
-                GraphGUID = Guid.Parse(GraphRepository.GraphIdentifier),
-                Name = "Collection " + coll.Name,
-                Data = new GraphData
-                {
-                    Type = GraphNodeTypeEnum.Collection,
-                    Collection = coll
-                }
-            };
-            return await _GraphDriver.CreateNode(node, token).ConfigureAwait(false);
+            return await CreateNodeInternal(GraphNodeTypeEnum.Collection, "Collection " + coll.Name, coll, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1192,17 +1142,7 @@
         public async Task<GraphNode> CreateSourceDocument(SourceDocument doc, CancellationToken token = default)
         {
             if (doc == null) throw new ArgumentNullException(nameof(doc));
-            GraphNode node = new GraphNode
-            {
-                GraphGUID = Guid.Parse(GraphRepository.GraphIdentifier),
-                Name = "Source document " + doc.ObjectKey + ":" + doc.ObjectVersion,
-                Data = new GraphData
-                {
-                    Type = GraphNodeTypeEnum.SourceDocument,
-                    SourceDocument = doc
-                }
-            };
-            return await _GraphDriver.CreateNode(node, token).ConfigureAwait(false);
+            return await CreateNodeInternal(GraphNodeTypeEnum.SourceDocument, "Source document " + doc.GUID, doc, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1214,17 +1154,7 @@
         public async Task<GraphNode> CreateSemanticCell(SemanticCell cell, CancellationToken token = default)
         {
             if (cell == null) throw new ArgumentNullException(nameof(cell));
-            GraphNode node = new GraphNode
-            {
-                GraphGUID = Guid.Parse(GraphRepository.GraphIdentifier),
-                Name = "Semantic cell SHA256 " + cell.SHA256Hash,
-                Data = new GraphData
-                {
-                    Type = GraphNodeTypeEnum.SemanticCell,
-                    SemanticCell = cell
-                }
-            };
-            return await _GraphDriver.CreateNode(node, token).ConfigureAwait(false);
+            return await CreateNodeInternal(GraphNodeTypeEnum.SemanticCell, "Semantic cell " + cell.GUID, cell, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1236,17 +1166,7 @@
         public async Task<GraphNode> CreateSemanticChunk(SemanticChunk chunk, CancellationToken token = default)
         {
             if (chunk == null) throw new ArgumentNullException(nameof(chunk));
-            GraphNode node = new GraphNode
-            {
-                GraphGUID = Guid.Parse(GraphRepository.GraphIdentifier),
-                Name = "Semantic chunk SHA256 " + chunk.SHA256Hash,
-                Data = new GraphData
-                {
-                    Type = GraphNodeTypeEnum.SemanticChunk,
-                    SemanticChunk = chunk
-                }
-            };
-            return await _GraphDriver.CreateNode(node, token).ConfigureAwait(false);
+            return await CreateNodeInternal(GraphNodeTypeEnum.SemanticChunk, "Chunk " + chunk.GUID, chunk, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1258,17 +1178,7 @@
         public async Task<GraphNode> CreateDataRepository(DataRepository repo, CancellationToken token = default)
         {
             if (repo == null) throw new ArgumentNullException(nameof(repo));
-            GraphNode node = new GraphNode
-            {
-                GraphGUID = Guid.Parse(GraphRepository.GraphIdentifier),
-                Name = "Data repository " + repo.Name,
-                Data = new GraphData
-                {
-                    Type = GraphNodeTypeEnum.DataRepository,
-                    DataRepository = repo
-                }
-            };
-            return await _GraphDriver.CreateNode(node, token).ConfigureAwait(false);
+            return await CreateNodeInternal(GraphNodeTypeEnum.DataRepository, "Data repository " + repo.Name, repo, token).ConfigureAwait(false);
         }
 
         #endregion
@@ -1295,9 +1205,7 @@
         public async Task<GraphNode> ReadTenant(TenantMetadata tenant, CancellationToken token = default)
         {
             if (tenant == null) throw new ArgumentNullException(nameof(tenant));
-            List<GraphNode> nodes = await SearchInternal(TENANT_TYPE, TENANT_GUID, tenant.GUID, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count == 1) return nodes[0];
-            return null;
+            return await ReadInternal(TENANT_TYPE, TENANT_GUID, tenant.GUID, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1309,9 +1217,7 @@
         public async Task<GraphNode> ReadStoragePool(StoragePool pool, CancellationToken token = default)
         {
             if (pool == null) throw new ArgumentNullException(nameof(pool));
-            List<GraphNode> nodes = await SearchInternal(POOL_TYPE, POOL_GUID, pool.GUID, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count == 1) return nodes[0];
-            return null;
+            return await ReadInternal(POOL_TYPE, POOL_GUID, pool.GUID, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1323,9 +1229,7 @@
         public async Task<GraphNode> ReadBucket(BucketMetadata bucket, CancellationToken token = default)
         {
             if (bucket == null) throw new ArgumentNullException(nameof(bucket));
-            List<GraphNode> nodes = await SearchInternal(BUCKET_TYPE, BUCKET_GUID, bucket.GUID, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count == 1) return nodes[0];
-            return null;
+            return await ReadInternal(BUCKET_TYPE, BUCKET_GUID, bucket.GUID, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1337,9 +1241,7 @@
         public async Task<GraphNode> ReadObjectMetadata(ObjectMetadata obj, CancellationToken token = default)
         {
             if (obj == null) throw new ArgumentNullException(nameof(obj));
-            List<GraphNode> nodes = await SearchInternal(OBJECT_TYPE, OBJECT_GUID, obj.GUID, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count == 1) return nodes[0];
-            return null;
+            return await ReadInternal(OBJECT_TYPE, OBJECT_GUID, obj.GUID, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1351,9 +1253,7 @@
         public async Task<GraphNode> ReadCollection(Collection coll, CancellationToken token = default)
         {
             if (coll == null) throw new ArgumentNullException(nameof(coll));
-            List<GraphNode> nodes = await SearchInternal(COLLECTION_TYPE, COLLECTION_GUID, coll.GUID, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count == 1) return nodes[0];
-            return null;
+            return await ReadInternal(COLLECTION_TYPE, COLLECTION_GUID, coll.GUID, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1365,9 +1265,7 @@
         public async Task<GraphNode> ReadSourceDocument(SourceDocument doc, CancellationToken token = default)
         {
             if (doc == null) throw new ArgumentNullException(nameof(doc));
-            List<GraphNode> nodes = await SearchInternal(SOURCEDOC_TYPE, SOURCEDOC_GUID, doc.GUID, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count == 1) return nodes[0];
-            return null;
+            return await ReadInternal(SOURCEDOC_TYPE, SOURCEDOC_GUID, doc.GUID, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1379,9 +1277,7 @@
         public async Task<GraphNode> ReadSemanticCell(SemanticCell cell, CancellationToken token = default)
         {
             if (cell == null) throw new ArgumentNullException(nameof(cell));
-            List<GraphNode> nodes = await SearchInternal(SEMCELL_TYPE, SEMCELL_GUID, cell.GUID, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count == 1) return nodes[0];
-            return null;
+            return await ReadInternal(SEMCELL_TYPE, SEMCELL_GUID, cell.GUID, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1393,9 +1289,7 @@
         public async Task<GraphNode> ReadSemanticChunk(SemanticChunk chunk, CancellationToken token = default)
         {
             if (chunk == null) throw new ArgumentNullException(nameof(chunk));
-            List<GraphNode> nodes = await SearchInternal(SEMCHUNK_TYPE, SEMCHUNK_GUID, chunk.GUID, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count == 1) return nodes[0];
-            return null;
+            return await ReadInternal(SEMCHUNK_TYPE, SEMCHUNK_GUID, chunk.GUID, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1407,9 +1301,7 @@
         public async Task<GraphNode> ReadDataRepository(DataRepository repo, CancellationToken token = default)
         {
             if (repo == null) throw new ArgumentNullException(nameof(repo));
-            List<GraphNode> nodes = await SearchInternal(DATAREPOSITORY_TYPE, DATAREPOSITORY_GUID, repo.GUID, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count == 1) return nodes[0];
-            return null;
+            return await ReadInternal(DATAREPOSITORY_TYPE, DATAREPOSITORY_GUID, repo.GUID, token).ConfigureAwait(false);
         }
 
         #endregion
@@ -1425,9 +1317,7 @@
         public async Task<GraphNode> ReadTenant(string guid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(guid)) return null;
-            List<GraphNode> nodes = await SearchInternal(TENANT_TYPE, TENANT_GUID, guid, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count == 1) return nodes[0];
-            return null;
+            return await ReadInternal(TENANT_TYPE, TENANT_GUID, guid, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1439,9 +1329,7 @@
         public async Task<GraphNode> ReadStoragePool(string guid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(guid)) return null;
-            List<GraphNode> nodes = await SearchInternal(POOL_TYPE, POOL_GUID, guid, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count == 1) return nodes[0];
-            return null;
+            return await ReadInternal(POOL_TYPE, POOL_GUID, guid, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1453,9 +1341,7 @@
         public async Task<GraphNode> ReadBucket(string guid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(guid)) return null;
-            List<GraphNode> nodes = await SearchInternal(BUCKET_TYPE, BUCKET_GUID, guid, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count == 1) return nodes[0];
-            return null;
+            return await ReadInternal(BUCKET_TYPE, BUCKET_GUID, guid, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1467,9 +1353,7 @@
         public async Task<GraphNode> ReadObjectMetadata(string guid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(guid)) return null;
-            List<GraphNode> nodes = await SearchInternal(OBJECT_TYPE, OBJECT_GUID, guid, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count == 1) return nodes[0];
-            return null;
+            return await ReadInternal(OBJECT_TYPE, OBJECT_GUID, guid, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1481,9 +1365,7 @@
         public async Task<GraphNode> ReadCollection(string guid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(guid)) return null;
-            List<GraphNode> nodes = await SearchInternal(COLLECTION_TYPE, COLLECTION_GUID, guid, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count == 1) return nodes[0];
-            return null;
+            return await ReadInternal(COLLECTION_TYPE, COLLECTION_GUID, guid, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1495,9 +1377,7 @@
         public async Task<GraphNode> ReadSourceDocument(string guid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(guid)) return null;
-            List<GraphNode> nodes = await SearchInternal(SOURCEDOC_TYPE, SOURCEDOC_GUID, guid, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count == 1) return nodes[0];
-            return null;
+            return await ReadInternal(SOURCEDOC_TYPE, SOURCEDOC_GUID, guid, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1509,9 +1389,7 @@
         public async Task<GraphNode> ReadSemanticCell(string guid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(guid)) return null;
-            List<GraphNode> nodes = await SearchInternal(SEMCELL_TYPE, SEMCELL_GUID, guid, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count == 1) return nodes[0];
-            return null;
+            return await ReadInternal(SEMCELL_TYPE, SEMCELL_GUID, guid, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1523,9 +1401,7 @@
         public async Task<GraphNode> ReadSemanticChunk(string guid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(guid)) return null;
-            List<GraphNode> nodes = await SearchInternal(SEMCHUNK_TYPE, SEMCHUNK_GUID, guid, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count == 1) return nodes[0];
-            return null;
+            return await ReadInternal(SEMCHUNK_TYPE, SEMCHUNK_GUID, guid, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1537,9 +1413,7 @@
         public async Task<GraphNode> ReadDataRepository(string guid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(guid)) return null;
-            List<GraphNode> nodes = await SearchInternal(DATAREPOSITORY_TYPE, DATAREPOSITORY_GUID, guid, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count == 1) return nodes[0];
-            return null;
+            return await ReadInternal(DATAREPOSITORY_TYPE, DATAREPOSITORY_GUID, guid, token).ConfigureAwait(false);
         }
 
         #endregion
@@ -1573,10 +1447,7 @@
         public async Task DeleteTenant(TenantMetadata tenant, CancellationToken token = default)
         {
             if (tenant == null) throw new ArgumentNullException(nameof(tenant));
-            List<GraphNode> nodes = await SearchInternal(TENANT_TYPE, TENANT_GUID, tenant.GUID, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count > 0)
-                foreach (GraphNode node in nodes)
-                    await _GraphDriver.DeleteNode(node.GraphGUID, node.GUID, token).ConfigureAwait(false);
+            await DeleteInternal(tenant, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1588,10 +1459,7 @@
         public async Task DeleteStoragePool(StoragePool pool, CancellationToken token = default)
         {
             if (pool == null) throw new ArgumentNullException(nameof(pool));
-            List<GraphNode> nodes = await SearchInternal(POOL_TYPE, POOL_GUID, pool.GUID, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count > 0)
-                foreach (GraphNode node in nodes)
-                    await _GraphDriver.DeleteNode(node.GraphGUID, node.GUID, token).ConfigureAwait(false);
+            await DeleteInternal(pool, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1603,10 +1471,7 @@
         public async Task DeleteBucket(BucketMetadata bucket, CancellationToken token = default)
         {
             if (bucket == null) throw new ArgumentNullException(nameof(bucket));
-            List<GraphNode> nodes = await SearchInternal(BUCKET_TYPE, BUCKET_GUID, bucket.GUID, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count > 0)
-                foreach (GraphNode node in nodes)
-                    await _GraphDriver.DeleteNode(node.GraphGUID, node.GUID, token).ConfigureAwait(false);
+            await DeleteInternal(bucket, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1618,10 +1483,7 @@
         public async Task DeleteObjectMetadata(ObjectMetadata obj, CancellationToken token = default)
         {
             if (obj == null) throw new ArgumentNullException(nameof(obj));
-            List<GraphNode> nodes = await SearchInternal(OBJECT_TYPE, OBJECT_GUID, obj.GUID, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count > 0)
-                foreach (GraphNode node in nodes)
-                    await _GraphDriver.DeleteNode(node.GraphGUID, node.GUID, token).ConfigureAwait(false);
+            await DeleteInternal(obj, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1633,10 +1495,7 @@
         public async Task DeleteCollection(Collection coll, CancellationToken token = default)
         {
             if (coll == null) throw new ArgumentNullException(nameof(coll));
-            List<GraphNode> nodes = await SearchInternal(COLLECTION_TYPE, COLLECTION_GUID, coll.GUID, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count > 0)
-                foreach (GraphNode node in nodes)
-                    await _GraphDriver.DeleteNode(node.GraphGUID, node.GUID, token).ConfigureAwait(false);
+            await DeleteInternal(coll, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1648,10 +1507,7 @@
         public async Task DeleteSourceDocument(SourceDocument doc, CancellationToken token = default)
         {
             if (doc == null) throw new ArgumentNullException(nameof(doc));
-            List<GraphNode> nodes = await SearchInternal(SOURCEDOC_TYPE, SOURCEDOC_GUID, doc.GUID, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count > 0)
-                foreach (GraphNode node in nodes)
-                    await _GraphDriver.DeleteNode(node.GraphGUID, node.GUID, token).ConfigureAwait(false);
+            await DeleteInternal(doc, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1663,10 +1519,7 @@
         public async Task DeleteSemanticCell(SemanticCell cell, CancellationToken token = default)
         {
             if (cell == null) throw new ArgumentNullException(nameof(cell));
-            List<GraphNode> nodes = await SearchInternal(SEMCELL_TYPE, SEMCELL_GUID, cell.GUID, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count > 0)
-                foreach (GraphNode node in nodes)
-                    await _GraphDriver.DeleteNode(node.GraphGUID, node.GUID, token).ConfigureAwait(false);
+            await DeleteInternal(cell, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1678,10 +1531,7 @@
         public async Task DeleteSemanticChunk(SemanticChunk chunk, CancellationToken token = default)
         {
             if (chunk == null) throw new ArgumentNullException(nameof(chunk));
-            List<GraphNode> nodes = await SearchInternal(SEMCHUNK_TYPE, SEMCHUNK_GUID, chunk.GUID, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count > 0)
-                foreach (GraphNode node in nodes)
-                    await _GraphDriver.DeleteNode(node.GraphGUID, node.GUID, token).ConfigureAwait(false);
+            await DeleteInternal(chunk, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1693,10 +1543,7 @@
         public async Task DeleteDataRepository(DataRepository repo, CancellationToken token = default)
         {
             if (repo == null) throw new ArgumentNullException(nameof(repo));
-            List<GraphNode> nodes = await SearchInternal(DATAREPOSITORY_TYPE, DATAREPOSITORY_GUID, repo.GUID, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count > 0)
-                foreach (GraphNode node in nodes)
-                    await _GraphDriver.DeleteNode(node.GraphGUID, node.GUID, token).ConfigureAwait(false);
+            await DeleteInternal(repo, token).ConfigureAwait(false);
         }
 
         #endregion
@@ -1712,10 +1559,7 @@
         public async Task DeleteTenant(string guid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(guid)) return;
-            List<GraphNode> nodes = await SearchInternal(TENANT_TYPE, TENANT_GUID, guid, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count > 0)
-                foreach (GraphNode node in nodes)
-                    await _GraphDriver.DeleteNode(node.GraphGUID, node.GUID, token).ConfigureAwait(false);
+            await DeleteInternal(TENANT_TYPE, TENANT_GUID, guid, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1727,10 +1571,7 @@
         public async Task DeleteStoragePool(string guid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(guid)) return;
-            List<GraphNode> nodes = await SearchInternal(POOL_TYPE, POOL_GUID, guid, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count > 0)
-                foreach (GraphNode node in nodes)
-                    await _GraphDriver.DeleteNode(node.GraphGUID, node.GUID, token).ConfigureAwait(false);
+            await DeleteInternal(POOL_TYPE, POOL_GUID, guid, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1742,10 +1583,7 @@
         public async Task DeleteBucket(string guid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(guid)) return;
-            List<GraphNode> nodes = await SearchInternal(BUCKET_TYPE, BUCKET_GUID, guid, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count > 0)
-                foreach (GraphNode node in nodes)
-                    await _GraphDriver.DeleteNode(node.GraphGUID, node.GUID, token).ConfigureAwait(false);
+            await DeleteInternal(BUCKET_TYPE, BUCKET_GUID, guid, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1757,10 +1595,7 @@
         public async Task DeleteObjectMetadata(string guid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(guid)) return;
-            List<GraphNode> nodes = await SearchInternal(OBJECT_TYPE, OBJECT_GUID, guid, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count > 0)
-                foreach (GraphNode node in nodes)
-                    await _GraphDriver.DeleteNode(node.GraphGUID, node.GUID, token).ConfigureAwait(false);
+            await DeleteInternal(OBJECT_TYPE, OBJECT_GUID, guid, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1772,10 +1607,7 @@
         public async Task DeleteCollection(string guid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(guid)) return;
-            List<GraphNode> nodes = await SearchInternal(COLLECTION_TYPE, COLLECTION_GUID, guid, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count > 0)
-                foreach (GraphNode node in nodes)
-                    await _GraphDriver.DeleteNode(node.GraphGUID, node.GUID, token).ConfigureAwait(false);
+            await DeleteInternal(COLLECTION_TYPE, COLLECTION_GUID, guid, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1787,10 +1619,7 @@
         public async Task DeleteSourceDocument(string guid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(guid)) return;
-            List<GraphNode> nodes = await SearchInternal(SOURCEDOC_TYPE, SOURCEDOC_GUID, guid, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count > 0)
-                foreach (GraphNode node in nodes)
-                    await _GraphDriver.DeleteNode(node.GraphGUID, node.GUID, token).ConfigureAwait(false);
+            await DeleteInternal(SOURCEDOC_TYPE, SOURCEDOC_GUID, guid, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1802,10 +1631,7 @@
         public async Task DeleteSemanticCell(string guid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(guid)) return;
-            List<GraphNode> nodes = await SearchInternal(SEMCELL_TYPE, SEMCELL_GUID, guid, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count > 0)
-                foreach (GraphNode node in nodes)
-                    await _GraphDriver.DeleteNode(node.GraphGUID, node.GUID, token).ConfigureAwait(false);
+            await DeleteInternal(SEMCELL_TYPE, SEMCELL_GUID, guid, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1817,10 +1643,7 @@
         public async Task DeleteSemanticChunk(string guid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(guid)) return;
-            List<GraphNode> nodes = await SearchInternal(SEMCHUNK_TYPE, SEMCHUNK_GUID, guid, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count > 0)
-                foreach (GraphNode node in nodes)
-                    await _GraphDriver.DeleteNode(node.GraphGUID, node.GUID, token).ConfigureAwait(false);
+            await DeleteInternal(SEMCHUNK_TYPE, SEMCHUNK_GUID, guid, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1832,10 +1655,7 @@
         public async Task DeleteDataRepository(string guid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(guid)) return;
-            List<GraphNode> nodes = await SearchInternal(DATAREPOSITORY_TYPE, DATAREPOSITORY_GUID, guid, token).ConfigureAwait(false);
-            if (nodes != null && nodes.Count > 0)
-                foreach (GraphNode node in nodes)
-                    await _GraphDriver.DeleteNode(node.GraphGUID, node.GUID, token).ConfigureAwait(false);
+            await DeleteInternal(DATAREPOSITORY_TYPE, DATAREPOSITORY_GUID, guid, token).ConfigureAwait(false);
         }
 
         #endregion
@@ -1856,21 +1676,65 @@
             }
         }
 
-        private async Task<bool> ExistsInternal(string typeVal, string dataKey, string dataVal, CancellationToken token = default)
+        private async Task<GraphNode> CreateNodeInternal(
+            GraphNodeTypeEnum nodeType, 
+            string name, 
+            object data, 
+            CancellationToken token = default)
+        {
+            GraphNode node = new GraphNode
+            {
+                GraphGUID = Guid.Parse(GraphRepository.GraphIdentifier),
+                Name = name,
+                Data = new GraphData
+                {
+                    Type = nodeType
+                }
+            };
+
+            if (data != null)
+            {
+                if (nodeType == GraphNodeTypeEnum.Tenant) node.Data.Tenant = (TenantMetadata)data;
+                if (nodeType == GraphNodeTypeEnum.StoragePool) node.Data.StoragePool = (StoragePool)data;
+                if (nodeType == GraphNodeTypeEnum.Bucket) node.Data.Bucket = (BucketMetadata)data;
+                if (nodeType == GraphNodeTypeEnum.Object) node.Data.Object = (ObjectMetadata)data;
+                if (nodeType == GraphNodeTypeEnum.Collection) node.Data.Collection = (Collection)data;
+                if (nodeType == GraphNodeTypeEnum.SourceDocument) node.Data.SourceDocument = (SourceDocument)data;
+                if (nodeType == GraphNodeTypeEnum.VectorRepository) node.Data.VectorRepository = (VectorRepository)data;
+                if (nodeType == GraphNodeTypeEnum.SemanticCell) node.Data.SemanticCell = (SemanticCell)data;
+                if (nodeType == GraphNodeTypeEnum.SemanticChunk) node.Data.SemanticChunk = (SemanticChunk)data;
+                if (nodeType == GraphNodeTypeEnum.DataRepository) node.Data.DataRepository = (DataRepository)data;
+            }
+
+            return await _GraphDriver.CreateNode(node, token).ConfigureAwait(false);
+        }
+
+        private async Task<bool> ExistsInternal(
+            string typeVal, 
+            string dataKey, 
+            string dataVal, 
+            CancellationToken token = default)
         {
             List<GraphNode> nodes = await SearchInternal(typeVal, dataKey, dataVal, token).ConfigureAwait(false);
             if (nodes != null && nodes.Count > 0) return true;
             return false;
         }
 
-        private async Task<bool> ExistsInternal(string typeVal, Dictionary<string, string> dict, CancellationToken token = default)
+        private async Task<bool> ExistsInternal(
+            string typeVal, 
+            Dictionary<string, string> dict, 
+            CancellationToken token = default)
         {
             List<GraphNode> nodes = await SearchInternal(typeVal, dict, token).ConfigureAwait(false);
             if (nodes != null && nodes.Count > 0) return true;
             return false;
         }
 
-        private async Task<List<GraphNode>> SearchInternal(string typeVal, string dataKey, string dataVal, CancellationToken token = default)
+        private async Task<List<GraphNode>> SearchInternal(
+            string typeVal, 
+            string dataKey, 
+            string dataVal, 
+            CancellationToken token = default)
         {
             Expr e = new Expr("Type", OperatorEnum.Equals, typeVal);
             e = e.PrependAnd(dataKey, OperatorEnum.Equals, dataVal);
@@ -1882,7 +1746,10 @@
             return nodes;
         }
 
-        private async Task<List<GraphNode>> SearchInternal(string typeVal, Dictionary<string, string> dict, CancellationToken token = default)
+        private async Task<List<GraphNode>> SearchInternal(
+            string typeVal, 
+            Dictionary<string, string> dict, 
+            CancellationToken token = default)
         {
             Expr e = new Expr("Type", OperatorEnum.Equals, typeVal);
 
@@ -1900,6 +1767,67 @@
                 token).ConfigureAwait(false);
             if (nodes == null) nodes = new List<GraphNode>();
             return nodes;
+        }
+
+        private async Task DeleteInternal(
+            object obj, 
+            CancellationToken token = default)
+        {
+            if (obj == null) throw new ArgumentNullException(nameof(obj));
+            if (obj.GetType() == typeof(TenantMetadata)) await DeleteInternal(TENANT_TYPE, TENANT_GUID, ((TenantMetadata)obj).GUID, token).ConfigureAwait(false);
+            if (obj.GetType() == typeof(StoragePool)) await DeleteInternal(POOL_TYPE, POOL_GUID, ((StoragePool)obj).GUID, token).ConfigureAwait(false);
+            if (obj.GetType() == typeof(BucketMetadata)) await DeleteInternal(BUCKET_TYPE, BUCKET_GUID, ((BucketMetadata)obj).GUID, token).ConfigureAwait(false);
+            if (obj.GetType() == typeof(ObjectMetadata)) await DeleteInternal(OBJECT_TYPE, OBJECT_GUID, ((ObjectMetadata)obj).GUID, token).ConfigureAwait(false);
+            if (obj.GetType() == typeof(Collection)) await DeleteInternal(COLLECTION_TYPE, COLLECTION_GUID, ((Collection)obj).GUID, token).ConfigureAwait(false);
+            if (obj.GetType() == typeof(SourceDocument)) await DeleteInternal(SOURCEDOC_TYPE, SOURCEDOC_GUID, ((SourceDocument)obj).GUID, token).ConfigureAwait(false);
+            if (obj.GetType() == typeof(SemanticCell)) await DeleteInternal(SEMCELL_TYPE, SEMCELL_GUID, ((SemanticCell)obj).GUID, token).ConfigureAwait(false);
+            if (obj.GetType() == typeof(SemanticChunk)) await DeleteInternal(SEMCHUNK_TYPE, SEMCHUNK_GUID, ((SemanticChunk)obj).GUID, token).ConfigureAwait(false);
+            if (obj.GetType() == typeof(DataRepository)) await DeleteInternal(DATAREPOSITORY_TYPE, DATAREPOSITORY_GUID, ((DataRepository)obj).GUID, token).ConfigureAwait(false);
+        }
+
+        private async Task DeleteInternal(
+            string objType, 
+            string objGuidField, 
+            string guid, 
+            CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(objType)) throw new ArgumentNullException(nameof(objType));
+            if (String.IsNullOrEmpty(objGuidField)) throw new ArgumentNullException(nameof(objGuidField));
+            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
+
+            List<GraphNode> nodes = await SearchInternal(objType, objGuidField, guid, token).ConfigureAwait(false);
+            if (nodes != null && nodes.Count > 0)
+                foreach (GraphNode node in nodes)
+                    await _GraphDriver.DeleteNode(node.GraphGUID, node.GUID, token).ConfigureAwait(false);
+        }
+
+        private async Task<GraphNode> ReadInternal(
+            object obj, 
+            CancellationToken token = default)
+        {
+            if (obj == null) throw new ArgumentNullException(nameof(obj));
+            if (obj.GetType() == typeof(TenantMetadata)) return await ReadInternal(TENANT_TYPE, TENANT_GUID, ((TenantMetadata)obj).GUID, token).ConfigureAwait(false);
+            if (obj.GetType() == typeof(StoragePool)) return await ReadInternal(POOL_TYPE, POOL_GUID, ((StoragePool)obj).GUID, token).ConfigureAwait(false);
+            if (obj.GetType() == typeof(BucketMetadata)) return await ReadInternal(BUCKET_TYPE, BUCKET_GUID, ((BucketMetadata)obj).GUID, token).ConfigureAwait(false);
+            if (obj.GetType() == typeof(ObjectMetadata)) return await ReadInternal(OBJECT_TYPE, OBJECT_GUID, ((ObjectMetadata)obj).GUID, token).ConfigureAwait(false);
+            if (obj.GetType() == typeof(Collection)) return await ReadInternal(COLLECTION_TYPE, COLLECTION_GUID, ((Collection)obj).GUID, token).ConfigureAwait(false);
+            if (obj.GetType() == typeof(SourceDocument)) return await ReadInternal(SOURCEDOC_TYPE, SOURCEDOC_GUID, ((SourceDocument)obj).GUID, token).ConfigureAwait(false);
+            if (obj.GetType() == typeof(SemanticCell)) return await ReadInternal(SEMCELL_TYPE, SEMCELL_GUID, ((SemanticCell)obj).GUID, token).ConfigureAwait(false);
+            if (obj.GetType() == typeof(SemanticChunk)) return await ReadInternal(SEMCHUNK_TYPE, SEMCHUNK_GUID, ((SemanticChunk)obj).GUID, token).ConfigureAwait(false);
+            if (obj.GetType() == typeof(DataRepository)) return await ReadInternal(DATAREPOSITORY_TYPE, DATAREPOSITORY_GUID, ((DataRepository)obj).GUID, token).ConfigureAwait(false);
+            return null;
+        }
+
+        private async Task<GraphNode> ReadInternal(
+            string objType,
+            string objGuidField,
+            string guid,
+            CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) return null;
+            List<GraphNode> nodes = await SearchInternal(objType, objGuidField, guid, token).ConfigureAwait(false);
+            if (nodes != null && nodes.Count == 1) return nodes[0];
+            return null;
         }
 
         private async Task<GraphResult> ProcessSemanticCellsInternal(

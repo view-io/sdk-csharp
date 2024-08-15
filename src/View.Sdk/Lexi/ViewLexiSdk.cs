@@ -203,6 +203,7 @@
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Post))
             {
+                req.TimeoutMilliseconds = TimeoutMilliseconds;
                 req.ContentType = "application/json";
 
                 using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(query, true), token).ConfigureAwait(false))
@@ -256,6 +257,7 @@
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Post))
             {
+                req.TimeoutMilliseconds = TimeoutMilliseconds;
                 req.ContentType = "application/json";
 
                 using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(query, true), token).ConfigureAwait(false))
