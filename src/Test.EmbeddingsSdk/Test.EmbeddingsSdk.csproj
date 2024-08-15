@@ -16,6 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="large.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="sample.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

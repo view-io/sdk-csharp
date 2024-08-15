@@ -77,6 +77,16 @@
                     case "conn":
                         TestConnectivity().Wait();
                         break;
+                    case "tasks":
+                        string tasksStr = Inputty.GetString("Tasks:", null, true);
+                        int tasks;
+                        if (!String.IsNullOrEmpty(tasksStr))
+                            if (Int32.TryParse(tasksStr, out tasks))
+                            {
+                                _MaxTasks = tasks;
+                                _Sdk.MaxParallelTasks = tasks;
+                            }
+                        break;
 
                     case "embeddings":
                         GenerateEmbeddings().Wait();
@@ -93,6 +103,7 @@
             Console.WriteLine("  ?             Help, this menu");
             Console.WriteLine("  cls           Clear the screen");
             Console.WriteLine("  conn          Test connectivity");
+            Console.WriteLine("  tasks         Set max parallel tasks (currently " + _Sdk.MaxParallelTasks + ")");
             Console.WriteLine("  embeddings    Generate embeddings");
             Console.WriteLine("");
         }
