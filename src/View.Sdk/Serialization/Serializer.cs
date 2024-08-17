@@ -121,6 +121,18 @@
         }
 
         /// <summary>
+        /// Serialize an exception to JSON.
+        /// </summary>
+        /// <param name="e">Exception.</param>
+        /// <param name="pretty">Pretty print.</param>
+        /// <returns>JSON.</returns>
+        [Obsolete("Exceptions should not be serialized.  Use .ToString() instead.")]
+        public string SerializeJson(Exception e, bool pretty = true)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
         /// Copy an object.
         /// </summary>
         /// <typeparam name="T">Type.</typeparam>

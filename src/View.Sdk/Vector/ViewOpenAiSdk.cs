@@ -52,6 +52,11 @@
             }
         }
 
+        /// <summary>
+        /// Logger.
+        /// </summary>
+        public Action<SeverityEnum, string> Logger { get; set; } = null;
+
         #endregion
 
         #region Private-Members
@@ -70,12 +75,15 @@
         /// </summary>
         /// <param name="endpoint">Base URL.  Default is https://api.openai.com/v1/.</param>
         /// <param name="apiKey">API key.</param>
+        /// <param name="logger">Logger.</param>
         public ViewOpenAiSdk(
             string endpoint = null,
-            string apiKey = null)
+            string apiKey = null,
+            Action<SeverityEnum, string> logger = null)
         {
             if (!String.IsNullOrEmpty(endpoint)) Endpoint = endpoint;
             ApiKey = apiKey;
+            Logger = logger;
         }
 
         #endregion
@@ -147,30 +155,40 @@
                     body["model"] = model;
                     body["input"] = text;
 
-                    using (RestResponse resp = await req.SendAsync(_Serializer.SerializeJson(body, true), token).ConfigureAwait(false))
+                    string json = _Serializer.SerializeJson(body, true);
+
+                    using (RestResponse resp = await req.SendAsync(json, token).ConfigureAwait(false))
                     {
                         if (resp == null)
                         {
+                            Logger?.Invoke(SeverityEnum.Warn, "no response from " + url);
+
                             result.StatusCode = 0;
-                            result.Success = false;
-                        }
-                        else if (resp.StatusCode != 200)
-                        {
-                            result.StatusCode = resp.StatusCode;
                             result.Success = false;
                         }
                         else
                         {
-                            OpenAiResult<OpenAiEmbeddingsResult> data = _Serializer.DeserializeJson<OpenAiResult<OpenAiEmbeddingsResult>>(resp.DataAsString);
-                            result.StatusCode = resp.StatusCode;
-                            result.Success = true;
-                            result.Embeddings = data.Data[0].Embeddings;
+                            if (resp.StatusCode != 200)
+                            {
+                                Logger?.Invoke(SeverityEnum.Warn, "status " + resp.StatusCode + " received from " + url + ": " + Environment.NewLine + resp.DataAsString);
+                                result.StatusCode = resp.StatusCode;
+                                result.Success = false;
+                            }
+                            else
+                            {
+                                OpenAiResult<OpenAiEmbeddingsResult> data = _Serializer.DeserializeJson<OpenAiResult<OpenAiEmbeddingsResult>>(resp.DataAsString);
+                                result.StatusCode = resp.StatusCode;
+                                result.Success = true;
+                                result.Embeddings = data.Data[0].Embeddings;
+                            }
                         }
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Logger?.Invoke(SeverityEnum.Warn, "exception while generating embeddings: " + Environment.NewLine + e.ToString());
+
                 result.StatusCode = 0;
                 result.Success = false;
             }

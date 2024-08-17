@@ -4346,26 +4346,6 @@
             PATCH.
             </summary>
         </member>
-        <member name="T:View.Sdk.LexiEmbeddingsContext">
-            <summary>
-            Lexi embeddings context.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.LexiEmbeddingsContext.Request">
-            <summary>
-            Request.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.LexiEmbeddingsContext.Response">
-            <summary>
-            Response.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.LexiEmbeddingsContext.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
         <member name="T:View.Sdk.LexiEmbeddingsRequest">
             <summary>
             Lexi embeddings request.
@@ -5276,26 +5256,6 @@
             Instantiates the Token.
             </summary>
             <param name="value">The token.</param>
-        </member>
-        <member name="T:View.Sdk.ProcessorContext">
-            <summary>
-            Processor context.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.ProcessorContext.Request">
-            <summary>
-            Request.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.ProcessorContext.Response">
-            <summary>
-            Response.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.ProcessorContext.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
         </member>
         <member name="T:View.Sdk.ProcessorRequest">
             <summary>
@@ -6310,6 +6270,14 @@
             Serialize object to JSON.
             </summary>
             <param name="obj">Object.</param>
+            <param name="pretty">Pretty print.</param>
+            <returns>JSON.</returns>
+        </member>
+        <member name="M:View.Sdk.Serialization.Serializer.SerializeJson(System.Exception,System.Boolean)">
+            <summary>
+            Serialize an exception to JSON.
+            </summary>
+            <param name="e">Exception.</param>
             <param name="pretty">Pretty print.</param>
             <returns>JSON.</returns>
         </member>
@@ -7741,7 +7709,12 @@
             Maximum number of parallel tasks.  Default is 16.
             </summary>
         </member>
-        <member name="M:View.Sdk.Vector.ViewEmbeddingsSdk.#ctor(View.Sdk.EmbeddingsGeneratorEnum,System.String,System.String,System.Int32)">
+        <member name="P:View.Sdk.Vector.ViewEmbeddingsSdk.Logger">
+            <summary>
+            Logger.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.ViewEmbeddingsSdk.#ctor(View.Sdk.EmbeddingsGeneratorEnum,System.String,System.String,System.Int32,System.Action{View.Sdk.SeverityEnum,System.String})">
             <summary>
             Instantiate.
             </summary>
@@ -7749,6 +7722,7 @@
             <param name="endpoint">Endpoint URL.</param>
             <param name="apiKey">API key.</param>
             <param name="maxParallelTasks">Maximum number of parallel tasks.</param>
+            <param name="logger">Logger method.</param>
         </member>
         <member name="M:View.Sdk.Vector.ViewEmbeddingsSdk.ValidateConnectivity(System.Threading.CancellationToken)">
             <summary>
@@ -7782,12 +7756,18 @@
             API key for Huggingface.
             </summary>
         </member>
-        <member name="M:View.Sdk.Vector.ViewLcproxySdk.#ctor(System.String,System.String)">
+        <member name="P:View.Sdk.Vector.ViewLcproxySdk.Logger">
+            <summary>
+            Logger.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.ViewLcproxySdk.#ctor(System.String,System.String,System.Action{View.Sdk.SeverityEnum,System.String})">
             <summary>
             Instantiate.
             </summary>
             <param name="endpoint">Endpoint URL.  Default is http://localhost:8301/.</param>
             <param name="apiKey">API key.</param>
+            <param name="logger">Logger.</param>
         </member>
         <member name="M:View.Sdk.Vector.ViewLcproxySdk.ValidateConnectivity(System.Threading.CancellationToken)">
             <summary>
@@ -7829,12 +7809,18 @@
             API key.
             </summary>
         </member>
-        <member name="M:View.Sdk.Vector.ViewOpenAiSdk.#ctor(System.String,System.String)">
+        <member name="P:View.Sdk.Vector.ViewOpenAiSdk.Logger">
+            <summary>
+            Logger.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.ViewOpenAiSdk.#ctor(System.String,System.String,System.Action{View.Sdk.SeverityEnum,System.String})">
             <summary>
             Instantiate.
             </summary>
             <param name="endpoint">Base URL.  Default is https://api.openai.com/v1/.</param>
             <param name="apiKey">API key.</param>
+            <param name="logger">Logger.</param>
         </member>
         <member name="M:View.Sdk.Vector.ViewOpenAiSdk.ValidateConnectivity(System.Threading.CancellationToken)">
             <summary>

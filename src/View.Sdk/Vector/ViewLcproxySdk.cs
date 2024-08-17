@@ -51,6 +51,11 @@
             }
         }
 
+        /// <summary>
+        /// Logger.
+        /// </summary>
+        public Action<SeverityEnum, string> Logger { get; set; } = null;
+
         #endregion
 
         #region Private-Members
@@ -68,12 +73,15 @@
         /// </summary>
         /// <param name="endpoint">Endpoint URL.  Default is http://localhost:8301/.</param>
         /// <param name="apiKey">API key.</param>
+        /// <param name="logger">Logger.</param>
         public ViewLcproxySdk(
             string endpoint = "http://localhost:8301/", 
-            string apiKey = null)
+            string apiKey = null,
+            Action<SeverityEnum, string> logger = null)
         {
             Endpoint = endpoint;
-            _ApiKey = apiKey;
+            ApiKey = apiKey;
+            Logger = logger;
         }
 
         #endregion
@@ -177,7 +185,20 @@
 
                     using (RestResponse resp = await req.SendAsync(json, token).ConfigureAwait(false))
                     {
-                        if (resp != null)
+                        if (resp == null)
+                        {
+                            Logger?.Invoke(SeverityEnum.Warn, "no response from " + url);
+
+                            return new EmbeddingsResult
+                            {
+                                Success = false,
+                                Url = url,
+                                Model = model,
+                                Embeddings = null,
+                                StatusCode = 0
+                            };
+                        }
+                        else
                         {
                             if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                             {
@@ -205,6 +226,8 @@
                             }
                             else
                             {
+                                Logger?.Invoke(SeverityEnum.Warn, "status " + resp.StatusCode + " received from " + url + ": " + Environment.NewLine + resp.DataAsString);
+
                                 EmbeddingsResult result = new EmbeddingsResult
                                 {
                                     Success = false,
@@ -217,24 +240,13 @@
                                 return result;
                             }
                         }
-                        else
-                        {
-                            EmbeddingsResult result = new EmbeddingsResult
-                            {
-                                Success = false,
-                                Url = url,
-                                Model = model,
-                                Embeddings = null,
-                                StatusCode = 0
-                            };
-
-                            return result;
-                        }
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Logger?.Invoke(SeverityEnum.Warn, "exception while generating embeddings: " + Environment.NewLine + e.ToString());
+
                 EmbeddingsResult result = new EmbeddingsResult
                 {
                     Success = false,

@@ -187,7 +187,6 @@
             }
             set
             {
-                if (value == null) throw new ArgumentNullException(nameof(Data));
                 _Data = value;
             }
         }

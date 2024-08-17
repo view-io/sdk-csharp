@@ -58,6 +58,11 @@
             }
         }
 
+        /// <summary>
+        /// Logger.
+        /// </summary>
+        public Action<SeverityEnum, string> Logger { get; set; } = null;
+
         #endregion
 
         #region Private-Members
@@ -82,16 +87,19 @@
         /// <param name="endpoint">Endpoint URL.</param>
         /// <param name="apiKey">API key.</param>
         /// <param name="maxParallelTasks">Maximum number of parallel tasks.</param>
+        /// <param name="logger">Logger method.</param>
         public ViewEmbeddingsSdk(
             EmbeddingsGeneratorEnum generator,
             string endpoint,
             string apiKey,
-            int maxParallelTasks = 16)
+            int maxParallelTasks = 16,
+            Action<SeverityEnum, string> logger = null)
         {
             Generator = generator;
             ApiKey = apiKey;
             Endpoint = endpoint;
             MaxParallelTasks = maxParallelTasks;
+            Logger = logger;
 
             _Semaphore = new SemaphoreSlim(_MaxParallelTasks);
 
@@ -153,10 +161,10 @@
             switch (Generator)
             {
                 case EmbeddingsGeneratorEnum.LCProxy:
-                    _LcProxy = new ViewLcproxySdk(Endpoint, ApiKey);
+                    _LcProxy = new ViewLcproxySdk(Endpoint, ApiKey, Logger);
                     break;
                 case EmbeddingsGeneratorEnum.OpenAI:
-                    _OpenAI = new ViewOpenAiSdk(Endpoint, ApiKey);
+                    _OpenAI = new ViewOpenAiSdk(Endpoint, ApiKey, Logger);
                     break;
                 default:
                     throw new ArgumentException("Unknown embeddings generator '" + Generator.ToString() + "'.");
@@ -220,6 +228,11 @@
                         }
                     }
                 }
+            }
+            catch (Exception e)
+            {
+                Logger?.Invoke(SeverityEnum.Warn, "exception while processing cell: " + Environment.NewLine + e.ToString());
+                throw;
             }
             finally
             {
