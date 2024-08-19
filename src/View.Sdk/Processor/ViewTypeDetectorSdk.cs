@@ -58,7 +58,7 @@
             {
                 using (RestRequest req = new RestRequest(url, HttpMethod.Post))
                 {
-                    req.TimeoutMilliseconds = TimeoutMilliseconds;
+                    req.TimeoutMilliseconds = TimeoutMs;
                     req.ContentType = contentType;
 
                     if (LogRequests) Log(SeverityEnum.Debug, "request: " + Environment.NewLine + Encoding.UTF8.GetString(data));

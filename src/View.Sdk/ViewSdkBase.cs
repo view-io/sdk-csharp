@@ -118,9 +118,9 @@
         }
 
         /// <summary>
-        /// Timeout, in milliseconds.  Default is 300 seconds.
+        /// Timeout, in milliseconds.  Default is 600 seconds.
         /// </summary>
-        public int TimeoutMilliseconds
+        public int TimeoutMs
         {
             get
             {
@@ -128,7 +128,7 @@
             }
             set
             {
-                if (value < 1) throw new ArgumentOutOfRangeException(nameof(TimeoutMilliseconds));
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(TimeoutMs));
                 _TimeoutMilliseconds = value;
             }
         }
@@ -146,7 +146,7 @@
         private string _AccessKey = null;
         private string _Endpoint = null;
         private Serializer _Serializer = new Serializer();
-        private int _TimeoutMilliseconds = 300 * 1000;
+        private int _TimeoutMilliseconds = 600 * 1000;
 
         #endregion
 
@@ -219,7 +219,7 @@
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Head))
             {
-                req.TimeoutMilliseconds = TimeoutMilliseconds;
+                req.TimeoutMilliseconds = TimeoutMs;
 
                 using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
                 {
@@ -257,7 +257,7 @@
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Put))
             {
-                req.TimeoutMilliseconds = TimeoutMilliseconds;
+                req.TimeoutMilliseconds = TimeoutMs;
                 req.Authorization.BearerToken = _AccessKey;
                 req.ContentType = "application/json";
 
@@ -309,7 +309,7 @@
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Head))
             {
-                req.TimeoutMilliseconds = TimeoutMilliseconds;
+                req.TimeoutMilliseconds = TimeoutMs;
                 req.Authorization.BearerToken = _AccessKey;
 
                 using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
@@ -351,7 +351,7 @@
 
             using (RestRequest req = new RestRequest(url))
             {
-                req.TimeoutMilliseconds = TimeoutMilliseconds;
+                req.TimeoutMilliseconds = TimeoutMs;
                 req.Authorization.BearerToken = _AccessKey;
 
                 using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
@@ -400,7 +400,7 @@
 
             using (RestRequest req = new RestRequest(url))
             {
-                req.TimeoutMilliseconds = TimeoutMilliseconds;
+                req.TimeoutMilliseconds = TimeoutMs;
                 req.Authorization.BearerToken = _AccessKey;
 
                 using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
@@ -451,7 +451,7 @@
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Put))
             {
-                req.TimeoutMilliseconds = TimeoutMilliseconds;
+                req.TimeoutMilliseconds = TimeoutMs;
                 req.Authorization.BearerToken = _AccessKey;
                 req.ContentType = "application/json";
 
@@ -503,7 +503,7 @@
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Delete))
             {
-                req.TimeoutMilliseconds = TimeoutMilliseconds;
+                req.TimeoutMilliseconds = TimeoutMs;
                 req.Authorization.BearerToken = _AccessKey;
 
                 using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))

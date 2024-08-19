@@ -66,7 +66,7 @@
             {
                 using (RestRequest req = new RestRequest(url, HttpMethod.Post))
                 {
-                    req.TimeoutMilliseconds = TimeoutMilliseconds;
+                    req.TimeoutMilliseconds = TimeoutMs;
                     req.ContentType = "application/json";
 
                     LexiEmbeddingsRequest procReq = new LexiEmbeddingsRequest

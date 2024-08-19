@@ -8069,9 +8069,9 @@
             Serialization helper.
             </summary>
         </member>
-        <member name="P:View.Sdk.ViewSdkBase.TimeoutMilliseconds">
+        <member name="P:View.Sdk.ViewSdkBase.TimeoutMs">
             <summary>
-            Timeout, in milliseconds.  Default is 300 seconds.
+            Timeout, in milliseconds.  Default is 600 seconds.
             </summary>
         </member>
         <member name="M:View.Sdk.ViewSdkBase.#ctor(System.String)">

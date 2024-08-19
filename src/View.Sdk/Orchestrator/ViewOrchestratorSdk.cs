@@ -286,7 +286,7 @@
 
             using (RestRequest req = new RestRequest(url))
             {
-                req.TimeoutMilliseconds = TimeoutMilliseconds;
+                req.TimeoutMilliseconds = TimeoutMs;
                 req.Authorization.BearerToken = AccessKey;
 
                 using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
