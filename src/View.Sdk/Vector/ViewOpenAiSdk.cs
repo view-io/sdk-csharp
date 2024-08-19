@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq.Expressions;
     using System.Net.Http;
+    using System.Runtime.InteropServices;
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.VisualBasic;
@@ -53,6 +54,22 @@
         }
 
         /// <summary>
+        /// Maximum number of retries to perform on any given task.
+        /// </summary>
+        public int MaxRetries
+        {
+            get
+            {
+                return _MaxRetries;
+            }
+            private set
+            {
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(MaxRetries));
+                _MaxRetries = value;
+            }
+        }
+
+        /// <summary>
         /// Logger.
         /// </summary>
         public Action<SeverityEnum, string> Logger { get; set; } = null;
@@ -65,6 +82,8 @@
         private string _Endpoint = "https://api.openai.com/v1/";
         private string _ApiKey = null;
         private string _DefaultModel = "text-embedding-ada-002";
+        private int _MaxRetries = 3;
+        private int _FailureCount = 0;
 
         #endregion
 
@@ -76,14 +95,17 @@
         /// <param name="endpoint">Base URL.  Default is https://api.openai.com/v1/.</param>
         /// <param name="apiKey">API key.</param>
         /// <param name="logger">Logger.</param>
+        /// <param name="maxRetries">Maximum number of retries before failing the operation.</param>
         public ViewOpenAiSdk(
             string endpoint = null,
             string apiKey = null,
-            Action<SeverityEnum, string> logger = null)
+            Action<SeverityEnum, string> logger = null,
+            int maxRetries = 3)
         {
             if (!String.IsNullOrEmpty(endpoint)) Endpoint = endpoint;
             ApiKey = apiKey;
             Logger = logger;
+            MaxRetries = maxRetries;
         }
 
         #endregion
@@ -144,56 +166,59 @@
                 Model = model
             };
 
-            try
+            while (_FailureCount < MaxRetries)
             {
-                using (RestRequest req = new RestRequest(url, HttpMethod.Post, "application/json"))
+                try
                 {
-                    req.TimeoutMilliseconds = timeoutMs;
-                    req.Authorization.BearerToken = _ApiKey;
-
-                    Dictionary<string, string> body = new Dictionary<string, string>();
-                    body["model"] = model;
-                    body["input"] = text;
-
-                    string json = _Serializer.SerializeJson(body, true);
-
-                    using (RestResponse resp = await req.SendAsync(json, token).ConfigureAwait(false))
+                    using (RestRequest req = new RestRequest(url, HttpMethod.Post, "application/json"))
                     {
-                        if (resp == null)
-                        {
-                            Logger?.Invoke(SeverityEnum.Warn, "no response from " + url);
+                        req.TimeoutMilliseconds = timeoutMs;
+                        req.Authorization.BearerToken = _ApiKey;
 
-                            result.StatusCode = 0;
-                            result.Success = false;
-                        }
-                        else
+                        Dictionary<string, string> body = new Dictionary<string, string>();
+                        body["model"] = model;
+                        body["input"] = text;
+
+                        string json = _Serializer.SerializeJson(body, true);
+
+                        using (RestResponse resp = await req.SendAsync(json, token).ConfigureAwait(false))
                         {
-                            if (resp.StatusCode != 200)
+                            if (resp == null)
                             {
-                                Logger?.Invoke(SeverityEnum.Warn, "status " + resp.StatusCode + " received from " + url + ": " + Environment.NewLine + resp.DataAsString);
-                                result.StatusCode = resp.StatusCode;
-                                result.Success = false;
+                                Logger?.Invoke(SeverityEnum.Warn, "no response from " + url);
+                                Interlocked.Increment(ref _FailureCount);
                             }
                             else
                             {
-                                OpenAiResult<OpenAiEmbeddingsResult> data = _Serializer.DeserializeJson<OpenAiResult<OpenAiEmbeddingsResult>>(resp.DataAsString);
-                                result.StatusCode = resp.StatusCode;
-                                result.Success = true;
-                                result.Embeddings = data.Data[0].Embeddings;
+                                if (resp.StatusCode != 200)
+                                {
+                                    Logger?.Invoke(SeverityEnum.Warn, "status " + resp.StatusCode + " received from " + url + ": " + Environment.NewLine + resp.DataAsString);
+                                    Interlocked.Increment(ref _FailureCount);
+                                }
+                                else
+                                {
+                                    OpenAiResult<OpenAiEmbeddingsResult> data = _Serializer.DeserializeJson<OpenAiResult<OpenAiEmbeddingsResult>>(resp.DataAsString);
+                                    result.StatusCode = resp.StatusCode;
+                                    result.Success = true;
+                                    result.Embeddings = data.Data[0].Embeddings;
+                                }
                             }
                         }
                     }
                 }
-            }
-            catch (Exception e)
-            {
-                Logger?.Invoke(SeverityEnum.Warn, "exception while generating embeddings: " + Environment.NewLine + e.ToString());
+                catch (Exception e)
+                {
+                    Logger?.Invoke(SeverityEnum.Warn, "exception while generating embeddings: " + Environment.NewLine + e.ToString());
 
-                result.StatusCode = 0;
-                result.Success = false;
+                    result.StatusCode = 0;
+                    result.Success = false;
+                }
+
+                return result;
             }
 
-            return result;
+            Logger?.Invoke(SeverityEnum.Warn, "maximum failure count (" + _MaxRetries + ") exceeded for " + url);
+            throw new ExternalException("Maximum failure count (" + _MaxRetries + ") exceeded for " + url + ".");
         }
 
         #endregion

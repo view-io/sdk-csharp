@@ -10,6 +10,7 @@
     using View.Sdk.Serialization;
     using View.Sdk;
     using System.Reflection;
+    using System.Runtime.InteropServices;
 
     /// <summary>
     /// View Langchain Proxy SDK.
@@ -52,6 +53,22 @@
         }
 
         /// <summary>
+        /// Maximum number of retries to perform on any given task.
+        /// </summary>
+        public int MaxRetries
+        {
+            get
+            {
+                return _MaxRetries;
+            }
+            private set
+            {
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(MaxRetries));
+                _MaxRetries = value;
+            }
+        }
+
+        /// <summary>
         /// Logger.
         /// </summary>
         public Action<SeverityEnum, string> Logger { get; set; } = null;
@@ -63,6 +80,8 @@
         private Serializer _Serializer = new Serializer();
         private string _Endpoint = "http://localhost:8301/";
         private string _ApiKey = null;
+        private int _MaxRetries = 3;
+        private int _FailureCount = 0;
 
         #endregion
 
@@ -74,14 +93,17 @@
         /// <param name="endpoint">Endpoint URL.  Default is http://localhost:8301/.</param>
         /// <param name="apiKey">API key.</param>
         /// <param name="logger">Logger.</param>
+        /// <param name="maxRetries">Maximum number of retries before failing the operation.</param>
         public ViewLcproxySdk(
             string endpoint = "http://localhost:8301/", 
             string apiKey = null,
-            Action<SeverityEnum, string> logger = null)
+            Action<SeverityEnum, string> logger = null,
+            int maxRetries = 3)
         {
             Endpoint = endpoint;
             ApiKey = apiKey;
             Logger = logger;
+            MaxRetries = maxRetries;
         }
 
         #endregion
@@ -170,94 +192,72 @@
 
             string url = Endpoint + "v1.0/embeddings/";
 
-            try
+            while (_FailureCount < MaxRetries)
             {
-                using (RestRequest req = new RestRequest(url, HttpMethod.Post))
+                try
                 {
-                    req.ContentType = "application/json";
-
-                    Dictionary<string, object> dict = new Dictionary<string, object>();
-                    dict.Add("Model", model);
-                    dict.Add("Text", text);
-                    dict.Add("ApiKey", _ApiKey);
-
-                    string json = _Serializer.SerializeJson(dict, true);
-
-                    using (RestResponse resp = await req.SendAsync(json, token).ConfigureAwait(false))
+                    using (RestRequest req = new RestRequest(url, HttpMethod.Post))
                     {
-                        if (resp == null)
-                        {
-                            Logger?.Invoke(SeverityEnum.Warn, "no response from " + url);
+                        req.ContentType = "application/json";
 
-                            return new EmbeddingsResult
-                            {
-                                Success = false,
-                                Url = url,
-                                Model = model,
-                                Embeddings = null,
-                                StatusCode = 0
-                            };
-                        }
-                        else
-                        {
-                            if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                            {
-                                if (!String.IsNullOrEmpty(resp.DataAsString))
-                                {
-                                    EmbeddingsResult result = _Serializer.DeserializeJson<EmbeddingsResult>(resp.DataAsString);
-                                    result.Success = true;
-                                    result.Model = model;
-                                    result.Url = url;
-                                    result.StatusCode = resp.StatusCode;
-                                    return result;
-                                }
-                                else
-                                {
-                                    EmbeddingsResult result = new EmbeddingsResult
-                                    {
-                                        Success = false,
-                                        Model = model,
-                                        Url = url,
-                                        StatusCode = resp.StatusCode
-                                    };
+                        Dictionary<string, object> dict = new Dictionary<string, object>();
+                        dict.Add("Model", model);
+                        dict.Add("Text", text);
+                        dict.Add("ApiKey", _ApiKey);
 
-                                    return result;
-                                }
+                        string json = _Serializer.SerializeJson(dict, true);
+
+                        using (RestResponse resp = await req.SendAsync(json, token).ConfigureAwait(false))
+                        {
+                            if (resp == null)
+                            {
+                                Logger?.Invoke(SeverityEnum.Warn, "no response from " + url);
+                                Interlocked.Increment(ref _FailureCount);
                             }
                             else
                             {
-                                Logger?.Invoke(SeverityEnum.Warn, "status " + resp.StatusCode + " received from " + url + ": " + Environment.NewLine + resp.DataAsString);
-
-                                EmbeddingsResult result = new EmbeddingsResult
+                                if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                                 {
-                                    Success = false,
-                                    Url = url,
-                                    Model = model,
-                                    Embeddings = null,
-                                    StatusCode = resp.StatusCode
-                                };
+                                    if (!String.IsNullOrEmpty(resp.DataAsString))
+                                    {
+                                        EmbeddingsResult result = _Serializer.DeserializeJson<EmbeddingsResult>(resp.DataAsString);
+                                        result.Success = true;
+                                        result.Model = model;
+                                        result.Url = url;
+                                        result.StatusCode = resp.StatusCode;
+                                        return result;
+                                    }
+                                    else
+                                    {
+                                        EmbeddingsResult result = new EmbeddingsResult
+                                        {
+                                            Success = false,
+                                            Model = model,
+                                            Url = url,
+                                            StatusCode = resp.StatusCode
+                                        };
 
-                                return result;
+                                        return result;
+                                    }
+                                }
+                                else
+                                {
+                                    Logger?.Invoke(SeverityEnum.Warn, "status " + resp.StatusCode + " received from " + url + ": " + Environment.NewLine + resp.DataAsString);
+                                    Interlocked.Increment(ref _FailureCount);
+                                }
                             }
                         }
                     }
                 }
-            }
-            catch (Exception e)
-            {
-                Logger?.Invoke(SeverityEnum.Warn, "exception while generating embeddings: " + Environment.NewLine + e.ToString());
-
-                EmbeddingsResult result = new EmbeddingsResult
+                catch (Exception e)
                 {
-                    Success = false,
-                    Url = url,
-                    Model = model,
-                    Embeddings = null,
-                    StatusCode = 0
-                };
-
-                return result;
+                    Logger?.Invoke(SeverityEnum.Warn, "exception while generating embeddings: " + Environment.NewLine + e.ToString());
+                    Interlocked.Increment(ref _FailureCount);
+                }
             }
+
+            Logger?.Invoke(SeverityEnum.Warn, "maximum failure count (" + _MaxRetries + ") exceeded for " + url);
+            throw new ExternalException("Maximum failure count (" + _MaxRetries + ") exceeded for " + url + ".");
         }
 
         #endregion

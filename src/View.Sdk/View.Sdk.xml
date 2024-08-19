@@ -2559,6 +2559,16 @@
             Maximum number of parallel embeddings generation tasks.  Default is 16.
             </summary>
         </member>
+        <member name="P:View.Sdk.EmbeddingsRule.MaxRetries">
+            <summary>
+            Maximum number of retries to perform on any given task.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EmbeddingsRule.MaxFailures">
+            <summary>
+            Maximum number of failures to support before failing the operation.
+            </summary>
+        </member>
         <member name="P:View.Sdk.EmbeddingsRule.VectorStoreUrl">
             <summary>
             Vector store URL.
@@ -7709,12 +7719,22 @@
             Maximum number of parallel tasks.  Default is 16.
             </summary>
         </member>
+        <member name="P:View.Sdk.Vector.ViewEmbeddingsSdk.MaxRetries">
+            <summary>
+            Maximum number of retries to perform on any given task.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.ViewEmbeddingsSdk.MaxFailures">
+            <summary>
+            Maximum number of failures to support before failing the operation.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Vector.ViewEmbeddingsSdk.Logger">
             <summary>
             Logger.
             </summary>
         </member>
-        <member name="M:View.Sdk.Vector.ViewEmbeddingsSdk.#ctor(View.Sdk.EmbeddingsGeneratorEnum,System.String,System.String,System.Int32,System.Action{View.Sdk.SeverityEnum,System.String})">
+        <member name="M:View.Sdk.Vector.ViewEmbeddingsSdk.#ctor(View.Sdk.EmbeddingsGeneratorEnum,System.String,System.String,System.Int32,System.Int32,System.Int32,System.Action{View.Sdk.SeverityEnum,System.String})">
             <summary>
             Instantiate.
             </summary>
@@ -7722,6 +7742,8 @@
             <param name="endpoint">Endpoint URL.</param>
             <param name="apiKey">API key.</param>
             <param name="maxParallelTasks">Maximum number of parallel tasks.</param>
+            <param name="maxRetries">Maximum number of retries to perform on any given task.</param>
+            <param name="maxFailures">Maximum number of failures to support before failing the operation.</param>
             <param name="logger">Logger method.</param>
         </member>
         <member name="M:View.Sdk.Vector.ViewEmbeddingsSdk.ValidateConnectivity(System.Threading.CancellationToken)">
@@ -7756,18 +7778,24 @@
             API key for Huggingface.
             </summary>
         </member>
+        <member name="P:View.Sdk.Vector.ViewLcproxySdk.MaxRetries">
+            <summary>
+            Maximum number of retries to perform on any given task.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Vector.ViewLcproxySdk.Logger">
             <summary>
             Logger.
             </summary>
         </member>
-        <member name="M:View.Sdk.Vector.ViewLcproxySdk.#ctor(System.String,System.String,System.Action{View.Sdk.SeverityEnum,System.String})">
+        <member name="M:View.Sdk.Vector.ViewLcproxySdk.#ctor(System.String,System.String,System.Action{View.Sdk.SeverityEnum,System.String},System.Int32)">
             <summary>
             Instantiate.
             </summary>
             <param name="endpoint">Endpoint URL.  Default is http://localhost:8301/.</param>
             <param name="apiKey">API key.</param>
             <param name="logger">Logger.</param>
+            <param name="maxRetries">Maximum number of retries before failing the operation.</param>
         </member>
         <member name="M:View.Sdk.Vector.ViewLcproxySdk.ValidateConnectivity(System.Threading.CancellationToken)">
             <summary>
@@ -7809,18 +7837,24 @@
             API key.
             </summary>
         </member>
+        <member name="P:View.Sdk.Vector.ViewOpenAiSdk.MaxRetries">
+            <summary>
+            Maximum number of retries to perform on any given task.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Vector.ViewOpenAiSdk.Logger">
             <summary>
             Logger.
             </summary>
         </member>
-        <member name="M:View.Sdk.Vector.ViewOpenAiSdk.#ctor(System.String,System.String,System.Action{View.Sdk.SeverityEnum,System.String})">
+        <member name="M:View.Sdk.Vector.ViewOpenAiSdk.#ctor(System.String,System.String,System.Action{View.Sdk.SeverityEnum,System.String},System.Int32)">
             <summary>
             Instantiate.
             </summary>
             <param name="endpoint">Base URL.  Default is https://api.openai.com/v1/.</param>
             <param name="apiKey">API key.</param>
             <param name="logger">Logger.</param>
+            <param name="maxRetries">Maximum number of retries before failing the operation.</param>
         </member>
         <member name="M:View.Sdk.Vector.ViewOpenAiSdk.ValidateConnectivity(System.Threading.CancellationToken)">
             <summary>

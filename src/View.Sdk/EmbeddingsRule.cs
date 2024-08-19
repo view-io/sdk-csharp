@@ -105,6 +105,38 @@
         }
 
         /// <summary>
+        /// Maximum number of retries to perform on any given task.
+        /// </summary>
+        public int MaxRetries
+        {
+            get
+            {
+                return _MaxRetries;
+            }
+            set
+            {
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(MaxRetries));
+                _MaxRetries = value;
+            }
+        }
+
+        /// <summary>
+        /// Maximum number of failures to support before failing the operation.
+        /// </summary>
+        public int MaxFailures
+        {
+            get
+            {
+                return _MaxFailures;
+            }
+            set
+            {
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(MaxFailures));
+                _MaxFailures = value;
+            }
+        }
+
+        /// <summary>
         /// Vector store URL.
         /// </summary>
         public string VectorStoreUrl { get; set; } = "http://localhost:8311/";
@@ -153,6 +185,8 @@
         private int? _RetentionMinutes = null;
         private int _MaxGeneratorTasks = 16;
         private int _MaxContentLength = 16 * 1024 * 1024;
+        private int _MaxRetries = 3;
+        private int _MaxFailures = 3;
 
         #endregion
 

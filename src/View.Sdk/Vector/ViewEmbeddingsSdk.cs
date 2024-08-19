@@ -59,6 +59,38 @@
         }
 
         /// <summary>
+        /// Maximum number of retries to perform on any given task.
+        /// </summary>
+        public int MaxRetries
+        {
+            get
+            {
+                return _MaxRetries;
+            }
+            private set
+            {
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(MaxRetries));
+                _MaxRetries = value;
+            }
+        }
+
+        /// <summary>
+        /// Maximum number of failures to support before failing the operation.
+        /// </summary>
+        public int MaxFailures
+        {
+            get
+            {
+                return _MaxFailures;
+            }
+            private set
+            {
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(MaxFailures));
+                _MaxFailures = value;
+            }
+        }
+
+        /// <summary>
         /// Logger.
         /// </summary>
         public Action<SeverityEnum, string> Logger { get; set; } = null;
@@ -76,6 +108,10 @@
 
         private SemaphoreSlim _Semaphore = null;
 
+        private int _MaxRetries = 3;
+        private int _MaxFailures = 3;
+        private int _FailureCount = 0;
+
         #endregion
 
         #region Constructors-and-Factories
@@ -87,18 +123,24 @@
         /// <param name="endpoint">Endpoint URL.</param>
         /// <param name="apiKey">API key.</param>
         /// <param name="maxParallelTasks">Maximum number of parallel tasks.</param>
+        /// <param name="maxRetries">Maximum number of retries to perform on any given task.</param>
+        /// <param name="maxFailures">Maximum number of failures to support before failing the operation.</param>
         /// <param name="logger">Logger method.</param>
         public ViewEmbeddingsSdk(
             EmbeddingsGeneratorEnum generator,
             string endpoint,
             string apiKey,
             int maxParallelTasks = 16,
+            int maxRetries = 3,
+            int maxFailures = 3,
             Action<SeverityEnum, string> logger = null)
         {
             Generator = generator;
             ApiKey = apiKey;
             Endpoint = endpoint;
             MaxParallelTasks = maxParallelTasks;
+            MaxRetries = maxRetries;
+            MaxFailures = maxFailures;
             Logger = logger;
 
             _Semaphore = new SemaphoreSlim(_MaxParallelTasks);
@@ -161,10 +203,10 @@
             switch (Generator)
             {
                 case EmbeddingsGeneratorEnum.LCProxy:
-                    _LcProxy = new ViewLcproxySdk(Endpoint, ApiKey, Logger);
+                    _LcProxy = new ViewLcproxySdk(Endpoint, ApiKey, Logger, MaxRetries);
                     break;
                 case EmbeddingsGeneratorEnum.OpenAI:
-                    _OpenAI = new ViewOpenAiSdk(Endpoint, ApiKey, Logger);
+                    _OpenAI = new ViewOpenAiSdk(Endpoint, ApiKey, Logger, MaxRetries);
                     break;
                 default:
                     throw new ArgumentException("Unknown embeddings generator '" + Generator.ToString() + "'.");
@@ -191,6 +233,14 @@
                 if (tasks.Count > 0)
                 {
                     Task completed = await Task.WhenAny(tasks);
+
+                    if (completed.IsFaulted)
+                    {
+                        Interlocked.Increment(ref _FailureCount);
+                        if (_FailureCount >= _MaxFailures)
+                            throw new ExternalException("The maximum number of failures for this processing task (" + _MaxFailures + ") was exceeded.");
+                    }
+
                     tasks.Remove(completed);
                     await completed;
                 }
