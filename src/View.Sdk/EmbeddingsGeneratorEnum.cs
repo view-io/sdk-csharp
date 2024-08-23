@@ -18,6 +18,11 @@
         /// Langchain proxy.
         /// </summary>
         [EnumMember(Value = "LCProxy")]
-        LCProxy
+        LCProxy,
+        /// <summary>
+        /// Ollama.
+        /// </summary>
+        [EnumMember(Value = "Ollama")]
+        Ollama
     }
 }

@@ -89,6 +89,22 @@
         public string GeneratorApiKey { get; set; } = null;
 
         /// <summary>
+        /// Maximum number of chunks to process per request.  Default is 16.
+        /// </summary>
+        public int BatchSize
+        {
+            get
+            {
+                return _BatchSize;
+            }
+            set
+            {
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(BatchSize));
+                _BatchSize = value;
+            }
+        }
+
+        /// <summary>
         /// Maximum number of parallel embeddings generation tasks.  Default is 16.
         /// </summary>
         public int MaxGeneratorTasks
@@ -105,7 +121,7 @@
         }
 
         /// <summary>
-        /// Maximum number of retries to perform on any given task.
+        /// Maximum number of retries to perform on any given task.  Default is 3.
         /// </summary>
         public int MaxRetries
         {
@@ -121,7 +137,7 @@
         }
 
         /// <summary>
-        /// Maximum number of failures to support before failing the operation.
+        /// Maximum number of failures to support before failing the operation.  Default is 3.
         /// </summary>
         public int MaxFailures
         {
@@ -183,6 +199,7 @@
         #region Private-Members
 
         private int? _RetentionMinutes = null;
+        private int _BatchSize = 16;
         private int _MaxGeneratorTasks = 16;
         private int _MaxContentLength = 16 * 1024 * 1024;
         private int _MaxRetries = 3;

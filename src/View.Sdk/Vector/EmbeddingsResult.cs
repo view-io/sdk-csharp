@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using Timestamps;
+    using View.Sdk.Vector;
 
     /// <summary>
     /// Embeddings result.
@@ -48,18 +49,18 @@
         public string Model { get; set; } = null;
 
         /// <summary>
-        /// Embeddings.
+        /// Result.
         /// </summary>
-        public List<float> Embeddings
+        public List<EmbeddingsMap> Result
         {
             get
             {
-                return _Embeddings;
+                return _Result;
             }
             set
             {
-                if (value == null) value = new List<float>();
-                _Embeddings = value;
+                if (value == null) value = new List<EmbeddingsMap>();
+                _Result = value;
             }
         }
 
@@ -68,7 +69,7 @@
         #region Private-Members
 
         private int _StatusCode = 200;
-        private List<float> _Embeddings = new List<float>();
+        private List<EmbeddingsMap> _Result = new List<EmbeddingsMap>();
 
         #endregion
 

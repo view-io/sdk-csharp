@@ -2,59 +2,52 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Linq.Expressions;
     using System.Net.Http;
-    using System.Runtime.InteropServices;
     using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.VisualBasic;
     using RestWrapper;
-    using View.Sdk;
     using View.Sdk.Serialization;
-    
+    using View.Sdk;
+    using System.Runtime.InteropServices;
+    using static System.Net.Mime.MediaTypeNames;
+    using System.Linq;
+
     /// <summary>
-    /// OpenAI embeddings generator.
+    /// View Ollama SDK.
     /// </summary>
-    public class ViewOpenAiSdk : EmbeddingsSdkBase
+    public class ViewOllamaSdk : EmbeddingsSdkBase
     {
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+
         #region Public-Members
 
         #endregion
 
         #region Private-Members
 
-        private string _DefaultModel = "text-embedding-ada-002";
+        private Serializer _Serializer = new Serializer();
+        private string _DefaultModel = "llama3";
 
         #endregion
 
         #region Constructors-and-Factories
 
-        /// <summary>
-        /// Instantiate.
-        /// </summary>
-        /// <param name="endpoint">Base URL.  Default is https://api.openai.com/v1/.</param>
-        /// <param name="apiKey">API key.</param>
-        /// <param name="batchSize">Maximum number of chunks to submit in an individual processing request.</param>
-        /// <param name="maxParallelTasks">Maximum number of parallel tasks.</param>
-        /// <param name="maxRetries">Maximum number of retries to perform on any given task.</param>
-        /// <param name="maxFailures">Maximum number of failures to support before failing the operation.</param>
-        /// <param name="logger">Logger.</param>
-        public ViewOpenAiSdk(
-            string endpoint,
+        /// <inheritdoc />
+        public ViewOllamaSdk(
+            string endpoint = "http://localhost:7869",
             string apiKey = null,
             int batchSize = 8,
             int maxParallelTasks = 16,
             int maxRetries = 3,
             int maxFailures = 3,
             Action<SeverityEnum, string> logger = null) : base(
-                EmbeddingsGeneratorEnum.OpenAI, 
-                endpoint, 
-                apiKey, 
-                batchSize, 
-                maxParallelTasks, 
-                maxRetries, 
-                maxFailures, 
+                EmbeddingsGeneratorEnum.Ollama,
+                endpoint,
+                apiKey,
+                batchSize,
+                maxParallelTasks,
+                maxRetries,
+                maxFailures,
                 logger)
         {
         }
@@ -68,12 +61,8 @@
         {
             try
             {
-                string url = Endpoint + "models";
-
-                using (RestRequest req = new RestRequest(url, HttpMethod.Head))
+                using (RestRequest req = new RestRequest(Endpoint, HttpMethod.Head))
                 {
-                    req.Authorization.BearerToken = ApiKey;
-
                     using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
                     {
                         if (resp != null && resp.StatusCode >= 200 && resp.StatusCode <= 299) return true;
@@ -88,10 +77,47 @@
         }
 
         /// <inheritdoc />
+        public override async Task<bool> LoadModels(List<string> models, CancellationToken token = default)
+        {
+            throw new InvalidOperationException("This API is not implemented for this embeddings generator.");
+        }
+
+        /// <inheritdoc />
+        public override async Task<bool> LoadModel(string model, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(model)) return false;
+
+            string url = Endpoint + "api/pull";
+
+            try
+            {
+                using (RestRequest req = new RestRequest(url, HttpMethod.Post))
+                {
+                    req.ContentType = "application/json";
+
+                    Dictionary<string, object> dict = new Dictionary<string, object>();
+                    dict.Add("model", model);
+
+                    string json = _Serializer.SerializeJson(dict, true);
+
+                    using (RestResponse resp = await req.SendAsync(json, token).ConfigureAwait(false))
+                    {
+                        if (resp != null && resp.StatusCode >= 200 && resp.StatusCode <= 299) return true;
+                        return false;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        /// <inheritdoc />
         public override async Task<List<SemanticCell>> ProcessSemanticCells(
-            List<SemanticCell> cells,
-            string model,
-            int timeoutMs = 300000,
+            List<SemanticCell> cells, 
+            string model, 
+            int timeoutMs = 300000, 
             CancellationToken token = default)
         {
             if (cells == null || cells.Count < 1) return cells;
@@ -105,27 +131,95 @@
         }
 
         /// <inheritdoc />
-        public override Task<List<ModelInformation>> ListModels(CancellationToken token = default)
+        public override async Task<List<ModelInformation>> ListModels(CancellationToken token = default)
         {
-            throw new InvalidOperationException("This API is not implemented for this embeddings generator.");
+            string url = Endpoint + "api/tags";
+
+            try
+            {
+                using (RestRequest req = new RestRequest(url, HttpMethod.Get))
+                {
+                    using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
+                    {
+                        if (resp == null)
+                        {
+                            Logger?.Invoke(SeverityEnum.Warn, "no response from " + url);
+                            return null;
+                        }
+                        else
+                        {
+                            if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                            {
+                                if (!String.IsNullOrEmpty(resp.DataAsString))
+                                {
+                                    OllamaModelResult result = _Serializer.DeserializeJson<OllamaModelResult>(resp.DataAsString);
+                                    return ModelInformation.FromOllamaResponse(result);
+                                }
+                                else
+                                {
+                                    Logger?.Invoke(SeverityEnum.Warn, "no data from " + url);
+                                    return null;
+                                }
+                            }
+                            else
+                            {
+                                Logger?.Invoke(SeverityEnum.Warn, "status " + resp.StatusCode + " received from " + url + ": " + Environment.NewLine + resp.DataAsString);
+                                return null;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logger?.Invoke(SeverityEnum.Warn, "exception while retrieving models: " + Environment.NewLine + e.ToString());
+                return null;
+            }
         }
 
         /// <inheritdoc />
-        public override Task<bool> LoadModels(List<string> models, CancellationToken token = default)
+        public override async Task<bool> DeleteModel(string name, CancellationToken token = default)
         {
-            throw new InvalidOperationException("This API is not implemented for this embeddings generator.");
-        }
+            string url = Endpoint + "api/delete";
 
-        /// <inheritdoc />
-        public override Task<bool> DeleteModel(string name, CancellationToken token = default)
-        {
-            throw new InvalidOperationException("This API is not implemented for this embeddings generator.");
-        }
+            try
+            {
+                using (RestRequest req = new RestRequest(url, HttpMethod.Delete))
+                {
+                    req.ContentType = "application/json";
 
-        /// <inheritdoc />
-        public override Task<bool> LoadModel(string model, CancellationToken token = default)
-        {
-            throw new InvalidOperationException("This API is not implemented for this embeddings generator.");
+                    Dictionary<string, object> dict = new Dictionary<string, object>();
+                    dict.Add("name", name);
+
+                    string json = _Serializer.SerializeJson(dict, true);
+
+                    using (RestResponse resp = await req.SendAsync(json, token).ConfigureAwait(false))
+                    {
+                        if (resp == null)
+                        {
+                            Logger?.Invoke(SeverityEnum.Warn, "no response from " + url);
+                            return false;
+                        }
+                        else
+                        {
+                            if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                Logger?.Invoke(SeverityEnum.Warn, "status " + resp.StatusCode + " received from " + url + ": " + Environment.NewLine + resp.DataAsString);
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logger?.Invoke(SeverityEnum.Warn, "exception while deleting models: " + Environment.NewLine + e.ToString());
+                return false;
+            }
         }
 
         #endregion
@@ -168,7 +262,7 @@
             int timeoutMs = 300000,
             CancellationToken token = default)
         {
-            string url = Endpoint + "embeddings";
+            string url = Endpoint + "api/embed";
             int failureCount = 0;
 
             List<string> content = new List<string>();
@@ -186,7 +280,6 @@
                     {
                         req.ContentType = "application/json";
                         req.TimeoutMilliseconds = timeoutMs;
-                        req.Authorization.BearerToken = ApiKey;
 
                         Dictionary<string, object> dict = new Dictionary<string, object>();
                         dict.Add("model", model);
@@ -207,12 +300,12 @@
                                 {
                                     if (!String.IsNullOrEmpty(resp.DataAsString))
                                     {
-                                        OpenAiEmbeddingsResult openAiResult = Serializer.DeserializeJson<OpenAiEmbeddingsResult>(resp.DataAsString);
+                                        OllamaEmbeddingsResult ollamaResult = Serializer.DeserializeJson<OllamaEmbeddingsResult>(resp.DataAsString);
                                         result.Success = true;
                                         result.Model = model;
                                         result.Url = url;
                                         result.StatusCode = resp.StatusCode;
-                                        result.Result = OpenAiEmbeddingsResult.ToEmbeddingsMaps(content, openAiResult);
+                                        result.Result = OllamaEmbeddingsResult.ToEmbeddingsMaps(content, ollamaResult);
 
                                         MergeEmbeddingsMaps(chunks, result.Result);
 
@@ -260,5 +353,7 @@
         }
 
         #endregion
+
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
     }
 }

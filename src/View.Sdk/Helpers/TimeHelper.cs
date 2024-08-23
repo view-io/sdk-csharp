@@ -12,20 +12,17 @@
         /// </summary>
         /// <param name="start">Start time.</param>
         /// <param name="end">End time.</param>
+        /// <param name="decimalPlaces">Number of decimal places.</param>
         /// <returns>Milliseconds.</returns>
-        public static double TotalMsBetween(DateTime start, DateTime end)
+        public static double TotalMsBetween(DateTime start, DateTime end, int decimalPlaces = 2)
         {
-            try
-            {
-                start = start.ToUniversalTime();
-                end = end.ToUniversalTime();
-                TimeSpan total = end - start;
-                return total.TotalMilliseconds;
-            }
-            catch (Exception)
-            {
-                return -1;
-            }
+            if (decimalPlaces < 0) throw new ArgumentOutOfRangeException(nameof(decimalPlaces));
+
+            start = start.ToUniversalTime();
+            end = end.ToUniversalTime();
+            TimeSpan total = end - start;
+
+            return Math.Round(Math.Abs(total.TotalMilliseconds), decimalPlaces);
         }
     }
 }

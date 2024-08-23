@@ -20,15 +20,17 @@
         private static string _Endpoint = null;
         private static string _EndpointLcproxy = "http://localhost:8301/";
         private static string _EndpointOpenAi = "https://api.openai.com/v1/";
+        private static string _EndpointOllama = "http://localhost:7869/";
 
         private static string _ApiKey = null;
 
         private static string _DefaultModel = null;
         private static string _DefaultLcproxyModel = "all-MiniLM-L6-v2";
         private static string _DefaultOpenAiModel = "text-embedding-ada-002";
+        private static string _DefaultOllamaModel = "all-minilm";
 
-        private static int _MaxTasks = 4;
-        private static int _TimeoutMs = 60000;
+        private static int _MaxTasks = 16;
+        private static int _TimeoutMs = 300000;
 
         private static ViewEmbeddingsSdk _Sdk = null;
         private static Serializer _Serializer = new Serializer();
@@ -37,7 +39,7 @@
         {
             _GeneratorType = (EmbeddingsGeneratorEnum)(Enum.Parse(
                 typeof(EmbeddingsGeneratorEnum),
-                Inputty.GetString("Generator type [LCProxy/OpenAI]:", "LCProxy", false)));
+                Inputty.GetString("Generator type [LCProxy/OpenAI/Ollama]:", "LCProxy", false)));
 
             if (_GeneratorType == EmbeddingsGeneratorEnum.LCProxy)
             {
@@ -48,6 +50,11 @@
             {
                 _Endpoint = Inputty.GetString("Endpoint :", _EndpointOpenAi, false);
                 _DefaultModel = _DefaultOpenAiModel;
+            }
+            else if (_GeneratorType == EmbeddingsGeneratorEnum.Ollama)
+            {
+                _Endpoint = Inputty.GetString("Endpoint :", _EndpointOllama, false);
+                _DefaultModel = _DefaultOllamaModel;
             }
             else
             {
@@ -113,7 +120,7 @@
             Console.WriteLine("");
             Console.Write("Response:");
             if (obj != null)
-                Console.WriteLine(Environment.NewLine + _Serializer.SerializeJson(obj, true));
+                Console.WriteLine(Environment.NewLine + _Serializer.SerializeJson(obj, false));
             else
                 Console.WriteLine("(null)");
             Console.WriteLine("");
@@ -143,7 +150,7 @@
 
             List<SemanticCell> cells = _Serializer.DeserializeJson<List<SemanticCell>>(File.ReadAllText(file));
 
-            List<SemanticCell> result = await _Sdk.Process(cells, model, _TimeoutMs);
+            List<SemanticCell> result = await _Sdk.ProcessSemanticCells(cells, model, _TimeoutMs);
             EnumerateResponse(result);
         }
 
