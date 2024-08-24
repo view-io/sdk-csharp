@@ -35,14 +35,19 @@
         [EnumMember(Value = "OrchestratorServer")]
         OrchestratorServer,
         /// <summary>
-        /// PostgresVectorProxy.
+        /// VectorServer.
         /// </summary>
-        [EnumMember(Value = "PostgresVectorProxy")]
-        PostgresVectorProxy,
+        [EnumMember(Value = "VectorServer")]
+        VectorServer,
         /// <summary>
         /// StorageServer.
         /// </summary>
         [EnumMember(Value = "StorageServer")]
         StorageServer,
+        /// <summary>
+        /// SemanticCellExtractorServer.
+        /// </summary>
+        [EnumMember(Value = "SemanticCellExtractorServer")]
+        SemanticCellExtractorServer
     }
 }

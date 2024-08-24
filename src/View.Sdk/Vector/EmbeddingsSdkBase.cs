@@ -124,6 +124,22 @@
         }
 
         /// <summary>
+        /// Timeout in milliseconds.
+        /// </summary>
+        public int TimeoutMs
+        {
+            get
+            {
+                return _TimeoutMs;
+            }
+            set
+            {
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(TimeoutMs));
+                _TimeoutMs = value;
+            }
+        }
+
+        /// <summary>
         /// Logger.
         /// </summary>
         public Action<SeverityEnum, string> Logger { get; set; } = null;
@@ -138,6 +154,7 @@
         private int _MaxParallelTasks = 16;
         private int _MaxRetries = 3;
         private int _MaxFailures = 3;
+        private int _TimeoutMs = 300000;
 
         private SemaphoreSlim _Semaphore = null;
 

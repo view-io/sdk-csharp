@@ -4190,6 +4190,11 @@
             Endpoint.
             </summary>
         </member>
+        <member name="P:View.Sdk.Graph.LiteGraphDriver.TimeoutMs">
+            <summary>
+            Timeout, in milliseconds.
+            </summary>
+        </member>
         <member name="M:View.Sdk.Graph.LiteGraphDriver.#ctor(System.String)">
             <summary>
             Instantiate.
@@ -6424,14 +6429,19 @@
             OrchestratorServer.
             </summary>
         </member>
-        <member name="F:View.Sdk.SoftwareInstanceTypeEnum.PostgresVectorProxy">
+        <member name="F:View.Sdk.SoftwareInstanceTypeEnum.VectorServer">
             <summary>
-            PostgresVectorProxy.
+            VectorServer.
             </summary>
         </member>
         <member name="F:View.Sdk.SoftwareInstanceTypeEnum.StorageServer">
             <summary>
             StorageServer.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.SoftwareInstanceTypeEnum.SemanticCellExtractorServer">
+            <summary>
+            SemanticCellExtractorServer.
             </summary>
         </member>
         <member name="T:View.Sdk.SourceDocument">
@@ -7695,6 +7705,11 @@
             Maximum number of failures to support before failing the operation.
             </summary>
         </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsSdkBase.TimeoutMs">
+            <summary>
+            Timeout in milliseconds.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Vector.EmbeddingsSdkBase.Logger">
             <summary>
             Logger.
@@ -8036,12 +8051,17 @@
             Maximum number of failures to support before failing the operation.
             </summary>
         </member>
+        <member name="P:View.Sdk.Vector.ViewEmbeddingsSdk.TimeoutMs">
+            <summary>
+            Timeout in milliseconds.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Vector.ViewEmbeddingsSdk.Logger">
             <summary>
             Logger.
             </summary>
         </member>
-        <member name="M:View.Sdk.Vector.ViewEmbeddingsSdk.#ctor(View.Sdk.EmbeddingsGeneratorEnum,System.String,System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Action{View.Sdk.SeverityEnum,System.String})">
+        <member name="M:View.Sdk.Vector.ViewEmbeddingsSdk.#ctor(View.Sdk.EmbeddingsGeneratorEnum,System.String,System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Action{View.Sdk.SeverityEnum,System.String})">
             <summary>
             Instantiate.
             </summary>
@@ -8052,6 +8072,7 @@
             <param name="maxParallelTasks">Maximum number of parallel tasks.</param>
             <param name="maxRetries">Maximum number of retries to perform on any given task.</param>
             <param name="maxFailures">Maximum number of failures to support before failing the operation.</param>
+            <param name="timeoutMs">Timeout, in milliseconds.</param>
             <param name="logger">Logger method.</param>
         </member>
         <member name="M:View.Sdk.Vector.ViewEmbeddingsSdk.ValidateConnectivity(System.Threading.CancellationToken)">

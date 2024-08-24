@@ -30,6 +30,22 @@
             }
         }
 
+        /// <summary>
+        /// Timeout, in milliseconds.
+        /// </summary>
+        public int TimeoutMs
+        {
+            get
+            {
+                return _TimeoutMs;
+            }
+            set
+            {
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(TimeoutMs));
+                _TimeoutMs = value;
+            }
+        }
+
         #endregion
 
         #region Private-Members
@@ -37,6 +53,7 @@
         private LiteGraphSdk _Sdk = null;
         private string _Endpoint = null;
         private Serializer _Serializer = new Serializer();
+        private int _TimeoutMs = 300000;
 
         #endregion
 

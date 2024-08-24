@@ -107,6 +107,22 @@
         }
 
         /// <summary>
+        /// Timeout in milliseconds.
+        /// </summary>
+        public int TimeoutMs
+        {
+            get
+            {
+                return _TimeoutMs;
+            }
+            set
+            {
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(TimeoutMs));
+                _TimeoutMs = value;
+            }
+        }
+
+        /// <summary>
         /// Logger.
         /// </summary>
         public Action<SeverityEnum, string> Logger { get; set; } = null;
@@ -122,6 +138,7 @@
         private int _MaxParallelTasks = 16;
         private int _MaxRetries = 3;
         private int _MaxFailures = 3;
+        private int _TimeoutMs = 300000;
 
         private ViewLcproxySdk _LcProxy = null;
         private ViewOllamaSdk _Ollama = null;
@@ -143,6 +160,7 @@
         /// <param name="maxParallelTasks">Maximum number of parallel tasks.</param>
         /// <param name="maxRetries">Maximum number of retries to perform on any given task.</param>
         /// <param name="maxFailures">Maximum number of failures to support before failing the operation.</param>
+        /// <param name="timeoutMs">Timeout, in milliseconds.</param>
         /// <param name="logger">Logger method.</param>
         public ViewEmbeddingsSdk(
             EmbeddingsGeneratorEnum generator,
@@ -152,6 +170,7 @@
             int maxParallelTasks = 16,
             int maxRetries = 3,
             int maxFailures = 3,
+            int timeoutMs = 300000,
             Action<SeverityEnum, string> logger = null)
         {
             Generator = generator;
@@ -161,6 +180,7 @@
             MaxParallelTasks = maxParallelTasks;
             MaxRetries = maxRetries;
             MaxFailures = maxFailures;
+            TimeoutMs = timeoutMs;
             Logger = logger;
 
             _Semaphore = new SemaphoreSlim(_MaxParallelTasks);
