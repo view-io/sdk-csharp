@@ -143,6 +143,7 @@
         private ViewLcproxySdk _LcProxy = null;
         private ViewOllamaSdk _Ollama = null;
         private ViewOpenAiSdk _OpenAI = null;
+        private ViewVoyageAiSdk _VoyageAI = null;
 
         private SemaphoreSlim _Semaphore = null;
 
@@ -211,6 +212,10 @@
             {
                 return await _OpenAI.ValidateConnectivity(token).ConfigureAwait(false);
             }
+            else if (Generator == EmbeddingsGeneratorEnum.VoyageAI)
+            {
+                return await _VoyageAI.ValidateConnectivity(token).ConfigureAwait(false);
+            }
             else
                 throw new ArgumentException("Unknown embeddings generator '" + Generator.ToString() + "'.");
         }
@@ -246,6 +251,10 @@
             {
                 return await _OpenAI.ProcessSemanticCells(cells, model, timeoutMs, token).ConfigureAwait(false);
             }
+            else if (Generator == EmbeddingsGeneratorEnum.VoyageAI)
+            {
+                return await _VoyageAI.ProcessSemanticCells(cells, model, timeoutMs, token).ConfigureAwait(false);
+            }
             else
                 throw new ArgumentException("Unknown embeddings generator '" + Generator.ToString() + "'.");
         }
@@ -266,6 +275,9 @@
                     break;
                 case EmbeddingsGeneratorEnum.OpenAI:
                     _OpenAI = new ViewOpenAiSdk(Endpoint, ApiKey, BatchSize, MaxParallelTasks, MaxRetries, MaxFailures, Logger);
+                    break;
+                case EmbeddingsGeneratorEnum.VoyageAI:
+                    _VoyageAI = new ViewVoyageAiSdk(Endpoint, ApiKey, BatchSize, MaxParallelTasks, MaxRetries, MaxFailures, Logger);
                     break;
                 default:
                     throw new ArgumentException("Unknown embeddings generator '" + Generator.ToString() + "'.");

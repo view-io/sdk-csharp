@@ -2479,6 +2479,11 @@
             Ollama.
             </summary>
         </member>
+        <member name="F:View.Sdk.EmbeddingsGeneratorEnum.VoyageAI">
+            <summary>
+            VoyageAI.
+            </summary>
+        </member>
         <member name="T:View.Sdk.EmbeddingsRule">
             <summary>
             Embeddings rule.
@@ -8242,6 +8247,94 @@
             <param name="queryReq">Query request.</param>
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
+        </member>
+        <member name="T:View.Sdk.Vector.ViewVoyageAiSdk">
+            <summary>
+            VoyageAI embeddings generator.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.ViewVoyageAiSdk.#ctor(System.String,System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Action{View.Sdk.SeverityEnum,System.String})">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="endpoint">Base URL.  Default is https://api.openai.com/v1/.</param>
+            <param name="apiKey">API key.</param>
+            <param name="batchSize">Maximum number of chunks to submit in an individual processing request.</param>
+            <param name="maxParallelTasks">Maximum number of parallel tasks.</param>
+            <param name="maxRetries">Maximum number of retries to perform on any given task.</param>
+            <param name="maxFailures">Maximum number of failures to support before failing the operation.</param>
+            <param name="logger">Logger.</param>
+        </member>
+        <member name="M:View.Sdk.Vector.ViewVoyageAiSdk.ValidateConnectivity(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Vector.ViewVoyageAiSdk.ProcessSemanticCells(System.Collections.Generic.List{View.Sdk.SemanticCell},System.String,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Vector.ViewVoyageAiSdk.ListModels(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Vector.ViewVoyageAiSdk.LoadModels(System.Collections.Generic.List{System.String},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Vector.ViewVoyageAiSdk.DeleteModel(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Vector.ViewVoyageAiSdk.LoadModel(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Vector.VoyageAiEmbeddingsResult">
+            <summary>
+            VoyageAI embeddings result.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VoyageAiEmbeddingsResult.Object">
+            <summary>
+            Object type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VoyageAiEmbeddingsResult.Data">
+            <summary>
+            Data.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.VoyageAiEmbeddingsResult.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.VoyageAiEmbeddingsResult.ToEmbeddingsMaps(System.Collections.Generic.List{System.String},View.Sdk.Vector.VoyageAiEmbeddingsResult)">
+            <summary>
+            Build embeddings maps from content and OpenAI result.
+            </summary>
+            <param name="content">Content.</param>
+            <param name="openAiResult">OpenAI result.</param>
+            <returns>List of embeddings maps.</returns>
+        </member>
+        <member name="T:View.Sdk.Vector.VoyageAiEmbeddingsResult.VoyageAiEmbeddings">
+            <summary>
+            VoyageAI embeddings.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VoyageAiEmbeddingsResult.VoyageAiEmbeddings.Embeddings">
+            <summary>
+            Embeddings.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VoyageAiEmbeddingsResult.VoyageAiEmbeddings.Index">
+            <summary>
+            Index.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VoyageAiEmbeddingsResult.VoyageAiEmbeddings.ObjectType">
+            <summary>
+            Object type.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.VoyageAiEmbeddingsResult.VoyageAiEmbeddings.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
         </member>
         <member name="T:View.Sdk.EmbeddingsResult">
             <summary>

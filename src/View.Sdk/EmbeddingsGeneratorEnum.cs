@@ -23,6 +23,11 @@
         /// Ollama.
         /// </summary>
         [EnumMember(Value = "Ollama")]
-        Ollama
+        Ollama,
+        /// <summary>
+        /// VoyageAI.
+        /// </summary>
+        [EnumMember(Value = "VoyageAI")]
+        VoyageAI
     }
 }

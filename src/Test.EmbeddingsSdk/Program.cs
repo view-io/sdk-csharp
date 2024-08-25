@@ -20,6 +20,7 @@
         private static string _Endpoint = null;
         private static string _EndpointLcproxy = "http://localhost:8301/";
         private static string _EndpointOpenAi = "https://api.openai.com/v1/";
+        private static string _EndpointVoyageAi = "https://api.voyageai.com/v1/";
         private static string _EndpointOllama = "http://localhost:7869/";
 
         private static string _ApiKey = null;
@@ -27,6 +28,7 @@
         private static string _DefaultModel = null;
         private static string _DefaultLcproxyModel = "all-MiniLM-L6-v2";
         private static string _DefaultOpenAiModel = "text-embedding-ada-002";
+        private static string _DefaultVoyageAiModel = "voyage-large-2-instruct";
         private static string _DefaultOllamaModel = "all-minilm";
 
         private static int _MaxTasks = 16;
@@ -39,7 +41,7 @@
         {
             _GeneratorType = (EmbeddingsGeneratorEnum)(Enum.Parse(
                 typeof(EmbeddingsGeneratorEnum),
-                Inputty.GetString("Generator type [LCProxy/OpenAI/Ollama]:", "LCProxy", false)));
+                Inputty.GetString("Generator type [LCProxy/OpenAI/Ollama/VoyageAI]:", "LCProxy", false)));
 
             if (_GeneratorType == EmbeddingsGeneratorEnum.LCProxy)
             {
@@ -55,6 +57,11 @@
             {
                 _Endpoint = Inputty.GetString("Endpoint :", _EndpointOllama, false);
                 _DefaultModel = _DefaultOllamaModel;
+            }
+            else if (_GeneratorType == EmbeddingsGeneratorEnum.VoyageAI)
+            {
+                _Endpoint = Inputty.GetString("Endpoint :", _EndpointVoyageAi, false);
+                _DefaultModel = _DefaultVoyageAiModel;
             }
             else
             {
