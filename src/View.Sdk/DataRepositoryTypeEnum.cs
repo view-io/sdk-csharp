@@ -10,6 +10,11 @@
     public enum DataRepositoryTypeEnum
     {
         /// <summary>
+        /// Other.
+        /// </summary>
+        [EnumMember(Value = "Other")]
+        Other,
+        /// <summary>
         /// File.
         /// </summary>
         [EnumMember(Value = "File")]

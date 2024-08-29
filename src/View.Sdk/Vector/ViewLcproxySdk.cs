@@ -15,7 +15,7 @@
     /// <summary>
     /// View Langchain Proxy SDK.
     /// </summary>
-    public class ViewLcproxySdk : EmbeddingsSdkBase
+    public class ViewLcproxySdk : EmbeddingsSdkBase, IDisposable
     {
         #region Public-Members
 

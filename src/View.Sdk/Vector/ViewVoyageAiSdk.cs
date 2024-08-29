@@ -16,7 +16,7 @@
     /// <summary>
     /// VoyageAI embeddings generator.
     /// </summary>
-    public class ViewVoyageAiSdk : EmbeddingsSdkBase
+    public class ViewVoyageAiSdk : EmbeddingsSdkBase, IDisposable
     {
         #region Public-Members
 
@@ -66,7 +66,23 @@
         /// <inheritdoc />
         public override async Task<bool> ValidateConnectivity(CancellationToken token = default)
         {
-            return true;
+            string url = Endpoint + "healthz";
+
+            try
+            {
+                using (RestRequest req = new RestRequest(Endpoint, HttpMethod.Get))
+                {
+                    using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
+                    {
+                        if (resp != null && resp.StatusCode >= 200 && resp.StatusCode <= 299) return true;
+                        return false;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         /// <inheritdoc />

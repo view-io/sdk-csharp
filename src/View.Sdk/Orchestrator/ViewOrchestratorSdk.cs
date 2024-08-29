@@ -12,7 +12,7 @@
     /// <summary>
     /// View Orchestrator SDK.
     /// </summary>
-    public class ViewOrchestratorSdk : ViewSdkBase
+    public class ViewOrchestratorSdk : ViewSdkBase, IDisposable
     {
         #region Public-Members
 

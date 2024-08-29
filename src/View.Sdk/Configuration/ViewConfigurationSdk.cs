@@ -12,7 +12,7 @@
     /// <summary>
     /// View Configuration SDK.
     /// </summary>
-    public class ViewConfigurationSdk : ViewSdkBase
+    public class ViewConfigurationSdk : ViewSdkBase, IDisposable
     {
         #region Public-Members
 

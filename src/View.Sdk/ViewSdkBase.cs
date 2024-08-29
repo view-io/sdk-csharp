@@ -11,7 +11,7 @@
     /// <summary>
     /// View SDK base class.
     /// </summary>
-    public class ViewSdkBase
+    public class ViewSdkBase : IDisposable
     {
         #region Public-Members
 
@@ -196,6 +196,14 @@
         #endregion
 
         #region Public-Methods
+
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        public void Dispose()
+        {
+            _Serializer = null;
+        }
 
         /// <summary>
         /// Emit a log message.

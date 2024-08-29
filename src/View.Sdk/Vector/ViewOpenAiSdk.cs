@@ -16,7 +16,7 @@
     /// <summary>
     /// OpenAI embeddings generator.
     /// </summary>
-    public class ViewOpenAiSdk : EmbeddingsSdkBase
+    public class ViewOpenAiSdk : EmbeddingsSdkBase, IDisposable
     {
         #region Public-Members
 

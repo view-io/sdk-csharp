@@ -13,7 +13,7 @@
     /// <summary>
     /// View Vector Proxy SDK.
     /// </summary>
-    public class ViewVectorProxySdk : ViewSdkBase
+    public class ViewVectorProxySdk : ViewSdkBase, IDisposable
     {
         #region Public-Members
 

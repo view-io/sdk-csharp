@@ -12,7 +12,7 @@
     /// <summary>
     /// View document processor SDK.
     /// </summary>
-    public class ViewUdrGeneratorSdk : ViewSdkBase
+    public class ViewUdrGeneratorSdk : ViewSdkBase, IDisposable
     {
         #region Public-Members
 

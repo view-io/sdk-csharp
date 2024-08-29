@@ -2138,6 +2138,11 @@
             Data repository type.
             </summary>
         </member>
+        <member name="F:View.Sdk.DataRepositoryTypeEnum.Other">
+            <summary>
+            Other.
+            </summary>
+        </member>
         <member name="F:View.Sdk.DataRepositoryTypeEnum.File">
             <summary>
             File.
@@ -3407,6 +3412,11 @@
             </summary>
             <param name="repo">Graph repository.</param>
         </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.Dispose">
+            <summary>
+            Dispose.
+            </summary>
+        </member>
         <member name="M:View.Sdk.Graph.GraphSdk.ValidateConnectivity(System.Threading.CancellationToken)">
             <summary>
             Validate connectivity to the graph repository.
@@ -4205,6 +4215,11 @@
             Instantiate.
             </summary>
             <param name="endpoint">Endpoint.</param>
+        </member>
+        <member name="M:View.Sdk.Graph.LiteGraphDriver.Dispose">
+            <summary>
+            Dispose.
+            </summary>
         </member>
         <member name="M:View.Sdk.Graph.LiteGraphDriver.ValidateConnectivity(System.Threading.CancellationToken)">
             <inheritdoc />
@@ -6041,6 +6056,13 @@
             Instantiate.
             </summary>
         </member>
+        <member name="M:View.Sdk.SemanticCell.#ctor(System.Collections.Generic.List{View.Sdk.SemanticCell},System.Collections.Generic.List{View.Sdk.SemanticChunk})">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="children">Child semantic cells.</param>
+            <param name="chunks">Semantic chunks.</param>
+        </member>
         <member name="T:View.Sdk.SemanticCellRequest">
             <summary>
             Semantic cell request.
@@ -6174,6 +6196,16 @@
             <summary>
             Instantiate.
             </summary>
+        </member>
+        <member name="M:View.Sdk.SemanticChunk.#ctor(System.Int32,System.Int32,System.Int32,System.String,System.Collections.Generic.List{System.Single})">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="position">Position.</param>
+            <param name="start">Start.</param>
+            <param name="end">End.</param>
+            <param name="content">Content.</param>
+            <param name="embeddings">Embeddings.</param>
         </member>
         <member name="T:View.Sdk.Serialization.DateTimeConverter">
             <summary>
@@ -7733,6 +7765,11 @@
             <param name="maxFailures">Maximum number of failures to support before failing the operation.</param>
             <param name="logger">Logger method.</param>
         </member>
+        <member name="M:View.Sdk.Vector.EmbeddingsSdkBase.Dispose">
+            <summary>
+            Dispose.
+            </summary>
+        </member>
         <member name="M:View.Sdk.Vector.EmbeddingsSdkBase.ValidateConnectivity(System.Threading.CancellationToken)">
             <summary>
             Validate connectivity.
@@ -8079,6 +8116,11 @@
             <param name="maxFailures">Maximum number of failures to support before failing the operation.</param>
             <param name="timeoutMs">Timeout, in milliseconds.</param>
             <param name="logger">Logger method.</param>
+        </member>
+        <member name="M:View.Sdk.Vector.ViewEmbeddingsSdk.Dispose">
+            <summary>
+            Dispose.
+            </summary>
         </member>
         <member name="M:View.Sdk.Vector.ViewEmbeddingsSdk.ValidateConnectivity(System.Threading.CancellationToken)">
             <summary>
@@ -8536,6 +8578,11 @@
             <param name="tenantGuid">Tenant GUID.</param>
             <param name="accessKey">Access key.</param>
             <param name="endpoint">Endpoint.</param>
+        </member>
+        <member name="M:View.Sdk.ViewSdkBase.Dispose">
+            <summary>
+            Dispose.
+            </summary>
         </member>
         <member name="M:View.Sdk.ViewSdkBase.Log(View.Sdk.SeverityEnum,System.String)">
             <summary>

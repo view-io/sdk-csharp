@@ -116,6 +116,17 @@
 
         }
 
+        /// <summary>
+        /// Instantiate.
+        /// </summary>
+        /// <param name="children">Child semantic cells.</param>
+        /// <param name="chunks">Semantic chunks.</param>
+        public SemanticCell(List<SemanticCell> children = null, List<SemanticChunk> chunks = null)
+        {
+            Children = children;
+            Chunks = chunks;
+        }
+
         #endregion
 
         #region Public-Methods

@@ -14,7 +14,7 @@
     /// <summary>
     /// View Lexi search SDK.
     /// </summary>
-    public class ViewLexiSdk : ViewSdkBase
+    public class ViewLexiSdk : ViewSdkBase, IDisposable
     {
         #region Public-Members
 

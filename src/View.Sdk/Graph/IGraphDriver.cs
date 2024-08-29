@@ -9,7 +9,7 @@
     /// <summary>
     /// Graph database driver interface.
     /// </summary>
-    public interface IGraphDriver
+    public interface IGraphDriver : IDisposable
     {
         #region General
 

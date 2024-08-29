@@ -12,7 +12,7 @@
     /// <summary>
     /// Embeddings generator SDK base class.
     /// </summary>
-    public abstract class EmbeddingsSdkBase
+    public abstract class EmbeddingsSdkBase : IDisposable
     {
         #region Public-Members
 
@@ -198,6 +198,14 @@
         #endregion
 
         #region Public-Methods
+
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        public void Dispose()
+        {
+            _Serializer = null;
+        }
 
         /// <summary>
         /// Validate connectivity.

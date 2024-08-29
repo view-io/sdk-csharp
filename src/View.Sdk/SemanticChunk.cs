@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text;
 
     /// <summary>
     /// Semantic chunk.
@@ -19,7 +20,7 @@
         /// <summary>
         /// MD5.
         /// </summary>
-        public string MD5Hash { get; set; } = string.Empty;
+        public string MD5Hash { get; set; } = null;
 
         /// <summary>
         /// SHA1.
@@ -136,6 +137,36 @@
         public SemanticChunk()
         {
 
+        }
+
+        /// <summary>
+        /// Instantiate.
+        /// </summary>
+        /// <param name="position">Position.</param>
+        /// <param name="start">Start.</param>
+        /// <param name="end">End.</param>
+        /// <param name="content">Content.</param>
+        /// <param name="embeddings">Embeddings.</param>
+        public SemanticChunk(
+            int position,
+            int start,
+            int end,
+            string content,
+            List<float> embeddings = null)
+        {
+            Position = position;
+            Start = start;
+            End = end;
+            Content = content;
+            Embeddings = embeddings;
+
+            if (!String.IsNullOrEmpty(content))
+            {
+                Length = content.Length;
+                MD5Hash = Convert.ToHexString(Helpers.HashHelper.MD5Hash(Encoding.UTF8.GetBytes(content)));
+                SHA1Hash = Convert.ToHexString(Helpers.HashHelper.SHA1Hash(Encoding.UTF8.GetBytes(content)));
+                SHA256Hash = Convert.ToHexString(Helpers.HashHelper.SHA256Hash(Encoding.UTF8.GetBytes(content)));
+            }
         }
 
         #endregion

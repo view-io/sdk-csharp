@@ -12,7 +12,7 @@
     /// <summary>
     /// Graph SDK.
     /// </summary>
-    public class GraphSdk
+    public class GraphSdk : IDisposable
     {
         #region Public-Members
 
@@ -100,6 +100,14 @@
         #region Public-Methods
 
         #region General
+
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        public void Dispose()
+        {
+            _GraphDriver.Dispose();
+        }
 
         /// <summary>
         /// Validate connectivity to the graph repository.

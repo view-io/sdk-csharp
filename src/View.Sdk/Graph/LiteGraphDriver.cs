@@ -15,7 +15,7 @@
     /// <summary>
     /// LiteGraph driver.
     /// </summary>
-    public class LiteGraphDriver : IGraphDriver
+    public class LiteGraphDriver : IGraphDriver, IDisposable
     {
         #region Public-Members
 
@@ -69,6 +69,20 @@
 
             _Endpoint = endpoint;
             _Sdk = new LiteGraphSdk(_Endpoint);
+        }
+
+        #endregion
+
+        #region Public-Methods
+
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        public void Dispose()
+        {
+            if (_Sdk != null) _Sdk.Dispose();
+
+            _Serializer = null;
         }
 
         #endregion

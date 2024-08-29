@@ -12,7 +12,7 @@
     /// <summary>
     /// View SDK for generating embeddings with Lexi search results.
     /// </summary>
-    public class ViewLexiEmbeddingsSdk : ViewSdkBase
+    public class ViewLexiEmbeddingsSdk : ViewSdkBase, IDisposable
     {
         #region Public-Members
 

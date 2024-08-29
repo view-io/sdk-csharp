@@ -11,7 +11,7 @@
     /// <summary>
     /// View embeddings generator SDK.
     /// </summary>
-    public class ViewEmbeddingsSdk
+    public class ViewEmbeddingsSdk : IDisposable
     {
         #region Public-Members
 
@@ -192,6 +192,14 @@
         #endregion
 
         #region Public-Methods
+
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        public void Dispose()
+        {
+            _Serializer = null;
+        }
 
         /// <summary>
         /// Validate connectivity.

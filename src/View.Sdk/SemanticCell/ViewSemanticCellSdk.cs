@@ -11,7 +11,7 @@
     /// <summary>
     /// View Semantic Cell SDK.
     /// </summary>
-    public class ViewSemanticCellSdk : ViewSdkBase
+    public class ViewSemanticCellSdk : ViewSdkBase, IDisposable
     {
         #region Public-Members
 

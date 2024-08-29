@@ -12,7 +12,7 @@
     /// <summary>
     /// View Storage SDK.
     /// </summary>
-    public class ViewStorageSdk : ViewSdkBase
+    public class ViewStorageSdk : ViewSdkBase, IDisposable
     {
         #region Public-Members
 

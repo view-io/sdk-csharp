@@ -12,7 +12,7 @@
     /// <summary>
     /// View Type Detector SDK.
     /// </summary>
-    public class ViewTypeDetectorSdk : ViewSdkBase
+    public class ViewTypeDetectorSdk : ViewSdkBase, IDisposable
     {
         #region Public-Members
 
