@@ -1,4 +1,4 @@
-﻿namespace View.Sdk
+﻿namespace View.Sdk.Vector
 {
     using System;
 
@@ -57,7 +57,7 @@
         #endregion
 
         #region Private-Members
-         
+
         #endregion
 
         #region Constructors-and-Factories

@@ -68,9 +68,14 @@
         public string EmbeddingsRuleGUID { get; set; } = null;
 
         /// <summary>
-        /// Data flow endpoint.
+        /// Data flow endpoint for processing.
         /// </summary>
-        public string DataFlowEndpoint { get; set; } = null;
+        public string ProcessingEndpoint { get; set; } = null;
+
+        /// <summary>
+        /// Data flow endpoint for cleanup processing.
+        /// </summary>
+        public string CleanupEndpoint { get; set; } = null;
 
         /// <summary>
         /// Name.

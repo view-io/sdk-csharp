@@ -1432,9 +1432,14 @@
             Embeddings rule GUID.
             </summary>
         </member>
-        <member name="P:View.Sdk.CrawlOperation.DataFlowEndpoint">
+        <member name="P:View.Sdk.CrawlOperation.ProcessingEndpoint">
             <summary>
-            Data flow endpoint.
+            Data flow endpoint for processing.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlOperation.CleanupEndpoint">
+            <summary>
+            Data flow endpoint for cleanup.
             </summary>
         </member>
         <member name="P:View.Sdk.CrawlOperation.Name">
@@ -1607,9 +1612,14 @@
             Embeddings rule GUID.
             </summary>
         </member>
-        <member name="P:View.Sdk.CrawlPlan.DataFlowEndpoint">
+        <member name="P:View.Sdk.CrawlPlan.ProcessingEndpoint">
             <summary>
-            Data flow endpoint.
+            Data flow endpoint for processing.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlPlan.CleanupEndpoint">
+            <summary>
+            Data flow endpoint for cleanup processing.
             </summary>
         </member>
         <member name="P:View.Sdk.CrawlPlan.Name">
@@ -7621,116 +7631,6 @@
             Instantiate.
             </summary>
         </member>
-        <member name="T:View.Sdk.VectorDeleteRequest">
-            <summary>
-            Vector delete request.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.VectorDeleteRequest.TenantGUID">
-            <summary>
-            Tenant GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.VectorDeleteRequest.GUID">
-            <summary>
-            GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.VectorDeleteRequest.CollectionGUID">
-            <summary>
-            Collection GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.VectorDeleteRequest.SourceDocumentGUID">
-            <summary>
-            Source document GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.VectorDeleteRequest.BucketGUID">
-            <summary>
-            Bucket GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.VectorDeleteRequest.ObjectGUID">
-            <summary>
-            Object GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.VectorDeleteRequest.VectorRepositoryGUID">
-            <summary>
-            Vector repository GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.VectorDeleteRequest.Key">
-            <summary>
-            Key.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.VectorDeleteRequest.Version">
-            <summary>
-            Version.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.VectorDeleteRequest.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.VectorQueryRequest">
-            <summary>
-            Vector query request.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.VectorQueryRequest.Query">
-            <summary>
-            Query.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.VectorQueryRequest.VectorRepositoryGUID">
-            <summary>
-            Vector repository GUID.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.VectorQueryRequest.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.VectorQueryResult">
-            <summary>
-            Vector query result.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.VectorQueryResult.Success">
-            <summary>
-            Boolean indicating whether or not the operation was successful.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.VectorQueryResult.Timestamp">
-            <summary>
-            Timestamps.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.VectorQueryResult.StatusCode">
-            <summary>
-            HTTP status code.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.VectorQueryResult.Query">
-            <summary>
-            Query.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.VectorQueryResult.Result">
-            <summary>
-            Result.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.VectorQueryResult.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
         <member name="T:View.Sdk.VectorRepository">
             <summary>
             Vector repository.
@@ -7844,61 +7744,6 @@
         <member name="F:View.Sdk.VectorRepositoryTypeEnum.Pgvector">
             <summary>
             Pgvector.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.VectorSearchRequest">
-            <summary>
-            Vector search request.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.VectorSearchRequest.SearchType">
-            <summary>
-            Search type.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.VectorSearchRequest.VectorRepositoryGUID">
-            <summary>
-            Vector repository GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.VectorSearchRequest.StartIndex">
-            <summary>
-            Starting index.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.VectorSearchRequest.MaxResults">
-            <summary>
-            Maximum number of results to retrieve.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.VectorSearchRequest.Embeddings">
-            <summary>
-            Embeddings.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.VectorSearchRequest.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.VectorSearchTypeEnum">
-            <summary>
-            Vector search type.
-            </summary>
-        </member>
-        <member name="F:View.Sdk.VectorSearchTypeEnum.InnerProduct">
-            <summary>
-            InnerProduct.
-            </summary>
-        </member>
-        <member name="F:View.Sdk.VectorSearchTypeEnum.CosineDistance">
-            <summary>
-            CosineDistance.
-            </summary>
-        </member>
-        <member name="F:View.Sdk.VectorSearchTypeEnum.L2Distance">
-            <summary>
-            L2Distance.
             </summary>
         </member>
         <member name="T:View.Sdk.Vector.EmbeddingsMap">
@@ -8277,6 +8122,171 @@
             Instantiate.
             </summary>
         </member>
+        <member name="T:View.Sdk.Vector.VectorDeleteRequest">
+            <summary>
+            Vector delete request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorDeleteRequest.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorDeleteRequest.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorDeleteRequest.CollectionGUID">
+            <summary>
+            Collection GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorDeleteRequest.SourceDocumentGUID">
+            <summary>
+            Source document GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorDeleteRequest.BucketGUID">
+            <summary>
+            Bucket GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorDeleteRequest.ObjectGUID">
+            <summary>
+            Object GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorDeleteRequest.VectorRepositoryGUID">
+            <summary>
+            Vector repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorDeleteRequest.Key">
+            <summary>
+            Key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorDeleteRequest.Version">
+            <summary>
+            Version.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.VectorDeleteRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Vector.VectorQueryRequest">
+            <summary>
+            Vector query request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorQueryRequest.Query">
+            <summary>
+            Query.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorQueryRequest.VectorRepositoryGUID">
+            <summary>
+            Vector repository GUID.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.VectorQueryRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Vector.VectorQueryResult">
+            <summary>
+            Vector query result.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorQueryResult.Success">
+            <summary>
+            Boolean indicating whether or not the operation was successful.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorQueryResult.Timestamp">
+            <summary>
+            Timestamps.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorQueryResult.StatusCode">
+            <summary>
+            HTTP status code.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorQueryResult.Query">
+            <summary>
+            Query.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorQueryResult.Result">
+            <summary>
+            Result.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.VectorQueryResult.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Vector.VectorSearchRequest">
+            <summary>
+            Vector search request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorSearchRequest.SearchType">
+            <summary>
+            Search type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorSearchRequest.VectorRepositoryGUID">
+            <summary>
+            Vector repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorSearchRequest.StartIndex">
+            <summary>
+            Starting index.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorSearchRequest.MaxResults">
+            <summary>
+            Maximum number of results to retrieve.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorSearchRequest.Embeddings">
+            <summary>
+            Embeddings.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.VectorSearchRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Vector.VectorSearchTypeEnum">
+            <summary>
+            Vector search type.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Vector.VectorSearchTypeEnum.InnerProduct">
+            <summary>
+            InnerProduct.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Vector.VectorSearchTypeEnum.CosineDistance">
+            <summary>
+            CosineDistance.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Vector.VectorSearchTypeEnum.L2Distance">
+            <summary>
+            L2Distance.
+            </summary>
+        </member>
         <member name="T:View.Sdk.Vector.ViewEmbeddingsSdk">
             <summary>
             View embeddings generator SDK.
@@ -8474,7 +8484,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.DeleteDocument(View.Sdk.VectorDeleteRequest,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.DeleteDocument(View.Sdk.Vector.VectorDeleteRequest,System.Threading.CancellationToken)">
             <summary>
             Delete a document.
             </summary>
@@ -8482,7 +8492,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.TruncateTable(View.Sdk.VectorDeleteRequest,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.TruncateTable(View.Sdk.Vector.VectorDeleteRequest,System.Threading.CancellationToken)">
             <summary>
             Truncate table.
             </summary>
@@ -8498,7 +8508,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Enumeration result.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.SimilaritySearch(View.Sdk.VectorSearchRequest,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.SimilaritySearch(View.Sdk.Vector.VectorSearchRequest,System.Threading.CancellationToken)">
             <summary>
             Similarity search.
             </summary>
@@ -8506,7 +8516,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.RawQuery(View.Sdk.VectorQueryRequest,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.RawQuery(View.Sdk.Vector.VectorQueryRequest,System.Threading.CancellationToken)">
             <summary>
             Raw query.
             </summary>
