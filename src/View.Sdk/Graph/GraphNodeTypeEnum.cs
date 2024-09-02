@@ -6,6 +6,7 @@
     /// <summary>
     /// Graph node type.
     /// </summary>
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum GraphNodeTypeEnum
     {
         /// <summary>

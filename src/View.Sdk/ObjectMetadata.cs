@@ -71,6 +71,11 @@
         public string DataCatalogDocumentGUID { get; set; } = null;
 
         /// <summary>
+        /// Data repository GUID.
+        /// </summary>
+        public string DataRepositoryGUID { get; set; } = null;
+
+        /// <summary>
         /// Graph repository GUID.
         /// </summary>
         public string GraphRepositoryGUID { get; set; } = null;

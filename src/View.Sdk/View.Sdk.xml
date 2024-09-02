@@ -1737,6 +1737,11 @@
             Retrieving.
             </summary>
         </member>
+        <member name="F:View.Sdk.CrawlStateEnum.Deleting">
+            <summary>
+            Deleting.
+            </summary>
+        </member>
         <member name="F:View.Sdk.CrawlStateEnum.Success">
             <summary>
             Success.
@@ -3832,6 +3837,78 @@
             <param name="token">Cancellation token.</param>
             <returns>Graph node.</returns>
         </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.ReadTenants(System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
+            <summary>
+            Read tenants.
+            </summary>
+            <param name="filter">Filter.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>List of graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.ReadStoragePools(System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
+            <summary>
+            Read storage pools.
+            </summary>
+            <param name="filter">Filter.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>List of graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.ReadBuckets(System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
+            <summary>
+            Read buckets.
+            </summary>
+            <param name="filter">Filter.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>List of graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.ReadObjectMetadata(System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
+            <summary>
+            Read objects.
+            </summary>
+            <param name="filter">Filter.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>List of graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.ReadCollections(System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
+            <summary>
+            Read collections.
+            </summary>
+            <param name="filter">Filter.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>List of graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.ReadSourceDocuments(System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
+            <summary>
+            Read source documents.
+            </summary>
+            <param name="filter">Filter.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>List of graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.ReadSemanticCells(System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
+            <summary>
+            Read semantic cells.
+            </summary>
+            <param name="filter">Filter.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>List of graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.ReadSemanticChunks(System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
+            <summary>
+            Read semantic chunks.
+            </summary>
+            <param name="filter">Filter.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>List of graph node.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.ReadDataRepositories(System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
+            <summary>
+            Read data repositories.
+            </summary>
+            <param name="filter">Filter.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>List of graph node.</returns>
+        </member>
         <member name="M:View.Sdk.Graph.GraphSdk.DeleteTenant(View.Sdk.TenantMetadata,System.Threading.CancellationToken)">
             <summary>
             Delete a tenant.
@@ -4984,6 +5061,11 @@
             Data catalog document GUID.
             </summary>
         </member>
+        <member name="P:View.Sdk.ObjectMetadata.DataRepositoryGUID">
+            <summary>
+            Data repository GUID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.ObjectMetadata.GraphRepositoryGUID">
             <summary>
             Graph repository GUID.
@@ -5323,115 +5405,247 @@
             </summary>
             <param name="value">The token.</param>
         </member>
-        <member name="T:View.Sdk.ProcessorRequest">
+        <member name="T:View.Sdk.Processor.CleanupRequest">
             <summary>
-            Processor request.
+            Cleanup request.
             </summary>
         </member>
-        <member name="P:View.Sdk.ProcessorRequest.Tenant">
+        <member name="P:View.Sdk.Processor.CleanupRequest.Tenant">
             <summary>
             Tenant metadata.
             </summary>
         </member>
-        <member name="P:View.Sdk.ProcessorRequest.Pool">
+        <member name="P:View.Sdk.Processor.CleanupRequest.Pool">
             <summary>
             Storage pool.
             </summary>
         </member>
-        <member name="P:View.Sdk.ProcessorRequest.Bucket">
+        <member name="P:View.Sdk.Processor.CleanupRequest.Bucket">
             <summary>
             Bucket metadata.
             </summary>
         </member>
-        <member name="P:View.Sdk.ProcessorRequest.DataRepository">
+        <member name="P:View.Sdk.Processor.CleanupRequest.DataRepository">
             <summary>
             Data repository.
             </summary>
         </member>
-        <member name="P:View.Sdk.ProcessorRequest.Collection">
+        <member name="P:View.Sdk.Processor.CleanupRequest.Collection">
             <summary>
             Collection.
             </summary>
         </member>
-        <member name="P:View.Sdk.ProcessorRequest.Object">
+        <member name="P:View.Sdk.Processor.CleanupRequest.Object">
             <summary>
             Object metadata.
             </summary>
         </member>
-        <member name="P:View.Sdk.ProcessorRequest.MetadataRule">
+        <member name="P:View.Sdk.Processor.CleanupRequest.MetadataRule">
             <summary>
             Metadata rule.
             </summary>
         </member>
-        <member name="P:View.Sdk.ProcessorRequest.EmbeddingsRule">
+        <member name="P:View.Sdk.Processor.CleanupRequest.EmbeddingsRule">
             <summary>
             Embeddings rule.
             </summary>
         </member>
-        <member name="P:View.Sdk.ProcessorRequest.VectorRepository">
+        <member name="P:View.Sdk.Processor.CleanupRequest.VectorRepository">
             <summary>
             Vector repository.
             </summary>
         </member>
-        <member name="P:View.Sdk.ProcessorRequest.GraphRepository">
+        <member name="P:View.Sdk.Processor.CleanupRequest.GraphRepository">
             <summary>
             Graph repository.
             </summary>
         </member>
-        <member name="M:View.Sdk.ProcessorRequest.#ctor">
+        <member name="M:View.Sdk.Processor.CleanupRequest.#ctor">
             <summary>
             Instantiate.
             </summary>
         </member>
-        <member name="T:View.Sdk.ProcessorResponse">
+        <member name="T:View.Sdk.Processor.CleanupResponse">
             <summary>
-            Processor response.
+            Cleanup response.
             </summary>
         </member>
-        <member name="P:View.Sdk.ProcessorResponse.DataFlowRequestGUID">
+        <member name="P:View.Sdk.Processor.CleanupResponse.DataFlowRequestGUID">
             <summary>
             Data flow request GUID.
             </summary>
         </member>
-        <member name="P:View.Sdk.ProcessorResponse.Success">
+        <member name="P:View.Sdk.Processor.CleanupResponse.Success">
             <summary>
             Boolean indicating success.
             </summary>
         </member>
-        <member name="P:View.Sdk.ProcessorResponse.Timestamp">
+        <member name="P:View.Sdk.Processor.CleanupResponse.Timestamp">
             <summary>
             Timestamps.
             </summary>
         </member>
-        <member name="P:View.Sdk.ProcessorResponse.Error">
+        <member name="P:View.Sdk.Processor.CleanupResponse.Error">
             <summary>
             Error response, if any.
             </summary>
         </member>
-        <member name="P:View.Sdk.ProcessorResponse.Type">
+        <member name="M:View.Sdk.Processor.CleanupResponse.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Processor.ProcessorRequest">
+            <summary>
+            Processor request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorRequest.Tenant">
+            <summary>
+            Tenant metadata.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorRequest.Pool">
+            <summary>
+            Storage pool.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorRequest.Bucket">
+            <summary>
+            Bucket metadata.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorRequest.DataRepository">
+            <summary>
+            Data repository.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorRequest.Collection">
+            <summary>
+            Collection.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorRequest.Object">
+            <summary>
+            Object metadata.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorRequest.MetadataRule">
+            <summary>
+            Metadata rule.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorRequest.EmbeddingsRule">
+            <summary>
+            Embeddings rule.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorRequest.VectorRepository">
+            <summary>
+            Vector repository.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorRequest.GraphRepository">
+            <summary>
+            Graph repository.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Processor.ProcessorRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Processor.ProcessorResponse">
+            <summary>
+            Processor response.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorResponse.DataFlowRequestGUID">
+            <summary>
+            Data flow request GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorResponse.Success">
+            <summary>
+            Boolean indicating success.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorResponse.Timestamp">
+            <summary>
+            Timestamps.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorResponse.Error">
+            <summary>
+            Error response, if any.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorResponse.Type">
             <summary>
             Type result.
             </summary>
         </member>
-        <member name="P:View.Sdk.ProcessorResponse.Udr">
+        <member name="P:View.Sdk.Processor.ProcessorResponse.Udr">
             <summary>
             UDR document.
             </summary>
         </member>
-        <member name="P:View.Sdk.ProcessorResponse.Source">
+        <member name="P:View.Sdk.Processor.ProcessorResponse.Source">
             <summary>
             Source document in data catalog.
             </summary>
         </member>
-        <member name="P:View.Sdk.ProcessorResponse.Vector">
+        <member name="P:View.Sdk.Processor.ProcessorResponse.Vector">
             <summary>
             Embeddings document.
             </summary>
         </member>
-        <member name="M:View.Sdk.ProcessorResponse.#ctor">
+        <member name="M:View.Sdk.Processor.ProcessorResponse.#ctor">
             <summary>
             Instantiate.
             </summary>
+        </member>
+        <member name="T:View.Sdk.Processor.ViewCleanupSdk">
+            <summary>
+            View Cleanup Pipeline SDK.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Processor.ViewCleanupSdk.#ctor(System.String)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="endpoint">Endpoint URL.</param>
+        </member>
+        <member name="M:View.Sdk.Processor.ViewCleanupSdk.Process(View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.StoragePool,View.Sdk.BucketMetadata,View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Threading.CancellationToken)">
+            <summary>
+            Cleanup a document.  This variant is used by the storage server.
+            </summary>
+            <param name="tenant">Tenant metadata.</param>
+            <param name="collection">Collection metadata.</param>
+            <param name="bucket">Bucket metadata.</param>
+            <param name="pool">Storage pool metadata.</param>
+            <param name="obj">Object metadata.</param>
+            <param name="mdRule">Metadata rule.</param>
+            <param name="embedRule">Embeddings rule.</param>
+            <param name="vectorRepo">Vector repository.</param>
+            <param name="graphRepo">Graph repository.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Processor response.</returns>
+        </member>
+        <member name="M:View.Sdk.Processor.ViewCleanupSdk.Process(View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.DataRepository,View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Threading.CancellationToken)">
+            <summary>
+            Cleanup a document.  This variant is used by the data crawler.
+            </summary>
+            <param name="tenant">Tenant metadata.</param>
+            <param name="collection">Collection metadata.</param>
+            <param name="repo">Data repository.</param>
+            <param name="obj">Object metadata.</param>
+            <param name="mdRule">Metadata rule.</param>
+            <param name="embedRule">Embeddings rule.</param>
+            <param name="vectorRepo">Vector repository.</param>
+            <param name="graphRepo">Graph repository.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Processor response.</returns>
         </member>
         <member name="T:View.Sdk.Processor.ViewLexiEmbeddingsSdk">
             <summary>

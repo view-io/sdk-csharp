@@ -1,4 +1,4 @@
-﻿namespace View.Sdk
+﻿namespace View.Sdk.Processor
 {
     using System.Xml.Linq;
     using System;

@@ -1,4 +1,4 @@
-﻿namespace View.Sdk
+﻿namespace View.Sdk.Processor
 {
     using System;
     using System.Collections.Generic;
@@ -8,9 +8,9 @@
     using Timestamps;
 
     /// <summary>
-    /// Processor response.
+    /// Cleanup response.
     /// </summary>
-    public class ProcessorResponse
+    public class CleanupResponse
     {
         #region Public-Members
 
@@ -34,31 +34,9 @@
         /// </summary>
         public ApiErrorResponse Error { get; set; } = null;
 
-        /// <summary>
-        /// Type result.
-        /// </summary>
-        public TypeResult Type { get; set; } = null;
-
-        /// <summary>
-        /// UDR document.
-        /// </summary>
-        public UdrDocument Udr { get; set; } = null;
-
-        /// <summary>
-        /// Source document in data catalog.
-        /// </summary>
-        public SourceDocument Source { get; set; } = null;
-
-        /// <summary>
-        /// Embeddings document.
-        /// </summary>
-        public EmbeddingsDocument Vector { get; set; } = null;
-
         #endregion
 
         #region Private-Members
-
-        private string _RequestGuid = Guid.NewGuid().ToString();
 
         #endregion
 
@@ -67,7 +45,7 @@
         /// <summary>
         /// Instantiate.
         /// </summary>
-        public ProcessorResponse()
+        public CleanupResponse()
         {
 
         }

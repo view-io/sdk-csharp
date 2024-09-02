@@ -40,6 +40,11 @@
         [EnumMember(Value = "Retrieving")]
         Retrieving,
         /// <summary>
+        /// Deleting.
+        /// </summary>
+        [EnumMember(Value = "Deleting")]
+        Deleting,
+        /// <summary>
         /// Success.
         /// </summary>
         [EnumMember(Value = "Success")]

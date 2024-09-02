@@ -1428,16 +1428,107 @@
 
         #region Read-Many
 
-        // TBD
+        /// <summary>
+        /// Read tenants.
+        /// </summary>
+        /// <param name="filter">Filter.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>List of graph node.</returns>
+        public async Task<List<GraphNode>> ReadTenants(Dictionary<string, object> filter = null, CancellationToken token = default)
+        {
+            return await SearchInternal(TENANT_TYPE, filter, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Read storage pools.
+        /// </summary>
+        /// <param name="filter">Filter.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>List of graph node.</returns>
+        public async Task<List<GraphNode>> ReadStoragePools(Dictionary<string, object> filter = null, CancellationToken token = default)
+        {
+            return await SearchInternal(POOL_TYPE, filter, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Read buckets.
+        /// </summary>
+        /// <param name="filter">Filter.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>List of graph node.</returns>
+        public async Task<List<GraphNode>> ReadBuckets(Dictionary<string, object> filter = null, CancellationToken token = default)
+        {
+            return await SearchInternal(BUCKET_TYPE, filter, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Read objects.
+        /// </summary>
+        /// <param name="filter">Filter.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>List of graph node.</returns>
+        public async Task<List<GraphNode>> ReadObjectMetadata(Dictionary<string, object> filter = null, CancellationToken token = default)
+        { 
+            return await SearchInternal(OBJECT_TYPE, filter, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Read collections.
+        /// </summary>
+        /// <param name="filter">Filter.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>List of graph node.</returns>
+        public async Task<List<GraphNode>> ReadCollections(Dictionary<string, object> filter = null, CancellationToken token = default)
+        {
+            return await SearchInternal(COLLECTION_TYPE, filter, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Read source documents.
+        /// </summary>
+        /// <param name="filter">Filter.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>List of graph node.</returns>
+        public async Task<List<GraphNode>> ReadSourceDocuments(Dictionary<string, object> filter = null, CancellationToken token = default)
+        {
+            return await SearchInternal(SOURCEDOC_TYPE, filter, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Read semantic cells.
+        /// </summary>
+        /// <param name="filter">Filter.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>List of graph node.</returns>
+        public async Task<List<GraphNode>> ReadSemanticCells(Dictionary<string, object> filter = null, CancellationToken token = default)
+        {
+            return await SearchInternal(SEMCELL_TYPE, filter, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Read semantic chunks.
+        /// </summary>
+        /// <param name="filter">Filter.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>List of graph node.</returns>
+        public async Task<List<GraphNode>> ReadSemanticChunks(Dictionary<string, object> filter = null, CancellationToken token = default)
+        {
+            return await SearchInternal(SEMCHUNK_TYPE, filter, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Read data repositories.
+        /// </summary>
+        /// <param name="filter">Filter.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>List of graph node.</returns>
+        public async Task<List<GraphNode>> ReadDataRepositories(Dictionary<string, object> filter = null, CancellationToken token = default)
+        {
+            return await SearchInternal(DATAREPOSITORY_TYPE, filter, token).ConfigureAwait(false);
+        }
 
         #endregion
-
-        #region Search
-
-        // TBD
-
-        #endregion
-
+         
         #region Update
 
         // TBD
@@ -1730,7 +1821,7 @@
 
         private async Task<bool> ExistsInternal(
             string typeVal, 
-            Dictionary<string, string> dict, 
+            Dictionary<string, object> dict, 
             CancellationToken token = default)
         {
             List<GraphNode> nodes = await SearchInternal(typeVal, dict, token).ConfigureAwait(false);
@@ -1741,7 +1832,7 @@
         private async Task<List<GraphNode>> SearchInternal(
             string typeVal, 
             string dataKey, 
-            string dataVal, 
+            object dataVal, 
             CancellationToken token = default)
         {
             Expr e = new Expr("Type", OperatorEnum.Equals, typeVal);
@@ -1756,14 +1847,14 @@
 
         private async Task<List<GraphNode>> SearchInternal(
             string typeVal, 
-            Dictionary<string, string> dict, 
+            Dictionary<string, object> dict, 
             CancellationToken token = default)
         {
             Expr e = new Expr("Type", OperatorEnum.Equals, typeVal);
 
             if (dict != null && dict.Count > 0)
             {
-                foreach (KeyValuePair<string, string> kvp in dict)
+                foreach (KeyValuePair<string, object> kvp in dict)
                 {
                     e = e.PrependAnd(kvp.Key, OperatorEnum.Equals, kvp.Value);
                 }
