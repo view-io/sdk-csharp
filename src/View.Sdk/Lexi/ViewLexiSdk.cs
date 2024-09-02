@@ -183,6 +183,23 @@
             await Delete(url, token).ConfigureAwait(false);
         }
 
+        /// <summary>
+        /// Delete a document.
+        /// </summary>
+        /// <param name="collectionGuid">Collection GUID.</param>
+        /// <param name="key">Document key.</param>
+        /// <param name="version">Document version.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Task.</returns>
+        public async Task DeleteDocument(string collectionGuid, string key, string version, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
+            if (String.IsNullOrEmpty(key)) throw new ArgumentNullException(nameof(key));
+            if (String.IsNullOrEmpty(version)) throw new ArgumentNullException(nameof(version));
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections/" + collectionGuid + "/documents?key=" + key + "&versionId=" + version;
+            await Delete(url, token).ConfigureAwait(false);
+        }
+
         #endregion
 
         #region Enumerate

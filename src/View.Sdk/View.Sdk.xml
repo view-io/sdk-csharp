@@ -4660,6 +4660,16 @@
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.DeleteDocument(System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a document.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="key">Document key.</param>
+            <param name="version">Document version.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
         <member name="M:View.Sdk.Lexi.ViewLexiSdk.Enumerate(System.String,View.Sdk.EnumerationQuery,System.Threading.CancellationToken)">
             <summary>
             Enumerate a collection.
