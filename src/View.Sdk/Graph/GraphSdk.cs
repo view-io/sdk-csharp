@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Net.Sockets;
+    using System.Runtime.CompilerServices;
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
@@ -64,6 +65,9 @@
 
         private readonly string OBJECT_TYPE = "Object";
         private readonly string OBJECT_GUID = "Object.GUID";
+        private readonly string OBJECT_TENANT_GUID = "Object.TenantGUID";
+        private readonly string OBJECT_KEY = "Object.Key";
+        private readonly string OBJECT_VERSION = "Object.Version";
 
         private readonly string COLLECTION_TYPE = "Collection";
         private readonly string COLLECTION_GUID = "Collection.GUID";
@@ -801,7 +805,7 @@
                 if (sourceDoc.UdrDocument.SemanticCells != null
                     && sourceDoc.UdrDocument.SemanticCells.Count > 0)
                 {
-                    GraphResult semCellResult = await ProcessSemanticCellsInternal(
+                    GraphResult semCellResult = await InsertSemanticCellsInternal(
                         result.Graph,
                         result.SourceDocument,
                         null,
@@ -837,6 +841,132 @@
             result.Success = true;
             result.Timestamp.End = DateTime.UtcNow;
             result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms finished processing after " + result.Timestamp.TotalMs + "ms");
+            return result;
+        }
+
+        /// <summary>
+        /// Remove object metadata and its associated objects.
+        /// </summary>
+        /// <param name="obj">Object.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Graph result.</returns>
+        public async Task<GraphResult> RemoveObjectMetadata(
+            ObjectMetadata obj,
+            CancellationToken token = default)
+        {
+            if (obj == null) throw new ArgumentNullException(nameof(obj));
+
+            GraphResult result = new GraphResult();
+
+            #region Retrieve-Graph
+
+            result.Graph = await ReadGraph(Guid.Parse(_GraphRepository.GraphIdentifier)).ConfigureAwait(false);
+            if (result.Graph == null)
+            {
+                if (result.Graph == null)
+                {
+                    result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms unknown graph " + _GraphRepository.GraphIdentifier);
+                    result.Success = false;
+                    return result;
+                }
+            }
+            else
+            {
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms attached to graph " + result.Graph.GUID);
+            }
+
+            #endregion
+
+            #region Retrieve-Object
+
+            GraphNode objNode = await ReadObjectMetadata(obj, token).ConfigureAwait(false);
+            if (objNode == null)
+            {
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms unknown object " + obj.GUID);
+                result.Success = false;
+                return result;
+            }
+
+            #endregion
+
+            #region Retrieve-Source-Documents
+
+            List<GraphNode> objectParents = await _GraphDriver.GetNodeParents(objNode.GraphGUID, objNode.GUID, token).ConfigureAwait(false);
+            if (objectParents != null)
+            {
+                foreach (GraphNode parent in objectParents)
+                {
+                    if (parent.Data.Type == GraphNodeTypeEnum.SourceDocument)
+                    {
+                        await RemoveSourceDocument(parent, token).ConfigureAwait(false);
+                    }
+                }
+            }
+
+            #endregion
+
+            #region Delete-Object
+
+            await _GraphDriver.DeleteNode(objNode.GraphGUID, objNode.GUID);
+
+            #endregion
+
+            result.Success = true;
+            result.Timestamp.End = DateTime.UtcNow;
+            result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms finished cleanup after " + result.Timestamp.TotalMs + "ms");
+            return result;
+        }
+
+        /// <summary>
+        /// Remove source document and its associated objects.
+        /// </summary>
+        /// <param name="doc">Source document.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Graph result.</returns>
+        public async Task<GraphResult> RemoveSourceDocument(
+            SourceDocument doc,
+            CancellationToken token = default)
+        {
+            if (doc == null) throw new ArgumentNullException(nameof(doc));
+
+            GraphResult result = new GraphResult();
+
+            #region Retrieve-Graph
+
+            result.Graph = await ReadGraph(Guid.Parse(_GraphRepository.GraphIdentifier)).ConfigureAwait(false);
+            if (result.Graph == null)
+            {
+                if (result.Graph == null)
+                {
+                    result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms unknown graph " + _GraphRepository.GraphIdentifier);
+                    result.Success = false;
+                    return result;
+                }
+            }
+            else
+            {
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms attached to graph " + result.Graph.GUID);
+            }
+
+            #endregion
+
+            #region Retrieve-Source-Document
+
+            GraphNode docNode = await ReadSourceDocument(doc, token).ConfigureAwait(false);
+            if (docNode == null)
+            {
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms unknown source document " + doc.GUID);
+                result.Success = false;
+                return result;
+            }
+
+            await RemoveSourceDocument(docNode, token).ConfigureAwait(false);
+
+            #endregion
+
+            result.Success = true;
+            result.Timestamp.End = DateTime.UtcNow;
+            result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms finished cleanup after " + result.Timestamp.TotalMs + "ms");
             return result;
         }
 
@@ -1249,7 +1379,21 @@
         public async Task<GraphNode> ReadObjectMetadata(ObjectMetadata obj, CancellationToken token = default)
         {
             if (obj == null) throw new ArgumentNullException(nameof(obj));
-            return await ReadInternal(OBJECT_TYPE, OBJECT_GUID, obj.GUID, token).ConfigureAwait(false);
+
+            if (!String.IsNullOrEmpty(obj.Key) && !String.IsNullOrEmpty(obj.Version))
+            {
+                Dictionary<string, object> filter = new Dictionary<string, object>();
+                filter.Add(OBJECT_TENANT_GUID, obj.TenantGUID);
+                filter.Add(OBJECT_KEY, obj.Key);
+                filter.Add(OBJECT_VERSION, obj.Version);
+                List<GraphNode> nodes = await ReadObjectMetadata(filter, token).ConfigureAwait(false);
+                if (nodes != null && nodes.Count > 0) return nodes[0];
+                return null;
+            }
+            else
+            {
+                return await ReadInternal(OBJECT_TYPE, OBJECT_GUID, obj.GUID, token).ConfigureAwait(false);
+            }
         }
 
         /// <summary>
@@ -1759,6 +1903,32 @@
 
         #endregion
 
+        #region Edges
+
+        /// <summary>
+        /// Get edges to a given graph node.
+        /// </summary>
+        /// <param name="node">Graph node.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>List of graph edges.</returns>
+        public async Task<List<GraphEdge>> GetEdgesTo(GraphNode node, CancellationToken token = default)
+        {
+            return await _GraphDriver.EdgesToNode(node.GraphGUID, node.GUID);
+        }
+
+        /// <summary>
+        /// Get edges from a given graph node.
+        /// </summary>
+        /// <param name="node">Graph node.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>List of graph edges.</returns>
+        public async Task<List<GraphEdge>> GetEdgesFrom(GraphNode node, CancellationToken token = default)
+        {
+            return await _GraphDriver.EdgesFromNode(node.GraphGUID, node.GUID);
+        }
+
+        #endregion
+
         #endregion
 
         #region Private-Methods
@@ -1929,7 +2099,7 @@
             return null;
         }
 
-        private async Task<GraphResult> ProcessSemanticCellsInternal(
+        private async Task<GraphResult> InsertSemanticCellsInternal(
             Graph graph,
             GraphNode sourceDocumentNode,
             GraphNode parentCellNode,
@@ -2130,7 +2300,7 @@
 
                 if (cell.Children != null && cell.Children.Count > 0)
                 {
-                    GraphResult childResult = await ProcessSemanticCellsInternal(
+                    GraphResult childResult = await InsertSemanticCellsInternal(
                         graph,
                         sourceDocumentNode,
                         cellNode,
@@ -2160,6 +2330,40 @@
             }
 
             return result;
+        }
+
+        private async Task RemoveSourceDocument(GraphNode sourceDoc, CancellationToken token = default)
+        {
+            if (sourceDoc == null) return;
+
+            List<GraphNode> parents = await _GraphDriver.GetNodeParents(sourceDoc.GraphGUID, sourceDoc.GUID, token).ConfigureAwait(false);
+            if (parents != null && parents.Count > 0)
+            {
+                foreach (GraphNode parent in parents)
+                {
+                    if (parent.Data.Type == GraphNodeTypeEnum.SemanticCell)
+                        await RemoveSemanticCell(parent, token).ConfigureAwait(false);
+                }
+            }
+
+            await _GraphDriver.DeleteNode(sourceDoc.GraphGUID, sourceDoc.GUID, token).ConfigureAwait(false);
+        }
+
+        private async Task RemoveSemanticCell(GraphNode cell, CancellationToken token = default)
+        {
+            if (cell == null) return;
+
+            List<GraphNode> parents = await _GraphDriver.GetNodeParents(cell.GraphGUID, cell.GUID, token).ConfigureAwait(false);
+            if (parents != null && parents.Count > 0)
+            {
+                foreach (GraphNode parent in parents)
+                {
+                    if (parent.Data.Type == GraphNodeTypeEnum.SemanticChunk)
+                        await _GraphDriver.DeleteNode(parent.GraphGUID, parent.GUID, token).ConfigureAwait(false);
+                }
+            }
+
+            await _GraphDriver.DeleteNode(cell.GraphGUID, cell.GUID, token).ConfigureAwait(false);
         }
 
         #endregion

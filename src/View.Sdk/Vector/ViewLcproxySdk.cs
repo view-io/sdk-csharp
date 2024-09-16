@@ -7,8 +7,9 @@
     using System.Threading;
     using System.Threading.Tasks;
     using RestWrapper;
-    using View.Sdk.Serialization;
     using View.Sdk;
+    using View.Sdk.Semantic;
+    using View.Sdk.Serialization;
     using System.Runtime.InteropServices;
     using System.Linq;
 

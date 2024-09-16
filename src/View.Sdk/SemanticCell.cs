@@ -131,6 +131,54 @@
 
         #region Public-Methods
 
+        /// <summary>
+        /// Count the number of embeddings in a list of semantic cells.
+        /// </summary>
+        /// <param name="cells">Semantic cells.</param>
+        /// <returns>Number of embeddings.</returns>
+        public static int CountEmbeddings(List<SemanticCell> cells)
+        {
+            int ret = 0;
+
+            if (cells != null && cells.Count > 0)
+            {
+                foreach (SemanticCell cell in cells)
+                {
+                    ret += cell.CountEmbeddings();
+                }
+            }
+
+            return ret;
+        }
+
+        /// <summary>
+        /// Count the number of embeddings contained within the semantic cell.
+        /// </summary>
+        /// <returns></returns>
+        public int CountEmbeddings()
+        {
+            int ret = 0;
+
+            if (Chunks != null && Chunks.Count > 0)
+            {
+                foreach (SemanticChunk chunk in Chunks)
+                {
+                    ret += chunk.Embeddings.Count;
+                }
+            }
+
+            if (Children != null && Children.Count > 0)
+            {
+                foreach (SemanticCell childCell in Children)
+                {
+                    int childEmbeddings = childCell.CountEmbeddings();
+                    ret += childEmbeddings;
+                }
+            }
+
+            return ret;
+        }
+
         #endregion
 
         #region Private-Methods

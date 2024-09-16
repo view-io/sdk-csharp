@@ -1,4 +1,4 @@
-﻿namespace View.Sdk
+﻿namespace View.Sdk.Semantic
 {
     using System;
 
@@ -50,6 +50,22 @@
         }
 
         /// <summary>
+        /// PDF options.
+        /// </summary>
+        public PdfOptions Pdf
+        {
+            get
+            {
+                return _Pdf;
+            }
+            set
+            {
+                if (value == null) value = new PdfOptions();
+                _Pdf = value;
+            }
+        }
+
+        /// <summary>
         /// Metadata rule.
         /// </summary>
         public MetadataRule MetadataRule { get; set; } = null;
@@ -66,6 +82,7 @@
 
         private int _MaxChunkContentLength = 512;
         private int _ShiftSize = 512;
+        private PdfOptions _Pdf = new PdfOptions();
 
         #endregion
 

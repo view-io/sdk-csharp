@@ -54,9 +54,14 @@
         public string Suffix { get; set; } = null;
 
         /// <summary>
-        /// Data flow endpoint.
+        /// Data flow endpoint for processing.
         /// </summary>
-        public string DataFlowEndpoint { get; set; } = "http://localhost:8501/processor";
+        public string ProcessingEndpoint { get; set; } = "http://localhost:8501/processor";
+
+        /// <summary>
+        /// Data flow endpoint for cleanup processing.
+        /// </summary>
+        public string CleanupEndpoint { get; set; } = "http://localhost:8501/processor/cleanup";
 
         #region Type-Detection
 
@@ -104,7 +109,9 @@
             }
             set
             {
-                if (value > _MaxChunkContentLength) throw new ArgumentException("ShiftSize must be equal to or less than MaxChunkContentLength.");
+                if (value < 1 || value > _MaxChunkContentLength) 
+                    throw new ArgumentException("ShiftSize must be equal to or less than MaxChunkContentLength and be greater than zero.");
+                
                 _ShiftSize = value;
             }
         }

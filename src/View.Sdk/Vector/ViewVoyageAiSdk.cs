@@ -12,7 +12,8 @@
     using RestWrapper;
     using View.Sdk;
     using View.Sdk.Serialization;
-    
+    using View.Sdk.Semantic;
+
     /// <summary>
     /// VoyageAI embeddings generator.
     /// </summary>

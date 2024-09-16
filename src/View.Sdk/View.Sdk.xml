@@ -3470,6 +3470,22 @@
             <param name="token">Cancellation token.</param>
             <returns>Graph result.</returns>
         </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.RemoveObjectMetadata(View.Sdk.ObjectMetadata,System.Threading.CancellationToken)">
+            <summary>
+            Remove object metadata and its associated objects.
+            </summary>
+            <param name="obj">Object.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph result.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.RemoveSourceDocument(View.Sdk.SourceDocument,System.Threading.CancellationToken)">
+            <summary>
+            Remove source document and its associated objects.
+            </summary>
+            <param name="doc">Source document.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph result.</returns>
+        </member>
         <member name="M:View.Sdk.Graph.GraphSdk.TenantExists(View.Sdk.TenantMetadata,System.Threading.CancellationToken)">
             <summary>
             Check if a tenant exists.
@@ -4062,6 +4078,22 @@
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.GetEdgesTo(View.Sdk.Graph.GraphNode,System.Threading.CancellationToken)">
+            <summary>
+            Get edges to a given graph node.
+            </summary>
+            <param name="node">Graph node.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>List of graph edges.</returns>
+        </member>
+        <member name="M:View.Sdk.Graph.GraphSdk.GetEdgesFrom(View.Sdk.Graph.GraphNode,System.Threading.CancellationToken)">
+            <summary>
+            Get edges from a given graph node.
+            </summary>
+            <param name="node">Graph node.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>List of graph edges.</returns>
         </member>
         <member name="T:View.Sdk.Graph.IGraphDriver">
             <summary>
@@ -4743,9 +4775,14 @@
             Suffix.
             </summary>
         </member>
-        <member name="P:View.Sdk.MetadataRule.DataFlowEndpoint">
+        <member name="P:View.Sdk.MetadataRule.ProcessingEndpoint">
             <summary>
-            Data flow endpoint.
+            Data flow endpoint for processing.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.MetadataRule.CleanupEndpoint">
+            <summary>
+            Data flow endpoint for cleanup processing.
             </summary>
         </member>
         <member name="P:View.Sdk.MetadataRule.TypeDetectorEndpoint">
@@ -5782,37 +5819,6 @@
             <param name="token">Cancellation token.</param>
             <returns>Document response.</returns>
         </member>
-        <member name="T:View.Sdk.Processor.ViewSemanticCellSdk">
-            <summary>
-            View Semantic Cell SDK.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Processor.ViewSemanticCellSdk.#ctor(System.String)">
-            <summary>
-            Instantiate.
-            </summary>
-            <param name="endpoint">Endpoint URL.</param>
-        </member>
-        <member name="M:View.Sdk.Processor.ViewSemanticCellSdk.Process(View.Sdk.SemanticCellRequest,System.Threading.CancellationToken)">
-            <summary>
-            Extract semantic cells from a document.
-            </summary>
-            <param name="scReq">Semantic cell extraction request.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Semantic cell response.</returns>
-        </member>
-        <member name="M:View.Sdk.Processor.ViewSemanticCellSdk.Process(View.Sdk.DocumentTypeEnum,View.Sdk.MetadataRule,System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">
-            <summary>
-            Extract semantic cells from a document.
-            </summary>
-            <param name="docType">Document type.</param>
-            <param name="mdRule">Metadata rule.</param>
-            <param name="data">Data.</param>
-            <param name="maxChunkContentLength">Maximum chunk content length.</param>
-            <param name="shiftSize">Shift size.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Semantic cell response.</returns>
-        </member>
         <member name="T:View.Sdk.QueryFilter">
             <summary>
             A filter for the query.
@@ -6297,79 +6303,18 @@
             <param name="children">Child semantic cells.</param>
             <param name="chunks">Semantic chunks.</param>
         </member>
-        <member name="T:View.Sdk.SemanticCellRequest">
+        <member name="M:View.Sdk.SemanticCell.CountEmbeddings(System.Collections.Generic.List{View.Sdk.SemanticCell})">
             <summary>
-            Semantic cell request.
+            Count the number of embeddings in a list of semantic cells.
             </summary>
+            <param name="cells">Semantic cells.</param>
+            <returns>Number of embeddings.</returns>
         </member>
-        <member name="P:View.Sdk.SemanticCellRequest.DocumentType">
+        <member name="M:View.Sdk.SemanticCell.CountEmbeddings">
             <summary>
-            Document type.
+            Count the number of embeddings contained within the semantic cell.
             </summary>
-        </member>
-        <member name="P:View.Sdk.SemanticCellRequest.MaxChunkContentLength">
-            <summary>
-            Maximum chunk content length.  Minimum is 256 and maximum is 16384.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SemanticCellRequest.ShiftSize">
-            <summary>
-            Shift size, used to determine overlap amongst neighboring chunks.
-            When set to the same value as the maximum chunk content length, no overlap will exist amongst neighboring chunks.
-            When set to a smaller amount than the maximum chunk content length, overlap will exist amongst neighboring chunks.
-            This value must be equal to or less than the maximum chunk content length.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SemanticCellRequest.MetadataRule">
-            <summary>
-            Metadata rule.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SemanticCellRequest.Data">
-            <summary>
-            Data.
-            When serializing, convert to a base64-encoded string.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.SemanticCellRequest.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.SemanticCellResponse">
-            <summary>
-            Semantic cell response.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SemanticCellResponse.DataFlowRequestGUID">
-            <summary>
-            Data flow request GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SemanticCellResponse.Success">
-            <summary>
-            Boolean indicating success.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SemanticCellResponse.Timestamp">
-            <summary>
-            Timestamps.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SemanticCellResponse.Error">
-            <summary>
-            Error response, if any.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SemanticCellResponse.SemanticCells">
-            <summary>
-            Semantic cells.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.SemanticCellResponse.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
+            <returns></returns>
         </member>
         <member name="T:View.Sdk.SemanticChunk">
             <summary>
@@ -6440,6 +6385,157 @@
             <param name="end">End.</param>
             <param name="content">Content.</param>
             <param name="embeddings">Embeddings.</param>
+        </member>
+        <member name="T:View.Sdk.Semantic.PdfModeEnum">
+            <summary>
+            PDF mode.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Semantic.PdfModeEnum.FlatTextExtraction">
+            <summary>
+            FlatTextExtraction.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Semantic.PdfModeEnum.BoundingBoxExtraction">
+            <summary>
+            BoundingBoxExtraction.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Semantic.PdfOptions">
+            <summary>
+            PDF options.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Semantic.PdfOptions.Mode">
+            <summary>
+            PDF processing mode.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Semantic.PdfOptions.ReturnMarkup">
+            <summary>
+            True to indicate that the marked-up PDF including bounding boxes should be returned.
+            Only applicable when Mode is set to BoundingBoxExtraction.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Semantic.PdfOptions.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Semantic.SemanticCellRequest">
+            <summary>
+            Semantic cell request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Semantic.SemanticCellRequest.DocumentType">
+            <summary>
+            Document type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Semantic.SemanticCellRequest.MaxChunkContentLength">
+            <summary>
+            Maximum chunk content length.  Minimum is 256 and maximum is 16384.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Semantic.SemanticCellRequest.ShiftSize">
+            <summary>
+            Shift size, used to determine overlap amongst neighboring chunks.
+            When set to the same value as the maximum chunk content length, no overlap will exist amongst neighboring chunks.
+            When set to a smaller amount than the maximum chunk content length, overlap will exist amongst neighboring chunks.
+            This value must be equal to or less than the maximum chunk content length.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Semantic.SemanticCellRequest.Pdf">
+            <summary>
+            PDF options.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Semantic.SemanticCellRequest.MetadataRule">
+            <summary>
+            Metadata rule.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Semantic.SemanticCellRequest.Data">
+            <summary>
+            Data.
+            When serializing, convert to a base64-encoded string.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Semantic.SemanticCellRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Semantic.SemanticCellResponse">
+            <summary>
+            Semantic cell response.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Semantic.SemanticCellResponse.DataFlowRequestGUID">
+            <summary>
+            Data flow request GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Semantic.SemanticCellResponse.Success">
+            <summary>
+            Boolean indicating success.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Semantic.SemanticCellResponse.Timestamp">
+            <summary>
+            Timestamps.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Semantic.SemanticCellResponse.Error">
+            <summary>
+            Error response, if any.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Semantic.SemanticCellResponse.SemanticCells">
+            <summary>
+            Semantic cells.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Semantic.SemanticCellResponse.Data">
+            <summary>
+            Additional data, if requested.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Semantic.SemanticCellResponse.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Semantic.ViewSemanticCellSdk">
+            <summary>
+            View Semantic Cell SDK.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Semantic.ViewSemanticCellSdk.#ctor(System.String)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="endpoint">Endpoint URL.</param>
+        </member>
+        <member name="M:View.Sdk.Semantic.ViewSemanticCellSdk.Process(View.Sdk.Semantic.SemanticCellRequest,System.Threading.CancellationToken)">
+            <summary>
+            Extract semantic cells from a document.
+            </summary>
+            <param name="scReq">Semantic cell extraction request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Semantic cell response.</returns>
+        </member>
+        <member name="M:View.Sdk.Semantic.ViewSemanticCellSdk.Process(View.Sdk.DocumentTypeEnum,View.Sdk.MetadataRule,System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Extract semantic cells from a document.
+            </summary>
+            <param name="docType">Document type.</param>
+            <param name="mdRule">Metadata rule.</param>
+            <param name="data">Data.</param>
+            <param name="maxChunkContentLength">Maximum chunk content length.</param>
+            <param name="shiftSize">Shift size.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Semantic cell response.</returns>
         </member>
         <member name="T:View.Sdk.Serialization.DateTimeConverter">
             <summary>

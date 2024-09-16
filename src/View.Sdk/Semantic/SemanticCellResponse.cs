@@ -1,4 +1,4 @@
-﻿namespace View.Sdk
+﻿namespace View.Sdk.Semantic
 {
     using System;
     using System.Collections.Generic;
@@ -38,6 +38,11 @@
         /// Semantic cells.
         /// </summary>
         public List<SemanticCell> SemanticCells { get; set; } = null;
+
+        /// <summary>
+        /// Additional data, if requested.
+        /// </summary>
+        public byte[] Data { get; set; } = null;
 
         #endregion
 

@@ -1,4 +1,4 @@
-﻿namespace View.Sdk.Processor
+﻿namespace View.Sdk.Semantic
 {
     using System;
     using System.Net.Http;

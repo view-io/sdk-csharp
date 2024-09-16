@@ -6,10 +6,9 @@
     using System.Threading;
     using System.Threading.Tasks;
     using RestWrapper;
-    using View.Sdk.Serialization;
     using View.Sdk;
-    using System.Runtime.InteropServices;
-    using static System.Net.Mime.MediaTypeNames;
+    using View.Sdk.Serialization;
+    using View.Sdk.Semantic;
     using System.Linq;
 
     /// <summary>
