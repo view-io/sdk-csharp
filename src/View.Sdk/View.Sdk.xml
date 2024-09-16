@@ -6310,6 +6310,13 @@
             <param name="cells">Semantic cells.</param>
             <returns>Number of embeddings.</returns>
         </member>
+        <member name="M:View.Sdk.SemanticCell.CountSemanticChunks(System.Collections.Generic.List{View.Sdk.SemanticCell})">
+            <summary>
+            Count the number of semantic chunks in a list of semantic cells.
+            </summary>
+            <param name="cells">Semantic cells.</param>
+            <returns>Number of chunks.</returns>
+        </member>
         <member name="M:View.Sdk.SemanticCell.CountEmbeddings">
             <summary>
             Count the number of embeddings contained within the semantic cell.

@@ -152,6 +152,32 @@
         }
 
         /// <summary>
+        /// Count the number of semantic chunks in a list of semantic cells.
+        /// </summary>
+        /// <param name="cells">Semantic cells.</param>
+        /// <returns>Number of chunks.</returns>
+        public static int CountSemanticChunks(List<SemanticCell> cells)
+        {
+            int ret = 0;
+
+            if (cells != null && cells.Count > 0)
+            {
+                foreach (SemanticCell cell in cells)
+                {
+                    if (cell.Chunks != null) ret += cell.Chunks.Count;
+
+                    if (cell.Children != null)
+                    {
+                        int childChunks = CountSemanticChunks(cell.Children);
+                        ret += childChunks;
+                    }
+                }
+            }
+
+            return ret;
+        }
+
+        /// <summary>
         /// Count the number of embeddings contained within the semantic cell.
         /// </summary>
         /// <returns></returns>
