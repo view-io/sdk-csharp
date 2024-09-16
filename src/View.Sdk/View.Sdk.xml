@@ -6310,6 +6310,13 @@
             <param name="cells">Semantic cells.</param>
             <returns>Number of embeddings.</returns>
         </member>
+        <member name="M:View.Sdk.SemanticCell.CountSemanticCells(System.Collections.Generic.List{View.Sdk.SemanticCell})">
+            <summary>
+            Count the number of semantic cells in a list of semantic cells.
+            </summary>
+            <param name="cells">Semantic cells.</param>
+            <returns>Number of semantic cells.</returns>
+        </member>
         <member name="M:View.Sdk.SemanticCell.CountSemanticChunks(System.Collections.Generic.List{View.Sdk.SemanticCell})">
             <summary>
             Count the number of semantic chunks in a list of semantic cells.
@@ -6317,11 +6324,30 @@
             <param name="cells">Semantic cells.</param>
             <returns>Number of chunks.</returns>
         </member>
+        <member name="M:View.Sdk.SemanticCell.CountBytes(System.Collections.Generic.List{View.Sdk.SemanticCell})">
+            <summary>
+            Count the number of bytes in chunks within a list of semantic cells.
+            </summary>
+            <param name="cells">Semantic cells.</param>
+            <returns>Number of bytes.</returns>
+        </member>
+        <member name="M:View.Sdk.SemanticCell.CountSemanticCells">
+            <summary>
+            Count the number of semantic cells in this semantic cell.
+            </summary>
+            <returns>Number of semantic cells.</returns>
+        </member>
         <member name="M:View.Sdk.SemanticCell.CountEmbeddings">
             <summary>
             Count the number of embeddings contained within the semantic cell.
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:View.Sdk.SemanticCell.CountBytes">
+            <summary>
+            Count the number of bytes contained within chunks within the semantic cell.
+            </summary>
+            <returns>Number of bytes.</returns>
         </member>
         <member name="T:View.Sdk.SemanticChunk">
             <summary>

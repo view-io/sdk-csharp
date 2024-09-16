@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using View.Sdk.Semantic;
 
     /// <summary>
     /// Semantic cell.
@@ -152,6 +153,31 @@
         }
 
         /// <summary>
+        /// Count the number of semantic cells in a list of semantic cells.
+        /// </summary>
+        /// <param name="cells">Semantic cells.</param>
+        /// <returns>Number of semantic cells.</returns>
+        public static int CountSemanticCells(List<SemanticCell> cells)
+        {
+            int ret = 0;
+
+            if (cells != null && cells.Count > 0)
+            {
+                foreach (SemanticCell cell in cells)
+                {
+                    ret += 1;
+
+                    if (cell.Children != null)
+                    {
+                        ret += CountSemanticCells(cell.Children);
+                    }
+                }
+            }
+
+            return ret;
+        }
+
+        /// <summary>
         /// Count the number of semantic chunks in a list of semantic cells.
         /// </summary>
         /// <param name="cells">Semantic cells.</param>
@@ -171,6 +197,45 @@
                         int childChunks = CountSemanticChunks(cell.Children);
                         ret += childChunks;
                     }
+                }
+            }
+
+            return ret;
+        }
+
+        /// <summary>
+        /// Count the number of bytes in chunks within a list of semantic cells.
+        /// </summary>
+        /// <param name="cells">Semantic cells.</param>
+        /// <returns>Number of bytes.</returns>
+        public static int CountBytes(List<SemanticCell> cells)
+        {
+            int ret = 0;
+
+            if (cells != null && cells.Count > 0)
+            {
+                foreach (SemanticCell cell in cells)
+                {
+                    ret += cell.CountBytes();
+                }
+            }
+
+            return ret;
+        }
+
+        /// <summary>
+        /// Count the number of semantic cells in this semantic cell.
+        /// </summary>
+        /// <returns>Number of semantic cells.</returns>
+        public int CountSemanticCells()
+        {
+            int ret = 1;
+
+            if (Children != null && Children.Count > 0)
+            {
+                foreach (SemanticCell child in Children)
+                {
+                    ret += child.CountSemanticCells();
                 }
             }
 
@@ -199,6 +264,33 @@
                 {
                     int childEmbeddings = childCell.CountEmbeddings();
                     ret += childEmbeddings;
+                }
+            }
+
+            return ret;
+        }
+
+        /// <summary>
+        /// Count the number of bytes contained within chunks within the semantic cell.
+        /// </summary>
+        /// <returns>Number of bytes.</returns>
+        public int CountBytes()
+        {
+            int ret = 0;
+
+            if (Chunks != null && Chunks.Count > 0)
+            {
+                foreach (SemanticChunk chunk in Chunks)
+                {
+                    if (!String.IsNullOrEmpty(chunk.Content)) ret += chunk.Content.Length;
+                }
+            }
+
+            if (Children != null && Children.Count > 0)
+            {
+                foreach (SemanticCell child in Children)
+                {
+                    ret += child.CountBytes();
                 }
             }
 
