@@ -568,12 +568,16 @@
         /// <param name="tenant">Tenant.</param>
         /// <param name="collection">Collection.</param>
         /// <param name="sourceDoc">Source document.</param>
+        /// <param name="includeCells">True to include semantic cells.</param>
+        /// <param name="includeChunks">True to include semantic chunks.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Graph result.</returns>
         public async Task<GraphResult> InsertSourceDocument(
             TenantMetadata tenant,
             Collection collection,
             SourceDocument sourceDoc,
+            bool includeCells,
+            bool includeChunks,
             CancellationToken token = default)
         {
             if (tenant == null) throw new ArgumentNullException(nameof(tenant));
@@ -800,7 +804,7 @@
 
             #region Insert-Semantic-Cells
 
-            if (sourceDoc.UdrDocument != null)
+            if (includeCells && sourceDoc.UdrDocument != null)
             {
                 if (sourceDoc.UdrDocument.SemanticCells != null
                     && sourceDoc.UdrDocument.SemanticCells.Count > 0)
@@ -810,6 +814,7 @@
                         result.SourceDocument,
                         null,
                         sourceDoc.UdrDocument.SemanticCells,
+                        includeChunks,
                         token).ConfigureAwait(false);
 
                     if (!semCellResult.Success)
@@ -2104,6 +2109,7 @@
             GraphNode sourceDocumentNode,
             GraphNode parentCellNode,
             List<SemanticCell> cells,
+            bool includeChunks,
             CancellationToken token = default)
         {
             if (sourceDocumentNode == null) throw new ArgumentNullException(nameof(sourceDocumentNode));
@@ -2228,7 +2234,7 @@
 
                 #region Process-Chunks
 
-                if (cell.Chunks != null && cell.Chunks.Count > 0)
+                if (includeChunks && cell.Chunks != null && cell.Chunks.Count > 0)
                 {
                     foreach (SemanticChunk chunk in cell.Chunks)
                     {
@@ -2305,6 +2311,7 @@
                         sourceDocumentNode,
                         cellNode,
                         cell.Children,
+                        includeChunks,
                         token).ConfigureAwait(false);
 
                     if (!childResult.Success)
