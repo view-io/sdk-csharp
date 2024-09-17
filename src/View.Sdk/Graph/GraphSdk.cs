@@ -568,16 +568,12 @@
         /// <param name="tenant">Tenant.</param>
         /// <param name="collection">Collection.</param>
         /// <param name="sourceDoc">Source document.</param>
-        /// <param name="includeCells">True to include semantic cells.</param>
-        /// <param name="includeChunks">True to include semantic chunks.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Graph result.</returns>
         public async Task<GraphResult> InsertSourceDocument(
             TenantMetadata tenant,
             Collection collection,
             SourceDocument sourceDoc,
-            bool includeCells,
-            bool includeChunks,
             CancellationToken token = default)
         {
             if (tenant == null) throw new ArgumentNullException(nameof(tenant));
@@ -695,6 +691,8 @@
             if (result.SourceDocument == null)
             {
                 result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms creating node for source document " + sourceDoc.GUID);
+
+                sourceDoc.UdrDocument = null;
                 result.SourceDocument = await CreateSourceDocument(sourceDoc, token).ConfigureAwait(false);
                 if (result.SourceDocument == null)
                 {
@@ -804,42 +802,37 @@
 
             #region Insert-Semantic-Cells
 
-            if (includeCells && sourceDoc.UdrDocument != null)
+            /*
+            if (sourceDoc.UdrDocument != null
+                && sourceDoc.UdrDocument.SemanticCells != null
+                && sourceDoc.UdrDocument.SemanticCells.Count > 0)
             {
-                if (sourceDoc.UdrDocument.SemanticCells != null
-                    && sourceDoc.UdrDocument.SemanticCells.Count > 0)
+                GraphResult semCellResult = await InsertSemanticCellsInternal(
+                    result.Graph,
+                    result.SourceDocument,
+                    null,
+                    sourceDoc.UdrDocument.SemanticCells,
+                    token).ConfigureAwait(false);
+
+                if (!semCellResult.Success)
                 {
-                    GraphResult semCellResult = await InsertSemanticCellsInternal(
-                        result.Graph,
-                        result.SourceDocument,
-                        null,
-                        sourceDoc.UdrDocument.SemanticCells,
-                        includeChunks,
-                        token).ConfigureAwait(false);
-
-                    if (!semCellResult.Success)
-                    {
-                        result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms failure reported during semantic cell processing");
-                        result.Success = false;
-                        return result;
-                    }
-                    else
-                    {
-                        foreach (KeyValuePair<DateTime, string> msg in result.Timestamp.Messages)
-                            result.Timestamp.Messages.TryAdd(msg.Key, msg.Value);
-
-                        result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms successfully attached semantic cells to source document");
-                    }
+                    result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms failure reported during semantic cell processing");
+                    result.Success = false;
+                    return result;
                 }
                 else
                 {
-                    result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms no semantic cells found in supplied UDR document");
+                    foreach (KeyValuePair<DateTime, string> msg in result.Timestamp.Messages)
+                        result.Timestamp.Messages.TryAdd(msg.Key, msg.Value);
+
+                    result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms successfully attached semantic cells to source document");
                 }
             }
             else
             {
-                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms no UDR document supplied in source document");
+                result.Timestamp.AddMessage(result.Timestamp.TotalMs + "ms no semantic cells found in supplied UDR document");
             }
+            */
 
             #endregion
 
@@ -2109,7 +2102,6 @@
             GraphNode sourceDocumentNode,
             GraphNode parentCellNode,
             List<SemanticCell> cells,
-            bool includeChunks,
             CancellationToken token = default)
         {
             if (sourceDocumentNode == null) throw new ArgumentNullException(nameof(sourceDocumentNode));
@@ -2234,7 +2226,7 @@
 
                 #region Process-Chunks
 
-                if (includeChunks && cell.Chunks != null && cell.Chunks.Count > 0)
+                if (cell.Chunks != null && cell.Chunks.Count > 0)
                 {
                     foreach (SemanticChunk chunk in cell.Chunks)
                     {
@@ -2311,7 +2303,6 @@
                         sourceDocumentNode,
                         cellNode,
                         cell.Children,
-                        includeChunks,
                         token).ConfigureAwait(false);
 
                     if (!childResult.Success)

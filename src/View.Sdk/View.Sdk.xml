@@ -3460,15 +3460,13 @@
             <param name="token">Cancellation token.</param>
             <returns>Graph result.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.InsertSourceDocument(View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.SourceDocument,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.GraphSdk.InsertSourceDocument(View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.SourceDocument,System.Threading.CancellationToken)">
             <summary>
             Insert source document and its associated objects.
             </summary>
             <param name="tenant">Tenant.</param>
             <param name="collection">Collection.</param>
             <param name="sourceDoc">Source document.</param>
-            <param name="includeCells">True to include semantic cells.</param>
-            <param name="includeChunks">True to include semantic chunks.</param>
             <param name="token">Cancellation token.</param>
             <returns>Graph result.</returns>
         </member>
