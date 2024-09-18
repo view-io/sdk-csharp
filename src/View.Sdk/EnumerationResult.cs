@@ -61,22 +61,6 @@
         public string ContinuationToken { get; set; } = null;
 
         /// <summary>
-        /// Objects.
-        /// </summary>
-        public List<T> Objects
-        {
-            get
-            {
-                return _Objects;
-            }
-            set
-            {
-                if (value == null) value = new List<T>();
-                _Objects = value;
-            }
-        }
-
-        /// <summary>
         /// Boolean indicating end of results.
         /// </summary>
         public bool EndOfResults { get; set; } = true;
@@ -94,6 +78,23 @@
             {
                 if (value < 0) throw new ArgumentOutOfRangeException(nameof(RecordsRemaining));
                 _RecordsRemaining = value;
+            }
+        }
+
+        /// <summary>
+        /// Objects.
+        /// </summary>
+        [JsonPropertyOrder(999)]
+        public List<T> Objects
+        {
+            get
+            {
+                return _Objects;
+            }
+            set
+            {
+                if (value == null) value = new List<T>();
+                _Objects = value;
             }
         }
 

@@ -2999,11 +2999,6 @@
             Continuation token.
             </summary>
         </member>
-        <member name="P:View.Sdk.EnumerationResult`1.Objects">
-            <summary>
-            Objects.
-            </summary>
-        </member>
         <member name="P:View.Sdk.EnumerationResult`1.EndOfResults">
             <summary>
             Boolean indicating end of results.
@@ -3012,6 +3007,11 @@
         <member name="P:View.Sdk.EnumerationResult`1.RecordsRemaining">
             <summary>
             Number of candidate records remaining in the enumeration.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationResult`1.Objects">
+            <summary>
+            Objects.
             </summary>
         </member>
         <member name="M:View.Sdk.EnumerationResult`1.#ctor">
