@@ -105,8 +105,16 @@
 
                                 if (!String.IsNullOrEmpty(resp.DataAsString))
                                 {
-                                    ProcessorResponse procResp = Serializer.DeserializeJson<ProcessorResponse>(resp.DataAsString);
-                                    return procResp;
+                                    try
+                                    {
+                                        ProcessorResponse procResp = Serializer.DeserializeJson<ProcessorResponse>(resp.DataAsString);
+                                        return procResp;
+                                    }
+                                    catch (Exception)
+                                    {
+                                        Log(SeverityEnum.Warn, "unable to deserialize response body, returning null");
+                                        return null;
+                                    }
                                 }
                                 else
                                 {
@@ -119,8 +127,16 @@
 
                                 if (!String.IsNullOrEmpty(resp.DataAsString))
                                 {
-                                    ProcessorResponse procResp = Serializer.DeserializeJson<ProcessorResponse>(resp.DataAsString);
-                                    return procResp;
+                                    try
+                                    {
+                                        ProcessorResponse procResp = Serializer.DeserializeJson<ProcessorResponse>(resp.DataAsString);
+                                        return procResp;
+                                    }
+                                    catch (Exception)
+                                    {
+                                        Log(SeverityEnum.Warn, "unable to deserialize response body, returning null");
+                                        return null;
+                                    }
                                 }
                                 else
                                 {
@@ -210,8 +226,16 @@
 
                                 if (!String.IsNullOrEmpty(resp.DataAsString))
                                 {
-                                    ProcessorResponse procResp = Serializer.DeserializeJson<ProcessorResponse>(resp.DataAsString);
-                                    return procResp;
+                                    try
+                                    {
+                                        ProcessorResponse procResp = Serializer.DeserializeJson<ProcessorResponse>(resp.DataAsString);
+                                        return procResp;
+                                    }
+                                    catch (Exception)
+                                    {
+                                        Log(SeverityEnum.Warn, "unable to deserialize response body, returning null");
+                                        return null;
+                                    }
                                 }
                                 else
                                 {
@@ -224,8 +248,16 @@
 
                                 if (!String.IsNullOrEmpty(resp.DataAsString))
                                 {
-                                    ProcessorResponse procResp = Serializer.DeserializeJson<ProcessorResponse>(resp.DataAsString);
-                                    return procResp;
+                                    try
+                                    {
+                                        ProcessorResponse procResp = Serializer.DeserializeJson<ProcessorResponse>(resp.DataAsString);
+                                        return procResp;
+                                    }
+                                    catch (Exception)
+                                    {
+                                        Log(SeverityEnum.Warn, "unable to deserialize response body, returning null");
+                                        return null;
+                                    }
                                 }
                                 else
                                 {

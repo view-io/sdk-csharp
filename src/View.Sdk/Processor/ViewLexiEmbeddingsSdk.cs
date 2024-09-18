@@ -87,16 +87,24 @@
                     {
                         if (resp != null)
                         {
+                            if (LogResponses) Logger?.Invoke(SeverityEnum.Debug, "response (status " + resp.StatusCode + "):" + Environment.NewLine + resp.DataAsString);
+
                             if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                             {
                                 Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
 
                                 if (!String.IsNullOrEmpty(resp.DataAsString))
                                 {
-                                    if (LogResponses) Log(SeverityEnum.Debug, "response body: " + Environment.NewLine + resp.DataAsString);
-
-                                    LexiEmbeddingsResponse procResp = Serializer.DeserializeJson<LexiEmbeddingsResponse>(resp.DataAsString);
-                                    return procResp;
+                                    try
+                                    {
+                                        LexiEmbeddingsResponse procResp = Serializer.DeserializeJson<LexiEmbeddingsResponse>(resp.DataAsString);
+                                        return procResp;
+                                    }
+                                    catch (Exception)
+                                    {
+                                        Log(SeverityEnum.Warn, "unable to deserialize response body, returning null");
+                                        return null;
+                                    }
                                 }
                                 else
                                 {
@@ -109,10 +117,16 @@
 
                                 if (!String.IsNullOrEmpty(resp.DataAsString))
                                 {
-                                    if (LogResponses) Log(SeverityEnum.Debug, "response body: " + Environment.NewLine + resp.DataAsString);
-
-                                    LexiEmbeddingsResponse procResp = Serializer.DeserializeJson<LexiEmbeddingsResponse>(resp.DataAsString);
-                                    return procResp;
+                                    try
+                                    {
+                                        LexiEmbeddingsResponse procResp = Serializer.DeserializeJson<LexiEmbeddingsResponse>(resp.DataAsString);
+                                        return procResp;
+                                    }
+                                    catch (Exception)
+                                    {
+                                        Log(SeverityEnum.Warn, "unable to deserialize response body, returning null");
+                                        return null;
+                                    }
                                 }
                                 else
                                 {
