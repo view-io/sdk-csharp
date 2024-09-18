@@ -182,7 +182,7 @@
         /// <param name="query">Enumeration query.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Enumeration result.</returns>
-        public async Task<EnumerationResult> EnumerateTable(
+        public async Task<EnumerationResult<EmbeddingsDocument>> EnumerateTable(
             EnumerationQuery query, 
             CancellationToken token = default)
         {
@@ -204,7 +204,7 @@
                             Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
-                                return Serializer.DeserializeJson<EnumerationResult>(resp.DataAsString);
+                                return Serializer.DeserializeJson<EnumerationResult<EmbeddingsDocument>>(resp.DataAsString);
                             }
                             else
                             {

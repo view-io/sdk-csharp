@@ -211,7 +211,7 @@
         /// <param name="query">Query.</param>
         /// <param name="token">Token.</param>
         /// <returns>Enumeration result.</returns>
-        public async Task<EnumerationResult> Enumerate(string collectionGuid, EnumerationQuery query, CancellationToken token = default)
+        public async Task<EnumerationResult<SourceDocument>> Enumerate(string collectionGuid, EnumerationQuery query, CancellationToken token = default)
         {
             if (query == null) throw new ArgumentNullException(nameof(query));
             if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
@@ -232,7 +232,7 @@
                             Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
-                                return Serializer.DeserializeJson<EnumerationResult>(resp.DataAsString);
+                                return Serializer.DeserializeJson<EnumerationResult<SourceDocument>>(resp.DataAsString);
                             }
                             else
                             {

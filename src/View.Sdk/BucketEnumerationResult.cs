@@ -7,9 +7,9 @@
     using View.Sdk;
 
     /// <summary>
-    /// Object returned as the result of an enumeration.
+    /// Object returned as the result of an enumeration against a bucket.
     /// </summary>
-    public class EnumerationResult<T>
+    public class BucketEnumerationResult
     {
         #region Public-Members
 
@@ -56,25 +56,29 @@
         }
 
         /// <summary>
+        /// Object statistics.
+        /// </summary>
+        public ObjectStatistics Statistics { get; set; } = null;
+
+        /// <summary>
         /// Continuation token.
         /// </summary>
         public string ContinuationToken { get; set; } = null;
 
         /// <summary>
-        /// Objects.
+        /// Shared prefixes.
         /// </summary>
-        public List<T> Objects
-        {
-            get
-            {
-                return _Objects;
-            }
-            set
-            {
-                if (value == null) value = new List<T>();
-                _Objects = value;
-            }
-        }
+        public List<string> SharedPrefixes { get; set; } = null;
+
+        /// <summary>
+        /// Object metadata.
+        /// </summary>
+        public List<ObjectMetadata> Objects { get; set; } = null;
+
+        /// <summary>
+        /// Delete markers.
+        /// </summary>
+        public List<ObjectMetadata> DeleteMarkers { get; set; } = null;
 
         /// <summary>
         /// Boolean indicating end of results.
@@ -104,7 +108,10 @@
         private int _MaxResults = 1000;
         private int _IterationsRequired = 0;
         private long _RecordsRemaining = 0;
-        private List<T> _Objects = new List<T>();
+        private ObjectStatistics _Statistics = new ObjectStatistics();
+        private List<ObjectMetadata> _Objects = new List<ObjectMetadata>();
+        private List<ObjectMetadata> _DeleteMarkers = new List<ObjectMetadata>();
+        private List<string> _SharedPrefixes = new List<string>();
 
         #endregion
 
@@ -113,7 +120,7 @@
         /// <summary>
         /// Instantiates the object.
         /// </summary>
-        public EnumerationResult()
+        public BucketEnumerationResult()
         {
         }
 

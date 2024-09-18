@@ -293,6 +293,71 @@
             Embeddings.
             </summary>
         </member>
+        <member name="T:View.Sdk.BucketEnumerationResult">
+            <summary>
+            Object returned as the result of an enumeration against a bucket.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketEnumerationResult.Success">
+            <summary>
+            Indicates if the statistics operation was successful.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketEnumerationResult.Timestamp">
+            <summary>
+            Start and end timestamps.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketEnumerationResult.MaxResults">
+            <summary>
+            Maximum number of results to retrieve.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketEnumerationResult.IterationsRequired">
+            <summary>
+            Iterations required.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketEnumerationResult.Statistics">
+            <summary>
+            Object statistics.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketEnumerationResult.ContinuationToken">
+            <summary>
+            Continuation token.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketEnumerationResult.SharedPrefixes">
+            <summary>
+            Shared prefixes.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketEnumerationResult.Objects">
+            <summary>
+            Object metadata.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketEnumerationResult.DeleteMarkers">
+            <summary>
+            Delete markers.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketEnumerationResult.EndOfResults">
+            <summary>
+            Boolean indicating end of results.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketEnumerationResult.RecordsRemaining">
+            <summary>
+            Number of candidate records remaining in the enumeration.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.BucketEnumerationResult.#ctor">
+            <summary>
+            Instantiates the object.
+            </summary>
+        </member>
         <member name="T:View.Sdk.BucketMetadata">
             <summary>
             Bucket metadata.
@@ -2904,77 +2969,52 @@
             Instantiate.
             </summary>
         </member>
-        <member name="T:View.Sdk.EnumerationResult">
+        <member name="T:View.Sdk.EnumerationResult`1">
             <summary>
-            Object returned as the result of an enumeration against a table.
+            Object returned as the result of an enumeration.
             </summary>
         </member>
-        <member name="P:View.Sdk.EnumerationResult.Success">
+        <member name="P:View.Sdk.EnumerationResult`1.Success">
             <summary>
             Indicates if the statistics operation was successful.
             </summary>
         </member>
-        <member name="P:View.Sdk.EnumerationResult.Timestamp">
+        <member name="P:View.Sdk.EnumerationResult`1.Timestamp">
             <summary>
             Start and end timestamps.
             </summary>
         </member>
-        <member name="P:View.Sdk.EnumerationResult.MaxResults">
+        <member name="P:View.Sdk.EnumerationResult`1.MaxResults">
             <summary>
             Maximum number of results to retrieve.
             </summary>
         </member>
-        <member name="P:View.Sdk.EnumerationResult.IterationsRequired">
+        <member name="P:View.Sdk.EnumerationResult`1.IterationsRequired">
             <summary>
             Iterations required.
             </summary>
         </member>
-        <member name="P:View.Sdk.EnumerationResult.Statistics">
-            <summary>
-            Object statistics.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EnumerationResult.ContinuationToken">
+        <member name="P:View.Sdk.EnumerationResult`1.ContinuationToken">
             <summary>
             Continuation token.
             </summary>
         </member>
-        <member name="P:View.Sdk.EnumerationResult.SharedPrefixes">
+        <member name="P:View.Sdk.EnumerationResult`1.Objects">
             <summary>
-            Shared prefixes.
+            Objects.
             </summary>
         </member>
-        <member name="P:View.Sdk.EnumerationResult.Objects">
-            <summary>
-            Object metadata.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EnumerationResult.DeleteMarkers">
-            <summary>
-            Delete markers.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EnumerationResult.SourceDocuments">
-            <summary>
-            Source documents that matched the query.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EnumerationResult.EmbeddingsDocuments">
-            <summary>
-            Source documents that matched the query.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EnumerationResult.EndOfResults">
+        <member name="P:View.Sdk.EnumerationResult`1.EndOfResults">
             <summary>
             Boolean indicating end of results.
             </summary>
         </member>
-        <member name="P:View.Sdk.EnumerationResult.RecordsRemaining">
+        <member name="P:View.Sdk.EnumerationResult`1.RecordsRemaining">
             <summary>
             Number of candidate records remaining in the enumeration.
             </summary>
         </member>
-        <member name="M:View.Sdk.EnumerationResult.#ctor">
+        <member name="M:View.Sdk.EnumerationResult`1.#ctor">
             <summary>
             Instantiates the object.
             </summary>

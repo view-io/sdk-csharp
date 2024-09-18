@@ -243,7 +243,7 @@
 
         private static async Task EnumerateCollection() 
         {
-            EnumerationResult result = await _Sdk.Enumerate(
+            EnumerationResult<SourceDocument> result = await _Sdk.Enumerate(
                 GetCollectionGuid(),
                 BuildEnumerationQuery());
             EnumerateResponse(result);
