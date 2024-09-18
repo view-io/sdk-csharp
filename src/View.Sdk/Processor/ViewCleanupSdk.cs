@@ -101,10 +101,10 @@
 
                             if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                             {
+                                Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+
                                 if (!String.IsNullOrEmpty(resp.DataAsString))
                                 {
-                                    if (LogResponses) Log(SeverityEnum.Debug, "response body: " + Environment.NewLine + resp.DataAsString);
-
                                     CleanupResponse cleanupResp = Serializer.DeserializeJson<CleanupResponse>(resp.DataAsString);
                                     return cleanupResp;
                                 }
