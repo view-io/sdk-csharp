@@ -18,7 +18,58 @@
         /// <param name="typeToConvert">Type to convert.</param>
         /// <param name="options">JSON serializer options.</param>
         /// <returns>NameValueCollection.</returns>
-        public override NameValueCollection Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) => throw new NotImplementedException();
+        public override NameValueCollection Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        {
+            if (reader.TokenType != JsonTokenType.StartObject)
+            {
+                throw new JsonException("Expected start of object");
+            }
+
+            var collection = new NameValueCollection();
+
+            while (reader.Read())
+            {
+                if (reader.TokenType == JsonTokenType.EndObject)
+                {
+                    return collection;
+                }
+
+                if (reader.TokenType != JsonTokenType.PropertyName)
+                {
+                    throw new JsonException("Expected property name");
+                }
+
+                string propertyName = reader.GetString();
+
+                reader.Read();
+                switch (reader.TokenType)
+                {
+                    case JsonTokenType.Null:
+                        collection.Add(propertyName, null);
+                        break;
+                    case JsonTokenType.String:
+                        collection.Add(propertyName, reader.GetString());
+                        break;
+                    case JsonTokenType.StartArray:
+                        while (reader.Read() && reader.TokenType != JsonTokenType.EndArray)
+                        {
+                            if (reader.TokenType == JsonTokenType.String)
+                            {
+                                collection.Add(propertyName, reader.GetString());
+                            }
+                            else
+                            {
+                                throw new JsonException("Expected string value in array");
+                            }
+                        }
+                        break;
+                    default:
+                        throw new JsonException($"Unexpected token type: {reader.TokenType}");
+                }
+            }
+
+            throw new JsonException("Expected end of object");
+        }
 
         /// <summary>
         /// Write.
@@ -28,9 +79,42 @@
         /// <param name="options">JSON serializer options.</param>
         public override void Write(Utf8JsonWriter writer, NameValueCollection value, JsonSerializerOptions options)
         {
-            var val = value.Keys.Cast<string>()
-                .ToDictionary(k => k, k => string.Join(", ", value.GetValues(k)));
-            System.Text.Json.JsonSerializer.Serialize(writer, val);
+            if (writer == null)
+                throw new ArgumentNullException(nameof(writer));
+
+            if (value == null)
+            {
+                writer.WriteNullValue();
+                return;
+            }
+
+            writer.WriteStartObject();
+
+            foreach (string key in value.Keys)
+            {
+                writer.WritePropertyName(options.PropertyNamingPolicy?.ConvertName(key) ?? key);
+
+                var values = value.GetValues(key);
+                if (values == null || values.Length == 0)
+                {
+                    writer.WriteNullValue();
+                }
+                else if (values.Length == 1)
+                {
+                    writer.WriteStringValue(values[0]);
+                }
+                else
+                {
+                    writer.WriteStartArray();
+                    foreach (var v in values)
+                    {
+                        writer.WriteStringValue(v);
+                    }
+                    writer.WriteEndArray();
+                }
+            }
+
+            writer.WriteEndObject();
         }
     }
 }

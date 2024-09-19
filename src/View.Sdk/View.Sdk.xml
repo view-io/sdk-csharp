@@ -218,6 +218,11 @@
             V1.0.
             </summary>
         </member>
+        <member name="F:View.Sdk.ApiVersionEnum.V2_0">
+            <summary>
+            V2.0.
+            </summary>
+        </member>
         <member name="T:View.Sdk.AuthenticationResultEnum">
             <summary>
             Authentication result.
