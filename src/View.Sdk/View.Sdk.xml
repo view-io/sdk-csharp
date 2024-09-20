@@ -278,6 +278,91 @@
             Conflict.
             </summary>
         </member>
+        <member name="T:View.Sdk.Blob">
+            <summary>
+            Binary large object (BLOB).
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Blob.Id">
+            <summary>
+            Database row ID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Blob.GUID">
+            <summary>
+            Globally-unique identifier.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Blob.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Blob.ContentType">
+            <summary>
+            Content type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Blob.Name">
+            <summary>
+            Name of the BLOB.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Blob.Description">
+            <summary>
+            Description.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Blob.Url">
+            <summary>
+            URL to access the BLOB directly.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Blob.Length">
+            <summary>
+            Content length of the BLOB.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Blob.RefObjType">
+            <summary>
+            Object type to which this BLOB refers.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Blob.RefObjGUID">
+            <summary>
+            Globally-unique identifier the object to which this BLOB refers.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Blob.MD5Hash">
+            <summary>
+            MD5.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Blob.SHA1Hash">
+            <summary>
+            SHA1.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Blob.SHA256Hash">
+            <summary>
+            SHA256.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Blob.CreatedUtc">
+            <summary>
+            Timestamp from creation in UTC time.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Blob.Data">
+            <summary>
+            BLOB data.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Blob.#ctor">
+            <summary>
+            Instantiate the object.
+            </summary>
+        </member>
         <member name="T:View.Sdk.BucketCategoryEnum">
             <summary>
             Bucket category.
