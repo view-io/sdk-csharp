@@ -15,6 +15,22 @@
         public DocumentTypeEnum DocumentType { get; set; } = DocumentTypeEnum.Unknown;
 
         /// <summary>
+        /// Minimum chunk content length.  Minimum is 1.
+        /// </summary>
+        public int MinChunkContentLength
+        {
+            get
+            {
+                return _MinChunkContentLength;
+            }
+            set
+            {
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(MinChunkContentLength));
+                _MinChunkContentLength = value;
+            }
+        }
+
+        /// <summary>
         /// Maximum chunk content length.  Minimum is 256 and maximum is 16384.
         /// </summary>
         public int MaxChunkContentLength
@@ -80,6 +96,7 @@
 
         #region Private-Members
 
+        private int _MinChunkContentLength = 2;
         private int _MaxChunkContentLength = 512;
         private int _ShiftSize = 512;
         private PdfOptions _Pdf = new PdfOptions();

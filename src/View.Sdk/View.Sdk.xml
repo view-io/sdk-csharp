@@ -6622,6 +6622,11 @@
             Document type.
             </summary>
         </member>
+        <member name="P:View.Sdk.Semantic.SemanticCellRequest.MinChunkContentLength">
+            <summary>
+            Minimum chunk content length.  Minimum is 1.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Semantic.SemanticCellRequest.MaxChunkContentLength">
             <summary>
             Maximum chunk content length.  Minimum is 256 and maximum is 16384.
