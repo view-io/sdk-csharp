@@ -1962,6 +1962,22 @@
             Instantiate.
             </summary>
         </member>
+        <member name="M:View.Sdk.Credential.Redact(View.Sdk.Serialization.Serializer,View.Sdk.Credential)">
+            <summary>
+            Redact.
+            </summary>
+            <param name="serializer">Serializer.</param>
+            <param name="cred">Credential.</param>
+            <returns>Credential.</returns>
+        </member>
+        <member name="M:View.Sdk.Credential.Redact(View.Sdk.Serialization.Serializer,System.Collections.Generic.List{View.Sdk.Credential})">
+            <summary>
+            Redact.
+            </summary>
+            <param name="serializer">Serializer.</param>
+            <param name="creds">Credentials.</param>
+            <returns>List.</returns>
+        </member>
         <member name="T:View.Sdk.DataCatalogTypeEnum">
             <summary>
             Data catalog type.
@@ -4925,6 +4941,11 @@
             Semantic cell extraction endpoint.
             </summary>
         </member>
+        <member name="P:View.Sdk.MetadataRule.MinChunkContentLength">
+            <summary>
+            Minimum chunk content length.  Minimum is 1.
+            </summary>
+        </member>
         <member name="P:View.Sdk.MetadataRule.MaxChunkContentLength">
             <summary>
             Maximum chunk content length.  Minimum is 256 and maximum is 16384.
@@ -6580,6 +6601,12 @@
             Only applicable when Mode is set to BoundingBoxExtraction.
             </summary>
         </member>
+        <member name="P:View.Sdk.Semantic.PdfOptions.RetainArtifact">
+            <summary>
+            True to indicate that the marked-up PDF file should be preserved in the temporary directory.
+            Only applicable when Mode is set to BoundingBoxExtraction.
+            </summary>
+        </member>
         <member name="M:View.Sdk.Semantic.PdfOptions.#ctor">
             <summary>
             Instantiate.
@@ -6688,7 +6715,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Semantic cell response.</returns>
         </member>
-        <member name="M:View.Sdk.Semantic.ViewSemanticCellSdk.Process(View.Sdk.DocumentTypeEnum,View.Sdk.MetadataRule,System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Semantic.ViewSemanticCellSdk.Process(View.Sdk.DocumentTypeEnum,View.Sdk.MetadataRule,System.Byte[],System.Int32,System.Int32,View.Sdk.Semantic.PdfOptions,System.Threading.CancellationToken)">
             <summary>
             Extract semantic cells from a document.
             </summary>
@@ -6697,6 +6724,7 @@
             <param name="data">Data.</param>
             <param name="maxChunkContentLength">Maximum chunk content length.</param>
             <param name="shiftSize">Shift size.</param>
+            <param name="pdfOptions">PDF options.</param>
             <param name="token">Cancellation token.</param>
             <returns>Semantic cell response.</returns>
         </member>
@@ -7889,6 +7917,22 @@
             <summary>
             Instantiate.
             </summary>
+        </member>
+        <member name="M:View.Sdk.UserMaster.Redact(View.Sdk.Serialization.Serializer,View.Sdk.UserMaster)">
+            <summary>
+            Redact.
+            </summary>
+            <param name="serializer">Serializer.</param>
+            <param name="user">User.</param>
+            <returns>User.</returns>
+        </member>
+        <member name="M:View.Sdk.UserMaster.Redact(View.Sdk.Serialization.Serializer,System.Collections.Generic.List{View.Sdk.UserMaster})">
+            <summary>
+            Redact.
+            </summary>
+            <param name="serializer">Serializer.</param>
+            <param name="users">Users.</param>
+            <returns>List.</returns>
         </member>
         <member name="T:View.Sdk.VectorRepository">
             <summary>

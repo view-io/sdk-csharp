@@ -120,6 +120,7 @@
         /// <param name="data">Data.</param>
         /// <param name="maxChunkContentLength">Maximum chunk content length.</param>
         /// <param name="shiftSize">Shift size.</param>
+        /// <param name="pdfOptions">PDF options.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Semantic cell response.</returns>
         public async Task<SemanticCellResponse> Process(
@@ -128,6 +129,7 @@
             byte[] data,
             int maxChunkContentLength = 512,
             int shiftSize = 512,
+            PdfOptions pdfOptions = null,
             CancellationToken token = default)
         {
             if (data == null || data.Length < 1) throw new ArgumentException("No data supplied for semantic cell extraction.");
@@ -141,7 +143,8 @@
                 MetadataRule = mdRule,
                 Data = data,
                 MaxChunkContentLength = maxChunkContentLength,
-                ShiftSize = shiftSize
+                ShiftSize = shiftSize,
+                Pdf = pdfOptions
             };
 
             return await Process(scReq);

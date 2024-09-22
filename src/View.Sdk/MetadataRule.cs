@@ -80,6 +80,22 @@
         public string SemanticCellEndpoint { get; set; } = "http://localhost:8341/";
 
         /// <summary>
+        /// Minimum chunk content length.  Minimum is 1.
+        /// </summary>
+        public int MinChunkContentLength
+        {
+            get
+            {
+                return _MinChunkContentLength;
+            }
+            set
+            {
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(MinChunkContentLength));
+                _MinChunkContentLength = value;
+            }
+        }
+
+        /// <summary>
         /// Maximum chunk content length.  Minimum is 256 and maximum is 16384.
         /// </summary>
         public int MaxChunkContentLength
@@ -243,6 +259,7 @@
         private int? _RetentionMinutes = null;
         private int _MaxContentLength = 16 * 1024 * 1024;
         private int _TopTerms = 25;
+        private int _MinChunkContentLength = 2;
         private int _MaxChunkContentLength = 512;
         private int _ShiftSize = 512;
 
