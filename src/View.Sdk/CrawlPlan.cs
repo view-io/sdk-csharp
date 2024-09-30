@@ -45,7 +45,7 @@
         /// <summary>
         /// View endpoint GUID.
         /// </summary>
-        public string ViewEndpointGUID { get; set; } = Guid.NewGuid().ToString();
+        public string ViewEndpointGUID { get; set; } = null;
 
         /// <summary>
         /// Crawl schedule GUID.

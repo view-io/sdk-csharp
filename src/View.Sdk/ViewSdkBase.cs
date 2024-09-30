@@ -124,12 +124,12 @@
         {
             get
             {
-                return _TimeoutMilliseconds;
+                return _TimeoutMs;
             }
             set
             {
                 if (value < 1) throw new ArgumentOutOfRangeException(nameof(TimeoutMs));
-                _TimeoutMilliseconds = value;
+                _TimeoutMs = value;
             }
         }
 
@@ -146,7 +146,7 @@
         private string _AccessKey = null;
         private string _Endpoint = null;
         private Serializer _Serializer = new Serializer();
-        private int _TimeoutMilliseconds = 600 * 1000;
+        private int _TimeoutMs = 600 * 1000;
 
         #endregion
 

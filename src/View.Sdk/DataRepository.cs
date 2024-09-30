@@ -1,6 +1,7 @@
 ﻿namespace View.Sdk
 {
     using System;
+    using System.Collections.Generic;
     using System.Text.Json.Serialization;
 
     /// <summary>
@@ -261,7 +262,19 @@
         /// <summary>
         /// NFS version.
         /// </summary>
-        public string NfsVersion { get; set; } = null;
+        public string NfsVersion
+        {
+            get
+            {
+                return _NfsVersion;
+            }
+            set
+            {
+                if (String.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(NfsVersion));
+                if (!_ValidNfsVersions.Contains(value)) throw new ArgumentException("Invalid NFS version, use V2, V3, or V4.");
+                _NfsVersion = value;
+            }
+        }
 
         #endregion
 
@@ -281,6 +294,14 @@
         private string _AzureEndpointUrl = null;
         private int _NfsUserId = 0;
         private int _NfsGroupId = 0;
+        private string _NfsVersion = "V3";
+
+        private List<string> _ValidNfsVersions = new List<string>()
+        {
+            "V2",
+            "V3",
+            "V4"
+        };
 
         #endregion
 

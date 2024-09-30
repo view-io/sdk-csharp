@@ -1,6 +1,7 @@
 ﻿namespace View.Sdk
 {
     using System;
+    using System.Text.Json.Serialization;
 
     /// <summary>
     /// Collection statistics.
