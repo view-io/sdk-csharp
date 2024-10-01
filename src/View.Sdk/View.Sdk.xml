@@ -1767,16 +1767,6 @@
             Embeddings rule GUID.
             </summary>
         </member>
-        <member name="P:View.Sdk.CrawlPlan.ProcessingEndpoint">
-            <summary>
-            Data flow endpoint for processing.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.CrawlPlan.CleanupEndpoint">
-            <summary>
-            Data flow endpoint for cleanup processing.
-            </summary>
-        </member>
         <member name="P:View.Sdk.CrawlPlan.Name">
             <summary>
             Name.
