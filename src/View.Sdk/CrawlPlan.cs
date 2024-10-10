@@ -43,11 +43,6 @@
         public string DataRepositoryGUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
-        /// View endpoint GUID.
-        /// </summary>
-        public string ViewEndpointGUID { get; set; } = null;
-
-        /// <summary>
         /// Crawl schedule GUID.
         /// </summary>
         public string CrawlScheduleGUID { get; set; } = null;

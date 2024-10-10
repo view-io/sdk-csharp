@@ -58,11 +58,6 @@
         public string DataRepositoryGUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
-        /// View endpoint GUID.
-        /// </summary>
-        public string ViewEndpointGUID { get; set; } = Guid.NewGuid().ToString();
-
-        /// <summary>
         /// Metadata rule GUID.
         /// </summary>
         public string MetadataRuleGUID { get; set; } = null;

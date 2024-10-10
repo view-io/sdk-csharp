@@ -1373,53 +1373,6 @@
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateViewEndpoint(View.Sdk.ViewEndpoint,System.Threading.CancellationToken)">
-            <summary>
-            Create a View endpoint.
-            </summary>
-            <param name="endpoint">View endpoint.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>View endpoint.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsViewEndpoint(System.String,System.Threading.CancellationToken)">
-            <summary>
-            Check if a View endpoint exists.
-            </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveViewEndpoint(System.String,System.Threading.CancellationToken)">
-            <summary>
-            Read a View endpoint.
-            </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>View endpoint.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveViewEndpoints(System.Threading.CancellationToken)">
-            <summary>
-            Read View endpoints.
-            </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>View endpoints.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.UpdateViewEndpoint(View.Sdk.ViewEndpoint,System.Threading.CancellationToken)">
-            <summary>
-            Update a View endpoint.
-            </summary>
-            <param name="endpoint">View endpoint.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>View endpoint.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteViewEndpoint(System.String,System.Threading.CancellationToken)">
-            <summary>
-            Delete a View endpoint.
-            </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
         <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateObjectLock(View.Sdk.ObjectLock,System.Threading.CancellationToken)">
             <summary>
             Create an object lock.
@@ -1570,11 +1523,6 @@
         <member name="P:View.Sdk.CrawlOperation.DataRepositoryGUID">
             <summary>
             Data repository GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.CrawlOperation.ViewEndpointGUID">
-            <summary>
-            View endpoint GUID.
             </summary>
         </member>
         <member name="P:View.Sdk.CrawlOperation.MetadataRuleGUID">
@@ -1740,11 +1688,6 @@
         <member name="P:View.Sdk.CrawlPlan.DataRepositoryGUID">
             <summary>
             Data repository GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.CrawlPlan.ViewEndpointGUID">
-            <summary>
-            View endpoint GUID.
             </summary>
         </member>
         <member name="P:View.Sdk.CrawlPlan.CrawlScheduleGUID">
@@ -8946,96 +8889,6 @@
             </summary>
         </member>
         <member name="M:View.Sdk.EmbeddingsResult.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.ViewEndpoint">
-            <summary>
-            View storage server endpoint.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.ViewEndpoint.GUID">
-            <summary>
-            GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.ViewEndpoint.TenantGUID">
-            <summary>
-            Tenant GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.ViewEndpoint.OwnerGUID">
-            <summary>
-            Owner GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.ViewEndpoint.Name">
-            <summary>
-            Name.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.ViewEndpoint.UseSsl">
-            <summary>
-            Boolean flag to enable or disable SSL.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.ViewEndpoint.S3Url">
-            <summary>
-            S3 URL.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.ViewEndpoint.S3Uri">
-            <summary>
-            S3 URI.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.ViewEndpoint.S3BaseUrl">
-            <summary>
-            S3 base URL.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.ViewEndpoint.RestUrl">
-            <summary>
-            REST URL.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.ViewEndpoint.RestUri">
-            <summary>
-            REST URI.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.ViewEndpoint.BucketName">
-            <summary>
-            Bucket name.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.ViewEndpoint.Region">
-            <summary>
-            Region.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.ViewEndpoint.AccessKey">
-            <summary>
-            Access key.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.ViewEndpoint.SecretKey">
-            <summary>
-            Secret key.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.ViewEndpoint.ApiKey">
-            <summary>
-            API key.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.ViewEndpoint.CreatedUtc">
-            <summary>
-            Created.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.ViewEndpoint.#ctor">
             <summary>
             Instantiate.
             </summary>

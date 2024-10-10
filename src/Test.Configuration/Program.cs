@@ -103,9 +103,8 @@
             Console.WriteLine("    write  update  read  reads  delete  exists");
             Console.WriteLine("");
             Console.WriteLine("  [type] is one of:");
-            Console.WriteLine("    node  tenant  user  cred  pool  bucket  enckey");
-            Console.WriteLine("    mdrule  embedrule  whevent  whrule  whtarget  ve");
-            Console.WriteLine("    lock");
+            Console.WriteLine("    node    tenant     user     cred    pool      bucket    enckey");
+            Console.WriteLine("    mdrule  embedrule  whevent  whrule  whtarget  lock");
             Console.WriteLine("");
             Console.WriteLine("Not all object types support all commands");
             Console.WriteLine("");
@@ -175,10 +174,6 @@
                     WebhookTarget whTarget = BuildObject<WebhookTarget>();
                     EnumerateResponse(await _Sdk.CreateWebhookTarget(whTarget));
                     break;
-                case "ve":
-                    ViewEndpoint ve = BuildObject<ViewEndpoint>();
-                    EnumerateResponse(await _Sdk.CreateViewEndpoint(ve));
-                    break;
                 case "lock":
                     break;
                 default:
@@ -231,9 +226,6 @@
                 case "whtarget":
                     EnumerateResponse(await _Sdk.RetrieveWebhookTarget(guid));
                     break;
-                case "ve":
-                    EnumerateResponse(await _Sdk.RetrieveViewEndpoint(guid));
-                    break; ;
                 case "lock":
                     EnumerateResponse(await _Sdk.RetrieveObjectLock(guid));
                     break;
@@ -282,9 +274,6 @@
                     break;
                 case "whtarget":
                     EnumerateResponse(await _Sdk.RetrieveWebhookTargets());
-                    break;
-                case "ve":
-                    EnumerateResponse(await _Sdk.RetrieveViewEndpoints());
                     break;
                 case "lock":
                     EnumerateResponse(await _Sdk.RetrieveObjectLocks());
@@ -346,10 +335,6 @@
                     WebhookTarget whTarget = BuildObject<WebhookTarget>();
                     EnumerateResponse(await _Sdk.UpdateWebhookTarget(whTarget));
                     break;
-                case "ve":
-                    ViewEndpoint ve = BuildObject<ViewEndpoint>();
-                    EnumerateResponse(await _Sdk.UpdateViewEndpoint(ve));
-                    break;
                 case "lock":
                     break;
                 default:
@@ -399,9 +384,6 @@
                     break;
                 case "whtarget":
                     await _Sdk.DeleteWebhookTarget(guid);
-                    break;
-                case "ve":
-                    await _Sdk.DeleteViewEndpoint(guid);
                     break;
                 case "lock":
                     await _Sdk.DeleteObjectLock(guid);
@@ -456,9 +438,6 @@
                     break;
                 case "whtarget":
                     exists = await _Sdk.ExistsWebhookTarget(guid);
-                    break;
-                case "ve":
-                    exists = await _Sdk.ExistsViewEndpoint(guid);
                     break;
                 case "lock":
                     break;
