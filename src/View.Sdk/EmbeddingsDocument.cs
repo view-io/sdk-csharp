@@ -187,6 +187,7 @@
                 doc.Distance = row["distance"] != null ? Convert.ToDecimal(row["distance"].ToString()) : null;
 
             string cellGuid = row["cell_guid"] != null ? row["cell_guid"].ToString() : null;
+            string cellType = row["cell_type"] != null ? row["cell_type"].ToString() : null;
             string cellMd5 = row["cell_md5"] != null ? row["cell_md5"].ToString() : null;
             string cellSha1 = row["cell_sha1"] != null ? row["cell_sha1"].ToString() : null;
             string cellSha256 = row["cell_sha256"] != null ? row["cell_sha256"].ToString() : null;
@@ -208,6 +209,10 @@
             SemanticCell cell = new SemanticCell
             {
                 GUID = cellGuid,
+                CellType =
+                    (!String.IsNullOrEmpty(cellType)
+                        ? (SemanticCellTypeEnum)(Enum.Parse(typeof(SemanticCellTypeEnum), cellGuid))
+                        : SemanticCellTypeEnum.Text),
                 MD5Hash = cellMd5,
                 SHA1Hash = cellSha1,
                 SHA256Hash = cellSha256,

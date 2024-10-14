@@ -18,6 +18,11 @@
         public string GUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
+        /// Semantic cell type.
+        /// </summary>
+        public SemanticCellTypeEnum CellType { get; set; } = SemanticCellTypeEnum.Text;
+
+        /// <summary>
         /// MD5.
         /// </summary>
         public string MD5Hash { get; set; } = string.Empty;

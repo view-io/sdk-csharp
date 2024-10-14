@@ -6340,6 +6340,11 @@
             GUID.
             </summary>
         </member>
+        <member name="P:View.Sdk.SemanticCell.CellType">
+            <summary>
+            Semantic cell type.
+            </summary>
+        </member>
         <member name="P:View.Sdk.SemanticCell.MD5Hash">
             <summary>
             MD5.
@@ -6432,6 +6437,16 @@
             Count the number of bytes contained within chunks within the semantic cell.
             </summary>
             <returns>Number of bytes.</returns>
+        </member>
+        <member name="T:View.Sdk.SemanticCellTypeEnum">
+            <summary>
+            Semantic cell type.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.SemanticCellTypeEnum.Text">
+            <summary>
+            Text.
+            </summary>
         </member>
         <member name="T:View.Sdk.SemanticChunk">
             <summary>
