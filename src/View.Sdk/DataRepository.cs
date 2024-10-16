@@ -225,7 +225,7 @@
         /// <summary>
         /// NFS user ID.
         /// </summary>
-        public int NfsUserId
+        public int? NfsUserId
         {
             get
             {
@@ -233,7 +233,7 @@
             }
             set
             {
-                if (value < 0) throw new ArgumentOutOfRangeException(nameof(NfsUserId));
+                if (value != null && value.Value < 0) throw new ArgumentOutOfRangeException(nameof(NfsUserId));
                 _NfsUserId = value;
             }
         }
@@ -241,7 +241,7 @@
         /// <summary>
         /// NFS group ID.
         /// </summary>
-        public int NfsGroupId
+        public int? NfsGroupId
         {
             get
             {
@@ -249,7 +249,7 @@
             }
             set
             {
-                if (value < 0) throw new ArgumentOutOfRangeException(nameof(NfsGroupId));
+                if (value != null && value.Value < 0) throw new ArgumentOutOfRangeException(nameof(NfsGroupId));
                 _NfsGroupId = value;
             }
         }
@@ -270,8 +270,11 @@
             }
             set
             {
-                if (String.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(NfsVersion));
-                if (!_ValidNfsVersions.Contains(value)) throw new ArgumentException("Invalid NFS version, use V2, V3, or V4.");
+                if (!String.IsNullOrEmpty(value))
+                {
+                    if (!_ValidNfsVersions.Contains(value)) throw new ArgumentException("Invalid NFS version, use V2, V3, or V4.");
+                }
+
                 _NfsVersion = value;
             }
         }
@@ -292,9 +295,9 @@
         private string _S3EndpointUrl = null;
         private string _S3BaseUrl = null;
         private string _AzureEndpointUrl = null;
-        private int _NfsUserId = 0;
-        private int _NfsGroupId = 0;
-        private string _NfsVersion = "V3";
+        private int? _NfsUserId = null;
+        private int? _NfsGroupId = null;
+        private string _NfsVersion = null;
 
         private List<string> _ValidNfsVersions = new List<string>()
         {
