@@ -211,7 +211,7 @@
                 GUID = cellGuid,
                 CellType =
                     (!String.IsNullOrEmpty(cellType)
-                        ? (SemanticCellTypeEnum)(Enum.Parse(typeof(SemanticCellTypeEnum), cellGuid))
+                        ? (SemanticCellTypeEnum)(Enum.Parse(typeof(SemanticCellTypeEnum), cellType))
                         : SemanticCellTypeEnum.Text),
                 MD5Hash = cellMd5,
                 SHA1Hash = cellSha1,
