@@ -56,7 +56,7 @@
         /// <summary>
         /// Boolean flag to enable or disable SSL.
         /// </summary>
-        public bool UseSsl { get; set; } = false;
+        public bool? UseSsl { get; set; } = null;
 
         /// <summary>
         /// Boolean to indicate whether or not subdirectories should be included.
