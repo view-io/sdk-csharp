@@ -66,10 +66,7 @@
                                 ServerSentEvent sse = await resp.ReadEventAsync();
                                 if (sse != null) yield return ExtractToken(sse.Data);
                                 else
-                                {
-                                    Console.WriteLine("ServerSentEvent is null");
                                     yield break;
-                                }
                             }
                         }
                     }
@@ -108,10 +105,7 @@
                                 ServerSentEvent sse = await resp.ReadEventAsync();
                                 if (sse != null) yield return ExtractToken(sse.Data);
                                 else
-                                {
-                                    Console.WriteLine("ServerSentEvent is null");
                                     yield break;
-                                }
                             }
                         }
                     }
