@@ -223,6 +223,189 @@
             V2.0.
             </summary>
         </member>
+        <member name="T:View.Sdk.Assistant.AssistantChatRequest">
+            <summary>
+            View Assistant chat request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantChatRequest.Question">
+            <summary>
+            Question.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantChatRequest.Temperature">
+            <summary>
+            Temperature, between 0 and 1.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantChatRequest.MaxTokens">
+            <summary>
+            Maximum number of tokens to generate, between 1 and 16384.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantChatRequest.GenerationModel">
+            <summary>
+            Generation model and tag; default is llama3.1:latest.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantChatRequest.GenerationProvider">
+            <summary>
+            Generation provider.  Value values are: ollama.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantChatRequest.OllamaHostname">
+            <summary>
+            Ollama hostname.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantChatRequest.OllamaPort">
+            <summary>
+            Ollama TCP port.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantChatRequest.Stream">
+            <summary>
+            Streaming.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Assistant.AssistantChatRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Assistant.AssistantRagRequest">
+            <summary>
+            View Assistant RAG request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRagRequest.PromptPrefix">
+            <summary>
+            Prompt prefix.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRagRequest.Question">
+            <summary>
+            Question.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRagRequest.MaxResults">
+            <summary>
+            Maximum number of documents to retrieve, between 1 and 100.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRagRequest.Temperature">
+            <summary>
+            Temperature, between 0 and 1.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRagRequest.TopP">
+            <summary>
+            Top P, between 0 and 1.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRagRequest.MaxTokens">
+            <summary>
+            Maximum number of tokens to generate, between 1 and 16384.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRagRequest.GenerationModel">
+            <summary>
+            Generation model and tag; default is llama3.1:latest.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRagRequest.GenerationProvider">
+            <summary>
+            Generation provider.  Value values are: ollama.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRagRequest.OllamaHostname">
+            <summary>
+            Ollama hostname.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRagRequest.OllamaPort">
+            <summary>
+            Ollama TCP port.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRagRequest.VectorDatabaseHostname">
+            <summary>
+            Vector database hostname.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRagRequest.VectorDatabasePort">
+            <summary>
+            Vector database port.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRagRequest.VectorDatabaseName">
+            <summary>
+            Vector database name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRagRequest.VectorDatabaseUser">
+            <summary>
+            Vector database user.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRagRequest.VectorDatabasePassword">
+            <summary>
+            Vector database password.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRagRequest.Stream">
+            <summary>
+            Streaming.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRagRequest.ContextSort">
+            <summary>
+            Enable or disable contextual sorting.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRagRequest.ContextScope">
+            <summary>
+            Context scope; number of neighboring data elements to retrieve.  Must be between 1 and 16.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRagRequest.Rerank">
+            <summary>
+            Enable or disable re-ranking of chunks or documents.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRagRequest.RerankTopK">
+            <summary>
+            Re-ranking of top chunks or documents.  Must be between 1 and 16.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Assistant.AssistantRagRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Assistant.ViewAssistantSdk">
+            <summary>
+            View Assistant SDK.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Assistant.ViewAssistantSdk.#ctor(System.String)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="endpoint">Endpoint URL.</param>
+        </member>
+        <member name="M:View.Sdk.Assistant.ViewAssistantSdk.ProcessRag(View.Sdk.Assistant.AssistantRagRequest,System.Threading.CancellationToken)">
+            <summary>
+            Process a RAG request.
+            </summary>
+            <returns>Enumerable of tokens.</returns>
+        </member>
+        <member name="M:View.Sdk.Assistant.ViewAssistantSdk.ProcessChat(View.Sdk.Assistant.AssistantChatRequest,System.Threading.CancellationToken)">
+            <summary>
+            Process a chat request.
+            </summary>
+            <returns>Enumerable of tokens.</returns>
+        </member>
         <member name="T:View.Sdk.AuthenticationResultEnum">
             <summary>
             Authentication result.
