@@ -6,7 +6,6 @@
     /// <summary>
     /// Encryption type.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum EncryptionTypeEnum
     {
         /// <summary>

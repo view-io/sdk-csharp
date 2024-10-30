@@ -6,7 +6,6 @@
     /// <summary>
     /// Types of data supported.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum DataTypeEnum
     {
         /// <summary>

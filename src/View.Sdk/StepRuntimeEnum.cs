@@ -6,7 +6,6 @@
     /// <summary>
     /// Data flow step runtime.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum StepRuntimeEnum
     {
         /// <summary>

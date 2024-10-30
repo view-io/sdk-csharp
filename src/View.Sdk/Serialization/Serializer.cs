@@ -27,9 +27,9 @@
 
         private ExceptionConverter<Exception> _ExceptionConverter = new ExceptionConverter<Exception>();
         private NameValueCollectionConverter _NameValueCollectionConverter = new NameValueCollectionConverter();
-        private JsonStringEnumConverter _StringEnumConverter = new JsonStringEnumConverter();
         private DateTimeConverter _DateTimeConverter = new DateTimeConverter();
         private IPAddressConverter _IPAddressConverter = new IPAddressConverter();
+        private StrictEnumConverterFactory _StrictEnumConverter = new StrictEnumConverterFactory();
 
         #endregion
 
@@ -56,9 +56,9 @@
             {
                 Activator.CreateInstance<ExceptionConverter<Exception>>();
                 Activator.CreateInstance<NameValueCollectionConverter>();
-                Activator.CreateInstance<JsonStringEnumConverter>();
                 Activator.CreateInstance<DateTimeConverter>();
                 Activator.CreateInstance<IPAddressConverter>();
+                Activator.CreateInstance<StrictEnumConverterFactory>();
             }
             catch (Exception)
             {
@@ -81,9 +81,9 @@
 
             options.Converters.Add(_ExceptionConverter);
             options.Converters.Add(_NameValueCollectionConverter);
-            options.Converters.Add(_StringEnumConverter);
             options.Converters.Add(_DateTimeConverter);
             options.Converters.Add(_IPAddressConverter);
+            options.Converters.Add(_StrictEnumConverter);
 
             return JsonSerializer.Deserialize<T>(json, options);
         }
@@ -104,9 +104,9 @@
             // see https://github.com/dotnet/runtime/issues/43026
             options.Converters.Add(_ExceptionConverter);
             options.Converters.Add(_NameValueCollectionConverter);
-            options.Converters.Add(_StringEnumConverter);
             options.Converters.Add(_DateTimeConverter);
             options.Converters.Add(_IPAddressConverter);
+            options.Converters.Add(_StrictEnumConverter);
 
             if (!pretty)
             {

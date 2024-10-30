@@ -6,7 +6,6 @@
     /// <summary>
     /// Embeddings provider.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum EmbeddingsGeneratorEnum
     {
         /// <summary>

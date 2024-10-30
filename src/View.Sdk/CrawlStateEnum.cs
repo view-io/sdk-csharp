@@ -6,7 +6,6 @@
     /// <summary>
     /// Crawler state.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum CrawlStateEnum
     {
         /// <summary>

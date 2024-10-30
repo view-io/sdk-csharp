@@ -6,7 +6,6 @@
     /// <summary>
     /// Authorization result.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum AuthorizationResultEnum
     {
         /// <summary>

@@ -6,7 +6,6 @@
     /// <summary>
     /// Graph repository type.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum GraphRepositoryTypeEnum
     {
         /// <summary>

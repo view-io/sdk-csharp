@@ -6,7 +6,6 @@
     /// <summary>
     /// Available conditions for search filters.
     /// </summary> 
-    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum SchemaCondition
     {
         /// <summary>

@@ -6,7 +6,6 @@
     /// <summary>
     /// Data catalog type.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum DataCatalogTypeEnum
     {
         /// <summary>

@@ -6,7 +6,6 @@
     /// <summary>
     /// Vector search type.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum VectorSearchTypeEnum
     {
         // https://docs.timescale.com/ai/latest/key-vector-database-concepts-for-understanding-pgvector/

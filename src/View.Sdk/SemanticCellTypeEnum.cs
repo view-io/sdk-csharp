@@ -6,7 +6,6 @@
     /// <summary>
     /// Semantic cell type.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum SemanticCellTypeEnum
     {
         /// <summary>

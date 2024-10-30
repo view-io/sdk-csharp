@@ -6,7 +6,6 @@
     /// <summary>
     /// Trigger type.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum TriggerTypeEnum
     {
         /// <summary>

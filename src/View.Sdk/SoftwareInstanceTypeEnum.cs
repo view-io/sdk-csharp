@@ -6,7 +6,6 @@
     /// <summary>
     /// Software instance type.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum SoftwareInstanceTypeEnum
     {
         /// <summary>

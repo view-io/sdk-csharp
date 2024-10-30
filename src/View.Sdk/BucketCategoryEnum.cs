@@ -6,7 +6,6 @@
     /// <summary>
     /// Bucket category.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum BucketCategoryEnum
     {
         /// <summary>

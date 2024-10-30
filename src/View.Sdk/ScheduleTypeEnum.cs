@@ -6,7 +6,6 @@
     /// <summary>
     /// Schedule type.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum ScheduleTypeEnum
     {
         /// <summary>

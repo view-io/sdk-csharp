@@ -6,7 +6,6 @@
     /// <summary>
     /// Webhook event type enumeration.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum WebhookEventTypeEnum
     {
         /// <summary>

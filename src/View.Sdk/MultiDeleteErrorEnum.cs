@@ -6,7 +6,6 @@
     /// <summary>
     /// Multi delete error codes.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum MultiDeleteErrorEnum
     {
         /// <summary>

@@ -10,6 +10,8 @@
 
     public static class Program
     {
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
+
         private static bool _RunForever = true;
         private static string _Endpoint = "http://viewdemo:8331/";
         private static ViewAssistantSdk _Sdk = null;
@@ -133,5 +135,7 @@
         {
             if (!String.IsNullOrEmpty(msg)) Console.WriteLine(sev.ToString() + " " + msg);
         }
+
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
     }
 }

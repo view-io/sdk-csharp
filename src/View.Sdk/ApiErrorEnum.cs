@@ -6,7 +6,6 @@
     /// <summary>
     /// API error codes.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum ApiErrorEnum
     {
         /// <summary>

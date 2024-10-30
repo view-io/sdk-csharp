@@ -6,7 +6,6 @@
     /// <summary>
     /// Specify whether the object key or GUID is used to write to the storage pool as the object identifier.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum ObjectWriteModeEnum
     {
         /// <summary>

@@ -6,7 +6,6 @@
     /// <summary>
     /// Vector repository type.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum VectorRepositoryTypeEnum
     {
         /// <summary>

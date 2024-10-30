@@ -6,7 +6,6 @@
     /// <summary>
     /// PDF mode.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum PdfModeEnum
     {
         /// <summary>

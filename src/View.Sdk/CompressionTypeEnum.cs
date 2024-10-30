@@ -6,7 +6,6 @@
     /// <summary>
     /// Compression type.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum CompressionTypeEnum
     {
         /// <summary>

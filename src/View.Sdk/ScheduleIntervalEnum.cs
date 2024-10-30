@@ -6,7 +6,6 @@
     /// <summary>
     /// Schedule interval enum.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum ScheduleIntervalEnum
     {
         /// <summary>

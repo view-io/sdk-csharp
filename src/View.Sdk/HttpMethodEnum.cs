@@ -6,7 +6,6 @@
     /// <summary>
     /// HTTP method enum.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum HttpMethodEnum
     {
         /// <summary>

@@ -6,7 +6,6 @@
     /// <summary>
     /// Enumeration order.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum EnumerationOrderEnum
     {
         /// <summary>

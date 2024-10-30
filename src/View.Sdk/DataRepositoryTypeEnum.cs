@@ -6,7 +6,6 @@
     /// <summary>
     /// Data repository type.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum DataRepositoryTypeEnum
     {
         /// <summary>

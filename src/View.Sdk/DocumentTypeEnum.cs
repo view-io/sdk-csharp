@@ -6,7 +6,6 @@
     /// <summary>
     /// Data type associated with an input object or file.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum DocumentTypeEnum
     {
         /// <summary>
