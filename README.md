@@ -1,3 +1,5 @@
+<img src="https://github.com/view-io/sdk-csharp/blob/main/assets/view_logo.png?raw=true" height="48">
+
 # C# SDK for View AI
 
 View AI enables organizations to rapidly deploy conversational AI experiences and yield instant insights.  This SDK enables simplified consumption of the on-premises View AI services.
