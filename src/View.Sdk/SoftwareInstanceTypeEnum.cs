@@ -9,6 +9,11 @@
     public enum SoftwareInstanceTypeEnum
     {
         /// <summary>
+        /// Unknown.
+        /// </summary>
+        [EnumMember(Value = "Unknown")]
+        Unknown,
+        /// <summary>
         /// ConfigServer.
         /// </summary>
         [EnumMember(Value = "ConfigServer")]

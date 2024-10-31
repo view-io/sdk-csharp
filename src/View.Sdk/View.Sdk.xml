@@ -7140,6 +7140,11 @@
             Software instance type.
             </summary>
         </member>
+        <member name="F:View.Sdk.SoftwareInstanceTypeEnum.Unknown">
+            <summary>
+            Unknown.
+            </summary>
+        </member>
         <member name="F:View.Sdk.SoftwareInstanceTypeEnum.ConfigServer">
             <summary>
             ConfigServer.
