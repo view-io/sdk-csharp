@@ -6,7 +6,7 @@
 		<Title>C# SDK for View AI data-as-a-service.</Title>
 		<Description>C# SDK for View AI data-as-a-service.</Description>
 		<PackageReleaseNotes>v1.0 release.</PackageReleaseNotes>
-		<Version>1.0.0.14</Version>
+		<Version>1.0.0.15</Version>
 		
 		<ApplicationIcon>Assets\icon.ico</ApplicationIcon>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
@@ -24,6 +24,7 @@
 		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 	</PropertyGroup>
 	
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

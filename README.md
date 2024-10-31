@@ -2,6 +2,8 @@
 
 # C# SDK for View AI
 
+[![NuGet Version](https://img.shields.io/nuget/v/View.Sdk.svg?style=flat)](https://www.nuget.org/packages/View.Sdk/) [![NuGet](https://img.shields.io/nuget/dt/View.Sdk.svg)](https://www.nuget.org/packages/View.Sdk) 
+
 View AI enables organizations to rapidly deploy conversational AI experiences and yield instant insights.  This SDK enables simplified consumption of the on-premises View AI services.
 
 ## License
