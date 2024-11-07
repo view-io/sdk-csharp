@@ -1,4 +1,6 @@
-﻿namespace View.Sdk.Graph
+﻿using View.Sdk.Vector;
+
+namespace View.Sdk.Graph
 {
     /// <summary>
     /// Graph data.

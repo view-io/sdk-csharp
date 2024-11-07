@@ -1,4 +1,4 @@
-﻿namespace View.Sdk
+﻿namespace View.Sdk.Vector
 {
     using System;
     using System.Collections.Generic;
@@ -9,6 +9,7 @@
     using System.Text.Json.Serialization;
     using Timestamps;
     using View.Sdk.Serialization;
+    using View.Sdk;
 
     /// <summary>
     /// Embeddings document.
@@ -37,6 +38,11 @@
         /// GUID.
         /// </summary>
         public string GUID { get; set; } = Guid.NewGuid().ToString();
+
+        /// <summary>
+        /// Document GUID.
+        /// </summary>
+        public string DocumentGUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Tenant GUID.
@@ -166,6 +172,8 @@
             EmbeddingsDocument doc = new EmbeddingsDocument
             {
                 Id = Convert.ToInt32(row["id"]),
+                GUID = row["guid"] != null ? row["guid"].ToString() : null,
+                DocumentGUID = row["document_guid"] != null ? row["document_guid"].ToString() : null,
                 TenantGUID = row["tenant_guid"] != null ? row["tenant_guid"].ToString() : null,
                 CollectionGUID = row["collection_guid"] != null ? row["collection_guid"].ToString() : null,
                 SourceDocumentGUID = row["source_document_guid"] != null ? row["source_document_guid"].ToString() : null,
@@ -186,49 +194,8 @@
             if (row.Table.Columns.Contains("distance"))
                 doc.Distance = row["distance"] != null ? Convert.ToDecimal(row["distance"].ToString()) : null;
 
-            string cellGuid = row["cell_guid"] != null ? row["cell_guid"].ToString() : null;
-            string cellType = row["cell_type"] != null ? row["cell_type"].ToString() : null;
-            string cellMd5 = row["cell_md5"] != null ? row["cell_md5"].ToString() : null;
-            string cellSha1 = row["cell_sha1"] != null ? row["cell_sha1"].ToString() : null;
-            string cellSha256 = row["cell_sha256"] != null ? row["cell_sha256"].ToString() : null;
-            int cellPosition = row["cell_position"] != null ? Convert.ToInt32(row["cell_position"]) : 0;
-
-            string chunkGuid = row["chunk_guid"] != null ? row["chunk_guid"].ToString() : null;
-            string chunkMd5 = row["chunk_md5"] != null ? row["chunk_md5"].ToString() : null;
-            string chunkSha1 = row["chunk_sha1"] != null ? row["chunk_sha1"].ToString() : null;
-            string chunkSha256 = row["chunk_sha256"] != null ? row["chunk_sha256"].ToString() : null;
-            int chunkPosition = row["chunk_position"] != null ? Convert.ToInt32(row["chunk_position"]) : 0;
-            
-            string content = row["content"] != null ? row["content"].ToString() : null;
-            
-            string embeddingsStr = row["embedding"] != null ? row["embedding"].ToString() : null;
-            List<float> embeddings = new List<float>();
-            if (!String.IsNullOrEmpty(embeddingsStr))
-                embeddings = serializer.DeserializeJson<List<float>>(embeddingsStr);
-
-            SemanticCell cell = new SemanticCell
-            {
-                GUID = cellGuid,
-                CellType =
-                    (!String.IsNullOrEmpty(cellType)
-                        ? (SemanticCellTypeEnum)(Enum.Parse(typeof(SemanticCellTypeEnum), cellType))
-                        : SemanticCellTypeEnum.Text),
-                MD5Hash = cellMd5,
-                SHA1Hash = cellSha1,
-                SHA256Hash = cellSha256,
-                Position = cellPosition
-            };
-
-            SemanticChunk chunk = new SemanticChunk
-            {
-                GUID = chunkGuid,
-                MD5Hash = chunkMd5,
-                SHA1Hash = chunkSha1,
-                SHA256Hash = chunkSha256,
-                Position = chunkPosition,
-                Content = content,
-                Embeddings = embeddings
-            };
+            SemanticCell cell = SemanticCell.FromDataRow(row, serializer);
+            SemanticChunk chunk = SemanticChunk.FromDataRow(row, serializer);
 
             cell.Chunks.Add(chunk);
 
@@ -267,11 +234,11 @@
 
             foreach (EmbeddingsDocument doc in raw)
             {
-                if (ret.Any(d => d.Id.Equals(doc.Id)))
+                if (ret.Any(d => d.DocumentGUID.Equals(doc.DocumentGUID)))
                 {
                     #region Existing-Doc
 
-                    EmbeddingsDocument existingDoc = ret.First(d => d.Id.Equals(doc.Id));
+                    EmbeddingsDocument existingDoc = ret.First(d => d.DocumentGUID.Equals(doc.DocumentGUID));
                     foreach (SemanticCell currCell in doc.SemanticCells)
                     {
                         if (existingDoc.SemanticCells.Any(c => c.GUID.Equals(currCell.GUID)))

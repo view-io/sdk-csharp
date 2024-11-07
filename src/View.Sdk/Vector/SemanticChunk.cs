@@ -1,9 +1,11 @@
-﻿namespace View.Sdk
+﻿namespace View.Sdk.Vector
 {
     using System;
     using System.Collections.Generic;
+    using System.Data;
     using System.Linq;
     using System.Text;
+    using View.Sdk.Serialization;
 
     /// <summary>
     /// Semantic chunk.
@@ -160,13 +162,70 @@
             Content = content;
             Embeddings = embeddings;
 
-            if (!String.IsNullOrEmpty(content))
+            if (!string.IsNullOrEmpty(content))
             {
                 Length = content.Length;
                 MD5Hash = Convert.ToHexString(Helpers.HashHelper.MD5Hash(Encoding.UTF8.GetBytes(content)));
                 SHA1Hash = Convert.ToHexString(Helpers.HashHelper.SHA1Hash(Encoding.UTF8.GetBytes(content)));
                 SHA256Hash = Convert.ToHexString(Helpers.HashHelper.SHA256Hash(Encoding.UTF8.GetBytes(content)));
             }
+        }
+
+        /// <summary>
+        /// Instantiate from DataRow.
+        /// </summary>
+        /// <param name="row">DataRow.</param>
+        /// <param name="serializer">Serializer.</param>
+        /// <returns>SemanticChunk.</returns>
+        public static SemanticChunk FromDataRow(DataRow row, Serializer serializer)
+        {
+            if (row == null) return null;
+            if (serializer == null) throw new ArgumentNullException(nameof(serializer));
+
+            string chunkGuid = row["chunk_guid"] != null ? row["chunk_guid"].ToString() : null;
+            string chunkMd5 = row["chunk_md5"] != null ? row["chunk_md5"].ToString() : null;
+            string chunkSha1 = row["chunk_sha1"] != null ? row["chunk_sha1"].ToString() : null;
+            string chunkSha256 = row["chunk_sha256"] != null ? row["chunk_sha256"].ToString() : null;
+            int chunkPosition = row["chunk_position"] != null ? Convert.ToInt32(row["chunk_position"]) : 0;
+            int chunkLength = row["chunk_length"] != null ? Convert.ToInt32(row["chunk_length"]) : 0;
+            string content = row["content"] != null ? row["content"].ToString() : null;
+
+            string embeddingsStr = row["embedding"] != null ? row["embedding"].ToString() : null;
+            List<float> embeddings = new List<float>();
+            if (!string.IsNullOrEmpty(embeddingsStr))
+                embeddings = serializer.DeserializeJson<List<float>>(embeddingsStr);
+
+            SemanticChunk chunk = new SemanticChunk
+            {
+                GUID = chunkGuid,
+                MD5Hash = chunkMd5,
+                SHA1Hash = chunkSha1,
+                SHA256Hash = chunkSha256,
+                Position = chunkPosition,
+                Length = chunkLength,
+                Content = content,
+                Embeddings = embeddings
+            };
+
+            return chunk;
+        }
+
+        /// <summary>
+        /// Instantiate from DataTable.
+        /// </summary>
+        /// <param name="dt">DataTable.</param>
+        /// <param name="serializer">Serializer.</param>
+        /// <returns>List of SemanticChunk.</returns>
+        public static List<SemanticChunk> FromDataTable(DataTable dt, Serializer serializer)
+        {
+            if (dt == null) return null;
+            if (serializer == null) throw new ArgumentNullException(nameof(serializer));
+
+            List<SemanticChunk> ret = new List<SemanticChunk>();
+            foreach (DataRow row in dt.Rows)
+                ret.Add(FromDataRow(row, serializer));
+
+            return ret;
         }
 
         #endregion

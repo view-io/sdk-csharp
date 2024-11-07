@@ -6,6 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
     using Timestamps;
+    using View.Sdk.Vector;
 
     /// <summary>
     /// Semantic cell response.

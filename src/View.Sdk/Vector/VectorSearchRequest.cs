@@ -16,6 +16,11 @@
         public VectorSearchTypeEnum SearchType { get; set; } = VectorSearchTypeEnum.InnerProduct;
 
         /// <summary>
+        /// Tenant GUID.
+        /// </summary>
+        public string TenantGUID { get; set; } = null;
+
+        /// <summary>
         /// Vector repository GUID.
         /// </summary>
         public string VectorRepositoryGUID { get; set; } = null;

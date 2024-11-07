@@ -2635,137 +2635,6 @@
             XML.
             </summary>
         </member>
-        <member name="T:View.Sdk.EmbeddingsDocument">
-            <summary>
-            Embeddings document.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsDocument.Success">
-            <summary>
-            Indicates if the parser was successful.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsDocument.Exception">
-            <summary>
-            Exception, if any.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsDocument.Id">
-            <summary>
-            ID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsDocument.GUID">
-            <summary>
-            GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsDocument.TenantGUID">
-            <summary>
-            Tenant GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsDocument.CollectionGUID">
-            <summary>
-            Collection GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsDocument.SourceDocumentGUID">
-            <summary>
-            Source document GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsDocument.BucketGUID">
-            <summary>
-            Bucket GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsDocument.VectorRepositoryGUID">
-            <summary>
-            Vector repository GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsDocument.GraphRepositoryGUID">
-            <summary>
-            Graph repository GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsDocument.GraphNodeIdentifier">
-            <summary>
-            Graph node identifier.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsDocument.ObjectGUID">
-            <summary>
-            Object GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsDocument.ObjectKey">
-            <summary>
-            Object key.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsDocument.ObjectVersion">
-            <summary>
-            Object version.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsDocument.Model">
-            <summary>
-            Model.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsDocument.EmbeddingsRule">
-            <summary>
-            Embeddings rule.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsDocument.Content">
-            <summary>
-            Content.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsDocument.Score">
-            <summary>
-            Score.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsDocument.Distance">
-            <summary>
-            Distance.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsDocument.SemanticCells">
-            <summary>
-            Semantic cells.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.EmbeddingsDocument.CreatedUtc">
-            <summary>
-            Creation timestamp in UTC.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.EmbeddingsDocument.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.EmbeddingsDocument.FromDataRow(System.Data.DataRow,View.Sdk.Serialization.Serializer)">
-            <summary>
-            Instantiate from DataRow.
-            </summary>
-            <param name="row">DataRow.</param>
-            <param name="serializer">Serializer.</param>
-            <returns>EmbeddingsDocument.</returns>
-        </member>
-        <member name="M:View.Sdk.EmbeddingsDocument.FromDataTable(System.Data.DataTable,View.Sdk.Serialization.Serializer)">
-            <summary>
-            Instantiate from DataTable.
-            </summary>
-            <param name="dt">DataTable.</param>
-            <param name="serializer">Serializer.</param>
-            <returns>List of EmbeddingsDocument.</returns>
-        </member>
         <member name="T:View.Sdk.EmbeddingsGeneratorEnum">
             <summary>
             Embeddings provider.
@@ -3796,7 +3665,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.SemanticCellExists(View.Sdk.SemanticCell,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.GraphSdk.SemanticCellExists(View.Sdk.Vector.SemanticCell,System.Threading.CancellationToken)">
             <summary>
             Check if a semantic cell exists.
             </summary>
@@ -3804,7 +3673,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.SemanticChunkExists(View.Sdk.SemanticChunk,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.GraphSdk.SemanticChunkExists(View.Sdk.Vector.SemanticChunk,System.Threading.CancellationToken)">
             <summary>
             Check if a semantic chunk exists.
             </summary>
@@ -3949,7 +3818,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Graph node.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.CreateSemanticCell(View.Sdk.SemanticCell,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.GraphSdk.CreateSemanticCell(View.Sdk.Vector.SemanticCell,System.Threading.CancellationToken)">
             <summary>
             Create a semantic cell.
             </summary>
@@ -3957,7 +3826,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Graph node.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.CreateSemanticChunk(View.Sdk.SemanticChunk,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.GraphSdk.CreateSemanticChunk(View.Sdk.Vector.SemanticChunk,System.Threading.CancellationToken)">
             <summary>
             Create a semantic chunk.
             </summary>
@@ -4029,7 +3898,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Graph node.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ReadSemanticCell(View.Sdk.SemanticCell,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.GraphSdk.ReadSemanticCell(View.Sdk.Vector.SemanticCell,System.Threading.CancellationToken)">
             <summary>
             Read a semantic cell node.
             </summary>
@@ -4037,7 +3906,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Graph node.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ReadSemanticChunk(View.Sdk.SemanticChunk,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.GraphSdk.ReadSemanticChunk(View.Sdk.Vector.SemanticChunk,System.Threading.CancellationToken)">
             <summary>
             Read a semantic chunk node.
             </summary>
@@ -4245,7 +4114,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.DeleteSemanticCell(View.Sdk.SemanticCell,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.GraphSdk.DeleteSemanticCell(View.Sdk.Vector.SemanticCell,System.Threading.CancellationToken)">
             <summary>
             Delete a semantic cell.
             </summary>
@@ -4253,7 +4122,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.DeleteSemanticChunk(View.Sdk.SemanticChunk,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Graph.GraphSdk.DeleteSemanticChunk(View.Sdk.Vector.SemanticChunk,System.Threading.CancellationToken)">
             <summary>
             Delete a semantic chunk.
             </summary>
@@ -6513,194 +6382,6 @@
             Instantiate.
             </summary>
         </member>
-        <member name="T:View.Sdk.SemanticCell">
-            <summary>
-            Semantic cell.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SemanticCell.GUID">
-            <summary>
-            GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SemanticCell.CellType">
-            <summary>
-            Semantic cell type.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SemanticCell.MD5Hash">
-            <summary>
-            MD5.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SemanticCell.SHA1Hash">
-            <summary>
-            SHA1.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SemanticCell.SHA256Hash">
-            <summary>
-            SHA256.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SemanticCell.Position">
-            <summary>
-            Position.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SemanticCell.Length">
-            <summary>
-            Length.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SemanticCell.Chunks">
-            <summary>
-            Chunks.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SemanticCell.Children">
-            <summary>
-            Children.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.SemanticCell.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.SemanticCell.#ctor(System.Collections.Generic.List{View.Sdk.SemanticCell},System.Collections.Generic.List{View.Sdk.SemanticChunk})">
-            <summary>
-            Instantiate.
-            </summary>
-            <param name="children">Child semantic cells.</param>
-            <param name="chunks">Semantic chunks.</param>
-        </member>
-        <member name="M:View.Sdk.SemanticCell.CountEmbeddings(System.Collections.Generic.List{View.Sdk.SemanticCell})">
-            <summary>
-            Count the number of embeddings in a list of semantic cells.
-            </summary>
-            <param name="cells">Semantic cells.</param>
-            <returns>Number of embeddings.</returns>
-        </member>
-        <member name="M:View.Sdk.SemanticCell.CountSemanticCells(System.Collections.Generic.List{View.Sdk.SemanticCell})">
-            <summary>
-            Count the number of semantic cells in a list of semantic cells.
-            </summary>
-            <param name="cells">Semantic cells.</param>
-            <returns>Number of semantic cells.</returns>
-        </member>
-        <member name="M:View.Sdk.SemanticCell.CountSemanticChunks(System.Collections.Generic.List{View.Sdk.SemanticCell})">
-            <summary>
-            Count the number of semantic chunks in a list of semantic cells.
-            </summary>
-            <param name="cells">Semantic cells.</param>
-            <returns>Number of chunks.</returns>
-        </member>
-        <member name="M:View.Sdk.SemanticCell.CountBytes(System.Collections.Generic.List{View.Sdk.SemanticCell})">
-            <summary>
-            Count the number of bytes in chunks within a list of semantic cells.
-            </summary>
-            <param name="cells">Semantic cells.</param>
-            <returns>Number of bytes.</returns>
-        </member>
-        <member name="M:View.Sdk.SemanticCell.CountSemanticCells">
-            <summary>
-            Count the number of semantic cells in this semantic cell.
-            </summary>
-            <returns>Number of semantic cells.</returns>
-        </member>
-        <member name="M:View.Sdk.SemanticCell.CountEmbeddings">
-            <summary>
-            Count the number of embeddings contained within the semantic cell.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:View.Sdk.SemanticCell.CountBytes">
-            <summary>
-            Count the number of bytes contained within chunks within the semantic cell.
-            </summary>
-            <returns>Number of bytes.</returns>
-        </member>
-        <member name="T:View.Sdk.SemanticCellTypeEnum">
-            <summary>
-            Semantic cell type.
-            </summary>
-        </member>
-        <member name="F:View.Sdk.SemanticCellTypeEnum.Text">
-            <summary>
-            Text.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.SemanticChunk">
-            <summary>
-            Semantic chunk.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SemanticChunk.GUID">
-            <summary>
-            GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SemanticChunk.MD5Hash">
-            <summary>
-            MD5.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SemanticChunk.SHA1Hash">
-            <summary>
-            SHA1.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SemanticChunk.SHA256Hash">
-            <summary>
-            SHA256.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SemanticChunk.Position">
-            <summary>
-            Position.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SemanticChunk.Start">
-            <summary>
-            Start position.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SemanticChunk.End">
-            <summary>
-            End position.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SemanticChunk.Length">
-            <summary>
-            Length.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SemanticChunk.Content">
-            <summary>
-            Content.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SemanticChunk.Embeddings">
-            <summary>
-            Embeddings.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.SemanticChunk.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.SemanticChunk.#ctor(System.Int32,System.Int32,System.Int32,System.String,System.Collections.Generic.List{System.Single})">
-            <summary>
-            Instantiate.
-            </summary>
-            <param name="position">Position.</param>
-            <param name="start">Start.</param>
-            <param name="end">End.</param>
-            <param name="content">Content.</param>
-            <param name="embeddings">Embeddings.</param>
-        </member>
         <member name="T:View.Sdk.Semantic.PdfModeEnum">
             <summary>
             PDF mode.
@@ -8232,6 +7913,142 @@
             Pgvector.
             </summary>
         </member>
+        <member name="T:View.Sdk.Vector.EmbeddingsDocument">
+            <summary>
+            Embeddings document.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsDocument.Success">
+            <summary>
+            Indicates if the parser was successful.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsDocument.Exception">
+            <summary>
+            Exception, if any.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsDocument.Id">
+            <summary>
+            ID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsDocument.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsDocument.DocumentGUID">
+            <summary>
+            Document GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsDocument.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsDocument.CollectionGUID">
+            <summary>
+            Collection GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsDocument.SourceDocumentGUID">
+            <summary>
+            Source document GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsDocument.BucketGUID">
+            <summary>
+            Bucket GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsDocument.VectorRepositoryGUID">
+            <summary>
+            Vector repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsDocument.GraphRepositoryGUID">
+            <summary>
+            Graph repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsDocument.GraphNodeIdentifier">
+            <summary>
+            Graph node identifier.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsDocument.ObjectGUID">
+            <summary>
+            Object GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsDocument.ObjectKey">
+            <summary>
+            Object key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsDocument.ObjectVersion">
+            <summary>
+            Object version.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsDocument.Model">
+            <summary>
+            Model.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsDocument.EmbeddingsRule">
+            <summary>
+            Embeddings rule.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsDocument.Content">
+            <summary>
+            Content.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsDocument.Score">
+            <summary>
+            Score.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsDocument.Distance">
+            <summary>
+            Distance.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsDocument.SemanticCells">
+            <summary>
+            Semantic cells.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsDocument.CreatedUtc">
+            <summary>
+            Creation timestamp in UTC.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.EmbeddingsDocument.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.EmbeddingsDocument.FromDataRow(System.Data.DataRow,View.Sdk.Serialization.Serializer)">
+            <summary>
+            Instantiate from DataRow.
+            </summary>
+            <param name="row">DataRow.</param>
+            <param name="serializer">Serializer.</param>
+            <returns>EmbeddingsDocument.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.EmbeddingsDocument.FromDataTable(System.Data.DataTable,View.Sdk.Serialization.Serializer)">
+            <summary>
+            Instantiate from DataTable.
+            </summary>
+            <param name="dt">DataTable.</param>
+            <param name="serializer">Serializer.</param>
+            <returns>List of EmbeddingsDocument.</returns>
+        </member>
         <member name="T:View.Sdk.Vector.EmbeddingsMap">
             <summary>
             Embeddings map.
@@ -8332,7 +8149,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if connected.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.EmbeddingsSdkBase.ProcessSemanticCells(System.Collections.Generic.List{View.Sdk.SemanticCell},System.String,System.Int32,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.EmbeddingsSdkBase.ProcessSemanticCells(System.Collections.Generic.List{View.Sdk.Vector.SemanticCell},System.String,System.Int32,System.Threading.CancellationToken)">
             <summary>
             Process semantic cells and generate embeddings.
             </summary>
@@ -8373,19 +8190,105 @@
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.EmbeddingsSdkBase.BuildSemanticChunkList(System.Collections.Generic.List{View.Sdk.SemanticCell})">
+        <member name="M:View.Sdk.Vector.EmbeddingsSdkBase.BuildSemanticChunkList(System.Collections.Generic.List{View.Sdk.Vector.SemanticCell})">
             <summary>
             Build semantic chunk list from a hierarchy of semantic cells.
             </summary>
             <param name="cells">Semantic cells.</param>
             <returns>List of semantic chunks.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.EmbeddingsSdkBase.MergeEmbeddingsMaps(System.Collections.Generic.List{View.Sdk.SemanticChunk},System.Collections.Generic.List{View.Sdk.Vector.EmbeddingsMap})">
+        <member name="M:View.Sdk.Vector.EmbeddingsSdkBase.MergeEmbeddingsMaps(System.Collections.Generic.List{View.Sdk.Vector.SemanticChunk},System.Collections.Generic.List{View.Sdk.Vector.EmbeddingsMap})">
             <summary>
             Merge embeddings data from maps into semantic chunks.
             </summary>
             <param name="chunks">Chunks.</param>
             <param name="maps">Maps.</param>
+        </member>
+        <member name="T:View.Sdk.Vector.FindEmbeddingsObject">
+            <summary>
+            Find embeddings object.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.FindEmbeddingsObject.SHA256Hash">
+            <summary>
+            SHA256 on which to match.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.FindEmbeddingsObject.Embeddings">
+            <summary>
+            Embeddings.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.FindEmbeddingsObject.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.FindEmbeddingsObject.FromDataRow(System.Data.DataRow,View.Sdk.Serialization.Serializer)">
+            <summary>
+            Instantiate from DataRow.
+            </summary>
+            <param name="row">DataRow.</param>
+            <param name="serializer">Serializer.</param>
+            <returns>FindEmbeddingsObject.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.FindEmbeddingsObject.FromDataTable(System.Data.DataTable,View.Sdk.Serialization.Serializer)">
+            <summary>
+            Instantiate from DataTable.
+            </summary>
+            <param name="dt">DataTable.</param>
+            <param name="serializer">Serializer.</param>
+            <returns>List of FindEmbeddingsObject.</returns>
+        </member>
+        <member name="T:View.Sdk.Vector.FindEmbeddingsRequest">
+            <summary>
+            Find embeddings request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.FindEmbeddingsRequest.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.FindEmbeddingsRequest.VectorRepositoryGUID">
+            <summary>
+            Vector repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.FindEmbeddingsRequest.Criteria">
+            <summary>
+            List of embeddings parameters on which to match.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.FindEmbeddingsRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Vector.FindEmbeddingsResult">
+            <summary>
+            Find embeddings result.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.FindEmbeddingsResult.Timestamp">
+            <summary>
+            Timestamps.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.FindEmbeddingsResult.Existing">
+            <summary>
+            List of found embeddings records.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.FindEmbeddingsResult.Missing">
+            <summary>
+            List of missing embeddings records.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.FindEmbeddingsResult.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
         </member>
         <member name="T:View.Sdk.Vector.LcproxyEmbeddingsResult">
             <summary>
@@ -8608,60 +8511,397 @@
             Instantiate.
             </summary>
         </member>
-        <member name="T:View.Sdk.Vector.VectorDeleteRequest">
+        <member name="T:View.Sdk.Vector.SemanticCell">
             <summary>
-            Vector delete request.
+            Semantic cell.
             </summary>
         </member>
-        <member name="P:View.Sdk.Vector.VectorDeleteRequest.TenantGUID">
-            <summary>
-            Tenant GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Vector.VectorDeleteRequest.GUID">
+        <member name="P:View.Sdk.Vector.SemanticCell.GUID">
             <summary>
             GUID.
             </summary>
         </member>
-        <member name="P:View.Sdk.Vector.VectorDeleteRequest.CollectionGUID">
+        <member name="P:View.Sdk.Vector.SemanticCell.CellType">
+            <summary>
+            Semantic cell type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.SemanticCell.MD5Hash">
+            <summary>
+            MD5.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.SemanticCell.SHA1Hash">
+            <summary>
+            SHA1.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.SemanticCell.SHA256Hash">
+            <summary>
+            SHA256.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.SemanticCell.Position">
+            <summary>
+            Position.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.SemanticCell.Length">
+            <summary>
+            Length.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.SemanticCell.Chunks">
+            <summary>
+            Chunks.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.SemanticCell.Children">
+            <summary>
+            Children.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.SemanticCell.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.SemanticCell.#ctor(System.Collections.Generic.List{View.Sdk.Vector.SemanticCell},System.Collections.Generic.List{View.Sdk.Vector.SemanticChunk})">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="children">Child semantic cells.</param>
+            <param name="chunks">Semantic chunks.</param>
+        </member>
+        <member name="M:View.Sdk.Vector.SemanticCell.FromDataRow(System.Data.DataRow,View.Sdk.Serialization.Serializer)">
+            <summary>
+            Instantiate from DataRow.
+            </summary>
+            <param name="row">DataRow.</param>
+            <param name="serializer">Serializer.</param>
+            <returns>SemanticCell.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.SemanticCell.FromDataTable(System.Data.DataTable,View.Sdk.Serialization.Serializer,System.Boolean)">
+            <summary>
+            Instantiate from DataTable.
+            </summary>
+            <param name="dt">DataTable.</param>
+            <param name="serializer">Serializer.</param>
+            <param name="distinct">True to only return distinct records.</param>
+            <returns>List of SemanticCell.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.SemanticCell.CountEmbeddings(System.Collections.Generic.List{View.Sdk.Vector.SemanticCell})">
+            <summary>
+            Count the number of embeddings in a list of semantic cells.
+            </summary>
+            <param name="cells">Semantic cells.</param>
+            <returns>Number of embeddings.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.SemanticCell.CountSemanticCells(System.Collections.Generic.List{View.Sdk.Vector.SemanticCell})">
+            <summary>
+            Count the number of semantic cells in a list of semantic cells.
+            </summary>
+            <param name="cells">Semantic cells.</param>
+            <returns>Number of semantic cells.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.SemanticCell.CountSemanticChunks(System.Collections.Generic.List{View.Sdk.Vector.SemanticCell})">
+            <summary>
+            Count the number of semantic chunks in a list of semantic cells.
+            </summary>
+            <param name="cells">Semantic cells.</param>
+            <returns>Number of chunks.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.SemanticCell.CountBytes(System.Collections.Generic.List{View.Sdk.Vector.SemanticCell})">
+            <summary>
+            Count the number of bytes in chunks within a list of semantic cells.
+            </summary>
+            <param name="cells">Semantic cells.</param>
+            <returns>Number of bytes.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.SemanticCell.CountSemanticCells">
+            <summary>
+            Count the number of semantic cells in this semantic cell.
+            </summary>
+            <returns>Number of semantic cells.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.SemanticCell.CountEmbeddings">
+            <summary>
+            Count the number of embeddings contained within the semantic cell.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:View.Sdk.Vector.SemanticCell.CountBytes">
+            <summary>
+            Count the number of bytes contained within chunks within the semantic cell.
+            </summary>
+            <returns>Number of bytes.</returns>
+        </member>
+        <member name="T:View.Sdk.Vector.SemanticCellTypeEnum">
+            <summary>
+            Semantic cell type.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Vector.SemanticCellTypeEnum.Text">
+            <summary>
+            Text.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Vector.SemanticChunk">
+            <summary>
+            Semantic chunk.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.SemanticChunk.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.SemanticChunk.MD5Hash">
+            <summary>
+            MD5.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.SemanticChunk.SHA1Hash">
+            <summary>
+            SHA1.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.SemanticChunk.SHA256Hash">
+            <summary>
+            SHA256.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.SemanticChunk.Position">
+            <summary>
+            Position.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.SemanticChunk.Start">
+            <summary>
+            Start position.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.SemanticChunk.End">
+            <summary>
+            End position.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.SemanticChunk.Length">
+            <summary>
+            Length.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.SemanticChunk.Content">
+            <summary>
+            Content.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.SemanticChunk.Embeddings">
+            <summary>
+            Embeddings.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.SemanticChunk.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.SemanticChunk.#ctor(System.Int32,System.Int32,System.Int32,System.String,System.Collections.Generic.List{System.Single})">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="position">Position.</param>
+            <param name="start">Start.</param>
+            <param name="end">End.</param>
+            <param name="content">Content.</param>
+            <param name="embeddings">Embeddings.</param>
+        </member>
+        <member name="M:View.Sdk.Vector.SemanticChunk.FromDataRow(System.Data.DataRow,View.Sdk.Serialization.Serializer)">
+            <summary>
+            Instantiate from DataRow.
+            </summary>
+            <param name="row">DataRow.</param>
+            <param name="serializer">Serializer.</param>
+            <returns>SemanticChunk.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.SemanticChunk.FromDataTable(System.Data.DataTable,View.Sdk.Serialization.Serializer)">
+            <summary>
+            Instantiate from DataTable.
+            </summary>
+            <param name="dt">DataTable.</param>
+            <param name="serializer">Serializer.</param>
+            <returns>List of SemanticChunk.</returns>
+        </member>
+        <member name="T:View.Sdk.Vector.VectorChunk">
+            <summary>
+            Vector chunk.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorChunk.DocumentGUID">
+            <summary>
+            Document GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorChunk.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorChunk.CollectionGUID">
             <summary>
             Collection GUID.
             </summary>
         </member>
-        <member name="P:View.Sdk.Vector.VectorDeleteRequest.SourceDocumentGUID">
+        <member name="P:View.Sdk.Vector.VectorChunk.SourceDocumentGUID">
             <summary>
             Source document GUID.
             </summary>
         </member>
-        <member name="P:View.Sdk.Vector.VectorDeleteRequest.BucketGUID">
+        <member name="P:View.Sdk.Vector.VectorChunk.BucketGUID">
             <summary>
             Bucket GUID.
             </summary>
         </member>
-        <member name="P:View.Sdk.Vector.VectorDeleteRequest.ObjectGUID">
-            <summary>
-            Object GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Vector.VectorDeleteRequest.VectorRepositoryGUID">
+        <member name="P:View.Sdk.Vector.VectorChunk.VectorRepositoryGUID">
             <summary>
             Vector repository GUID.
             </summary>
         </member>
-        <member name="P:View.Sdk.Vector.VectorDeleteRequest.Key">
+        <member name="P:View.Sdk.Vector.VectorChunk.GraphRepositoryGUID">
             <summary>
-            Key.
+            Graph repository GUID.
             </summary>
         </member>
-        <member name="P:View.Sdk.Vector.VectorDeleteRequest.Version">
+        <member name="P:View.Sdk.Vector.VectorChunk.GraphNodeIdentifier">
             <summary>
-            Version.
+            Graph node identifier.
             </summary>
         </member>
-        <member name="M:View.Sdk.Vector.VectorDeleteRequest.#ctor">
+        <member name="P:View.Sdk.Vector.VectorChunk.ObjectGUID">
+            <summary>
+            Object GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorChunk.ObjectKey">
+            <summary>
+            Object key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorChunk.ObjectVersion">
+            <summary>
+            Object version.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorChunk.Model">
+            <summary>
+            Model.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorChunk.CellGUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorChunk.CellType">
+            <summary>
+            Semantic cell type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorChunk.CellMD5Hash">
+            <summary>
+            Cell MD5.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorChunk.CellSHA1Hash">
+            <summary>
+            Cell SHA1.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorChunk.CellSHA256Hash">
+            <summary>
+            Cell SHA256.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorChunk.CellPosition">
+            <summary>
+            Cell position.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorChunk.ChunkGUID">
+            <summary>
+            Chunk GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorChunk.ChunkMD5Hash">
+            <summary>
+            Chunk MD5.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorChunk.ChunkSHA1Hash">
+            <summary>
+            Chunk SHA1.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorChunk.ChunkSHA256Hash">
+            <summary>
+            Chunk SHA256.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorChunk.ChunkPosition">
+            <summary>
+            Position.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorChunk.ChunkLength">
+            <summary>
+            Chunk length.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorChunk.Content">
+            <summary>
+            Content.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorChunk.Score">
+            <summary>
+            Score.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorChunk.Distance">
+            <summary>
+            Distance.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorChunk.CreatedUtc">
+            <summary>
+            Creation timestamp in UTC.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorChunk.Embeddings">
+            <summary>
+            Embeddings.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.VectorChunk.#ctor">
             <summary>
             Instantiate.
             </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.VectorChunk.FromDataRow(System.Data.DataRow,View.Sdk.Serialization.Serializer)">
+            <summary>
+            Instantiate from DataRow.
+            </summary>
+            <param name="row">DataRow.</param>
+            <param name="serializer">Serializer.</param>
+            <returns>EmbeddingsDocument.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.VectorChunk.FromDataTable(System.Data.DataTable,View.Sdk.Serialization.Serializer)">
+            <summary>
+            Instantiate from DataTable.
+            </summary>
+            <param name="dt">DataTable.</param>
+            <param name="serializer">Serializer.</param>
+            <returns>List of EmbeddingsDocument.</returns>
         </member>
         <member name="T:View.Sdk.Vector.VectorQueryRequest">
             <summary>
@@ -8718,6 +8958,49 @@
             Instantiate.
             </summary>
         </member>
+        <member name="T:View.Sdk.Vector.VectorRepositoryStatistics">
+            <summary>
+            Vector repository statistics.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorRepositoryStatistics.VectorRepository">
+            <summary>
+            Collection.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorRepositoryStatistics.DocumentCount">
+            <summary>
+            Number of documents.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorRepositoryStatistics.TotalBytes">
+            <summary>
+            Total number of bytes as recorded through semantic cells.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorRepositoryStatistics.CellCount">
+            <summary>
+            Semantic cell count.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorRepositoryStatistics.ChunkCount">
+            <summary>
+            Chunk count.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.VectorRepositoryStatistics.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.VectorRepositoryStatistics.FromDataRow(System.Data.DataRow,View.Sdk.Serialization.Serializer)">
+            <summary>
+            Instantiate from DataRow.
+            </summary>
+            <param name="row">DataRow.</param>
+            <param name="serializer">Serializer.</param>
+            <returns>VectorRepositoryStatistics.</returns>
+        </member>
         <member name="T:View.Sdk.Vector.VectorSearchRequest">
             <summary>
             Vector search request.
@@ -8726,6 +9009,11 @@
         <member name="P:View.Sdk.Vector.VectorSearchRequest.SearchType">
             <summary>
             Search type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorSearchRequest.TenantGUID">
+            <summary>
+            Tenant GUID.
             </summary>
         </member>
         <member name="P:View.Sdk.Vector.VectorSearchRequest.VectorRepositoryGUID">
@@ -8849,7 +9137,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if connected.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.ViewEmbeddingsSdk.ProcessSemanticCells(System.Collections.Generic.List{View.Sdk.SemanticCell},System.String,System.Int32,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewEmbeddingsSdk.ProcessSemanticCells(System.Collections.Generic.List{View.Sdk.Vector.SemanticCell},System.String,System.Int32,System.Threading.CancellationToken)">
             <summary>
             Process semantic cells and generate embeddings.
             </summary>
@@ -8873,7 +9161,7 @@
         <member name="M:View.Sdk.Vector.ViewLcproxySdk.PreloadModels(System.Collections.Generic.List{System.String},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Vector.ViewLcproxySdk.ProcessSemanticCells(System.Collections.Generic.List{View.Sdk.SemanticCell},System.String,System.Int32,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewLcproxySdk.ProcessSemanticCells(System.Collections.Generic.List{View.Sdk.Vector.SemanticCell},System.String,System.Int32,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:View.Sdk.Vector.ViewLcproxySdk.ListModels(System.Threading.CancellationToken)">
@@ -8905,7 +9193,7 @@
         <member name="M:View.Sdk.Vector.ViewOllamaSdk.LoadModel(System.String,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Vector.ViewOllamaSdk.ProcessSemanticCells(System.Collections.Generic.List{View.Sdk.SemanticCell},System.String,System.Int32,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewOllamaSdk.ProcessSemanticCells(System.Collections.Generic.List{View.Sdk.Vector.SemanticCell},System.String,System.Int32,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:View.Sdk.Vector.ViewOllamaSdk.ListModels(System.Threading.CancellationToken)">
@@ -8934,7 +9222,7 @@
         <member name="M:View.Sdk.Vector.ViewOpenAiSdk.ValidateConnectivity(System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Vector.ViewOpenAiSdk.ProcessSemanticCells(System.Collections.Generic.List{View.Sdk.SemanticCell},System.String,System.Int32,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewOpenAiSdk.ProcessSemanticCells(System.Collections.Generic.List{View.Sdk.Vector.SemanticCell},System.String,System.Int32,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:View.Sdk.Vector.ViewOpenAiSdk.ListModels(System.Threading.CancellationToken)">
@@ -8962,7 +9250,7 @@
             <param name="accessKey">Access key.</param>
             <param name="endpoint">Endpoint URL.</param>
         </member>
-        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.WriteDocument(View.Sdk.EmbeddingsDocument,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.WriteDocument(View.Sdk.Vector.EmbeddingsDocument,System.Threading.CancellationToken)">
             <summary>
             Write a document.
             </summary>
@@ -8970,19 +9258,17 @@
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.DeleteDocument(View.Sdk.Vector.VectorDeleteRequest,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.DeleteDocument(System.Threading.CancellationToken)">
             <summary>
             Delete a document.
             </summary>
-            <param name="delReq">Delete request.</param>
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.TruncateTable(View.Sdk.Vector.VectorDeleteRequest,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewVectorProxySdk.TruncateTable(System.Threading.CancellationToken)">
             <summary>
             Truncate table.
             </summary>
-            <param name="delReq">Delete request.</param>
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
@@ -9030,7 +9316,7 @@
         <member name="M:View.Sdk.Vector.ViewVoyageAiSdk.ValidateConnectivity(System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Vector.ViewVoyageAiSdk.ProcessSemanticCells(System.Collections.Generic.List{View.Sdk.SemanticCell},System.String,System.Int32,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewVoyageAiSdk.ProcessSemanticCells(System.Collections.Generic.List{View.Sdk.Vector.SemanticCell},System.String,System.Int32,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:View.Sdk.Vector.ViewVoyageAiSdk.ListModels(System.Threading.CancellationToken)">

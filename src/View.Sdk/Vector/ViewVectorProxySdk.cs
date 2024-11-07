@@ -93,87 +93,23 @@
         /// <summary>
         /// Delete a document.
         /// </summary>
-        /// <param name="delReq">Delete request.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Task.</returns>
         public async Task<bool> DeleteDocument(
-            VectorDeleteRequest delReq, 
             CancellationToken token = default)
         {
-            if (delReq == null) throw new ArgumentNullException(nameof(delReq));
-
-            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/documents";
-
-            using (RestRequest req = new RestRequest(url, HttpMethod.Delete))
-            {
-                req.TimeoutMilliseconds = TimeoutMs;
-                req.ContentType = "application/json";
-
-                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(delReq, true), token).ConfigureAwait(false))
-                {
-                    if (resp != null)
-                    {
-                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                        {
-                            Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return true;
-                        }
-                        else
-                        {
-                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        Log(SeverityEnum.Warn, "no response from " + url);
-                        return false;
-                    }
-                }
-            }
+            throw new NotImplementedException();
         }
 
         /// <summary>
         /// Truncate table.
         /// </summary>
-        /// <param name="delReq">Delete request.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Task.</returns>
         public async Task<bool> TruncateTable(
-            VectorDeleteRequest delReq, 
             CancellationToken token = default)
         {
-            if (delReq == null) throw new ArgumentNullException(nameof(delReq));
-
-            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/documents?truncate";
-
-            using (RestRequest req = new RestRequest(url, HttpMethod.Delete))
-            {
-                req.TimeoutMilliseconds = TimeoutMs;
-                req.ContentType = "application/json";
-
-                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(delReq, true), token).ConfigureAwait(false))
-                {
-                    if (resp != null)
-                    {
-                        Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        Log(SeverityEnum.Warn, "no response from " + url);
-                        return false;
-                    }
-                }
-            }
+            throw new NotImplementedException();
         }
 
         /// <summary>

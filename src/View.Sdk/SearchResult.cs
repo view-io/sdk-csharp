@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Text.Json.Serialization;
     using Timestamps;
+    using View.Sdk.Vector;
 
     /// <summary>
     /// Search result.

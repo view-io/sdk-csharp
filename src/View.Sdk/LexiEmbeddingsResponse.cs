@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using Timestamps;
+    using View.Sdk.Vector;
 
     /// <summary>
     /// Lexi embeddings response.

@@ -136,9 +136,7 @@
             string requestJson = Inputty.GetString("Request JSON           :", null, true);
             if (String.IsNullOrEmpty(requestJson)) return;
 
-            await _Sdk.DeleteDocument(
-                _Serializer.DeserializeJson<VectorDeleteRequest>(requestJson)
-                );
+            await _Sdk.DeleteDocument();
         }
 
         private static async Task TruncateTable()
@@ -149,9 +147,7 @@
             string requestJson = Inputty.GetString("Request JSON           :", null, true);
             if (String.IsNullOrEmpty(requestJson)) return;
 
-            await _Sdk.TruncateTable(
-                _Serializer.DeserializeJson<VectorDeleteRequest>(requestJson)
-                );
+            await _Sdk.TruncateTable();
         }
 
         private static async Task SimilaritySearch()

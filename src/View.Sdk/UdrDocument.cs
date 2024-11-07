@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Timestamps;
+    using View.Sdk.Vector;
 
     /// <summary>
     /// UDR document.
