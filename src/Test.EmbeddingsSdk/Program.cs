@@ -8,6 +8,8 @@
     using View.Sdk;
     using View.Sdk.Vector;
     using View.Sdk.Serialization;
+    using View.Sdk.Semantic;
+    using Timestamps;
 
     public static class Program
     {
@@ -31,7 +33,10 @@
         private static string _DefaultVoyageAiModel = "voyage-large-2-instruct";
         private static string _DefaultOllamaModel = "all-minilm";
 
-        private static int _MaxTasks = 16;
+        private static int _BatchSize = 512;
+        private static int _MaxParallelTasks = 32;
+        private static int _MaxRetries = 3;
+        private static int _MaxFailures = 3;
         private static int _TimeoutMs = 300000;
 
         private static ViewEmbeddingsSdk _Sdk = null;
@@ -70,7 +75,8 @@
 
             _ApiKey = Inputty.GetString("API key  :", _ApiKey, true);
 
-            _Sdk = new ViewEmbeddingsSdk(_GeneratorType, _Endpoint, _ApiKey, _MaxTasks);
+            _Sdk = new ViewEmbeddingsSdk(_GeneratorType, _Endpoint, _ApiKey, _BatchSize, _MaxParallelTasks, _MaxRetries, _MaxFailures, _TimeoutMs);
+            _Sdk.Logger = SdkLogger;
 
             while (_RunForever)
             {
@@ -97,7 +103,7 @@
                         if (!String.IsNullOrEmpty(tasksStr))
                             if (Int32.TryParse(tasksStr, out tasks))
                             {
-                                _MaxTasks = tasks;
+                                _BatchSize = tasks;
                                 _Sdk.MaxParallelTasks = tasks;
                             }
                         break;
@@ -156,12 +162,24 @@
             if (!File.Exists(file)) return;
 
             List<SemanticCell> cells = _Serializer.DeserializeJson<List<SemanticCell>>(File.ReadAllText(file));
+            List<SemanticCell> result;
+            double? totalMs = 0;
 
-            List<SemanticCell> result = await _Sdk.ProcessSemanticCells(cells, model, _TimeoutMs);
+            using (Timestamp ts = new Timestamp())
+            {
+                ts.Start = DateTime.UtcNow;
+                result = await _Sdk.ProcessSemanticCells(cells, model);
+                ts.End = DateTime.UtcNow;
+                totalMs = ts.TotalMs;
+            }
+
             EnumerateResponse(result);
+            Console.WriteLine("");
+            Console.WriteLine("Completed after " + totalMs + "ms");
+            Console.WriteLine("");
         }
 
-        private static void EmitLogMessage(SeverityEnum sev, string msg)
+        private static void SdkLogger(SeverityEnum sev, string msg)
         {
             if (!String.IsNullOrEmpty(msg)) Console.WriteLine(sev.ToString() + " " + msg);
         }

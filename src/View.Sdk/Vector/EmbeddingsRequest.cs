@@ -2,35 +2,39 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+    using Timestamps;
+    using View.Sdk.Vector;
 
     /// <summary>
-    /// Embeddings map.
+    /// Embeddings request.
     /// </summary>
-    public class EmbeddingsMap
+    public class EmbeddingsRequest
     {
         #region Public-Members
 
         /// <summary>
-        /// Content.
+        /// Model used to generate embeddings.
         /// </summary>
-        public string Content { get; set; } = null;
+        public string Model { get; set; } = null;
 
         /// <summary>
-        /// Embeddings.
+        /// API key.
         /// </summary>
-        public List<float> Embeddings
+        public string ApiKey { get; set; } = null;
+
+        /// <summary>
+        /// Contents.
+        /// </summary>
+        public List<string> Contents
         {
             get
             {
-                return _Embeddings;
+                return _Contents;
             }
             set
             {
-                if (value == null) value = new List<float>();
-                _Embeddings = value;
+                if (value == null) value = new List<string>();
+                _Contents = value;
             }
         }
 
@@ -38,7 +42,7 @@
 
         #region Private-Members
 
-        private List<float> _Embeddings = new List<float>();
+        private List<string> _Contents = new List<string>();
 
         #endregion
 
@@ -47,9 +51,8 @@
         /// <summary>
         /// Instantiate.
         /// </summary>
-        public EmbeddingsMap()
+        public EmbeddingsRequest()
         {
-
         }
 
         #endregion

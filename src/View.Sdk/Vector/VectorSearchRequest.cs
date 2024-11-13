@@ -60,7 +60,7 @@
         /// <summary>
         /// Embeddings.
         /// </summary>
-        public List<decimal> Embeddings
+        public List<float> Embeddings
         {
             get
             {
@@ -68,7 +68,7 @@
             }
             set
             {
-                if (value == null) _Embeddings = new List<decimal>();
+                if (value == null) _Embeddings = new List<float>();
                 else _Embeddings = value;
             }
         }
@@ -79,7 +79,7 @@
 
         private int _StartIndex = 0;
         private int _MaxResults = 100;
-        private List<decimal> _Embeddings = new List<decimal>();
+        private List<float> _Embeddings = new List<float>();
 
         #endregion
 

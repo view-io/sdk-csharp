@@ -9,7 +9,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using ExpressionTree;
-    using View.Sdk.Vector;
+    using View.Sdk.Semantic;
 
     /// <summary>
     /// Graph SDK.

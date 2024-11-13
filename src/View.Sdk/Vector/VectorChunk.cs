@@ -11,6 +11,7 @@
     using View.Sdk.Serialization;
     using View.Sdk;
     using Microsoft.VisualBasic;
+    using View.Sdk.Semantic;
 
     /// <summary>
     /// Vector chunk.

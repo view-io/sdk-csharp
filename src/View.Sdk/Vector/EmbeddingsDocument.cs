@@ -10,6 +10,7 @@
     using Timestamps;
     using View.Sdk.Serialization;
     using View.Sdk;
+    using View.Sdk.Semantic;
 
     /// <summary>
     /// Embeddings document.

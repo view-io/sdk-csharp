@@ -1,12 +1,19 @@
 ﻿namespace View.Sdk.Vector
 {
+    using RestWrapper;
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Net.Http;
     using System.Runtime.InteropServices;
     using System.Threading;
     using System.Threading.Tasks;
+    using View.Sdk.Semantic;
     using View.Sdk.Serialization;
+    using View.Sdk.Vector.Langchain;
+    using View.Sdk.Vector.Ollama;
+    using View.Sdk.Vector.OpenAI;
+    using View.Sdk.Vector.VoyageAI;
 
     /// <summary>
     /// View embeddings generator SDK.
@@ -140,10 +147,7 @@
         private int _MaxFailures = 3;
         private int _TimeoutMs = 300000;
 
-        private ViewLcproxySdk _LcProxy = null;
-        private ViewOllamaSdk _Ollama = null;
-        private ViewOpenAiSdk _OpenAI = null;
-        private ViewVoyageAiSdk _VoyageAI = null;
+        private ViewEmbeddingsSdkBase _SdkBase = null;
 
         private SemaphoreSlim _Semaphore = null;
 
@@ -184,9 +188,25 @@
             TimeoutMs = timeoutMs;
             Logger = logger;
 
-            _Semaphore = new SemaphoreSlim(_MaxParallelTasks);
+            _Semaphore = new SemaphoreSlim(_MaxParallelTasks, _MaxParallelTasks);
 
-            InitializeGenerator();
+            switch (Generator)
+            {
+                case EmbeddingsGeneratorEnum.LCProxy:
+                    _SdkBase = new ViewLangchainSdk(Endpoint, ApiKey, Logger);
+                    break;
+                case EmbeddingsGeneratorEnum.Ollama:
+                    _SdkBase = new ViewOllamaSdk(Endpoint, ApiKey, Logger);
+                    break;
+                case EmbeddingsGeneratorEnum.OpenAI:
+                    _SdkBase = new ViewOpenAiSdk(Endpoint, ApiKey, Logger);
+                    break;
+                case EmbeddingsGeneratorEnum.VoyageAI:
+                    _SdkBase = new ViewVoyageAiSdk(Endpoint, ApiKey, Logger);
+                    break;
+                default:
+                    throw new ArgumentException("Unknown embeddings generator '" + Generator.ToString() + "'.");
+            }
         }
 
         #endregion
@@ -208,24 +228,19 @@
         /// <returns>True if connected.</returns>
         public async Task<bool> ValidateConnectivity(CancellationToken token = default)
         {
-            if (Generator == EmbeddingsGeneratorEnum.LCProxy)
-            {
-                return await _LcProxy.ValidateConnectivity(token).ConfigureAwait(false);
-            }
-            else if (Generator == EmbeddingsGeneratorEnum.Ollama)
-            {
-                return await _Ollama.ValidateConnectivity(token).ConfigureAwait(false);
-            }
-            else if (Generator == EmbeddingsGeneratorEnum.OpenAI)
-            {
-                return await _OpenAI.ValidateConnectivity(token).ConfigureAwait(false);
-            }
-            else if (Generator == EmbeddingsGeneratorEnum.VoyageAI)
-            {
-                return await _VoyageAI.ValidateConnectivity(token).ConfigureAwait(false);
-            }
-            else
-                throw new ArgumentException("Unknown embeddings generator '" + Generator.ToString() + "'.");
+            return await _SdkBase.ValidateConnectivity(token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Generate embeddings.
+        /// </summary>
+        /// <param name="embedRequest">Embeddings request.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Embeddings response.</returns>
+        public async Task<EmbeddingsResult> GenerateEmbeddings(EmbeddingsRequest embedRequest, CancellationToken token = default)
+        {
+            if (embedRequest == null) throw new ArgumentNullException(nameof(embedRequest));
+            return await _SdkBase.GenerateEmbeddings(embedRequest, _TimeoutMs, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -233,62 +248,195 @@
         /// </summary>
         /// <param name="cells">Semantic cells.</param>
         /// <param name="model">Model.</param>
-        /// <param name="timeoutMs">Timeout, in milliseconds.  Default is 60,000 milliseconds (1 minute).</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Semantic cells, where chunks have embeddings.</returns>
         public async Task<List<SemanticCell>> ProcessSemanticCells(
             List<SemanticCell> cells, 
             string model,
-            int timeoutMs = 300000,
             CancellationToken token = default)
         {
-            List<SemanticCell> ret = new List<SemanticCell>();
-            if (cells == null || cells.Count < 1) return ret;
+            if (cells == null || cells.Count < 1) return new List<SemanticCell>();
             if (String.IsNullOrEmpty(model)) throw new ArgumentNullException(nameof(model));
-            if (timeoutMs < 1) throw new ArgumentOutOfRangeException(nameof(timeoutMs));
 
-            if (Generator == EmbeddingsGeneratorEnum.LCProxy)
+            int failureCount = 0;
+            object failureLock = new object();
+
+            // Create queue of batches
+            List<List<SemanticChunk>> batches = GetChunks(cells)
+                .Select((chunk, index) => new { chunk, index })
+                .GroupBy(x => x.index / BatchSize)
+                .Select(g => g.Select(x => x.chunk).ToList())
+                .ToList();
+
+            Queue<List<SemanticChunk>> queue = new Queue<List<SemanticChunk>>(batches);
+            List<Task> runningTasks = new List<Task>();
+            object processingLock = new object();
+
+            async Task ProcessNextBatch()
             {
-                return await _LcProxy.ProcessSemanticCells(cells, model, timeoutMs, token).ConfigureAwait(false);
+                while (true)
+                {
+                    List<SemanticChunk> batch;
+                    lock (processingLock)
+                    {
+                        if (queue.Count == 0) return;
+                        batch = queue.Dequeue();
+                    }
+
+                    try
+                    {
+                        await _Semaphore.WaitAsync(token);
+                        try
+                        {
+                            bool success = await ProcessBatch(model, batch, token);
+                            if (!success)
+                            {
+                                bool shouldThrow = false;
+                                lock (failureLock)
+                                {
+                                    failureCount++;
+                                    if (failureCount >= MaxFailures)
+                                    {
+                                        shouldThrow = true;
+                                    }
+                                }
+                                if (shouldThrow)
+                                {
+                                    throw new InvalidOperationException(
+                                        $"Too many failures encountered while generating embeddings using {Generator}. " +
+                                        $"Failure count: {failureCount}");
+                                }
+                            }
+                        }
+                        finally
+                        {
+                            _Semaphore.Release();
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                }
             }
-            else if (Generator == EmbeddingsGeneratorEnum.Ollama)
+
+            try
             {
-                return await _Ollama.ProcessSemanticCells(cells, model, timeoutMs, token).ConfigureAwait(false);
+                for (int i = 0; i < Math.Min(MaxParallelTasks, batches.Count); i++)
+                {
+                    runningTasks.Add(ProcessNextBatch());
+                }
+
+                await Task.WhenAll(runningTasks);
             }
-            else if (Generator == EmbeddingsGeneratorEnum.OpenAI)
+            catch (Exception)
             {
-                return await _OpenAI.ProcessSemanticCells(cells, model, timeoutMs, token).ConfigureAwait(false);
+                token.ThrowIfCancellationRequested();
+                throw;
             }
-            else if (Generator == EmbeddingsGeneratorEnum.VoyageAI)
-            {
-                return await _VoyageAI.ProcessSemanticCells(cells, model, timeoutMs, token).ConfigureAwait(false);
-            }
-            else
-                throw new ArgumentException("Unknown embeddings generator '" + Generator.ToString() + "'.");
+
+            return cells;
         }
 
         #endregion
 
         #region Private-Methods
 
-        private void InitializeGenerator()
+        private async Task<bool> ProcessBatch(
+            string model,
+            List<SemanticChunk> chunks,
+            CancellationToken token = default)
         {
-            switch (Generator)
+            int failureCount = 0;
+
+            List<string> contents = new List<string>();
+            foreach (SemanticChunk chunk in chunks)
+                if (!string.IsNullOrEmpty(chunk.Content)) contents.Add(chunk.Content);
+
+            EmbeddingsRequest request = new EmbeddingsRequest();
+            request.Model = model;
+            request.ApiKey = ApiKey;
+            request.Contents = contents;
+
+            EmbeddingsResult result = new EmbeddingsResult();
+            result.Success = false;
+
+            while (failureCount < MaxRetries)
             {
-                case EmbeddingsGeneratorEnum.LCProxy:
-                    _LcProxy = new ViewLcproxySdk(Endpoint, ApiKey, BatchSize, MaxParallelTasks, MaxRetries, MaxFailures, Logger);
-                    break;
-                case EmbeddingsGeneratorEnum.Ollama:
-                    _Ollama = new ViewOllamaSdk(Endpoint, ApiKey, BatchSize, MaxParallelTasks, MaxRetries, MaxFailures, Logger);
-                    break;
-                case EmbeddingsGeneratorEnum.OpenAI:
-                    _OpenAI = new ViewOpenAiSdk(Endpoint, ApiKey, BatchSize, MaxParallelTasks, MaxRetries, MaxFailures, Logger);
-                    break;
-                case EmbeddingsGeneratorEnum.VoyageAI:
-                    _VoyageAI = new ViewVoyageAiSdk(Endpoint, ApiKey, BatchSize, MaxParallelTasks, MaxRetries, MaxFailures, Logger);
-                    break;
-                default:
-                    throw new ArgumentException("Unknown embeddings generator '" + Generator.ToString() + "'.");
+                try
+                {
+                    result = await _SdkBase.GenerateEmbeddings(request, _TimeoutMs, token).ConfigureAwait(false);
+                    if (result == null)
+                    {
+                        Logger?.Invoke(SeverityEnum.Warn, "no response from embeddings generator " + Generator.ToString());
+                        failureCount++;
+                    }
+                    else
+                    {
+                        if (result.Success) break;
+                        else
+                        {
+                            Logger?.Invoke(SeverityEnum.Warn, "failure reported by embeddings generator " + Generator.ToString());
+                            failureCount++;
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    Logger?.Invoke(SeverityEnum.Warn, "exception while generating embeddings: " + Environment.NewLine + e.ToString());
+                    failureCount++;
+                }
+            }
+
+            if (result.Success)
+            {
+                UpdateChunkEmbeddings(chunks, result.Result);
+            }
+
+            return result.Success;
+        }
+
+        private IEnumerable<SemanticChunk> GetChunks(List<SemanticCell> cells)
+        {
+            if (cells == null || cells.Count < 1) yield break;
+
+            foreach (SemanticCell cell in cells)
+            {
+                if (cell.Children != null && cell.Children.Count > 0)
+                {
+                    foreach (var chunk in GetChunks(cell.Children))
+                    {
+                        yield return chunk;
+                    }
+                }
+
+                if (cell.Chunks != null && cell.Chunks.Count > 0)
+                {
+                    foreach (SemanticChunk chunk in cell.Chunks)
+                    {
+                        yield return chunk;
+                    }
+                }
+            }
+
+            yield break;
+        }
+        
+        private void UpdateChunkEmbeddings(List<SemanticChunk> chunks, List<EmbeddingsMap> embeddingsMap)
+        {
+            if (chunks == null || embeddingsMap == null || chunks.Count == 0 || embeddingsMap.Count == 0)
+                return;
+
+            foreach (SemanticChunk chunk in chunks)
+            {
+                if (!string.IsNullOrEmpty(chunk.Content))
+                {
+                    EmbeddingsMap matchingEmbedding = embeddingsMap.FirstOrDefault(e => e.Content == chunk.Content);
+                    if (matchingEmbedding != null)
+                    {
+                        chunk.Embeddings = matchingEmbedding.Embeddings;
+                    }
+                }
             }
         }
 

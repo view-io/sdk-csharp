@@ -1,4 +1,4 @@
-﻿namespace View.Sdk
+﻿namespace View.Sdk.Vector
 {
     using System;
     using System.Collections.Generic;
@@ -18,11 +18,6 @@
         public bool Success { get; set; } = false;
 
         /// <summary>
-        /// Timestamps.
-        /// </summary>
-        public Timestamp Timestamp { get; set; } = new Timestamp();
-
-        /// <summary>
         /// HTTP status code.
         /// </summary>
         public int StatusCode
@@ -37,11 +32,6 @@
                 _StatusCode = value;
             }
         }
-
-        /// <summary>
-        /// URL.
-        /// </summary>
-        public string Url { get; set; } = null;
 
         /// <summary>
         /// Model used to generate embeddings.

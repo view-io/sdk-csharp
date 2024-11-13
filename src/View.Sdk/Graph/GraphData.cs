@@ -1,4 +1,4 @@
-﻿using View.Sdk.Vector;
+﻿using View.Sdk.Semantic;
 
 namespace View.Sdk.Graph
 {

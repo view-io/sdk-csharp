@@ -1,26 +1,24 @@
-﻿namespace View.Sdk.Vector
+﻿namespace View.Sdk.Vector.OpenAI
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using System.Text.Json.Serialization;
     using System.Threading.Tasks;
+    using View.Sdk.Vector;
 
     /// <summary>
-    /// Embeddings map.
+    /// OpenAI embeddings.
     /// </summary>
-    public class EmbeddingsMap
+    public class OpenAiEmbeddings
     {
         #region Public-Members
 
         /// <summary>
-        /// Content.
-        /// </summary>
-        public string Content { get; set; } = null;
-
-        /// <summary>
         /// Embeddings.
         /// </summary>
+        [JsonPropertyName("embedding")]
         public List<float> Embeddings
         {
             get
@@ -33,6 +31,18 @@
                 _Embeddings = value;
             }
         }
+
+        /// <summary>
+        /// Index.
+        /// </summary>
+        [JsonPropertyName("index")]
+        public int Index { get; set; } = 0;
+
+        /// <summary>
+        /// Object type.
+        /// </summary>
+        [JsonPropertyName("object")]
+        public string ObjectType { get; set; } = null;
 
         #endregion
 
@@ -47,7 +57,7 @@
         /// <summary>
         /// Instantiate.
         /// </summary>
-        public EmbeddingsMap()
+        public OpenAiEmbeddings()
         {
 
         }

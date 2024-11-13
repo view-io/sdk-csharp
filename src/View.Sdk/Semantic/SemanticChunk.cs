@@ -1,4 +1,4 @@
-﻿namespace View.Sdk.Vector
+﻿namespace View.Sdk.Semantic
 {
     using System;
     using System.Collections.Generic;

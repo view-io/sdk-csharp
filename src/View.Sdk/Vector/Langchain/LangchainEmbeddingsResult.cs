@@ -1,18 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
-using Timestamps;
-
-namespace View.Sdk.Vector
+﻿namespace View.Sdk.Vector.Langchain
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection.Metadata;
+    using System.Text;
+    using System.Text.Json.Serialization;
+    using System.Threading.Tasks;
+    using Timestamps;
+    using View.Sdk.Vector;
+
     /// <summary>
     /// Lcproxy embeddings result.
     /// </summary>
-    public class LcproxyEmbeddingsResult
+    public class LangchainEmbeddingsResult
     {
         #region Public-Members
 
@@ -20,6 +21,11 @@ namespace View.Sdk.Vector
         /// Boolean indicating whether or not the operation was successful.
         /// </summary>
         public bool Success { get; set; } = false;
+
+        /// <summary>
+        /// HTTP status code.
+        /// </summary>
+        public int StatusCode { get; set; } = 0;
 
         /// <summary>
         /// Model used to generate embeddings.
@@ -72,40 +78,37 @@ namespace View.Sdk.Vector
         /// <summary>
         /// Instantiate.
         /// </summary>
-        public LcproxyEmbeddingsResult()
+        public LangchainEmbeddingsResult()
         {
-        }
-
-        /// <summary>
-        /// Build embeddings maps from content and Ollama result.
-        /// </summary>
-        /// <param name="content">Content.</param>
-        /// <param name="lcProxyResult">Ollama result.</param>
-        /// <returns>List of embeddings maps.</returns>
-        public static List<EmbeddingsMap> ToEmbeddingsMaps(List<string> content, LcproxyEmbeddingsResult lcProxyResult)
-        {
-            List<EmbeddingsMap> ret = new List<EmbeddingsMap>();
-
-            if (content == null || content.Count < 1) return ret;
-            if (lcProxyResult == null || lcProxyResult.Embeddings == null || lcProxyResult.Embeddings.Count != content.Count) return ret;
-
-            for (int i = 0; i < content.Count; i++)
-            {
-                EmbeddingsMap map = new EmbeddingsMap
-                {
-                    Content = content[i],
-                    Embeddings = lcProxyResult.Embeddings[i]
-                };
-
-                ret.Add(map);
-            }
-
-            return ret;
         }
 
         #endregion
 
         #region Public-Methods
+
+        /// <summary>
+        /// Create an embeddings result from this object.
+        /// </summary>
+        /// <returns>Embeddings result.</returns>
+        public EmbeddingsResult ToEmbeddingsResult()
+        {
+            EmbeddingsResult er = new EmbeddingsResult();
+            er.Success = Success;
+            er.StatusCode = StatusCode;
+            er.Model = Model;
+            er.Result = new List<EmbeddingsMap>();
+
+            if (Contents != null && Contents.Count > 0 &&
+                Embeddings != null && Embeddings.Count > 0)
+            {
+                if (Contents.Count != Embeddings.Count) throw new InvalidOperationException("The number of content elements does not match the number of embeddings elements.");
+
+                for (int i = 0; i < Contents.Count; i++)
+                    er.Result.Add(new EmbeddingsMap { Content = Contents[i], Embeddings = Embeddings[i] });
+            }
+
+            return er;
+        }
 
         #endregion
 

@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
-
-namespace View.Sdk.Vector
+﻿namespace View.Sdk.Vector.Ollama
 {
+    using Microsoft.VisualBasic;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection.Metadata;
+    using System.Text;
+    using System.Text.Json.Serialization;
+    using System.Threading.Tasks;
+    using View.Sdk.Vector;
+
     /// <summary>
     /// Ollama embeddings result.
     /// </summary>
@@ -56,30 +58,27 @@ namespace View.Sdk.Vector
         }
 
         /// <summary>
-        /// Build embeddings maps from content and Ollama result.
+        /// Create an embeddings result from this object.
         /// </summary>
-        /// <param name="content">Content.</param>
-        /// <param name="ollamaResult">Ollama result.</param>
-        /// <returns>List of embeddings maps.</returns>
-        public static List<EmbeddingsMap> ToEmbeddingsMaps(List<string> content, OllamaEmbeddingsResult ollamaResult)
+        /// <param name="req">Embeddings request.</param>
+        /// <returns>Embeddings result.</returns>
+        public EmbeddingsResult ToEmbeddingsResult(OllamaEmbeddingsRequest req)
         {
-            List<EmbeddingsMap> ret = new List<EmbeddingsMap>();
-
-            if (content == null || content.Count < 1) return ret;
-            if (ollamaResult == null || ollamaResult.Embeddings == null || ollamaResult.Embeddings.Count != content.Count) return ret;
-
-            for (int i = 0; i < content.Count; i++)
+            EmbeddingsResult er = new EmbeddingsResult();
+            er.Success = true;
+            er.StatusCode = 200;
+            er.Model = Model;
+            er.Result = new List<EmbeddingsMap>();
+            if (req.Contents != null && req.Contents.Count > 0 &&
+                Embeddings != null && Embeddings.Count > 0)
             {
-                EmbeddingsMap map = new EmbeddingsMap
-                {
-                    Content = content[i],
-                    Embeddings = ollamaResult.Embeddings[i]
-                };
+                if (req.Contents.Count != Embeddings.Count) throw new InvalidOperationException("The number of content elements does not match the number of embeddings elements.");
 
-                ret.Add(map);
+                for (int i = 0; i < req.Contents.Count; i++)
+                    er.Result.Add(new EmbeddingsMap { Content = req.Contents[i], Embeddings = Embeddings[i] });
             }
 
-            return ret;
+            return er;
         }
 
         #endregion

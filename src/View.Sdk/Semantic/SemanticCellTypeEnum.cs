@@ -1,4 +1,4 @@
-﻿namespace View.Sdk.Vector
+﻿namespace View.Sdk.Semantic
 {
     using System.Runtime.Serialization;
     using System.Text.Json.Serialization;
