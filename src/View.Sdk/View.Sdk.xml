@@ -6559,6 +6559,19 @@
             </summary>
             <returns>Number of bytes.</returns>
         </member>
+        <member name="M:View.Sdk.Semantic.SemanticCell.GetDistinctSHA256Hashes">
+            <summary>
+            Retrieve the distinct SHA-256 hash values.
+            </summary>
+            <returns>SHA-256 hash values.</returns>
+        </member>
+        <member name="M:View.Sdk.Semantic.SemanticCell.GetDistinctSHA256Hashes(System.Collections.Generic.IEnumerable{View.Sdk.Semantic.SemanticCell})">
+            <summary>
+            Retrieve the distinc SHA-256 hash values from a list of semantic cells.
+            </summary>
+            <param name="cells">Semantic cells.</param>
+            <returns>SHA-256 hash values.</returns>
+        </member>
         <member name="T:View.Sdk.Semantic.SemanticCellRequest">
             <summary>
             Semantic cell request.

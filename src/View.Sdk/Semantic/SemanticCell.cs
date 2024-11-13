@@ -362,6 +362,32 @@
             return ret;
         }
 
+        /// <summary>
+        /// Retrieve the distinct SHA-256 hash values.
+        /// </summary>
+        /// <returns>SHA-256 hash values.</returns>
+        public IEnumerable<string> GetDistinctSHA256Hashes()
+        {
+            return (Chunks ?? Enumerable.Empty<SemanticChunk>())
+                .Select(chunk => chunk?.SHA256Hash)
+                .Concat((Children ?? Enumerable.Empty<SemanticCell>())
+                    .SelectMany(child => child?.GetDistinctSHA256Hashes() ?? Enumerable.Empty<string>()))
+                .Where(hash => !string.IsNullOrEmpty(hash))
+                .Distinct();
+        }
+
+        /// <summary>
+        /// Retrieve the distinc SHA-256 hash values from a list of semantic cells.
+        /// </summary>
+        /// <param name="cells">Semantic cells.</param>
+        /// <returns>SHA-256 hash values.</returns>
+        public static IEnumerable<string> GetDistinctSHA256Hashes(IEnumerable<SemanticCell> cells)
+        {
+            return (cells ?? Enumerable.Empty<SemanticCell>())
+                .SelectMany(cell => cell?.GetDistinctSHA256Hashes() ?? Enumerable.Empty<string>())
+                .Distinct();
+        }
+
         #endregion
 
         #region Private-Methods
