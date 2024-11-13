@@ -86,6 +86,22 @@
         public bool EndOfResults { get; set; } = true;
 
         /// <summary>
+        /// Total number of records.
+        /// </summary>
+        public long TotalRecords
+        {
+            get
+            {
+                return _TotalRecords;
+            }
+            set
+            {
+                if (value < 0) throw new ArgumentOutOfRangeException(nameof(TotalRecords));
+                _TotalRecords = value;
+            }
+        }
+
+        /// <summary>
         /// Number of candidate records remaining in the enumeration.
         /// </summary>
         public long RecordsRemaining
@@ -107,6 +123,7 @@
 
         private int _MaxResults = 1000;
         private int _IterationsRequired = 0;
+        private long _TotalRecords = 0;
         private long _RecordsRemaining = 0;
         private ObjectStatistics _Statistics = new ObjectStatistics();
         private List<ObjectMetadata> _Objects = new List<ObjectMetadata>();

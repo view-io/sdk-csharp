@@ -46,6 +46,22 @@
         }
 
         /// <summary>
+        /// Number of results to skip.
+        /// </summary>
+        public int Skip
+        {
+            get
+            {
+                return _Skip;
+            }
+            set
+            {
+                if (value < 0) throw new ArgumentOutOfRangeException(nameof(Skip));
+                _Skip = value;
+            }
+        }
+
+        /// <summary>
         /// Continuation token.
         /// </summary>
         public string ContinuationToken { get; set; } = null;
@@ -81,7 +97,7 @@
         #region Private-Members
 
         private int _MaxResults = 10;
-
+        private int _Skip = 0;
         private QueryFilter _Filter = new QueryFilter();
 
         #endregion

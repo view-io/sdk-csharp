@@ -100,6 +100,22 @@
         }
 
         /// <summary>
+        /// The number of records to skip.
+        /// </summary>
+        public int Skip
+        {
+            get
+            {
+                return _Skip;
+            }
+            set
+            {
+                if (value < 0) throw new ArgumentOutOfRangeException(nameof(Skip));
+                _Skip = value;
+            }
+        }
+
+        /// <summary>
         /// Continuation token.
         /// </summary>
         public string ContinuationToken { get; set; } = null;
@@ -115,19 +131,9 @@
         public string Suffix { get; set; } = null;
 
         /// <summary>
-        /// Marker.
-        /// </summary>
-        public string Marker { get; set; } = null;
-
-        /// <summary>
         /// Delimiter.
         /// </summary>
         public string Delimiter { get; set; } = string.Empty;
-
-        /// <summary>
-        /// Token.
-        /// </summary>
-        public string Token { get; set; } = string.Empty;
 
         /// <summary>
         /// Include subordinates, for instance, semantic cells and chunks.
@@ -171,6 +177,7 @@
         #region Private-Members
 
         private int _MaxResults = 1000;
+        private int _Skip = 0;
         private List<SearchFilter> _Filters = new List<SearchFilter>();
 
         #endregion
