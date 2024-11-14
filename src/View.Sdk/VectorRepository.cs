@@ -74,6 +74,11 @@
         public string DatabaseName { get; set; } = null;
 
         /// <summary>
+        /// Schema name.
+        /// </summary>
+        public string SchemaName { get; set; } = "public";
+
+        /// <summary>
         /// Database table name.
         /// </summary>
         public string DatabaseTable { get; set; } = null;

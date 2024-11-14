@@ -8097,6 +8097,11 @@
             Database name.
             </summary>
         </member>
+        <member name="P:View.Sdk.VectorRepository.SchemaName">
+            <summary>
+            Schema name.
+            </summary>
+        </member>
         <member name="P:View.Sdk.VectorRepository.DatabaseTable">
             <summary>
             Database table name.
@@ -9428,11 +9433,12 @@
             <param name="token">Cancellation token.</param>
             <returns>True if deleted.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.ViewVectorSdk.WriteDocument(View.Sdk.Vector.EmbeddingsDocument,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewVectorSdk.WriteDocument(View.Sdk.Vector.EmbeddingsDocument,System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Write a document.
             </summary>
             <param name="document">Embeddings document.</param>
+            <param name="reuseExistingEmbeddings">When true, query and reuse existing embeddings to reduce the number generated.</param>
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>

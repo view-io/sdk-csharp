@@ -11,6 +11,7 @@
     using View.Sdk;
     using System.Collections;
     using View.Sdk.Semantic;
+    using System.Linq;
 
     /// <summary>
     /// View Vector SDK.
@@ -389,10 +390,12 @@
         /// Write a document.
         /// </summary>
         /// <param name="document">Embeddings document.</param>
+        /// <param name="reuseExistingEmbeddings">When true, query and reuse existing embeddings to reduce the number generated.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Task.</returns>
         public async Task<EmbeddingsDocument> WriteDocument(
             EmbeddingsDocument document,
+            bool reuseExistingEmbeddings = false,
             CancellationToken token = default)
         {
             if (document == null) throw new ArgumentNullException(nameof(document));
@@ -400,39 +403,65 @@
 
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + document.VectorRepositoryGUID + "/documents";
 
-            using (RestRequest req = new RestRequest(url, HttpMethod.Post))
+            if (!reuseExistingEmbeddings)
             {
-                req.TimeoutMilliseconds = TimeoutMs;
-                req.ContentType = "application/json";
+                return await WriteDocumentInternal(document, token).ConfigureAwait(false);
+            }
+            else
+            {
+                return await WriteDocumentInternal(document, token).ConfigureAwait(false);
+                /*
+                 * 
+                #region Variables
 
-                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(document, true), token).ConfigureAwait(false))
+                //
+                // 'originalDocument' is the original request document and should never be modified.
+                // 'document' will be used for the request to generate embeddings and will be modified according to the embeddings that already exist.
+                // 'returnDocument' is the document returned to the caller.
+                // 
+
+                EmbeddingsDocument originalDocument = Serializer.CopyObject<EmbeddingsDocument>(document);
+                EmbeddingsDocument returnDocument = Serializer.CopyObject<EmbeddingsDocument>(document);
+
+                #endregion
+
+                #region Find-Existing-Embeddings
+
+                FindEmbeddingsRequest findRequest = new FindEmbeddingsRequest
                 {
-                    if (resp != null)
+                    Criteria = new List<FindEmbeddingsObject>()
+                };
+
+                foreach (string sha256 in SemanticCell.GetDistinctSHA256Hashes(document.SemanticCells))
+                    findRequest.Criteria.Add(new FindEmbeddingsObject { SHA256Hash = sha256 });
+
+                FindEmbeddingsResult findResult = await FindEmbeddings(findRequest, token).ConfigureAwait(false);
+
+                #endregion
+
+                #region Remove-Matching-Chunks-from-Request
+
+                if (findResult != null && findResult.Existing != null && findResult.Existing.Count > 0)
+                {
+                    foreach (FindEmbeddingsObject existing in findResult.Existing)
                     {
-                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                        {
-                            Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
-                            {
-                                return Serializer.DeserializeJson<EmbeddingsDocument>(resp.DataAsString);
-                            }
-                            else
-                            {
-                                return null;
-                            }
-                        }
-                        else
-                        {
-                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return null;
-                        }
-                    }
-                    else
-                    {
-                        Log(SeverityEnum.Warn, "no response from " + url);
-                        return null;
                     }
                 }
+
+                #endregion
+
+                #region Generate-Embeddings
+
+                #endregion
+
+                #region Merge-Results
+
+                #endregion
+
+                #region Return
+
+                #endregion
+                */
             }
         }
 
@@ -710,6 +739,76 @@
         #endregion
 
         #region Private-Methods
+
+        private async Task<EmbeddingsDocument> WriteDocumentInternal(
+            EmbeddingsDocument document,
+            CancellationToken token = default)
+        {
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + document.VectorRepositoryGUID + "/documents";
+
+            using (RestRequest req = new RestRequest(url, HttpMethod.Post))
+            {
+                req.TimeoutMilliseconds = TimeoutMs;
+                req.ContentType = "application/json";
+
+                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(document, true), token).ConfigureAwait(false))
+                {
+                    if (resp != null)
+                    {
+                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                        {
+                            Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            if (!String.IsNullOrEmpty(resp.DataAsString))
+                            {
+                                return Serializer.DeserializeJson<EmbeddingsDocument>(resp.DataAsString);
+                            }
+                            else
+                            {
+                                return null;
+                            }
+                        }
+                        else
+                        {
+                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            return null;
+                        }
+                    }
+                    else
+                    {
+                        Log(SeverityEnum.Warn, "no response from " + url);
+                        return null;
+                    }
+                }
+            }
+        }
+
+        private static void MergeEmbeddings(IEnumerable<SemanticCell> cells, IEnumerable<FindEmbeddingsObject> embeddings)
+        {
+            // Create a lookup dictionary for faster matching
+            var embeddingsMap = (embeddings ?? Enumerable.Empty<FindEmbeddingsObject>())
+                .Where(e => e != null && !string.IsNullOrEmpty(e.SHA256Hash))
+                .ToDictionary(e => e.SHA256Hash, e => e.Embeddings);
+
+            // Process each cell and its children
+            foreach (var cell in cells ?? Enumerable.Empty<SemanticCell>())
+            {
+                if (cell == null) continue;
+
+                // Process chunks in current cell
+                foreach (var chunk in cell.Chunks ?? Enumerable.Empty<SemanticChunk>())
+                {
+                    if (chunk == null || string.IsNullOrEmpty(chunk.SHA256Hash)) continue;
+
+                    if (embeddingsMap.TryGetValue(chunk.SHA256Hash, out var embeddingValues))
+                    {
+                        chunk.Embeddings = embeddingValues;
+                    }
+                }
+
+                // Recursively process children
+                MergeEmbeddings(cell.Children, embeddings);
+            }
+        }
 
         #endregion
     }
