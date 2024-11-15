@@ -12,6 +12,7 @@
     using System.Collections;
     using View.Sdk.Semantic;
     using System.Linq;
+    using System.Reflection.Metadata;
 
     /// <summary>
     /// View Vector SDK.
@@ -459,6 +460,52 @@
                 req.TimeoutMilliseconds = TimeoutMs;
 
                 using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
+                {
+                    if (resp != null)
+                    {
+                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                        {
+                            Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            return true;
+                        }
+                        else
+                        {
+                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        Log(SeverityEnum.Warn, "no response from " + url);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Delete documents by filter.
+        /// </summary>
+        /// <param name="repoGuid">Repository GUID.</param>
+        /// <param name="deleteRequest">Delete request.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>True if successful.</returns>
+        public async Task<bool> DeleteDocumentsByFilter(
+            string repoGuid,
+            VectorDeleteRequest deleteRequest,
+            CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(repoGuid)) throw new ArgumentNullException(nameof(repoGuid));
+            if (deleteRequest == null) throw new ArgumentNullException(nameof(deleteRequest));
+
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + repoGuid + "/documents";
+
+            using (RestRequest req = new RestRequest(url, HttpMethod.Delete))
+            {
+                req.TimeoutMilliseconds = TimeoutMs;
+                req.ContentType = "application/json";
+
+                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(deleteRequest, true), token).ConfigureAwait(false))
                 {
                     if (resp != null)
                     {

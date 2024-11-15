@@ -9515,6 +9515,15 @@
             <param name="token">Cancellation token.</param>
             <returns>True if deleted.</returns>
         </member>
+        <member name="M:View.Sdk.Vector.ViewVectorSdk.DeleteDocumentsByFilter(System.String,View.Sdk.Vector.VectorDeleteRequest,System.Threading.CancellationToken)">
+            <summary>
+            Delete documents by filter.
+            </summary>
+            <param name="repoGuid">Repository GUID.</param>
+            <param name="deleteRequest">Delete request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
         <member name="M:View.Sdk.Vector.ViewVectorSdk.ReadSemanticCells(System.String,System.String,System.Threading.CancellationToken)">
             <summary>
             Read semantic cells for a given document.
