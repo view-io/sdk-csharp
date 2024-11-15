@@ -2985,6 +2985,11 @@
             Source document GUID.
             </summary>
         </member>
+        <member name="P:View.Sdk.EnumerationQuery.DataRepositoryGUID">
+            <summary>
+            Data repository GUID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.EnumerationQuery.VectorRepository">
             <summary>
             Vector repository.
@@ -6513,6 +6518,21 @@
             <param name="distinct">True to only return distinct records.</param>
             <returns>List of SemanticCell.</returns>
         </member>
+        <member name="M:View.Sdk.Semantic.SemanticCell.AllChunks(System.Collections.Generic.List{View.Sdk.Semantic.SemanticCell})">
+            <summary>
+            Retrieve all semantic chunks.
+            </summary>
+            <param name="cells">Semantic cells.</param>
+            <returns>Semantic chunks.</returns>
+        </member>
+        <member name="M:View.Sdk.Semantic.SemanticCell.AllChunksBySHA256(System.Collections.Generic.List{View.Sdk.Semantic.SemanticCell},System.String)">
+            <summary>
+            Retrieve all semantic chunks matching a given SHA-256 value.
+            </summary>
+            <param name="cells">Semantic cells.</param>
+            <param name="sha256Hash">SHA-256.</param>
+            <returns>Semantic chunks.</returns>
+        </member>
         <member name="M:View.Sdk.Semantic.SemanticCell.CountEmbeddings(System.Collections.Generic.List{View.Sdk.Semantic.SemanticCell})">
             <summary>
             Count the number of embeddings in a list of semantic cells.
@@ -8207,6 +8227,11 @@
             Source document GUID.
             </summary>
         </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsDocument.DataRepositoryGUID">
+            <summary>
+            Data repository GUID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Vector.EmbeddingsDocument.BucketGUID">
             <summary>
             Bucket GUID.
@@ -9016,6 +9041,46 @@
             <param name="serializer">Serializer.</param>
             <returns>List of EmbeddingsDocument.</returns>
         </member>
+        <member name="T:View.Sdk.Vector.VectorDeleteRequest">
+            <summary>
+            Vector delete request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorDeleteRequest.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorDeleteRequest.CollectionGUID">
+            <summary>
+            Collection GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorDeleteRequest.BucketGUID">
+            <summary>
+            Bucket GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorDeleteRequest.DataRepositoryGUID">
+            <summary>
+            Data repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorDeleteRequest.ObjectKey">
+            <summary>
+            Object key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorDeleteRequest.ObjectVersion">
+            <summary>
+            Object version.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.VectorDeleteRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
         <member name="T:View.Sdk.Vector.VectorQueryRequest">
             <summary>
             Vector query request.
@@ -9433,12 +9498,11 @@
             <param name="token">Cancellation token.</param>
             <returns>True if deleted.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.ViewVectorSdk.WriteDocument(View.Sdk.Vector.EmbeddingsDocument,System.Boolean,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewVectorSdk.WriteDocument(View.Sdk.Vector.EmbeddingsDocument,System.Threading.CancellationToken)">
             <summary>
             Write a document.
             </summary>
             <param name="document">Embeddings document.</param>
-            <param name="reuseExistingEmbeddings">When true, query and reuse existing embeddings to reduce the number generated.</param>
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>

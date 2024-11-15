@@ -51,11 +51,16 @@
         /// Source document.
         /// </summary>
         public SourceDocument SourceDocument { get; set; } = null;
-        
+
         /// <summary>
         /// Source document GUID.
         /// </summary>
         public string SourceDocumentGUID { get; set; } = null;
+
+        /// <summary>
+        /// Data repository GUID.
+        /// </summary>
+        public string DataRepositoryGUID { get; set; } = null;
 
         /// <summary>
         /// Vector repository.

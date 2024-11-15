@@ -193,6 +193,35 @@
             return ret;
         }
 
+        /// <summary>
+        /// Retrieve all semantic chunks.
+        /// </summary>
+        /// <param name="cells">Semantic cells.</param>
+        /// <returns>Semantic chunks.</returns>
+        public static IEnumerable<SemanticChunk> AllChunks(List<SemanticCell> cells)
+        {
+            if (cells == null)
+                return Enumerable.Empty<SemanticChunk>();
+
+            return cells.SelectMany(cell => GetCellChunks(cell));
+        }
+
+        /// <summary>
+        /// Retrieve all semantic chunks matching a given SHA-256 value.
+        /// </summary>
+        /// <param name="cells">Semantic cells.</param>
+        /// <param name="sha256Hash">SHA-256.</param>
+        /// <returns>Semantic chunks.</returns>
+        public static IEnumerable<SemanticChunk> AllChunksBySHA256(List<SemanticCell> cells, string sha256Hash)
+        {
+            if (cells == null || string.IsNullOrEmpty(sha256Hash))
+                return Enumerable.Empty<SemanticChunk>();
+
+            return AllChunks(cells).Where(chunk =>
+                !string.IsNullOrEmpty(chunk.SHA256Hash) &&
+                chunk.SHA256Hash.Equals(sha256Hash, StringComparison.OrdinalIgnoreCase));
+        }
+
         #endregion
 
         #region Public-Methods
@@ -391,6 +420,19 @@
         #endregion
 
         #region Private-Methods
+
+        private static IEnumerable<SemanticChunk> GetCellChunks(SemanticCell cell)
+        {
+            if (cell == null)
+                return Enumerable.Empty<SemanticChunk>();
+
+            var directChunks = cell.Chunks ?? Enumerable.Empty<SemanticChunk>();
+
+            var childChunks = (cell.Children ?? Enumerable.Empty<SemanticCell>())
+                .SelectMany(child => GetCellChunks(child));
+
+            return directChunks.Concat(childChunks);
+        }
 
         #endregion
     }

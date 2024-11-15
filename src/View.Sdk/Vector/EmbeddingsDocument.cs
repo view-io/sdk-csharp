@@ -61,6 +61,11 @@
         public string SourceDocumentGUID { get; set; } = null;
 
         /// <summary>
+        /// Data repository GUID.
+        /// </summary>
+        public string DataRepositoryGUID { get; set; } = null;
+
+        /// <summary>
         /// Bucket GUID.
         /// </summary>
         public string BucketGUID { get; set; } = null;
@@ -178,6 +183,7 @@
                 TenantGUID = row["tenant_guid"] != null ? row["tenant_guid"].ToString() : null,
                 CollectionGUID = row["collection_guid"] != null ? row["collection_guid"].ToString() : null,
                 SourceDocumentGUID = row["source_document_guid"] != null ? row["source_document_guid"].ToString() : null,
+                DataRepositoryGUID = row["data_repository_guid"] != null ? row["data_repository_guid"].ToString() : null,
                 VectorRepositoryGUID = row["vector_repository_guid"] != null ? row["vector_repository_guid"].ToString() : null,
                 GraphRepositoryGUID = row["graph_repository_guid"] != null ? row["graph_repository_guid"].ToString() : null,
                 GraphNodeIdentifier = row["graph_node_identifier"] != null ? row["graph_node_identifier"].ToString() : null,
