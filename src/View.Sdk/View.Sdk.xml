@@ -7105,6 +7105,11 @@
             DocumentProcessorServer.
             </summary>
         </member>
+        <member name="F:View.Sdk.SoftwareInstanceTypeEnum.ProcessorServer">
+            <summary>
+            ProcessorServer.
+            </summary>
+        </member>
         <member name="F:View.Sdk.SoftwareInstanceTypeEnum.LexiServer">
             <summary>
             LexiServer.
@@ -7128,6 +7133,11 @@
         <member name="F:View.Sdk.SoftwareInstanceTypeEnum.SemanticCellExtractorServer">
             <summary>
             SemanticCellExtractorServer.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.SoftwareInstanceTypeEnum.DirectorServer">
+            <summary>
+            DirectorServer.
             </summary>
         </member>
         <member name="T:View.Sdk.SourceDocument">

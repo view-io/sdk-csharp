@@ -29,6 +29,11 @@
         [EnumMember(Value = "DocumentProcessorServer")]
         DocumentProcessorServer,
         /// <summary>
+        /// ProcessorServer.
+        /// </summary>
+        [EnumMember(Value = "ProcessorServer")]
+        ProcessorServer,
+        /// <summary>
         /// LexiServer.
         /// </summary>
         [EnumMember(Value = "LexiServer")]
@@ -52,6 +57,11 @@
         /// SemanticCellExtractorServer.
         /// </summary>
         [EnumMember(Value = "SemanticCellExtractorServer")]
-        SemanticCellExtractorServer
+        SemanticCellExtractorServer,
+        /// <summary>
+        /// DirectorServer.
+        /// </summary>
+        [EnumMember(Value = "DirectorServer")]
+        DirectorServer
     }
 }
