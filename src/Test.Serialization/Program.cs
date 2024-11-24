@@ -46,6 +46,14 @@
             {
                 Console.WriteLine("Test 3 passed - correctly threw exception");
             }
+
+            Dictionary<string, string> dict1 = new Dictionary<string, string>();
+            dict1.Add("Now", DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ"));
+            Console.WriteLine(serializer.SerializeJson(dict1, true));
+
+            Dictionary<string, DateTime> dict2 = new Dictionary<string, DateTime>();
+            dict2.Add("Now", DateTime.UtcNow);
+            Console.WriteLine(serializer.SerializeJson(dict2, true));
         }
     }
 }

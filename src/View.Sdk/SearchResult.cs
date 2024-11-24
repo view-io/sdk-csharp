@@ -24,6 +24,22 @@
         public Timestamp Timestamp { get; set; } = new Timestamp();
 
         /// <summary>
+        /// Maximum number of results to retrieve.
+        /// </summary>
+        public int MaxResults
+        {
+            get
+            {
+                return _MaxResults;
+            }
+            set
+            {
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(MaxResults));
+                _MaxResults = value;
+            }
+        }
+
+        /// <summary>
         /// Data flow request GUID.
         /// </summary>
         public string DataFlowRequestGUID { get; set; } = null;
@@ -69,6 +85,7 @@
         #region Private-Members
 
         private long _RecordsRemaining = 0;
+        private int _MaxResults = 0;
         private List<SourceDocument> _Documents = new List<SourceDocument>();
 
         #endregion

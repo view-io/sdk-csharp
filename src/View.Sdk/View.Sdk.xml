@@ -4,6 +4,66 @@
         <name>View.Sdk</name>
     </assembly>
     <members>
+        <member name="T:View.Sdk.Administrator">
+            <summary>
+            Administrator.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Administrator.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Administrator.FirstName">
+            <summary>
+            First name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Administrator.LastName">
+            <summary>
+            Last name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Administrator.FullName">
+            <summary>
+            Full name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Administrator.Email">
+            <summary>
+            Email.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Administrator.PasswordSha256">
+            <summary>
+            Password SHA256.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Administrator.Telephone">
+            <summary>
+            Telephone.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Administrator.AdditionalData">
+            <summary>
+            Additional data.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Administrator.Active">
+            <summary>
+            Active.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Administrator.CreatedUtc">
+            <summary>
+            Creation timestamp.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Administrator.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
         <member name="T:View.Sdk.ApiErrorEnum">
             <summary>
             API error codes.
@@ -22,6 +82,11 @@
         <member name="F:View.Sdk.ApiErrorEnum.NoMetadataRule">
             <summary>
             No metadata rule supplied.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.ApiErrorEnum.RequestBodyMissing">
+            <summary>
+            Request body missing.
             </summary>
         </member>
         <member name="F:View.Sdk.ApiErrorEnum.RequiredPropertiesMissing">
@@ -84,19 +149,34 @@
             Unknown data catalog type.
             </summary>
         </member>
+        <member name="F:View.Sdk.ApiErrorEnum.NoEmbeddingsConnectivity">
+            <summary>
+            No embeddings processor connectivity.
+            </summary>
+        </member>
         <member name="F:View.Sdk.ApiErrorEnum.UnknownEmbeddingsGeneratorType">
             <summary>
             Unknown embeddings generator type.
             </summary>
         </member>
-        <member name="F:View.Sdk.ApiErrorEnum.EmbeddingsPersistFailed">
-            <summary>
-            Embeddings persistence failed.
-            </summary>
-        </member>
         <member name="F:View.Sdk.ApiErrorEnum.EmbeddingsGenerationFailed">
             <summary>
             Embeddings generation failed.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.ApiErrorEnum.NoVectorConnectivity">
+            <summary>
+            No vector repository connectivity.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.ApiErrorEnum.UnknownVectorRepositoryType">
+            <summary>
+            Unknown vector repository type.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.ApiErrorEnum.VectorPersistFailed">
+            <summary>
+            Vector persistence failed.
             </summary>
         </member>
         <member name="F:View.Sdk.ApiErrorEnum.AuthenticationFailed">
@@ -152,6 +232,11 @@
         <member name="F:View.Sdk.ApiErrorEnum.NotFound">
             <summary>
             Not found.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.ApiErrorEnum.TokenExpired">
+            <summary>
+            Token expired.
             </summary>
         </member>
         <member name="F:View.Sdk.ApiErrorEnum.TooLarge">
@@ -429,6 +514,56 @@
         <member name="F:View.Sdk.AuthenticationResultEnum.Invalid">
             <summary>
             Invalid.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.AuthenticationToken">
+            <summary>
+            Authentication token details.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.AuthenticationToken.TimestampUtc">
+            <summary>
+            Timestamp when the token was issued, in UTC time.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.AuthenticationToken.ExpirationUtc">
+            <summary>
+            Timestamp when the token will expire, in UTC time.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.AuthenticationToken.IsExpired">
+            <summary>
+            Boolean to indicate if the token is expired.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.AuthenticationToken.Administrator">
+            <summary>
+            Administrator.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.AuthenticationToken.Tenant">
+            <summary>
+            Tenant.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.AuthenticationToken.User">
+            <summary>
+            User.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.AuthenticationToken.Token">
+            <summary>
+            Token.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.AuthenticationToken.Valid">
+            <summary>
+            Boolean indicating whether or not the token is valid.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.AuthenticationToken.#ctor">
+            <summary>
+            Instantiate.
             </summary>
         </member>
         <member name="T:View.Sdk.AuthorizationResultEnum">
@@ -6362,6 +6497,11 @@
             Timestamps.
             </summary>
         </member>
+        <member name="P:View.Sdk.SearchResult.MaxResults">
+            <summary>
+            Maximum number of results to retrieve.
+            </summary>
+        </member>
         <member name="P:View.Sdk.SearchResult.DataFlowRequestGUID">
             <summary>
             Data flow request GUID.
@@ -6948,6 +7088,14 @@
             </summary>
             <typeparam name="T">Type.</typeparam>
             <param name="json">JSON string.</param>
+            <returns>Instance.</returns>
+        </member>
+        <member name="M:View.Sdk.Serialization.Serializer.DeserializeJson``1(System.Byte[])">
+            <summary>
+            Deserialize JSON to an instance.
+            </summary>
+            <typeparam name="T">Type.</typeparam>
+            <param name="bytes">Bytes containing JSON.</param>
             <returns>Instance.</returns>
         </member>
         <member name="M:View.Sdk.Serialization.Serializer.SerializeJson(System.Object,System.Boolean)">

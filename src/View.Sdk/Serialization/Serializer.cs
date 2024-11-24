@@ -74,6 +74,8 @@
         /// <returns>Instance.</returns>
         public T DeserializeJson<T>(string json)
         {
+            if (String.IsNullOrEmpty(json)) throw new ArgumentNullException(nameof(json));
+
             JsonSerializerOptions options = new JsonSerializerOptions();
             options.AllowTrailingCommas = true;
             options.ReadCommentHandling = JsonCommentHandling.Skip;
@@ -86,6 +88,18 @@
             options.Converters.Add(_StrictEnumConverter);
 
             return JsonSerializer.Deserialize<T>(json, options);
+        }
+
+        /// <summary>
+        /// Deserialize JSON to an instance.
+        /// </summary>
+        /// <typeparam name="T">Type.</typeparam>
+        /// <param name="bytes">Bytes containing JSON.</param>
+        /// <returns>Instance.</returns>
+        public T DeserializeJson<T>(byte[] bytes)
+        {
+            if (bytes == null || bytes.Length < 1) throw new ArgumentNullException(nameof(bytes));
+            return DeserializeJson<T>(Encoding.UTF8.GetString(bytes));
         }
 
         /// <summary>

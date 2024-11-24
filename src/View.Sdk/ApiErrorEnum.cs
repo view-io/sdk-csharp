@@ -24,6 +24,11 @@
         [EnumMember(Value = "NoMetadataRule")]
         NoMetadataRule,
         /// <summary>
+        /// Request body missing.
+        /// </summary>
+        [EnumMember(Value = "RequestBodyMissing")]
+        RequestBodyMissing,
+        /// <summary>
         /// Required properties were missing.
         /// </summary>
         [EnumMember(Value = "RequiredPropertiesMissing")]
@@ -90,20 +95,36 @@
         UnknownDataCatalogType,
 
         /// <summary>
+        /// No embeddings processor connectivity.
+        /// </summary>
+        [EnumMember(Value = "NoEmbeddingsConnectivity")]
+        NoEmbeddingsConnectivity,
+        /// <summary>
         /// Unknown embeddings generator type.
         /// </summary>
         [EnumMember(Value = "UnknownEmbeddingsGeneratorType")]
         UnknownEmbeddingsGeneratorType,
         /// <summary>
-        /// Embeddings persistence failed.
-        /// </summary>
-        [EnumMember(Value = "EmbeddingsPersistFailed")]
-        EmbeddingsPersistFailed,
-        /// <summary>
         /// Embeddings generation failed.
         /// </summary>
         [EnumMember(Value = "EmbeddingsGenerationFailed")]
         EmbeddingsGenerationFailed,
+
+        /// <summary>
+        /// No vector repository connectivity.
+        /// </summary>
+        [EnumMember(Value = "NoVectorConnectivity")]
+        NoVectorConnectivity,
+        /// <summary>
+        /// Unknown vector repository type.
+        /// </summary>
+        [EnumMember(Value = "UnknownVectorRepositoryType")]
+        UnknownVectorRepositoryType,
+        /// <summary>
+        /// Vector persistence failed.
+        /// </summary>
+        [EnumMember(Value = "VectorPersistFailed")]
+        VectorPersistFailed,
 
         /// <summary>
         /// Authentication failed.
@@ -160,6 +181,11 @@
         /// </summary>
         [EnumMember(Value = "NotFound")]
         NotFound,
+        /// <summary>
+        /// Token expired.
+        /// </summary>
+        [EnumMember(Value = "TokenExpired")]
+        TokenExpired,
         /// <summary>
         /// Request too large.
         /// </summary>

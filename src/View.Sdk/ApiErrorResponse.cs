@@ -75,11 +75,18 @@
                     case ApiErrorEnum.UnknownDataCatalogType:
                         return "An unknown data catalog type was encountered.";
 
+                    case ApiErrorEnum.NoEmbeddingsConnectivity:
+                        return "Unable to establish a connection to the embeddings generation endpoint.";
                     case ApiErrorEnum.UnknownEmbeddingsGeneratorType:
                         return "An unknown embeddings generator type was encountered.";
                     case ApiErrorEnum.EmbeddingsGenerationFailed:
                         return "Unable to generate embeddings.";
-                    case ApiErrorEnum.EmbeddingsPersistFailed:
+
+                    case ApiErrorEnum.NoVectorConnectivity:
+                        return "Unable to establish a connection to the vector repository.";
+                    case ApiErrorEnum.UnknownVectorRepositoryType:
+                        return "An unknown vector repository type was encountered.";
+                    case ApiErrorEnum.VectorPersistFailed:
                         return "Unable to persist embeddings within the vectore store.";
 
                     case ApiErrorEnum.NoObjectMetadata:
@@ -88,6 +95,8 @@
                         return "No object data was supplied.";
                     case ApiErrorEnum.NoMetadataRule:
                         return "No metadata rule was supplied.";
+                    case ApiErrorEnum.RequestBodyMissing:
+                        return "A request body is required for this operation.";
                     case ApiErrorEnum.RequiredPropertiesMissing:
                         return "A required property was missing from the request.";
 
@@ -128,6 +137,8 @@
                         return 400;
                     case ApiErrorEnum.NotFound:
                         return 404;
+                    case ApiErrorEnum.TokenExpired:
+                        return 401;
                     case ApiErrorEnum.TooLarge:
                         return 413;
 
@@ -141,9 +152,19 @@
                         return 500;
                     case ApiErrorEnum.UnknownDataCatalogType:
                         return 400;
+
+                    case ApiErrorEnum.NoEmbeddingsConnectivity:
+                        return 500;
                     case ApiErrorEnum.UnknownEmbeddingsGeneratorType:
                         return 400;
-                    case ApiErrorEnum.EmbeddingsPersistFailed:
+                    case ApiErrorEnum.EmbeddingsGenerationFailed:
+                        return 500;
+
+                    case ApiErrorEnum.NoVectorConnectivity:
+                        return 500;
+                    case ApiErrorEnum.UnknownVectorRepositoryType:
+                        return 400;
+                    case ApiErrorEnum.VectorPersistFailed:
                         return 500;
 
                     case ApiErrorEnum.NoGraphConnectivity:
@@ -161,6 +182,8 @@
                     case ApiErrorEnum.NoObjectData:
                         return 400;
                     case ApiErrorEnum.NoMetadataRule:
+                        return 400;
+                    case ApiErrorEnum.RequestBodyMissing:
                         return 400;
                     case ApiErrorEnum.RequiredPropertiesMissing:
                         return 400;
