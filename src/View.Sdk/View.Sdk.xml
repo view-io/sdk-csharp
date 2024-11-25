@@ -5086,6 +5086,11 @@
             Maximum chunk content length.  Minimum is 256 and maximum is 16384.
             </summary>
         </member>
+        <member name="P:View.Sdk.MetadataRule.MaxTokensPerChunk">
+            <summary>
+            Maximum number of tokens per chunk.
+            </summary>
+        </member>
         <member name="P:View.Sdk.MetadataRule.ShiftSize">
             <summary>
             Shift size, used to determine overlap amongst neighboring chunks.
@@ -6750,6 +6755,11 @@
         <member name="P:View.Sdk.Semantic.SemanticCellRequest.MaxChunkContentLength">
             <summary>
             Maximum chunk content length.  Minimum is 256 and maximum is 16384.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Semantic.SemanticCellRequest.MaxTokensPerChunk">
+            <summary>
+            Maximum number of tokens per chunk.
             </summary>
         </member>
         <member name="P:View.Sdk.Semantic.SemanticCellRequest.ShiftSize">

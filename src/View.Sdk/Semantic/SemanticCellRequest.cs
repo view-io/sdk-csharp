@@ -1,6 +1,8 @@
 ﻿namespace View.Sdk.Semantic
 {
     using System;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// Semantic cell request.
@@ -43,6 +45,22 @@
             {
                 if (value < 256 || value > 16384) throw new ArgumentOutOfRangeException(nameof(MaxChunkContentLength));
                 _MaxChunkContentLength = value;
+            }
+        }
+
+        /// <summary>
+        /// Maximum number of tokens per chunk.
+        /// </summary>
+        public int MaxTokensPerChunk
+        {
+            get
+            {
+                return _MaxTokensPerChunk;
+            }
+            set
+            {
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(MaxTokensPerChunk));
+                _MaxTokensPerChunk = value;
             }
         }
 
@@ -98,6 +116,7 @@
 
         private int _MinChunkContentLength = 2;
         private int _MaxChunkContentLength = 512;
+        private int _MaxTokensPerChunk = 256;
         private int _ShiftSize = 512;
         private PdfOptions _Pdf = new PdfOptions();
 

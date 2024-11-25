@@ -112,6 +112,22 @@
         }
 
         /// <summary>
+        /// Maximum number of tokens per chunk.
+        /// </summary>
+        public int MaxTokensPerChunk
+        {
+            get
+            {
+                return _MaxTokensPerChunk;
+            }
+            set
+            {
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(MaxTokensPerChunk));
+                _MaxTokensPerChunk = value;
+            }
+        }
+
+        /// <summary>
         /// Shift size, used to determine overlap amongst neighboring chunks.
         /// When set to the same value as the maximum chunk content length, no overlap will exist amongst neighboring chunks.
         /// When set to a smaller amount than the maximum chunk content length, overlap will exist amongst neighboring chunks.
@@ -261,6 +277,7 @@
         private int _TopTerms = 25;
         private int _MinChunkContentLength = 2;
         private int _MaxChunkContentLength = 512;
+        private int _MaxTokensPerChunk = 256;
         private int _ShiftSize = 512;
 
         #endregion
