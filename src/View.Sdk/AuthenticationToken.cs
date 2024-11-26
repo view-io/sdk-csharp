@@ -35,19 +35,19 @@
         }
 
         /// <summary>
-        /// Administrator.
+        /// Administrator GUID.
         /// </summary>
-        public Administrator Administrator { get; set; } = null;
+        public string AdministratorGUID { get; set; } = null;
 
         /// <summary>
-        /// Tenant.
+        /// Tenant GUID.
         /// </summary>
-        public TenantMetadata Tenant { get; set; } = null;
+        public string TenantGUID { get; set; } = null;
 
         /// <summary>
         /// User.
         /// </summary>
-        public UserMaster User { get; set; } = null;
+        public string UserGUID { get; set; } = null;
 
         /// <summary>
         /// Token.

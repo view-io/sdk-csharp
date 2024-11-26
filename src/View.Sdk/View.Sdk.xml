@@ -4,9 +4,49 @@
         <name>View.Sdk</name>
     </assembly>
     <members>
+        <member name="T:View.Sdk.Account">
+            <summary>
+            Account.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Account.Id">
+            <summary>
+            ID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Account.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Account.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Account.AdditionalData">
+            <summary>
+            Additional data.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Account.CreatedUtc">
+            <summary>
+            Creation timestamp.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Account.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
         <member name="T:View.Sdk.Administrator">
             <summary>
             Administrator.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Administrator.AccountGUID">
+            <summary>
+            Account GUID.
             </summary>
         </member>
         <member name="P:View.Sdk.Administrator.GUID">
@@ -52,6 +92,11 @@
         <member name="P:View.Sdk.Administrator.Active">
             <summary>
             Active.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Administrator.IsProtected">
+            <summary>
+            Boolean indicating if the object is protected from deletion.
             </summary>
         </member>
         <member name="P:View.Sdk.Administrator.CreatedUtc">
@@ -536,17 +581,17 @@
             Boolean to indicate if the token is expired.
             </summary>
         </member>
-        <member name="P:View.Sdk.AuthenticationToken.Administrator">
+        <member name="P:View.Sdk.AuthenticationToken.AdministratorGUID">
             <summary>
-            Administrator.
+            Administrator GUID.
             </summary>
         </member>
-        <member name="P:View.Sdk.AuthenticationToken.Tenant">
+        <member name="P:View.Sdk.AuthenticationToken.TenantGUID">
             <summary>
-            Tenant.
+            Tenant GUID.
             </summary>
         </member>
-        <member name="P:View.Sdk.AuthenticationToken.User">
+        <member name="P:View.Sdk.AuthenticationToken.UserGUID">
             <summary>
             User.
             </summary>
@@ -2211,6 +2256,11 @@
         <member name="P:View.Sdk.Credential.Active">
             <summary>
             Active.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Credential.IsProtected">
+            <summary>
+            Boolean indicating if the object is protected from deletion.
             </summary>
         </member>
         <member name="P:View.Sdk.Credential.CreatedUtc">
@@ -7787,6 +7837,11 @@
             GUID.
             </summary>
         </member>
+        <member name="P:View.Sdk.TenantMetadata.AccountGUID">
+            <summary>
+            Account GUID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.TenantMetadata.ParentGUID">
             <summary>
             Parent GUID.
@@ -7820,6 +7875,11 @@
         <member name="P:View.Sdk.TenantMetadata.Active">
             <summary>
             Active.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.TenantMetadata.IsProtected">
+            <summary>
+            Boolean indicating if the object is protected from deletion.
             </summary>
         </member>
         <member name="P:View.Sdk.TenantMetadata.CreatedUtc">
@@ -8202,6 +8262,11 @@
         <member name="P:View.Sdk.UserMaster.Active">
             <summary>
             Active.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UserMaster.IsProtected">
+            <summary>
+            Boolean indicating if the object is protected from deletion.
             </summary>
         </member>
         <member name="P:View.Sdk.UserMaster.CreatedUtc">

@@ -34,7 +34,7 @@
             }
             set
             {
-                if (value < 1) throw new ArgumentOutOfRangeException(nameof(MaxResults));
+                if (value < 0) throw new ArgumentOutOfRangeException(nameof(MaxResults));
                 _MaxResults = value;
             }
         }

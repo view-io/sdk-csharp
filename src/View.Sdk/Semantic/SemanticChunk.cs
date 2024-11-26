@@ -101,7 +101,18 @@
         /// <summary>
         /// Content.
         /// </summary>
-        public string Content { get; set; } = null;
+        public string Content
+        {
+            get
+            {
+                return _Content;
+            }
+            set
+            {
+                if (!String.IsNullOrEmpty(value)) _Length = value.Length;
+                _Content = value;
+            }
+        }
 
         /// <summary>
         /// Embeddings.
@@ -128,6 +139,7 @@
         private int _End = 0;
         private int _Length = 0;
         private List<float> _Embeddings = new List<float>();
+        private string _Content = null;
 
         #endregion
 

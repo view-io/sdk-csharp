@@ -11,9 +11,14 @@
         #region Public-Members
 
         /// <summary>
+        /// Account GUID.
+        /// </summary>
+        public string AccountGUID { get; set; } = null;
+
+        /// <summary>
         /// GUID.
         /// </summary>
-        public string GUID { get; set; } = Guid.NewGuid().ToString();
+        public string GUID { get; set; } = null;
 
         /// <summary>
         /// First name.
@@ -54,6 +59,11 @@
         /// Active.
         /// </summary>
         public bool Active { get; set; } = true;
+
+        /// <summary>
+        /// Boolean indicating if the object is protected from deletion.
+        /// </summary>
+        public bool IsProtected { get; set; } = false;
 
         /// <summary>
         /// Creation timestamp.

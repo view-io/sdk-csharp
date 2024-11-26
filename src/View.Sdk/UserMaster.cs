@@ -70,6 +70,11 @@
         public bool Active { get; set; } = true;
 
         /// <summary>
+        /// Boolean indicating if the object is protected from deletion.
+        /// </summary>
+        public bool IsProtected { get; set; } = false;
+
+        /// <summary>
         /// Creation time, in UTC.
         /// </summary>
         public DateTime CreatedUtc { get; set; } = DateTime.UtcNow;

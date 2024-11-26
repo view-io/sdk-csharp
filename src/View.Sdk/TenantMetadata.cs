@@ -30,7 +30,12 @@
         /// <summary>
         /// GUID.
         /// </summary>
-        public string GUID { get; set; } = Guid.NewGuid().ToString();
+        public string GUID { get; set; } = null;
+
+        /// <summary>
+        /// Account GUID.
+        /// </summary>
+        public string AccountGUID { get; set; } = null;
 
         /// <summary>
         /// Parent GUID.
@@ -40,7 +45,7 @@
         /// <summary>
         /// Name.
         /// </summary>
-        public string Name { get; set; } = string.Empty;
+        public string Name { get; set; } = null;
 
         /// <summary>
         /// Region.
@@ -50,22 +55,27 @@
         /// <summary>
         /// S3 base domain.
         /// </summary>
-        public string S3BaseDomain { get; set; } = string.Empty;
+        public string S3BaseDomain { get; set; } = null;
 
         /// <summary>
         /// REST base domain.
         /// </summary>
-        public string RestBaseDomain { get; set; } = string.Empty;
+        public string RestBaseDomain { get; set; } = null;
 
         /// <summary>
         /// Default pool GUID.
         /// </summary>
-        public string DefaultPoolGUID { get; set; } = string.Empty;
+        public string DefaultPoolGUID { get; set; } = null;
 
         /// <summary>
         /// Active.
         /// </summary>
         public bool Active { get; set; } = true;
+
+        /// <summary>
+        /// Boolean indicating if the object is protected from deletion.
+        /// </summary>
+        public bool IsProtected { get; set; } = false;
 
         /// <summary>
         /// Creation timestamp, in UTC time.
