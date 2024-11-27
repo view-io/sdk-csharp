@@ -5898,6 +5898,11 @@
             Processor request.
             </summary>
         </member>
+        <member name="P:View.Sdk.Processor.ProcessorRequest.GUID">
+            <summary>
+            Processor request GUID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Processor.ProcessorRequest.Tenant">
             <summary>
             Tenant metadata.
@@ -5958,9 +5963,9 @@
             Processor response.
             </summary>
         </member>
-        <member name="P:View.Sdk.Processor.ProcessorResponse.DataFlowRequestGUID">
+        <member name="P:View.Sdk.Processor.ProcessorResponse.GUID">
             <summary>
-            Data flow request GUID.
+            Processor request GUID.
             </summary>
         </member>
         <member name="P:View.Sdk.Processor.ProcessorResponse.Success">
