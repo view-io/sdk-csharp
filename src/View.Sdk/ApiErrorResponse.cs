@@ -27,6 +27,8 @@
                         return "Your authentication material was not accepted.";
                     case ApiErrorEnum.AuthorizationFailed:
                         return "Your authentication material was accepted, but you are not authorized to perform this request.";
+                    case ApiErrorEnum.BadGateway:
+                        return "Your request is unable to be serviced as there are no origin servers available.";
                     case ApiErrorEnum.BadRequest:
                         return "We were unable to discern your request.  Please check your URL, query, and request body.";
                     case ApiErrorEnum.Conflict:
@@ -45,6 +47,8 @@
                         return "The requested resource is not empty.";
                     case ApiErrorEnum.NotFound:
                         return "The requested resource was not found.";
+                    case ApiErrorEnum.Timeout:
+                        return "The request was not completed within the specified timeout interval.";
                     case ApiErrorEnum.TooLarge:
                         return "The size of your request exceeds the maximum allowed by this server.";
 
@@ -119,6 +123,8 @@
                         return 401;
                     case ApiErrorEnum.AuthorizationFailed:
                         return 401;
+                    case ApiErrorEnum.BadGateway:
+                        return 502;
                     case ApiErrorEnum.BadRequest:
                         return 400;
                     case ApiErrorEnum.Conflict:
@@ -137,6 +143,8 @@
                         return 400;
                     case ApiErrorEnum.NotFound:
                         return 404;
+                    case ApiErrorEnum.Timeout:
+                        return 408;
                     case ApiErrorEnum.TokenExpired:
                         return 401;
                     case ApiErrorEnum.TooLarge:

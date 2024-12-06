@@ -13,6 +13,11 @@
         #region Public-Members
 
         /// <summary>
+        /// Boolean indicating success.
+        /// </summary>
+        public bool? Success { get; set; } = null;
+
+        /// <summary>
         /// Model used to generate embeddings.
         /// </summary>
         public string Model { get; set; } = null;
@@ -37,6 +42,11 @@
                 _Contents = value;
             }
         }
+
+        /// <summary>
+        /// Embeddings.
+        /// </summary>
+        public List<List<float>> Embeddings { get; set; } = null;
 
         #endregion
 

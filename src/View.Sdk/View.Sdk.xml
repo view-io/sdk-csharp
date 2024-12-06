@@ -234,6 +234,11 @@
             Authorization failed.
             </summary>
         </member>
+        <member name="F:View.Sdk.ApiErrorEnum.BadGateway">
+            <summary>
+            Bad gateway.
+            </summary>
+        </member>
         <member name="F:View.Sdk.ApiErrorEnum.BadRequest">
             <summary>
             Bad request.
@@ -277,6 +282,11 @@
         <member name="F:View.Sdk.ApiErrorEnum.NotFound">
             <summary>
             Not found.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.ApiErrorEnum.Timeout">
+            <summary>
+            Timeout.
             </summary>
         </member>
         <member name="F:View.Sdk.ApiErrorEnum.TokenExpired">
@@ -5808,6 +5818,11 @@
             Cleanup request.
             </summary>
         </member>
+        <member name="P:View.Sdk.Processor.CleanupRequest.GUID">
+            <summary>
+            Cleanup request GUID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Processor.CleanupRequest.Tenant">
             <summary>
             Tenant metadata.
@@ -5868,9 +5883,9 @@
             Cleanup response.
             </summary>
         </member>
-        <member name="P:View.Sdk.Processor.CleanupResponse.DataFlowRequestGUID">
+        <member name="P:View.Sdk.Processor.CleanupResponse.GUID">
             <summary>
-            Data flow request GUID.
+            Processor request GUID.
             </summary>
         </member>
         <member name="P:View.Sdk.Processor.CleanupResponse.Success">
@@ -8586,6 +8601,11 @@
             Embeddings request.
             </summary>
         </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsRequest.Success">
+            <summary>
+            Boolean indicating success.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Vector.EmbeddingsRequest.Model">
             <summary>
             Model used to generate embeddings.
@@ -8599,6 +8619,11 @@
         <member name="P:View.Sdk.Vector.EmbeddingsRequest.Contents">
             <summary>
             Contents.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsRequest.Embeddings">
+            <summary>
+            Embeddings.
             </summary>
         </member>
         <member name="M:View.Sdk.Vector.EmbeddingsRequest.#ctor">

@@ -137,6 +137,11 @@
         [EnumMember(Value = "AuthorizationFailed")]
         AuthorizationFailed,
         /// <summary>
+        /// Bad gateway.
+        /// </summary>
+        [EnumMember(Value = "BadGateway")]
+        BadGateway,
+        /// <summary>
         /// Bad request.
         /// </summary>
         [EnumMember(Value = "BadRequest")]
@@ -181,6 +186,11 @@
         /// </summary>
         [EnumMember(Value = "NotFound")]
         NotFound,
+        /// <summary>
+        /// Timeout.
+        /// </summary>
+        [EnumMember(Value = "Timeout")]
+        Timeout,
         /// <summary>
         /// Token expired.
         /// </summary>
