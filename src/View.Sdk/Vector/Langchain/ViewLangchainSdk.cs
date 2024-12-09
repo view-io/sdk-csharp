@@ -14,7 +14,7 @@
     /// <summary>
     /// View Langchain SDK.
     /// </summary>
-    public class ViewLangchainSdk : ViewEmbeddingsSdkBase, IDisposable
+    public class ViewLangchainSdk : EmbeddingsProviderSdkBase, IDisposable
     {
         #region Public-Members
 
@@ -30,7 +30,7 @@
 
         /// <inheritdoc />
         public ViewLangchainSdk(
-            string endpoint = "http://localhost:8301",
+            string endpoint = "http://localhost:8000/v1.0/tenants/default/embeddings",
             string apiKey = null,
             Action<SeverityEnum, string> logger = null) : base(
                 EmbeddingsGeneratorEnum.LCProxy,

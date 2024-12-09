@@ -1082,7 +1082,7 @@
             </summary>
             <param name="tenantGuid">Tenant GUID.</param>
             <param name="accessKey">Access key.</param>
-            <param name="endpoint">Endpoint URL.</param>
+            <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/.</param>
         </member>
         <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateNode(View.Sdk.Node,System.Threading.CancellationToken)">
             <summary>
@@ -2910,11 +2910,6 @@
             Suffix.
             </summary>
         </member>
-        <member name="P:View.Sdk.EmbeddingsRule.TargetBucketGUID">
-            <summary>
-            Target bucket GUID.
-            </summary>
-        </member>
         <member name="P:View.Sdk.EmbeddingsRule.GraphRepositoryGUID">
             <summary>
             Graph repository GUID.
@@ -2925,9 +2920,14 @@
             Vector repository GUID.
             </summary>
         </member>
-        <member name="P:View.Sdk.EmbeddingsRule.DataFlowEndpoint">
+        <member name="P:View.Sdk.EmbeddingsRule.ProcessingEndpoint">
             <summary>
-            Data flow endpoint.
+            Data flow endpoint for processing.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EmbeddingsRule.ProcessingAccessKey">
+            <summary>
+            Access key for processing endpoint.
             </summary>
         </member>
         <member name="P:View.Sdk.EmbeddingsRule.EmbeddingsGenerator">
@@ -2935,12 +2935,12 @@
             Embeddings generator.
             </summary>
         </member>
-        <member name="P:View.Sdk.EmbeddingsRule.GeneratorUrl">
+        <member name="P:View.Sdk.EmbeddingsRule.EmbeddingsGeneratorUrl">
             <summary>
             Embeddings generator URL.
             </summary>
         </member>
-        <member name="P:View.Sdk.EmbeddingsRule.GeneratorApiKey">
+        <member name="P:View.Sdk.EmbeddingsRule.EmbeddingsGeneratorApiKey">
             <summary>
             Embeddings provider API key.
             </summary>
@@ -2968,6 +2968,11 @@
         <member name="P:View.Sdk.EmbeddingsRule.VectorStoreUrl">
             <summary>
             Vector store URL.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EmbeddingsRule.VectorStoreAccessKey">
+            <summary>
+            Vector store access key.
             </summary>
         </member>
         <member name="P:View.Sdk.EmbeddingsRule.MaxContentLength">
@@ -4872,81 +4877,6 @@
             Instantiate.
             </summary>
         </member>
-        <member name="T:View.Sdk.LexiEmbeddingsRequest">
-            <summary>
-            Lexi embeddings request.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.LexiEmbeddingsRequest.Tenant">
-            <summary>
-            Tenant metadata.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.LexiEmbeddingsRequest.Collection">
-            <summary>
-            Collection.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.LexiEmbeddingsRequest.Results">
-            <summary>
-            Search results.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.LexiEmbeddingsRequest.EmbeddingsRule">
-            <summary>
-            Embeddings rule.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.LexiEmbeddingsRequest.VectorRepository">
-            <summary>
-            Vector repository.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.LexiEmbeddingsRequest.GraphRepository">
-            <summary>
-            Graph repository.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.LexiEmbeddingsRequest.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.LexiEmbeddingsResponse">
-            <summary>
-            Lexi embeddings response.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.LexiEmbeddingsResponse.DataFlowRequestGUID">
-            <summary>
-            Data flow request GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.LexiEmbeddingsResponse.Success">
-            <summary>
-            Boolean indicating success.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.LexiEmbeddingsResponse.Timestamp">
-            <summary>
-            Timestamps.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.LexiEmbeddingsResponse.Error">
-            <summary>
-            Error response, if any.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.LexiEmbeddingsResponse.Vector">
-            <summary>
-            Embeddings documents.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.LexiEmbeddingsResponse.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
         <member name="T:View.Sdk.Lexi.ViewLexiSdk">
             <summary>
             View Lexi search SDK.
@@ -4958,7 +4888,7 @@
             </summary>
             <param name="tenantGuid">Tenant GUID.</param>
             <param name="accessKey">Access key.</param>
-            <param name="endpoint">Endpoint URL.</param>
+            <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/.</param>
         </member>
         <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveCollections(System.Threading.CancellationToken)">
             <summary>
@@ -5121,19 +5051,19 @@
             Data flow endpoint for processing.
             </summary>
         </member>
+        <member name="P:View.Sdk.MetadataRule.ProcessingAccessKey">
+            <summary>
+            Access key for processing endpoint.
+            </summary>
+        </member>
         <member name="P:View.Sdk.MetadataRule.CleanupEndpoint">
             <summary>
             Data flow endpoint for cleanup processing.
             </summary>
         </member>
-        <member name="P:View.Sdk.MetadataRule.TypeDetectorEndpoint">
+        <member name="P:View.Sdk.MetadataRule.CleanupAccessKey">
             <summary>
-            Type detector endpoint.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.MetadataRule.SemanticCellEndpoint">
-            <summary>
-            Semantic cell extraction endpoint.
+            Access key for cleanup endpoint.
             </summary>
         </member>
         <member name="P:View.Sdk.MetadataRule.MinChunkContentLength">
@@ -5159,31 +5089,6 @@
             This value must be equal to or less than the maximum chunk content length.
             </summary>
         </member>
-        <member name="P:View.Sdk.MetadataRule.UdrEndpoint">
-            <summary>
-            UDR endpoint.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.MetadataRule.DataCatalogType">
-            <summary>
-            Data catalog type.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.MetadataRule.DataCatalogEndpoint">
-            <summary>
-            Data catalog endpoint.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.MetadataRule.DataCatalogCollection">
-            <summary>
-            Data catalog collection identifier.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.MetadataRule.GraphRepositoryGUID">
-            <summary>
-            Graph repository GUID.
-            </summary>
-        </member>
         <member name="P:View.Sdk.MetadataRule.TopTerms">
             <summary>
             Number of top terms to request.
@@ -5199,9 +5104,29 @@
             Enable or disable inclusion of flattened representation of processed content.
             </summary>
         </member>
-        <member name="P:View.Sdk.MetadataRule.TargetBucketGUID">
+        <member name="P:View.Sdk.MetadataRule.DataCatalogType">
             <summary>
-            Target bucket GUID.
+            Data catalog type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.MetadataRule.DataCatalogEndpoint">
+            <summary>
+            Data catalog endpoint.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.MetadataRule.DataCatalogAccessKey">
+            <summary>
+            Data catalog access key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.MetadataRule.DataCatalogCollection">
+            <summary>
+            Data catalog collection identifier.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.MetadataRule.GraphRepositoryGUID">
+            <summary>
+            Graph repository GUID.
             </summary>
         </member>
         <member name="P:View.Sdk.MetadataRule.MaxContentLength">
@@ -5632,7 +5557,7 @@
             </summary>
             <param name="tenantGuid">Tenant GUID.</param>
             <param name="accessKey">Access key.</param>
-            <param name="endpoint">Endpoint URL.</param>
+            <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/.</param>
         </member>
         <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.CreateTrigger(View.Sdk.Trigger,System.Threading.CancellationToken)">
             <summary>
@@ -6028,11 +5953,13 @@
             View Cleanup Pipeline SDK.
             </summary>
         </member>
-        <member name="M:View.Sdk.Processor.ViewCleanupSdk.#ctor(System.String)">
+        <member name="M:View.Sdk.Processor.ViewCleanupSdk.#ctor(System.String,System.String,System.String)">
             <summary>
             Instantiate.
             </summary>
-            <param name="endpoint">Endpoint URL.</param>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="accessKey">Access key.</param>
+            <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing/cleanup.</param>
         </member>
         <member name="M:View.Sdk.Processor.ViewCleanupSdk.Process(View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.StoragePool,View.Sdk.BucketMetadata,View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Threading.CancellationToken)">
             <summary>
@@ -6070,11 +5997,13 @@
             View SDK for generating embeddings with Lexi search results.
             </summary>
         </member>
-        <member name="M:View.Sdk.Processor.ViewLexiEmbeddingsSdk.#ctor(System.String)">
+        <member name="M:View.Sdk.Processor.ViewLexiEmbeddingsSdk.#ctor(System.String,System.String,System.String)">
             <summary>
             Instantiate.
             </summary>
-            <param name="endpoint">Endpoint URL.</param>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="accessKey">Access key.</param>
+            <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing/lexiprocessing.</param>
         </member>
         <member name="M:View.Sdk.Processor.ViewLexiEmbeddingsSdk.Process(View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.SearchResult,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Threading.CancellationToken)">
             <summary>
@@ -6094,11 +6023,13 @@
             View Processing Pipeline SDK.
             </summary>
         </member>
-        <member name="M:View.Sdk.Processor.ViewProcessorSdk.#ctor(System.String)">
+        <member name="M:View.Sdk.Processor.ViewProcessorSdk.#ctor(System.String,System.String,System.String)">
             <summary>
             Instantiate.
             </summary>
-            <param name="endpoint">Endpoint URL.</param>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="accessKey">Access key.</param>
+            <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing.</param>
         </member>
         <member name="M:View.Sdk.Processor.ViewProcessorSdk.Process(View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.StoragePool,View.Sdk.BucketMetadata,View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Threading.CancellationToken)">
             <summary>
@@ -6136,11 +6067,13 @@
             View Type Detector SDK.
             </summary>
         </member>
-        <member name="M:View.Sdk.Processor.ViewTypeDetectorSdk.#ctor(System.String)">
+        <member name="M:View.Sdk.Processor.ViewTypeDetectorSdk.#ctor(System.String,System.String,System.String)">
             <summary>
             Instantiate.
             </summary>
-            <param name="endpoint">Endpoint URL.</param>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="accessKey">Access key.</param>
+            <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing/typedetection.</param>
         </member>
         <member name="M:View.Sdk.Processor.ViewTypeDetectorSdk.Process(System.Byte[],System.String,System.Threading.CancellationToken)">
             <summary>
@@ -6156,11 +6089,13 @@
             View document processor SDK.
             </summary>
         </member>
-        <member name="M:View.Sdk.Processor.ViewUdrGeneratorSdk.#ctor(System.String)">
+        <member name="M:View.Sdk.Processor.ViewUdrGeneratorSdk.#ctor(System.String,System.String,System.String)">
             <summary>
             Instantiate.
             </summary>
-            <param name="endpoint">Endpoint URL of the form http://localhost:8321/.</param>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="accessKey">Access key.</param>
+            <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing/udr.</param>
         </member>
         <member name="M:View.Sdk.Processor.ViewUdrGeneratorSdk.ProcessDocument(View.Sdk.UdrDocumentRequest,System.String,System.Threading.CancellationToken)">
             <summary>
@@ -6179,6 +6114,86 @@
             <param name="filename">Filename containing data.</param>
             <param name="token">Cancellation token.</param>
             <returns>Document response.</returns>
+        </member>
+        <member name="T:View.Sdk.LexiEmbeddingsRequest">
+            <summary>
+            Lexi embeddings request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.LexiEmbeddingsRequest.GUID">
+            <summary>
+            Processor request GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.LexiEmbeddingsRequest.Tenant">
+            <summary>
+            Tenant metadata.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.LexiEmbeddingsRequest.Collection">
+            <summary>
+            Collection.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.LexiEmbeddingsRequest.Results">
+            <summary>
+            Search results.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.LexiEmbeddingsRequest.EmbeddingsRule">
+            <summary>
+            Embeddings rule.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.LexiEmbeddingsRequest.VectorRepository">
+            <summary>
+            Vector repository.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.LexiEmbeddingsRequest.GraphRepository">
+            <summary>
+            Graph repository.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.LexiEmbeddingsRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.LexiEmbeddingsResponse">
+            <summary>
+            Lexi embeddings response.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.LexiEmbeddingsResponse.GUID">
+            <summary>
+            Processor request GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.LexiEmbeddingsResponse.Success">
+            <summary>
+            Boolean indicating success.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.LexiEmbeddingsResponse.Timestamp">
+            <summary>
+            Timestamps.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.LexiEmbeddingsResponse.Error">
+            <summary>
+            Error response, if any.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.LexiEmbeddingsResponse.Vector">
+            <summary>
+            Embeddings documents.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.LexiEmbeddingsResponse.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
         </member>
         <member name="T:View.Sdk.QueryFilter">
             <summary>
@@ -7002,11 +7017,13 @@
             View Semantic Cell SDK.
             </summary>
         </member>
-        <member name="M:View.Sdk.Semantic.ViewSemanticCellSdk.#ctor(System.String)">
+        <member name="M:View.Sdk.Semantic.ViewSemanticCellSdk.#ctor(System.String,System.String,System.String)">
             <summary>
             Instantiate.
             </summary>
-            <param name="endpoint">Endpoint URL.</param>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="accessKey">Access key.</param>
+            <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing/semanticcell.</param>
         </member>
         <member name="M:View.Sdk.Semantic.ViewSemanticCellSdk.Process(View.Sdk.Semantic.SemanticCellRequest,System.Threading.CancellationToken)">
             <summary>
@@ -7840,7 +7857,7 @@
             </summary>
             <param name="tenantGuid">Tenant GUID.</param>
             <param name="accessKey">Access key.</param>
-            <param name="endpoint">Endpoint URL.</param>
+            <param name="endpoint">Endpoint URL, i.e. http://localhost:8001.</param>
         </member>
         <member name="T:View.Sdk.TenantMetadata">
             <summary>
@@ -8595,6 +8612,102 @@
             <summary>
             Instantiate.
             </summary>
+        </member>
+        <member name="T:View.Sdk.Vector.EmbeddingsProviderSdkBase">
+            <summary>
+            View embeddings generator SDK base class.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsProviderSdkBase.Generator">
+            <summary>
+            Embeddings generator.  Default is LCProxy.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsProviderSdkBase.Serializer">
+            <summary>
+            Serializer.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsProviderSdkBase.ApiKey">
+            <summary>
+            API key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsProviderSdkBase.Endpoint">
+            <summary>
+            Endpoint URL.  Default is http://localhost:8000/v1.0/tenants/default/embeddings.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsProviderSdkBase.TimeoutMs">
+            <summary>
+            Timeout in milliseconds.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsProviderSdkBase.Logger">
+            <summary>
+            Logger.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.EmbeddingsProviderSdkBase.#ctor(View.Sdk.EmbeddingsGeneratorEnum,System.String,System.String,System.Action{View.Sdk.SeverityEnum,System.String})">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="generator">Embeddings generator.</param>
+            <param name="endpoint">Endpoint URL.</param>
+            <param name="apiKey">API key.</param>
+            <param name="logger">Logger method.</param>
+        </member>
+        <member name="M:View.Sdk.Vector.EmbeddingsProviderSdkBase.Dispose">
+            <summary>
+            Dispose.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.EmbeddingsProviderSdkBase.ValidateConnectivity(System.Threading.CancellationToken)">
+            <summary>
+            Validate connectivity.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>True if connected.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.EmbeddingsProviderSdkBase.ListModels(System.Threading.CancellationToken)">
+            <summary>
+            List models.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>List of model names.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.EmbeddingsProviderSdkBase.LoadModel(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Load a model.
+            </summary>
+            <param name="model">Model.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.EmbeddingsProviderSdkBase.LoadModels(System.Collections.Generic.List{System.String},System.Threading.CancellationToken)">
+            <summary>
+            Load models.
+            </summary>
+            <param name="models">Models.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.EmbeddingsProviderSdkBase.DeleteModel(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a model.
+            </summary>
+            <param name="name">Name.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.EmbeddingsProviderSdkBase.GenerateEmbeddings(View.Sdk.Vector.EmbeddingsRequest,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Generate embeddings.
+            </summary>
+            <param name="embedRequest">Embeddings request.</param>
+            <param name="timeoutMs">Timeout in milliseconds.</param>
+            <param name="token">Cancellation token.</param>
+            <returns></returns>
         </member>
         <member name="T:View.Sdk.Vector.EmbeddingsRequest">
             <summary>
@@ -9519,7 +9632,7 @@
         </member>
         <member name="P:View.Sdk.Vector.ViewEmbeddingsSdk.Endpoint">
             <summary>
-            Endpoint URL.  Default is http://localhost:8301/.
+            Endpoint URL.  Default is http://localhost:8000/v1.0/tenants/default/embeddings.
             </summary>
         </member>
         <member name="P:View.Sdk.Vector.ViewEmbeddingsSdk.BatchSize">
@@ -9595,102 +9708,6 @@
             <param name="token">Cancellation token.</param>
             <returns>Semantic cells, where chunks have embeddings.</returns>
         </member>
-        <member name="T:View.Sdk.Vector.ViewEmbeddingsSdkBase">
-            <summary>
-            View embeddings generator SDK base class.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Vector.ViewEmbeddingsSdkBase.Generator">
-            <summary>
-            Embeddings generator.  Default is LCProxy.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Vector.ViewEmbeddingsSdkBase.Serializer">
-            <summary>
-            Serializer.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Vector.ViewEmbeddingsSdkBase.ApiKey">
-            <summary>
-            API key.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Vector.ViewEmbeddingsSdkBase.Endpoint">
-            <summary>
-            Endpoint URL.  Default is http://localhost:8301/.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Vector.ViewEmbeddingsSdkBase.TimeoutMs">
-            <summary>
-            Timeout in milliseconds.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Vector.ViewEmbeddingsSdkBase.Logger">
-            <summary>
-            Logger.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Vector.ViewEmbeddingsSdkBase.#ctor(View.Sdk.EmbeddingsGeneratorEnum,System.String,System.String,System.Action{View.Sdk.SeverityEnum,System.String})">
-            <summary>
-            Instantiate.
-            </summary>
-            <param name="generator">Embeddings generator.</param>
-            <param name="endpoint">Endpoint URL.</param>
-            <param name="apiKey">API key.</param>
-            <param name="logger">Logger method.</param>
-        </member>
-        <member name="M:View.Sdk.Vector.ViewEmbeddingsSdkBase.Dispose">
-            <summary>
-            Dispose.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Vector.ViewEmbeddingsSdkBase.ValidateConnectivity(System.Threading.CancellationToken)">
-            <summary>
-            Validate connectivity.
-            </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>True if connected.</returns>
-        </member>
-        <member name="M:View.Sdk.Vector.ViewEmbeddingsSdkBase.ListModels(System.Threading.CancellationToken)">
-            <summary>
-            List models.
-            </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>List of model names.</returns>
-        </member>
-        <member name="M:View.Sdk.Vector.ViewEmbeddingsSdkBase.LoadModel(System.String,System.Threading.CancellationToken)">
-            <summary>
-            Load a model.
-            </summary>
-            <param name="model">Model.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:View.Sdk.Vector.ViewEmbeddingsSdkBase.LoadModels(System.Collections.Generic.List{System.String},System.Threading.CancellationToken)">
-            <summary>
-            Load models.
-            </summary>
-            <param name="models">Models.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:View.Sdk.Vector.ViewEmbeddingsSdkBase.DeleteModel(System.String,System.Threading.CancellationToken)">
-            <summary>
-            Delete a model.
-            </summary>
-            <param name="name">Name.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:View.Sdk.Vector.ViewEmbeddingsSdkBase.GenerateEmbeddings(View.Sdk.Vector.EmbeddingsRequest,System.Int32,System.Threading.CancellationToken)">
-            <summary>
-            Generate embeddings.
-            </summary>
-            <param name="embedRequest">Embeddings request.</param>
-            <param name="timeoutMs">Timeout in milliseconds.</param>
-            <param name="token">Cancellation token.</param>
-            <returns></returns>
-        </member>
         <member name="T:View.Sdk.Vector.ViewVectorSdk">
             <summary>
             View Vector SDK.
@@ -9702,7 +9719,7 @@
             </summary>
             <param name="tenantGuid">Tenant GUID.</param>
             <param name="accessKey">Access key.</param>
-            <param name="endpoint">Endpoint URL.</param>
+            <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/.</param>
         </member>
         <member name="M:View.Sdk.Vector.ViewVectorSdk.VectorQuery(View.Sdk.Vector.VectorQueryRequest,System.Threading.CancellationToken)">
             <summary>

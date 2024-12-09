@@ -13,9 +13,9 @@
         #region Public-Members
 
         /// <summary>
-        /// Data flow request GUID.
+        /// Processor request GUID.
         /// </summary>
-        public string DataFlowRequestGUID { get; set; } = null;
+        public string GUID { get; set; } = null;
 
         /// <summary>
         /// Boolean indicating success.
@@ -52,7 +52,6 @@
 
         #region Private-Members
 
-        private string _RequestGuid = Guid.NewGuid().ToString();
         private List<EmbeddingsDocument> _Vectors = new List<EmbeddingsDocument>();
 
         #endregion

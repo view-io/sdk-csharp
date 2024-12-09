@@ -13,7 +13,7 @@
     {
         private static bool _RunForever = true;
         private static string _TenantGuid = "default";
-        private static string _Endpoint = "http://localhost:8201/";
+        private static string _Endpoint = "http://localhost:8000/";
         private static ViewLexiSdk _Sdk = null;
         private static Serializer _Serializer = new Serializer();
         private static bool _EnableLogging = true;

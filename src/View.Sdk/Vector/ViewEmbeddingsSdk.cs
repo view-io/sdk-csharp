@@ -33,7 +33,7 @@
         public string ApiKey { get; private set; } = null;
 
         /// <summary>
-        /// Endpoint URL.  Default is http://localhost:8301/.
+        /// Endpoint URL.  Default is http://localhost:8000/v1.0/tenants/default/embeddings.
         /// </summary>
         public string Endpoint
         {
@@ -139,7 +139,7 @@
         #region Private-Members
 
         private Serializer _Serializer = new Serializer();
-        private string _Endpoint = "http://localhost:8301/";
+        private string _Endpoint = "http://localhost:8000/v1.0/tenants/default/embeddings";
 
         private int _BatchSize = 16;
         private int _MaxParallelTasks = 16;
@@ -147,7 +147,7 @@
         private int _MaxFailures = 3;
         private int _TimeoutMs = 300000;
 
-        private ViewEmbeddingsSdkBase _SdkBase = null;
+        private EmbeddingsProviderSdkBase _SdkBase = null;
 
         private SemaphoreSlim _Semaphore = null;
 

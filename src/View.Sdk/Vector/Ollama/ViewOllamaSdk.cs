@@ -16,7 +16,7 @@
     /// <summary>
     /// View Ollama SDK.
     /// </summary>
-    public class ViewOllamaSdk : ViewEmbeddingsSdkBase, IDisposable
+    public class ViewOllamaSdk : EmbeddingsProviderSdkBase, IDisposable
     {
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
 

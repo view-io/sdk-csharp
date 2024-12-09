@@ -27,8 +27,10 @@
         /// <summary>
         /// Instantiate.
         /// </summary>
-        /// <param name="endpoint">Endpoint URL.</param>
-        public ViewLexiEmbeddingsSdk(string endpoint = "http://localhost:8501/lexi/embeddings") : base(endpoint)
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="accessKey">Access key.</param>
+        /// <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing/lexiprocessing.</param>
+        public ViewLexiEmbeddingsSdk(string tenantGuid, string accessKey, string endpoint = "http://localhost:8000/v1.0/tenants/default/processing/lexiprocessing") : base(tenantGuid, accessKey, endpoint)
         {
             Header = "[ViewLexiEmbeddingsSdk] ";
         }
@@ -68,6 +70,7 @@
                 {
                     req.TimeoutMilliseconds = TimeoutMs;
                     req.ContentType = "application/json";
+                    req.Authorization.BearerToken = AccessKey;
 
                     LexiEmbeddingsRequest procReq = new LexiEmbeddingsRequest
                     {

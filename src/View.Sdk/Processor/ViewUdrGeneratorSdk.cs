@@ -27,8 +27,10 @@
         /// <summary>
         /// Instantiate.
         /// </summary>
-        /// <param name="endpoint">Endpoint URL of the form http://localhost:8321/.</param>
-        public ViewUdrGeneratorSdk(string endpoint = "http://localhost:8321/") : base(endpoint)
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="accessKey">Access key.</param>
+        /// <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing/udr.</param>
+        public ViewUdrGeneratorSdk(string tenantGuid, string accessKey, string endpoint = "http://localhost:8000/v1.0/tenants/default/processing/udr") : base(tenantGuid, accessKey, endpoint)
         {
             Header = "[ViewUdrGeneratorSdk] ";
         }

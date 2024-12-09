@@ -1,4 +1,4 @@
-﻿namespace Test.DocumentProcessor
+﻿namespace Test.UdrGenerator
 {
     using System;
     using System.IO;
@@ -11,15 +11,19 @@
     public static class Program
     {
         private static bool _RunForever = true;
-        private static string _Endpoint = "http://localhost:8321/";
+        private static string _TenantGUID = "default";
+        private static string _AccessKey = "default";
+        private static string _Endpoint = "http://localhost:8000/v1.0/tenants/default/processing/udr";
         private static ViewUdrGeneratorSdk _Sdk = null;
         private static Serializer _Serializer = new Serializer();
         private static bool _EnableLogging = true;
 
         public static void Main(string[] args)
         {
-            _Endpoint = Inputty.GetString("Endpoint:", _Endpoint, false);
-            _Sdk = new ViewUdrGeneratorSdk(_Endpoint);
+            _TenantGUID = Inputty.GetString("Tenant GUID :", _TenantGUID, false);
+            _AccessKey  = Inputty.GetString("Access key  :", _AccessKey, false);
+            _Endpoint   = Inputty.GetString("Endpoint    :", _Endpoint, false);
+            _Sdk = new ViewUdrGeneratorSdk(_TenantGUID, _AccessKey, _Endpoint);
             if (_EnableLogging) _Sdk.Logger = EmitLogMessage;
 
             while (_RunForever)

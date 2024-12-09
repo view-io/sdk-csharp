@@ -54,11 +54,6 @@
         public string Suffix { get; set; } = null;
 
         /// <summary>
-        /// Target bucket GUID.
-        /// </summary>
-        public string TargetBucketGUID { get; set; } = null;
-
-        /// <summary>
         /// Graph repository GUID.
         /// </summary>
         public string GraphRepositoryGUID { get; set; } = null;
@@ -69,9 +64,14 @@
         public string VectorRepositoryGUID { get; set; } = null;
 
         /// <summary>
-        /// Data flow endpoint.
+        /// Data flow endpoint for processing.
         /// </summary>
-        public string DataFlowEndpoint { get; set; } = "http://localhost:8501/processor";
+        public string ProcessingEndpoint { get; set; } = "http://localhost:8000/v1.0/tenants/default/processing";
+
+        /// <summary>
+        /// Access key for processing endpoint.
+        /// </summary>
+        public string ProcessingAccessKey { get; set; } = "default";
 
         /// <summary>
         /// Embeddings generator.
@@ -81,12 +81,12 @@
         /// <summary>
         /// Embeddings generator URL.
         /// </summary>
-        public string GeneratorUrl { get; set; } = "http://localhost:8301/";
+        public string EmbeddingsGeneratorUrl { get; set; } = "http://localhost:8000/v1.0/tenants/default/embeddings";
 
         /// <summary>
         /// Embeddings provider API key.
         /// </summary>
-        public string GeneratorApiKey { get; set; } = null;
+        public string EmbeddingsGeneratorApiKey { get; set; } = "default";
 
         /// <summary>
         /// Maximum number of chunks to process per request.  Default is 16.
@@ -155,7 +155,12 @@
         /// <summary>
         /// Vector store URL.
         /// </summary>
-        public string VectorStoreUrl { get; set; } = "http://localhost:8311/";
+        public string VectorStoreUrl { get; set; } = "http://localhost:8000/";
+
+        /// <summary>
+        /// Vector store access key.
+        /// </summary>
+        public string VectorStoreAccessKey { get; set; } = "default";
 
         /// <summary>
         /// Maximum content length.

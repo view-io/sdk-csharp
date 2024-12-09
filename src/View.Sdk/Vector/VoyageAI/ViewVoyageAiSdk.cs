@@ -12,7 +12,7 @@
     /// <summary>
     /// VoyageAI embeddings generator.
     /// </summary>
-    public class ViewVoyageAiSdk : ViewEmbeddingsSdkBase, IDisposable
+    public class ViewVoyageAiSdk : EmbeddingsProviderSdkBase, IDisposable
     {
         #region Public-Members
 

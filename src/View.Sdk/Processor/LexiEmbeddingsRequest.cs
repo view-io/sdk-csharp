@@ -10,6 +10,11 @@
         #region Public-Members
 
         /// <summary>
+        /// Processor request GUID.
+        /// </summary>
+        public string GUID { get; set; } = Guid.NewGuid().ToString();
+
+        /// <summary>
         /// Tenant metadata.
         /// </summary>
         public TenantMetadata Tenant { get; set; } = null;

@@ -26,8 +26,10 @@
         /// <summary>
         /// Instantiate.
         /// </summary>
-        /// <param name="endpoint">Endpoint URL.</param>
-        public ViewSemanticCellSdk(string endpoint = "http://localhost:8341/") : base(endpoint)
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="accessKey">Access key.</param>
+        /// <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing/semanticcell.</param>
+        public ViewSemanticCellSdk(string tenantGuid, string accessKey, string endpoint = "http://localhost:8000/v1.0/tenants/default/processing/semanticcell") : base(tenantGuid, accessKey, endpoint)
         {
             Header = "[ViewSemanticCellSdk] ";
         }
@@ -49,9 +51,8 @@
             if (scReq == null) throw new ArgumentNullException(nameof(scReq));
             if (scReq.Data == null || scReq.Data.Length < 1) throw new ArgumentException("No data supplied for semantic cell extraction.");
             if (scReq.MetadataRule == null) throw new ArgumentNullException(nameof(scReq.MetadataRule));
-            if (String.IsNullOrEmpty(scReq.MetadataRule.SemanticCellEndpoint)) throw new ArgumentNullException(nameof(scReq.MetadataRule.SemanticCellEndpoint));
 
-            string url = Endpoint + "v1.0/document";
+            string url = Endpoint;
             string json = Serializer.SerializeJson(scReq, true);
 
             try
@@ -135,7 +136,7 @@
             if (data == null || data.Length < 1) throw new ArgumentException("No data supplied for semantic cell extraction.");
             if (mdRule == null) throw new ArgumentNullException(nameof(mdRule));
 
-            string url = Endpoint + "v1.0/document";
+            string url = Endpoint;
 
             SemanticCellRequest scReq = new SemanticCellRequest
             {

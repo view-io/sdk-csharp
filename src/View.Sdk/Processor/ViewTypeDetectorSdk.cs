@@ -27,8 +27,10 @@
         /// <summary>
         /// Instantiate.
         /// </summary>
-        /// <param name="endpoint">Endpoint URL.</param>
-        public ViewTypeDetectorSdk(string endpoint = "http://localhost:8501/processor/typedetector") : base(endpoint)
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="accessKey">Access key.</param>
+        /// <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing/typedetection.</param>
+        public ViewTypeDetectorSdk(string tenantGuid, string accessKey, string endpoint = "http://localhost:8000/v1.0/tenants/default/processing/typedetection") : base(tenantGuid, accessKey, endpoint)
         {
             Header = "[ViewTypeDetectorSdk] ";
         }
@@ -60,6 +62,7 @@
                 {
                     req.TimeoutMilliseconds = TimeoutMs;
                     req.ContentType = contentType;
+                    req.Authorization.BearerToken = AccessKey;
 
                     if (LogRequests) Log(SeverityEnum.Debug, "request: " + Environment.NewLine + Encoding.UTF8.GetString(data));
 

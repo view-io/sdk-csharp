@@ -20,10 +20,10 @@
         private static EmbeddingsGeneratorEnum _GeneratorType = EmbeddingsGeneratorEnum.LCProxy;
 
         private static string _Endpoint = null;
-        private static string _EndpointLcproxy = "http://localhost:8301/";
+        private static string _EndpointLcproxy = "http://localhost:8000/v1.0/tenants/default/embeddings";
         private static string _EndpointOpenAi = "https://api.openai.com/v1/";
         private static string _EndpointVoyageAi = "https://api.voyageai.com/v1/";
-        private static string _EndpointOllama = "http://localhost:7869/";
+        private static string _EndpointOllama = "http://localhost:11434/";
 
         private static string _ApiKey = null;
 

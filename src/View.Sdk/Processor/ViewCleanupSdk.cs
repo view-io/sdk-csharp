@@ -29,8 +29,10 @@
         /// <summary>
         /// Instantiate.
         /// </summary>
-        /// <param name="endpoint">Endpoint URL.</param>
-        public ViewCleanupSdk(string endpoint = "http://localhost:8501/processor") : base(endpoint)
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="accessKey">Access key.</param>
+        /// <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing/cleanup.</param>
+        public ViewCleanupSdk(string tenantGuid, string accessKey, string endpoint = "http://localhost:8000/v1.0/tenants/default/processing/cleanup") : base(tenantGuid, accessKey, endpoint)
         {
             Header = "[ViewProcessorSdk] ";
         }
@@ -76,6 +78,7 @@
                 {
                     req.TimeoutMilliseconds = TimeoutMs;
                     req.ContentType = "application/json";
+                    req.Authorization.BearerToken = AccessKey;
 
                     CleanupRequest cleanupReq = new CleanupRequest
                     {
@@ -198,6 +201,7 @@
                 {
                     req.TimeoutMilliseconds = TimeoutMs;
                     req.ContentType = "application/json";
+                    req.Authorization.BearerToken = AccessKey;
 
                     CleanupRequest cleanupReq = new CleanupRequest
                     {

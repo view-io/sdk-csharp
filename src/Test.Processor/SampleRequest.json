@@ -23,14 +23,13 @@
     "OwnerGUID": "default",
     "Name": "My metadata rule",
     "ContentType": "text/plain",
-    "UdrEndpoint": "http://localhost:8321/",
+    "UdrEndpoint": "http://localhost:8000/",
     "DataCatalogType": "Lexi",
-    "DataCatalogEndpoint": "http://localhost:8201/",
+    "DataCatalogEndpoint": "http://localhost:8000/",
     "DataCatalogCollection": "default",
     "TopTerms": 10,
     "CaseInsensitive": true,
-    "IncludeFlattened": true,
-    "TargetBucketGUID": "metadata"
+    "IncludeFlattened": true
   },
   "EmbeddingsRule": {
     "GUID": "embeddingsrule",
@@ -39,10 +38,9 @@
     "OwnerGUID": "default",
     "Name": "My embeddings rule",
     "ContentType": "text/plain",
-    "TargetBucketGUID": "embeddings",
     "VectorRepositoryGUID": "example-vector-repository",
     "EmbeddingsGenerator": "LCProxy",
-    "GeneratorUrl": "http://localhost:8301/",
+    "GeneratorUrl": "http://localhost:8000/v1.0/tenants/default/embeddings",
     "GeneratorApiKey": "[huggingface access token]",
     "Model": "all-MiniLM-L6-v2"
   },

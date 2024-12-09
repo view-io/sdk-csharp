@@ -13,7 +13,7 @@
     /// <summary>
     /// View embeddings generator SDK base class.
     /// </summary>
-    public abstract class ViewEmbeddingsSdkBase : IDisposable
+    public abstract class EmbeddingsProviderSdkBase : IDisposable
     {
         #region Public-Members
 
@@ -44,7 +44,7 @@
         public string ApiKey { get; private set; } = null;
 
         /// <summary>
-        /// Endpoint URL.  Default is http://localhost:8301/.
+        /// Endpoint URL.  Default is http://localhost:8000/v1.0/tenants/default/embeddings.
         /// </summary>
         public string Endpoint
         {
@@ -86,7 +86,7 @@
         #region Private-Members
 
         private Serializer _Serializer = new Serializer();
-        private string _Endpoint = "http://localhost:8301/";
+        private string _Endpoint = "http://localhost:8000/v1.0/tenants/default/embeddings";
         private int _TimeoutMs = 300000;
 
         #endregion
@@ -100,7 +100,7 @@
         /// <param name="endpoint">Endpoint URL.</param>
         /// <param name="apiKey">API key.</param>
         /// <param name="logger">Logger method.</param>
-        public ViewEmbeddingsSdkBase(
+        public EmbeddingsProviderSdkBase(
             EmbeddingsGeneratorEnum generator,
             string endpoint,
             string apiKey,

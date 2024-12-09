@@ -5,7 +5,7 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "View.Sdk", "View.Sdk\View.Sdk.csproj", "{6779614A-3DB9-47D8-ACB9-1BB31EF992FF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.DocumentProcessor", "Test.DocumentProcessor\Test.DocumentProcessor.csproj", "{BE55D55D-99FC-4F92-8AEB-4CE3D43AADA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.UdrGenerator", "Test.UdrGenerator\Test.UdrGenerator.csproj", "{BE55D55D-99FC-4F92-8AEB-4CE3D43AADA6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.Lexi", "Test.Lexi\Test.Lexi.csproj", "{54F93A35-4493-46D0-B71C-40DC5684000D}"
 EndProject

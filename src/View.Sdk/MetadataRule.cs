@@ -56,28 +56,24 @@
         /// <summary>
         /// Data flow endpoint for processing.
         /// </summary>
-        public string ProcessingEndpoint { get; set; } = "http://localhost:8501/processor";
+        public string ProcessingEndpoint { get; set; } = "http://localhost:8000/v1.0/tenants/default/processing";
+
+        /// <summary>
+        /// Access key for processing endpoint.
+        /// </summary>
+        public string ProcessingAccessKey { get; set; } = "default";
 
         /// <summary>
         /// Data flow endpoint for cleanup processing.
         /// </summary>
-        public string CleanupEndpoint { get; set; } = "http://localhost:8501/processor/cleanup";
-
-        #region Type-Detection
+        public string CleanupEndpoint { get; set; } = "http://localhost:8000/v1.0/tenants/default/processing/cleanup";
 
         /// <summary>
-        /// Type detector endpoint.
+        /// Access key for cleanup endpoint.
         /// </summary>
-        public string TypeDetectorEndpoint { get; set; } = "http://localhost:8501/processor/typedetector";
-
-        #endregion
+        public string CleanupAccessKey { get; set; } = "default";
 
         #region Semantic-Cell-Extraction
-
-        /// <summary>
-        /// Semantic cell extraction endpoint.
-        /// </summary>
-        public string SemanticCellEndpoint { get; set; } = "http://localhost:8341/";
 
         /// <summary>
         /// Minimum chunk content length.  Minimum is 1.
@@ -153,41 +149,6 @@
         #region UDR
 
         /// <summary>
-        /// UDR endpoint.
-        /// </summary>
-        public string UdrEndpoint { get; set; } = "http://localhost:8321/";
-
-        #endregion
-
-        #region Data-Catalog
-
-        /// <summary>
-        /// Data catalog type.
-        /// </summary>
-        public DataCatalogTypeEnum DataCatalogType { get; set; } = DataCatalogTypeEnum.Lexi;
-
-        /// <summary>
-        /// Data catalog endpoint.
-        /// </summary>
-        public string DataCatalogEndpoint { get; set; } = "http://localhost:8201/";
-
-        /// <summary>
-        /// Data catalog collection identifier.
-        /// </summary>
-        public string DataCatalogCollection { get; set; } = null;
-
-        #endregion
-
-        #region Graph
-
-        /// <summary>
-        /// Graph repository GUID.
-        /// </summary>
-        public string GraphRepositoryGUID { get; set; } = null;
-
-        #endregion
-
-        /// <summary>
         /// Number of top terms to request.
         /// </summary>
         public int TopTerms
@@ -213,23 +174,40 @@
         /// </summary>
         public bool IncludeFlattened { get; set; } = true;
 
-        /// <summary>
-        /// Target bucket GUID.
-        /// </summary>
-        public string TargetBucketGUID { get; set; } = null;
+        #endregion
 
-        /*
-         * 
-         * 
-         * If we want to extend to allow configurability, e.g. enabling/disabling capabilities
-         * or otherwise specifying config parameters, we can add attributes here pointing to
-         * an object by GUID, bucket GUID, and tenant GUID containing those parameters.
-         * 
-         * Further, if we want to specify where the results should go, we could do the same.
-         * 
-         * 
-         * 
-         */
+        #region Data-Catalog
+
+        /// <summary>
+        /// Data catalog type.
+        /// </summary>
+        public DataCatalogTypeEnum DataCatalogType { get; set; } = DataCatalogTypeEnum.Lexi;
+
+        /// <summary>
+        /// Data catalog endpoint.
+        /// </summary>
+        public string DataCatalogEndpoint { get; set; } = "http://localhost:8000/";
+
+        /// <summary>
+        /// Data catalog access key.
+        /// </summary>
+        public string DataCatalogAccessKey { get; set; } = "default";
+
+        /// <summary>
+        /// Data catalog collection identifier.
+        /// </summary>
+        public string DataCatalogCollection { get; set; } = null;
+
+        #endregion
+
+        #region Graph
+
+        /// <summary>
+        /// Graph repository GUID.
+        /// </summary>
+        public string GraphRepositoryGUID { get; set; } = null;
+
+        #endregion
 
         /// <summary>
         /// Maximum content length.

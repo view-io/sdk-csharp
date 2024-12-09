@@ -29,7 +29,7 @@
         /// </summary>
         /// <param name="tenantGuid">Tenant GUID.</param>
         /// <param name="accessKey">Access key.</param>
-        /// <param name="endpoint">Endpoint URL.</param>
+        /// <param name="endpoint">Endpoint URL, i.e. http://localhost:8001.</param>
         public ViewStorageSdk(string tenantGuid, string accessKey, string endpoint = "http://localhost:8001/") : base(tenantGuid, accessKey, endpoint)
         {
             Header = "[ViewStorageSdk] ";

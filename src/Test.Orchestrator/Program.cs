@@ -14,7 +14,7 @@
     {
         private static bool _RunForever = true;
         private static string _TenantGuid = "default";
-        private static string _Endpoint = "http://localhost:8501/";
+        private static string _Endpoint = "http://localhost:8000/";
         private static string _AccessKey = "default";
         private static ViewOrchestratorSdk _Sdk = null;
         private static Serializer _Serializer = new Serializer();
