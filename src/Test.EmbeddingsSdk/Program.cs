@@ -19,11 +19,12 @@
 
         private static EmbeddingsGeneratorEnum _GeneratorType = EmbeddingsGeneratorEnum.LCProxy;
 
-        private static string _Endpoint = null;
-        private static string _EndpointLcproxy = "http://localhost:8000/v1.0/tenants/default/embeddings";
-        private static string _EndpointOpenAi = "https://api.openai.com/v1/";
-        private static string _EndpointVoyageAi = "https://api.voyageai.com/v1/";
-        private static string _EndpointOllama = "http://localhost:11434/";
+        private static string _TenantGUID = "default";
+        private static string _BaseUrl = null;
+        private static string _BaseUrlLcproxy = "http://localhost:8000/";
+        private static string _BaseUrlOpenAi = "https://api.openai.com/v1/";
+        private static string _BaseUrlVoyageAi = "https://api.voyageai.com/v1/";
+        private static string _BaseUrlOllama = "http://localhost:11434/";
 
         private static string _ApiKey = null;
 
@@ -44,28 +45,30 @@
 
         public static void Main(string[] args)
         {
+            _TenantGUID = Inputty.GetString("Tenant GUID:", _TenantGUID, false);
+
             _GeneratorType = (EmbeddingsGeneratorEnum)(Enum.Parse(
                 typeof(EmbeddingsGeneratorEnum),
                 Inputty.GetString("Generator type [LCProxy/OpenAI/Ollama/VoyageAI]:", "LCProxy", false)));
 
             if (_GeneratorType == EmbeddingsGeneratorEnum.LCProxy)
             {
-                _Endpoint = Inputty.GetString("Endpoint :", _EndpointLcproxy, false);
+                _BaseUrl = Inputty.GetString("Endpoint :", _BaseUrlLcproxy, false);
                 _DefaultModel = _DefaultLcproxyModel;
             }
             else if (_GeneratorType == EmbeddingsGeneratorEnum.OpenAI)
             {
-                _Endpoint = Inputty.GetString("Endpoint :", _EndpointOpenAi, false);
+                _BaseUrl = Inputty.GetString("Endpoint :", _BaseUrlOpenAi, false);
                 _DefaultModel = _DefaultOpenAiModel;
             }
             else if (_GeneratorType == EmbeddingsGeneratorEnum.Ollama)
             {
-                _Endpoint = Inputty.GetString("Endpoint :", _EndpointOllama, false);
+                _BaseUrl = Inputty.GetString("Endpoint :", _BaseUrlOllama, false);
                 _DefaultModel = _DefaultOllamaModel;
             }
             else if (_GeneratorType == EmbeddingsGeneratorEnum.VoyageAI)
             {
-                _Endpoint = Inputty.GetString("Endpoint :", _EndpointVoyageAi, false);
+                _BaseUrl = Inputty.GetString("Endpoint :", _BaseUrlVoyageAi, false);
                 _DefaultModel = _DefaultVoyageAiModel;
             }
             else
@@ -75,7 +78,17 @@
 
             _ApiKey = Inputty.GetString("API key  :", _ApiKey, true);
 
-            _Sdk = new ViewEmbeddingsSdk(_GeneratorType, _Endpoint, _ApiKey, _BatchSize, _MaxParallelTasks, _MaxRetries, _MaxFailures, _TimeoutMs);
+            _Sdk = new ViewEmbeddingsSdk(
+                _TenantGUID,
+                _GeneratorType, 
+                _BaseUrl, 
+                _ApiKey, 
+                _BatchSize, 
+                _MaxParallelTasks, 
+                _MaxRetries, 
+                _MaxFailures, 
+                _TimeoutMs);
+
             _Sdk.Logger = SdkLogger;
 
             while (_RunForever)

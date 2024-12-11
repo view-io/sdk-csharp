@@ -8618,6 +8618,11 @@
             View embeddings generator SDK base class.
             </summary>
         </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsProviderSdkBase.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Vector.EmbeddingsProviderSdkBase.Generator">
             <summary>
             Embeddings generator.  Default is LCProxy.
@@ -8633,9 +8638,9 @@
             API key.
             </summary>
         </member>
-        <member name="P:View.Sdk.Vector.EmbeddingsProviderSdkBase.Endpoint">
+        <member name="P:View.Sdk.Vector.EmbeddingsProviderSdkBase.BaseUrl">
             <summary>
-            Endpoint URL.  Default is http://localhost:8000/v1.0/tenants/default/embeddings.
+            Base URL.  Default is http://localhost:8000/.
             </summary>
         </member>
         <member name="P:View.Sdk.Vector.EmbeddingsProviderSdkBase.TimeoutMs">
@@ -8648,10 +8653,11 @@
             Logger.
             </summary>
         </member>
-        <member name="M:View.Sdk.Vector.EmbeddingsProviderSdkBase.#ctor(View.Sdk.EmbeddingsGeneratorEnum,System.String,System.String,System.Action{View.Sdk.SeverityEnum,System.String})">
+        <member name="M:View.Sdk.Vector.EmbeddingsProviderSdkBase.#ctor(System.String,View.Sdk.EmbeddingsGeneratorEnum,System.String,System.String,System.Action{View.Sdk.SeverityEnum,System.String})">
             <summary>
             Instantiate.
             </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
             <param name="generator">Embeddings generator.</param>
             <param name="endpoint">Endpoint URL.</param>
             <param name="apiKey">API key.</param>
@@ -8938,7 +8944,7 @@
             View Langchain SDK.
             </summary>
         </member>
-        <member name="M:View.Sdk.Vector.Langchain.ViewLangchainSdk.#ctor(System.String,System.String,System.Action{View.Sdk.SeverityEnum,System.String})">
+        <member name="M:View.Sdk.Vector.Langchain.ViewLangchainSdk.#ctor(System.String,System.String,System.String,System.Action{View.Sdk.SeverityEnum,System.String})">
             <inheritdoc />
         </member>
         <member name="M:View.Sdk.Vector.Langchain.ViewLangchainSdk.ValidateConnectivity(System.Threading.CancellationToken)">
@@ -9120,7 +9126,7 @@
             View Ollama SDK.
             </summary>
         </member>
-        <member name="M:View.Sdk.Vector.Ollama.ViewOllamaSdk.#ctor(System.String,System.String,System.Action{View.Sdk.SeverityEnum,System.String})">
+        <member name="M:View.Sdk.Vector.Ollama.ViewOllamaSdk.#ctor(System.String,System.String,System.String,System.Action{View.Sdk.SeverityEnum,System.String})">
             <inheritdoc />
         </member>
         <member name="M:View.Sdk.Vector.Ollama.ViewOllamaSdk.ValidateConnectivity(System.Threading.CancellationToken)">
@@ -9225,7 +9231,7 @@
             OpenAI embeddings generator.
             </summary>
         </member>
-        <member name="M:View.Sdk.Vector.OpenAI.ViewOpenAiSdk.#ctor(System.String,System.String,System.Action{View.Sdk.SeverityEnum,System.String})">
+        <member name="M:View.Sdk.Vector.OpenAI.ViewOpenAiSdk.#ctor(System.String,System.String,System.String,System.Action{View.Sdk.SeverityEnum,System.String})">
             <inheritdoc />
         </member>
         <member name="M:View.Sdk.Vector.OpenAI.ViewOpenAiSdk.ValidateConnectivity(System.Threading.CancellationToken)">
@@ -9620,6 +9626,11 @@
             View embeddings generator SDK.
             </summary>
         </member>
+        <member name="P:View.Sdk.Vector.ViewEmbeddingsSdk.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Vector.ViewEmbeddingsSdk.Generator">
             <summary>
             Embeddings generator.  Default is LCProxy.
@@ -9630,9 +9641,9 @@
             API key.
             </summary>
         </member>
-        <member name="P:View.Sdk.Vector.ViewEmbeddingsSdk.Endpoint">
+        <member name="P:View.Sdk.Vector.ViewEmbeddingsSdk.BaseUrl">
             <summary>
-            Endpoint URL.  Default is http://localhost:8000/v1.0/tenants/default/embeddings.
+            Base URL.  Default is http://localhost:8000/.
             </summary>
         </member>
         <member name="P:View.Sdk.Vector.ViewEmbeddingsSdk.BatchSize">
@@ -9665,12 +9676,13 @@
             Logger.
             </summary>
         </member>
-        <member name="M:View.Sdk.Vector.ViewEmbeddingsSdk.#ctor(View.Sdk.EmbeddingsGeneratorEnum,System.String,System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Action{View.Sdk.SeverityEnum,System.String})">
+        <member name="M:View.Sdk.Vector.ViewEmbeddingsSdk.#ctor(System.String,View.Sdk.EmbeddingsGeneratorEnum,System.String,System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Action{View.Sdk.SeverityEnum,System.String})">
             <summary>
             Instantiate.
             </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
             <param name="generator">Embeddings generator.</param>
-            <param name="endpoint">Endpoint URL.</param>
+            <param name="baseUrl">Base URL, i.e. http://localhost:8000/.</param>
             <param name="apiKey">API key.</param>
             <param name="batchSize">Batch size.</param>
             <param name="maxParallelTasks">Maximum number of parallel tasks.</param>
@@ -9849,7 +9861,7 @@
             VoyageAI embeddings generator.
             </summary>
         </member>
-        <member name="M:View.Sdk.Vector.VoyageAI.ViewVoyageAiSdk.#ctor(System.String,System.String,System.Action{View.Sdk.SeverityEnum,System.String})">
+        <member name="M:View.Sdk.Vector.VoyageAI.ViewVoyageAiSdk.#ctor(System.String,System.String,System.String,System.Action{View.Sdk.SeverityEnum,System.String})">
             <inheritdoc />
         </member>
         <member name="M:View.Sdk.Vector.VoyageAI.ViewVoyageAiSdk.ValidateConnectivity(System.Threading.CancellationToken)">

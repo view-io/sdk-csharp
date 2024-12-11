@@ -33,11 +33,13 @@
 
         /// <inheritdoc />
         public ViewOpenAiSdk(
-            string endpoint,
+            string tenantGuid,
+            string baseUrl,
             string apiKey = null,
             Action<SeverityEnum, string> logger = null) : base(
+                tenantGuid,
                 EmbeddingsGeneratorEnum.OpenAI,
-                endpoint,
+                baseUrl,
                 apiKey,
                 logger)
         {
@@ -52,7 +54,7 @@
         {
             try
             {
-                string url = Endpoint + "models";
+                string url = BaseUrl + "models";
 
                 using (RestRequest req = new RestRequest(url, HttpMethod.Head))
                 {
@@ -96,12 +98,16 @@
         }
         
         /// <inheritdoc />
-        public override async Task<EmbeddingsResult> GenerateEmbeddings(EmbeddingsRequest embedRequest, int timeoutMs = 30000, CancellationToken token = default)
+        public override async Task<EmbeddingsResult> GenerateEmbeddings(
+            EmbeddingsRequest embedRequest, 
+            int timeoutMs = 30000, 
+            CancellationToken token = default)
         {
             if (embedRequest == null) throw new ArgumentNullException(nameof(embedRequest));
             if (timeoutMs < 1) throw new ArgumentOutOfRangeException(nameof(timeoutMs));
             if (String.IsNullOrEmpty(embedRequest.Model)) embedRequest.Model = _DefaultModel;
-            string url = Endpoint + "embeddings";
+
+            string url = BaseUrl + "embeddings";
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Post))
             {

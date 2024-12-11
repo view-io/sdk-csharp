@@ -18,6 +18,11 @@
         #region Public-Members
 
         /// <summary>
+        /// Tenant GUID.
+        /// </summary>
+        public string TenantGUID { get; set; } = null;
+
+        /// <summary>
         /// Embeddings generator.  Default is LCProxy.
         /// </summary>
         public EmbeddingsGeneratorEnum Generator { get; private set; } = EmbeddingsGeneratorEnum.LCProxy;
@@ -44,19 +49,19 @@
         public string ApiKey { get; private set; } = null;
 
         /// <summary>
-        /// Endpoint URL.  Default is http://localhost:8000/v1.0/tenants/default/embeddings.
+        /// Base URL.  Default is http://localhost:8000/.
         /// </summary>
-        public string Endpoint
+        public string BaseUrl
         {
             get
             {
-                return _Endpoint;
+                return _BaseUrl;
             }
             private set
             {
-                if (String.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(Endpoint));
+                if (String.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(BaseUrl));
                 Uri uri = new Uri(value);
-                _Endpoint = value;
+                _BaseUrl = value;
             }
         }
 
@@ -86,7 +91,7 @@
         #region Private-Members
 
         private Serializer _Serializer = new Serializer();
-        private string _Endpoint = "http://localhost:8000/v1.0/tenants/default/embeddings";
+        private string _BaseUrl = "http://localhost:8000/";
         private int _TimeoutMs = 300000;
 
         #endregion
@@ -96,20 +101,25 @@
         /// <summary>
         /// Instantiate.
         /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
         /// <param name="generator">Embeddings generator.</param>
         /// <param name="endpoint">Endpoint URL.</param>
         /// <param name="apiKey">API key.</param>
         /// <param name="logger">Logger method.</param>
         public EmbeddingsProviderSdkBase(
+            string tenantGuid,
             EmbeddingsGeneratorEnum generator,
             string endpoint,
             string apiKey,
             Action<SeverityEnum, string> logger = null)
         {
+            if (String.IsNullOrEmpty(tenantGuid)) throw new ArgumentNullException(nameof(tenantGuid));
+
             if (!String.IsNullOrEmpty(endpoint) && !endpoint.EndsWith("/")) endpoint += "/";
 
+            TenantGUID = tenantGuid;
             Generator = generator;
-            Endpoint = endpoint;
+            BaseUrl = endpoint;
             ApiKey = apiKey;
             Logger = logger;
         }
@@ -181,7 +191,10 @@
         /// <param name="timeoutMs">Timeout in milliseconds.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns></returns>
-        public abstract Task<EmbeddingsResult> GenerateEmbeddings(EmbeddingsRequest embedRequest, int timeoutMs = 30000, CancellationToken token = default); 
+        public abstract Task<EmbeddingsResult> GenerateEmbeddings(
+            EmbeddingsRequest embedRequest, 
+            int timeoutMs = 30000, 
+            CancellationToken token = default); 
 
         #endregion
 

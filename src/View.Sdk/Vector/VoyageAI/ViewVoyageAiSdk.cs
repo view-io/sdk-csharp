@@ -28,11 +28,13 @@
 
         /// <inheritdoc />
         public ViewVoyageAiSdk(
-            string endpoint,
+            string tenantGuid,
+            string baseUrl,
             string apiKey = null,
             Action<SeverityEnum, string> logger = null) : base(
+                tenantGuid,
                 EmbeddingsGeneratorEnum.VoyageAI,
-                endpoint,
+                baseUrl,
                 apiKey,
                 logger)
         {
@@ -45,11 +47,11 @@
         /// <inheritdoc />
         public override async Task<bool> ValidateConnectivity(CancellationToken token = default)
         {
-            string url = Endpoint + "healthz";
+            string url = BaseUrl + "healthz";
 
             try
             {
-                using (RestRequest req = new RestRequest(Endpoint, HttpMethod.Get))
+                using (RestRequest req = new RestRequest(BaseUrl, HttpMethod.Get))
                 {
                     using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
                     {
@@ -89,12 +91,16 @@
         }
 
         /// <inheritdoc />
-        public override async Task<EmbeddingsResult> GenerateEmbeddings(EmbeddingsRequest embedRequest, int timeoutMs = 30000, CancellationToken token = default)
+        public override async Task<EmbeddingsResult> GenerateEmbeddings(
+            EmbeddingsRequest embedRequest, 
+            int timeoutMs = 30000, 
+            CancellationToken token = default)
         {
             if (embedRequest == null) throw new ArgumentNullException(nameof(embedRequest));
             if (timeoutMs < 1) throw new ArgumentOutOfRangeException(nameof(timeoutMs));
             if (String.IsNullOrEmpty(embedRequest.Model)) embedRequest.Model = _DefaultModel;
-            string url = Endpoint + "v1/embeddings";
+
+            string url = BaseUrl + "v1/embeddings";
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Post))
             {

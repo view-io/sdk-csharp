@@ -30,11 +30,13 @@
 
         /// <inheritdoc />
         public ViewLangchainSdk(
-            string endpoint = "http://localhost:8000/v1.0/tenants/default/embeddings",
+            string tenantGuid,
+            string baseUrl = "http://localhost:8000/",
             string apiKey = null,
             Action<SeverityEnum, string> logger = null) : base(
+                tenantGuid,
                 EmbeddingsGeneratorEnum.LCProxy,
-                endpoint,
+                baseUrl,
                 apiKey,
                 logger)
         {
@@ -49,7 +51,7 @@
         {
             try
             {
-                using (RestRequest req = new RestRequest(Endpoint, HttpMethod.Head))
+                using (RestRequest req = new RestRequest(BaseUrl, HttpMethod.Head))
                 {
                     using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
                     {
@@ -75,7 +77,7 @@
         {
             if (models == null || models.Count < 1) throw new ArgumentNullException(nameof(models));
 
-            string url = Endpoint + "v1.0/preload/";
+            string url = BaseUrl + "v1.0/preload/";
 
             try
             {
@@ -115,12 +117,16 @@
         }
 
         /// <inheritdoc />
-        public override async Task<EmbeddingsResult> GenerateEmbeddings(EmbeddingsRequest embedRequest, int timeoutMs = 30000, CancellationToken token = default)
+        public override async Task<EmbeddingsResult> GenerateEmbeddings(
+            EmbeddingsRequest embedRequest, 
+            int timeoutMs = 30000, 
+            CancellationToken token = default)
         {
             if (embedRequest == null) throw new ArgumentNullException(nameof(embedRequest));
             if (timeoutMs < 1) throw new ArgumentOutOfRangeException(nameof(timeoutMs));
             if (String.IsNullOrEmpty(embedRequest.Model)) embedRequest.Model = _DefaultModel;
-            string url = Endpoint + "v1.0/embeddings/";
+
+            string url = BaseUrl + "v1.0/tenants/" + TenantGUID + "/embeddings/";
             
             using (RestRequest req = new RestRequest(url, HttpMethod.Post))
             {

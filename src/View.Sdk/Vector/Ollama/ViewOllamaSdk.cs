@@ -35,11 +35,13 @@
 
         /// <inheritdoc />
         public ViewOllamaSdk(
-            string endpoint = "http://localhost:7869",
+            string tenantGuid,
+            string baseUrl = "http://localhost:7869",
             string apiKey = null,
             Action<SeverityEnum, string> logger = null) : base(
+                tenantGuid,
                 EmbeddingsGeneratorEnum.Ollama,
-                endpoint,
+                baseUrl,
                 apiKey,
                 logger)
         {
@@ -54,7 +56,7 @@
         {
             try
             {
-                using (RestRequest req = new RestRequest(Endpoint, HttpMethod.Head))
+                using (RestRequest req = new RestRequest(BaseUrl, HttpMethod.Head))
                 {
                     using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
                     {
@@ -85,7 +87,7 @@
         public override async Task<bool> LoadModel(string model, CancellationToken token = default)
         {
             if (string.IsNullOrEmpty(model)) return false;
-            string url = Endpoint + "api/pull";
+            string url = BaseUrl + "api/pull";
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Post))
             {
@@ -105,12 +107,16 @@
         }
 
         /// <inheritdoc />
-        public override async Task<EmbeddingsResult> GenerateEmbeddings(EmbeddingsRequest embedRequest, int timeoutMs = 30000, CancellationToken token = default)
+        public override async Task<EmbeddingsResult> GenerateEmbeddings(
+            EmbeddingsRequest embedRequest, 
+            int timeoutMs = 30000, 
+            CancellationToken token = default)
         {
             if (embedRequest == null) throw new ArgumentNullException(nameof(embedRequest));
             if (timeoutMs < 1) throw new ArgumentOutOfRangeException(nameof(timeoutMs));
             if (String.IsNullOrEmpty(embedRequest.Model)) embedRequest.Model = _DefaultModel;
-            string url = Endpoint + "api/embed";
+
+            string url = BaseUrl + "api/embed";
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Post))
             {
@@ -164,7 +170,7 @@
         /// <inheritdoc />
         public override async Task<List<ModelInformation>> ListModels(CancellationToken token = default)
         {
-            string url = Endpoint + "api/tags";
+            string url = BaseUrl + "api/tags";
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Get))
             {
@@ -203,7 +209,7 @@
         /// <inheritdoc />
         public override async Task<bool> DeleteModel(string name, CancellationToken token = default)
         {
-            string url = Endpoint + "api/delete";
+            string url = BaseUrl + "api/delete";
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Delete))
             {

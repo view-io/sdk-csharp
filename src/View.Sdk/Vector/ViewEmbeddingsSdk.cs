@@ -23,6 +23,11 @@
         #region Public-Members
 
         /// <summary>
+        /// Tenant GUID.
+        /// </summary>
+        public string TenantGUID { get; set; } = null;
+
+        /// <summary>
         /// Embeddings generator.  Default is LCProxy.
         /// </summary>
         public EmbeddingsGeneratorEnum Generator { get; private set; } = EmbeddingsGeneratorEnum.LCProxy;
@@ -33,19 +38,19 @@
         public string ApiKey { get; private set; } = null;
 
         /// <summary>
-        /// Endpoint URL.  Default is http://localhost:8000/v1.0/tenants/default/embeddings.
+        /// Base URL.  Default is http://localhost:8000/.
         /// </summary>
-        public string Endpoint
+        public string BaseUrl
         {
             get
             {
-                return _Endpoint;
+                return _BaseUrl;
             }
             private set
             {
-                if (String.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(Endpoint));
+                if (String.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(BaseUrl));
                 Uri uri = new Uri(value);
-                _Endpoint = value;
+                _BaseUrl = value;
             }
         }
 
@@ -139,7 +144,7 @@
         #region Private-Members
 
         private Serializer _Serializer = new Serializer();
-        private string _Endpoint = "http://localhost:8000/v1.0/tenants/default/embeddings";
+        private string _BaseUrl = "http://localhost:8000/";
 
         private int _BatchSize = 16;
         private int _MaxParallelTasks = 16;
@@ -158,8 +163,9 @@
         /// <summary>
         /// Instantiate.
         /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
         /// <param name="generator">Embeddings generator.</param>
-        /// <param name="endpoint">Endpoint URL.</param>
+        /// <param name="baseUrl">Base URL, i.e. http://localhost:8000/.</param>
         /// <param name="apiKey">API key.</param>
         /// <param name="batchSize">Batch size.</param>
         /// <param name="maxParallelTasks">Maximum number of parallel tasks.</param>
@@ -168,8 +174,9 @@
         /// <param name="timeoutMs">Timeout, in milliseconds.</param>
         /// <param name="logger">Logger method.</param>
         public ViewEmbeddingsSdk(
+            string tenantGuid,
             EmbeddingsGeneratorEnum generator,
-            string endpoint,
+            string baseUrl,
             string apiKey,
             int batchSize = 16,
             int maxParallelTasks = 16,
@@ -178,9 +185,10 @@
             int timeoutMs = 300000,
             Action<SeverityEnum, string> logger = null)
         {
+            TenantGUID = tenantGuid;
             Generator = generator;
             ApiKey = apiKey;
-            Endpoint = endpoint;
+            BaseUrl = baseUrl;
             BatchSize = batchSize;
             MaxParallelTasks = maxParallelTasks;
             MaxRetries = maxRetries;
@@ -193,16 +201,16 @@
             switch (Generator)
             {
                 case EmbeddingsGeneratorEnum.LCProxy:
-                    _SdkBase = new ViewLangchainSdk(Endpoint, ApiKey, Logger);
+                    _SdkBase = new ViewLangchainSdk(TenantGUID, BaseUrl, ApiKey, Logger);
                     break;
                 case EmbeddingsGeneratorEnum.Ollama:
-                    _SdkBase = new ViewOllamaSdk(Endpoint, ApiKey, Logger);
+                    _SdkBase = new ViewOllamaSdk(TenantGUID, BaseUrl, ApiKey, Logger);
                     break;
                 case EmbeddingsGeneratorEnum.OpenAI:
-                    _SdkBase = new ViewOpenAiSdk(Endpoint, ApiKey, Logger);
+                    _SdkBase = new ViewOpenAiSdk(TenantGUID, BaseUrl, ApiKey, Logger);
                     break;
                 case EmbeddingsGeneratorEnum.VoyageAI:
-                    _SdkBase = new ViewVoyageAiSdk(Endpoint, ApiKey, Logger);
+                    _SdkBase = new ViewVoyageAiSdk(TenantGUID, BaseUrl, ApiKey, Logger);
                     break;
                 default:
                     throw new ArgumentException("Unknown embeddings generator '" + Generator.ToString() + "'.");
