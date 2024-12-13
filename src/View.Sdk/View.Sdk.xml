@@ -4857,6 +4857,96 @@
             PATCH.
             </summary>
         </member>
+        <member name="T:View.Sdk.IngestionQueueEntry">
+            <summary>
+            Ingestion queue entry.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.IngestionQueueEntry.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.IngestionQueueEntry.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.IngestionQueueEntry.CollectionGUID">
+            <summary>
+            Collection GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.IngestionQueueEntry.SourceDocumentGUID">
+            <summary>
+            Source document GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.IngestionQueueEntry.DocumentType">
+            <summary>
+            Document type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.IngestionQueueEntry.ObjectKey">
+            <summary>
+            Key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.IngestionQueueEntry.ObjectVersion">
+            <summary>
+            Version.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.IngestionQueueEntry.ContentLength">
+            <summary>
+            Content length.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.IngestionQueueEntry.Message">
+            <summary>
+            Processing message.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.IngestionQueueEntry.StartUtc">
+            <summary>
+            Start timestamp, in UTC.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.IngestionQueueEntry.SuccessUtc">
+            <summary>
+            Success timestamp, in UTC.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.IngestionQueueEntry.FailureUtc">
+            <summary>
+            Failure timestamp, in UTC.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.IngestionQueueEntry.TotalMs">
+            <summary>
+            Total runtime of ingestion, in milliseconds.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.IngestionQueueEntry.TermProcessingMs">
+            <summary>
+            Total runtime of term processing, in milliseconds.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.IngestionQueueEntry.SchemaProcessingMs">
+            <summary>
+            Total runtime of schema processing, in milliseconds.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.IngestionQueueEntry.CreatedUtc">
+            <summary>
+            Creation timestamp, in UTC.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.IngestionQueueEntry.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
         <member name="T:View.Sdk.IngestQueueStatistics">
             <summary>
             Ingest queue statistics.
@@ -4980,6 +5070,37 @@
             <param name="collectionGuid">Collection GUID.</param>
             <param name="key">Document key.</param>
             <param name="version">Document version.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.ExistsIngestQueueEntry(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if an ingest queue entry exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveIngestQueueEntry(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read an ingest queue entry.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Ingest queue entry.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveIngestQueueEntries(System.Threading.CancellationToken)">
+            <summary>
+            Read users.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Ingest queue entries.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.DeleteIngestQueueEntry(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete an ingest queue entry.
+            </summary>
+            <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>

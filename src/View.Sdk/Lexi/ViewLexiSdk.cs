@@ -202,6 +202,60 @@
 
         #endregion
 
+        #region Ingest-Queue
+
+        /// <summary>
+        /// Check if an ingest queue entry exists.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>True if exists.</returns>
+        public async Task<bool> ExistsIngestQueueEntry(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/ingestqueue/" + guid;
+            return await Exists(url, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Read an ingest queue entry.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Ingest queue entry.</returns>
+        public async Task<IngestionQueueEntry> RetrieveIngestQueueEntry(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/ingestqueue/" + guid;
+            return await Retrieve<IngestionQueueEntry>(url, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Read users.
+        /// </summary>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Ingest queue entries.</returns>
+        public async Task<List<IngestionQueueEntry>> RetrieveIngestQueueEntries(CancellationToken token = default)
+        {
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/ingestqueue";
+            return await RetrieveMany<IngestionQueueEntry>(url, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete an ingest queue entry.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Task.</returns>
+        public async Task DeleteIngestQueueEntry(string guid, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/ingestqueue/" + guid;
+            await Delete(url, token).ConfigureAwait(false);
+        }
+
+        #endregion
+
         #region Enumerate
 
         /// <summary>
