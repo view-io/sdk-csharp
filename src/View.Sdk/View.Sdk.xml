@@ -5535,6 +5535,11 @@
             Data flow request GUID.
             </summary>
         </member>
+        <member name="P:View.Sdk.ObjectMetadata.DataFlowSuccess">
+            <summary>
+            Boolean indicating if the data flow was successful in processing the object.
+            </summary>
+        </member>
         <member name="P:View.Sdk.ObjectMetadata.Key">
             <summary>
             Key.
@@ -7536,11 +7541,6 @@
             Object GUID.
             </summary>
         </member>
-        <member name="P:View.Sdk.SourceDocument.DataFlowRequestGUID">
-            <summary>
-            Data flow request GUID.
-            </summary>
-        </member>
         <member name="P:View.Sdk.SourceDocument.GraphRepositoryGUID">
             <summary>
             Graph repository GUID.
@@ -7554,6 +7554,16 @@
         <member name="P:View.Sdk.SourceDocument.DataRepositoryGUID">
             <summary>
             Data repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SourceDocument.DataFlowRequestGUID">
+            <summary>
+            Data flow request GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SourceDocument.DataFlowSuccess">
+            <summary>
+            Boolean indicating if the data flow was successful in processing the object.
             </summary>
         </member>
         <member name="P:View.Sdk.SourceDocument.ObjectKey">

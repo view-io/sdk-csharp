@@ -91,6 +91,11 @@
         public string DataFlowRequestGUID { get; set; } = null;
 
         /// <summary>
+        /// Boolean indicating if the data flow was successful in processing the object.
+        /// </summary>
+        public bool DataFlowSuccess { get; set; } = false;
+
+        /// <summary>
         /// Key.
         /// </summary>
         public string Key { get; set; } = string.Empty;

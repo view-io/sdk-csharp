@@ -37,11 +37,6 @@
         public string ObjectGUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
-        /// Data flow request GUID.
-        /// </summary>
-        public string DataFlowRequestGUID { get; set; } = null;
-
-        /// <summary>
         /// Graph repository GUID.
         /// </summary>
         public string GraphRepositoryGUID { get; set; } = null;
@@ -55,6 +50,16 @@
         /// Data repository GUID.
         /// </summary>
         public string DataRepositoryGUID { get; set; } = null;
+
+        /// <summary>
+        /// Data flow request GUID.
+        /// </summary>
+        public string DataFlowRequestGUID { get; set; } = null;
+
+        /// <summary>
+        /// Boolean indicating if the data flow was successful in processing the object.
+        /// </summary>
+        public bool DataFlowSuccess { get; set; } = false;
 
         /// <summary>
         /// Key.
