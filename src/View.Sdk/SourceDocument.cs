@@ -59,7 +59,7 @@
         /// <summary>
         /// Boolean indicating if the data flow was successful in processing the object.
         /// </summary>
-        public bool DataFlowSuccess { get; set; } = false;
+        public bool? DataFlowSuccess { get; set; } = null;
 
         /// <summary>
         /// Key.
