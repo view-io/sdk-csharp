@@ -310,6 +310,64 @@
         /// <summary>
         /// Execute a logic API.
         /// </summary>
+        /// <typeparam name="T">Type.</typeparam>
+        /// <param name="url">URL.</param>
+        /// <param name="obj">Object.</param>
+        /// <param name="token"></param>
+        /// <returns>Instance.</returns>
+        public async Task<T> Post<T>(string url, T obj, CancellationToken token = default) where T : class
+        {
+            if (obj == null) throw new ArgumentNullException(nameof(obj));
+            if (String.IsNullOrEmpty(url)) throw new ArgumentNullException(nameof(url));
+
+            using (RestRequest req = new RestRequest(url, HttpMethod.Post))
+            {
+                req.TimeoutMilliseconds = TimeoutMs;
+                req.Authorization.BearerToken = _AccessKey;
+                req.ContentType = "application/json";
+
+                string json = Serializer.SerializeJson(obj, true);
+                if (LogRequests) Log(SeverityEnum.Debug, "request: " + Environment.NewLine + json);
+
+                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(obj, true), token).ConfigureAwait(false))
+                {
+                    if (resp != null)
+                    {
+                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+
+                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                        {
+                            Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+
+                            if (!String.IsNullOrEmpty(resp.DataAsString))
+                            {
+                                Log(SeverityEnum.Debug, "deserializing response body");
+                                return Serializer.DeserializeJson<T>(resp.DataAsString);
+                            }
+                            else
+                            {
+                                Log(SeverityEnum.Debug, "empty response body, returning null");
+                                return null;
+                            }
+                        }
+                        else
+                        {
+                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            return null;
+                        }
+                    }
+                    else
+                    {
+                        Log(SeverityEnum.Warn, "no response from " + url);
+                        return null;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Execute a logic API.
+        /// </summary>
         /// <typeparam name="T1">Input type.</typeparam>
         /// <typeparam name="T2">Output type.</typeparam>
         /// <param name="url">URL.</param>
@@ -321,7 +379,7 @@
             if (obj == null) throw new ArgumentNullException(nameof(obj));
             if (String.IsNullOrEmpty(url)) throw new ArgumentNullException(nameof(url));
 
-            using (RestRequest req = new RestRequest(url, HttpMethod.Put))
+            using (RestRequest req = new RestRequest(url, HttpMethod.Post))
             {
                 req.TimeoutMilliseconds = TimeoutMs;
                 req.Authorization.BearerToken = _AccessKey;

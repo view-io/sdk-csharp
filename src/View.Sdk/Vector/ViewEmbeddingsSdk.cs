@@ -212,7 +212,6 @@
         /// <param name="maxRetries">Maximum number of retries to perform on any given task.</param>
         /// <param name="maxFailures">Maximum number of failures to support before failing the operation.</param>
         /// <param name="timeoutMs">Timeout, in milliseconds.</param>
-        /// <param name="logger">Logger method.</param>
         public ViewEmbeddingsSdk(
             string tenantGuid,
             EmbeddingsGeneratorEnum generator,
@@ -222,8 +221,7 @@
             int maxParallelTasks = 16,
             int maxRetries = 3,
             int maxFailures = 3,
-            int timeoutMs = 300000,
-            Action<SeverityEnum, string> logger = null)
+            int timeoutMs = 300000)
         {
             TenantGUID = tenantGuid;
             Generator = generator;
@@ -234,7 +232,6 @@
             MaxRetries = maxRetries;
             MaxFailures = maxFailures;
             TimeoutMs = timeoutMs;
-            Logger = logger;
 
             _Semaphore = new SemaphoreSlim(_MaxParallelTasks, _MaxParallelTasks);
 

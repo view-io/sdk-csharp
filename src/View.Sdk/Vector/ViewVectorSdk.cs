@@ -179,7 +179,7 @@
             if (document == null) throw new ArgumentNullException(nameof(document));
             if (String.IsNullOrEmpty(document.VectorRepositoryGUID)) throw new ArgumentNullException(nameof(document.VectorRepositoryGUID));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + document.VectorRepositoryGUID + "/documents";
-            return await Create<EmbeddingsDocument>(url, document, token).ConfigureAwait(false);
+            return await Post<EmbeddingsDocument>(url, document, token).ConfigureAwait(false);
         }
 
         /// <summary>

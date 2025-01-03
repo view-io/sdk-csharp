@@ -6937,16 +6937,23 @@
         </member>
         <member name="M:View.Sdk.Semantic.SemanticCell.GetDistinctSHA256Hashes">
             <summary>
-            Retrieve the distinct SHA-256 hash values.
+            Retrieve the distinct SHA-256 hash values from the chunks contained within in this cell and its children.
             </summary>
             <returns>SHA-256 hash values.</returns>
         </member>
         <member name="M:View.Sdk.Semantic.SemanticCell.GetDistinctSHA256Hashes(System.Collections.Generic.IEnumerable{View.Sdk.Semantic.SemanticCell})">
             <summary>
-            Retrieve the distinc SHA-256 hash values from a list of semantic cells.
+            Retrieve the distinct SHA-256 hash values from the chunks contained within a list of semantic cells and their children.
             </summary>
             <param name="cells">Semantic cells.</param>
             <returns>SHA-256 hash values.</returns>
+        </member>
+        <member name="M:View.Sdk.Semantic.SemanticCell.FindCellsWithChunks(System.Collections.Generic.List{View.Sdk.Semantic.SemanticCell})">
+            <summary>
+            Retrieve semantic cells that contain chunks.
+            </summary>
+            <param name="cells">Semantic cells.</param>
+            <returns>Enumerable of cells that contain chunks.</returns>
         </member>
         <member name="T:View.Sdk.Semantic.SemanticCellRequest">
             <summary>
@@ -9838,7 +9845,7 @@
             Method to invoke to send log messages.
             </summary>
         </member>
-        <member name="M:View.Sdk.Vector.ViewEmbeddingsSdk.#ctor(System.String,View.Sdk.EmbeddingsGeneratorEnum,System.String,System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Action{View.Sdk.SeverityEnum,System.String})">
+        <member name="M:View.Sdk.Vector.ViewEmbeddingsSdk.#ctor(System.String,View.Sdk.EmbeddingsGeneratorEnum,System.String,System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Instantiate.
             </summary>
@@ -9851,7 +9858,6 @@
             <param name="maxRetries">Maximum number of retries to perform on any given task.</param>
             <param name="maxFailures">Maximum number of failures to support before failing the operation.</param>
             <param name="timeoutMs">Timeout, in milliseconds.</param>
-            <param name="logger">Logger method.</param>
         </member>
         <member name="M:View.Sdk.Vector.ViewEmbeddingsSdk.Dispose">
             <summary>
@@ -10216,6 +10222,16 @@
         <member name="M:View.Sdk.ViewSdkBase.Create``1(System.String,``0,System.Threading.CancellationToken)">
             <summary>
             Create an object.
+            </summary>
+            <typeparam name="T">Type.</typeparam>
+            <param name="url">URL.</param>
+            <param name="obj">Object.</param>
+            <param name="token"></param>
+            <returns>Instance.</returns>
+        </member>
+        <member name="M:View.Sdk.ViewSdkBase.Post``1(System.String,``0,System.Threading.CancellationToken)">
+            <summary>
+            Execute a logic API.
             </summary>
             <typeparam name="T">Type.</typeparam>
             <param name="url">URL.</param>

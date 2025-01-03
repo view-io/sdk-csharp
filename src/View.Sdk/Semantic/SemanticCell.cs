@@ -392,7 +392,7 @@
         }
 
         /// <summary>
-        /// Retrieve the distinct SHA-256 hash values.
+        /// Retrieve the distinct SHA-256 hash values from the chunks contained within in this cell and its children.
         /// </summary>
         /// <returns>SHA-256 hash values.</returns>
         public IEnumerable<string> GetDistinctSHA256Hashes()
@@ -406,7 +406,7 @@
         }
 
         /// <summary>
-        /// Retrieve the distinc SHA-256 hash values from a list of semantic cells.
+        /// Retrieve the distinct SHA-256 hash values from the chunks contained within a list of semantic cells and their children.
         /// </summary>
         /// <param name="cells">Semantic cells.</param>
         /// <returns>SHA-256 hash values.</returns>
@@ -415,6 +415,33 @@
             return (cells ?? Enumerable.Empty<SemanticCell>())
                 .SelectMany(cell => cell?.GetDistinctSHA256Hashes() ?? Enumerable.Empty<string>())
                 .Distinct();
+        }
+
+        /// <summary>
+        /// Retrieve semantic cells that contain chunks.
+        /// </summary>
+        /// <param name="cells">Semantic cells.</param>
+        /// <returns>Enumerable of cells that contain chunks.</returns>
+        public static IEnumerable<SemanticCell> FindCellsWithChunks(List<SemanticCell> cells)
+        {
+            if (cells == null) return Enumerable.Empty<SemanticCell>();
+
+            var results = new List<SemanticCell>();
+
+            foreach (var cell in cells)
+            {
+                if (cell.Chunks?.Any() == true)
+                {
+                    results.Add(cell);
+                }
+
+                if (cell.Children?.Any() == true)
+                {
+                    results.AddRange(FindCellsWithChunks(cell.Children));
+                }
+            }
+
+            return results;
         }
 
         #endregion
