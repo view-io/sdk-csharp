@@ -52,7 +52,7 @@
             CancellationToken token = default)
         {
             if (data == null || data.Length < 1) throw new ArgumentException("No data supplied for content type detection.");
-            if (string.IsNullOrEmpty(contentType)) contentType = "application/octet-stream";
+            if (String.IsNullOrEmpty(contentType)) contentType = "application/octet-stream";
 
             string url = Endpoint;
 
@@ -74,15 +74,17 @@
                             {
                                 Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
 
-                                if (!string.IsNullOrEmpty(resp.DataAsString))
+                                if (!String.IsNullOrEmpty(resp.DataAsString))
                                 {
                                     if (LogResponses) Log(SeverityEnum.Debug, "response body: " + Environment.NewLine + resp.DataAsString);
 
+                                    Log(SeverityEnum.Debug, "deserializing response body");
                                     TypeResult tr = Serializer.DeserializeJson<TypeResult>(resp.DataAsString);
                                     return tr;
                                 }
                                 else
                                 {
+                                    Log(SeverityEnum.Debug, "empty response body, returning null");
                                     return null;
                                 }
                             }
@@ -90,7 +92,7 @@
                             {
                                 Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
 
-                                if (!string.IsNullOrEmpty(resp.DataAsString))
+                                if (!String.IsNullOrEmpty(resp.DataAsString))
                                 {
                                     if (LogResponses) Log(SeverityEnum.Warn, "response body: " + Environment.NewLine + resp.DataAsString);
 
@@ -99,6 +101,7 @@
                                 }
                                 else
                                 {
+                                    Log(SeverityEnum.Debug, "empty response body, returning null");
                                     return null;
                                 }
                             }

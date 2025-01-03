@@ -40,7 +40,7 @@
             get
             {
                 string ret = FirstName;
-                if (!string.IsNullOrEmpty(LastName))
+                if (!String.IsNullOrEmpty(LastName))
                 {
                     ret += " " + LastName;
                 }

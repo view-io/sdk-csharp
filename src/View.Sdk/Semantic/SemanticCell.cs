@@ -158,7 +158,7 @@
             {
                 GUID = cellGuid,
                 CellType =
-                    !string.IsNullOrEmpty(cellType)
+                    !String.IsNullOrEmpty(cellType)
                         ? (SemanticCellTypeEnum)Enum.Parse(typeof(SemanticCellTypeEnum), cellType)
                         : SemanticCellTypeEnum.Text,
                 MD5Hash = cellMd5,
@@ -214,11 +214,11 @@
         /// <returns>Semantic chunks.</returns>
         public static IEnumerable<SemanticChunk> AllChunksBySHA256(List<SemanticCell> cells, string sha256Hash)
         {
-            if (cells == null || string.IsNullOrEmpty(sha256Hash))
+            if (cells == null || String.IsNullOrEmpty(sha256Hash))
                 return Enumerable.Empty<SemanticChunk>();
 
             return AllChunks(cells).Where(chunk =>
-                !string.IsNullOrEmpty(chunk.SHA256Hash) &&
+                !String.IsNullOrEmpty(chunk.SHA256Hash) &&
                 chunk.SHA256Hash.Equals(sha256Hash, StringComparison.OrdinalIgnoreCase));
         }
 
@@ -401,7 +401,7 @@
                 .Select(chunk => chunk?.SHA256Hash)
                 .Concat((Children ?? Enumerable.Empty<SemanticCell>())
                     .SelectMany(child => child?.GetDistinctSHA256Hashes() ?? Enumerable.Empty<string>()))
-                .Where(hash => !string.IsNullOrEmpty(hash))
+                .Where(hash => !String.IsNullOrEmpty(hash))
                 .Distinct();
         }
 

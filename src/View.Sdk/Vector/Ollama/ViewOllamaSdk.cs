@@ -37,14 +37,13 @@
         public ViewOllamaSdk(
             string tenantGuid,
             string baseUrl = "http://localhost:7869",
-            string apiKey = null,
-            Action<SeverityEnum, string> logger = null) : base(
+            string apiKey = null) : base(
                 tenantGuid,
                 EmbeddingsGeneratorEnum.Ollama,
                 baseUrl,
-                apiKey,
-                logger)
+                apiKey)
         {
+            Header = "[OllamaSdk] ";
         }
 
         #endregion
@@ -86,7 +85,7 @@
         /// <inheritdoc />
         public override async Task<bool> LoadModel(string model, CancellationToken token = default)
         {
-            if (string.IsNullOrEmpty(model)) return false;
+            if (String.IsNullOrEmpty(model)) return false;
             string url = BaseUrl + "api/pull";
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Post))
@@ -97,11 +96,21 @@
                 dict.Add("model", model);
 
                 string json = _Serializer.SerializeJson(dict, true);
+                if (LogRequests) Log(SeverityEnum.Debug, "request:" + Environment.NewLine + json);
 
                 using (RestResponse resp = await req.SendAsync(json, token).ConfigureAwait(false))
                 {
-                    if (resp != null && resp.StatusCode >= 200 && resp.StatusCode <= 299) return true;
-                    return false;
+                    if (resp != null)
+                    {
+                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299) return true;
+                        return false;
+                    }
+                    else
+                    {
+                        Log(SeverityEnum.Warn, "no response from " + url);
+                        return false;
+                    }
                 }
             }
         }
@@ -124,26 +133,30 @@
                 req.TimeoutMilliseconds = timeoutMs;
 
                 string json = Serializer.SerializeJson(OllamaEmbeddingsRequest.FromEmbeddingsRequest(embedRequest), true);
+                if (LogRequests) Log(SeverityEnum.Debug, "request:" + Environment.NewLine + json);
 
                 using (RestResponse resp = await req.SendAsync(json, token).ConfigureAwait(false))
                 {
                     if (resp == null)
                     {
-                        Logger?.Invoke(SeverityEnum.Warn, "no response from " + url);
+                        Log(SeverityEnum.Warn, "no response from " + url);
                         return null;
                     }
                     else
                     {
+                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            if (!string.IsNullOrEmpty(resp.DataAsString))
+                            if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
+                                Log(SeverityEnum.Debug, "deserializing response body");
                                 OllamaEmbeddingsResult embedResult = Serializer.DeserializeJson<OllamaEmbeddingsResult>(resp.DataAsString);
                                 return embedResult.ToEmbeddingsResult(OllamaEmbeddingsRequest.FromEmbeddingsRequest(embedRequest));
                             }
                             else
                             {
-                                Logger?.Invoke(SeverityEnum.Warn, "no data received from " + url);
+                                Log(SeverityEnum.Warn, "no data received from " + url);
                                 return new EmbeddingsResult
                                 {
                                     Success = false,
@@ -154,7 +167,7 @@
                         }
                         else
                         {
-                            Logger?.Invoke(SeverityEnum.Warn, "status " + resp.StatusCode + " received from " + url + ": " + Environment.NewLine + resp.DataAsString);
+                            Log(SeverityEnum.Warn, "status " + resp.StatusCode + " received from " + url + ": " + Environment.NewLine + resp.DataAsString);
                             return new EmbeddingsResult
                             {
                                 Success = false,
@@ -178,27 +191,30 @@
                 {
                     if (resp == null)
                     {
-                        Logger?.Invoke(SeverityEnum.Warn, "no response from " + url);
+                        Log(SeverityEnum.Warn, "no response from " + url);
                         return null;
                     }
                     else
                     {
+                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            if (!string.IsNullOrEmpty(resp.DataAsString))
+                            if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
+                                Log(SeverityEnum.Debug, "deserializing response body");
                                 OllamaModelResult result = _Serializer.DeserializeJson<OllamaModelResult>(resp.DataAsString);
                                 return ModelInformation.FromOllamaResponse(result);
                             }
                             else
                             {
-                                Logger?.Invoke(SeverityEnum.Warn, "no data from " + url);
+                                Log(SeverityEnum.Warn, "no data from " + url);
                                 return null;
                             }
                         }
                         else
                         {
-                            Logger?.Invoke(SeverityEnum.Warn, "status " + resp.StatusCode + " received from " + url + ": " + Environment.NewLine + resp.DataAsString);
+                            Log(SeverityEnum.Warn, "status " + resp.StatusCode + " received from " + url + ": " + Environment.NewLine + resp.DataAsString);
                             return null;
                         }
                     }
@@ -219,23 +235,26 @@
                 dict.Add("name", name);
 
                 string json = _Serializer.SerializeJson(dict, true);
+                if (LogRequests) Log(SeverityEnum.Debug, "request:" + Environment.NewLine + json);
 
                 using (RestResponse resp = await req.SendAsync(json, token).ConfigureAwait(false))
                 {
                     if (resp == null)
                     {
-                        Logger?.Invoke(SeverityEnum.Warn, "no response from " + url);
+                        Log(SeverityEnum.Warn, "no response from " + url);
                         return false;
                     }
                     else
                     {
+                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
                             return true;
                         }
                         else
                         {
-                            Logger?.Invoke(SeverityEnum.Warn, "status " + resp.StatusCode + " received from " + url + ": " + Environment.NewLine + resp.DataAsString);
+                            Log(SeverityEnum.Warn, "status " + resp.StatusCode + " received from " + url + ": " + Environment.NewLine + resp.DataAsString);
                             return false;
                         }
                     }

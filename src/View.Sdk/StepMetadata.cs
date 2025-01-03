@@ -59,7 +59,7 @@
             }
             set
             {
-                if (string.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(StepArchiveFilename));
+                if (String.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(StepArchiveFilename));
                 _StepArchiveFilename = value;
             }
         }
@@ -75,7 +75,7 @@
             }
             set
             {
-                if (string.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(StepEntrypointFilename));
+                if (String.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(StepEntrypointFilename));
                 _StepEntrypointFilename = value;
             }
         }
@@ -91,7 +91,7 @@
             }
             set
             {
-                if (string.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(StepEntrypointType));
+                if (String.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(StepEntrypointType));
                 _StepEntrypointType = value;
             }
         }

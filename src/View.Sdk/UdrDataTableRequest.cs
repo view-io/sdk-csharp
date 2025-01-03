@@ -22,7 +22,7 @@
             }
             set
             {
-                if (string.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(GUID));
+                if (String.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(GUID));
                 _Guid = value;
             }
         }
@@ -38,7 +38,7 @@
             }
             set
             {
-                if (string.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(DatabaseType));
+                if (String.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(DatabaseType));
                 if (!_ValidDatabaseTypes.Contains(value)) throw new ArgumentException("Unknown database type '" + value + "'.");
                 _DatabaseType = value;
             }

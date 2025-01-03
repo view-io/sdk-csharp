@@ -68,7 +68,7 @@
         /// <param name="value">The token.</param>
         public Posting(string value)
         {
-            if (string.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(value));
+            if (String.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(value));
 
             Term = value;
         }

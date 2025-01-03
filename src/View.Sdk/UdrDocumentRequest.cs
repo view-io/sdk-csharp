@@ -21,7 +21,7 @@
             }
             set
             {
-                if (string.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(GUID));
+                if (String.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(GUID));
                 _GUID = value;
             }
         }

@@ -35,14 +35,13 @@
         public ViewOpenAiSdk(
             string tenantGuid,
             string baseUrl,
-            string apiKey = null,
-            Action<SeverityEnum, string> logger = null) : base(
+            string apiKey = null) : base(
                 tenantGuid,
                 EmbeddingsGeneratorEnum.OpenAI,
                 baseUrl,
-                apiKey,
-                logger)
+                apiKey)
         {
+            Header = "[OpenAiSdk] ";
         }
 
         #endregion
@@ -116,25 +115,30 @@
                 req.Authorization.BearerToken = ApiKey;
 
                 string json = Serializer.SerializeJson(OpenAiEmbeddingsRequest.FromEmbeddingsRequest(embedRequest), true);
+                if (LogRequests) Log(SeverityEnum.Debug, "request:" + Environment.NewLine + json);
+
                 using (RestResponse resp = await req.SendAsync(json, token).ConfigureAwait(false))
                 {
                     if (resp == null)
                     {
-                        Logger?.Invoke(SeverityEnum.Warn, "no response from " + url);
+                        Log(SeverityEnum.Warn, "no response from " + url);
                         return null;
                     }
                     else
                     {
+                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            if (!string.IsNullOrEmpty(resp.DataAsString))
+                            if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
+                                Log(SeverityEnum.Debug, "deserializing response body");
                                 OpenAiEmbeddingsResult embedResult = Serializer.DeserializeJson<OpenAiEmbeddingsResult>(resp.DataAsString);
                                 return embedResult.ToEmbeddingsResult(OpenAiEmbeddingsRequest.FromEmbeddingsRequest(embedRequest));
                             }
                             else
                             {
-                                Logger?.Invoke(SeverityEnum.Warn, "no data received from " + url);
+                                Log(SeverityEnum.Warn, "no data received from " + url);
                                 return new EmbeddingsResult
                                 {
                                     Success = false,
@@ -145,7 +149,7 @@
                         }
                         else
                         {
-                            Logger?.Invoke(SeverityEnum.Warn, "status " + resp.StatusCode + " received from " + url + ": " + Environment.NewLine + resp.DataAsString);
+                            Log(SeverityEnum.Warn, "status " + resp.StatusCode + " received from " + url + ": " + Environment.NewLine + resp.DataAsString);
                             return new EmbeddingsResult
                             {
                                 Success = false,

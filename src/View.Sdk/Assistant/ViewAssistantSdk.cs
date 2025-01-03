@@ -31,7 +31,7 @@
         /// Instantiate.
         /// </summary>
         /// <param name="endpoint">Endpoint URL.</param>
-        public ViewAssistantSdk(string endpoint = "http://localhost:8331/") : base(endpoint)
+        public ViewAssistantSdk(string endpoint = "http://localhost:8000/") : base(endpoint)
         {
             Header = "[ViewAssistantSdk] ";
         }
@@ -53,6 +53,10 @@
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Post, "application/json"))
             {
+                req.TimeoutMilliseconds = TimeoutMs;
+                req.Authorization.BearerToken = AccessKey;
+                req.ContentType = "application/json";
+
                 if (LogRequests) Log(SeverityEnum.Debug, "request body: " + Environment.NewLine + json);
 
                 using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(ragRequest, true), token).ConfigureAwait(false))
@@ -68,6 +72,11 @@
                                 else
                                     yield break;
                             }
+                        }
+                        else
+                        {
+                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            yield break;
                         }
                     }
                     else
@@ -92,6 +101,10 @@
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Post, "application/json"))
             {
+                req.TimeoutMilliseconds = TimeoutMs;
+                req.Authorization.BearerToken = AccessKey;
+                req.ContentType = "application/json";
+
                 if (LogRequests) Log(SeverityEnum.Debug, "request body: " + Environment.NewLine + json);
 
                 using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(chatRequest, true), token).ConfigureAwait(false))
@@ -107,6 +120,11 @@
                                 else
                                     yield break;
                             }
+                        }
+                        else
+                        {
+                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            yield break;
                         }
                     }
                     else

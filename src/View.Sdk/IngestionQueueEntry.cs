@@ -106,7 +106,6 @@
 
         #region Private-Members
 
-        private int _Id = 0;
         private long _ContentLength = 0;
 
         #endregion

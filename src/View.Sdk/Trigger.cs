@@ -47,7 +47,7 @@
             }
             set
             {
-                if (!string.IsNullOrEmpty(value))
+                if (!String.IsNullOrEmpty(value))
                 {
                     if (!value.StartsWith("/")) value = "/" + value;
 

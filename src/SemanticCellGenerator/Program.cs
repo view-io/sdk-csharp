@@ -244,7 +244,7 @@
             List<string> allContent = GetAllContent(cell);
             string concatenatedContent = string.Join("", allContent);
 
-            if (!string.IsNullOrEmpty(concatenatedContent))
+            if (!String.IsNullOrEmpty(concatenatedContent))
             {
                 // Calculate hashes from concatenated content
                 byte[] contentBytes = Encoding.UTF8.GetBytes(concatenatedContent);

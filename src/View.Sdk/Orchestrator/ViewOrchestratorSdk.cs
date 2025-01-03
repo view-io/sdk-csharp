@@ -109,12 +109,12 @@
         /// </summary>
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
-        /// <returns>Task.</returns>
-        public async Task DeleteTrigger(string guid, CancellationToken token = default)
+        /// <returns>True if successful.</returns>
+        public async Task<bool> DeleteTrigger(string guid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/triggers/" + guid;
-            await Delete(url, token).ConfigureAwait(false);
+            return await Delete(url, token).ConfigureAwait(false);
         }
 
         #endregion
@@ -176,12 +176,12 @@
         /// </summary>
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
-        /// <returns>Task.</returns>
-        public async Task DeleteStep(string guid, CancellationToken token = default)
+        /// <returns>True if successful.</returns>
+        public async Task<bool> DeleteStep(string guid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/steps/" + guid;
-            await Delete(url, token).ConfigureAwait(false);
+            return await Delete(url, token).ConfigureAwait(false);
         }
 
         #endregion
@@ -243,12 +243,12 @@
         /// </summary>
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
-        /// <returns>Task.</returns>
-        public async Task DeleteDataFlow(string guid, CancellationToken token = default)
+        /// <returns>True if successful.</returns>
+        public async Task<bool> DeleteDataFlow(string guid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/dataflows/" + guid;
-            await Delete(url, token).ConfigureAwait(false);
+            return await Delete(url, token).ConfigureAwait(false);
         }
 
         #endregion

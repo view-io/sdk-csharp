@@ -1129,7 +1129,7 @@
             </summary>
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
+            <returns>True if successful.</returns>
         </member>
         <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveTenant(System.Threading.CancellationToken)">
             <summary>
@@ -1191,7 +1191,7 @@
             </summary>
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
+            <returns>True if successful.</returns>
         </member>
         <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateCredential(View.Sdk.Credential,System.Threading.CancellationToken)">
             <summary>
@@ -1238,7 +1238,7 @@
             </summary>
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
+            <returns>True if successful.</returns>
         </member>
         <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreatePool(View.Sdk.StoragePool,System.Threading.CancellationToken)">
             <summary>
@@ -1285,7 +1285,7 @@
             </summary>
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
+            <returns>True if successful.</returns>
         </member>
         <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateBucket(View.Sdk.BucketMetadata,System.Threading.CancellationToken)">
             <summary>
@@ -1332,7 +1332,7 @@
             </summary>
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
+            <returns>True if successful.</returns>
         </member>
         <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateEncryptionKey(View.Sdk.EncryptionKey,System.Threading.CancellationToken)">
             <summary>
@@ -1379,7 +1379,7 @@
             </summary>
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
+            <returns>True if successful.</returns>
         </member>
         <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateMetadataRule(View.Sdk.MetadataRule,System.Threading.CancellationToken)">
             <summary>
@@ -1426,7 +1426,7 @@
             </summary>
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
+            <returns>True if successful.</returns>
         </member>
         <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateEmbeddingsRule(View.Sdk.EmbeddingsRule,System.Threading.CancellationToken)">
             <summary>
@@ -1473,7 +1473,7 @@
             </summary>
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
+            <returns>True if successful.</returns>
         </member>
         <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateVectorRepository(View.Sdk.VectorRepository,System.Threading.CancellationToken)">
             <summary>
@@ -1520,7 +1520,7 @@
             </summary>
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
+            <returns>True if successful.</returns>
         </member>
         <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateGraphRepository(View.Sdk.GraphRepository,System.Threading.CancellationToken)">
             <summary>
@@ -1567,7 +1567,7 @@
             </summary>
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
+            <returns>True if successful.</returns>
         </member>
         <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveCollections(System.Threading.CancellationToken)">
             <summary>
@@ -1606,7 +1606,7 @@
             </summary>
             <param name="collectionGuid">Collection GUID.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
+            <returns>True if successful.</returns>
         </member>
         <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveDataRepositories(System.Threading.CancellationToken)">
             <summary>
@@ -1637,7 +1637,7 @@
             </summary>
             <param name="repositoryGuid">Data repository GUID.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
+            <returns>True if successful.</returns>
         </member>
         <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsWebhookEvent(System.String,System.Threading.CancellationToken)">
             <summary>
@@ -1707,7 +1707,7 @@
             </summary>
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
+            <returns>True if successful.</returns>
         </member>
         <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateWebhookTarget(View.Sdk.WebhookTarget,System.Threading.CancellationToken)">
             <summary>
@@ -1754,7 +1754,7 @@
             </summary>
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
+            <returns>True if successful.</returns>
         </member>
         <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateObjectLock(View.Sdk.ObjectLock,System.Threading.CancellationToken)">
             <summary>
@@ -1801,7 +1801,7 @@
             </summary>
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
+            <returns>True if successful.</returns>
         </member>
         <member name="T:View.Sdk.CrawlFilter">
             <summary>
@@ -5017,7 +5017,7 @@
             </summary>
             <param name="collectionGuid">Collection GUID.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
+            <returns>True if successful.</returns>
         </member>
         <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveDocuments(System.String,System.Threading.CancellationToken)">
             <summary>
@@ -5061,7 +5061,7 @@
             <param name="collectionGuid">Collection GUID.</param>
             <param name="documentGuid">Document GUID.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
+            <returns>True if successful.</returns>
         </member>
         <member name="M:View.Sdk.Lexi.ViewLexiSdk.DeleteDocument(System.String,System.String,System.String,System.Threading.CancellationToken)">
             <summary>
@@ -5071,7 +5071,7 @@
             <param name="key">Document key.</param>
             <param name="version">Document version.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
+            <returns>True if successful.</returns>
         </member>
         <member name="M:View.Sdk.Lexi.ViewLexiSdk.ExistsIngestQueueEntry(System.String,System.Threading.CancellationToken)">
             <summary>
@@ -5102,7 +5102,7 @@
             </summary>
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
+            <returns>True if successful.</returns>
         </member>
         <member name="M:View.Sdk.Lexi.ViewLexiSdk.Enumerate(System.String,View.Sdk.EnumerationQuery,System.Threading.CancellationToken)">
             <summary>
@@ -5730,7 +5730,7 @@
             </summary>
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
+            <returns>True if successful.</returns>
         </member>
         <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.CreateStep(View.Sdk.StepMetadata,System.Threading.CancellationToken)">
             <summary>
@@ -5769,7 +5769,7 @@
             </summary>
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
+            <returns>True if successful.</returns>
         </member>
         <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.CreateDataFlow(View.Sdk.DataFlow,System.Threading.CancellationToken)">
             <summary>
@@ -5808,7 +5808,7 @@
             </summary>
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
+            <returns>True if successful.</returns>
         </member>
         <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.RetrieveDataFlowLogs(System.String,System.String,System.Threading.CancellationToken)">
             <summary>
@@ -8749,6 +8749,26 @@
             View embeddings generator SDK base class.
             </summary>
         </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsProviderSdkBase.LogRequests">
+            <summary>
+            Enable or disable logging of request bodies.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsProviderSdkBase.LogResponses">
+            <summary>
+            Enable or disable logging of response bodies.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsProviderSdkBase.Logger">
+            <summary>
+            Method to invoke to send log messages.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.EmbeddingsProviderSdkBase.Header">
+            <summary>
+            Header to prepend to log messages.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Vector.EmbeddingsProviderSdkBase.TenantGUID">
             <summary>
             Tenant GUID.
@@ -8779,12 +8799,7 @@
             Timeout in milliseconds.
             </summary>
         </member>
-        <member name="P:View.Sdk.Vector.EmbeddingsProviderSdkBase.Logger">
-            <summary>
-            Logger.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Vector.EmbeddingsProviderSdkBase.#ctor(System.String,View.Sdk.EmbeddingsGeneratorEnum,System.String,System.String,System.Action{View.Sdk.SeverityEnum,System.String})">
+        <member name="M:View.Sdk.Vector.EmbeddingsProviderSdkBase.#ctor(System.String,View.Sdk.EmbeddingsGeneratorEnum,System.String,System.String)">
             <summary>
             Instantiate.
             </summary>
@@ -8792,12 +8807,18 @@
             <param name="generator">Embeddings generator.</param>
             <param name="endpoint">Endpoint URL.</param>
             <param name="apiKey">API key.</param>
-            <param name="logger">Logger method.</param>
         </member>
         <member name="M:View.Sdk.Vector.EmbeddingsProviderSdkBase.Dispose">
             <summary>
             Dispose.
             </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.EmbeddingsProviderSdkBase.Log(View.Sdk.SeverityEnum,System.String)">
+            <summary>
+            Emit a log message.
+            </summary>
+            <param name="sev">Severity.</param>
+            <param name="msg">Message.</param>
         </member>
         <member name="M:View.Sdk.Vector.EmbeddingsProviderSdkBase.ValidateConnectivity(System.Threading.CancellationToken)">
             <summary>
@@ -9075,7 +9096,7 @@
             View Langchain SDK.
             </summary>
         </member>
-        <member name="M:View.Sdk.Vector.Langchain.ViewLangchainSdk.#ctor(System.String,System.String,System.String,System.Action{View.Sdk.SeverityEnum,System.String})">
+        <member name="M:View.Sdk.Vector.Langchain.ViewLangchainSdk.#ctor(System.String,System.String,System.String)">
             <inheritdoc />
         </member>
         <member name="M:View.Sdk.Vector.Langchain.ViewLangchainSdk.ValidateConnectivity(System.Threading.CancellationToken)">
@@ -9257,7 +9278,7 @@
             View Ollama SDK.
             </summary>
         </member>
-        <member name="M:View.Sdk.Vector.Ollama.ViewOllamaSdk.#ctor(System.String,System.String,System.String,System.Action{View.Sdk.SeverityEnum,System.String})">
+        <member name="M:View.Sdk.Vector.Ollama.ViewOllamaSdk.#ctor(System.String,System.String,System.String)">
             <inheritdoc />
         </member>
         <member name="M:View.Sdk.Vector.Ollama.ViewOllamaSdk.ValidateConnectivity(System.Threading.CancellationToken)">
@@ -9362,7 +9383,7 @@
             OpenAI embeddings generator.
             </summary>
         </member>
-        <member name="M:View.Sdk.Vector.OpenAI.ViewOpenAiSdk.#ctor(System.String,System.String,System.String,System.Action{View.Sdk.SeverityEnum,System.String})">
+        <member name="M:View.Sdk.Vector.OpenAI.ViewOpenAiSdk.#ctor(System.String,System.String,System.String)">
             <inheritdoc />
         </member>
         <member name="M:View.Sdk.Vector.OpenAI.ViewOpenAiSdk.ValidateConnectivity(System.Threading.CancellationToken)">
@@ -9802,9 +9823,19 @@
             Timeout in milliseconds.
             </summary>
         </member>
+        <member name="P:View.Sdk.Vector.ViewEmbeddingsSdk.LogRequests">
+            <summary>
+            Enable or disable logging of request bodies.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.ViewEmbeddingsSdk.LogResponses">
+            <summary>
+            Enable or disable logging of response bodies.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Vector.ViewEmbeddingsSdk.Logger">
             <summary>
-            Logger.
+            Method to invoke to send log messages.
             </summary>
         </member>
         <member name="M:View.Sdk.Vector.ViewEmbeddingsSdk.#ctor(System.String,View.Sdk.EmbeddingsGeneratorEnum,System.String,System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Action{View.Sdk.SeverityEnum,System.String})">
@@ -9992,7 +10023,7 @@
             VoyageAI embeddings generator.
             </summary>
         </member>
-        <member name="M:View.Sdk.Vector.VoyageAI.ViewVoyageAiSdk.#ctor(System.String,System.String,System.String,System.Action{View.Sdk.SeverityEnum,System.String})">
+        <member name="M:View.Sdk.Vector.VoyageAI.ViewVoyageAiSdk.#ctor(System.String,System.String,System.String)">
             <inheritdoc />
         </member>
         <member name="M:View.Sdk.Vector.VoyageAI.ViewVoyageAiSdk.ValidateConnectivity(System.Threading.CancellationToken)">
@@ -10192,6 +10223,17 @@
             <param name="token"></param>
             <returns>Instance.</returns>
         </member>
+        <member name="M:View.Sdk.ViewSdkBase.Post``2(System.String,``0,System.Threading.CancellationToken)">
+            <summary>
+            Execute a logic API.
+            </summary>
+            <typeparam name="T1">Input type.</typeparam>
+            <typeparam name="T2">Output type.</typeparam>
+            <param name="url">URL.</param>
+            <param name="obj">Object.</param>
+            <param name="token"></param>
+            <returns>Instance.</returns>
+        </member>
         <member name="M:View.Sdk.ViewSdkBase.Exists(System.String,System.Threading.CancellationToken)">
             <summary>
             Check if an object exists.
@@ -10234,7 +10276,17 @@
             </summary>
             <param name="url">URL.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="M:View.Sdk.ViewSdkBase.Delete``1(System.String,``0,System.Threading.CancellationToken)">
+            <summary>
+            Delete an object.
+            </summary>
+            <typeparam name="T">Type.</typeparam>
+            <param name="url">URL.</param>
+            <param name="obj">Object.</param>
+            <param name="token"></param>
+            <returns>True if successful.</returns>
         </member>
         <member name="T:View.Sdk.WebhookEvent">
             <summary>

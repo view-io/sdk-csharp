@@ -22,7 +22,7 @@
             }
             set
             {
-                if (string.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(Field));
+                if (String.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(Field));
                 _Field = value;
             }
         }
@@ -51,7 +51,7 @@
                     || Condition == SearchCondition.LessThan
                     || Condition == SearchCondition.LessThanOrEqualTo)
                 {
-                    if (string.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(value));
+                    if (String.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(value));
 
                     decimal testDecimal = 0m;
                     if (!decimal.TryParse(value, out testDecimal))
@@ -91,7 +91,7 @@
         /// <param name="value">Value.</param>
         public SearchFilter(string field, SearchCondition condition, string value)
         {
-            if (string.IsNullOrEmpty(field)) throw new ArgumentNullException(nameof(field));
+            if (String.IsNullOrEmpty(field)) throw new ArgumentNullException(nameof(field));
 
             Field = field;
             Condition = condition;
@@ -109,7 +109,7 @@
         /// <returns>True if matched.</returns>
         public bool EvaluateValue(object value)
         {
-            if (string.IsNullOrEmpty(Field)) throw new InvalidOperationException("Search filter field cannot be null.");
+            if (String.IsNullOrEmpty(Field)) throw new InvalidOperationException("Search filter field cannot be null.");
 
             if (Condition == SearchCondition.Contains)
             {

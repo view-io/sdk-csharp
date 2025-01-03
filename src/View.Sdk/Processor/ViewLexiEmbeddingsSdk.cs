@@ -90,7 +90,7 @@
                     {
                         if (resp != null)
                         {
-                            if (LogResponses) Logger?.Invoke(SeverityEnum.Debug, "response (status " + resp.StatusCode + "):" + Environment.NewLine + resp.DataAsString);
+                            if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "):" + Environment.NewLine + resp.DataAsString);
 
                             if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                             {

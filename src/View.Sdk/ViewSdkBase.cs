@@ -270,23 +270,84 @@
                 req.ContentType = "application/json";
 
                 string json = Serializer.SerializeJson(obj, true);
-                if (LogRequests) Logger?.Invoke(SeverityEnum.Debug, "request: " + Environment.NewLine + json);
+                if (LogRequests) Log(SeverityEnum.Debug, "request: " + Environment.NewLine + json);
 
                 using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(obj, true), token).ConfigureAwait(false))
                 {
                     if (resp != null)
                     {
-                        if (LogResponses) Logger?.Invoke(SeverityEnum.Debug, "response (status " + resp.StatusCode+ "): " + Environment.NewLine + resp.DataAsString);
+                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
 
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
                             Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
+                                Log(SeverityEnum.Debug, "deserializing response body");
                                 return Serializer.DeserializeJson<T>(resp.DataAsString);
                             }
                             else
                             {
+                                Log(SeverityEnum.Debug, "empty response body, returning null");
+                                return null;
+                            }
+                        }
+                        else
+                        {
+                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            return null;
+                        }
+                    }
+                    else
+                    {
+                        Log(SeverityEnum.Warn, "no response from " + url);
+                        return null;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Execute a logic API.
+        /// </summary>
+        /// <typeparam name="T1">Input type.</typeparam>
+        /// <typeparam name="T2">Output type.</typeparam>
+        /// <param name="url">URL.</param>
+        /// <param name="obj">Object.</param>
+        /// <param name="token"></param>
+        /// <returns>Instance.</returns>
+        public async Task<T2> Post<T1, T2>(string url, T1 obj, CancellationToken token = default) where T1 : class where T2 : class
+        {
+            if (obj == null) throw new ArgumentNullException(nameof(obj));
+            if (String.IsNullOrEmpty(url)) throw new ArgumentNullException(nameof(url));
+
+            using (RestRequest req = new RestRequest(url, HttpMethod.Put))
+            {
+                req.TimeoutMilliseconds = TimeoutMs;
+                req.Authorization.BearerToken = _AccessKey;
+                req.ContentType = "application/json";
+
+                string json = Serializer.SerializeJson(obj, true);
+                if (LogRequests) Log(SeverityEnum.Debug, "request: " + Environment.NewLine + json);
+
+                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(obj, true), token).ConfigureAwait(false))
+                {
+                    if (resp != null)
+                    {
+                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+
+                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                        {
+                            Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+
+                            if (!String.IsNullOrEmpty(resp.DataAsString))
+                            {
+                                Log(SeverityEnum.Debug, "deserializing response body");
+                                return Serializer.DeserializeJson<T2>(resp.DataAsString);
+                            }
+                            else
+                            {
+                                Log(SeverityEnum.Debug, "empty response body, returning null");
                                 return null;
                             }
                         }
@@ -324,7 +385,7 @@
                 {
                     if (resp != null)
                     {
-                        if (LogResponses) Logger?.Invoke(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
 
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
@@ -366,17 +427,19 @@
                 {
                     if (resp != null)
                     {
-                        if (LogResponses) Logger?.Invoke(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
 
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
                             Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
+                                Log(SeverityEnum.Debug, "deserializing response body");
                                 return Serializer.DeserializeJson<T>(resp.DataAsString);
                             }
                             else
                             {
+                                Log(SeverityEnum.Debug, "empty response body, returning null");
                                 return null;
                             }
                         }
@@ -415,17 +478,19 @@
                 {
                     if (resp != null)
                     {
-                        if (LogResponses) Logger?.Invoke(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
 
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
                             Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
+                                Log(SeverityEnum.Debug, "deserializing response body");
                                 return Serializer.DeserializeJson<List<T>>(resp.DataAsString);
                             }
                             else
                             {
+                                Log(SeverityEnum.Debug, "empty response body, returning null");
                                 return null;
                             }
                         }
@@ -464,23 +529,25 @@
                 req.ContentType = "application/json";
 
                 string json = Serializer.SerializeJson(obj, true);
-                if (LogRequests) Logger?.Invoke(SeverityEnum.Debug, "request: " + Environment.NewLine + json);
+                if (LogRequests) Log(SeverityEnum.Debug, "request: " + Environment.NewLine + json);
 
                 using (RestResponse resp = await req.SendAsync(json, token).ConfigureAwait(false))
                 {
                     if (resp != null)
                     {
-                        if (LogResponses) Logger?.Invoke(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
 
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
                             Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
+                                Log(SeverityEnum.Debug, "deserializing response body");
                                 return Serializer.DeserializeJson<T>(resp.DataAsString);
                             }
                             else
                             {
+                                Log(SeverityEnum.Debug, "empty response body, returning null");
                                 return null;
                             }
                         }
@@ -504,8 +571,8 @@
         /// </summary>
         /// <param name="url">URL.</param>
         /// <param name="token">Cancellation token.</param>
-        /// <returns>Task.</returns>
-        public async Task Delete(string url, CancellationToken token = default)
+        /// <returns>True if successful.</returns>
+        public async Task<bool> Delete(string url, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(url)) throw new ArgumentNullException(nameof(url));
 
@@ -518,15 +585,17 @@
                 {
                     if (resp != null)
                     {
-                        if (LogResponses) Logger?.Invoke(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
 
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
                             Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            return true;
                         }
                         else
                         {
                             Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            return false;
                         }
                     }
                     else
@@ -534,7 +603,55 @@
                         Log(SeverityEnum.Warn, "no response from " + url);
                     }
 
-                    return;
+                    return false;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Delete an object.
+        /// </summary>
+        /// <typeparam name="T">Type.</typeparam>
+        /// <param name="url">URL.</param>
+        /// <param name="obj">Object.</param>
+        /// <param name="token"></param>
+        /// <returns>True if successful.</returns>
+        public async Task<bool> Delete<T>(string url, T obj, CancellationToken token = default) where T : class
+        {
+            if (obj == null) throw new ArgumentNullException(nameof(obj));
+            if (String.IsNullOrEmpty(url)) throw new ArgumentNullException(nameof(url));
+
+            using (RestRequest req = new RestRequest(url, HttpMethod.Delete))
+            {
+                req.TimeoutMilliseconds = TimeoutMs;
+                req.Authorization.BearerToken = _AccessKey;
+                req.ContentType = "application/json";
+
+                string json = Serializer.SerializeJson(obj, true);
+                if (LogRequests) Log(SeverityEnum.Debug, "request: " + Environment.NewLine + json);
+
+                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(obj, true), token).ConfigureAwait(false))
+                {
+                    if (resp != null)
+                    {
+                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+
+                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                        {
+                            Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            return true;
+                        }
+                        else
+                        {
+                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        Log(SeverityEnum.Warn, "no response from " + url);
+                        return false;
+                    }
                 }
             }
         }

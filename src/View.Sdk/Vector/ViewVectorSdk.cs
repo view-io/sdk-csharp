@@ -13,6 +13,7 @@
     using View.Sdk.Semantic;
     using System.Linq;
     using System.Reflection.Metadata;
+    using LiteGraph.Sdk;
 
     /// <summary>
     /// View Vector SDK.
@@ -58,36 +59,8 @@
         {
             if (queryReq == null) throw new ArgumentNullException(nameof(queryReq));
             if (String.IsNullOrEmpty(queryReq.VectorRepositoryGUID)) throw new ArgumentNullException(nameof(queryReq.VectorRepositoryGUID));
-
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + queryReq.VectorRepositoryGUID + "/query";
-
-            using (RestRequest req = new RestRequest(url, HttpMethod.Post))
-            {
-                req.TimeoutMilliseconds = TimeoutMs;
-                req.ContentType = "application/json";
-
-                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(queryReq, true), token).ConfigureAwait(false))
-                {
-                    if (resp != null)
-                    {
-                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                        {
-                            Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return resp.DataAsString;
-                        }
-                        else
-                        {
-                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return null;
-                        }
-                    }
-                    else
-                    {
-                        Log(SeverityEnum.Warn, "no response from " + url);
-                        return null;
-                    }
-                }
-            }
+            return await Post<VectorQueryRequest, string>(url, queryReq, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -102,43 +75,8 @@
         {
             if (searchReq == null) throw new ArgumentNullException(nameof(searchReq));
             if (String.IsNullOrEmpty(searchReq.VectorRepositoryGUID)) throw new ArgumentNullException(nameof(searchReq.VectorRepositoryGUID));
-
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + searchReq.VectorRepositoryGUID + "/search";
-
-            using (RestRequest req = new RestRequest(url, HttpMethod.Post))
-            {
-                req.TimeoutMilliseconds = TimeoutMs;
-                req.ContentType = "application/json";
-
-                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(searchReq, true), token).ConfigureAwait(false))
-                {
-                    if (resp != null)
-                    {
-                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                        {
-                            Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
-                            {
-                                return Serializer.DeserializeJson<List<VectorChunk>>(resp.DataAsString);
-                            }
-                            else
-                            {
-                                return null;
-                            }
-                        }
-                        else
-                        {
-                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return null;
-                        }
-                    }
-                    else
-                    {
-                        Log(SeverityEnum.Warn, "no response from " + url);
-                        return null;
-                    }
-                }
-            }
+            return await Post<VectorSearchRequest, List<VectorChunk>>(url, searchReq, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -153,43 +91,8 @@
         {
             if (findReq == null) throw new ArgumentNullException(nameof(findReq));
             if (String.IsNullOrEmpty(findReq.VectorRepositoryGUID)) throw new ArgumentNullException(nameof(findReq.VectorRepositoryGUID));
-
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + findReq.VectorRepositoryGUID + "/find";
-
-            using (RestRequest req = new RestRequest(url, HttpMethod.Post))
-            {
-                req.TimeoutMilliseconds = TimeoutMs;
-                req.ContentType = "application/json";
-
-                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(findReq, true), token).ConfigureAwait(false))
-                {
-                    if (resp != null)
-                    {
-                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                        {
-                            Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
-                            {
-                                return Serializer.DeserializeJson<FindEmbeddingsResult>(resp.DataAsString);
-                            }
-                            else
-                            {
-                                return null;
-                            }
-                        }
-                        else
-                        {
-                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return null;
-                        }
-                    }
-                    else
-                    {
-                        Log(SeverityEnum.Warn, "no response from " + url);
-                        return null;
-                    }
-                }
-            }
+            return await Post<FindEmbeddingsRequest, FindEmbeddingsResult>(url, findReq, token).ConfigureAwait(false);
         }
 
         #endregion
@@ -207,43 +110,8 @@
             CancellationToken token = default)
         {
             if (query == null) throw new ArgumentNullException(nameof(query));
-
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + query.VectorRepositoryGUID + "/enumerate";
-
-            using (RestRequest req = new RestRequest(url, HttpMethod.Post))
-            {
-                req.TimeoutMilliseconds = TimeoutMs;
-                req.ContentType = "application/json";
-
-                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(query, true), token).ConfigureAwait(false))
-                {
-                    if (resp != null)
-                    {
-                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                        {
-                            Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
-                            {
-                                return Serializer.DeserializeJson<EnumerationResult<EmbeddingsDocument>>(resp.DataAsString);
-                            }
-                            else
-                            {
-                                return null;
-                            }
-                        }
-                        else
-                        {
-                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return null;
-                        }
-                    }
-                    else
-                    {
-                        Log(SeverityEnum.Warn, "no response from " + url);
-                        return null;
-                    }
-                }
-            }
+            return await Post<EnumerationQuery, EnumerationResult<EmbeddingsDocument>>(url, query, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -257,35 +125,8 @@
             CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(repoGuid)) throw new ArgumentNullException(nameof(repoGuid));
-
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + repoGuid;
-
-            using (RestRequest req = new RestRequest(url, HttpMethod.Delete))
-            {
-                req.TimeoutMilliseconds = TimeoutMs;
-
-                using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
-                {
-                    if (resp != null)
-                    {
-                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                        {
-                            Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return true;
-                        }
-                        else
-                        {
-                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        Log(SeverityEnum.Warn, "no response from " + url);
-                        return false;
-                    }
-                }
-            }
+            return await Delete(url, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -299,43 +140,8 @@
             CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(repoGuid)) throw new ArgumentNullException(nameof(repoGuid));
-
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + repoGuid + "/stats";
-
-            using (RestRequest req = new RestRequest(url, HttpMethod.Get))
-            {
-                req.TimeoutMilliseconds = TimeoutMs;
-                req.ContentType = "application/json";
-
-                using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
-                {
-                    if (resp != null)
-                    {
-                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                        {
-                            Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
-                            {
-                                return Serializer.DeserializeJson<VectorRepositoryStatistics>(resp.DataAsString);
-                            }
-                            else
-                            {
-                                return null;
-                            }
-                        }
-                        else
-                        {
-                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return null;
-                        }
-                    }
-                    else
-                    {
-                        Log(SeverityEnum.Warn, "no response from " + url);
-                        return null;
-                    }
-                }
-            }
+            return await Retrieve<VectorRepositoryStatistics>(url, token).ConfigureAwait(false);
         }
 
         #endregion
@@ -356,35 +162,8 @@
         {
             if (String.IsNullOrEmpty(repoGuid)) throw new ArgumentNullException(nameof(repoGuid));
             if (String.IsNullOrEmpty(docGuid)) throw new ArgumentNullException(nameof(docGuid));
-
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + repoGuid + "/documents/" + docGuid;
-
-            using (RestRequest req = new RestRequest(url, HttpMethod.Head))
-            {
-                req.TimeoutMilliseconds = TimeoutMs;
-
-                using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
-                {
-                    if (resp != null)
-                    {
-                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                        {
-                            Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return true;
-                        }
-                        else
-                        {
-                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        Log(SeverityEnum.Warn, "no response from " + url);
-                        return false;
-                    }
-                }
-            }
+            return await Exists(url, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -399,43 +178,8 @@
         {
             if (document == null) throw new ArgumentNullException(nameof(document));
             if (String.IsNullOrEmpty(document.VectorRepositoryGUID)) throw new ArgumentNullException(nameof(document.VectorRepositoryGUID));
-
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + document.VectorRepositoryGUID + "/documents";
-
-            using (RestRequest req = new RestRequest(url, HttpMethod.Post))
-            {
-                req.TimeoutMilliseconds = TimeoutMs;
-                req.ContentType = "application/json";
-
-                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(document, true), token).ConfigureAwait(false))
-                {
-                    if (resp != null)
-                    {
-                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                        {
-                            Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
-                            {
-                                return Serializer.DeserializeJson<EmbeddingsDocument>(resp.DataAsString);
-                            }
-                            else
-                            {
-                                return null;
-                            }
-                        }
-                        else
-                        {
-                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return null;
-                        }
-                    }
-                    else
-                    {
-                        Log(SeverityEnum.Warn, "no response from " + url);
-                        return null;
-                    }
-                }
-            }
+            return await Create<EmbeddingsDocument>(url, document, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -452,35 +196,8 @@
         {
             if (String.IsNullOrEmpty(repoGuid)) throw new ArgumentNullException(nameof(repoGuid));
             if (String.IsNullOrEmpty(docGuid)) throw new ArgumentNullException(nameof(docGuid));
-
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + repoGuid + "/documents/" + docGuid;
-
-            using (RestRequest req = new RestRequest(url, HttpMethod.Delete))
-            {
-                req.TimeoutMilliseconds = TimeoutMs;
-
-                using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
-                {
-                    if (resp != null)
-                    {
-                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                        {
-                            Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return true;
-                        }
-                        else
-                        {
-                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        Log(SeverityEnum.Warn, "no response from " + url);
-                        return false;
-                    }
-                }
-            }
+            return await Delete(url, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -497,36 +214,8 @@
         {
             if (String.IsNullOrEmpty(repoGuid)) throw new ArgumentNullException(nameof(repoGuid));
             if (deleteRequest == null) throw new ArgumentNullException(nameof(deleteRequest));
-
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + repoGuid + "/documents";
-
-            using (RestRequest req = new RestRequest(url, HttpMethod.Delete))
-            {
-                req.TimeoutMilliseconds = TimeoutMs;
-                req.ContentType = "application/json";
-
-                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(deleteRequest, true), token).ConfigureAwait(false))
-                {
-                    if (resp != null)
-                    {
-                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                        {
-                            Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return true;
-                        }
-                        else
-                        {
-                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        Log(SeverityEnum.Warn, "no response from " + url);
-                        return false;
-                    }
-                }
-            }
+            return await Delete<VectorDeleteRequest>(url, deleteRequest, token).ConfigureAwait(false);
         }
 
         #endregion
@@ -547,41 +236,8 @@
         {
             if (String.IsNullOrEmpty(repoGuid)) throw new ArgumentNullException(nameof(repoGuid));
             if (String.IsNullOrEmpty(docGuid)) throw new ArgumentNullException(nameof(docGuid));
-
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + repoGuid + "/documents/" + docGuid + "/cells";
-
-            using (RestRequest req = new RestRequest(url, HttpMethod.Get))
-            {
-                req.TimeoutMilliseconds = TimeoutMs;
-
-                using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
-                {
-                    if (resp != null)
-                    {
-                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                        {
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
-                            {
-                                return Serializer.DeserializeJson<List<SemanticCell>>(resp.DataAsString);
-                            }
-                            else
-                            {
-                                return null;
-                            }
-                        }
-                        else
-                        {
-                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return null;
-                        }
-                    }
-                    else
-                    {
-                        Log(SeverityEnum.Warn, "no response from " + url);
-                        return null;
-                    }
-                }
-            }
+            return await RetrieveMany<SemanticCell>(url, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -601,41 +257,8 @@
             if (String.IsNullOrEmpty(repoGuid)) throw new ArgumentNullException(nameof(repoGuid));
             if (String.IsNullOrEmpty(docGuid)) throw new ArgumentNullException(nameof(docGuid));
             if (String.IsNullOrEmpty(cellGuid)) throw new ArgumentNullException(nameof(cellGuid));
-
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + repoGuid + "/documents/" + docGuid + "/cells/" + cellGuid;
-
-            using (RestRequest req = new RestRequest(url, HttpMethod.Get))
-            {
-                req.TimeoutMilliseconds = TimeoutMs;
-
-                using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
-                {
-                    if (resp != null)
-                    {
-                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                        {
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
-                            {
-                                return Serializer.DeserializeJson<SemanticCell>(resp.DataAsString);
-                            }
-                            else
-                            {
-                                return null;
-                            }
-                        }
-                        else
-                        {
-                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return null;
-                        }
-                    }
-                    else
-                    {
-                        Log(SeverityEnum.Warn, "no response from " + url);
-                        return null;
-                    }
-                }
-            }
+            return await Retrieve<SemanticCell>(url, token).ConfigureAwait(false);
         }
 
         #endregion
@@ -659,41 +282,8 @@
             if (String.IsNullOrEmpty(repoGuid)) throw new ArgumentNullException(nameof(repoGuid));
             if (String.IsNullOrEmpty(docGuid)) throw new ArgumentNullException(nameof(docGuid));
             if (String.IsNullOrEmpty(cellGuid)) throw new ArgumentNullException(nameof(cellGuid));
-
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + repoGuid + "/documents/" + docGuid + "/cells/" + cellGuid + "/chunks";
-
-            using (RestRequest req = new RestRequest(url, HttpMethod.Get))
-            {
-                req.TimeoutMilliseconds = TimeoutMs;
-
-                using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
-                {
-                    if (resp != null)
-                    {
-                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                        {
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
-                            {
-                                return Serializer.DeserializeJson<List<SemanticChunk>>(resp.DataAsString);
-                            }
-                            else
-                            {
-                                return null;
-                            }
-                        }
-                        else
-                        {
-                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return null;
-                        }
-                    }
-                    else
-                    {
-                        Log(SeverityEnum.Warn, "no response from " + url);
-                        return null;
-                    }
-                }
-            }
+            return await RetrieveMany<SemanticChunk>(url, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -716,41 +306,8 @@
             if (String.IsNullOrEmpty(docGuid)) throw new ArgumentNullException(nameof(docGuid));
             if (String.IsNullOrEmpty(cellGuid)) throw new ArgumentNullException(nameof(cellGuid));
             if (String.IsNullOrEmpty(chunkGuid)) throw new ArgumentNullException(nameof(chunkGuid));
-
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + repoGuid + "/documents/" + docGuid + "/cells/" + cellGuid + "/chunks/" + chunkGuid;
-
-            using (RestRequest req = new RestRequest(url, HttpMethod.Get))
-            {
-                req.TimeoutMilliseconds = TimeoutMs;
-
-                using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
-                {
-                    if (resp != null)
-                    {
-                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                        {
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
-                            {
-                                return Serializer.DeserializeJson<SemanticChunk>(resp.DataAsString);
-                            }
-                            else
-                            {
-                                return null;
-                            }
-                        }
-                        else
-                        {
-                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            return null;
-                        }
-                    }
-                    else
-                    {
-                        Log(SeverityEnum.Warn, "no response from " + url);
-                        return null;
-                    }
-                }
-            }
+            return await Retrieve<SemanticChunk>(url, token).ConfigureAwait(false);
         }
 
         #endregion

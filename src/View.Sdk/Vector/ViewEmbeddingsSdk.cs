@@ -135,9 +135,49 @@
         }
 
         /// <summary>
-        /// Logger.
+        /// Enable or disable logging of request bodies.
         /// </summary>
-        public Action<SeverityEnum, string> Logger { get; set; } = null;
+        public bool LogRequests
+        {
+            get
+            {
+                return _SdkBase.LogRequests;
+            }
+            set
+            {
+                _SdkBase.LogRequests = value;
+            }
+        }
+
+        /// <summary>
+        /// Enable or disable logging of response bodies.
+        /// </summary>
+        public bool LogResponses
+        {
+            get
+            {
+                return _SdkBase.LogResponses;
+            }
+            set
+            {
+                _SdkBase.LogResponses = value;
+            }
+        }
+
+        /// <summary>
+        /// Method to invoke to send log messages.
+        /// </summary>
+        public Action<SeverityEnum, string> Logger
+        {
+            get
+            {
+                return _SdkBase.Logger;
+            }
+            set
+            {
+                _SdkBase.Logger = value;
+            }
+        }
 
         #endregion
 
@@ -201,16 +241,16 @@
             switch (Generator)
             {
                 case EmbeddingsGeneratorEnum.LCProxy:
-                    _SdkBase = new ViewLangchainSdk(TenantGUID, BaseUrl, ApiKey, Logger);
+                    _SdkBase = new ViewLangchainSdk(TenantGUID, BaseUrl, ApiKey);
                     break;
                 case EmbeddingsGeneratorEnum.Ollama:
-                    _SdkBase = new ViewOllamaSdk(TenantGUID, BaseUrl, ApiKey, Logger);
+                    _SdkBase = new ViewOllamaSdk(TenantGUID, BaseUrl, ApiKey);
                     break;
                 case EmbeddingsGeneratorEnum.OpenAI:
-                    _SdkBase = new ViewOpenAiSdk(TenantGUID, BaseUrl, ApiKey, Logger);
+                    _SdkBase = new ViewOpenAiSdk(TenantGUID, BaseUrl, ApiKey);
                     break;
                 case EmbeddingsGeneratorEnum.VoyageAI:
-                    _SdkBase = new ViewVoyageAiSdk(TenantGUID, BaseUrl, ApiKey, Logger);
+                    _SdkBase = new ViewVoyageAiSdk(TenantGUID, BaseUrl, ApiKey);
                     break;
                 default:
                     throw new ArgumentException("Unknown embeddings generator '" + Generator.ToString() + "'.");
@@ -359,7 +399,7 @@
 
             List<string> contents = new List<string>();
             foreach (SemanticChunk chunk in chunks)
-                if (!string.IsNullOrEmpty(chunk.Content)) contents.Add(chunk.Content);
+                if (!String.IsNullOrEmpty(chunk.Content)) contents.Add(chunk.Content);
 
             EmbeddingsRequest request = new EmbeddingsRequest();
             request.Model = model;
@@ -437,7 +477,7 @@
 
             foreach (SemanticChunk chunk in chunks)
             {
-                if (!string.IsNullOrEmpty(chunk.Content))
+                if (!String.IsNullOrEmpty(chunk.Content))
                 {
                     EmbeddingsMap matchingEmbedding = embeddingsMap.FirstOrDefault(e => e.Content == chunk.Content);
                     if (matchingEmbedding != null)

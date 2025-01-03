@@ -174,7 +174,7 @@
             Content = content;
             Embeddings = embeddings;
 
-            if (!string.IsNullOrEmpty(content))
+            if (!String.IsNullOrEmpty(content))
             {
                 Length = content.Length;
                 MD5Hash = Convert.ToHexString(Helpers.HashHelper.MD5Hash(Encoding.UTF8.GetBytes(content)));
@@ -204,7 +204,7 @@
 
             string embeddingsStr = row["embedding"] != null ? row["embedding"].ToString() : null;
             List<float> embeddings = new List<float>();
-            if (!string.IsNullOrEmpty(embeddingsStr))
+            if (!String.IsNullOrEmpty(embeddingsStr))
                 embeddings = serializer.DeserializeJson<List<float>>(embeddingsStr);
 
             SemanticChunk chunk = new SemanticChunk

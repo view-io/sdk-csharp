@@ -4,6 +4,7 @@
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection.PortableExecutable;
     using System.Runtime.InteropServices;
     using System.Threading;
     using System.Threading.Tasks;
@@ -16,6 +17,44 @@
     public abstract class EmbeddingsProviderSdkBase : IDisposable
     {
         #region Public-Members
+
+        /// <summary>
+        /// Enable or disable logging of request bodies.
+        /// </summary>
+        public bool LogRequests { get; set; } = false;
+
+        /// <summary>
+        /// Enable or disable logging of response bodies.
+        /// </summary>
+        public bool LogResponses { get; set; } = false;
+
+        /// <summary>
+        /// Method to invoke to send log messages.
+        /// </summary>
+        public Action<SeverityEnum, string> Logger { get; set; } = null;
+
+        /// <summary>
+        /// Header to prepend to log messages.
+        /// </summary>
+        public string Header
+        {
+            get
+            {
+                return _Header;
+            }
+            set
+            {
+                if (String.IsNullOrEmpty(value))
+                {
+                    _Header = value;
+                }
+                else
+                {
+                    if (!value.EndsWith(" ")) value += " ";
+                    _Header = value;
+                }
+            }
+        }
 
         /// <summary>
         /// Tenant GUID.
@@ -81,15 +120,11 @@
             }
         }
 
-        /// <summary>
-        /// Logger.
-        /// </summary>
-        public Action<SeverityEnum, string> Logger { get; set; } = null;
-
         #endregion
 
         #region Private-Members
 
+        private string _Header = "[EmbeddingsSdk] ";
         private Serializer _Serializer = new Serializer();
         private string _BaseUrl = "http://localhost:8000/";
         private int _TimeoutMs = 300000;
@@ -105,13 +140,11 @@
         /// <param name="generator">Embeddings generator.</param>
         /// <param name="endpoint">Endpoint URL.</param>
         /// <param name="apiKey">API key.</param>
-        /// <param name="logger">Logger method.</param>
         public EmbeddingsProviderSdkBase(
             string tenantGuid,
             EmbeddingsGeneratorEnum generator,
             string endpoint,
-            string apiKey,
-            Action<SeverityEnum, string> logger = null)
+            string apiKey)
         {
             if (String.IsNullOrEmpty(tenantGuid)) throw new ArgumentNullException(nameof(tenantGuid));
 
@@ -121,7 +154,6 @@
             Generator = generator;
             BaseUrl = endpoint;
             ApiKey = apiKey;
-            Logger = logger;
         }
 
         #endregion
@@ -136,6 +168,17 @@
         public void Dispose()
         {
             _Serializer = null;
+        }
+
+        /// <summary>
+        /// Emit a log message.
+        /// </summary>
+        /// <param name="sev">Severity.</param>
+        /// <param name="msg">Message.</param>
+        public void Log(SeverityEnum sev, string msg)
+        {
+            if (String.IsNullOrEmpty(msg)) return;
+            Logger?.Invoke(sev, _Header + msg);
         }
 
         /// <summary>

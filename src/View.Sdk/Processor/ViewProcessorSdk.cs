@@ -94,13 +94,13 @@
                     };
 
                     string json = Serializer.SerializeJson(procReq, true);
-                    if (LogRequests) Logger?.Invoke(SeverityEnum.Debug, "request: " + Environment.NewLine + json);
+                    if (LogRequests) Log(SeverityEnum.Debug, "request: " + Environment.NewLine + json);
 
                     using (RestResponse resp = await req.SendAsync(json, token).ConfigureAwait(false))
                     {
                         if (resp != null)
                         {
-                            if (LogResponses) Logger?.Invoke(SeverityEnum.Debug, "response (status " + resp.StatusCode + "):" + Environment.NewLine + resp.DataAsString);
+                            if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "):" + Environment.NewLine + resp.DataAsString);
 
                             if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                             {
@@ -216,13 +216,13 @@
                     };
 
                     string json = Serializer.SerializeJson(procReq, true);
-                    if (LogRequests) Logger?.Invoke(SeverityEnum.Debug, "request: " + Environment.NewLine + json);
+                    if (LogRequests) Log(SeverityEnum.Debug, "request: " + Environment.NewLine + json);
 
                     using (RestResponse resp = await req.SendAsync(json, token).ConfigureAwait(false))
                     {
                         if (resp != null)
                         {
-                            if (LogResponses) Logger?.Invoke(SeverityEnum.Debug, "response (status " + resp.StatusCode + "):" + Environment.NewLine + resp.DataAsString);
+                            if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "):" + Environment.NewLine + resp.DataAsString);
 
                             if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                             {

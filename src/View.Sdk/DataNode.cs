@@ -52,7 +52,7 @@
         /// <param name="type">The DataType associated with the key-value pair.</param>
         public DataNode(string key, object data, DataTypeEnum type)
         {
-            if (string.IsNullOrEmpty(key)) throw new ArgumentNullException(nameof(key));
+            if (String.IsNullOrEmpty(key)) throw new ArgumentNullException(nameof(key));
             Key = key;
             Data = data;
             Type = type;

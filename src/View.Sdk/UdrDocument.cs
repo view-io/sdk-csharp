@@ -169,7 +169,7 @@
                     Term = s.Key,
                     Count = s.Count()
                 })
-                .Where(s => !string.IsNullOrEmpty(s.Term))
+                .Where(s => !String.IsNullOrEmpty(s.Term))
                 .OrderByDescending(g => g.Count)
                 .Take(count)
                 .ToDictionary(g => g.Term, g => g.Count);

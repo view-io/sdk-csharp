@@ -279,7 +279,7 @@
 
             string embeddingsStr = row["embedding"] != null ? row["embedding"].ToString() : null;
             List<float> embeddings = new List<float>();
-            if (!string.IsNullOrEmpty(embeddingsStr))
+            if (!String.IsNullOrEmpty(embeddingsStr))
                 ret.Embeddings = serializer.DeserializeJson<List<float>>(embeddingsStr);
 
             return ret;

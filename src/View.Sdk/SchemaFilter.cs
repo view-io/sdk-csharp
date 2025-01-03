@@ -22,7 +22,7 @@
             }
             set
             {
-                if (string.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(Property));
+                if (String.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(Property));
                 _Property = value;
             }
         }
@@ -51,7 +51,7 @@
                     || Condition == SchemaCondition.LessThan
                     || Condition == SchemaCondition.LessThanOrEqualTo)
                 {
-                    if (string.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(value));
+                    if (String.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(value));
 
                     decimal testDecimal = 0m;
                     if (!decimal.TryParse(value, out testDecimal))
@@ -91,7 +91,7 @@
         /// <param name="value">Value.</param>
         public SchemaFilter(string field, SchemaCondition condition, string value)
         {
-            if (string.IsNullOrEmpty(field)) throw new ArgumentNullException(nameof(field));
+            if (String.IsNullOrEmpty(field)) throw new ArgumentNullException(nameof(field));
 
             Property = field;
             Condition = condition;
@@ -109,7 +109,7 @@
         /// <returns>True if matched.</returns>
         public bool EvaluateValue(object value)
         {
-            if (string.IsNullOrEmpty(Property)) throw new InvalidOperationException("Search filter field cannot be null.");
+            if (String.IsNullOrEmpty(Property)) throw new InvalidOperationException("Search filter field cannot be null.");
 
             if (Condition == SchemaCondition.Contains)
             {

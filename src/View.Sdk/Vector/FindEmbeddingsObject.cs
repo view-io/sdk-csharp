@@ -24,7 +24,7 @@
             }
             set
             {
-                if (string.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(SHA256Hash));
+                if (String.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(SHA256Hash));
                 _SHA256Hash = value;
             }
         }
@@ -78,7 +78,7 @@
             string sha256Hash = row["sha256"] != null ? row["sha256"].ToString() : null;
             string embeddingsStr = row["embedding"] != null ? row["embedding"].ToString() : null;
             List<float> embeddings = new List<float>();
-            if (!string.IsNullOrEmpty(embeddingsStr))
+            if (!String.IsNullOrEmpty(embeddingsStr))
                 embeddings = serializer.DeserializeJson<List<float>>(embeddingsStr);
 
             return new FindEmbeddingsObject

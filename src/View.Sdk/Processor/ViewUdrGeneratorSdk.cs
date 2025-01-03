@@ -50,14 +50,16 @@
         {
             if (doc == null) throw new ArgumentNullException(nameof(doc));
 
-            if (!string.IsNullOrEmpty(filename))
+            if (!String.IsNullOrEmpty(filename))
                 doc.Data = await File.ReadAllBytesAsync(filename, token).ConfigureAwait(false);
 
             string url = Endpoint + "v1.0/document";
-
+            
             using (RestRequest req = new RestRequest(url, HttpMethod.Put, "application/json"))
             {
                 req.TimeoutMilliseconds = TimeoutMs;
+                req.ContentType = "application/json";
+                req.Authorization.BearerToken = AccessKey;
 
                 using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(doc, true), token).ConfigureAwait(false))
                 {
@@ -66,26 +68,30 @@
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
                             Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            if (!string.IsNullOrEmpty(resp.DataAsString))
+                            if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
+                                Log(SeverityEnum.Debug, "deserializing response body");
                                 UdrDocument docResp = Serializer.DeserializeJson<UdrDocument>(resp.DataAsString);
                                 return docResp;
                             }
                             else
                             {
+                                Log(SeverityEnum.Debug, "empty response body, returning null");
                                 return null;
                             }
                         }
                         else
                         {
                             Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            if (!string.IsNullOrEmpty(resp.DataAsString))
+                            if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
+                                Log(SeverityEnum.Debug, "deserializing response body");
                                 UdrDocument docResp = Serializer.DeserializeJson<UdrDocument>(resp.DataAsString);
                                 return docResp;
                             }
                             else
                             {
+                                Log(SeverityEnum.Debug, "empty response body, returning null");
                                 return null;
                             }
                         }
@@ -109,17 +115,17 @@
         public async Task<UdrDocument> ProcessDataTable(UdrDataTableRequest dt, string filename = null, CancellationToken token = default)
         {
             if (dt == null) throw new ArgumentNullException(nameof(dt));
-            if (string.IsNullOrEmpty(dt.DatabaseType)) throw new ArgumentNullException(nameof(dt.DatabaseType));
+            if (String.IsNullOrEmpty(dt.DatabaseType)) throw new ArgumentNullException(nameof(dt.DatabaseType));
 
             if (dt.DatabaseType.Equals("Sqlite")
-                && string.IsNullOrEmpty(filename))
+                && String.IsNullOrEmpty(filename))
                 throw new ArgumentException("A filename must be supplied when using Sqlite.");
 
             if (!dt.DatabaseType.Equals("Sqlite")
-                && !string.IsNullOrEmpty(filename))
+                && !String.IsNullOrEmpty(filename))
                 throw new ArgumentException("A filename should not be supplied when using a database type other than Sqlite.");
 
-            if (!string.IsNullOrEmpty(filename))
+            if (!String.IsNullOrEmpty(filename))
                 dt.SqliteFileData = await File.ReadAllBytesAsync(filename, token).ConfigureAwait(false);
 
             string url = Endpoint + "v1.0/datatable";
@@ -127,6 +133,8 @@
             using (RestRequest req = new RestRequest(url, HttpMethod.Put, "application/json"))
             {
                 req.TimeoutMilliseconds = TimeoutMs;
+                req.ContentType = "application/json";
+                req.Authorization.BearerToken = AccessKey;
 
                 using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(dt, true), token).ConfigureAwait(false))
                 {

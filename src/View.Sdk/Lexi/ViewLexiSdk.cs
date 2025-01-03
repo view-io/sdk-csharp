@@ -98,12 +98,12 @@
         /// </summary>
         /// <param name="collectionGuid">Collection GUID.</param>
         /// <param name="token">Cancellation token.</param>
-        /// <returns>Task.</returns>
-        public async Task DeleteCollection(string collectionGuid, CancellationToken token = default)
+        /// <returns>True if successful.</returns>
+        public async Task<bool> DeleteCollection(string collectionGuid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections/" + collectionGuid;
-            await Delete(url, token).ConfigureAwait(false);
+            return await Delete(url, token).ConfigureAwait(false);
         }
 
         #endregion
@@ -174,13 +174,13 @@
         /// <param name="collectionGuid">Collection GUID.</param>
         /// <param name="documentGuid">Document GUID.</param>
         /// <param name="token">Cancellation token.</param>
-        /// <returns>Task.</returns>
-        public async Task DeleteDocument(string collectionGuid, string documentGuid, CancellationToken token = default)
+        /// <returns>True if successful.</returns>
+        public async Task<bool> DeleteDocument(string collectionGuid, string documentGuid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
             if (String.IsNullOrEmpty(documentGuid)) throw new ArgumentNullException(nameof(documentGuid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections/" + collectionGuid + "/documents/" + documentGuid;
-            await Delete(url, token).ConfigureAwait(false);
+            return await Delete(url, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -190,14 +190,14 @@
         /// <param name="key">Document key.</param>
         /// <param name="version">Document version.</param>
         /// <param name="token">Cancellation token.</param>
-        /// <returns>Task.</returns>
-        public async Task DeleteDocument(string collectionGuid, string key, string version, CancellationToken token = default)
+        /// <returns>True if successful.</returns>
+        public async Task<bool> DeleteDocument(string collectionGuid, string key, string version, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
             if (String.IsNullOrEmpty(key)) throw new ArgumentNullException(nameof(key));
             if (String.IsNullOrEmpty(version)) throw new ArgumentNullException(nameof(version));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections/" + collectionGuid + "/documents?key=" + key + "&versionId=" + version;
-            await Delete(url, token).ConfigureAwait(false);
+            return await Delete(url, token).ConfigureAwait(false);
         }
 
         #endregion
@@ -246,12 +246,12 @@
         /// </summary>
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
-        /// <returns>Task.</returns>
-        public async Task DeleteIngestQueueEntry(string guid, CancellationToken token = default)
+        /// <returns>True if successful.</returns>
+        public async Task<bool> DeleteIngestQueueEntry(string guid, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/ingestqueue/" + guid;
-            await Delete(url, token).ConfigureAwait(false);
+            return await Delete(url, token).ConfigureAwait(false);
         }
 
         #endregion
@@ -276,6 +276,7 @@
             {
                 req.TimeoutMilliseconds = TimeoutMs;
                 req.ContentType = "application/json";
+                req.Authorization.BearerToken = AccessKey;
 
                 using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(query, true), token).ConfigureAwait(false))
                 {
@@ -286,10 +287,12 @@
                             Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
+                                Log(SeverityEnum.Debug, "deserializing response body");
                                 return Serializer.DeserializeJson<EnumerationResult<SourceDocument>>(resp.DataAsString);
                             }
                             else
                             {
+                                Log(SeverityEnum.Debug, "empty response body, returning null");
                                 return null;
                             }
                         }
@@ -330,6 +333,7 @@
             {
                 req.TimeoutMilliseconds = TimeoutMs;
                 req.ContentType = "application/json";
+                req.Authorization.BearerToken = AccessKey;
 
                 using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(query, true), token).ConfigureAwait(false))
                 {
@@ -340,10 +344,12 @@
                             Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
                             if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
+                                Log(SeverityEnum.Debug, "deserializing response body");
                                 return Serializer.DeserializeJson<SearchResult>(resp.DataAsString);
                             }
                             else
                             {
+                                Log(SeverityEnum.Debug, "empty response body, returning null");
                                 return null;
                             }
                         }

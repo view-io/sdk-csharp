@@ -59,6 +59,10 @@
             {
                 using (RestRequest req = new RestRequest(url, HttpMethod.Put, "application/json"))
                 {
+                    req.TimeoutMilliseconds = TimeoutMs;
+                    req.ContentType = "application/json";
+                    req.Authorization.BearerToken = AccessKey;
+
                     if (LogRequests) Log(SeverityEnum.Debug, "request body: " + Environment.NewLine + json);
 
                     using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(scReq, true), token).ConfigureAwait(false))
@@ -69,15 +73,17 @@
                             {
                                 Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
 
-                                if (!string.IsNullOrEmpty(resp.DataAsString))
+                                if (!String.IsNullOrEmpty(resp.DataAsString))
                                 {
                                     if (LogResponses) Log(SeverityEnum.Debug, "response body: " + Environment.NewLine + resp.DataAsString);
 
+                                    Log(SeverityEnum.Debug, "deserializing response body");
                                     SemanticCellResponse scr = Serializer.DeserializeJson<SemanticCellResponse>(resp.DataAsString);
                                     return scr;
                                 }
                                 else
                                 {
+                                    Log(SeverityEnum.Debug, "empty response body, returning null");
                                     return null;
                                 }
                             }
@@ -85,15 +91,17 @@
                             {
                                 Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
 
-                                if (!string.IsNullOrEmpty(resp.DataAsString))
+                                if (!String.IsNullOrEmpty(resp.DataAsString))
                                 {
                                     if (LogResponses) Log(SeverityEnum.Warn, "response body: " + Environment.NewLine + resp.DataAsString);
 
+                                    Log(SeverityEnum.Debug, "deserializing response body");
                                     SemanticCellResponse scr = Serializer.DeserializeJson<SemanticCellResponse>(resp.DataAsString);
                                     return scr;
                                 }
                                 else
                                 {
+                                    Log(SeverityEnum.Debug, "empty response body, returning null");
                                     return null;
                                 }
                             }

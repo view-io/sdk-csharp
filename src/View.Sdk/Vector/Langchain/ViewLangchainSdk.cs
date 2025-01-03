@@ -32,14 +32,13 @@
         public ViewLangchainSdk(
             string tenantGuid,
             string baseUrl = "http://localhost:8000/",
-            string apiKey = null,
-            Action<SeverityEnum, string> logger = null) : base(
+            string apiKey = null) : base(
                 tenantGuid,
                 EmbeddingsGeneratorEnum.LCProxy,
                 baseUrl,
-                apiKey,
-                logger)
+                apiKey)
         {
+            Header = "[LangchainSdk] ";
         }
 
         #endregion
@@ -55,8 +54,17 @@
                 {
                     using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
                     {
-                        if (resp != null && resp.StatusCode >= 200 && resp.StatusCode <= 299) return true;
-                        return false;
+                        if (resp != null)
+                        {
+                            if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+                            if (resp.StatusCode >= 200 && resp.StatusCode <= 299) return true;
+                            return false;
+                        }
+                        else
+                        {
+                            Log(SeverityEnum.Warn, "no response from " + BaseUrl);
+                            return false;
+                        }
                     }
                 }
             }
@@ -93,8 +101,17 @@
 
                     using (RestResponse resp = await req.SendAsync(json, token).ConfigureAwait(false))
                     {
-                        if (resp != null && resp.StatusCode >= 200 && resp.StatusCode <= 299) return true;
-                        return false;
+                        if (resp != null)
+                        {
+                            if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+                            if (resp.StatusCode >= 200 && resp.StatusCode <= 299) return true;
+                            return false;
+                        }
+                        else
+                        {
+                            Log(SeverityEnum.Warn, "no response from " + url);
+                            return false;
+                        }
                     }
                 }
             }
@@ -118,8 +135,8 @@
 
         /// <inheritdoc />
         public override async Task<EmbeddingsResult> GenerateEmbeddings(
-            EmbeddingsRequest embedRequest, 
-            int timeoutMs = 30000, 
+            EmbeddingsRequest embedRequest,
+            int timeoutMs = 30000,
             CancellationToken token = default)
         {
             if (embedRequest == null) throw new ArgumentNullException(nameof(embedRequest));
@@ -127,33 +144,38 @@
             if (String.IsNullOrEmpty(embedRequest.Model)) embedRequest.Model = _DefaultModel;
 
             string url = BaseUrl + "v1.0/tenants/" + TenantGUID + "/embeddings/";
-            
+
             using (RestRequest req = new RestRequest(url, HttpMethod.Post))
             {
                 req.ContentType = "application/json";
                 req.TimeoutMilliseconds = timeoutMs;
 
                 string json = Serializer.SerializeJson(LangchainEmbeddingsRequest.FromEmbeddingsRequest(embedRequest), true);
+                if (LogRequests) Log(SeverityEnum.Debug, "request:" + Environment.NewLine + json);
+
                 using (RestResponse resp = await req.SendAsync(json, token).ConfigureAwait(false))
                 {
                     if (resp == null)
                     {
-                        Logger?.Invoke(SeverityEnum.Warn, "no response from " + url);
+                        Log(SeverityEnum.Warn, "no response from " + url);
                         return null;
                     }
                     else
                     {
+                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            if (!string.IsNullOrEmpty(resp.DataAsString))
+                            if (!String.IsNullOrEmpty(resp.DataAsString))
                             {
+                                Log(SeverityEnum.Debug, "deserializing response body");
                                 LangchainEmbeddingsResult embedResult = Serializer.DeserializeJson<LangchainEmbeddingsResult>(resp.DataAsString);
                                 embedResult.Success = true;
                                 return embedResult.ToEmbeddingsResult();
                             }
                             else
                             {
-                                Logger?.Invoke(SeverityEnum.Warn, "no data received from " + url);
+                                Log(SeverityEnum.Warn, "no data received from " + url);
                                 return new EmbeddingsResult
                                 {
                                     Success = false,
@@ -164,7 +186,7 @@
                         }
                         else
                         {
-                            Logger?.Invoke(SeverityEnum.Warn, "status " + resp.StatusCode + " received from " + url + ": " + Environment.NewLine + resp.DataAsString);
+                            Log(SeverityEnum.Warn, "status " + resp.StatusCode + " received from " + url + ": " + Environment.NewLine + resp.DataAsString);
                             return new EmbeddingsResult
                             {
                                 Success = false,
