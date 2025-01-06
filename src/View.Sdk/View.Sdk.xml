@@ -706,6 +706,11 @@
             Globally-unique identifier the object to which this BLOB refers.
             </summary>
         </member>
+        <member name="P:View.Sdk.Blob.IsPublic">
+            <summary>
+            Boolean indicating whether or not the BLOB is accessible without authentication.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Blob.MD5Hash">
             <summary>
             MD5.

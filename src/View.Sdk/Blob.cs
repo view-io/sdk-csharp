@@ -74,6 +74,11 @@
         public string RefObjGUID { get; set; } = null;
 
         /// <summary>
+        /// Boolean indicating whether or not the BLOB is accessible without authentication.
+        /// </summary>
+        public bool IsPublic { get; set; } = false;
+
+        /// <summary>
         /// MD5.
         /// </summary>
         public string MD5Hash { get; set; } = string.Empty;
