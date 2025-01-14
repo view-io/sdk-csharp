@@ -106,6 +106,7 @@
             ProcessorRequest req = _Serializer.DeserializeJson<ProcessorRequest>(File.ReadAllText(file));
 
             ProcessorResponse resp = await _Sdk.Process(
+                Guid.NewGuid().ToString(),
                 req.Tenant,
                 req.Collection,
                 req.Pool,

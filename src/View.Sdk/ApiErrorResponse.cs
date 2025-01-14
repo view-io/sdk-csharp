@@ -57,6 +57,9 @@
                     case ApiErrorEnum.UnknownTypeDetected:
                         return "An unrecognizable data type was supplied.";
 
+                    case ApiErrorEnum.PdfConversionFailed:
+                        return "The supplied object was unable to be converted to PDF.";
+
                     case ApiErrorEnum.NoGraphConnectivity:
                         return "Unable to establish a connection to the graph repository.";
                     case ApiErrorEnum.GraphOperationFailed:
@@ -150,6 +153,14 @@
                     case ApiErrorEnum.TooLarge:
                         return 413;
 
+                    case ApiErrorEnum.NoTypeDetectorConnectivity:
+                        return 500;
+                    case ApiErrorEnum.UnknownTypeDetected:
+                        return 400;
+
+                    case ApiErrorEnum.PdfConversionFailed:
+                        return 500;
+
                     case ApiErrorEnum.NoUdrConnectivity:
                         return 500;
                     case ApiErrorEnum.UdrGenerationFailed:
@@ -179,11 +190,6 @@
                         return 500;
                     case ApiErrorEnum.GraphOperationFailed:
                         return 500;
-
-                    case ApiErrorEnum.NoTypeDetectorConnectivity:
-                        return 500;
-                    case ApiErrorEnum.UnknownTypeDetected:
-                        return 400;
 
                     case ApiErrorEnum.NoObjectMetadata:
                         return 400;

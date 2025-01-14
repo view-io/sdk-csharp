@@ -39,6 +39,21 @@
         [EnumMember(Value = "Json")]
         Json,
         /// <summary>
+        /// Keynote.
+        /// </summary>
+        [EnumMember(Value = "Keynote")]
+        Keynote,
+        /// <summary>
+        /// Numbers.
+        /// </summary>
+        [EnumMember(Value = "Numbers")]
+        Numbers,
+        /// <summary>
+        /// Pages.
+        /// </summary>
+        [EnumMember(Value = "Pages")]
+        Pages,
+        /// <summary>
         /// Parquet.
         /// </summary>
         [EnumMember(Value = "Parquet")]

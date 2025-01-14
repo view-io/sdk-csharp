@@ -159,6 +159,11 @@
             Unable to discern type of supplied data.
             </summary>
         </member>
+        <member name="F:View.Sdk.ApiErrorEnum.PdfConversionFailed">
+            <summary>
+            PDF conversion failed.
+            </summary>
+        </member>
         <member name="F:View.Sdk.ApiErrorEnum.NoUdrConnectivity">
             <summary>
             No connectivity to the UDR endpoint.
@@ -2810,6 +2815,21 @@
             JSON.
             </summary>
         </member>
+        <member name="F:View.Sdk.DocumentTypeEnum.Keynote">
+            <summary>
+            Keynote.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.DocumentTypeEnum.Numbers">
+            <summary>
+            Numbers.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.DocumentTypeEnum.Pages">
+            <summary>
+            Pages.
+            </summary>
+        </member>
         <member name="F:View.Sdk.DocumentTypeEnum.Parquet">
             <summary>
             Parquet.
@@ -4972,6 +4992,26 @@
             Instantiate.
             </summary>
         </member>
+        <member name="T:View.Sdk.IworkFileTypeEnum">
+            <summary>
+            Apple iWork file type enum.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.IworkFileTypeEnum.Keynote">
+            <summary>
+            Keynote.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.IworkFileTypeEnum.Numbers">
+            <summary>
+            Numbers.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.IworkFileTypeEnum.Pages">
+            <summary>
+            Pages.
+            </summary>
+        </member>
         <member name="T:View.Sdk.Lexi.ViewLexiSdk">
             <summary>
             View Lexi search SDK.
@@ -6092,10 +6132,11 @@
             <param name="accessKey">Access key.</param>
             <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing/cleanup.</param>
         </member>
-        <member name="M:View.Sdk.Processor.ViewCleanupSdk.Process(View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.StoragePool,View.Sdk.BucketMetadata,View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Processor.ViewCleanupSdk.Process(System.String,View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.StoragePool,View.Sdk.BucketMetadata,View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Threading.CancellationToken)">
             <summary>
             Cleanup a document.  This variant is used by the storage server.
             </summary>
+            <param name="requestGuid">Request GUID.</param>
             <param name="tenant">Tenant metadata.</param>
             <param name="collection">Collection metadata.</param>
             <param name="bucket">Bucket metadata.</param>
@@ -6108,10 +6149,11 @@
             <param name="token">Cancellation token.</param>
             <returns>Processor response.</returns>
         </member>
-        <member name="M:View.Sdk.Processor.ViewCleanupSdk.Process(View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.DataRepository,View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Processor.ViewCleanupSdk.Process(System.String,View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.DataRepository,View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Threading.CancellationToken)">
             <summary>
             Cleanup a document.  This variant is used by the data crawler.
             </summary>
+            <param name="requestGuid">Request GUID.</param>
             <param name="tenant">Tenant metadata.</param>
             <param name="collection">Collection metadata.</param>
             <param name="repo">Data repository.</param>
@@ -6136,10 +6178,11 @@
             <param name="accessKey">Access key.</param>
             <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing/lexiprocessing.</param>
         </member>
-        <member name="M:View.Sdk.Processor.ViewLexiEmbeddingsSdk.Process(View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.SearchResult,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Processor.ViewLexiEmbeddingsSdk.Process(System.String,View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.SearchResult,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Threading.CancellationToken)">
             <summary>
             Process a document.
             </summary>
+            <param name="requestGuid">Request GUID.</param>
             <param name="tenant">Tenant metadata.</param>
             <param name="collection">Collection.</param>
             <param name="results">Search results.</param>
@@ -6162,10 +6205,11 @@
             <param name="accessKey">Access key.</param>
             <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing.</param>
         </member>
-        <member name="M:View.Sdk.Processor.ViewProcessorSdk.Process(View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.StoragePool,View.Sdk.BucketMetadata,View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Processor.ViewProcessorSdk.Process(System.String,View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.StoragePool,View.Sdk.BucketMetadata,View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Threading.CancellationToken)">
             <summary>
             Process a document.  This variant is used by the storage server.
             </summary>
+            <param name="requestGuid">Request GUID.</param>
             <param name="tenant">Tenant metadata.</param>
             <param name="collection">Collection metadata.</param>
             <param name="bucket">Bucket metadata.</param>
@@ -6178,10 +6222,11 @@
             <param name="token">Cancellation token.</param>
             <returns>Processor response.</returns>
         </member>
-        <member name="M:View.Sdk.Processor.ViewProcessorSdk.Process(View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.DataRepository,View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Processor.ViewProcessorSdk.Process(System.String,View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.DataRepository,View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Threading.CancellationToken)">
             <summary>
             Process a document.  This variant is used by the data crawler.
             </summary>
+            <param name="requestGuid">Request GUID.</param>
             <param name="tenant">Tenant metadata.</param>
             <param name="collection">Collection metadata.</param>
             <param name="repo">Data repository.</param>

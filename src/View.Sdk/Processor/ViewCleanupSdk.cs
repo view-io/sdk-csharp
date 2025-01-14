@@ -44,6 +44,7 @@
         /// <summary>
         /// Cleanup a document.  This variant is used by the storage server.
         /// </summary>
+        /// <param name="requestGuid">Request GUID.</param>
         /// <param name="tenant">Tenant metadata.</param>
         /// <param name="collection">Collection metadata.</param>
         /// <param name="bucket">Bucket metadata.</param>
@@ -56,6 +57,7 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>Processor response.</returns>
         public async Task<CleanupResponse> Process(
+            string requestGuid,
             TenantMetadata tenant,
             Collection collection,
             StoragePool pool,
@@ -67,6 +69,7 @@
             GraphRepository graphRepo,
             CancellationToken token = default)
         {
+            if (String.IsNullOrEmpty(requestGuid)) throw new ArgumentNullException(nameof(requestGuid));
             if (obj == null) throw new ArgumentNullException(nameof(obj));
             if (mdRule == null) throw new ArgumentNullException(nameof(mdRule));
 
@@ -82,6 +85,7 @@
 
                     CleanupRequest cleanupReq = new CleanupRequest
                     {
+                        GUID = requestGuid,
                         Tenant = tenant,
                         Collection = collection,
                         Pool = pool,
@@ -169,6 +173,7 @@
         /// <summary>
         /// Cleanup a document.  This variant is used by the data crawler.
         /// </summary>
+        /// <param name="requestGuid">Request GUID.</param>
         /// <param name="tenant">Tenant metadata.</param>
         /// <param name="collection">Collection metadata.</param>
         /// <param name="repo">Data repository.</param>
@@ -180,6 +185,7 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>Processor response.</returns>
         public async Task<CleanupResponse> Process(
+            string requestGuid,
             TenantMetadata tenant,
             Collection collection,
             DataRepository repo,
@@ -190,6 +196,7 @@
             GraphRepository graphRepo,
             CancellationToken token = default)
         {
+            if (String.IsNullOrEmpty(requestGuid)) throw new ArgumentNullException(nameof(requestGuid));
             if (obj == null) throw new ArgumentNullException(nameof(obj));
             if (mdRule == null) throw new ArgumentNullException(nameof(mdRule));
 
@@ -205,6 +212,7 @@
 
                     CleanupRequest cleanupReq = new CleanupRequest
                     {
+                        GUID = requestGuid,
                         Tenant = tenant,
                         Collection = collection,
                         DataRepository = repo,

@@ -42,6 +42,7 @@
         /// <summary>
         /// Process a document.
         /// </summary>
+        /// <param name="requestGuid">Request GUID.</param>
         /// <param name="tenant">Tenant metadata.</param>
         /// <param name="collection">Collection.</param>
         /// <param name="results">Search results.</param>
@@ -51,6 +52,7 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>Task.</returns>
         public async Task<LexiEmbeddingsResponse> Process(
+            string requestGuid,
             TenantMetadata tenant,
             Collection collection,
             SearchResult results, 
@@ -74,6 +76,7 @@
 
                     LexiEmbeddingsRequest procReq = new LexiEmbeddingsRequest
                     {
+                        GUID = requestGuid,
                         Tenant = tenant,
                         Collection = collection,
                         Results = results,

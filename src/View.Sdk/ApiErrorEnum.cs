@@ -57,6 +57,12 @@
         UnknownTypeDetected,
 
         /// <summary>
+        /// PDF conversion failed.
+        /// </summary>
+        [EnumMember(Value = "PdfConversionFailed")]
+        PdfConversionFailed,
+
+        /// <summary>
         /// No connectivity to the UDR endpoint.
         /// </summary>
         [EnumMember(Value = "NoUdrConnectivity")]
