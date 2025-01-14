@@ -921,6 +921,41 @@
             Instantiate.
             </summary>
         </member>
+        <member name="T:View.Sdk.BucketStatistics">
+            <summary>
+            Bucket statistics.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketStatistics.Bucket">
+            <summary>
+            Bucket.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketStatistics.ObjectCount">
+            <summary>
+            Number of objects.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketStatistics.VersionCount">
+            <summary>
+            Number of versions.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketStatistics.DeleteMarkers">
+            <summary>
+            Number of delete markers.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.BucketStatistics.TotalBytes">
+            <summary>
+            Total number of bytes.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.BucketStatistics.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
         <member name="T:View.Sdk.Collection">
             <summary>
             Collection.
