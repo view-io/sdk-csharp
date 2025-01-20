@@ -11,7 +11,7 @@
     public static class Program
     {
         private static bool _RunForever = true;
-        private static string _TenantGUID = "default";
+        private static Guid _TenantGUID = default(Guid);
         private static string _AccessKey = "default";
         private static string _Endpoint = "http://localhost:8000/v1.0/tenants/default/processing/udr";
         private static ViewUdrGeneratorSdk _Sdk = null;
@@ -20,7 +20,7 @@
 
         public static void Main(string[] args)
         {
-            _TenantGUID = Inputty.GetString("Tenant GUID :", _TenantGUID, false);
+            _TenantGUID =   Inputty.GetGuid("Tenant GUID :", _TenantGUID);
             _AccessKey  = Inputty.GetString("Access key  :", _AccessKey, false);
             _Endpoint   = Inputty.GetString("Endpoint    :", _Endpoint, false);
             _Sdk = new ViewUdrGeneratorSdk(_TenantGUID, _AccessKey, _Endpoint);
@@ -88,7 +88,7 @@
         private static async Task ProcessDocument()
         {
             string filename    = Inputty.GetString("Filename        :", "sample/json/1.json", false);
-            string guid        = Inputty.GetString("GUID            :", Guid.NewGuid().ToString(), false);
+            Guid guid          =   Inputty.GetGuid("GUID            :", Guid.NewGuid());
             string key         = Inputty.GetString("Key             :", Path.GetFileName(filename), true);
             string contentType = Inputty.GetString("Content type    :", GuessContentType(key), false);
             string addlData    = Inputty.GetString("Additional data :", null, true);
@@ -109,15 +109,15 @@
         {
             UdrDataTableRequest req = new UdrDataTableRequest
             {
-                GUID            = Inputty.GetString("GUID            :", Guid.NewGuid().ToString(), false),
-                DatabaseType    = Inputty.GetString("Database type   :", "Mysql", false),
-                Hostname        = Inputty.GetString("Hostname        :", "localhost", false),
+                GUID           =    Inputty.GetGuid("GUID            :", Guid.NewGuid()),
+                DatabaseType   =  Inputty.GetString("Database type   :", "Mysql", false),
+                Hostname       =  Inputty.GetString("Hostname        :", "localhost", false),
                 Port           = Inputty.GetInteger("Port            :", 3306, true, true),
-                Username        = Inputty.GetString("Username        :", "root", false),
-                Password        = Inputty.GetString("Password        :", "password", false),
-                DatabaseName    = Inputty.GetString("Database name   :", "test", false),
-                Query           = Inputty.GetString("Query           :", "SELECT * FROM customers", false),
-                AdditionalData  = Inputty.GetString("Additional data :", null, true)
+                Username       =  Inputty.GetString("Username        :", "root", false),
+                Password       =  Inputty.GetString("Password        :", "password", false),
+                DatabaseName   =  Inputty.GetString("Database name   :", "test", false),
+                Query          =  Inputty.GetString("Query           :", "SELECT * FROM customers", false),
+                AdditionalData =  Inputty.GetString("Additional data :", null, true)
             };
 
             UdrDocument resp = await _Sdk.ProcessDataTable(req);
@@ -130,9 +130,9 @@
                 
             UdrDataTableRequest req = new UdrDataTableRequest
             {
-                GUID            = Inputty.GetString("GUID            :", Guid.NewGuid().ToString(), false),
-                Query           = Inputty.GetString("Query           :", "SELECT * FROM customers", false),
-                AdditionalData  = Inputty.GetString("Additional data :", null, true)
+                GUID           =   Inputty.GetGuid("GUID            :", Guid.NewGuid()),
+                Query          = Inputty.GetString("Query           :", "SELECT * FROM customers", false),
+                AdditionalData = Inputty.GetString("Additional data :", null, true)
             };
 
             UdrDocument resp = await _Sdk.ProcessDataTable(req, filename);

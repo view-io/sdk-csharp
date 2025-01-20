@@ -30,42 +30,42 @@
         /// <summary>
         /// GUID.
         /// </summary>
-        public string GUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid GUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public string TenantGUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid TenantGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Crawl plan GUID.
         /// </summary>
-        public string CrawlPlanGUID { get; set; } = null;
+        public Guid CrawlPlanGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Crawl schedule GUID.
         /// </summary>
-        public string CrawlScheduleGUID { get; set; } = null;
+        public Guid CrawlScheduleGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Crawl filter GUID.
         /// </summary>
-        public string CrawlFilterGUID { get; set; } = null;
+        public Guid? CrawlFilterGUID { get; set; } = null;
 
         /// <summary>
         /// Data repository GUID.
         /// </summary>
-        public string DataRepositoryGUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid DataRepositoryGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Metadata rule GUID.
         /// </summary>
-        public string MetadataRuleGUID { get; set; } = null;
+        public Guid? MetadataRuleGUID { get; set; } = null;
 
         /// <summary>
         /// Embeddings rule GUID.
         /// </summary>
-        public string EmbeddingsRuleGUID { get; set; } = null;
+        public Guid? EmbeddingsRuleGUID { get; set; } = null;
 
         /// <summary>
         /// Data flow endpoint for processing.

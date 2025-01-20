@@ -15,7 +15,7 @@
         /// <summary>
         /// Processor request GUID.
         /// </summary>
-        public string GUID { get; set; } = null;
+        public Guid GUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Boolean indicating success.

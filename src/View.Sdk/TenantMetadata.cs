@@ -30,17 +30,17 @@
         /// <summary>
         /// GUID.
         /// </summary>
-        public string GUID { get; set; } = null;
+        public Guid GUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Account GUID.
         /// </summary>
-        public string AccountGUID { get; set; } = null;
+        public Guid AccountGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Parent GUID.
         /// </summary>
-        public string ParentGUID { get; set; } = null;
+        public Guid? ParentGUID { get; set; } = null;
 
         /// <summary>
         /// Name.

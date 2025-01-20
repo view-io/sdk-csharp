@@ -16,32 +16,32 @@
         /// <summary>
         /// GUID.
         /// </summary>
-        public string GUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid GUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public string TenantGUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid TenantGUID { get; set; } = Guid.NewGuid();
         
         /// <summary>
         /// Node GUID.
         /// </summary>
-        public string NodeGUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid NodeGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Bucket GUID.
         /// </summary>
-        public string BucketGUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid BucketGUID { get; set; } = Guid.NewGuid();
         
         /// <summary>
         /// Owner GUID.
         /// </summary>
-        public string OwnerGUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid OwnerGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Object GUID.
         /// </summary>
-        public string ObjectGUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid ObjectGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Key.

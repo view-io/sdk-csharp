@@ -6,8 +6,13 @@
     /// <summary>
     /// Available conditions for search filters.
     /// </summary> 
-    public enum SearchCondition
+    public enum SchemaConditionEnum
     {
+        /// <summary>
+        /// The property exists.
+        /// </summary>
+        [EnumMember(Value = "Exists")]
+        Exists,
         /// <summary>
         /// The left and right terms are equal to one another.
         /// </summary>
@@ -67,6 +72,11 @@
         /// The left term ends with the right term.
         /// </summary>
         [EnumMember(Value = "EndsWith")]
-        EndsWith
+        EndsWith,
+        /// <summary>
+        /// The element is of a given type.
+        /// </summary>
+        [EnumMember(Value = "IsType")]
+        IsType
     }
 }

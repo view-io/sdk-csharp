@@ -14,19 +14,19 @@
         /// The GUID of the search operation.
         /// </summary>
         [JsonPropertyOrder(1)]
-        public string GUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid GUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Tenant GUID.
         /// </summary>
         [JsonPropertyOrder(2)]
-        public string TenantGUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid TenantGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Collection GUID.
         /// </summary>
         [JsonPropertyOrder(3)]
-        public string CollectionGUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid CollectionGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Maximum number of results to retrieve.
@@ -109,7 +109,7 @@
         /// </summary>
         public CollectionSearchRequest()
         {
-            GUID = Guid.NewGuid().ToString();
+
         }
 
         #endregion

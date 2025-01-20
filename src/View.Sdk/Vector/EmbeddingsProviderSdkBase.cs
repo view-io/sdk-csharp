@@ -59,7 +59,7 @@
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public string TenantGUID { get; set; } = null;
+        public Guid TenantGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Embeddings generator.  Default is LCProxy.
@@ -141,13 +141,11 @@
         /// <param name="endpoint">Endpoint URL.</param>
         /// <param name="apiKey">API key.</param>
         public EmbeddingsProviderSdkBase(
-            string tenantGuid,
+            Guid tenantGuid,
             EmbeddingsGeneratorEnum generator,
             string endpoint,
             string apiKey)
         {
-            if (String.IsNullOrEmpty(tenantGuid)) throw new ArgumentNullException(nameof(tenantGuid));
-
             if (!String.IsNullOrEmpty(endpoint) && !endpoint.EndsWith("/")) endpoint += "/";
 
             TenantGUID = tenantGuid;

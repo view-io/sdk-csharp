@@ -14,22 +14,22 @@
         /// <summary>
         /// GUID.
         /// </summary>
-        public string GUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid GUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public string TenantGUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid TenantGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Target GUID.
         /// </summary>
-        public string TargetGUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid TargetGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Rule GUID.
         /// </summary>
-        public string RuleGUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid RuleGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Event type.

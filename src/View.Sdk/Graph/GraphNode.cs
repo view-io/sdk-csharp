@@ -14,6 +14,11 @@
         #region Public-Members
 
         /// <summary>
+        /// Tenant GUID.
+        /// </summary>
+        public Guid TenantGUID { get; set; } = Guid.NewGuid();
+
+        /// <summary>
         /// Globally-unique identifier.
         /// </summary>
         public Guid GUID { get; set; } = Guid.NewGuid();

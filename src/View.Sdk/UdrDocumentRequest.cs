@@ -13,18 +13,7 @@
         /// <summary>
         /// GUID.
         /// </summary>
-        public string GUID
-        {
-            get
-            {
-                return _GUID.ToString();
-            }
-            set
-            {
-                if (String.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(GUID));
-                _GUID = value;
-            }
-        }
+        public Guid GUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Document type.
@@ -145,7 +134,6 @@
 
         #region Private-Members
 
-        private string _GUID = Guid.NewGuid().ToString();
         private int _TopTerms = 10;
         private string _SemanticCellSplitCharacter = "\r\n";
         private int _MaxChunkContentLength = 512;

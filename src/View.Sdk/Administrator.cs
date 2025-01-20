@@ -13,12 +13,12 @@
         /// <summary>
         /// Account GUID.
         /// </summary>
-        public string AccountGUID { get; set; } = null;
+        public Guid AccountGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// GUID.
         /// </summary>
-        public string GUID { get; set; } = null;
+        public Guid GUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// First name.

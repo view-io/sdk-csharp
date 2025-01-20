@@ -32,7 +32,7 @@
         /// <param name="tenantGuid">Tenant GUID.</param>
         /// <param name="accessKey">Access key.</param>
         /// <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/.</param>
-        public ViewLexiSdk(string tenantGuid, string accessKey, string endpoint = "http://localhost:8000/") : base(tenantGuid, accessKey, endpoint)
+        public ViewLexiSdk(Guid tenantGuid, string accessKey, string endpoint = "http://localhost:8000/") : base(tenantGuid, accessKey, endpoint)
         {
             Header = "[ViewLexiSdk] ";
         }

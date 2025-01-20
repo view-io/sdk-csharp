@@ -30,7 +30,7 @@
         /// <param name="tenantGuid">Tenant GUID.</param>
         /// <param name="accessKey">Access key.</param>
         /// <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing/lexiprocessing.</param>
-        public ViewLexiEmbeddingsSdk(string tenantGuid, string accessKey, string endpoint = "http://localhost:8000/v1.0/tenants/default/processing/lexiprocessing") : base(tenantGuid, accessKey, endpoint)
+        public ViewLexiEmbeddingsSdk(Guid tenantGuid, string accessKey, string endpoint = "http://localhost:8000/v1.0/tenants/default/processing/lexiprocessing") : base(tenantGuid, accessKey, endpoint)
         {
             Header = "[ViewLexiEmbeddingsSdk] ";
         }
@@ -52,7 +52,7 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>Task.</returns>
         public async Task<LexiEmbeddingsResponse> Process(
-            string requestGuid,
+            Guid requestGuid,
             TenantMetadata tenant,
             Collection collection,
             SearchResult results, 

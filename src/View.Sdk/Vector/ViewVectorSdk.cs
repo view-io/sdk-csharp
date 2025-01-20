@@ -36,7 +36,7 @@
         /// <param name="tenantGuid">Tenant GUID.</param>
         /// <param name="accessKey">Access key.</param>
         /// <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/.</param>
-        public ViewVectorSdk(string tenantGuid, string accessKey, string endpoint = "http://localhost:8000/") : base(tenantGuid, accessKey, endpoint)
+        public ViewVectorSdk(Guid tenantGuid, string accessKey, string endpoint = "http://localhost:8000/") : base(tenantGuid, accessKey, endpoint)
         {
             Header = "[ViewVectorSdk] ";
         }
@@ -58,7 +58,6 @@
             CancellationToken token = default)
         {
             if (queryReq == null) throw new ArgumentNullException(nameof(queryReq));
-            if (String.IsNullOrEmpty(queryReq.VectorRepositoryGUID)) throw new ArgumentNullException(nameof(queryReq.VectorRepositoryGUID));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + queryReq.VectorRepositoryGUID + "/query";
             return await Post<VectorQueryRequest, string>(url, queryReq, token).ConfigureAwait(false);
         }
@@ -74,7 +73,6 @@
             CancellationToken token = default)
         {
             if (searchReq == null) throw new ArgumentNullException(nameof(searchReq));
-            if (String.IsNullOrEmpty(searchReq.VectorRepositoryGUID)) throw new ArgumentNullException(nameof(searchReq.VectorRepositoryGUID));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + searchReq.VectorRepositoryGUID + "/search";
             return await Post<VectorSearchRequest, List<VectorChunk>>(url, searchReq, token).ConfigureAwait(false);
         }
@@ -90,7 +88,6 @@
             CancellationToken token = default)
         {
             if (findReq == null) throw new ArgumentNullException(nameof(findReq));
-            if (String.IsNullOrEmpty(findReq.VectorRepositoryGUID)) throw new ArgumentNullException(nameof(findReq.VectorRepositoryGUID));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + findReq.VectorRepositoryGUID + "/find";
             return await Post<FindEmbeddingsRequest, FindEmbeddingsResult>(url, findReq, token).ConfigureAwait(false);
         }
@@ -177,7 +174,6 @@
             CancellationToken token = default)
         {
             if (document == null) throw new ArgumentNullException(nameof(document));
-            if (String.IsNullOrEmpty(document.VectorRepositoryGUID)) throw new ArgumentNullException(nameof(document.VectorRepositoryGUID));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + document.VectorRepositoryGUID + "/documents";
             return await Post<EmbeddingsDocument>(url, document, token).ConfigureAwait(false);
         }

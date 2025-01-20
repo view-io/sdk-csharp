@@ -15,32 +15,32 @@
         /// <summary>
         /// GUID.
         /// </summary>
-        public string GUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid GUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public string TenantGUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid TenantGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Data flow GUID.
         /// </summary>
-        public string DataFlowGUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid DataFlowGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Request GUID.
         /// </summary>
-        public string RequestGUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid RequestGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Trigger GUID.
         /// </summary>
-        public string TriggerGUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid TriggerGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Step GUID.
         /// </summary>
-        public string StepGUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid StepGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Start time, in UTC.
@@ -76,7 +76,7 @@
         /// <summary>
         /// GUID of the next step, if any.
         /// </summary>
-        public string NextStepGUID { get; set; } = null;
+        public Guid? NextStepGUID { get; set; } = null;
 
         /// <summary>
         /// Notes.

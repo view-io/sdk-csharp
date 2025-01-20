@@ -29,7 +29,7 @@
         /// <param name="tenantGuid">Tenant GUID.</param>
         /// <param name="accessKey">Access key.</param>
         /// <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing/semanticcell.</param>
-        public ViewSemanticCellSdk(string tenantGuid, string accessKey, string endpoint = "http://localhost:8000/v1.0/tenants/default/processing/semanticcell") : base(tenantGuid, accessKey, endpoint)
+        public ViewSemanticCellSdk(Guid tenantGuid, string accessKey, string endpoint = "http://localhost:8000/v1.0/tenants/default/processing/semanticcell") : base(tenantGuid, accessKey, endpoint)
         {
             Header = "[ViewSemanticCellSdk] ";
         }

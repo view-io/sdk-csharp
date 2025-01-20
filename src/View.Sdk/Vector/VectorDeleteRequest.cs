@@ -12,22 +12,22 @@
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public string TenantGUID { get; set; } = null;
+        public Guid TenantGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Collection GUID.
         /// </summary>
-        public string CollectionGUID { get; set; } = null;
+        public Guid? CollectionGUID { get; set; } = null;
 
         /// <summary>
         /// Bucket GUID.
         /// </summary>
-        public string BucketGUID { get; set; } = null;
+        public Guid? BucketGUID { get; set; } = null;
 
         /// <summary>
         /// Data repository GUID.
         /// </summary>
-        public string DataRepositoryGUID { get; set; } = null;
+        public Guid? DataRepositoryGUID { get; set; } = null;
 
         /// <summary>
         /// Object key.

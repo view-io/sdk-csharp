@@ -12,7 +12,7 @@
     public static class Program
     {
         private static bool _RunForever = true;
-        private static string _TenantGuid = "default";
+        private static Guid _TenantGuid = default(Guid);
         private static string _Endpoint = "http://localhost:8000/";
         private static ViewLexiSdk _Sdk = null;
         private static Serializer _Serializer = new Serializer();
@@ -20,8 +20,8 @@
 
         public static void Main(string[] args)
         {
-            _TenantGuid     = Inputty.GetString("Tenant GUID :", _TenantGuid, false);
-            _Endpoint       = Inputty.GetString("Endpoint    :", _Endpoint, false);
+            _TenantGuid =   Inputty.GetGuid("Tenant GUID :", _TenantGuid);
+            _Endpoint   = Inputty.GetString("Endpoint    :", _Endpoint, false);
             _Sdk = new ViewLexiSdk(_TenantGuid, _Endpoint);
             if (_EnableLogging) _Sdk.Logger = EmitLogMessage;
 

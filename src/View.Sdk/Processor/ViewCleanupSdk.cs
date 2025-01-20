@@ -32,7 +32,7 @@
         /// <param name="tenantGuid">Tenant GUID.</param>
         /// <param name="accessKey">Access key.</param>
         /// <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing/cleanup.</param>
-        public ViewCleanupSdk(string tenantGuid, string accessKey, string endpoint = "http://localhost:8000/v1.0/tenants/default/processing/cleanup") : base(tenantGuid, accessKey, endpoint)
+        public ViewCleanupSdk(Guid tenantGuid, string accessKey, string endpoint = "http://localhost:8000/v1.0/tenants/default/processing/cleanup") : base(tenantGuid, accessKey, endpoint)
         {
             Header = "[ViewProcessorSdk] ";
         }
@@ -57,7 +57,7 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>Processor response.</returns>
         public async Task<CleanupResponse> Process(
-            string requestGuid,
+            Guid requestGuid,
             TenantMetadata tenant,
             Collection collection,
             StoragePool pool,
@@ -69,7 +69,6 @@
             GraphRepository graphRepo,
             CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(requestGuid)) throw new ArgumentNullException(nameof(requestGuid));
             if (obj == null) throw new ArgumentNullException(nameof(obj));
             if (mdRule == null) throw new ArgumentNullException(nameof(mdRule));
 
@@ -185,7 +184,7 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>Processor response.</returns>
         public async Task<CleanupResponse> Process(
-            string requestGuid,
+            Guid requestGuid,
             TenantMetadata tenant,
             Collection collection,
             DataRepository repo,
@@ -196,7 +195,6 @@
             GraphRepository graphRepo,
             CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(requestGuid)) throw new ArgumentNullException(nameof(requestGuid));
             if (obj == null) throw new ArgumentNullException(nameof(obj));
             if (mdRule == null) throw new ArgumentNullException(nameof(mdRule));
 

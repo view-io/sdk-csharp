@@ -16,22 +16,22 @@
         /// GUID.
         /// </summary>
         [JsonPropertyOrder(-1)]
-        public string GUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid GUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public string TenantGUID { get; set; } = null;
+        public Guid TenantGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Bucket GUID.
         /// </summary>
-        public string BucketGUID { get; set; } = null;
+        public Guid? BucketGUID { get; set; } = null;
 
         /// <summary>
         /// Owner GUID.
         /// </summary>
-        public string OwnerGUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid OwnerGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Name.
@@ -56,12 +56,12 @@
         /// <summary>
         /// Graph repository GUID.
         /// </summary>
-        public string GraphRepositoryGUID { get; set; } = null;
+        public Guid? GraphRepositoryGUID { get; set; } = null;
 
         /// <summary>
         /// Vector repository GUID.
         /// </summary>
-        public string VectorRepositoryGUID { get; set; } = null;
+        public Guid? VectorRepositoryGUID { get; set; } = null;
 
         /// <summary>
         /// Data flow endpoint for processing.

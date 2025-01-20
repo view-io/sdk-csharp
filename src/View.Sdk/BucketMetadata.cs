@@ -31,27 +31,22 @@
         /// <summary>
         /// GUID.
         /// </summary>
-        public string GUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid GUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public string TenantGUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid TenantGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Pool GUID.
         /// </summary>
-        public string PoolGUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid PoolGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Owner GUID.
         /// </summary>
-        public string OwnerGUID { get; set; } = Guid.NewGuid().ToString();
-
-        /// <summary>
-        /// Bucket category.
-        /// </summary>
-        public BucketCategoryEnum Category { get; set; } = BucketCategoryEnum.Data;
+        public Guid OwnerGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Name.

@@ -30,7 +30,7 @@
         /// <param name="tenantGuid">Tenant GUID.</param>
         /// <param name="accessKey">Access key.</param>
         /// <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing/udr.</param>
-        public ViewUdrGeneratorSdk(string tenantGuid, string accessKey, string endpoint = "http://localhost:8000/v1.0/tenants/default/processing/udr") : base(tenantGuid, accessKey, endpoint)
+        public ViewUdrGeneratorSdk(Guid tenantGuid, string accessKey, string endpoint = "http://localhost:8000/v1.0/tenants/default/processing/udr") : base(tenantGuid, accessKey, endpoint)
         {
             Header = "[ViewUdrGeneratorSdk] ";
         }

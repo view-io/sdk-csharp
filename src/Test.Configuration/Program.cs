@@ -15,7 +15,7 @@
 #pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
 
         private static bool _RunForever = true;
-        private static string _TenantGuid = "default";
+        private static Guid _TenantGuid = default(Guid);
         private static string _Endpoint = "http://localhost:8000/";
         private static string _AccessKey = "default";
         private static ViewConfigurationSdk _Sdk = null;
@@ -24,7 +24,7 @@
 
         public static void Main(string[] args)
         {
-            _TenantGuid = Inputty.GetString("Tenant GUID :", _TenantGuid, false);
+            _TenantGuid =   Inputty.GetGuid("Tenant GUID :", _TenantGuid);
             _Endpoint =   Inputty.GetString("Endpoint    :", _Endpoint, false);
             _AccessKey =  Inputty.GetString("Access key  :", _AccessKey, false);
 

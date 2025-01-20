@@ -33,7 +33,7 @@
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public string TenantGUID
+        public Guid TenantGUID
         {
             get
             {
@@ -44,7 +44,7 @@
         /// <summary>
         /// Collection GUID.
         /// </summary>
-        public string CollectionGUID
+        public Guid CollectionGUID
         {
             get
             {
@@ -55,7 +55,7 @@
         /// <summary>
         /// Source document GUID.
         /// </summary>
-        public string SourceDocumentGUID
+        public Guid SourceDocumentGUID
         {
             get
             {

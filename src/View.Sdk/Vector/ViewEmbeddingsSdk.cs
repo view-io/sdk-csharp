@@ -25,7 +25,7 @@
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public string TenantGUID { get; set; } = null;
+        public Guid TenantGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Embeddings generator.  Default is LCProxy.
@@ -213,7 +213,7 @@
         /// <param name="maxFailures">Maximum number of failures to support before failing the operation.</param>
         /// <param name="timeoutMs">Timeout, in milliseconds.</param>
         public ViewEmbeddingsSdk(
-            string tenantGuid,
+            Guid tenantGuid,
             EmbeddingsGeneratorEnum generator,
             string baseUrl,
             string apiKey,

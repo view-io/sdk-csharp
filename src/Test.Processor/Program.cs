@@ -15,7 +15,7 @@
 #pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
 
         private static bool _RunForever = true;
-        private static string _TenantGUID = "default";
+        private static Guid _TenantGUID = default(Guid);
         private static string _AccessKey = "default";
         private static string _Endpoint = "http://localhost:8000/v1.0/tenants/default/processing";
         private static ViewProcessorSdk _Sdk = null;
@@ -24,7 +24,7 @@
 
         public static void Main(string[] args)
         {
-            _TenantGUID = Inputty.GetString("Tenant GUID :", _TenantGUID, false);
+            _TenantGUID =   Inputty.GetGuid("Tenant GUID :", _TenantGUID);
             _AccessKey  = Inputty.GetString("Access key  :", _AccessKey, false);
             _Endpoint   = Inputty.GetString("Endpoint    :", _Endpoint, false);
 
@@ -106,7 +106,7 @@
             ProcessorRequest req = _Serializer.DeserializeJson<ProcessorRequest>(File.ReadAllText(file));
 
             ProcessorResponse resp = await _Sdk.Process(
-                Guid.NewGuid().ToString(),
+                Guid.NewGuid(),
                 req.Tenant,
                 req.Collection,
                 req.Pool,

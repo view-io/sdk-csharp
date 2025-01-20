@@ -42,7 +42,7 @@
         /// <summary>
         /// Data flow request GUID.
         /// </summary>
-        public string DataFlowRequestGUID { get; set; } = null;
+        public Guid? DataFlowRequestGUID { get; set; } = null;
 
         /// <summary>
         /// Boolean indicating end of results.

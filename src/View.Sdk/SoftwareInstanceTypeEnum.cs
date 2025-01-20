@@ -24,15 +24,15 @@
         [EnumMember(Value = "DataConnectorServer")]
         DataConnectorServer,
         /// <summary>
+        /// DirectorServer.
+        /// </summary>
+        [EnumMember(Value = "DirectorServer")]
+        DirectorServer,
+        /// <summary>
         /// DocumentProcessorServer.
         /// </summary>
         [EnumMember(Value = "DocumentProcessorServer")]
         DocumentProcessorServer,
-        /// <summary>
-        /// ProcessorServer.
-        /// </summary>
-        [EnumMember(Value = "ProcessorServer")]
-        ProcessorServer,
         /// <summary>
         /// LexiServer.
         /// </summary>
@@ -44,24 +44,29 @@
         [EnumMember(Value = "OrchestratorServer")]
         OrchestratorServer,
         /// <summary>
-        /// VectorServer.
+        /// ProcessorServer.
         /// </summary>
-        [EnumMember(Value = "VectorServer")]
-        VectorServer,
-        /// <summary>
-        /// StorageServer.
-        /// </summary>
-        [EnumMember(Value = "StorageServer")]
-        StorageServer,
+        [EnumMember(Value = "ProcessorServer")]
+        ProcessorServer,
         /// <summary>
         /// SemanticCellExtractorServer.
         /// </summary>
         [EnumMember(Value = "SemanticCellExtractorServer")]
         SemanticCellExtractorServer,
         /// <summary>
-        /// DirectorServer.
+        /// StorageServer.
         /// </summary>
-        [EnumMember(Value = "DirectorServer")]
-        DirectorServer
+        [EnumMember(Value = "StorageServer")]
+        StorageServer,
+        /// <summary>
+        /// SwitchboardServer.
+        /// </summary>
+        [EnumMember(Value = "SwitchboardServer")]
+        SwitchboardServer,
+        /// <summary>
+        /// VectorServer.
+        /// </summary>
+        [EnumMember(Value = "VectorServer")]
+        VectorServer,
     }
 }

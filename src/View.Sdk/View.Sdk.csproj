@@ -5,8 +5,8 @@
 		
 		<Title>C# SDK for View AI.</Title>
 		<Description>C# SDK for View AI.</Description>
-		<PackageReleaseNotes>v1.0 release.</PackageReleaseNotes>
-		<Version>1.1.0.31</Version>
+		<PackageReleaseNotes>v1.2 release.</PackageReleaseNotes>
+		<Version>1.2.3</Version>
 		
 		<ApplicationIcon>Assets\icon.ico</ApplicationIcon>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
@@ -15,7 +15,7 @@
 		<Authors>View Systems Inc.</Authors>
 		<Company>View Systems Inc.</Company>
 		<Product>View.Sdk</Product>
-		<Copyright>(c)2024 View Systems Inc.</Copyright>
+		<Copyright>(c)2025 View Systems Inc.</Copyright>
 		<PackageProjectUrl>https://github.com/view-io/viewsdk</PackageProjectUrl>
 		<PackageIcon>logo.png</PackageIcon>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
@@ -61,7 +61,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="LiteGraph.Sdk" Version="2.1.1" />
+		<PackageReference Include="LiteGraph.Sdk" Version="3.1.1" />
 		<PackageReference Include="SS.NuGet.Publish" Version="1.0.2311.32">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

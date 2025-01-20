@@ -14,22 +14,22 @@
         /// <summary>
         /// GUID.
         /// </summary>
-        public string GUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid GUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public string TenantGUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid TenantGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Collection GUID.
         /// </summary>
-        public string CollectionGUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid CollectionGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Source document GUID.
         /// </summary>
-        public string SourceDocumentGUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid SourceDocumentGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Document type.

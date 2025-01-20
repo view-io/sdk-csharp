@@ -14,7 +14,7 @@
 #pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
 
         private static bool _RunForever = true;
-        private static string _TenantGUID = "default";
+        private static Guid _TenantGUID = default(Guid);
         private static string _AccessKey = "default";
         private static string _Endpoint = "http://localhost:8000/";
         private static ViewVectorSdk _Sdk = null;
@@ -23,7 +23,7 @@
 
         public static void Main(string[] args)
         {
-            _TenantGUID = Inputty.GetString("Tenant GUID :", _TenantGUID, false);
+            _TenantGUID =   Inputty.GetGuid("Tenant GUID :", _TenantGUID);
             _AccessKey =  Inputty.GetString("Access key  :", _AccessKey, false);
             _Endpoint =   Inputty.GetString("Endpoint    :", _Endpoint, false);
             _Sdk = new ViewVectorSdk(_TenantGUID, _AccessKey, _Endpoint);
@@ -124,8 +124,8 @@
             Console.WriteLine("Example document:");
             Console.WriteLine(_Serializer.SerializeJson(new EmbeddingsDocument
             {
-                TenantGUID = "default",
-                VectorRepositoryGUID = "example-vector-repository",
+                TenantGUID = default(Guid),
+                VectorRepositoryGUID = default(Guid),
                 ObjectKey = "test.json",
                 ObjectVersion = "1",
                 SemanticCells = new List<SemanticCell>
@@ -202,7 +202,8 @@
             Console.WriteLine(_Serializer.SerializeJson(new VectorSearchRequest
             {
                 SearchType = VectorSearchTypeEnum.L2Distance,
-                VectorRepositoryGUID = "example-vector-repository",
+                TenantGUID = default(Guid),
+                VectorRepositoryGUID = default(Guid),
                 MaxResults = 5,
                 Embeddings = new List<float>
                 {
@@ -234,7 +235,8 @@
             Console.WriteLine("Example find:");
             Console.WriteLine(_Serializer.SerializeJson(new FindEmbeddingsRequest
             { 
-                VectorRepositoryGUID = "example-vector-repository",
+                TenantGUID = default(Guid),
+                VectorRepositoryGUID = default(Guid),
                 Criteria = new List<FindEmbeddingsObject>
                 {
                     new FindEmbeddingsObject
@@ -270,7 +272,7 @@
             Console.WriteLine(_Serializer.SerializeJson(new VectorQueryRequest
             {
                 Query = "SELECT * FROM public.minilm;",
-                VectorRepositoryGUID = "example-vector-repository"
+                VectorRepositoryGUID = default(Guid)
             }, false));
             Console.WriteLine("");
 

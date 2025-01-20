@@ -50,8 +50,9 @@
 
         #region Private-Members
 
-        private LiteGraphSdk _Sdk = null;
         private string _Endpoint = null;
+        private string _AccessKey = null;
+        private LiteGraphSdk _Sdk = null;
         private Serializer _Serializer = new Serializer();
         private int _TimeoutMs = 300000;
 
@@ -63,12 +64,15 @@
         /// Instantiate.
         /// </summary>
         /// <param name="endpoint">Endpoint.</param>
-        public LiteGraphDriver(string endpoint = "http://localhost:8701/")
+        /// <param name="accessKey">Access key.</param>
+        public LiteGraphDriver(string endpoint, string accessKey)
         {
             if (String.IsNullOrEmpty(endpoint)) throw new ArgumentNullException(nameof(endpoint));
+            if (String.IsNullOrEmpty(accessKey)) throw new ArgumentNullException(nameof(accessKey));
 
             _Endpoint = endpoint;
-            _Sdk = new LiteGraphSdk(_Endpoint);
+            _AccessKey = accessKey;
+            _Sdk = new LiteGraphSdk(_Endpoint, _AccessKey);
         }
 
         #endregion
@@ -102,50 +106,51 @@
         #region Public-Graph-Methods
 
         /// <inheritdoc />
-        public async Task<bool> GraphExists(Guid guid, CancellationToken token = default)
+        public async Task<bool> GraphExists(Guid tenantGuid, Guid guid, CancellationToken token = default)
         {
-            return await _Sdk.GraphExists(guid, token).ConfigureAwait(false);
+            return await _Sdk.GraphExists(tenantGuid, guid, token).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
-        public async Task<Graph> CreateGraph(Guid guid, string name, CancellationToken token = default)
+        public async Task<Graph> CreateGraph(Guid tenantGuid, Guid guid, string name, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(name)) throw new ArgumentNullException(nameof(name));
-            LiteGraph.Sdk.Graph graph = await _Sdk.CreateGraph(guid, name, null, token).ConfigureAwait(false);
+            LiteGraph.Sdk.Graph graph = await _Sdk.CreateGraph(tenantGuid, guid, name, null, null, null, null, token).ConfigureAwait(false);
             if (graph != null) return GraphConverters.LgGraphToGraph(graph);
             return null;
         }
 
         /// <inheritdoc />
-        public async Task<Graph> ReadGraph(Guid guid, CancellationToken token = default)
+        public async Task<Graph> ReadGraph(Guid tenantGuid, Guid guid, CancellationToken token = default)
         {
-            LiteGraph.Sdk.Graph graph = await _Sdk.ReadGraph(guid, token).ConfigureAwait(false);
+            LiteGraph.Sdk.Graph graph = await _Sdk.ReadGraph(tenantGuid, guid, token).ConfigureAwait(false);
             if (graph != null) return GraphConverters.LgGraphToGraph(graph);
             return null;
         }
 
         /// <inheritdoc />
-        public async Task<List<Graph>> ReadGraphs(CancellationToken token = default)
+        public async Task<List<Graph>> ReadGraphs(Guid tenantGuid, CancellationToken token = default)
         {
-            IEnumerable<LiteGraph.Sdk.Graph> graphs = await _Sdk.ReadGraphs(token).ConfigureAwait(false);
+            IEnumerable<LiteGraph.Sdk.Graph> graphs = await _Sdk.ReadGraphs(tenantGuid, token).ConfigureAwait(false);
             if (graphs != null) return GraphConverters.LgGraphListToGraphList(graphs.ToList());
             return null;
         }
 
         /// <inheritdoc />
-        public async Task<Graph> UpdateGraph(Graph graph, CancellationToken token = default)
+        public async Task<Graph> UpdateGraph(Guid tenantGuid, Graph graph, CancellationToken token = default)
         {
             if (graph == null) throw new ArgumentNullException(nameof(graph));
             LiteGraph.Sdk.Graph updated = await _Sdk.UpdateGraph(
+                tenantGuid,
                 GraphConverters.GraphToLgGraph(graph), token).ConfigureAwait(false);
             if (updated != null) return GraphConverters.LgGraphToGraph(updated);
             return null;
         }
 
         /// <inheritdoc />
-        public async Task DeleteGraph(Guid guid, bool force = false,CancellationToken token = default)
+        public async Task DeleteGraph(Guid tenantGuid, Guid guid, bool force = false,CancellationToken token = default)
         {
-            await _Sdk.DeleteGraph(guid, force, token).ConfigureAwait(false);
+            await _Sdk.DeleteGraph(tenantGuid, guid, force, token).ConfigureAwait(false);
         }
 
         #endregion
@@ -153,56 +158,59 @@
         #region Public-Node-Methods
 
         /// <inheritdoc />
-        public async Task<bool> NodeExists(Guid graphGuid, Guid guid, CancellationToken token = default)
+        public async Task<bool> NodeExists(Guid tenantGuid, Guid graphGuid, Guid guid, CancellationToken token = default)
         {
-            return await _Sdk.NodeExists(graphGuid, guid, token).ConfigureAwait(false);
+            return await _Sdk.NodeExists(tenantGuid, graphGuid, guid, token).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
-        public async Task<GraphNode> CreateNode(GraphNode node, CancellationToken token = default)
+        public async Task<GraphNode> CreateNode(Guid tenantGuid, GraphNode node, CancellationToken token = default)
         {
             if (node == null) throw new ArgumentNullException(nameof(node));
             Node created = await _Sdk.CreateNode(
+                tenantGuid,
+                node.GraphGUID,
                 GraphConverters.GraphNodeToLgNode(node), token).ConfigureAwait(false);
             if (created != null) return GraphConverters.LgNodeToGraphNode(created, _Serializer);
             return null;
         }
 
         /// <inheritdoc />
-        public async Task<GraphNode> ReadNode(Guid graphGuid, Guid nodeGuid, CancellationToken token = default)
+        public async Task<GraphNode> ReadNode(Guid tenantGuid, Guid graphGuid, Guid nodeGuid, CancellationToken token = default)
         {
-            Node node = await _Sdk.ReadNode(graphGuid, nodeGuid, token).ConfigureAwait(false);
+            Node node = await _Sdk.ReadNode(tenantGuid,graphGuid, nodeGuid, token).ConfigureAwait(false);
             if (node != null) return GraphConverters.LgNodeToGraphNode(node, _Serializer);
             return null;
         }
 
         /// <inheritdoc />
-        public async Task<List<GraphNode>> ReadNodes(Guid graphGuid, CancellationToken token = default)
+        public async Task<List<GraphNode>> ReadNodes(Guid tenantGuid, Guid graphGuid, CancellationToken token = default)
         {
-            IEnumerable<Node> nodes = await _Sdk.ReadNodes(graphGuid, token).ConfigureAwait(false);
+            IEnumerable<Node> nodes = await _Sdk.ReadNodes(tenantGuid,graphGuid, token).ConfigureAwait(false);
             if (nodes != null) return GraphConverters.LgNodeListToGraphNodeList(nodes.ToList(), _Serializer);
             return null;            
         }
 
         /// <inheritdoc/>
-        public async Task<List<GraphNode>> SearchNodes(Guid graphGuid, Expr expr, CancellationToken token = default)
+        public async Task<List<GraphNode>> SearchNodes(Guid tenantGuid, Guid graphGuid, Expr expr, CancellationToken token = default)
         {
             SearchRequest req = new SearchRequest
             {
+                TenantGUID = tenantGuid,
                 GraphGUID = graphGuid,
                 Expr = expr
             };
 
-            SearchResult result = await _Sdk.SearchNodes(req, token).ConfigureAwait(false);
+            SearchResult result = await _Sdk.SearchNodes(tenantGuid, graphGuid, req, token).ConfigureAwait(false);
             if (result != null && result.Nodes != null) 
                 return GraphConverters.LgNodeListToGraphNodeList(result.Nodes.ToList(), _Serializer);
             return null;
         }
 
         /// <inheritdoc />
-        public async Task DeleteNode(Guid graphGuid, Guid nodeGuid, CancellationToken token = default)
+        public async Task DeleteNode(Guid tenantGuid, Guid graphGuid, Guid nodeGuid, CancellationToken token = default)
         {
-            await _Sdk.DeleteNode(graphGuid, nodeGuid, token).ConfigureAwait(false);
+            await _Sdk.DeleteNode(tenantGuid, graphGuid, nodeGuid, token).ConfigureAwait(false);
         }
 
         #endregion
@@ -210,40 +218,42 @@
         #region Public-Edge-Methods
 
         /// <inheritdoc />
-        public async Task<bool> EdgeExists(Guid graphGuid, Guid guid, CancellationToken token = default)
+        public async Task<bool> EdgeExists(Guid tenantGuid, Guid graphGuid, Guid guid, CancellationToken token = default)
         {
-            return await _Sdk.EdgeExists(graphGuid, guid, token).ConfigureAwait(false);
+            return await _Sdk.EdgeExists(tenantGuid,graphGuid, guid, token).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
-        public async Task<GraphEdge> CreateEdge(GraphEdge edge, CancellationToken token = default)
+        public async Task<GraphEdge> CreateEdge(Guid tenantGuid, GraphEdge edge, CancellationToken token = default)
         {
             LiteGraph.Sdk.Edge created = await _Sdk.CreateEdge(
+                tenantGuid,
+                edge.GraphGUID,
                 GraphConverters.GraphEdgeToLgEdge(edge), token).ConfigureAwait(false);
             if (created != null) return GraphConverters.LgEdgeToGraphEdge(created);
             return null;
         }
 
         /// <inheritdoc />
-        public async Task<GraphEdge> ReadEdge(Guid graphGuid, Guid edgeGuid, CancellationToken token = default)
+        public async Task<GraphEdge> ReadEdge(Guid tenantGuid, Guid graphGuid, Guid edgeGuid, CancellationToken token = default)
         {
-            LiteGraph.Sdk.Edge edge = await _Sdk.ReadEdge(graphGuid, edgeGuid, token).ConfigureAwait(false);
+            LiteGraph.Sdk.Edge edge = await _Sdk.ReadEdge(tenantGuid, graphGuid, edgeGuid, token).ConfigureAwait(false);
             if (edge != null) return GraphConverters.LgEdgeToGraphEdge(edge);
             return null;
         }
 
         /// <inheritdoc />
-        public async Task<List<GraphEdge>> ReadEdges(Guid graphGuid, CancellationToken token = default)
+        public async Task<List<GraphEdge>> ReadEdges(Guid tenantGuid, Guid graphGuid, CancellationToken token = default)
         {
-            IEnumerable<Edge> edges = await _Sdk.ReadEdges(graphGuid, token).ConfigureAwait(false);
+            IEnumerable<Edge> edges = await _Sdk.ReadEdges(tenantGuid,graphGuid, token).ConfigureAwait(false);
             if (edges != null) return GraphConverters.LgEdgeListToGraphEdgeList(edges.ToList());
             return null;
         }
 
         /// <inheritdoc />
-        public async Task DeleteEdge(Guid graphGuid, Guid edgeGuid, CancellationToken token = default)
+        public async Task DeleteEdge(Guid tenantGuid, Guid graphGuid, Guid edgeGuid, CancellationToken token = default)
         {
-            await _Sdk.DeleteEdge(graphGuid, edgeGuid, token).ConfigureAwait(false);
+            await _Sdk.DeleteEdge(tenantGuid, graphGuid, edgeGuid, token).ConfigureAwait(false);
         }
 
         #endregion
@@ -251,62 +261,63 @@
         #region Public-Traversal-Methods
 
         /// <inheritdoc />
-        public async Task<List<GraphEdge>> EdgesFromNode(Guid graphGuid, Guid nodeGuid, CancellationToken token = default)
+        public async Task<List<GraphEdge>> EdgesFromNode(Guid tenantGuid, Guid graphGuid, Guid nodeGuid, CancellationToken token = default)
         {
-            IEnumerable<LiteGraph.Sdk.Edge> edges = await _Sdk.GetEdgesFromNode(graphGuid, nodeGuid, token).ConfigureAwait(false);
+            IEnumerable<LiteGraph.Sdk.Edge> edges = await _Sdk.GetEdgesFromNode(tenantGuid, graphGuid, nodeGuid, token).ConfigureAwait(false);
             if (edges != null) return GraphConverters.LgEdgeListToGraphEdgeList(edges.ToList());
             return null;
 
         }
 
         /// <inheritdoc />
-        public async Task<List<GraphEdge>> EdgesToNode(Guid graphGuid, Guid nodeGuid, CancellationToken token = default)
+        public async Task<List<GraphEdge>> EdgesToNode(Guid tenantGuid, Guid graphGuid, Guid nodeGuid, CancellationToken token = default)
         {
-            IEnumerable<LiteGraph.Sdk.Edge> edges = await _Sdk.GetEdgesToNode(graphGuid, nodeGuid, token).ConfigureAwait(false);
+            IEnumerable<LiteGraph.Sdk.Edge> edges = await _Sdk.GetEdgesToNode(tenantGuid, graphGuid, nodeGuid, token).ConfigureAwait(false);
             if (edges != null) return GraphConverters.LgEdgeListToGraphEdgeList(edges.ToList());
             return null;
         }
 
         /// <inheritdoc />
         public async Task<List<GraphEdge>> EdgesBetweenNodes(
+            Guid tenantGuid,
             Guid graphGuid, 
             Guid fromNodeGuid, 
             Guid toNodeGuid, 
             CancellationToken token = default)
         {
-            IEnumerable<LiteGraph.Sdk.Edge> edges = await _Sdk.GetEdgesBetween(graphGuid, fromNodeGuid, toNodeGuid, token).ConfigureAwait(false);
+            IEnumerable<LiteGraph.Sdk.Edge> edges = await _Sdk.GetEdgesBetween(tenantGuid, graphGuid, fromNodeGuid, toNodeGuid, token).ConfigureAwait(false);
             if (edges != null) return GraphConverters.LgEdgeListToGraphEdgeList(edges.ToList());
             return null;
         }
 
         /// <inheritdoc />
-        public async Task<List<GraphEdge>> AllNodeEdges(Guid graphGuid, Guid nodeGuid, CancellationToken token = default)
+        public async Task<List<GraphEdge>> AllNodeEdges(Guid tenantGuid, Guid graphGuid, Guid nodeGuid, CancellationToken token = default)
         {
-            IEnumerable<LiteGraph.Sdk.Edge> edges = await _Sdk.GetAllNodeEdges(graphGuid, nodeGuid, token).ConfigureAwait(false);
+            IEnumerable<LiteGraph.Sdk.Edge> edges = await _Sdk.GetAllNodeEdges(tenantGuid, graphGuid, nodeGuid, token).ConfigureAwait(false);
             if (edges != null) return GraphConverters.LgEdgeListToGraphEdgeList(edges.ToList());
             return null;
         }
 
         /// <inheritdoc />
-        public async Task<List<GraphNode>> GetNodeParents(Guid graphGuid, Guid nodeGuid, CancellationToken token = default)
+        public async Task<List<GraphNode>> GetNodeParents(Guid tenantGuid, Guid graphGuid, Guid nodeGuid, CancellationToken token = default)
         {
-            IEnumerable<LiteGraph.Sdk.Node> nodes = await _Sdk.GetParentsFromNode(graphGuid, nodeGuid, token).ConfigureAwait(false);
+            IEnumerable<LiteGraph.Sdk.Node> nodes = await _Sdk.GetParentsFromNode(tenantGuid, graphGuid, nodeGuid, token).ConfigureAwait(false);
             if (nodes != null) return GraphConverters.LgNodeListToGraphNodeList(nodes.ToList(), _Serializer);
             return null;
         }
 
         /// <inheritdoc />
-        public async Task<List<GraphNode>> GetNodeChildren(Guid graphGuid, Guid nodeGuid, CancellationToken token = default)
+        public async Task<List<GraphNode>> GetNodeChildren(Guid tenantGuid, Guid graphGuid, Guid nodeGuid, CancellationToken token = default)
         {
-            IEnumerable<LiteGraph.Sdk.Node> nodes = await _Sdk.GetChildrenFromNode(graphGuid, nodeGuid, token).ConfigureAwait(false);
+            IEnumerable<LiteGraph.Sdk.Node> nodes = await _Sdk.GetChildrenFromNode(tenantGuid, graphGuid, nodeGuid, token).ConfigureAwait(false);
             if (nodes != null) return GraphConverters.LgNodeListToGraphNodeList(nodes.ToList(), _Serializer);
             return null;
         }
 
         /// <inheritdoc />
-        public async Task<List<GraphNode>> GetNodeNeighbors(Guid graphGuid, Guid nodeGuid, CancellationToken token = default)
+        public async Task<List<GraphNode>> GetNodeNeighbors(Guid tenantGuid, Guid graphGuid, Guid nodeGuid, CancellationToken token = default)
         {
-            IEnumerable<LiteGraph.Sdk.Node> nodes = await _Sdk.GetNodeNeighbors(graphGuid, nodeGuid, token).ConfigureAwait(false);
+            IEnumerable<LiteGraph.Sdk.Node> nodes = await _Sdk.GetNodeNeighbors(tenantGuid, graphGuid, nodeGuid, token).ConfigureAwait(false);
             if (nodes != null) return GraphConverters.LgNodeListToGraphNodeList(nodes.ToList(), _Serializer);
             return null;
         }

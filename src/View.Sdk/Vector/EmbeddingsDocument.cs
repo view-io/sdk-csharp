@@ -10,6 +10,7 @@
     using Timestamps;
     using View.Sdk.Serialization;
     using View.Sdk;
+    using View.Sdk.Helpers;
     using View.Sdk.Semantic;
 
     /// <summary>
@@ -38,47 +39,47 @@
         /// <summary>
         /// GUID.
         /// </summary>
-        public string GUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid GUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Document GUID.
         /// </summary>
-        public string DocumentGUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid DocumentGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public string TenantGUID { get; set; } = null;
+        public Guid TenantGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Collection GUID.
         /// </summary>
-        public string CollectionGUID { get; set; } = null;
+        public Guid? CollectionGUID { get; set; } = null;
 
         /// <summary>
         /// Source document GUID.
         /// </summary>
-        public string SourceDocumentGUID { get; set; } = null;
+        public Guid? SourceDocumentGUID { get; set; } = null;
 
         /// <summary>
         /// Data repository GUID.
         /// </summary>
-        public string DataRepositoryGUID { get; set; } = null;
+        public Guid? DataRepositoryGUID { get; set; } = null;
 
         /// <summary>
         /// Bucket GUID.
         /// </summary>
-        public string BucketGUID { get; set; } = null;
+        public Guid? BucketGUID { get; set; } = null;
 
         /// <summary>
         /// Vector repository GUID.
         /// </summary>
-        public string VectorRepositoryGUID { get; set; } = null;
+        public Guid? VectorRepositoryGUID { get; set; } = null;
 
         /// <summary>
         /// Graph repository GUID.
         /// </summary>
-        public string GraphRepositoryGUID { get; set; } = null;
+        public Guid? GraphRepositoryGUID { get; set; } = null;
 
         /// <summary>
         /// Graph node identifier.
@@ -88,7 +89,7 @@
         /// <summary>
         /// Object GUID.
         /// </summary>
-        public string ObjectGUID { get; set; } = null;
+        public Guid? ObjectGUID { get; set; } = null;
 
         /// <summary>
         /// Object key.
@@ -178,30 +179,27 @@
             EmbeddingsDocument doc = new EmbeddingsDocument
             {
                 Id = Convert.ToInt32(row["id"]),
-                GUID = row["guid"] != null ? row["guid"].ToString() : null,
-                DocumentGUID = row["document_guid"] != null ? row["document_guid"].ToString() : null,
-                TenantGUID = row["tenant_guid"] != null ? row["tenant_guid"].ToString() : null,
-                CollectionGUID = row["collection_guid"] != null ? row["collection_guid"].ToString() : null,
-                SourceDocumentGUID = row["source_document_guid"] != null ? row["source_document_guid"].ToString() : null,
-                DataRepositoryGUID = row["data_repository_guid"] != null ? row["data_repository_guid"].ToString() : null,
-                VectorRepositoryGUID = row["vector_repository_guid"] != null ? row["vector_repository_guid"].ToString() : null,
-                GraphRepositoryGUID = row["graph_repository_guid"] != null ? row["graph_repository_guid"].ToString() : null,
-                GraphNodeIdentifier = row["graph_node_identifier"] != null ? row["graph_node_identifier"].ToString() : null,
-                BucketGUID = row["bucket_guid"] != null ? row["bucket_guid"].ToString() : null,
-                ObjectGUID = row["object_guid"] != null ? row["object_guid"].ToString() : null,
-                ObjectKey = row["object_key"] != null ? row["object_key"].ToString() : null,
-                ObjectVersion = row["object_version"] != null ? row["object_version"].ToString() : null,
-                Model = row["model"] != null ? row["model"].ToString() : null,
-                CreatedUtc = row["created_utc"] != null ? Convert.ToDateTime(row["created_utc"].ToString()) : DateTime.UtcNow
+                GUID = DataTableHelper.GetGuidValue(row, "guid"),
+                DocumentGUID = DataTableHelper.GetGuidValue(row, "document_guid"),
+                TenantGUID = DataTableHelper.GetGuidValue(row, "tenant_guid"),
+                CollectionGUID = DataTableHelper.GetNullableGuidValue(row, "collection_guid"),
+                SourceDocumentGUID = DataTableHelper.GetNullableGuidValue(row, "source_document_guid"),
+                DataRepositoryGUID = DataTableHelper.GetNullableGuidValue(row, "data_repository_guid"),
+                VectorRepositoryGUID = DataTableHelper.GetNullableGuidValue(row, "vector_repository_guid"),
+                GraphRepositoryGUID = DataTableHelper.GetNullableGuidValue(row, "graph_repository_guid"),
+                GraphNodeIdentifier = DataTableHelper.GetStringValue(row, "graph_node_identifier"),
+                BucketGUID = DataTableHelper.GetNullableGuidValue(row, "bucket_guid"),
+                ObjectGUID = DataTableHelper.GetNullableGuidValue(row, "object_guid"),
+                ObjectKey = DataTableHelper.GetStringValue(row, "object_key"),
+                ObjectVersion = DataTableHelper.GetStringValue(row, "object_version"),
+                Model = DataTableHelper.GetStringValue(row, "model"),
+                CreatedUtc = DataTableHelper.GetDateTimeValue(row, "created_utc")
             };
 
-            if (row.Table.Columns.Contains("score"))
-                doc.Score = row["score"] != null ? Convert.ToDecimal(row["score"].ToString()) : null;
+            if (row.Table.Columns.Contains("score")) doc.Score = DataTableHelper.GetNullableDecimalValue(row, "score");
+            if (row.Table.Columns.Contains("distance")) doc.Distance = DataTableHelper.GetNullableDecimalValue(row, "distance");
 
-            if (row.Table.Columns.Contains("distance"))
-                doc.Distance = row["distance"] != null ? Convert.ToDecimal(row["distance"].ToString()) : null;
-
-            SemanticCell cell = SemanticCell.FromDataRow(row, serializer);
+            SemanticCell cell = SemanticCell.FromDataRow(row);
             SemanticChunk chunk = SemanticChunk.FromDataRow(row, serializer);
 
             cell.Chunks.Add(chunk);

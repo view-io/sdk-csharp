@@ -28,7 +28,7 @@
 
         /// <inheritdoc />
         public ViewVoyageAiSdk(
-            string tenantGuid,
+            Guid tenantGuid,
             string baseUrl,
             string apiKey = null) : base(
                 tenantGuid,

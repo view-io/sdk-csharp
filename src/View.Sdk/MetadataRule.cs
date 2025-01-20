@@ -16,22 +16,27 @@
         /// GUID.
         /// </summary>
         [JsonPropertyOrder(-1)]
-        public string GUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid GUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public string TenantGUID { get; set; } = null;
+        public Guid TenantGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Bucket GUID.
         /// </summary>
-        public string BucketGUID { get; set; } = null;
+        public Guid? BucketGUID { get; set; } = null;
 
         /// <summary>
         /// Owner GUID.
         /// </summary>
-        public string OwnerGUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid OwnerGUID { get; set; } = Guid.NewGuid();
+
+        /// <summary>
+        /// Graph repository GUID.
+        /// </summary>
+        public Guid? GraphRepositoryGUID { get; set; } = null;
 
         /// <summary>
         /// Name.
@@ -197,15 +202,6 @@
         /// Data catalog collection identifier.
         /// </summary>
         public string DataCatalogCollection { get; set; } = null;
-
-        #endregion
-
-        #region Graph
-
-        /// <summary>
-        /// Graph repository GUID.
-        /// </summary>
-        public string GraphRepositoryGUID { get; set; } = null;
 
         #endregion
 

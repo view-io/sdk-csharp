@@ -19,7 +19,7 @@
 
         private static EmbeddingsGeneratorEnum _GeneratorType = EmbeddingsGeneratorEnum.LCProxy;
 
-        private static string _TenantGUID = "default";
+        private static Guid _TenantGUID = default(Guid);
         private static string _BaseUrl = null;
         private static string _BaseUrlLcproxy = "http://localhost:8000/";
         private static string _BaseUrlOpenAi = "https://api.openai.com/v1/";
@@ -45,7 +45,7 @@
 
         public static void Main(string[] args)
         {
-            _TenantGUID = Inputty.GetString("Tenant GUID:", _TenantGUID, false);
+            _TenantGUID = Inputty.GetGuid("Tenant GUID:", _TenantGUID);
 
             _GeneratorType = (EmbeddingsGeneratorEnum)(Enum.Parse(
                 typeof(EmbeddingsGeneratorEnum),

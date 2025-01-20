@@ -8,8 +8,9 @@
     using System.Linq;
     using System.Text.Json.Serialization;
     using Timestamps;
-    using View.Sdk.Serialization;
     using View.Sdk;
+    using View.Sdk.Helpers;
+    using View.Sdk.Serialization;
     using Microsoft.VisualBasic;
     using View.Sdk.Semantic;
 
@@ -23,37 +24,37 @@
         /// <summary>
         /// Document GUID.
         /// </summary>
-        public string DocumentGUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid DocumentGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public string TenantGUID { get; set; } = null;
+        public Guid TenantGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Collection GUID.
         /// </summary>
-        public string CollectionGUID { get; set; } = null;
+        public Guid? CollectionGUID { get; set; } = null;
 
         /// <summary>
         /// Source document GUID.
         /// </summary>
-        public string SourceDocumentGUID { get; set; } = null;
+        public Guid? SourceDocumentGUID { get; set; } = null;
 
         /// <summary>
         /// Bucket GUID.
         /// </summary>
-        public string BucketGUID { get; set; } = null;
+        public Guid? BucketGUID { get; set; } = null;
 
         /// <summary>
         /// Vector repository GUID.
         /// </summary>
-        public string VectorRepositoryGUID { get; set; } = null;
+        public Guid? VectorRepositoryGUID { get; set; } = null;
 
         /// <summary>
         /// Graph repository GUID.
         /// </summary>
-        public string GraphRepositoryGUID { get; set; } = null;
+        public Guid? GraphRepositoryGUID { get; set; } = null;
 
         /// <summary>
         /// Graph node identifier.
@@ -63,7 +64,7 @@
         /// <summary>
         /// Object GUID.
         /// </summary>
-        public string ObjectGUID { get; set; } = null;
+        public Guid? ObjectGUID { get; set; } = null;
 
         /// <summary>
         /// Object key.
@@ -83,7 +84,7 @@
         /// <summary>
         /// GUID.
         /// </summary>
-        public string CellGUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid CellGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Semantic cell type.
@@ -124,7 +125,7 @@
         /// <summary>
         /// Chunk GUID.
         /// </summary>
-        public string ChunkGUID { get; set; } = Guid.NewGuid().ToString();
+        public Guid ChunkGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Chunk MD5.
@@ -243,41 +244,41 @@
 
             VectorChunk ret = new VectorChunk
             {
-                DocumentGUID = row["document_guid"] != null ? row["document_guid"].ToString() : null,
-                TenantGUID = row["tenant_guid"] != null ? row["tenant_guid"].ToString() : null,
-                CollectionGUID = row["collection_guid"] != null ? row["collection_guid"].ToString() : null,
-                SourceDocumentGUID = row["source_document_guid"] != null ? row["source_document_guid"].ToString() : null,
-                VectorRepositoryGUID = row["vector_repository_guid"] != null ? row["vector_repository_guid"].ToString() : null,
-                GraphRepositoryGUID = row["graph_repository_guid"] != null ? row["graph_repository_guid"].ToString() : null,
-                GraphNodeIdentifier = row["graph_node_identifier"] != null ? row["graph_node_identifier"].ToString() : null,
-                BucketGUID = row["bucket_guid"] != null ? row["bucket_guid"].ToString() : null,
-                ObjectGUID = row["object_guid"] != null ? row["object_guid"].ToString() : null,
-                ObjectKey = row["object_key"] != null ? row["object_key"].ToString() : null,
-                ObjectVersion = row["object_version"] != null ? row["object_version"].ToString() : null,
-                Model = row["model"] != null ? row["model"].ToString() : null,
-                
-                CellGUID = row["cell_guid"] != null ? row["cell_guid"].ToString() : null,
-                CellType = row["cell_type"] != null ? (SemanticCellTypeEnum)Enum.Parse(typeof(SemanticCellTypeEnum), row["cell_type"].ToString()) : SemanticCellTypeEnum.Text,
-                CellMD5Hash = row["cell_md5"] != null ? row["cell_md5"].ToString() : null,
-                CellSHA1Hash = row["cell_sha1"] != null ? row["cell_sha1"].ToString() : null,
-                CellSHA256Hash = row["cell_sha256"] != null ? row["cell_sha256"].ToString() : null,
-                CellPosition = row["cell_position"] != null ? Convert.ToInt32(row["cell_position"]) : 0,
+                DocumentGUID = DataTableHelper.GetGuidValue(row, "document_guid"),
+                TenantGUID = DataTableHelper.GetGuidValue(row, "tenant_guid"),
+                CollectionGUID = DataTableHelper.GetNullableGuidValue(row, "collection_guid"),
+                SourceDocumentGUID = DataTableHelper.GetNullableGuidValue(row, "source_document_guid"),
+                VectorRepositoryGUID = DataTableHelper.GetNullableGuidValue(row, "vector_repository_guid"),
+                GraphRepositoryGUID = DataTableHelper.GetNullableGuidValue(row, "graph_repository_guid"),
+                GraphNodeIdentifier = DataTableHelper.GetStringValue(row, "graph_node_identifier"),
+                BucketGUID = DataTableHelper.GetNullableGuidValue(row, "bucket_guid"),
+                ObjectGUID = DataTableHelper.GetNullableGuidValue(row, "object_guid"),
+                ObjectKey = DataTableHelper.GetStringValue(row, "object_key"),
+                ObjectVersion = DataTableHelper.GetStringValue(row, "object_version"),
+                Model = DataTableHelper.GetStringValue(row, "model"),
 
-                ChunkGUID = row["chunk_guid"] != null ? row["chunk_guid"].ToString() : null,
-                ChunkMD5Hash = row["chunk_md5"] != null ? row["chunk_md5"].ToString() : null,
-                ChunkSHA1Hash = row["chunk_sha1"] != null ? row["chunk_sha1"].ToString() : null,
-                ChunkSHA256Hash = row["chunk_sha256"] != null ? row["chunk_sha256"].ToString() : null,
-                ChunkPosition = row["chunk_position"] != null ? Convert.ToInt32(row["chunk_position"]) : 0,
-                ChunkLength = row["chunk_length"] != null ? Convert.ToInt32(row["chunk_length"]) : 0,
-                Content = row["content"] != null ? row["content"].ToString() : null,
-                
-                Score = row.Table.Columns.Contains("score") && row["score"] != null ? Convert.ToDecimal(row["score"]) : 0,
-                Distance = row.Table.Columns.Contains("distance") && row["distance"] != null ? Convert.ToDecimal(row["distance"]) : 0,
+                CellGUID = DataTableHelper.GetGuidValue(row, "cell_guid"),
+                CellType = DataTableHelper.GetEnumValue<SemanticCellTypeEnum>(row, "cell_type"),
+                CellMD5Hash = DataTableHelper.GetStringValue(row, "cell_md5"),
+                CellSHA1Hash = DataTableHelper.GetStringValue(row, "cell_sha1"),
+                CellSHA256Hash = DataTableHelper.GetStringValue(row, "cell_sha256"),
+                CellPosition = DataTableHelper.GetInt32Value(row, "cell_position"),
 
-                CreatedUtc = row["created_utc"] != null ? Convert.ToDateTime(row["created_utc"].ToString()) : DateTime.UtcNow,
+                ChunkGUID = DataTableHelper.GetGuidValue(row, "chunk_guid"),
+                ChunkMD5Hash = DataTableHelper.GetStringValue(row, "chunk_md5"),
+                ChunkSHA1Hash = DataTableHelper.GetStringValue(row, "chunk_sha1"),
+                ChunkSHA256Hash = DataTableHelper.GetStringValue(row, "chunk_sha256"),
+                ChunkPosition = DataTableHelper.GetInt32Value(row, "chunk_position"),
+                ChunkLength = DataTableHelper.GetInt32Value(row, "chunk_length"),
+                Content = DataTableHelper.GetStringValue(row, "content"),
+
+                Score = row.Table.Columns.Contains("score") && row["score"] != null ? DataTableHelper.GetNullableDecimalValue(row, "score") : 0,
+                Distance = row.Table.Columns.Contains("distance") && row["distance"] != null ? DataTableHelper.GetNullableDecimalValue(row, "distance") : 0,
+
+                CreatedUtc = DataTableHelper.GetDateTimeValue(row, "created_utc")
             };
 
-            string embeddingsStr = row["embedding"] != null ? row["embedding"].ToString() : null;
+            string embeddingsStr = DataTableHelper.GetStringValue(row, "embedding");
             List<float> embeddings = new List<float>();
             if (!String.IsNullOrEmpty(embeddingsStr))
                 ret.Embeddings = serializer.DeserializeJson<List<float>>(embeddingsStr);

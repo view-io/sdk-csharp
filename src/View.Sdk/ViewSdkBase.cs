@@ -56,18 +56,7 @@
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public string TenantGUID
-        {
-            get
-            {
-                return _TenantGUID;
-            }
-            set
-            {
-                if (String.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(TenantGUID));
-                _TenantGUID = value;
-            }
-        }
+        public Guid TenantGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Access key.
@@ -142,7 +131,6 @@
         #region Private-Members
 
         private string _Header = "[ViewSdkBase] ";
-        private string _TenantGUID = null;
         private string _AccessKey = null;
         private string _Endpoint = null;
         private Serializer _Serializer = new Serializer();
@@ -183,9 +171,8 @@
         /// <param name="tenantGuid">Tenant GUID.</param>
         /// <param name="accessKey">Access key.</param>
         /// <param name="endpoint">Endpoint.</param>
-        public ViewSdkBase(string tenantGuid, string accessKey, string endpoint)
+        public ViewSdkBase(Guid tenantGuid, string accessKey, string endpoint)
         {
-            if (String.IsNullOrEmpty(tenantGuid)) throw new ArgumentNullException(nameof(tenantGuid));
             if (String.IsNullOrEmpty(endpoint)) throw new ArgumentNullException(nameof(endpoint));
 
             TenantGUID = tenantGuid;
