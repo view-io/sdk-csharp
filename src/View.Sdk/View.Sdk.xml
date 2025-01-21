@@ -7362,6 +7362,21 @@
             Text.
             </summary>
         </member>
+        <member name="F:View.Sdk.Semantic.SemanticCellTypeEnum.Table">
+            <summary>
+            Table.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Semantic.SemanticCellTypeEnum.List">
+            <summary>
+            List.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Semantic.SemanticCellTypeEnum.Binary">
+            <summary>
+            Binary.
+            </summary>
+        </member>
         <member name="T:View.Sdk.Semantic.SemanticChunk">
             <summary>
             Semantic chunk.
@@ -8330,6 +8345,11 @@
             Parent GUID.
             </summary>
         </member>
+        <member name="P:View.Sdk.TenantMetadata.DefaultPoolGUID">
+            <summary>
+            Default pool GUID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.TenantMetadata.Name">
             <summary>
             Name.
@@ -8348,11 +8368,6 @@
         <member name="P:View.Sdk.TenantMetadata.RestBaseDomain">
             <summary>
             REST base domain.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.TenantMetadata.DefaultPoolGUID">
-            <summary>
-            Default pool GUID.
             </summary>
         </member>
         <member name="P:View.Sdk.TenantMetadata.Active">

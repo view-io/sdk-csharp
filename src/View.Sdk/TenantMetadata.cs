@@ -43,6 +43,11 @@
         public Guid? ParentGUID { get; set; } = null;
 
         /// <summary>
+        /// Default pool GUID.
+        /// </summary>
+        public Guid DefaultPoolGUID { get; set; } = Guid.NewGuid();
+
+        /// <summary>
         /// Name.
         /// </summary>
         public string Name { get; set; } = null;
@@ -61,11 +66,6 @@
         /// REST base domain.
         /// </summary>
         public string RestBaseDomain { get; set; } = null;
-
-        /// <summary>
-        /// Default pool GUID.
-        /// </summary>
-        public string DefaultPoolGUID { get; set; } = null;
 
         /// <summary>
         /// Active.
