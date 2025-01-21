@@ -355,5 +355,18 @@
                    obj.GetType().IsGenericType &&
                    obj.GetType().GetGenericTypeDefinition().IsAssignableFrom(typeof(Dictionary<,>));
         }
+
+        /// <summary>
+        /// Retrieve binary value or null.
+        /// </summary>
+        /// <param name="row">DataRow.</param>
+        /// <param name="columnName"></param>
+        /// <returns>Byte array or null.</returns>
+        public static byte[] GetNullableBinaryValue(DataRow row, string columnName)
+        {
+            if (row == null || string.IsNullOrEmpty(columnName)) return null;
+            if (row.IsNull(columnName)) return null;
+            return row[columnName] as byte[];
+        }
     }
 }

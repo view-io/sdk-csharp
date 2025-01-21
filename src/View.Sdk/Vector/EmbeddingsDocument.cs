@@ -200,7 +200,7 @@
             if (row.Table.Columns.Contains("distance")) doc.Distance = DataTableHelper.GetNullableDecimalValue(row, "distance");
 
             SemanticCell cell = SemanticCell.FromDataRow(row);
-            SemanticChunk chunk = SemanticChunk.FromDataRow(row, serializer);
+            SemanticChunk chunk = SemanticChunk.FromDataRow(row);
 
             cell.Chunks.Add(chunk);
 

@@ -5003,6 +5003,14 @@
             <param name="obj">Object.</param>
             <returns>True if dictionary.</returns>
         </member>
+        <member name="M:View.Sdk.Helpers.DataTableHelper.GetNullableBinaryValue(System.Data.DataRow,System.String)">
+            <summary>
+            Retrieve binary value or null.
+            </summary>
+            <param name="row">DataRow.</param>
+            <param name="columnName"></param>
+            <returns>Byte array or null.</returns>
+        </member>
         <member name="T:View.Sdk.Helpers.DirectoryHelper">
             <summary>
             Directory helper.
@@ -7422,9 +7430,14 @@
             Length.
             </summary>
         </member>
-        <member name="P:View.Sdk.Semantic.SemanticChunk.Content">
+        <member name="P:View.Sdk.Semantic.SemanticChunk.Binary">
             <summary>
-            Content.
+            Binary data.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Semantic.SemanticChunk.Text">
+            <summary>
+            Text.
             </summary>
         </member>
         <member name="P:View.Sdk.Semantic.SemanticChunk.Embeddings">
@@ -7447,20 +7460,18 @@
             <param name="content">Content.</param>
             <param name="embeddings">Embeddings.</param>
         </member>
-        <member name="M:View.Sdk.Semantic.SemanticChunk.FromDataRow(System.Data.DataRow,View.Sdk.Serialization.Serializer)">
+        <member name="M:View.Sdk.Semantic.SemanticChunk.FromDataRow(System.Data.DataRow)">
             <summary>
             Instantiate from DataRow.
             </summary>
             <param name="row">DataRow.</param>
-            <param name="serializer">Serializer.</param>
             <returns>SemanticChunk.</returns>
         </member>
-        <member name="M:View.Sdk.Semantic.SemanticChunk.FromDataTable(System.Data.DataTable,View.Sdk.Serialization.Serializer)">
+        <member name="M:View.Sdk.Semantic.SemanticChunk.FromDataTable(System.Data.DataTable)">
             <summary>
             Instantiate from DataTable.
             </summary>
             <param name="dt">DataTable.</param>
-            <param name="serializer">Serializer.</param>
             <returns>List of SemanticChunk.</returns>
         </member>
         <member name="T:View.Sdk.Semantic.ViewSemanticCellSdk">

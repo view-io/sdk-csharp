@@ -100,18 +100,34 @@
         }
 
         /// <summary>
-        /// Content.
+        /// Binary data.
         /// </summary>
-        public string Content
+        public byte[] Binary
         {
             get
             {
-                return _Content;
+                return _Binary;
+            }
+            set
+            {
+                if (value != null) _Length = value.Length;
+                _Binary = value;
+            }
+        }
+
+        /// <summary>
+        /// Text.
+        /// </summary>
+        public string Text
+        {
+            get
+            {
+                return _Text;
             }
             set
             {
                 if (!String.IsNullOrEmpty(value)) _Length = value.Length;
-                _Content = value;
+                _Text = value;
             }
         }
 
@@ -140,7 +156,8 @@
         private int _End = 0;
         private int _Length = 0;
         private List<float> _Embeddings = new List<float>();
-        private string _Content = null;
+        private byte[] _Binary = null;
+        private string _Text = null;
 
         #endregion
 
@@ -172,7 +189,7 @@
             Position = position;
             Start = start;
             End = end;
-            Content = content;
+            Text = content;
             Embeddings = embeddings;
 
             if (!String.IsNullOrEmpty(content))
@@ -188,12 +205,12 @@
         /// Instantiate from DataRow.
         /// </summary>
         /// <param name="row">DataRow.</param>
-        /// <param name="serializer">Serializer.</param>
         /// <returns>SemanticChunk.</returns>
-        public static SemanticChunk FromDataRow(DataRow row, Serializer serializer)
+        public static SemanticChunk FromDataRow(DataRow row)
         {
             if (row == null) return null;
-            if (serializer == null) throw new ArgumentNullException(nameof(serializer));
+
+            Serializer serializer = new Serializer();
 
             string embeddingsStr = DataTableHelper.GetStringValue(row, "embedding");
             List<float> embeddings = new List<float>();
@@ -208,7 +225,8 @@
                 SHA256Hash = DataTableHelper.GetStringValue(row, "chunk_sha256"),
                 Position = DataTableHelper.GetInt32Value(row, "chunk_position"),
                 Length = DataTableHelper.GetInt32Value(row, "chunk_length"),
-                Content = DataTableHelper.GetStringValue(row, "content"),
+                Text = DataTableHelper.GetStringValue(row, "text_data"),
+                Binary = DataTableHelper.GetNullableBinaryValue(row, "binary_data"),
                 Embeddings = embeddings
             };
 
@@ -219,16 +237,14 @@
         /// Instantiate from DataTable.
         /// </summary>
         /// <param name="dt">DataTable.</param>
-        /// <param name="serializer">Serializer.</param>
         /// <returns>List of SemanticChunk.</returns>
-        public static List<SemanticChunk> FromDataTable(DataTable dt, Serializer serializer)
+        public static List<SemanticChunk> FromDataTable(DataTable dt)
         {
             if (dt == null) return null;
-            if (serializer == null) throw new ArgumentNullException(nameof(serializer));
 
             List<SemanticChunk> ret = new List<SemanticChunk>();
             foreach (DataRow row in dt.Rows)
-                ret.Add(FromDataRow(row, serializer));
+                ret.Add(FromDataRow(row));
 
             return ret;
         }

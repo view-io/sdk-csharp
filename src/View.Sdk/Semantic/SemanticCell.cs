@@ -144,7 +144,7 @@
         public static SemanticCell FromDataRow(DataRow row)
         {
             if (row == null) return null;
-
+            
             SemanticCell cell = new SemanticCell
             {
                 GUID = DataTableHelper.GetGuidValue(row, "cell_guid"),
