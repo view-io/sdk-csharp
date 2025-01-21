@@ -63,7 +63,7 @@
         /// <summary>
         /// Continuation token.
         /// </summary>
-        public string ContinuationToken { get; set; } = null;
+        public Guid? ContinuationToken { get; set; } = null;
 
         /// <summary>
         /// Shared prefixes.

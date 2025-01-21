@@ -72,6 +72,11 @@
         }
 
         /// <summary>
+        /// Enable or disable SSL.
+        /// </summary>
+        public bool Ssl { get; set; } = false;
+
+        /// <summary>
         /// Graph identifier.
         /// </summary>
         public string GraphIdentifier { get; set; } = null;

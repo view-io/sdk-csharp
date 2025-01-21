@@ -3447,6 +3447,11 @@
             Port.
             </summary>
         </member>
+        <member name="P:View.Sdk.GraphRepository.Ssl">
+            <summary>
+            Enable or disable SSL.
+            </summary>
+        </member>
         <member name="P:View.Sdk.GraphRepository.GraphIdentifier">
             <summary>
             Graph identifier.
@@ -4844,6 +4849,22 @@
             Data table helper.
             </summary>
         </member>
+        <member name="M:View.Sdk.Helpers.DataTableHelper.GetBooleanValue(System.Data.DataRow,System.String)">
+            <summary>
+            Retrieve Boolean value.
+            </summary>
+            <param name="row">DataRow.</param>
+            <param name="columnName"></param>
+            <returns>Boolean value.</returns>
+        </member>
+        <member name="M:View.Sdk.Helpers.DataTableHelper.GetNullableBooleanValue(System.Data.DataRow,System.String)">
+            <summary>
+            Retrieve nullable Boolean value.
+            </summary>
+            <param name="row">DataRow.</param>
+            <param name="columnName">Name of the column.</param>
+            <returns>Boolean value if valid, null if unknown or invalid.</returns>
+        </member>
         <member name="M:View.Sdk.Helpers.DataTableHelper.GetStringValue(System.Data.DataRow,System.String)">
             <summary>
             Retrieve string value.
@@ -4861,6 +4882,22 @@
             <returns>Integer.</returns>
         </member>
         <member name="M:View.Sdk.Helpers.DataTableHelper.GetNullableInt32Value(System.Data.DataRow,System.String)">
+            <summary>
+            Retrieve nullable integer value.
+            </summary>
+            <param name="row">DataRow.</param>
+            <param name="columnName"></param>
+            <returns>Integer.</returns>
+        </member>
+        <member name="M:View.Sdk.Helpers.DataTableHelper.GetInt64Value(System.Data.DataRow,System.String)">
+            <summary>
+            Retrieve long value.  Returns 0 if the cell is null.
+            </summary>
+            <param name="row">DataRow.</param>
+            <param name="columnName"></param>
+            <returns>Long.</returns>
+        </member>
+        <member name="M:View.Sdk.Helpers.DataTableHelper.GetNullableInt64Value(System.Data.DataRow,System.String)">
             <summary>
             Retrieve nullable integer value.
             </summary>
@@ -4924,6 +4961,74 @@
             <param name="columnName"></param>
             <returns>Nullable decimal.</returns>
         </member>
+        <member name="M:View.Sdk.Helpers.DataTableHelper.DataTableToListDynamic(System.Data.DataTable)">
+            <summary>
+            Convert a data table to a dynamic list.
+            </summary>
+            <param name="dt">Data table.</param>
+            <returns>List of dynamic.</returns>
+        </member>
+        <member name="M:View.Sdk.Helpers.DataTableHelper.DataTableToDynamic(System.Data.DataTable)">
+            <summary>
+            Convert a data table to a dynamic.
+            </summary>
+            <param name="dt">Data table.</param>
+            <returns>Dynamic.</returns>
+        </member>
+        <member name="M:View.Sdk.Helpers.DataTableHelper.DataTableToListDictionary(System.Data.DataTable)">
+            <summary>
+            Convert a data table to a list of dictionaries.
+            </summary>
+            <param name="dt">Data table.</param>
+            <returns>List of dictionaries.</returns>
+        </member>
+        <member name="M:View.Sdk.Helpers.DataTableHelper.DataTableToDictionary(System.Data.DataTable)">
+            <summary>
+            Convert a data table to a dictionary.
+            </summary>
+            <param name="dt">Data table.</param>
+            <returns>Dictionary.</returns>
+        </member>
+        <member name="M:View.Sdk.Helpers.DataTableHelper.ObjectToDictionary(System.Object)">
+            <summary>
+            Convert an object to a dictionary.
+            </summary>
+            <param name="obj">Object.</param>
+            <returns>Dictionary.</returns>
+        </member>
+        <member name="M:View.Sdk.Helpers.DataTableHelper.IsDictionary(System.Object)">
+            <summary>
+            Check if an object is a dictionary.
+            </summary>
+            <param name="obj">Object.</param>
+            <returns>True if dictionary.</returns>
+        </member>
+        <member name="T:View.Sdk.Helpers.DirectoryHelper">
+            <summary>
+            Directory helper.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Helpers.DirectoryHelper.NormalizeDirectory(System.String)">
+            <summary>
+            Normalize directory path.
+            </summary>
+            <param name="directory">Directory.</param>
+            <returns>Normalized directory.</returns>
+        </member>
+        <member name="M:View.Sdk.Helpers.DirectoryHelper.RecursiveDelete(System.String,System.Boolean)">
+            <summary>
+            Recursively delete a directory.
+            </summary>
+            <param name="baseDir">Base directory.</param>
+            <param name="deleteRootDirectory">True to delete the root directory.</param>
+        </member>
+        <member name="M:View.Sdk.Helpers.DirectoryHelper.RecursiveDelete(System.IO.DirectoryInfo,System.Boolean)">
+            <summary>
+            Recursively delete a directory.
+            </summary>
+            <param name="baseDir">Base directory.</param>
+            <param name="deleteRootDirectory">True to delete the root directory.</param>
+        </member>
         <member name="T:View.Sdk.Helpers.HashHelper">
             <summary>
             Hash methods.
@@ -4970,6 +5075,18 @@
             </summary>
             <param name="stream">Stream.</param>
             <returns>MD5 hash.</returns>
+        </member>
+        <member name="T:View.Sdk.Helpers.StreamHelper">
+            <summary>
+            Stream helpers.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Helpers.StreamHelper.ReadFully(System.IO.Stream)">
+            <summary>
+            Read a stream fully.
+            </summary>
+            <param name="stream">Stream.</param>
+            <returns>Bytes.</returns>
         </member>
         <member name="T:View.Sdk.Helpers.TimeHelper">
             <summary>
