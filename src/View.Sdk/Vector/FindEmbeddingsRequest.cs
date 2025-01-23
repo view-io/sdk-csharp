@@ -1,6 +1,5 @@
 ﻿namespace View.Sdk.Vector
 {
-    using System;
     using System.Collections.Generic;
 
     /// <summary>
@@ -13,12 +12,12 @@
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public Guid TenantGUID { get; set; } = Guid.NewGuid();
+        public string TenantGUID { get; set; } = null;
 
         /// <summary>
         /// Vector repository GUID.
         /// </summary>
-        public Guid VectorRepositoryGUID { get; set; } = Guid.NewGuid();
+        public string VectorRepositoryGUID { get; set; } = null;
 
         /// <summary>
         /// List of embeddings parameters on which to match.

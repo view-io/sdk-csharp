@@ -13,20 +13,5 @@
         /// </summary>
         [EnumMember(Value = "Text")]
         Text,
-        /// <summary>
-        /// Table.
-        /// </summary>
-        [EnumMember(Value = "Table")]
-        Table,
-        /// <summary>
-        /// List.
-        /// </summary>
-        [EnumMember(Value = "List")]
-        List,
-        /// <summary>
-        /// Binary.
-        /// </summary>
-        [EnumMember(Value = "Binary")]
-        Binary
     }
 }

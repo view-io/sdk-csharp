@@ -42,7 +42,7 @@
         /// <summary>
         /// Data flow request GUID.
         /// </summary>
-        public Guid? DataFlowRequestGUID { get; set; } = null;
+        public string DataFlowRequestGUID { get; set; } = null;
 
         /// <summary>
         /// Boolean indicating end of results.
@@ -52,7 +52,7 @@
         /// <summary>
         /// Continuation token to use when continuing the search.
         /// </summary>
-        public Guid? ContinuationToken { get; set; } = null;
+        public string ContinuationToken { get; set; } = null;
 
         /// <summary>
         /// Number of candidate records remaining in the search.

@@ -18,12 +18,12 @@
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public Guid TenantGUID { get; set; } = Guid.NewGuid();
+        public string TenantGUID { get; set; } = null;
 
         /// <summary>
         /// Vector repository GUID.
         /// </summary>
-        public Guid VectorRepositoryGUID { get; set; } = Guid.NewGuid();
+        public string VectorRepositoryGUID { get; set; } = null;
 
         /// <summary>
         /// Starting index.

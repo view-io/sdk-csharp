@@ -31,17 +31,17 @@
         /// GUID.
         /// </summary>
         [JsonPropertyOrder(-1)]
-        public Guid GUID { get; set; } = Guid.NewGuid();
+        public string GUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public Guid TenantGUID { get; set; } = Guid.NewGuid();
+        public string TenantGUID { get; set; } = null;
 
         /// <summary>
         /// Encryption key.
         /// </summary>
-        public Guid? EncryptionKeyGUID { get; set; } = null;
+        public string EncryptionKeyGUID { get; set; } = null;
 
         /// <summary>
         /// Name.

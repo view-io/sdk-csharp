@@ -14,7 +14,18 @@
         /// <summary>
         /// GUID.
         /// </summary>
-        public Guid GUID { get; set; } = Guid.NewGuid();
+        public string GUID
+        {
+            get
+            {
+                return _Guid.ToString();
+            }
+            set
+            {
+                if (String.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(GUID));
+                _Guid = value;
+            }
+        }
 
         /// <summary>
         /// Database type.
@@ -141,6 +152,7 @@
 
         #region Private-Members
 
+        private string _Guid = null;
         private int _TopTerms = 10;
         private int _Port = 0;
         private Dictionary<string, object> _Metadata = new Dictionary<string, object>(StringComparer.InvariantCultureIgnoreCase);

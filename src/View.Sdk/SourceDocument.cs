@@ -14,32 +14,32 @@
         /// <summary>
         /// GUID.
         /// </summary>
-        public Guid GUID { get; set; } = Guid.NewGuid();
+        public string GUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public Guid TenantGUID { get; set; } = Guid.NewGuid();
+        public string TenantGUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Bucket GUID.
         /// </summary>
-        public Guid? BucketGUID { get; set; } = null;
+        public string BucketGUID { get; set; } = null;
 
         /// <summary>
         /// Collection GUID.
         /// </summary>
-        public Guid CollectionGUID { get; set; } = Guid.NewGuid();
+        public string CollectionGUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Object GUID.
         /// </summary>
-        public Guid ObjectGUID { get; set; } = Guid.NewGuid();
+        public string ObjectGUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Graph repository GUID.
         /// </summary>
-        public Guid? GraphRepositoryGUID { get; set; } = null;
+        public string GraphRepositoryGUID { get; set; } = null;
 
         /// <summary>
         /// Graph node identifier.
@@ -49,12 +49,12 @@
         /// <summary>
         /// Data repository GUID.
         /// </summary>
-        public Guid? DataRepositoryGUID { get; set; } = null;
+        public string DataRepositoryGUID { get; set; } = null;
 
         /// <summary>
         /// Data flow request GUID.
         /// </summary>
-        public Guid? DataFlowRequestGUID { get; set; } = null;
+        public string DataFlowRequestGUID { get; set; } = null;
 
         /// <summary>
         /// Boolean indicating if the data flow was successful in processing the object.

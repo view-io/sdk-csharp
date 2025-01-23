@@ -13,17 +13,17 @@
         /// <summary>
         /// GUID.
         /// </summary>
-        public Guid GUID { get; set; } = Guid.NewGuid();
+        public string GUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public Guid TenantGUID { get; set; } = Guid.NewGuid();
+        public string TenantGUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Name.
         /// </summary>
-        public string Name { get; set; } = "My graph repository";
+        public string Name { get; set; } = "My vector repository";
 
         /// <summary>
         /// Type of graph repository.
@@ -70,11 +70,6 @@
                 _Port = value;
             }
         }
-
-        /// <summary>
-        /// Enable or disable SSL.
-        /// </summary>
-        public bool Ssl { get; set; } = false;
 
         /// <summary>
         /// Graph identifier.

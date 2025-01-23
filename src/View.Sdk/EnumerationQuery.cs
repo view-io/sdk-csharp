@@ -25,7 +25,7 @@
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public Guid TenantGUID { get; set; } = Guid.NewGuid();
+        public string TenantGUID { get; set; } = null;
 
         /// <summary>
         /// Bucket.
@@ -35,7 +35,7 @@
         /// <summary>
         /// Bucket GUID.
         /// </summary>
-        public Guid? BucketGUID { get; set; } = null;
+        public string BucketGUID { get; set; } = null;
 
         /// <summary>
         /// Collection.
@@ -45,7 +45,7 @@
         /// <summary>
         /// Collection GUID.
         /// </summary>
-        public Guid? CollectionGUID { get; set; } = null;
+        public string CollectionGUID { get; set; } = null;
 
         /// <summary>
         /// Source document.
@@ -55,12 +55,12 @@
         /// <summary>
         /// Source document GUID.
         /// </summary>
-        public Guid? SourceDocumentGUID { get; set; } = null;
+        public string SourceDocumentGUID { get; set; } = null;
 
         /// <summary>
         /// Data repository GUID.
         /// </summary>
-        public Guid? DataRepositoryGUID { get; set; } = null;
+        public string DataRepositoryGUID { get; set; } = null;
 
         /// <summary>
         /// Vector repository.
@@ -70,7 +70,7 @@
         /// <summary>
         /// Vector repository GUID.
         /// </summary>
-        public Guid? VectorRepositoryGUID { get; set; } = null;
+        public string VectorRepositoryGUID { get; set; } = null;
 
         /// <summary>
         /// Graph repository.
@@ -80,7 +80,7 @@
         /// <summary>
         /// Graph repository GUID.
         /// </summary>
-        public Guid? GraphRepositoryGUID { get; set; } = null;
+        public string GraphRepositoryGUID { get; set; } = null;
 
         /// <summary>
         /// Graph node identifier.
@@ -123,7 +123,7 @@
         /// <summary>
         /// Continuation token.
         /// </summary>
-        public Guid? ContinuationToken { get; set; } = null;
+        public string ContinuationToken { get; set; } = null;
 
         /// <summary>
         /// Prefix.

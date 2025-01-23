@@ -30,22 +30,17 @@
         /// <summary>
         /// GUID.
         /// </summary>
-        public Guid GUID { get; set; } = Guid.NewGuid();
+        public string GUID { get; set; } = null;
 
         /// <summary>
         /// Account GUID.
         /// </summary>
-        public Guid AccountGUID { get; set; } = Guid.NewGuid();
+        public string AccountGUID { get; set; } = null;
 
         /// <summary>
         /// Parent GUID.
         /// </summary>
-        public Guid? ParentGUID { get; set; } = null;
-
-        /// <summary>
-        /// Default pool GUID.
-        /// </summary>
-        public Guid DefaultPoolGUID { get; set; } = Guid.NewGuid();
+        public string ParentGUID { get; set; } = null;
 
         /// <summary>
         /// Name.
@@ -66,6 +61,11 @@
         /// REST base domain.
         /// </summary>
         public string RestBaseDomain { get; set; } = null;
+
+        /// <summary>
+        /// Default pool GUID.
+        /// </summary>
+        public string DefaultPoolGUID { get; set; } = null;
 
         /// <summary>
         /// Active.

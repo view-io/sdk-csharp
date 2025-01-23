@@ -35,7 +35,7 @@
 
         /// <inheritdoc />
         public ViewOllamaSdk(
-            Guid tenantGuid,
+            string tenantGuid,
             string baseUrl = "http://localhost:7869",
             string apiKey = null) : base(
                 tenantGuid,

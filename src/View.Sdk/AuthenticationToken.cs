@@ -37,17 +37,17 @@
         /// <summary>
         /// Administrator GUID.
         /// </summary>
-        public Guid? AdministratorGUID { get; set; } = null;
+        public string AdministratorGUID { get; set; } = null;
 
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public Guid? TenantGUID { get; set; } = null;
+        public string TenantGUID { get; set; } = null;
 
         /// <summary>
         /// User.
         /// </summary>
-        public Guid? UserGUID { get; set; } = null;
+        public string UserGUID { get; set; } = null;
 
         /// <summary>
         /// Token.

@@ -15,12 +15,12 @@
         /// <summary>
         /// GUID.
         /// </summary>
-        public Guid GUID { get; set; } = Guid.NewGuid();
+        public string GUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public Guid TenantGUID { get; set; } = Guid.NewGuid();
+        public string TenantGUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Name.
@@ -108,6 +108,21 @@
         /// Database password.
         /// </summary>
         public string DatabasePassword { get; set; } = null;
+
+        /// <summary>
+        /// Prefix to prepend to language model prompts.
+        /// </summary>
+        public string PromptPrefix { get; set; } = 
+            "Use the following pieces of context to answer the question at the end.  " +
+            "Documents are sorted by similarity to the question.  " +
+            "If the context is not enough for you to answer the question, " +
+            "politely explain that you don't have relevant context.  " +
+            "Do not try to make up an answer.";
+
+        /// <summary>
+        /// Suffix to append to language model prompts.
+        /// </summary>
+        public string PromptSuffix { get; set; } = null;
 
         /// <summary>
         /// Creation timestamp, in UTC time.

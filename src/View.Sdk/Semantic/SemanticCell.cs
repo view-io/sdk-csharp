@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Data;
     using System.Linq;
-    using View.Sdk.Helpers;
     using View.Sdk.Serialization;
 
     /// <summary>
@@ -17,7 +16,7 @@
         /// <summary>
         /// GUID.
         /// </summary>
-        public Guid GUID { get; set; } = Guid.NewGuid();
+        public string GUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Semantic cell type.
@@ -140,20 +139,33 @@
         /// Instantiate from DataRow.
         /// </summary>
         /// <param name="row">DataRow.</param>
+        /// <param name="serializer">Serializer.</param>
         /// <returns>SemanticCell.</returns>
-        public static SemanticCell FromDataRow(DataRow row)
+        public static SemanticCell FromDataRow(DataRow row, Serializer serializer)
         {
             if (row == null) return null;
-            
+            if (serializer == null) throw new ArgumentNullException(nameof(serializer));
+
+            string cellGuid = row["cell_guid"] != null ? row["cell_guid"].ToString() : null;
+            string cellType = row["cell_type"] != null ? row["cell_type"].ToString() : null;
+            string cellMd5 = row["cell_md5"] != null ? row["cell_md5"].ToString() : null;
+            string cellSha1 = row["cell_sha1"] != null ? row["cell_sha1"].ToString() : null;
+            string cellSha256 = row["cell_sha256"] != null ? row["cell_sha256"].ToString() : null;
+            int cellPosition = row["cell_position"] != null ? Convert.ToInt32(row["cell_position"]) : 0;
+            int cellLength = row["cell_length"] != null ? Convert.ToInt32(row["cell_length"]) : 0;
+
             SemanticCell cell = new SemanticCell
             {
-                GUID = DataTableHelper.GetGuidValue(row, "cell_guid"),
-                CellType = DataTableHelper.GetEnumValue<SemanticCellTypeEnum>(row, "cell_type"),
-                MD5Hash = DataTableHelper.GetStringValue(row, "cell_md5"),
-                SHA1Hash = DataTableHelper.GetStringValue(row, "cell_sha1"),
-                SHA256Hash = DataTableHelper.GetStringValue(row, "cell_sha256"),
-                Position = DataTableHelper.GetInt32Value(row, "cell_position"),
-                Length = DataTableHelper.GetInt32Value(row, "cell_length")
+                GUID = cellGuid,
+                CellType =
+                    !String.IsNullOrEmpty(cellType)
+                        ? (SemanticCellTypeEnum)Enum.Parse(typeof(SemanticCellTypeEnum), cellType)
+                        : SemanticCellTypeEnum.Text,
+                MD5Hash = cellMd5,
+                SHA1Hash = cellSha1,
+                SHA256Hash = cellSha256,
+                Position = cellPosition,
+                Length = cellLength
             };
 
             return cell;
@@ -163,15 +175,17 @@
         /// Instantiate from DataTable.
         /// </summary>
         /// <param name="dt">DataTable.</param>
+        /// <param name="serializer">Serializer.</param>
         /// <param name="distinct">True to only return distinct records.</param>
         /// <returns>List of SemanticCell.</returns>
-        public static List<SemanticCell> FromDataTable(DataTable dt, bool distinct = true)
+        public static List<SemanticCell> FromDataTable(DataTable dt, Serializer serializer, bool distinct = true)
         {
             if (dt == null) return null;
+            if (serializer == null) throw new ArgumentNullException(nameof(serializer));
 
             List<SemanticCell> ret = new List<SemanticCell>();
             foreach (DataRow row in dt.Rows)
-                ret.Add(FromDataRow(row));
+                ret.Add(FromDataRow(row, serializer));
 
             if (distinct)
                 ret = ret.DistinctBy(c => c.GUID).ToList();

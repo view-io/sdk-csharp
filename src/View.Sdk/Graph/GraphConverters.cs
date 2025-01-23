@@ -18,7 +18,6 @@
 
             return new LiteGraph.Sdk.Graph
             {
-                TenantGUID = graph.TenantGUID,
                 GUID = graph.GUID,
                 Name = graph.Name,
                 CreatedUtc = graph.CreatedUtc
@@ -31,7 +30,6 @@
 
             return new Graph
             {
-                TenantGUID = graph.GUID,
                 GUID = graph.GUID,
                 Name = graph.Name,
                 CreatedUtc = graph.CreatedUtc
@@ -58,7 +56,6 @@
 
             return new LiteGraph.Sdk.Node
             {
-                TenantGUID = node.GUID,
                 GUID = node.GUID,
                 GraphGUID = node.GraphGUID,
                 Name = node.Name,
@@ -77,7 +74,6 @@
 
             return new GraphNode
             {
-                TenantGUID = node.GUID,
                 GUID = node.GUID,
                 GraphGUID = node.GraphGUID,
                 Name = node.Name,
@@ -106,7 +102,6 @@
 
             return new LiteGraph.Sdk.Edge
             {
-                TenantGUID = edge.TenantGUID,
                 GUID = edge.GUID,
                 GraphGUID = edge.GraphGUID,
                 Name = edge.Name,
@@ -123,7 +118,6 @@
 
             return new GraphEdge
             {
-                TenantGUID = edge.TenantGUID,
                 GUID = edge.GUID,
                 GraphGUID = edge.GraphGUID,
                 Name = edge.Name,

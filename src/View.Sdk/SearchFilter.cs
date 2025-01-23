@@ -31,7 +31,7 @@
         /// The condition by which the parsed document's content is evaluated against the supplied value.
         /// </summary>
         [JsonPropertyOrder(2)]
-        public SearchConditionEnum Condition { get; set; } = SearchConditionEnum.Equals;
+        public SearchCondition Condition { get; set; } = SearchCondition.Equals;
 
         /// <summary>
         /// The value to be evaluated using the specified condition against the parsed document's content.
@@ -46,10 +46,10 @@
             }
             set
             {
-                if (Condition == SearchConditionEnum.GreaterThan
-                    || Condition == SearchConditionEnum.GreaterThanOrEqualTo
-                    || Condition == SearchConditionEnum.LessThan
-                    || Condition == SearchConditionEnum.LessThanOrEqualTo)
+                if (Condition == SearchCondition.GreaterThan
+                    || Condition == SearchCondition.GreaterThanOrEqualTo
+                    || Condition == SearchCondition.LessThan
+                    || Condition == SearchCondition.LessThanOrEqualTo)
                 {
                     if (String.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(value));
 
@@ -89,7 +89,7 @@
         /// <param name="field">Field.</param>
         /// <param name="condition">SearchCondition.</param>
         /// <param name="value">Value.</param>
-        public SearchFilter(string field, SearchConditionEnum condition, string value)
+        public SearchFilter(string field, SearchCondition condition, string value)
         {
             if (String.IsNullOrEmpty(field)) throw new ArgumentNullException(nameof(field));
 
@@ -111,7 +111,7 @@
         {
             if (String.IsNullOrEmpty(Field)) throw new InvalidOperationException("Search filter field cannot be null.");
 
-            if (Condition == SearchConditionEnum.Contains)
+            if (Condition == SearchCondition.Contains)
             {
                 if (value == null && Value == null) return true;
                 if (value == null && Value != null) return false;
@@ -121,7 +121,7 @@
                 string str2 = Value.ToString();
                 return str1.Contains(str2);
             }
-            else if (Condition == SearchConditionEnum.ContainsNot)
+            else if (Condition == SearchCondition.ContainsNot)
             {
                 if (value == null && Value == null) return false;
                 if (value == null && Value != null) return true;
@@ -131,7 +131,7 @@
                 string str2 = Value.ToString();
                 return !str1.Contains(str2);
             }
-            else if (Condition == SearchConditionEnum.EndsWith)
+            else if (Condition == SearchCondition.EndsWith)
             {
                 if (value == null && Value == null) return true;
                 if (value == null && Value != null) return false;
@@ -141,7 +141,7 @@
                 string str2 = Value.ToString();
                 return str1.EndsWith(str2);
             }
-            else if (Condition == SearchConditionEnum.Equals)
+            else if (Condition == SearchCondition.Equals)
             {
                 if (value == null && Value == null) return true;
                 if (value == null && Value != null) return false;
@@ -151,7 +151,7 @@
                 string str2 = Value.ToString();
                 return str1.Equals(str2);
             }
-            else if (Condition == SearchConditionEnum.GreaterThan)
+            else if (Condition == SearchCondition.GreaterThan)
             {
                 if (value == null || Value == null) return false;
 
@@ -182,7 +182,7 @@
 
                 return false;
             }
-            else if (Condition == SearchConditionEnum.GreaterThanOrEqualTo)
+            else if (Condition == SearchCondition.GreaterThanOrEqualTo)
             {
                 if (value == null && Value == null) return true;
                 if (value == null || Value == null) return false;
@@ -214,17 +214,17 @@
 
                 return false;
             }
-            else if (Condition == SearchConditionEnum.IsNotNull)
+            else if (Condition == SearchCondition.IsNotNull)
             {
                 if (value == null) return false;
                 return true;
             }
-            else if (Condition == SearchConditionEnum.IsNull)
+            else if (Condition == SearchCondition.IsNull)
             {
                 if (value != null) return false;
                 return true;
             }
-            else if (Condition == SearchConditionEnum.LessThan)
+            else if (Condition == SearchCondition.LessThan)
             {
                 if (value == null || Value == null) return false;
 
@@ -255,7 +255,7 @@
 
                 return false;
             }
-            else if (Condition == SearchConditionEnum.LessThanOrEqualTo)
+            else if (Condition == SearchCondition.LessThanOrEqualTo)
             {
                 if (value == null && Value == null) return true;
                 if (value == null || Value == null) return false;
@@ -287,7 +287,7 @@
 
                 return false;
             }
-            else if (Condition == SearchConditionEnum.NotEquals)
+            else if (Condition == SearchCondition.NotEquals)
             {
                 if (value == null && Value == null) return false;
                 if (value == null && Value != null) return true;
@@ -297,7 +297,7 @@
                 string str2 = Value.ToString();
                 return !str1.Equals(str2);
             }
-            else if (Condition == SearchConditionEnum.StartsWith)
+            else if (Condition == SearchCondition.StartsWith)
             {
                 if (value == null && Value == null) return true;
                 if (value == null && Value != null) return false;

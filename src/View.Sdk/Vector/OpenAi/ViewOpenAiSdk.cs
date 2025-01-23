@@ -33,7 +33,7 @@
 
         /// <inheritdoc />
         public ViewOpenAiSdk(
-            Guid tenantGuid,
+            string tenantGuid,
             string baseUrl,
             string apiKey = null) : base(
                 tenantGuid,

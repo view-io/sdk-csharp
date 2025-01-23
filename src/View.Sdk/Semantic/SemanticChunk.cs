@@ -5,7 +5,6 @@
     using System.Data;
     using System.Linq;
     using System.Text;
-    using View.Sdk.Helpers;
     using View.Sdk.Serialization;
 
     /// <summary>
@@ -18,7 +17,7 @@
         /// <summary>
         /// GUID.
         /// </summary>
-        public Guid GUID { get; set; } = Guid.NewGuid();
+        public string GUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// MD5.
@@ -100,34 +99,18 @@
         }
 
         /// <summary>
-        /// Binary data.
+        /// Content.
         /// </summary>
-        public byte[] Binary
+        public string Content
         {
             get
             {
-                return _Binary;
-            }
-            set
-            {
-                if (value != null) _Length = value.Length;
-                _Binary = value;
-            }
-        }
-
-        /// <summary>
-        /// Text.
-        /// </summary>
-        public string Text
-        {
-            get
-            {
-                return _Text;
+                return _Content;
             }
             set
             {
                 if (!String.IsNullOrEmpty(value)) _Length = value.Length;
-                _Text = value;
+                _Content = value;
             }
         }
 
@@ -156,8 +139,7 @@
         private int _End = 0;
         private int _Length = 0;
         private List<float> _Embeddings = new List<float>();
-        private byte[] _Binary = null;
-        private string _Text = null;
+        private string _Content = null;
 
         #endregion
 
@@ -189,7 +171,7 @@
             Position = position;
             Start = start;
             End = end;
-            Text = content;
+            Content = content;
             Embeddings = embeddings;
 
             if (!String.IsNullOrEmpty(content))
@@ -205,28 +187,35 @@
         /// Instantiate from DataRow.
         /// </summary>
         /// <param name="row">DataRow.</param>
+        /// <param name="serializer">Serializer.</param>
         /// <returns>SemanticChunk.</returns>
-        public static SemanticChunk FromDataRow(DataRow row)
+        public static SemanticChunk FromDataRow(DataRow row, Serializer serializer)
         {
             if (row == null) return null;
+            if (serializer == null) throw new ArgumentNullException(nameof(serializer));
 
-            Serializer serializer = new Serializer();
+            string chunkGuid = row["chunk_guid"] != null ? row["chunk_guid"].ToString() : null;
+            string chunkMd5 = row["chunk_md5"] != null ? row["chunk_md5"].ToString() : null;
+            string chunkSha1 = row["chunk_sha1"] != null ? row["chunk_sha1"].ToString() : null;
+            string chunkSha256 = row["chunk_sha256"] != null ? row["chunk_sha256"].ToString() : null;
+            int chunkPosition = row["chunk_position"] != null ? Convert.ToInt32(row["chunk_position"]) : 0;
+            int chunkLength = row["chunk_length"] != null ? Convert.ToInt32(row["chunk_length"]) : 0;
+            string content = row["content"] != null ? row["content"].ToString() : null;
 
-            string embeddingsStr = DataTableHelper.GetStringValue(row, "embedding");
+            string embeddingsStr = row["embedding"] != null ? row["embedding"].ToString() : null;
             List<float> embeddings = new List<float>();
             if (!String.IsNullOrEmpty(embeddingsStr))
                 embeddings = serializer.DeserializeJson<List<float>>(embeddingsStr);
 
             SemanticChunk chunk = new SemanticChunk
             {
-                GUID = DataTableHelper.GetGuidValue(row, "chunk_guid"),
-                MD5Hash = DataTableHelper.GetStringValue(row, "chunk_md5"),
-                SHA1Hash = DataTableHelper.GetStringValue(row, "chunk_sha1"),
-                SHA256Hash = DataTableHelper.GetStringValue(row, "chunk_sha256"),
-                Position = DataTableHelper.GetInt32Value(row, "chunk_position"),
-                Length = DataTableHelper.GetInt32Value(row, "chunk_length"),
-                Text = DataTableHelper.GetStringValue(row, "text_data"),
-                Binary = DataTableHelper.GetNullableBinaryValue(row, "binary_data"),
+                GUID = chunkGuid,
+                MD5Hash = chunkMd5,
+                SHA1Hash = chunkSha1,
+                SHA256Hash = chunkSha256,
+                Position = chunkPosition,
+                Length = chunkLength,
+                Content = content,
                 Embeddings = embeddings
             };
 
@@ -237,14 +226,16 @@
         /// Instantiate from DataTable.
         /// </summary>
         /// <param name="dt">DataTable.</param>
+        /// <param name="serializer">Serializer.</param>
         /// <returns>List of SemanticChunk.</returns>
-        public static List<SemanticChunk> FromDataTable(DataTable dt)
+        public static List<SemanticChunk> FromDataTable(DataTable dt, Serializer serializer)
         {
             if (dt == null) return null;
+            if (serializer == null) throw new ArgumentNullException(nameof(serializer));
 
             List<SemanticChunk> ret = new List<SemanticChunk>();
             foreach (DataRow row in dt.Rows)
-                ret.Add(FromDataRow(row));
+                ret.Add(FromDataRow(row, serializer));
 
             return ret;
         }

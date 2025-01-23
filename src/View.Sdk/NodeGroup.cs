@@ -30,17 +30,17 @@
         /// <summary>
         /// GUID.
         /// </summary>
-        public Guid GUID { get; set; } = Guid.NewGuid();
+        public string GUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public Guid TenantGUID { get; set; } = Guid.NewGuid();
+        public string TenantGUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Node GUID.
         /// </summary>
-        public Guid NodeGUID { get; set; } = Guid.NewGuid();
+        public string NodeGUID { get; set; } = null;
 
         /// <summary>
         /// Creation timestamp, in UTC time.

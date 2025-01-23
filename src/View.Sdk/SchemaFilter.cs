@@ -31,7 +31,7 @@
         /// The condition by which the schema element, or its value, is evaluated.
         /// </summary>
         [JsonPropertyOrder(2)]
-        public SchemaConditionEnum Condition { get; set; } = SchemaConditionEnum.Equals;
+        public SchemaCondition Condition { get; set; } = SchemaCondition.Equals;
 
         /// <summary>
         /// The value to be evaluated using the specified condition against the specified schema element.
@@ -46,10 +46,10 @@
             }
             set
             {
-                if (Condition == SchemaConditionEnum.GreaterThan
-                    || Condition == SchemaConditionEnum.GreaterThanOrEqualTo
-                    || Condition == SchemaConditionEnum.LessThan
-                    || Condition == SchemaConditionEnum.LessThanOrEqualTo)
+                if (Condition == SchemaCondition.GreaterThan
+                    || Condition == SchemaCondition.GreaterThanOrEqualTo
+                    || Condition == SchemaCondition.LessThan
+                    || Condition == SchemaCondition.LessThanOrEqualTo)
                 {
                     if (String.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(value));
 
@@ -89,7 +89,7 @@
         /// <param name="field">Field.</param>
         /// <param name="condition">Condition.</param>
         /// <param name="value">Value.</param>
-        public SchemaFilter(string field, SchemaConditionEnum condition, string value)
+        public SchemaFilter(string field, SchemaCondition condition, string value)
         {
             if (String.IsNullOrEmpty(field)) throw new ArgumentNullException(nameof(field));
 
@@ -111,7 +111,7 @@
         {
             if (String.IsNullOrEmpty(Property)) throw new InvalidOperationException("Search filter field cannot be null.");
 
-            if (Condition == SchemaConditionEnum.Contains)
+            if (Condition == SchemaCondition.Contains)
             {
                 if (value == null && Value == null) return true;
                 if (value == null && Value != null) return false;
@@ -121,7 +121,7 @@
                 string str2 = Value.ToString();
                 return str1.Contains(str2);
             }
-            else if (Condition == SchemaConditionEnum.ContainsNot)
+            else if (Condition == SchemaCondition.ContainsNot)
             {
                 if (value == null && Value == null) return false;
                 if (value == null && Value != null) return true;
@@ -131,7 +131,7 @@
                 string str2 = Value.ToString();
                 return !str1.Contains(str2);
             }
-            else if (Condition == SchemaConditionEnum.EndsWith)
+            else if (Condition == SchemaCondition.EndsWith)
             {
                 if (value == null && Value == null) return true;
                 if (value == null && Value != null) return false;
@@ -141,7 +141,7 @@
                 string str2 = Value.ToString();
                 return str1.EndsWith(str2);
             }
-            else if (Condition == SchemaConditionEnum.Equals)
+            else if (Condition == SchemaCondition.Equals)
             {
                 if (value == null && Value == null) return true;
                 if (value == null && Value != null) return false;
@@ -151,7 +151,7 @@
                 string str2 = Value.ToString();
                 return str1.Equals(str2);
             }
-            else if (Condition == SchemaConditionEnum.GreaterThan)
+            else if (Condition == SchemaCondition.GreaterThan)
             {
                 if (value == null || Value == null) return false;
 
@@ -182,7 +182,7 @@
 
                 return false;
             }
-            else if (Condition == SchemaConditionEnum.GreaterThanOrEqualTo)
+            else if (Condition == SchemaCondition.GreaterThanOrEqualTo)
             {
                 if (value == null && Value == null) return true;
                 if (value == null || Value == null) return false;
@@ -214,17 +214,17 @@
 
                 return false;
             }
-            else if (Condition == SchemaConditionEnum.IsNotNull)
+            else if (Condition == SchemaCondition.IsNotNull)
             {
                 if (value == null) return false;
                 return true;
             }
-            else if (Condition == SchemaConditionEnum.IsNull)
+            else if (Condition == SchemaCondition.IsNull)
             {
                 if (value != null) return false;
                 return true;
             }
-            else if (Condition == SchemaConditionEnum.LessThan)
+            else if (Condition == SchemaCondition.LessThan)
             {
                 if (value == null || Value == null) return false;
 
@@ -255,7 +255,7 @@
 
                 return false;
             }
-            else if (Condition == SchemaConditionEnum.LessThanOrEqualTo)
+            else if (Condition == SchemaCondition.LessThanOrEqualTo)
             {
                 if (value == null && Value == null) return true;
                 if (value == null || Value == null) return false;
@@ -287,7 +287,7 @@
 
                 return false;
             }
-            else if (Condition == SchemaConditionEnum.NotEquals)
+            else if (Condition == SchemaCondition.NotEquals)
             {
                 if (value == null && Value == null) return false;
                 if (value == null && Value != null) return true;
@@ -297,7 +297,7 @@
                 string str2 = Value.ToString();
                 return !str1.Equals(str2);
             }
-            else if (Condition == SchemaConditionEnum.StartsWith)
+            else if (Condition == SchemaCondition.StartsWith)
             {
                 if (value == null && Value == null) return true;
                 if (value == null && Value != null) return false;

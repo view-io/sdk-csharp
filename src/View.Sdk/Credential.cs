@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using PrettyId;
     using View.Sdk.Serialization;
 
     /// <summary>
@@ -15,27 +14,27 @@
         /// <summary>
         /// GUID.
         /// </summary>
-        public Guid GUID { get; set; } = Guid.NewGuid();
+        public string GUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public Guid TenantGUID { get; set; } = Guid.NewGuid();
+        public string TenantGUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// User GUID.
         /// </summary>
-        public Guid UserGUID { get; set; } = Guid.NewGuid();
+        public string UserGUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Access key.
         /// </summary>
-        public string AccessKey { get; set; } = IdGenerator.Generate("access_", 32);
+        public string AccessKey { get; set; } = string.Empty;
 
         /// <summary>
         /// Secret key.
         /// </summary>
-        public string SecretKey { get; set; } = IdGenerator.Generate("secret_", 32);
+        public string SecretKey { get; set; } = string.Empty;
 
         /// <summary>
         /// Active.

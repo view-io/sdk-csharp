@@ -12,7 +12,7 @@
         /// <summary>
         /// Processor request GUID.
         /// </summary>
-        public Guid GUID { get; set; } = Guid.NewGuid();
+        public string GUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Tenant metadata.

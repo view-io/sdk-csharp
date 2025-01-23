@@ -30,7 +30,7 @@
 
         /// <inheritdoc />
         public ViewLangchainSdk(
-            Guid tenantGuid,
+            string tenantGuid,
             string baseUrl = "http://localhost:8000/",
             string apiKey = null) : base(
                 tenantGuid,

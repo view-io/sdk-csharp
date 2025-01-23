@@ -30,37 +30,37 @@
         /// <summary>
         /// GUID.
         /// </summary>
-        public Guid GUID { get; set; } = Guid.NewGuid();
+        public string GUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public Guid TenantGUID { get; set; } = Guid.NewGuid();
+        public string TenantGUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Data repository GUID.
         /// </summary>
-        public Guid DataRepositoryGUID { get; set; } = Guid.NewGuid();
+        public string DataRepositoryGUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Crawl schedule GUID.
         /// </summary>
-        public Guid CrawlScheduleGUID { get; set; } = Guid.NewGuid();
+        public string CrawlScheduleGUID { get; set; } = null;
 
         /// <summary>
         /// Crawl filter GUID.
         /// </summary>
-        public Guid? CrawlFilterGUID { get; set; } = null;
+        public string CrawlFilterGUID { get; set; } = null;
 
         /// <summary>
         /// Metadata rule GUID.
         /// </summary>
-        public Guid? MetadataRuleGUID { get; set; } = null;
+        public string MetadataRuleGUID { get; set; } = null;
 
         /// <summary>
         /// Embeddings rule GUID.
         /// </summary>
-        public Guid? EmbeddingsRuleGUID { get; set; } = null;
+        public string EmbeddingsRuleGUID { get; set; } = null;
 
         /// <summary>
         /// Name.

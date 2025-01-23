@@ -17,7 +17,7 @@
         /// <summary>
         /// Vector repository GUID.
         /// </summary>
-        public Guid VectorRepositoryGUID { get; set; } = Guid.NewGuid();
+        public string VectorRepositoryGUID { get; set; } = null;
 
         #endregion
 

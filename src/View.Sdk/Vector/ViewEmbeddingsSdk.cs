@@ -25,7 +25,7 @@
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public Guid TenantGUID { get; set; } = Guid.NewGuid();
+        public string TenantGUID { get; set; } = null;
 
         /// <summary>
         /// Embeddings generator.  Default is LCProxy.
@@ -213,7 +213,7 @@
         /// <param name="maxFailures">Maximum number of failures to support before failing the operation.</param>
         /// <param name="timeoutMs">Timeout, in milliseconds.</param>
         public ViewEmbeddingsSdk(
-            Guid tenantGuid,
+            string tenantGuid,
             EmbeddingsGeneratorEnum generator,
             string baseUrl,
             string apiKey,
@@ -396,7 +396,7 @@
 
             List<string> contents = new List<string>();
             foreach (SemanticChunk chunk in chunks)
-                if (!String.IsNullOrEmpty(chunk.Text)) contents.Add(chunk.Text);
+                if (!String.IsNullOrEmpty(chunk.Content)) contents.Add(chunk.Content);
 
             EmbeddingsRequest request = new EmbeddingsRequest();
             request.Model = model;
@@ -474,9 +474,9 @@
 
             foreach (SemanticChunk chunk in chunks)
             {
-                if (!String.IsNullOrEmpty(chunk.Text))
+                if (!String.IsNullOrEmpty(chunk.Content))
                 {
-                    EmbeddingsMap matchingEmbedding = embeddingsMap.FirstOrDefault(e => e.Content == chunk.Text);
+                    EmbeddingsMap matchingEmbedding = embeddingsMap.FirstOrDefault(e => e.Content == chunk.Content);
                     if (matchingEmbedding != null)
                     {
                         chunk.Embeddings = matchingEmbedding.Embeddings;

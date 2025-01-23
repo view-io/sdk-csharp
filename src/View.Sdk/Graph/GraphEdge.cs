@@ -14,19 +14,14 @@
         #region Public-Members
 
         /// <summary>
-        /// Tenant GUID.
+        /// Globally-unique identifier.
         /// </summary>
-        public Guid TenantGUID { get; set; } = Guid.NewGuid();
+        public Guid GUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Globally-unique identifier for the graph.
         /// </summary>
         public Guid GraphGUID { get; set; } = Guid.NewGuid();
-
-        /// <summary>
-        /// Globally-unique identifier.
-        /// </summary>
-        public Guid GUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Name.

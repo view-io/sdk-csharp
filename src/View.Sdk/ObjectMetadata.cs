@@ -18,17 +18,17 @@
         /// <summary>
         /// GUID.
         /// </summary>
-        public Guid GUID { get; set; } = Guid.NewGuid();
+        public string GUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Parent GUID.
         /// </summary>
-        public Guid? ParentGUID { get; set; } = null;
+        public string ParentGUID { get; set; } = null;
 
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public Guid TenantGUID { get; set; } = Guid.NewGuid();
+        public string TenantGUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Tenant name.
@@ -38,17 +38,17 @@
         /// <summary>
         /// Node GUID.
         /// </summary>
-        public Guid NodeGUID { get; set; } = Guid.NewGuid();
+        public string NodeGUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Pool GUID.
         /// </summary>
-        public Guid PoolGUID { get; set; } = Guid.NewGuid();
+        public string PoolGUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Bucket GUID.
         /// </summary>
-        public Guid BucketGUID { get; set; } = Guid.NewGuid();
+        public string BucketGUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Bucket name.
@@ -58,27 +58,27 @@
         /// <summary>
         /// Owner GUID.
         /// </summary>
-        public Guid OwnerGUID { get; set; } = Guid.NewGuid();
+        public string OwnerGUID { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Encryption key GUID.
         /// </summary>
-        public Guid? EncryptionKeyGUID { get; set; } = null;
+        public string EncryptionKeyGUID { get; set; } = null;
 
         /// <summary>
         /// Data catalog document GUID.
         /// </summary>
-        public Guid? DataCatalogDocumentGUID { get; set; } = null;
+        public string DataCatalogDocumentGUID { get; set; } = null;
 
         /// <summary>
         /// Data repository GUID.
         /// </summary>
-        public Guid? DataRepositoryGUID { get; set; } = null;
+        public string DataRepositoryGUID { get; set; } = null;
 
         /// <summary>
         /// Graph repository GUID.
         /// </summary>
-        public Guid? GraphRepositoryGUID { get; set; } = null;
+        public string GraphRepositoryGUID { get; set; } = null;
 
         /// <summary>
         /// Graph node identifier.
@@ -88,7 +88,7 @@
         /// <summary>
         /// Data flow request GUID.
         /// </summary>
-        public Guid? DataFlowRequestGUID { get; set; } = null;
+        public string DataFlowRequestGUID { get; set; } = null;
 
         /// <summary>
         /// Boolean indicating if the data flow was successful in processing the object.
