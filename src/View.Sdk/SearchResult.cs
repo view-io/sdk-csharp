@@ -52,7 +52,7 @@
         /// <summary>
         /// Continuation token to use when continuing the search.
         /// </summary>
-        public string ContinuationToken { get; set; } = null;
+        public Guid? ContinuationToken { get; set; } = null;
 
         /// <summary>
         /// Number of candidate records remaining in the search.
