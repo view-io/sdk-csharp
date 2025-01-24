@@ -236,7 +236,7 @@
                 Position = DataTableHelper.GetInt32Value(row, "chunk_position"),
                 Length = DataTableHelper.GetInt32Value(row, "chunk_length"),
                 Content = DataTableHelper.GetStringValue(row, "content"),
-                Binary = DataTableHelper.GetNullableBinaryValue(row, "binary"),
+                Binary = DataTableHelper.GetNullableBinaryValue(row, "binary_content"),
                 Embeddings = embeddings
             };
 
