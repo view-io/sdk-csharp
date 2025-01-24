@@ -4961,6 +4961,14 @@
             <param name="columnName"></param>
             <returns>Nullable decimal.</returns>
         </member>
+        <member name="M:View.Sdk.Helpers.DataTableHelper.GetNullableBinaryValue(System.Data.DataRow,System.String)">
+            <summary>
+            Retrieve binary value or null.
+            </summary>
+            <param name="row">DataRow.</param>
+            <param name="columnName"></param>
+            <returns>Byte array or null.</returns>
+        </member>
         <member name="M:View.Sdk.Helpers.DataTableHelper.DataTableToListDynamic(System.Data.DataTable)">
             <summary>
             Convert a data table to a dynamic list.
@@ -5002,14 +5010,6 @@
             </summary>
             <param name="obj">Object.</param>
             <returns>True if dictionary.</returns>
-        </member>
-        <member name="M:View.Sdk.Helpers.DataTableHelper.GetNullableBinaryValue(System.Data.DataRow,System.String)">
-            <summary>
-            Retrieve binary value or null.
-            </summary>
-            <param name="row">DataRow.</param>
-            <param name="columnName"></param>
-            <returns>Byte array or null.</returns>
         </member>
         <member name="T:View.Sdk.Helpers.DirectoryHelper">
             <summary>
@@ -7435,9 +7435,9 @@
             Binary data.
             </summary>
         </member>
-        <member name="P:View.Sdk.Semantic.SemanticChunk.Text">
+        <member name="P:View.Sdk.Semantic.SemanticChunk.Content">
             <summary>
-            Text.
+            Content.
             </summary>
         </member>
         <member name="P:View.Sdk.Semantic.SemanticChunk.Embeddings">
@@ -7450,14 +7450,15 @@
             Instantiate.
             </summary>
         </member>
-        <member name="M:View.Sdk.Semantic.SemanticChunk.#ctor(System.Int32,System.Int32,System.Int32,System.String,System.Collections.Generic.List{System.Single})">
+        <member name="M:View.Sdk.Semantic.SemanticChunk.#ctor(System.Int32,System.Int32,System.Int32,System.String,System.Byte[],System.Collections.Generic.List{System.Single})">
             <summary>
             Instantiate.
             </summary>
             <param name="position">Position.</param>
             <param name="start">Start.</param>
             <param name="end">End.</param>
-            <param name="content">Content.</param>
+            <param name="content">Text content.</param>
+            <param name="binary">Binary content.</param>
             <param name="embeddings">Embeddings.</param>
         </member>
         <member name="M:View.Sdk.Semantic.SemanticChunk.FromDataRow(System.Data.DataRow)">

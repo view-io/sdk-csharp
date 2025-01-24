@@ -396,7 +396,7 @@
 
             List<string> contents = new List<string>();
             foreach (SemanticChunk chunk in chunks)
-                if (!String.IsNullOrEmpty(chunk.Text)) contents.Add(chunk.Text);
+                if (!String.IsNullOrEmpty(chunk.Content)) contents.Add(chunk.Content);
 
             EmbeddingsRequest request = new EmbeddingsRequest();
             request.Model = model;
@@ -474,9 +474,9 @@
 
             foreach (SemanticChunk chunk in chunks)
             {
-                if (!String.IsNullOrEmpty(chunk.Text))
+                if (!String.IsNullOrEmpty(chunk.Content))
                 {
-                    EmbeddingsMap matchingEmbedding = embeddingsMap.FirstOrDefault(e => e.Content == chunk.Text);
+                    EmbeddingsMap matchingEmbedding = embeddingsMap.FirstOrDefault(e => e.Content == chunk.Content);
                     if (matchingEmbedding != null)
                     {
                         chunk.Embeddings = matchingEmbedding.Embeddings;

@@ -145,7 +145,7 @@
                                 SHA1Hash = "000",
                                 SHA256Hash = "000",
                                 Position = 0,
-                                Text = "This is a sample chunk",
+                                Content = "This is a sample chunk",
                                 Embeddings = new List<float>
                                 {
                                     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

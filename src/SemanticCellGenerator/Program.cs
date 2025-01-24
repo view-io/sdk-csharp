@@ -74,7 +74,7 @@
                     Start = 0,
                     End = content.Length - 1,
                     Length = content.Length,
-                    Text = content
+                    Content = content
                 };
 
                 // Calculate hashes
@@ -264,7 +264,7 @@
             // Add direct chunks
             if (cell.Chunks != null)
             {
-                content.AddRange(cell.Chunks.Select(c => c.Text));
+                content.AddRange(cell.Chunks.Select(c => c.Content));
             }
 
             // Add children's chunks
