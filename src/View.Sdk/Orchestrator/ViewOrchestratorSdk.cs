@@ -60,9 +60,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if exists.</returns>
-        public async Task<bool> ExistsTrigger(string guid, CancellationToken token = default)
+        public async Task<bool> ExistsTrigger(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/triggers/" + guid;
             return await Exists(url, token).ConfigureAwait(false);
         }
@@ -73,9 +72,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Trigger.</returns>
-        public async Task<Trigger> RetrieveTrigger(string guid, CancellationToken token = default)
+        public async Task<Trigger> RetrieveTrigger(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/triggers/" + guid;
             return await Retrieve<Trigger>(url, token).ConfigureAwait(false);
         }
@@ -110,9 +108,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if successful.</returns>
-        public async Task<bool> DeleteTrigger(string guid, CancellationToken token = default)
+        public async Task<bool> DeleteTrigger(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/triggers/" + guid;
             return await Delete(url, token).ConfigureAwait(false);
         }
@@ -140,9 +137,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if exists.</returns>
-        public async Task<bool> ExistsStep(string guid, CancellationToken token = default)
+        public async Task<bool> ExistsStep(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/steps/" + guid;
             return await Exists(url, token).ConfigureAwait(false);
         }
@@ -153,9 +149,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Step.</returns>
-        public async Task<StepMetadata> RetrieveStep(string guid, CancellationToken token = default)
+        public async Task<StepMetadata> RetrieveStep(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/steps/" + guid;
             return await Retrieve<StepMetadata>(url, token).ConfigureAwait(false);
         }
@@ -177,9 +172,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if successful.</returns>
-        public async Task<bool> DeleteStep(string guid, CancellationToken token = default)
+        public async Task<bool> DeleteStep(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/steps/" + guid;
             return await Delete(url, token).ConfigureAwait(false);
         }
@@ -207,9 +201,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if exists.</returns>
-        public async Task<bool> ExistsDataFlow(string guid, CancellationToken token = default)
+        public async Task<bool> ExistsDataFlow(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/dataflows/" + guid;
             return await Exists(url, token).ConfigureAwait(false);
         }
@@ -220,9 +213,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>DataFlow.</returns>
-        public async Task<DataFlow> RetrieveDataFlow(string guid, CancellationToken token = default)
+        public async Task<DataFlow> RetrieveDataFlow(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/dataflows/" + guid;
             return await Retrieve<DataFlow>(url, token).ConfigureAwait(false);
         }
@@ -244,9 +236,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if successful.</returns>
-        public async Task<bool> DeleteDataFlow(string guid, CancellationToken token = default)
+        public async Task<bool> DeleteDataFlow(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/dataflows/" + guid;
             return await Delete(url, token).ConfigureAwait(false);
         }
@@ -262,10 +253,8 @@
         /// <param name="requestGuid">Request GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>List of DataFlowLog.</returns>
-        public async Task<List<DataFlowLog>> RetrieveDataFlowLogs(string dataFlowGuid, string requestGuid, CancellationToken token = default)
+        public async Task<List<DataFlowLog>> RetrieveDataFlowLogs(Guid dataFlowGuid, Guid requestGuid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(dataFlowGuid)) throw new ArgumentNullException(nameof(dataFlowGuid));
-            if (String.IsNullOrEmpty(requestGuid)) throw new ArgumentNullException(nameof(requestGuid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/dataflows/" + dataFlowGuid + "/logs?request=" + requestGuid;
             return await RetrieveMany<DataFlowLog>(url, token).ConfigureAwait(false);
         }
@@ -277,11 +266,8 @@
         /// <param name="requestGuid">Request GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Log file.</returns>
-        public async Task<string> RetrieveDataFlowLogfile(string dataFlowGuid, string requestGuid, CancellationToken token = default)
+        public async Task<string> RetrieveDataFlowLogfile(Guid dataFlowGuid, Guid requestGuid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(dataFlowGuid)) throw new ArgumentNullException(nameof(dataFlowGuid));
-            if (String.IsNullOrEmpty(requestGuid)) throw new ArgumentNullException(nameof(requestGuid));
-
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/dataflows/" + dataFlowGuid + "/logfile?request=" + requestGuid;
 
             using (RestRequest req = new RestRequest(url))

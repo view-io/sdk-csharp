@@ -185,8 +185,8 @@
 
         private static async Task Read(string type)
         {
-            string guid = Inputty.GetString("GUID:", null, true);
-            if (String.IsNullOrEmpty(guid) && !type.Equals("tenant")) return;
+            Guid guid = Inputty.GetGuid("GUID:", _TenantGuid);
+            if (!type.Equals("tenant")) return;
 
             switch (type)
             {
@@ -346,8 +346,7 @@
 
         private static async Task Delete(string type)
         {
-            string guid = Inputty.GetString("GUID:", null, true);
-            if (String.IsNullOrEmpty(guid)) return;
+            Guid guid = Inputty.GetGuid("GUID:", _TenantGuid);
 
             switch (type)
             {
@@ -397,8 +396,7 @@
 
         private static async Task Exists(string type)
         {
-            string guid = Inputty.GetString("GUID:", null, true);
-            if (String.IsNullOrEmpty(guid)) return;
+            Guid guid = Inputty.GetGuid("GUID:", _TenantGuid);
 
             bool exists = false;
 

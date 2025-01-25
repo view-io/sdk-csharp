@@ -176,20 +176,15 @@
 
         private static async Task DeleteDocument()
         {
-            string repoGuid = Inputty.GetString("Repository GUID:", "example-vector-repository", true);
-            if (String.IsNullOrEmpty(repoGuid)) return;
-
-            string docGuid = Inputty.GetString("Document GUID  :", null, true);
-            if (String.IsNullOrEmpty(docGuid)) return;
-
+            Guid repoGuid = Inputty.GetGuid("Repository GUID:", default(Guid));
+            Guid docGuid = Inputty.GetGuid("Document GUID  :", default(Guid));
             bool success = await _Sdk.DeleteDocument(repoGuid, docGuid);
             Console.WriteLine("Success: " + success);
         }
 
         private static async Task TruncateTable()
         {
-            string repoGuid = Inputty.GetString("Repository GUID:", "example-vector-repository", true);
-            if (String.IsNullOrEmpty(repoGuid)) return;
+            Guid repoGuid = Inputty.GetGuid("Repository GUID:", default(Guid));
 
             bool success = await _Sdk.TruncateRepository(repoGuid);
             Console.WriteLine("Success: " + success);

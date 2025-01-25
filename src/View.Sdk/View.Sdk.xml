@@ -1112,7 +1112,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Node.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsNode(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsNode(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Check if a node exists.
             </summary>
@@ -1120,7 +1120,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveNode(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveNode(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read a node.
             </summary>
@@ -1143,7 +1143,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Node.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteNode(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteNode(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Delete a node.
             </summary>
@@ -1174,7 +1174,7 @@
             <param name="token">Cancellation token.</param>
             <returns>User.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsUser(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsUser(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Check if a user exists.
             </summary>
@@ -1182,7 +1182,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveUser(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveUser(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read a user.
             </summary>
@@ -1205,7 +1205,7 @@
             <param name="token">Cancellation token.</param>
             <returns>User.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteUser(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteUser(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Delete a user.
             </summary>
@@ -1221,7 +1221,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Credential.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsCredential(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsCredential(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Check if a credential exists.
             </summary>
@@ -1229,7 +1229,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveCredential(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveCredential(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read a credential.
             </summary>
@@ -1252,7 +1252,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Credential.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteCredential(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteCredential(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Delete a credential.
             </summary>
@@ -1268,7 +1268,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Pool.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsPool(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsPool(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Check if a pool exists.
             </summary>
@@ -1276,7 +1276,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrievePool(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrievePool(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read a pool.
             </summary>
@@ -1299,7 +1299,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Pool.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeletePool(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeletePool(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Delete a pool.
             </summary>
@@ -1315,7 +1315,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Bucket.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsBucket(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsBucket(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Check if a bucket exists.
             </summary>
@@ -1323,7 +1323,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveBucket(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveBucket(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read a bucket.
             </summary>
@@ -1346,7 +1346,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Bucket.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteBucket(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteBucket(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Delete a bucket.
             </summary>
@@ -1362,7 +1362,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Encryption key.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsEncryptionKey(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsEncryptionKey(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Check if an encryption key exists.
             </summary>
@@ -1370,7 +1370,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveEncryptionKey(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveEncryptionKey(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read an encryption key.
             </summary>
@@ -1393,7 +1393,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Encryption key.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteEncryptionKey(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteEncryptionKey(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Delete an encryption key.
             </summary>
@@ -1409,7 +1409,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Metadata rule.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsMetadataRule(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsMetadataRule(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Check if a metadata rule exists.
             </summary>
@@ -1417,7 +1417,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveMetadataRule(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveMetadataRule(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read a metadata rule.
             </summary>
@@ -1440,7 +1440,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Metadata rule.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteMetadataRule(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteMetadataRule(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Delete a metadata rule.
             </summary>
@@ -1456,7 +1456,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Embeddings rule.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsEmbeddingsRule(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsEmbeddingsRule(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Check if a embeddings rule exists.
             </summary>
@@ -1464,7 +1464,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveEmbeddingsRule(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveEmbeddingsRule(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read a embeddings rule.
             </summary>
@@ -1487,7 +1487,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Embeddings rule.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteEmbeddingsRule(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteEmbeddingsRule(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Delete a embeddings rule.
             </summary>
@@ -1503,7 +1503,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Vector repository.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsVectorRepository(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsVectorRepository(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Check if a vector repository exists.
             </summary>
@@ -1511,7 +1511,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveVectorRepository(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveVectorRepository(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read a vector repository.
             </summary>
@@ -1534,7 +1534,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Vector repository.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteVectorRepository(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteVectorRepository(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Delete a vector repository.
             </summary>
@@ -1550,7 +1550,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Graph repository.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsGraphRepository(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsGraphRepository(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Check if a graph repository exists.
             </summary>
@@ -1558,7 +1558,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveGraphRepository(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveGraphRepository(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read a graph repository.
             </summary>
@@ -1581,7 +1581,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Graph repository.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteGraphRepository(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteGraphRepository(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Delete a graph repository.
             </summary>
@@ -1659,7 +1659,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if successful.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsWebhookEvent(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsWebhookEvent(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Check if a webhook event exists.
             </summary>
@@ -1667,7 +1667,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveWebhookEvent(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveWebhookEvent(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read a webhook event.
             </summary>
@@ -1690,7 +1690,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Webhook rule.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsWebhookRule(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsWebhookRule(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Check if a webhook rule exists.
             </summary>
@@ -1698,7 +1698,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveWebhookRule(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveWebhookRule(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read a webhook rule.
             </summary>
@@ -1721,7 +1721,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Webhook rule.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteWebhookRule(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteWebhookRule(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Delete a webhook rule.
             </summary>
@@ -1737,7 +1737,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Webhook target.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsWebhookTarget(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsWebhookTarget(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Check if a webhook target exists.
             </summary>
@@ -1745,7 +1745,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveWebhookTarget(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveWebhookTarget(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read a webhook target.
             </summary>
@@ -1768,7 +1768,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Webhook target.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteWebhookTarget(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteWebhookTarget(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Delete a webhook target.
             </summary>
@@ -1784,7 +1784,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Object lock.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsObjectLock(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsObjectLock(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Check if an object lock exists.
             </summary>
@@ -1792,7 +1792,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveObjectLock(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveObjectLock(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read an object lock.
             </summary>
@@ -1815,7 +1815,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Object lock.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteObjectLock(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteObjectLock(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Delete an object lock.
             </summary>
@@ -2830,6 +2830,11 @@
             Keynote.
             </summary>
         </member>
+        <member name="F:View.Sdk.DocumentTypeEnum.Markdown">
+            <summary>
+            Markdown.
+            </summary>
+        </member>
         <member name="F:View.Sdk.DocumentTypeEnum.Numbers">
             <summary>
             Numbers.
@@ -2848,6 +2853,11 @@
         <member name="F:View.Sdk.DocumentTypeEnum.Pdf">
             <summary>
             PDF.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.DocumentTypeEnum.Png">
+            <summary>
+            PNG.
             </summary>
         </member>
         <member name="F:View.Sdk.DocumentTypeEnum.Pptx">
@@ -5295,7 +5305,7 @@
             <param name="token">Cancellation token.</param>
             <returns>List of collection.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveCollection(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveCollection(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Retrieve a collection.
             </summary>
@@ -5303,7 +5313,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Collection.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveCollectionStatistics(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveCollectionStatistics(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Retrieve collection statistics.
             </summary>
@@ -5319,7 +5329,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Collection.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.DeleteCollection(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.DeleteCollection(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Delete collection.
             </summary>
@@ -5327,7 +5337,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if successful.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveDocuments(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveDocuments(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Retrieve documents.
             </summary>
@@ -5335,7 +5345,7 @@
             <param name="token">Cancellation token.</param>
             <returns>List of source documents.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveDocument(System.String,System.String,System.Boolean,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveDocument(System.Guid,System.Guid,System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Retrieve document.
             </summary>
@@ -5345,7 +5355,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Source document.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveDocumentStatistics(System.String,System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveDocumentStatistics(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>
             Retrieve document statistics.
             </summary>
@@ -5362,7 +5372,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Source document.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.DeleteDocument(System.String,System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.DeleteDocument(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>
             Delete a document.
             </summary>
@@ -5371,7 +5381,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if successful.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.DeleteDocument(System.String,System.String,System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.DeleteDocument(System.Guid,System.String,System.String,System.Threading.CancellationToken)">
             <summary>
             Delete a document.
             </summary>
@@ -5381,7 +5391,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if successful.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.ExistsIngestQueueEntry(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.ExistsIngestQueueEntry(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Check if an ingest queue entry exists.
             </summary>
@@ -5389,7 +5399,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveIngestQueueEntry(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveIngestQueueEntry(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read an ingest queue entry.
             </summary>
@@ -5404,7 +5414,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Ingest queue entries.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.DeleteIngestQueueEntry(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.DeleteIngestQueueEntry(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Delete an ingest queue entry.
             </summary>
@@ -5412,7 +5422,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if successful.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.Enumerate(System.String,View.Sdk.EnumerationQuery,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.Enumerate(System.Guid,View.Sdk.EnumerationQuery,System.Threading.CancellationToken)">
             <summary>
             Enumerate a collection.
             </summary>
@@ -5421,7 +5431,7 @@
             <param name="token">Token.</param>
             <returns>Enumeration result.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.Search(System.String,View.Sdk.CollectionSearchRequest,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.Search(System.Guid,View.Sdk.CollectionSearchRequest,System.Threading.CancellationToken)">
             <summary>
             Search a collection.
             </summary>
@@ -6001,7 +6011,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Trigger.</returns>
         </member>
-        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.ExistsTrigger(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.ExistsTrigger(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Check if a trigger exists.
             </summary>
@@ -6009,7 +6019,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.RetrieveTrigger(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.RetrieveTrigger(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read a trigger.
             </summary>
@@ -6032,7 +6042,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Trigger.</returns>
         </member>
-        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.DeleteTrigger(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.DeleteTrigger(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Delete a trigger.
             </summary>
@@ -6048,7 +6058,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Step.</returns>
         </member>
-        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.ExistsStep(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.ExistsStep(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Check if a step exists.
             </summary>
@@ -6056,7 +6066,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.RetrieveStep(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.RetrieveStep(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read a step.
             </summary>
@@ -6071,7 +6081,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Steps.</returns>
         </member>
-        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.DeleteStep(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.DeleteStep(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Delete a step.
             </summary>
@@ -6087,7 +6097,7 @@
             <param name="token">Cancellation token.</param>
             <returns>DataFlow.</returns>
         </member>
-        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.ExistsDataFlow(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.ExistsDataFlow(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Check if a data flow exists.
             </summary>
@@ -6095,7 +6105,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.RetrieveDataFlow(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.RetrieveDataFlow(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read a data flow.
             </summary>
@@ -6110,7 +6120,7 @@
             <param name="token">Cancellation token.</param>
             <returns>DataFlows.</returns>
         </member>
-        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.DeleteDataFlow(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.DeleteDataFlow(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Delete a data flow.
             </summary>
@@ -6118,7 +6128,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if successful.</returns>
         </member>
-        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.RetrieveDataFlowLogs(System.String,System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.RetrieveDataFlowLogs(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read data flow logs.
             </summary>
@@ -6127,7 +6137,7 @@
             <param name="token">Cancellation token.</param>
             <returns>List of DataFlowLog.</returns>
         </member>
-        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.RetrieveDataFlowLogfile(System.String,System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Orchestrator.ViewOrchestratorSdk.RetrieveDataFlowLogfile(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read data flow logfile.
             </summary>
@@ -10313,7 +10323,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Enumeration result.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.ViewVectorSdk.TruncateRepository(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewVectorSdk.TruncateRepository(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Truncate repository.
             </summary>
@@ -10321,7 +10331,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if deleted.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.ViewVectorSdk.GetStatistics(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewVectorSdk.GetStatistics(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Get statistics for a repository.
             </summary>
@@ -10329,7 +10339,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Statistics.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.ViewVectorSdk.DocumentExists(System.String,System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewVectorSdk.DocumentExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>
             Check if a document exists.
             </summary>
@@ -10346,7 +10356,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.ViewVectorSdk.DeleteDocument(System.String,System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewVectorSdk.DeleteDocument(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>
             Delete a document.
             </summary>
@@ -10355,7 +10365,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if deleted.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.ViewVectorSdk.DeleteDocumentsByFilter(System.String,View.Sdk.Vector.VectorDeleteRequest,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewVectorSdk.DeleteDocumentsByFilter(System.Guid,View.Sdk.Vector.VectorDeleteRequest,System.Threading.CancellationToken)">
             <summary>
             Delete documents by filter.
             </summary>
@@ -10364,7 +10374,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if successful.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.ViewVectorSdk.ReadSemanticCells(System.String,System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewVectorSdk.ReadSemanticCells(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read semantic cells for a given document.
             </summary>
@@ -10373,7 +10383,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Semantic cells.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.ViewVectorSdk.ReadSemanticCell(System.String,System.String,System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewVectorSdk.ReadSemanticCell(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read a specific semantic cell for a given document.
             </summary>
@@ -10383,7 +10393,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Semantic cell.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.ViewVectorSdk.ReadSemanticChunks(System.String,System.String,System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewVectorSdk.ReadSemanticChunks(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read semantic chunks for a given document.
             </summary>
@@ -10393,7 +10403,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Semantic chunks.</returns>
         </member>
-        <member name="M:View.Sdk.Vector.ViewVectorSdk.ReadSemanticChunk(System.String,System.String,System.String,System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Vector.ViewVectorSdk.ReadSemanticChunk(System.Guid,System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read a specific semantic chunk for a given document.
             </summary>

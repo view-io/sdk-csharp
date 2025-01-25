@@ -60,9 +60,8 @@
         /// <param name="collectionGuid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Collection.</returns>
-        public async Task<Collection> RetrieveCollection(string collectionGuid, CancellationToken token = default)
+        public async Task<Collection> RetrieveCollection(Guid collectionGuid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections/" + collectionGuid;
             return await Retrieve<Collection>(url, token).ConfigureAwait(false);
         }
@@ -73,9 +72,8 @@
         /// <param name="collectionGuid">Collection GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Collection statistics.</returns>
-        public async Task<CollectionStatistics> RetrieveCollectionStatistics(string collectionGuid, CancellationToken token = default)
+        public async Task<CollectionStatistics> RetrieveCollectionStatistics(Guid collectionGuid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections/" + collectionGuid + "?stats";
             return await Retrieve<CollectionStatistics>(url, token).ConfigureAwait(false);
         }
@@ -99,9 +97,8 @@
         /// <param name="collectionGuid">Collection GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if successful.</returns>
-        public async Task<bool> DeleteCollection(string collectionGuid, CancellationToken token = default)
+        public async Task<bool> DeleteCollection(Guid collectionGuid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections/" + collectionGuid;
             return await Delete(url, token).ConfigureAwait(false);
         }
@@ -116,9 +113,8 @@
         /// <param name="collectionGuid">Collection GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>List of source documents.</returns>
-        public async Task<List<SourceDocument>> RetrieveDocuments(string collectionGuid, CancellationToken token = default)
+        public async Task<List<SourceDocument>> RetrieveDocuments(Guid collectionGuid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections/" + collectionGuid + "/documents";
             return await RetrieveMany<SourceDocument>(url, token).ConfigureAwait(false);
         }
@@ -131,10 +127,8 @@
         /// <param name="includeData">Flag to indiate whether or not source document data should be included.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Source document.</returns>
-        public async Task<SourceDocument> RetrieveDocument(string collectionGuid, string documentGuid, bool includeData = false, CancellationToken token = default)
+        public async Task<SourceDocument> RetrieveDocument(Guid collectionGuid, Guid documentGuid, bool includeData = false, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
-            if (String.IsNullOrEmpty(documentGuid)) throw new ArgumentNullException(nameof(documentGuid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections/" + collectionGuid + "/documents/" + documentGuid;
             if (includeData) url += "?incldata";
             return await Retrieve<SourceDocument>(url, token).ConfigureAwait(false);
@@ -147,10 +141,8 @@
         /// <param name="documentGuid">Document GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Source document statistics.</returns>
-        public async Task<SourceDocumentStatistics> RetrieveDocumentStatistics(string collectionGuid, string documentGuid, CancellationToken token = default)
+        public async Task<SourceDocumentStatistics> RetrieveDocumentStatistics(Guid collectionGuid, Guid documentGuid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
-            if (String.IsNullOrEmpty(documentGuid)) throw new ArgumentNullException(nameof(documentGuid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections/" + collectionGuid + "/documents/" + documentGuid + "?stats";
             return await Retrieve<SourceDocumentStatistics>(url, token).ConfigureAwait(false);
         }
@@ -175,10 +167,8 @@
         /// <param name="documentGuid">Document GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if successful.</returns>
-        public async Task<bool> DeleteDocument(string collectionGuid, string documentGuid, CancellationToken token = default)
+        public async Task<bool> DeleteDocument(Guid collectionGuid, Guid documentGuid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
-            if (String.IsNullOrEmpty(documentGuid)) throw new ArgumentNullException(nameof(documentGuid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections/" + collectionGuid + "/documents/" + documentGuid;
             return await Delete(url, token).ConfigureAwait(false);
         }
@@ -191,9 +181,8 @@
         /// <param name="version">Document version.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if successful.</returns>
-        public async Task<bool> DeleteDocument(string collectionGuid, string key, string version, CancellationToken token = default)
+        public async Task<bool> DeleteDocument(Guid collectionGuid, string key, string version, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
             if (String.IsNullOrEmpty(key)) throw new ArgumentNullException(nameof(key));
             if (String.IsNullOrEmpty(version)) throw new ArgumentNullException(nameof(version));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections/" + collectionGuid + "/documents?key=" + key + "&versionId=" + version;
@@ -210,9 +199,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if exists.</returns>
-        public async Task<bool> ExistsIngestQueueEntry(string guid, CancellationToken token = default)
+        public async Task<bool> ExistsIngestQueueEntry(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/ingestqueue/" + guid;
             return await Exists(url, token).ConfigureAwait(false);
         }
@@ -223,9 +211,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Ingest queue entry.</returns>
-        public async Task<IngestionQueueEntry> RetrieveIngestQueueEntry(string guid, CancellationToken token = default)
+        public async Task<IngestionQueueEntry> RetrieveIngestQueueEntry(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/ingestqueue/" + guid;
             return await Retrieve<IngestionQueueEntry>(url, token).ConfigureAwait(false);
         }
@@ -247,9 +234,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if successful.</returns>
-        public async Task<bool> DeleteIngestQueueEntry(string guid, CancellationToken token = default)
+        public async Task<bool> DeleteIngestQueueEntry(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/ingestqueue/" + guid;
             return await Delete(url, token).ConfigureAwait(false);
         }
@@ -265,10 +251,9 @@
         /// <param name="query">Query.</param>
         /// <param name="token">Token.</param>
         /// <returns>Enumeration result.</returns>
-        public async Task<EnumerationResult<SourceDocument>> Enumerate(string collectionGuid, EnumerationQuery query, CancellationToken token = default)
+        public async Task<EnumerationResult<SourceDocument>> Enumerate(Guid collectionGuid, EnumerationQuery query, CancellationToken token = default)
         {
             if (query == null) throw new ArgumentNullException(nameof(query));
-            if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
 
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections/" + collectionGuid + "?enumerate";
 
@@ -322,10 +307,9 @@
         /// <param name="query">Query.</param>
         /// <param name="token"></param>
         /// <returns>Search result.</returns>
-        public async Task<SearchResult> Search(string collectionGuid, CollectionSearchRequest query, CancellationToken token = default)
+        public async Task<SearchResult> Search(Guid collectionGuid, CollectionSearchRequest query, CancellationToken token = default)
         {
             if (query == null) throw new ArgumentNullException(nameof(query));
-            if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
 
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/collections/" + collectionGuid + "?search";
 
