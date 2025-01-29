@@ -149,6 +149,11 @@
             }
         }
 
+        /// <summary>
+        /// Boolean indicating whether or not text should be extracted from images.
+        /// </summary>
+        public bool ImageTextExtraction { get; set; } = true;
+
         #endregion
 
         #region UDR

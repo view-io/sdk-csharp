@@ -5533,6 +5533,11 @@
             This value must be equal to or less than the maximum chunk content length.
             </summary>
         </member>
+        <member name="P:View.Sdk.MetadataRule.ImageTextExtraction">
+            <summary>
+            Boolean indicating whether or not text should be extracted from images.
+            </summary>
+        </member>
         <member name="P:View.Sdk.MetadataRule.TopTerms">
             <summary>
             Number of top terms to request.
