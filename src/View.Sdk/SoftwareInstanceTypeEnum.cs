@@ -34,6 +34,11 @@
         [EnumMember(Value = "DocumentProcessorServer")]
         DocumentProcessorServer,
         /// <summary>
+        /// EmbeddingsServer.
+        /// </summary>
+        [EnumMember(Value = "EmbeddingsServer")]
+        EmbeddingsServer,
+        /// <summary>
         /// LexiServer.
         /// </summary>
         [EnumMember(Value = "LexiServer")]

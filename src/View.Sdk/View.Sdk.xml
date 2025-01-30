@@ -7833,6 +7833,11 @@
             DocumentProcessorServer.
             </summary>
         </member>
+        <member name="F:View.Sdk.SoftwareInstanceTypeEnum.EmbeddingsServer">
+            <summary>
+            EmbeddingsServer.
+            </summary>
+        </member>
         <member name="F:View.Sdk.SoftwareInstanceTypeEnum.LexiServer">
             <summary>
             LexiServer.
