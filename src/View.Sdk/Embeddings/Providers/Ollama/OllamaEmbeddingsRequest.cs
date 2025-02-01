@@ -1,18 +1,19 @@
-﻿namespace View.Sdk.Vector.OpenAI
+﻿namespace View.Sdk.Embeddings.Providers.Ollama
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection.Metadata;
     using System.Text;
     using System.Text.Json.Serialization;
     using System.Threading.Tasks;
-    using View.Sdk.Vector;
-    using View.Sdk.Vector.Langchain;
+    using Timestamps;
+    using View.Sdk.Embeddings;
 
     /// <summary>
-    /// OpenAI embeddings request.
+    /// Ollama embeddings request.
     /// </summary>
-    public class OpenAiEmbeddingsRequest
+    public class OllamaEmbeddingsRequest
     {
         #region Public-Members
 
@@ -52,21 +53,20 @@
         /// <summary>
         /// Instantiate.
         /// </summary>
-        public OpenAiEmbeddingsRequest()
+        public OllamaEmbeddingsRequest()
         {
-
         }
 
         /// <summary>
         /// Instantiate from embeddings request.
         /// </summary>
         /// <param name="req">Embeddings request.</param>
-        /// <returns>OpenAI embeddings request.</returns>
-        public static OpenAiEmbeddingsRequest FromEmbeddingsRequest(EmbeddingsRequest req)
+        /// <returns>Ollama embeddings request.</returns>
+        public static OllamaEmbeddingsRequest FromEmbeddingsRequest(EmbeddingsRequest req)
         {
             if (req == null) throw new ArgumentNullException(nameof(req));
 
-            return new OpenAiEmbeddingsRequest
+            return new OllamaEmbeddingsRequest
             {
                 Model = req.Model,
                 Contents = req.Contents

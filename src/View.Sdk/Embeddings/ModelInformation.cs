@@ -1,11 +1,11 @@
-﻿namespace View.Sdk.Vector
+﻿namespace View.Sdk.Embeddings
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using View.Sdk.Vector.Ollama;
+    using View.Sdk.Embeddings.Providers.Ollama;
 
     /// <summary>
     /// Model information.

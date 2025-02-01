@@ -8,6 +8,7 @@
     using View.Sdk.Vector;
     using View.Sdk.Serialization;
     using View.Sdk.Semantic;
+    using View.Sdk.Embeddings;
 
     public static class Program
     {

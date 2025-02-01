@@ -1,21 +1,21 @@
-﻿namespace View.Sdk.Vector
+﻿namespace View.Sdk.Embeddings.Providers.Langchain
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection.Metadata;
+    using System.Text;
+    using System.Text.Json.Serialization;
+    using System.Threading.Tasks;
     using Timestamps;
-    using View.Sdk.Vector;
+    using View.Sdk.Embeddings;
 
     /// <summary>
-    /// Embeddings request.
+    /// Langchain embeddings request.
     /// </summary>
-    public class EmbeddingsRequest
+    public class LangchainEmbeddingsRequest
     {
         #region Public-Members
-
-        /// <summary>
-        /// Boolean indicating success.
-        /// </summary>
-        public bool? Success { get; set; } = null;
 
         /// <summary>
         /// Model used to generate embeddings.
@@ -23,7 +23,7 @@
         public string Model { get; set; } = null;
 
         /// <summary>
-        /// API key.
+        /// API key for Huggingface.
         /// </summary>
         public string ApiKey { get; set; } = null;
 
@@ -43,11 +43,6 @@
             }
         }
 
-        /// <summary>
-        /// Embeddings.
-        /// </summary>
-        public List<List<float>> Embeddings { get; set; } = null;
-
         #endregion
 
         #region Private-Members
@@ -61,8 +56,25 @@
         /// <summary>
         /// Instantiate.
         /// </summary>
-        public EmbeddingsRequest()
+        public LangchainEmbeddingsRequest()
         {
+        }
+
+        /// <summary>
+        /// Instantiate from embeddings request.
+        /// </summary>
+        /// <param name="req">Embeddings request.</param>
+        /// <returns>Langchain embeddings request.</returns>
+        public static LangchainEmbeddingsRequest FromEmbeddingsRequest(EmbeddingsRequest req)
+        {
+            if (req == null) throw new ArgumentNullException(nameof(req));
+
+            return new LangchainEmbeddingsRequest
+            {
+                Model = req.Model,
+                ApiKey = req.ApiKey,
+                Contents = req.Contents
+            };
         }
 
         #endregion

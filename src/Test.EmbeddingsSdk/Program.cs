@@ -6,10 +6,10 @@
     using System.Threading.Tasks;
     using GetSomeInput;
     using View.Sdk;
-    using View.Sdk.Vector;
     using View.Sdk.Serialization;
     using View.Sdk.Semantic;
     using Timestamps;
+    using View.Sdk.Embeddings;
 
     public static class Program
     {
@@ -22,8 +22,8 @@
         private static Guid _TenantGUID = default(Guid);
         private static string _BaseUrl = null;
         private static string _BaseUrlLcproxy = "http://localhost:8000/";
-        private static string _BaseUrlOpenAi = "https://api.openai.com/v1/";
-        private static string _BaseUrlVoyageAi = "https://api.voyageai.com/v1/";
+        private static string _BaseUrlOpenAi = "https://api.openai.com/";
+        private static string _BaseUrlVoyageAi = "https://api.voyageai.com/";
         private static string _BaseUrlOllama = "http://localhost:11434/";
 
         private static string _ApiKey = null;
@@ -31,11 +31,11 @@
         private static string _DefaultModel = null;
         private static string _DefaultLcproxyModel = "all-MiniLM-L6-v2";
         private static string _DefaultOpenAiModel = "text-embedding-ada-002";
-        private static string _DefaultVoyageAiModel = "voyage-large-2-instruct";
+        private static string _DefaultVoyageAiModel = "voyage-3-large";
         private static string _DefaultOllamaModel = "all-minilm";
 
-        private static int _BatchSize = 512;
-        private static int _MaxParallelTasks = 32;
+        private static int _BatchSize = 2;
+        private static int _MaxParallelTasks = 4;
         private static int _MaxRetries = 3;
         private static int _MaxFailures = 3;
         private static int _TimeoutMs = 300000;
@@ -43,7 +43,7 @@
         private static ViewEmbeddingsSdk _Sdk = null;
         private static Serializer _Serializer = new Serializer();
 
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             _TenantGUID = Inputty.GetGuid("Tenant GUID:", _TenantGUID);
 
@@ -121,8 +121,11 @@
                             }
                         break;
 
-                    case "embeddings":
-                        GenerateEmbeddings().Wait();
+                    case "cells":
+                        await ProcessSemanticCells();
+                        break;
+                    case "text":
+                        await ProcessText();
                         break;
                 }
             }
@@ -137,7 +140,8 @@
             Console.WriteLine("  cls           Clear the screen");
             Console.WriteLine("  conn          Test connectivity");
             Console.WriteLine("  tasks         Set max parallel tasks (currently " + _Sdk.MaxParallelTasks + ")");
-            Console.WriteLine("  embeddings    Generate embeddings");
+            Console.WriteLine("  cells         Process semantic cells");
+            Console.WriteLine("  text          Process from raw text");
             Console.WriteLine("");
         }
 
@@ -165,7 +169,7 @@
             Console.WriteLine("");
         }
 
-        private static async Task GenerateEmbeddings()
+        private static async Task ProcessSemanticCells()
         {
             string model = Inputty.GetString("Model :", _DefaultModel, true);
             if (String.IsNullOrEmpty(model)) return;
@@ -175,13 +179,27 @@
             if (!File.Exists(file)) return;
 
             List<SemanticCell> cells = _Serializer.DeserializeJson<List<SemanticCell>>(File.ReadAllText(file));
-            List<SemanticCell> result;
+            EmbeddingsResult result;
             double? totalMs = 0;
+
+            EmbeddingsRequest req = new EmbeddingsRequest
+            {
+                EmbeddingsRule = new EmbeddingsRule
+                {
+                    EmbeddingsGenerator = _GeneratorType,
+                    EmbeddingsGeneratorUrl = _BaseUrl
+                },
+                SemanticCells = cells,
+                Model = model,
+                ApiKey = _ApiKey
+            };
 
             using (Timestamp ts = new Timestamp())
             {
                 ts.Start = DateTime.UtcNow;
-                result = await _Sdk.ProcessSemanticCells(cells, model);
+
+                result = await _Sdk.GenerateEmbeddings(req);
+
                 ts.End = DateTime.UtcNow;
                 totalMs = ts.TotalMs;
             }
@@ -190,6 +208,53 @@
             Console.WriteLine("");
             Console.WriteLine("Completed after " + totalMs + "ms");
             Console.WriteLine("");
+        }
+
+        private static async Task ProcessText()
+        {
+            string model = Inputty.GetString("Model :", _DefaultModel, true);
+            if (String.IsNullOrEmpty(model)) return;
+
+            List<string> contents = new List<string>();
+            Console.WriteLine("");
+            Console.WriteLine("Type the text you wish to process.  Press ENTER on an empty line to end.");
+            while (true)
+            {
+                string content = Inputty.GetString("Text:", null, true);
+                if (String.IsNullOrEmpty(content)) break;
+                contents.Add(content);
+            }
+
+            if (contents.Count > 0)
+            {
+                EmbeddingsResult result;
+                double? totalMs = 0;
+
+                using (Timestamp ts = new Timestamp())
+                {
+                    ts.Start = DateTime.UtcNow;
+
+                    result = await _Sdk.GenerateEmbeddings(new EmbeddingsRequest
+                    {
+                        EmbeddingsRule = new EmbeddingsRule
+                        {
+                            EmbeddingsGenerator = _GeneratorType,
+                            EmbeddingsGeneratorUrl = _BaseUrl
+                        },
+                        Model = model,
+                        ApiKey = _ApiKey,
+                        Contents = contents
+                    });
+
+                    ts.End = DateTime.UtcNow;
+                    totalMs = ts.TotalMs;
+                }
+
+                EnumerateResponse(result);
+                Console.WriteLine("");
+                Console.WriteLine("Completed after " + totalMs + "ms");
+                Console.WriteLine("");
+            }
         }
 
         private static void SdkLogger(SeverityEnum sev, string msg)

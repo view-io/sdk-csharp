@@ -1,4 +1,4 @@
-﻿namespace View.Sdk.Vector.VoyageAI
+﻿namespace View.Sdk.Embeddings.Providers.VoyageAI
 {
     using System;
     using System.Collections.Generic;
@@ -6,7 +6,6 @@
     using System.Text;
     using System.Text.Json.Serialization;
     using System.Threading.Tasks;
-    using View.Sdk.Vector;
 
     /// <summary>
     /// VoyageAI embeddings.

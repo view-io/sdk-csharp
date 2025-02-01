@@ -1,4 +1,4 @@
-﻿namespace View.Sdk.Vector
+﻿namespace View.Sdk.Embeddings
 {
     using RestWrapper;
     using System;
@@ -8,12 +8,13 @@
     using System.Runtime.InteropServices;
     using System.Threading;
     using System.Threading.Tasks;
+    using View.Sdk.Embeddings.Providers;
+    using View.Sdk.Embeddings.Providers.Langchain;
+    using View.Sdk.Embeddings.Providers.Ollama;
+    using View.Sdk.Embeddings.Providers.OpenAI;
+    using View.Sdk.Embeddings.Providers.VoyageAI;
     using View.Sdk.Semantic;
     using View.Sdk.Serialization;
-    using View.Sdk.Vector.Langchain;
-    using View.Sdk.Vector.Ollama;
-    using View.Sdk.Vector.OpenAI;
-    using View.Sdk.Vector.VoyageAI;
 
     /// <summary>
     /// View embeddings generator SDK.
@@ -48,14 +49,14 @@
             }
             private set
             {
-                if (String.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(BaseUrl));
+                if (string.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(BaseUrl));
                 Uri uri = new Uri(value);
                 _BaseUrl = value;
             }
         }
 
         /// <summary>
-        /// Maximum number of chunks to include in an individual processing tasks.  Default is 16.
+        /// Maximum number of chunks to include in an individual processing batch.  Default is 16.
         /// </summary>
         public int BatchSize
         {
@@ -71,7 +72,7 @@
         }
 
         /// <summary>
-        /// Maximum number of parallel tasks.  Default is 16.
+        /// Maximum number of batches to process in parallel.  Default is 16.
         /// </summary>
         public int MaxParallelTasks
         {
@@ -87,7 +88,7 @@
         }
 
         /// <summary>
-        /// Maximum number of retries to perform on any given task.
+        /// Maximum number of retries to perform on any given batch.
         /// </summary>
         public int MaxRetries
         {
@@ -103,7 +104,7 @@
         }
 
         /// <summary>
-        /// Maximum number of failures to support before failing the operation.
+        /// Maximum number of failed batches before failing the operation.
         /// </summary>
         public int MaxFailures
         {
@@ -119,7 +120,7 @@
         }
 
         /// <summary>
-        /// Timeout in milliseconds.
+        /// Timeout in milliseconds for each batch.
         /// </summary>
         public int TimeoutMs
         {
@@ -183,6 +184,7 @@
 
         #region Private-Members
 
+        private string _Header = "[EmbeddingsSdk] ";
         private Serializer _Serializer = new Serializer();
         private string _BaseUrl = "http://localhost:8000/";
 
@@ -204,14 +206,14 @@
         /// Instantiate.
         /// </summary>
         /// <param name="tenantGuid">Tenant GUID.</param>
-        /// <param name="generator">Embeddings generator.</param>
-        /// <param name="baseUrl">Base URL, i.e. http://localhost:8000/.</param>
+        /// <param name="generator">Embeddings generator type.</param>
+        /// <param name="baseUrl">Base URL, i.e. http://localhost:8000/.  Do not include URL paths, only protocol, hostname, and port.</param>
         /// <param name="apiKey">API key.</param>
-        /// <param name="batchSize">Batch size.</param>
-        /// <param name="maxParallelTasks">Maximum number of parallel tasks.</param>
-        /// <param name="maxRetries">Maximum number of retries to perform on any given task.</param>
-        /// <param name="maxFailures">Maximum number of failures to support before failing the operation.</param>
-        /// <param name="timeoutMs">Timeout, in milliseconds.</param>
+        /// <param name="batchSize">Batch size, that is, the maximum number of distinct content entries to process at once..</param>
+        /// <param name="maxParallelTasks">Maximum number of parallel tasks, that is, the maximum number of parallel batches to process concurrently.</param>
+        /// <param name="maxRetries">Maximum number of retries to perform on any given batch before failing.</param>
+        /// <param name="maxFailures">Maximum number of failures to support before failing an entire operation.</param>
+        /// <param name="timeoutMs">Timeout for each operation, in milliseconds.</param>
         public ViewEmbeddingsSdk(
             Guid tenantGuid,
             EmbeddingsGeneratorEnum generator,
@@ -239,15 +241,19 @@
             {
                 case EmbeddingsGeneratorEnum.LCProxy:
                     _SdkBase = new ViewLangchainSdk(TenantGUID, BaseUrl, ApiKey);
+                    _Header = "[EmbeddingsSdk-LCProxy] ";
                     break;
                 case EmbeddingsGeneratorEnum.Ollama:
                     _SdkBase = new ViewOllamaSdk(TenantGUID, BaseUrl, ApiKey);
+                    _Header = "[EmbeddingsSdk-Ollama] ";
                     break;
                 case EmbeddingsGeneratorEnum.OpenAI:
                     _SdkBase = new ViewOpenAiSdk(TenantGUID, BaseUrl, ApiKey);
+                    _Header = "[EmbeddingsSdk-OpenAI] ";
                     break;
                 case EmbeddingsGeneratorEnum.VoyageAI:
                     _SdkBase = new ViewVoyageAiSdk(TenantGUID, BaseUrl, ApiKey);
+                    _Header = "[EmbeddingsSdk-VoyageAI] ";
                     break;
                 default:
                     throw new ArgumentException("Unknown embeddings generator '" + Generator.ToString() + "'.");
@@ -264,6 +270,8 @@
         public void Dispose()
         {
             _Serializer = null;
+            _SdkBase.Dispose();
+            _Semaphore = null;
         }
 
         /// <summary>
@@ -285,140 +293,166 @@
         public async Task<EmbeddingsResult> GenerateEmbeddings(EmbeddingsRequest embedRequest, CancellationToken token = default)
         {
             if (embedRequest == null) throw new ArgumentNullException(nameof(embedRequest));
-            return await _SdkBase.GenerateEmbeddings(embedRequest, _TimeoutMs, token).ConfigureAwait(false);
-        }
 
-        /// <summary>
-        /// Process semantic cells and generate embeddings.
-        /// </summary>
-        /// <param name="cells">Semantic cells.</param>
-        /// <param name="model">Model.</param>
-        /// <param name="token">Cancellation token.</param>
-        /// <returns>Semantic cells, where chunks have embeddings.</returns>
-        public async Task<List<SemanticCell>> ProcessSemanticCells(
-            List<SemanticCell> cells, 
-            string model,
-            CancellationToken token = default)
-        {
-            if (cells == null || cells.Count < 1) return new List<SemanticCell>();
-            if (String.IsNullOrEmpty(model)) throw new ArgumentNullException(nameof(model));
+            #region Populate-Contents
 
-            int failureCount = 0;
-            object failureLock = new object();
+            if (embedRequest.SemanticCells.Count > 0)
+            {
+                List<SemanticChunk> chunks = SemanticCell.AllChunks(embedRequest.SemanticCells).ToList();
+                Log(SeverityEnum.Debug, "merging contents from " + embedRequest.SemanticCells.Count + " semantic cells and " + chunks.Count + " semantic chunks");
 
-            // Create queue of batches
-            List<List<SemanticChunk>> batches = GetChunks(cells)
-                .Select((chunk, index) => new { chunk, index })
-                .GroupBy(x => x.index / BatchSize)
-                .Select(g => g.Select(x => x.chunk).ToList())
+                foreach (SemanticChunk chunk in chunks)
+                {
+                    if (!embedRequest.Contents.Any(c => c.Equals(chunk.Content)))
+                    {
+                        embedRequest.Contents.Add(chunk.Content);
+                    }
+                }
+            }
+
+            if (embedRequest.Contents.Count < 1)
+            {
+                return new EmbeddingsResult
+                {
+                    Success = false,
+                    Error = new ApiErrorResponse(ApiErrorEnum.RequiredPropertiesMissing, null, "No contents were found for embeddings processing."),
+                    StatusCode = 0
+                };
+            }
+            else
+            {
+                Log(SeverityEnum.Debug, "processing " + embedRequest.Contents.Count + " discrete content entries");
+            }
+
+            #endregion
+
+            #region Build-Batches
+
+            var batches = embedRequest.Contents
+                .Select((item, index) => new { Item = item, Index = index })
+                .GroupBy(x => x.Index / _BatchSize)
+                .Select(g => g.Select(x => x.Item).ToList())
                 .ToList();
 
-            Queue<List<SemanticChunk>> queue = new Queue<List<SemanticChunk>>(batches);
-            List<Task> runningTasks = new List<Task>();
-            object processingLock = new object();
-
-            async Task ProcessNextBatch()
+            if (batches == null || batches.Count < 1)
             {
-                while (true)
+                Log(SeverityEnum.Debug, "no batches found in supplied input");
+                return new EmbeddingsResult
                 {
-                    List<SemanticChunk> batch;
-                    lock (processingLock)
-                    {
-                        if (queue.Count == 0) return;
-                        batch = queue.Dequeue();
-                    }
-
-                    try
-                    {
-                        await _Semaphore.WaitAsync(token);
-                        try
-                        {
-                            bool success = await ProcessBatch(model, batch, token);
-                            if (!success)
-                            {
-                                bool shouldThrow = false;
-                                lock (failureLock)
-                                {
-                                    failureCount++;
-                                    if (failureCount >= MaxFailures)
-                                    {
-                                        shouldThrow = true;
-                                    }
-                                }
-                                if (shouldThrow)
-                                {
-                                    throw new InvalidOperationException(
-                                        $"Too many failures encountered while generating embeddings using {Generator}. " +
-                                        $"Failure count: {failureCount}");
-                                }
-                            }
-                        }
-                        finally
-                        {
-                            _Semaphore.Release();
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        throw;
-                    }
-                }
+                    Success = true,
+                    Error = null,
+                    StatusCode = 200,
+                    BatchCount = 0
+                };
+            }
+            else
+            {
+                Log(SeverityEnum.Debug, "split " + embedRequest.Contents.Count + " content entries into " + batches.Count + " discrete batches (maximum batch size " + _BatchSize + ")");
             }
 
-            try
+            #endregion
+
+            #region Build-Result
+
+            object batchLock = new object();
+
+            EmbeddingsResult embedResult = new EmbeddingsResult
             {
-                for (int i = 0; i < Math.Min(MaxParallelTasks, batches.Count); i++)
+                Success = true,
+                Error = null,
+                StatusCode = 200,
+                BatchCount = batches.Count,
+                SemanticCells = embedRequest.SemanticCells,
+                ContentEmbeddings = new List<ContentEmbedding>()
+            };
+
+            foreach (string content in embedRequest.Contents)
+            {
+                embedResult.ContentEmbeddings.Add(new ContentEmbedding
                 {
-                    runningTasks.Add(ProcessNextBatch());
-                }
-
-                await Task.WhenAll(runningTasks);
-            }
-            catch (Exception)
-            {
-                token.ThrowIfCancellationRequested();
-                throw;
+                    Content = content,
+                    Embeddings = new List<float>()
+                });
             }
 
-            return cells;
+            #endregion
+
+            #region Process-Batches
+
+            int totalFailures = 0;
+
+            Log(SeverityEnum.Debug, "processing " + batches.Count + " discrete batches with maximum parallel task count of " + _MaxParallelTasks);
+
+            await Parallel.ForEachAsync(
+                batches,
+                new ParallelOptions { MaxDegreeOfParallelism = _MaxParallelTasks },
+                async (batch, token) =>
+                {
+                    bool success = await ProcessBatch(embedRequest, embedResult, batch, batchLock);
+                    if (!success)
+                    {
+                        totalFailures += 1;
+                        if (totalFailures > _MaxFailures)
+                        {
+                            embedResult.Success = false;
+                        }
+                    }
+                });
+
+            #endregion
+
+            return embedResult;
         }
 
         #endregion
 
         #region Private-Methods
 
+        private void Log(SeverityEnum sev, string msg)
+        {
+            if (Logger != null && !String.IsNullOrEmpty(msg))
+            {
+                Logger(sev, _Header + msg);
+            }
+        }
+
         private async Task<bool> ProcessBatch(
-            string model,
-            List<SemanticChunk> chunks,
+            EmbeddingsRequest req,
+            EmbeddingsResult result,
+            List<string> batch,
+            object resultLock,
             CancellationToken token = default)
         {
+            #region Variables
+
             int failureCount = 0;
 
-            List<string> contents = new List<string>();
-            foreach (SemanticChunk chunk in chunks)
-                if (!String.IsNullOrEmpty(chunk.Content)) contents.Add(chunk.Content);
+            EmbeddingsRequest batchRequest = new EmbeddingsRequest();
+            batchRequest.EmbeddingsRule = req.EmbeddingsRule;
+            batchRequest.Model = req.Model;
+            batchRequest.ApiKey = ApiKey;
+            batchRequest.Contents = batch;
 
-            EmbeddingsRequest request = new EmbeddingsRequest();
-            request.Model = model;
-            request.ApiKey = ApiKey;
-            request.Contents = contents;
+            EmbeddingsResult batchResult = new EmbeddingsResult();
+            batchResult.Success = false;
 
-            EmbeddingsResult result = new EmbeddingsResult();
-            result.Success = false;
+            #endregion
+
+            #region Process-Batch
 
             while (failureCount < MaxRetries)
             {
                 try
                 {
-                    result = await _SdkBase.GenerateEmbeddings(request, _TimeoutMs, token).ConfigureAwait(false);
-                    if (result == null)
+                    batchResult = await _SdkBase.GenerateEmbeddings(batchRequest, _TimeoutMs, token).ConfigureAwait(false);
+                    if (batchResult == null)
                     {
                         Logger?.Invoke(SeverityEnum.Warn, "no response from embeddings generator " + Generator.ToString());
                         failureCount++;
                     }
                     else
                     {
-                        if (result.Success) break;
+                        if (batchResult.Success) break;
                         else
                         {
                             Logger?.Invoke(SeverityEnum.Warn, "failure reported by embeddings generator " + Generator.ToString());
@@ -433,56 +467,35 @@
                 }
             }
 
-            if (result.Success)
+            #endregion
+
+            #region Merge
+
+            if (batchResult != null && batchResult.Success && batchResult.ContentEmbeddings != null && batchResult.ContentEmbeddings.Count > 0)
             {
-                UpdateChunkEmbeddings(chunks, result.Result);
-            }
-
-            return result.Success;
-        }
-
-        private IEnumerable<SemanticChunk> GetChunks(List<SemanticCell> cells)
-        {
-            if (cells == null || cells.Count < 1) yield break;
-
-            foreach (SemanticCell cell in cells)
-            {
-                if (cell.Children != null && cell.Children.Count > 0)
+                lock (resultLock)
                 {
-                    foreach (var chunk in GetChunks(cell.Children))
+                    foreach (ContentEmbedding ce in result.ContentEmbeddings)
                     {
-                        yield return chunk;
+                        if (batchResult.ContentEmbeddings.Any(b => b.Content.Equals(ce.Content)))
+                        {
+                            ce.Embeddings = batchResult.ContentEmbeddings.First(b => b.Content.Equals(ce.Content)).Embeddings;
+                        }
                     }
-                }
 
-                if (cell.Chunks != null && cell.Chunks.Count > 0)
-                {
-                    foreach (SemanticChunk chunk in cell.Chunks)
+                    foreach (SemanticChunk chunk in SemanticCell.AllChunks(result.SemanticCells))
                     {
-                        yield return chunk;
+                        if (batchResult.ContentEmbeddings.Any(b => b.Content.Equals(chunk.Content)))
+                        {
+                            chunk.Embeddings = batchResult.ContentEmbeddings.First(b => b.Content.Equals(chunk.Content)).Embeddings;
+                        }
                     }
                 }
             }
 
-            yield break;
-        }
-        
-        private void UpdateChunkEmbeddings(List<SemanticChunk> chunks, List<EmbeddingsMap> embeddingsMap)
-        {
-            if (chunks == null || embeddingsMap == null || chunks.Count == 0 || embeddingsMap.Count == 0)
-                return;
+            #endregion
 
-            foreach (SemanticChunk chunk in chunks)
-            {
-                if (!String.IsNullOrEmpty(chunk.Content))
-                {
-                    EmbeddingsMap matchingEmbedding = embeddingsMap.FirstOrDefault(e => e.Content == chunk.Content);
-                    if (matchingEmbedding != null)
-                    {
-                        chunk.Embeddings = matchingEmbedding.Embeddings;
-                    }
-                }
-            }
+            return batchResult.Success;
         }
 
         #endregion

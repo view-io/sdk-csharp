@@ -1,4 +1,4 @@
-﻿namespace View.Sdk.Vector
+﻿namespace View.Sdk.Embeddings.Providers
 {
     using System;
     using System.Collections.Concurrent;
@@ -44,7 +44,7 @@
             }
             set
             {
-                if (String.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value))
                 {
                     _Header = value;
                 }
@@ -98,7 +98,7 @@
             }
             private set
             {
-                if (String.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(BaseUrl));
+                if (string.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(BaseUrl));
                 Uri uri = new Uri(value);
                 _BaseUrl = value;
             }
@@ -146,7 +146,7 @@
             string endpoint,
             string apiKey)
         {
-            if (!String.IsNullOrEmpty(endpoint) && !endpoint.EndsWith("/")) endpoint += "/";
+            if (!string.IsNullOrEmpty(endpoint) && !endpoint.EndsWith("/")) endpoint += "/";
 
             TenantGUID = tenantGuid;
             Generator = generator;
@@ -157,8 +157,6 @@
         #endregion
 
         #region Public-Methods
-
-        #region General
 
         /// <summary>
         /// Dispose.
@@ -175,7 +173,7 @@
         /// <param name="msg">Message.</param>
         public void Log(SeverityEnum sev, string msg)
         {
-            if (String.IsNullOrEmpty(msg)) return;
+            if (string.IsNullOrEmpty(msg)) return;
             Logger?.Invoke(sev, _Header + msg);
         }
 
@@ -186,45 +184,6 @@
         /// <returns>True if connected.</returns>
         public abstract Task<bool> ValidateConnectivity(CancellationToken token = default);
 
-        #endregion
-
-        #region Model-Management
-
-        /// <summary>
-        /// List models.
-        /// </summary>
-        /// <param name="token">Cancellation token.</param>
-        /// <returns>List of model names.</returns>
-        public abstract Task<List<ModelInformation>> ListModels(CancellationToken token = default);
-
-        /// <summary>
-        /// Load a model.
-        /// </summary>
-        /// <param name="model">Model.</param>
-        /// <param name="token">Cancellation token.</param>
-        /// <returns>Task.</returns>
-        public abstract Task<bool> LoadModel(string model, CancellationToken token = default);
-
-        /// <summary>
-        /// Load models.
-        /// </summary>
-        /// <param name="models">Models.</param>
-        /// <param name="token">Cancellation token.</param>
-        /// <returns>Task.</returns>
-        public abstract Task<bool> LoadModels(List<string> models, CancellationToken token = default);
-
-        /// <summary>
-        /// Delete a model.
-        /// </summary>
-        /// <param name="name">Name.</param>
-        /// <param name="token">Cancellation token.</param>
-        /// <returns>Task.</returns>
-        public abstract Task<bool> DeleteModel(string name, CancellationToken token = default);
-
-        #endregion
-
-        #region Embeddings
-
         /// <summary>
         /// Generate embeddings.
         /// </summary>
@@ -233,33 +192,13 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns></returns>
         public abstract Task<EmbeddingsResult> GenerateEmbeddings(
-            EmbeddingsRequest embedRequest, 
-            int timeoutMs = 30000, 
-            CancellationToken token = default); 
-
-        #endregion
+            EmbeddingsRequest embedRequest,
+            int timeoutMs = 30000,
+            CancellationToken token = default);
 
         #endregion
 
         #region Private-Methods
-         
-        private IEnumerable<SemanticChunk> IterateSemanticChunks(List<SemanticCell> cells)
-        {
-            List<SemanticChunk> chunks = new List<SemanticChunk>();
-            if (cells == null || cells.Count < 1) yield break;
-
-            foreach (SemanticCell cell in cells)
-            {
-                if (cell.Children != null) IterateSemanticChunks(cell.Children);
-                if (cell.Chunks != null)
-                {
-                    foreach (SemanticChunk chunk in cell.Chunks)
-                        yield return chunk;
-                }
-            }
-
-            yield break;
-        }
 
         #endregion
     }

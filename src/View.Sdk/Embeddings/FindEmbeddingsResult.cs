@@ -1,4 +1,4 @@
-﻿namespace View.Sdk.Vector
+﻿namespace View.Sdk.Embeddings
 {
     using System.Collections.Generic;
     using Timestamps;
