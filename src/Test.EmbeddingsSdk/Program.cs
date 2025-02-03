@@ -89,6 +89,8 @@
                 _MaxFailures, 
                 _TimeoutMs);
 
+            _Sdk.LogRequests = true;
+            _Sdk.LogResponses = true;
             _Sdk.Logger = SdkLogger;
 
             while (_RunForever)
@@ -187,7 +189,8 @@
                 EmbeddingsRule = new EmbeddingsRule
                 {
                     EmbeddingsGenerator = _GeneratorType,
-                    EmbeddingsGeneratorUrl = _BaseUrl
+                    EmbeddingsGeneratorUrl = _BaseUrl,
+                    EmbeddingsGeneratorApiKey = _ApiKey
                 },
                 SemanticCells = cells,
                 Model = model,
@@ -239,7 +242,8 @@
                         EmbeddingsRule = new EmbeddingsRule
                         {
                             EmbeddingsGenerator = _GeneratorType,
-                            EmbeddingsGeneratorUrl = _BaseUrl
+                            EmbeddingsGeneratorUrl = _BaseUrl,
+                            EmbeddingsGeneratorApiKey = _ApiKey
                         },
                         Model = model,
                         ApiKey = _ApiKey,

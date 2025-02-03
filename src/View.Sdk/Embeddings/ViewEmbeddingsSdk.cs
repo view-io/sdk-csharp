@@ -190,7 +190,7 @@
 
         private int _BatchSize = 16;
         private int _MaxParallelTasks = 16;
-        private int _MaxRetries = 3;
+        private int _MaxRetries = 5;
         private int _MaxFailures = 3;
         private int _TimeoutMs = 300000;
 
@@ -303,12 +303,15 @@
 
                 foreach (SemanticChunk chunk in chunks)
                 {
-                    if (!embedRequest.Contents.Any(c => c.Equals(chunk.Content)))
+                    if (String.IsNullOrEmpty(chunk.Content)) continue;
+                    if (!embedRequest.Contents.Any(c => !String.IsNullOrEmpty(c) && c.Equals(chunk.Content)))
                     {
                         embedRequest.Contents.Add(chunk.Content);
                     }
                 }
             }
+
+            embedRequest.Contents.RemoveAll(i => String.IsNullOrWhiteSpace(i));
 
             if (embedRequest.Contents.Count < 1)
             {
@@ -392,7 +395,7 @@
                     if (!success)
                     {
                         totalFailures += 1;
-                        if (totalFailures > _MaxFailures)
+                        if (totalFailures >= _MaxFailures)
                         {
                             embedResult.Success = false;
                         }
@@ -447,7 +450,7 @@
                     batchResult = await _SdkBase.GenerateEmbeddings(batchRequest, _TimeoutMs, token).ConfigureAwait(false);
                     if (batchResult == null)
                     {
-                        Logger?.Invoke(SeverityEnum.Warn, "no response from embeddings generator " + Generator.ToString());
+                        Log(SeverityEnum.Warn, "no response from embeddings generator " + Generator.ToString());
                         failureCount++;
                     }
                     else
@@ -455,14 +458,14 @@
                         if (batchResult.Success) break;
                         else
                         {
-                            Logger?.Invoke(SeverityEnum.Warn, "failure reported by embeddings generator " + Generator.ToString());
+                            Log(SeverityEnum.Warn, "failure reported by embeddings generator " + Generator.ToString());
                             failureCount++;
                         }
                     }
                 }
                 catch (Exception e)
                 {
-                    Logger?.Invoke(SeverityEnum.Warn, "exception while generating embeddings: " + Environment.NewLine + e.ToString());
+                    Log(SeverityEnum.Warn, "exception while generating embeddings: " + Environment.NewLine + e.ToString());
                     failureCount++;
                 }
             }
@@ -471,26 +474,39 @@
 
             #region Merge
 
-            if (batchResult != null && batchResult.Success && batchResult.ContentEmbeddings != null && batchResult.ContentEmbeddings.Count > 0)
+            if (batchResult != null)
             {
-                lock (resultLock)
+                if (!batchResult.Success)
                 {
-                    foreach (ContentEmbedding ce in result.ContentEmbeddings)
+                    Log(SeverityEnum.Warn, _Header + "batch failed");
+                }
+                else if (batchResult.ContentEmbeddings != null && batchResult.ContentEmbeddings.Count > 0)
+                {
+                    lock (resultLock)
                     {
-                        if (batchResult.ContentEmbeddings.Any(b => b.Content.Equals(ce.Content)))
+                        foreach (ContentEmbedding ce in result.ContentEmbeddings)
                         {
-                            ce.Embeddings = batchResult.ContentEmbeddings.First(b => b.Content.Equals(ce.Content)).Embeddings;
+                            if (String.IsNullOrEmpty(ce.Content)) continue;
+                            if (batchResult.ContentEmbeddings.Any(b => !String.IsNullOrEmpty(b.Content) && b.Content.Equals(ce.Content)))
+                            {
+                                ce.Embeddings = batchResult.ContentEmbeddings.First(b => b.Content.Equals(ce.Content)).Embeddings;
+                            }
                         }
-                    }
 
-                    foreach (SemanticChunk chunk in SemanticCell.AllChunks(result.SemanticCells))
-                    {
-                        if (batchResult.ContentEmbeddings.Any(b => b.Content.Equals(chunk.Content)))
+                        foreach (SemanticChunk chunk in SemanticCell.AllChunks(result.SemanticCells))
                         {
-                            chunk.Embeddings = batchResult.ContentEmbeddings.First(b => b.Content.Equals(chunk.Content)).Embeddings;
+                            if (String.IsNullOrEmpty(chunk.Content)) continue;
+                            if (batchResult.ContentEmbeddings.Any(b => !String.IsNullOrEmpty(b.Content) && b.Content.Equals(chunk.Content)))
+                            {
+                                chunk.Embeddings = batchResult.ContentEmbeddings.First(b => b.Content.Equals(chunk.Content)).Embeddings;
+                            }
                         }
                     }
                 }
+            }
+            else
+            {
+                Log(SeverityEnum.Warn, _Header + "no batch result retrieved");
             }
 
             #endregion

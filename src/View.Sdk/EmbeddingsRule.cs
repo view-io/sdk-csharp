@@ -74,6 +74,16 @@
         public string ProcessingAccessKey { get; set; } = "default";
 
         /// <summary>
+        /// Embeddings server URL.
+        /// </summary>
+        public string EmbeddingsServerUrl { get; set; } = "http://localhost:8000/v1.0/tenants/default/embeddings";
+
+        /// <summary>
+        /// Embeddings server API key.
+        /// </summary>
+        public string EmbeddingsServerApiKey { get; set; } = "default";
+
+        /// <summary>
         /// Embeddings generator.
         /// </summary>
         public EmbeddingsGeneratorEnum EmbeddingsGenerator { get; set; } = EmbeddingsGeneratorEnum.LCProxy;

@@ -2975,6 +2975,16 @@
             Access key for processing endpoint.
             </summary>
         </member>
+        <member name="P:View.Sdk.EmbeddingsRule.EmbeddingsServerUrl">
+            <summary>
+            Embeddings server URL.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EmbeddingsRule.EmbeddingsServerApiKey">
+            <summary>
+            Embeddings server API key.
+            </summary>
+        </member>
         <member name="P:View.Sdk.EmbeddingsRule.EmbeddingsGenerator">
             <summary>
             Embeddings generator.
@@ -4007,6 +4017,27 @@
             <returns>True if connected.</returns>
         </member>
         <member name="M:View.Sdk.Embeddings.ViewEmbeddingsSdk.GenerateEmbeddings(View.Sdk.Embeddings.EmbeddingsRequest,System.Threading.CancellationToken)">
+            <summary>
+            Generate embeddings.
+            </summary>
+            <param name="embedRequest">Embeddings request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Embeddings response.</returns>
+        </member>
+        <member name="T:View.Sdk.Embeddings.ViewEmbeddingsServerSdk">
+            <summary>
+            View embeddings server SDK.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.ViewEmbeddingsServerSdk.#ctor(System.Guid,System.String,System.String)">
+            <summary>
+            View embeddings server SDK.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="endpoint">Base URL, i.e. http://localhost:8000/.  Do not include URL paths, only protocol, hostname, and port.</param>
+            <param name="accessKey">API key.</param>
+        </member>
+        <member name="M:View.Sdk.Embeddings.ViewEmbeddingsServerSdk.GenerateEmbeddings(View.Sdk.Embeddings.EmbeddingsRequest,System.Threading.CancellationToken)">
             <summary>
             Generate embeddings.
             </summary>

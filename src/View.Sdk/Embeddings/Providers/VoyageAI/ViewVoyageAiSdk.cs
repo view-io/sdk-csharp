@@ -52,17 +52,35 @@
 
             try
             {
-                using (RestRequest req = new RestRequest(BaseUrl, HttpMethod.Get))
+                using (RestRequest req = new RestRequest(url, HttpMethod.Get))
                 {
+                    req.Authorization.BearerToken = ApiKey;
+
                     using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
                     {
-                        if (resp != null && resp.StatusCode >= 200 && resp.StatusCode <= 299) return true;
-                        return false;
+                        if (resp != null)
+                        {
+                            if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                Log(SeverityEnum.Warn, "non-success response " + resp.StatusCode + " from " + url);
+                                return false;
+                            }
+                        }
+                        else
+                        {
+                            Log(SeverityEnum.Warn, "no response from " + url);
+                            return false;
+                        }
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Log(SeverityEnum.Warn, "exception while connecting to " + url + Environment.NewLine + e.ToString());
                 return false;
             }
         }
