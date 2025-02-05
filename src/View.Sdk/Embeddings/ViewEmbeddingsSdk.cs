@@ -433,7 +433,6 @@
             EmbeddingsRequest batchRequest = new EmbeddingsRequest();
             batchRequest.EmbeddingsRule = req.EmbeddingsRule;
             batchRequest.Model = req.Model;
-            batchRequest.ApiKey = ApiKey;
             batchRequest.Contents = batch;
 
             EmbeddingsResult batchResult = new EmbeddingsResult();

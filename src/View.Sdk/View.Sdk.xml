@@ -3226,11 +3226,6 @@
             Model.
             </summary>
         </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsRequest.ApiKey">
-            <summary>
-            API key.
-            </summary>
-        </member>
         <member name="P:View.Sdk.Embeddings.EmbeddingsRequest.SemanticCells">
             <summary>
             Semantic cells.

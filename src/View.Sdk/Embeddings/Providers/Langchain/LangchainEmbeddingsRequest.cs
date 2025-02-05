@@ -68,11 +68,12 @@
         public static LangchainEmbeddingsRequest FromEmbeddingsRequest(EmbeddingsRequest req)
         {
             if (req == null) throw new ArgumentNullException(nameof(req));
+            if (req.EmbeddingsRule == null) throw new ArgumentNullException(nameof(req.EmbeddingsRule));
 
             return new LangchainEmbeddingsRequest
             {
                 Model = req.Model,
-                ApiKey = req.ApiKey,
+                ApiKey = req.EmbeddingsRule.EmbeddingsGeneratorApiKey,
                 Contents = req.Contents
             };
         }

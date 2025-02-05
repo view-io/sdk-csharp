@@ -45,21 +45,6 @@
         }
 
         /// <summary>
-        /// API key.
-        /// </summary>
-        public string ApiKey
-        {
-            get
-            {
-                return _ApiKey;
-            }
-            set
-            {
-                _ApiKey = value;
-            }
-        }
-
-        /// <summary>
         /// Semantic cells.
         /// </summary>
         public List<SemanticCell> SemanticCells
@@ -102,7 +87,6 @@
 
         private EmbeddingsRule _EmbeddingsRule = null;
         private string _Model = null;
-        private string _ApiKey = null;
         private List<SemanticCell> _SemanticCells = new List<SemanticCell>();
         private List<string> _Contents = new List<string>();
 

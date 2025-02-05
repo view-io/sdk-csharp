@@ -193,8 +193,7 @@
                     EmbeddingsGeneratorApiKey = _ApiKey
                 },
                 SemanticCells = cells,
-                Model = model,
-                ApiKey = _ApiKey
+                Model = model
             };
 
             using (Timestamp ts = new Timestamp())
@@ -246,7 +245,6 @@
                             EmbeddingsGeneratorApiKey = _ApiKey
                         },
                         Model = model,
-                        ApiKey = _ApiKey,
                         Contents = contents
                     });
 
