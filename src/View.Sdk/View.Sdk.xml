@@ -7527,7 +7527,7 @@
             </summary>
             <param name="tenantGuid">Tenant GUID.</param>
             <param name="accessKey">Access key.</param>
-            <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing/typedetection.</param>
+            <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/.</param>
         </member>
         <member name="M:View.Sdk.Processor.ViewTypeDetectorSdk.Process(System.Byte[],System.String,System.Threading.CancellationToken)">
             <summary>
