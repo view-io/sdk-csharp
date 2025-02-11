@@ -29,7 +29,7 @@
         /// <param name="tenantGuid">Tenant GUID.</param>
         /// <param name="accessKey">Access key.</param>
         /// <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing/semanticcell.</param>
-        public ViewSemanticCellSdk(Guid tenantGuid, string accessKey, string endpoint = "http://localhost:8000/v1.0/tenants/default/processing/semanticcell") : base(tenantGuid, accessKey, endpoint)
+        public ViewSemanticCellSdk(Guid tenantGuid, string accessKey, string endpoint = "http://localhost:8000/") : base(tenantGuid, accessKey, endpoint)
         {
             Header = "[ViewSemanticCellSdk] ";
         }
@@ -52,12 +52,12 @@
             if (scReq.Data == null || scReq.Data.Length < 1) throw new ArgumentException("No data supplied for semantic cell extraction.");
             if (scReq.MetadataRule == null) throw new ArgumentNullException(nameof(scReq.MetadataRule));
 
-            string url = Endpoint;
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/processing/semanticcell";
             string json = Serializer.SerializeJson(scReq, true);
 
             try
             {
-                using (RestRequest req = new RestRequest(url, HttpMethod.Put, "application/json"))
+                using (RestRequest req = new RestRequest(url, HttpMethod.Post, "application/json"))
                 {
                     req.TimeoutMilliseconds = TimeoutMs;
                     req.ContentType = "application/json";

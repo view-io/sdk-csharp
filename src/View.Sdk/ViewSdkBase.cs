@@ -85,7 +85,7 @@
             set
             {
                 Uri uri = new Uri(value);
-                value = uri.Scheme + "://" + uri.Host + ":" + uri.Port + uri.PathAndQuery;
+                value = uri.Scheme + "://" + uri.Host + ":" + uri.Port + uri.PathAndQuery; // will add trailing slash after port
                 _Endpoint = value;
             }
         }

@@ -18,7 +18,7 @@
         private static bool _RunForever = true;
         private static Guid _TenantGUID = default(Guid);
         private static string _AccessKey = "default";
-        private static string _Endpoint = "http://localhost:8000/v1.0/tenants/default/processing/semanticcell";
+        private static string _Endpoint = "http://localhost:8000";
         private static ViewSemanticCellSdk _Sdk = null;
         private static Serializer _Serializer = new Serializer();
         private static bool _EnableLogging = true;

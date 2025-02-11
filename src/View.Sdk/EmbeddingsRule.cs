@@ -66,7 +66,7 @@
         /// <summary>
         /// Data flow endpoint for processing.
         /// </summary>
-        public string ProcessingEndpoint { get; set; } = "http://localhost:8000/v1.0/tenants/default/processing";
+        public string ProcessingEndpoint { get; set; } = "http://localhost:8000/v1.0/tenants/00000000-0000-0000-0000-000000000000/processing";
 
         /// <summary>
         /// Access key for processing endpoint.
@@ -76,7 +76,7 @@
         /// <summary>
         /// Embeddings server URL.
         /// </summary>
-        public string EmbeddingsServerUrl { get; set; } = "http://localhost:8000/v1.0/tenants/default/embeddings";
+        public string EmbeddingsServerUrl { get; set; } = "http://localhost:8000/";
 
         /// <summary>
         /// Embeddings server API key.
@@ -91,7 +91,7 @@
         /// <summary>
         /// Embeddings generator URL.
         /// </summary>
-        public string EmbeddingsGeneratorUrl { get; set; } = "http://localhost:8000/v1.0/tenants/default/embeddings";
+        public string EmbeddingsGeneratorUrl { get; set; } = "http://localhost:8000/";
 
         /// <summary>
         /// Embeddings provider API key.
