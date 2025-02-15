@@ -6,7 +6,7 @@
 		<Title>C# SDK for View AI.</Title>
 		<Description>C# SDK for View AI.</Description>
 		<PackageReleaseNotes>v1.2 release.</PackageReleaseNotes>
-		<Version>1.2.42</Version>
+		<Version>1.2.45</Version>
 		
 		<ApplicationIcon>Assets\icon.ico</ApplicationIcon>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
@@ -61,7 +61,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="LiteGraph.Sdk" Version="3.1.1" />
+		<PackageReference Include="LiteGraph.Sdk" Version="3.1.4" />
 		<PackageReference Include="SS.NuGet.Publish" Version="1.0.2311.32">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

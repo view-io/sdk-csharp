@@ -269,6 +269,11 @@
             Internal error.
             </summary>
         </member>
+        <member name="F:View.Sdk.ApiErrorEnum.InvalidEmail">
+            <summary>
+            Invalid email.
+            </summary>
+        </member>
         <member name="F:View.Sdk.ApiErrorEnum.InvalidRange">
             <summary>
             Invalid range.
