@@ -2865,6 +2865,11 @@
             PNG.
             </summary>
         </member>
+        <member name="F:View.Sdk.DocumentTypeEnum.PostScript">
+            <summary>
+            PostScript.
+            </summary>
+        </member>
         <member name="F:View.Sdk.DocumentTypeEnum.Pptx">
             <summary>
             PPTX, PowerPoint presentation.
