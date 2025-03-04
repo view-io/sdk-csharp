@@ -281,6 +281,90 @@
 
         #endregion
 
+        #region Web
+
+        /// <summary>
+        /// Web authentication type.
+        /// </summary>
+        WebAuthenticationTypeEnum WebAuthentication { get; set; } = WebAuthenticationTypeEnum.None;
+
+        /// <summary>
+        /// Username for web basic authentication.
+        /// </summary>
+        public string WebUsername { get; set; } = null;
+
+        /// <summary>
+        /// Password for web basic authentication.
+        /// </summary>
+        public string WebPassword { get; set; } = null;
+
+        /// <summary>
+        /// Header to use for attaching an API key to the web request.
+        /// </summary>
+        public string WebApiKeyHeader { get; set; } = null;
+
+        /// <summary>
+        /// Web API key to attach.
+        /// </summary>
+        public string WebApiKey { get; set; } = null;
+
+        /// <summary>
+        /// Bearer token to use in the authorization header.
+        /// </summary>
+        public string WebBearerToken { get; set; } = null;
+
+        /// <summary>
+        /// User agent to use while crawling.
+        /// </summary>
+        public string WebUserAgent { get; set; } = null;
+
+        /// <summary>
+        /// Starting URL for web crawling.
+        /// </summary>
+        public string WebStartUrl { get; set; } = null;
+
+        /// <summary>
+        /// Boolean indicating whether or not links should be followed.
+        /// </summary>
+        public bool? WebFollowLinks { get; set; } = null;
+
+        /// <summary>
+        /// Boolean indicating whether or not redirects should be followed.
+        /// </summary>
+        public bool? WebFollowRedirects { get; set; } = null;
+
+        /// <summary>
+        /// Boolean indicating whether or not the sitemap contents should be included as links.
+        /// </summary>
+        public bool? WebIncludeSitemap { get; set; } = null;
+
+        /// <summary>
+        /// Boolean indicating whether or not crawling should only consider child links.
+        /// </summary>
+        public bool? WebRestrictToChildUrls { get; set; } = null;
+
+        /// <summary>
+        /// Boolean indicating whether or not crawling should consider links within the same domain.
+        /// </summary>
+        public bool? WebRestrictToSameDomain { get; set; } = null;
+
+        /// <summary>
+        /// Maximum depth to crawl.
+        /// </summary>
+        public int? WebMaxDepth { get; set; } = null;
+
+        /// <summary>
+        /// Maximum number of parallel tasks to use while web crawling.
+        /// </summary>
+        public int? WebMaxParallelTasks { get; set; } = null;
+
+        /// <summary>
+        /// Delay in milliseconds to introduce between crawl operations within the same task.
+        /// </summary>
+        public int? WebCrawlDelayMs { get; set; } = null;
+
+        #endregion
+
         /// <summary>
         /// Created.
         /// </summary>
