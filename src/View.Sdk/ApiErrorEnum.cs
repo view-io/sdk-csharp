@@ -173,6 +173,11 @@
         [EnumMember(Value = "InternalError")]
         InternalError,
         /// <summary>
+        /// Invalid email.
+        /// </summary>
+        [EnumMember(Value = "InvalidEmail")]
+        InvalidEmail,
+        /// <summary>
         /// Invalid range.
         /// </summary>
         [EnumMember(Value = "InvalidRange")]

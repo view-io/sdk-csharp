@@ -129,14 +129,14 @@
             Console.WriteLine("");
         }
 
-        private static string GetCollectionGuid()
+        private static Guid GetCollectionGuid()
         {
-            return Inputty.GetString("Collection GUID :", null, false);
+            return Inputty.GetGuid("Collection GUID :", default(Guid));
         }
 
-        private static string GetDocumentGuid()
+        private static Guid GetDocumentGuid()
         {
-            return Inputty.GetString("Document GUID   :", null, false);
+            return Inputty.GetGuid("Document GUID   :", default(Guid));
         }
 
         private static Collection BuildCollection()

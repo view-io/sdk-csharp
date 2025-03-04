@@ -1,4 +1,4 @@
-﻿namespace View.Sdk.Vector.Langchain
+﻿namespace View.Sdk.Embeddings.Providers.Langchain
 {
     using System;
     using System.Collections.Generic;
@@ -8,11 +8,13 @@
     using System.Threading.Tasks;
     using RestWrapper;
     using View.Sdk;
+    using View.Sdk.Embeddings;
+    using View.Sdk.Embeddings.Providers;
     using View.Sdk.Semantic;
     using View.Sdk.Serialization;
 
     /// <summary>
-    /// View Langchain SDK.
+    /// View Langchain SDK.  This SDK interacts directly with the underlying View Embeddings microservice that acts as a Langchain proxy.
     /// </summary>
     public class ViewLangchainSdk : EmbeddingsProviderSdkBase, IDisposable
     {
@@ -48,64 +50,27 @@
         /// <inheritdoc />
         public override async Task<bool> ValidateConnectivity(CancellationToken token = default)
         {
+            string url = BaseUrl;
+
             try
             {
-                using (RestRequest req = new RestRequest(BaseUrl, HttpMethod.Head))
+                using (RestRequest req = new RestRequest(url, HttpMethod.Get))
                 {
+                    req.Authorization.BearerToken = ApiKey;
+
                     using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
                     {
                         if (resp != null)
                         {
-                            if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
-                            if (resp.StatusCode >= 200 && resp.StatusCode <= 299) return true;
-                            return false;
-                        }
-                        else
-                        {
-                            Log(SeverityEnum.Warn, "no response from " + BaseUrl);
-                            return false;
-                        }
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
-
-        /// <inheritdoc />
-        public override Task<List<ModelInformation>> ListModels(CancellationToken token = default)
-        {
-            throw new InvalidOperationException("This API is not implemented for this embeddings generator.");
-        }
-
-        /// <inheritdoc />
-        public override async Task<bool> LoadModels(List<string> models, CancellationToken token = default)
-        {
-            if (models == null || models.Count < 1) throw new ArgumentNullException(nameof(models));
-
-            string url = BaseUrl + "v1.0/preload/";
-
-            try
-            {
-                using (RestRequest req = new RestRequest(url, HttpMethod.Post))
-                {
-                    req.ContentType = "application/json";
-
-                    Dictionary<string, object> dict = new Dictionary<string, object>();
-                    dict.Add("Models", models);
-                    dict.Add("ApiKey", ApiKey);
-
-                    string json = Serializer.SerializeJson(dict, true);
-
-                    using (RestResponse resp = await req.SendAsync(json, token).ConfigureAwait(false))
-                    {
-                        if (resp != null)
-                        {
-                            if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
-                            if (resp.StatusCode >= 200 && resp.StatusCode <= 299) return true;
-                            return false;
+                            if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                Log(SeverityEnum.Warn, "non-success response " + resp.StatusCode + " from " + url);
+                                return false;
+                            }
                         }
                         else
                         {
@@ -115,22 +80,11 @@
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Log(SeverityEnum.Warn, "exception while connecting to " + url + Environment.NewLine + e.ToString());
                 return false;
             }
-        }
-
-        /// <inheritdoc />
-        public override Task<bool> DeleteModel(string name, CancellationToken token = default)
-        {
-            throw new InvalidOperationException("This API is not implemented for this embeddings generator.");
-        }
-
-        /// <inheritdoc />
-        public override Task<bool> LoadModel(string model, CancellationToken token = default)
-        {
-            throw new InvalidOperationException("This API is not implemented for this embeddings generator.");
         }
 
         /// <inheritdoc />
@@ -141,14 +95,15 @@
         {
             if (embedRequest == null) throw new ArgumentNullException(nameof(embedRequest));
             if (timeoutMs < 1) throw new ArgumentOutOfRangeException(nameof(timeoutMs));
-            if (String.IsNullOrEmpty(embedRequest.Model)) embedRequest.Model = _DefaultModel;
+            if (string.IsNullOrEmpty(embedRequest.Model)) embedRequest.Model = _DefaultModel;
 
-            string url = BaseUrl + "v1.0/tenants/" + TenantGUID + "/embeddings/";
+            string url = embedRequest.EmbeddingsRule.EmbeddingsGeneratorUrl + "v1.0/tenants/" + TenantGUID + "/embeddings/";
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Post))
             {
                 req.ContentType = "application/json";
                 req.TimeoutMilliseconds = timeoutMs;
+                req.Authorization.BearerToken = ApiKey;
 
                 string json = Serializer.SerializeJson(LangchainEmbeddingsRequest.FromEmbeddingsRequest(embedRequest), true);
                 if (LogRequests) Log(SeverityEnum.Debug, "request:" + Environment.NewLine + json);
@@ -158,7 +113,12 @@
                     if (resp == null)
                     {
                         Log(SeverityEnum.Warn, "no response from " + url);
-                        return null;
+                        return new EmbeddingsResult
+                        {
+                            Success = false,
+                            StatusCode = resp.StatusCode,
+                            Error = new ApiErrorResponse(ApiErrorEnum.NoEmbeddingsConnectivity, null, "No connectivity to embeddings provider at " + url + ".")
+                        };
                     }
                     else
                     {
@@ -166,12 +126,11 @@
 
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
+                            if (!string.IsNullOrEmpty(resp.DataAsString))
                             {
                                 Log(SeverityEnum.Debug, "deserializing response body");
-                                LangchainEmbeddingsResult embedResult = Serializer.DeserializeJson<LangchainEmbeddingsResult>(resp.DataAsString);
-                                embedResult.Success = true;
-                                return embedResult.ToEmbeddingsResult();
+                                LangchainEmbeddingsResult langchainResult = Serializer.DeserializeJson<LangchainEmbeddingsResult>(resp.DataAsString);
+                                return langchainResult.ToEmbeddingsResult(embedRequest, true, resp.StatusCode, null);
                             }
                             else
                             {
@@ -180,7 +139,7 @@
                                 {
                                     Success = false,
                                     StatusCode = resp.StatusCode,
-                                    Model = embedRequest.Model
+                                    Error = new ApiErrorResponse(ApiErrorEnum.EmbeddingsGenerationFailed, null, "No embeddings returned from the provider.")
                                 };
                             }
                         }
@@ -191,7 +150,7 @@
                             {
                                 Success = false,
                                 StatusCode = resp.StatusCode,
-                                Model = embedRequest.Model
+                                Error = new ApiErrorResponse(ApiErrorEnum.EmbeddingsGenerationFailed, null, "Failure reported by the embeddings provider.")
                             };
                         }
                     }

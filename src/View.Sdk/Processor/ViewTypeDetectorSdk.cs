@@ -29,8 +29,8 @@
         /// </summary>
         /// <param name="tenantGuid">Tenant GUID.</param>
         /// <param name="accessKey">Access key.</param>
-        /// <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing/typedetection.</param>
-        public ViewTypeDetectorSdk(Guid tenantGuid, string accessKey, string endpoint = "http://localhost:8000/v1.0/tenants/default/processing/typedetection") : base(tenantGuid, accessKey, endpoint)
+        /// <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/.</param>
+        public ViewTypeDetectorSdk(Guid tenantGuid, string accessKey, string endpoint = "http://localhost:8000/") : base(tenantGuid, accessKey, endpoint)
         {
             Header = "[ViewTypeDetectorSdk] ";
         }
@@ -54,7 +54,7 @@
             if (data == null || data.Length < 1) throw new ArgumentException("No data supplied for content type detection.");
             if (String.IsNullOrEmpty(contentType)) contentType = "application/octet-stream";
 
-            string url = Endpoint;
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/processing/typedetection";
 
             try
             {

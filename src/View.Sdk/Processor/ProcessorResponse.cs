@@ -6,7 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
     using Timestamps;
-    using View.Sdk.Vector;
+    using View.Sdk.Embeddings;
 
     /// <summary>
     /// Processor response.

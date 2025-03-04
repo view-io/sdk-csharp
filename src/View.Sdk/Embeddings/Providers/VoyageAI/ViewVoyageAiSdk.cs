@@ -1,4 +1,4 @@
-﻿namespace View.Sdk.Vector.VoyageAI
+﻿namespace View.Sdk.Embeddings.Providers.VoyageAI
 {
     using System;
     using System.Collections.Generic;
@@ -7,10 +7,12 @@
     using System.Threading.Tasks;
     using RestWrapper;
     using View.Sdk;
+    using View.Sdk.Embeddings;
+    using View.Sdk.Embeddings.Providers;
     using View.Sdk.Serialization;
 
     /// <summary>
-    /// VoyageAI embeddings generator.
+    /// VoyageAI SDK.  This SDK interacts directly with the VoyageAI API for generating embeddings.
     /// </summary>
     public class ViewVoyageAiSdk : EmbeddingsProviderSdkBase, IDisposable
     {
@@ -29,7 +31,7 @@
         /// <inheritdoc />
         public ViewVoyageAiSdk(
             Guid tenantGuid,
-            string baseUrl,
+            string baseUrl = "https://api.voyageai.com/",
             string apiKey = null) : base(
                 tenantGuid,
                 EmbeddingsGeneratorEnum.VoyageAI,
@@ -50,54 +52,48 @@
 
             try
             {
-                using (RestRequest req = new RestRequest(BaseUrl, HttpMethod.Get))
+                using (RestRequest req = new RestRequest(url, HttpMethod.Get))
                 {
+                    req.Authorization.BearerToken = ApiKey;
+
                     using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
                     {
-                        if (resp != null && resp.StatusCode >= 200 && resp.StatusCode <= 299) return true;
-                        return false;
+                        if (resp != null)
+                        {
+                            if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                Log(SeverityEnum.Warn, "non-success response " + resp.StatusCode + " from " + url);
+                                return false;
+                            }
+                        }
+                        else
+                        {
+                            Log(SeverityEnum.Warn, "no response from " + url);
+                            return false;
+                        }
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Log(SeverityEnum.Warn, "exception while connecting to " + url + Environment.NewLine + e.ToString());
                 return false;
             }
         }
 
         /// <inheritdoc />
-        public override Task<List<ModelInformation>> ListModels(CancellationToken token = default)
-        {
-            throw new InvalidOperationException("This API is not implemented for this embeddings generator.");
-        }
-
-        /// <inheritdoc />
-        public override Task<bool> LoadModels(List<string> models, CancellationToken token = default)
-        {
-            throw new InvalidOperationException("This API is not implemented for this embeddings generator.");
-        }
-
-        /// <inheritdoc />
-        public override Task<bool> DeleteModel(string name, CancellationToken token = default)
-        {
-            throw new InvalidOperationException("This API is not implemented for this embeddings generator.");
-        }
-
-        /// <inheritdoc />
-        public override Task<bool> LoadModel(string model, CancellationToken token = default)
-        {
-            throw new InvalidOperationException("This API is not implemented for this embeddings generator.");
-        }
-
-        /// <inheritdoc />
         public override async Task<EmbeddingsResult> GenerateEmbeddings(
-            EmbeddingsRequest embedRequest, 
-            int timeoutMs = 30000, 
+            EmbeddingsRequest embedRequest,
+            int timeoutMs = 30000,
             CancellationToken token = default)
         {
             if (embedRequest == null) throw new ArgumentNullException(nameof(embedRequest));
             if (timeoutMs < 1) throw new ArgumentOutOfRangeException(nameof(timeoutMs));
-            if (String.IsNullOrEmpty(embedRequest.Model)) embedRequest.Model = _DefaultModel;
+            if (string.IsNullOrEmpty(embedRequest.Model)) embedRequest.Model = _DefaultModel;
 
             string url = BaseUrl + "v1/embeddings";
 
@@ -115,7 +111,12 @@
                     if (resp == null)
                     {
                         Log(SeverityEnum.Warn, "no response from " + url);
-                        return null;
+                        return new EmbeddingsResult
+                        {
+                            Success = false,
+                            StatusCode = resp.StatusCode,
+                            Error = new ApiErrorResponse(ApiErrorEnum.NoEmbeddingsConnectivity, null, "No connectivity to embeddings provider at " + url + ".")
+                        };
                     }
                     else
                     {
@@ -123,11 +124,11 @@
 
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
+                            if (!string.IsNullOrEmpty(resp.DataAsString))
                             {
                                 Log(SeverityEnum.Debug, "deserializing response body");
-                                VoyageAiEmbeddingsResult embedResult = Serializer.DeserializeJson<VoyageAiEmbeddingsResult>(resp.DataAsString);
-                                return embedResult.ToEmbeddingsResult(VoyageAiEmbeddingsRequest.FromEmbeddingsRequest(embedRequest));
+                                VoyageAiEmbeddingsResult voyageAiResult = Serializer.DeserializeJson<VoyageAiEmbeddingsResult>(resp.DataAsString);
+                                return voyageAiResult.ToEmbeddingsResult(embedRequest, true, resp.StatusCode, null);
                             }
                             else
                             {
@@ -136,7 +137,7 @@
                                 {
                                     Success = false,
                                     StatusCode = resp.StatusCode,
-                                    Model = embedRequest.Model
+                                    Error = new ApiErrorResponse(ApiErrorEnum.EmbeddingsGenerationFailed, null, "No embeddings returned from the provider.")
                                 };
                             }
                         }
@@ -147,7 +148,7 @@
                             {
                                 Success = false,
                                 StatusCode = resp.StatusCode,
-                                Model = embedRequest.Model
+                                Error = new ApiErrorResponse(ApiErrorEnum.EmbeddingsGenerationFailed, null, "Failure reported by the embeddings provider.")
                             };
                         }
                     }

@@ -1,4 +1,4 @@
-﻿namespace View.Sdk.Vector.Langchain
+﻿namespace View.Sdk.Embeddings.Providers.Langchain
 {
     using System;
     using System.Collections.Generic;
@@ -8,7 +8,7 @@
     using System.Text.Json.Serialization;
     using System.Threading.Tasks;
     using Timestamps;
-    using View.Sdk.Vector;
+    using View.Sdk.Embeddings;
 
     /// <summary>
     /// Langchain embeddings request.
@@ -68,15 +68,16 @@
         public static LangchainEmbeddingsRequest FromEmbeddingsRequest(EmbeddingsRequest req)
         {
             if (req == null) throw new ArgumentNullException(nameof(req));
+            if (req.EmbeddingsRule == null) throw new ArgumentNullException(nameof(req.EmbeddingsRule));
 
             return new LangchainEmbeddingsRequest
             {
                 Model = req.Model,
-                ApiKey = req.ApiKey,
+                ApiKey = req.EmbeddingsRule.EmbeddingsGeneratorApiKey,
                 Contents = req.Contents
             };
         }
-        
+
         #endregion
 
         #region Public-Methods

@@ -116,18 +116,18 @@
         }
 
         /// <summary>
-        /// Text.
+        /// Content.
         /// </summary>
-        public string Text
+        public string Content
         {
             get
             {
-                return _Text;
+                return _Content;
             }
             set
             {
                 if (!String.IsNullOrEmpty(value)) _Length = value.Length;
-                _Text = value;
+                _Content = value;
             }
         }
 
@@ -157,7 +157,7 @@
         private int _Length = 0;
         private List<float> _Embeddings = new List<float>();
         private byte[] _Binary = null;
-        private string _Text = null;
+        private string _Content = null;
 
         #endregion
 
@@ -177,27 +177,37 @@
         /// <param name="position">Position.</param>
         /// <param name="start">Start.</param>
         /// <param name="end">End.</param>
-        /// <param name="content">Content.</param>
+        /// <param name="content">Text content.</param>
+        /// <param name="binary">Binary content.</param>
         /// <param name="embeddings">Embeddings.</param>
         public SemanticChunk(
             int position,
             int start,
             int end,
             string content,
+            byte[] binary,
             List<float> embeddings = null)
         {
             Position = position;
             Start = start;
             End = end;
-            Text = content;
+            Content = content;
+            Binary = binary;
             Embeddings = embeddings;
 
-            if (!String.IsNullOrEmpty(content))
+            if (!String.IsNullOrEmpty(Content))
             {
-                Length = content.Length;
-                MD5Hash = Convert.ToHexString(Helpers.HashHelper.MD5Hash(Encoding.UTF8.GetBytes(content)));
-                SHA1Hash = Convert.ToHexString(Helpers.HashHelper.SHA1Hash(Encoding.UTF8.GetBytes(content)));
-                SHA256Hash = Convert.ToHexString(Helpers.HashHelper.SHA256Hash(Encoding.UTF8.GetBytes(content)));
+                Length = Content.Length;
+                MD5Hash = Convert.ToHexString(Helpers.HashHelper.MD5Hash(Encoding.UTF8.GetBytes(Content)));
+                SHA1Hash = Convert.ToHexString(Helpers.HashHelper.SHA1Hash(Encoding.UTF8.GetBytes(Content)));
+                SHA256Hash = Convert.ToHexString(Helpers.HashHelper.SHA256Hash(Encoding.UTF8.GetBytes(Content)));
+            }
+            else if (Binary != null && Binary.Length > 0)
+            {
+                Length = Binary.Length;
+                MD5Hash = Convert.ToHexString(Helpers.HashHelper.MD5Hash(Binary));
+                SHA1Hash = Convert.ToHexString(Helpers.HashHelper.SHA1Hash(Binary));
+                SHA256Hash = Convert.ToHexString(Helpers.HashHelper.SHA256Hash(Binary));
             }
         }
 
@@ -225,8 +235,8 @@
                 SHA256Hash = DataTableHelper.GetStringValue(row, "chunk_sha256"),
                 Position = DataTableHelper.GetInt32Value(row, "chunk_position"),
                 Length = DataTableHelper.GetInt32Value(row, "chunk_length"),
-                Text = DataTableHelper.GetStringValue(row, "text_data"),
-                Binary = DataTableHelper.GetNullableBinaryValue(row, "binary_data"),
+                Content = DataTableHelper.GetStringValue(row, "content"),
+                Binary = DataTableHelper.GetNullableBinaryValue(row, "binary_content"),
                 Embeddings = embeddings
             };
 

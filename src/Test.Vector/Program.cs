@@ -8,6 +8,7 @@
     using View.Sdk.Vector;
     using View.Sdk.Serialization;
     using View.Sdk.Semantic;
+    using View.Sdk.Embeddings;
 
     public static class Program
     {
@@ -145,7 +146,7 @@
                                 SHA1Hash = "000",
                                 SHA256Hash = "000",
                                 Position = 0,
-                                Text = "This is a sample chunk",
+                                Content = "This is a sample chunk",
                                 Embeddings = new List<float>
                                 {
                                     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -176,20 +177,15 @@
 
         private static async Task DeleteDocument()
         {
-            string repoGuid = Inputty.GetString("Repository GUID:", "example-vector-repository", true);
-            if (String.IsNullOrEmpty(repoGuid)) return;
-
-            string docGuid = Inputty.GetString("Document GUID  :", null, true);
-            if (String.IsNullOrEmpty(docGuid)) return;
-
+            Guid repoGuid = Inputty.GetGuid("Repository GUID:", default(Guid));
+            Guid docGuid = Inputty.GetGuid("Document GUID  :", default(Guid));
             bool success = await _Sdk.DeleteDocument(repoGuid, docGuid);
             Console.WriteLine("Success: " + success);
         }
 
         private static async Task TruncateTable()
         {
-            string repoGuid = Inputty.GetString("Repository GUID:", "example-vector-repository", true);
-            if (String.IsNullOrEmpty(repoGuid)) return;
+            Guid repoGuid = Inputty.GetGuid("Repository GUID:", default(Guid));
 
             bool success = await _Sdk.TruncateRepository(repoGuid);
             Console.WriteLine("Success: " + success);

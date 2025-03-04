@@ -60,9 +60,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if exists.</returns>
-        public async Task<bool> ExistsNode(string guid, CancellationToken token = default)
+        public async Task<bool> ExistsNode(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/nodes/" + guid;
             return await Exists(url, token).ConfigureAwait(false);
         }
@@ -73,9 +72,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Node.</returns>
-        public async Task<Node> RetrieveNode(string guid, CancellationToken token = default)
+        public async Task<Node> RetrieveNode(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/nodes/" + guid;
             return await Retrieve<Node>(url, token).ConfigureAwait(false);
         }
@@ -110,9 +108,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if successful.</returns>
-        public async Task<bool> DeleteNode(string guid, CancellationToken token = default)
+        public async Task<bool> DeleteNode(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/nodes/" + guid;
             return await Delete(url, token).ConfigureAwait(false);
         }
@@ -168,9 +165,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if exists.</returns>
-        public async Task<bool> ExistsUser(string guid, CancellationToken token = default)
+        public async Task<bool> ExistsUser(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/users/" + guid;
             return await Exists(url, token).ConfigureAwait(false);
         }
@@ -181,9 +177,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>User.</returns>
-        public async Task<UserMaster> RetrieveUser(string guid, CancellationToken token = default)
+        public async Task<UserMaster> RetrieveUser(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/users/" + guid;
             return await Retrieve<UserMaster>(url, token).ConfigureAwait(false);
         }
@@ -218,9 +213,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if successful.</returns>
-        public async Task<bool> DeleteUser(string guid, CancellationToken token = default)
+        public async Task<bool> DeleteUser(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/users/" + guid;
             return await Delete(url, token).ConfigureAwait(false);
         }
@@ -248,9 +242,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if exists.</returns>
-        public async Task<bool> ExistsCredential(string guid, CancellationToken token = default)
+        public async Task<bool> ExistsCredential(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/credentials/" + guid;
             return await Exists(url, token).ConfigureAwait(false);
         }
@@ -261,9 +254,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Credential.</returns>
-        public async Task<Credential> RetrieveCredential(string guid, CancellationToken token = default)
+        public async Task<Credential> RetrieveCredential(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/credentials/" + guid;
             return await Retrieve<Credential>(url, token).ConfigureAwait(false);
         }
@@ -298,9 +290,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if successful.</returns>
-        public async Task<bool> DeleteCredential(string guid, CancellationToken token = default)
+        public async Task<bool> DeleteCredential(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/credentials/" + guid;
             return await Delete(url, token).ConfigureAwait(false);
         }
@@ -328,9 +319,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if exists.</returns>
-        public async Task<bool> ExistsPool(string guid, CancellationToken token = default)
+        public async Task<bool> ExistsPool(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/pools/" + guid;
             return await Exists(url, token).ConfigureAwait(false);
         }
@@ -341,9 +331,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Pool.</returns>
-        public async Task<StoragePool> RetrievePool(string guid, CancellationToken token = default)
+        public async Task<StoragePool> RetrievePool(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/pools/" + guid;
             return await Retrieve<StoragePool>(url, token).ConfigureAwait(false);
         }
@@ -378,9 +367,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if successful.</returns>
-        public async Task<bool> DeletePool(string guid, CancellationToken token = default)
+        public async Task<bool> DeletePool(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/pools/" + guid;
             return await Delete(url, token).ConfigureAwait(false);
         }
@@ -408,9 +396,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if exists.</returns>
-        public async Task<bool> ExistsBucket(string guid, CancellationToken token = default)
+        public async Task<bool> ExistsBucket(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/buckets/" + guid;
             return await Exists(url, token).ConfigureAwait(false);
         }
@@ -421,9 +408,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Bucket.</returns>
-        public async Task<BucketMetadata> RetrieveBucket(string guid, CancellationToken token = default)
+        public async Task<BucketMetadata> RetrieveBucket(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/buckets/" + guid;
             return await Retrieve<BucketMetadata>(url, token).ConfigureAwait(false);
         }
@@ -458,9 +444,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if successful.</returns>
-        public async Task<bool> DeleteBucket(string guid, CancellationToken token = default)
+        public async Task<bool> DeleteBucket(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/buckets/" + guid;
             return await Delete(url, token).ConfigureAwait(false);
         }
@@ -488,9 +473,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if exists.</returns>
-        public async Task<bool> ExistsEncryptionKey(string guid, CancellationToken token = default)
+        public async Task<bool> ExistsEncryptionKey(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/encryptionkeys/" + guid;
             return await Exists(url, token).ConfigureAwait(false);
         }
@@ -501,9 +485,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Encryption key.</returns>
-        public async Task<EncryptionKey> RetrieveEncryptionKey(string guid, CancellationToken token = default)
+        public async Task<EncryptionKey> RetrieveEncryptionKey(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/encryptionkeys/" + guid;
             return await Retrieve<EncryptionKey>(url, token).ConfigureAwait(false);
         }
@@ -538,9 +521,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if successful.</returns>
-        public async Task<bool> DeleteEncryptionKey(string guid, CancellationToken token = default)
+        public async Task<bool> DeleteEncryptionKey(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/encryptionkeys/" + guid;
             return await Delete(url, token).ConfigureAwait(false);
         }
@@ -568,9 +550,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if exists.</returns>
-        public async Task<bool> ExistsMetadataRule(string guid, CancellationToken token = default)
+        public async Task<bool> ExistsMetadataRule(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/metadatarules/" + guid;
             return await Exists(url, token).ConfigureAwait(false);
         }
@@ -581,9 +562,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Metadata rule.</returns>
-        public async Task<MetadataRule> RetrieveMetadataRule(string guid, CancellationToken token = default)
+        public async Task<MetadataRule> RetrieveMetadataRule(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/metadatarules/" + guid;
             return await Retrieve<MetadataRule>(url, token).ConfigureAwait(false);
         }
@@ -618,9 +598,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if successful.</returns>
-        public async Task<bool> DeleteMetadataRule(string guid, CancellationToken token = default)
+        public async Task<bool> DeleteMetadataRule(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/metadatarules/" + guid;
             return await Delete(url, token).ConfigureAwait(false);
         }
@@ -648,9 +627,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if exists.</returns>
-        public async Task<bool> ExistsEmbeddingsRule(string guid, CancellationToken token = default)
+        public async Task<bool> ExistsEmbeddingsRule(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/embeddingsrules/" + guid;
             return await Exists(url, token).ConfigureAwait(false);
         }
@@ -661,9 +639,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Embeddings rule.</returns>
-        public async Task<EmbeddingsRule> RetrieveEmbeddingsRule(string guid, CancellationToken token = default)
+        public async Task<EmbeddingsRule> RetrieveEmbeddingsRule(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/embeddingsrules/" + guid;
             return await Retrieve<EmbeddingsRule>(url, token).ConfigureAwait(false);
         }
@@ -698,9 +675,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if successful.</returns>
-        public async Task<bool> DeleteEmbeddingsRule(string guid, CancellationToken token = default)
+        public async Task<bool> DeleteEmbeddingsRule(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/embeddingsrules/" + guid;
             return await Delete(url, token).ConfigureAwait(false);
         }
@@ -728,9 +704,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if exists.</returns>
-        public async Task<bool> ExistsVectorRepository(string guid, CancellationToken token = default)
+        public async Task<bool> ExistsVectorRepository(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + guid;
             return await Exists(url, token).ConfigureAwait(false);
         }
@@ -741,9 +716,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>vector repository.</returns>
-        public async Task<VectorRepository> RetrieveVectorRepository(string guid, CancellationToken token = default)
+        public async Task<VectorRepository> RetrieveVectorRepository(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + guid;
             return await Retrieve<VectorRepository>(url, token).ConfigureAwait(false);
         }
@@ -778,9 +752,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if successful.</returns>
-        public async Task<bool> DeleteVectorRepository(string guid, CancellationToken token = default)
+        public async Task<bool> DeleteVectorRepository(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + guid;
             return await Delete(url, token).ConfigureAwait(false);
         }
@@ -808,9 +781,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if exists.</returns>
-        public async Task<bool> ExistsGraphRepository(string guid, CancellationToken token = default)
+        public async Task<bool> ExistsGraphRepository(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/graphrepositories/" + guid;
             return await Exists(url, token).ConfigureAwait(false);
         }
@@ -821,9 +793,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Graph repository.</returns>
-        public async Task<GraphRepository> RetrieveGraphRepository(string guid, CancellationToken token = default)
+        public async Task<GraphRepository> RetrieveGraphRepository(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/graphrepositories/" + guid;
             return await Retrieve<GraphRepository>(url, token).ConfigureAwait(false);
         }
@@ -858,9 +829,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if successful.</returns>
-        public async Task<bool> DeleteGraphRepository(string guid, CancellationToken token = default)
+        public async Task<bool> DeleteGraphRepository(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/graphrepositories/" + guid;
             return await Delete(url, token).ConfigureAwait(false);
         }
@@ -996,9 +966,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if exists.</returns>
-        public async Task<bool> ExistsWebhookEvent(string guid, CancellationToken token = default)
+        public async Task<bool> ExistsWebhookEvent(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/webhookevents/" + guid;
             return await Exists(url, token).ConfigureAwait(false);
         }
@@ -1009,9 +978,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Embeddings rule.</returns>
-        public async Task<WebhookEvent> RetrieveWebhookEvent(string guid, CancellationToken token = default)
+        public async Task<WebhookEvent> RetrieveWebhookEvent(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/webhookevents/" + guid;
             return await Retrieve<WebhookEvent>(url, token).ConfigureAwait(false);
         }
@@ -1050,9 +1018,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if exists.</returns>
-        public async Task<bool> ExistsWebhookRule(string guid, CancellationToken token = default)
+        public async Task<bool> ExistsWebhookRule(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/webhookrules/" + guid;
             return await Exists(url, token).ConfigureAwait(false);
         }
@@ -1063,9 +1030,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Webhook rule.</returns>
-        public async Task<WebhookRule> RetrieveWebhookRule(string guid, CancellationToken token = default)
+        public async Task<WebhookRule> RetrieveWebhookRule(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/webhookrules/" + guid;
             return await Retrieve<WebhookRule>(url, token).ConfigureAwait(false);
         }
@@ -1100,9 +1066,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if successful.</returns>
-        public async Task<bool> DeleteWebhookRule(string guid, CancellationToken token = default)
+        public async Task<bool> DeleteWebhookRule(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/webhookrules/" + guid;
             return await Delete(url, token).ConfigureAwait(false);
         }
@@ -1130,9 +1095,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if exists.</returns>
-        public async Task<bool> ExistsWebhookTarget(string guid, CancellationToken token = default)
+        public async Task<bool> ExistsWebhookTarget(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/webhooktargets/" + guid;
             return await Exists(url, token).ConfigureAwait(false);
         }
@@ -1143,9 +1107,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Webhook target.</returns>
-        public async Task<WebhookTarget> RetrieveWebhookTarget(string guid, CancellationToken token = default)
+        public async Task<WebhookTarget> RetrieveWebhookTarget(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/webhooktargets/" + guid;
             return await Retrieve<WebhookTarget>(url, token).ConfigureAwait(false);
         }
@@ -1180,9 +1143,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if successful.</returns>
-        public async Task<bool> DeleteWebhookTarget(string guid, CancellationToken token = default)
+        public async Task<bool> DeleteWebhookTarget(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/webhooktargets/" + guid;
             return await Delete(url, token).ConfigureAwait(false);
         }
@@ -1210,9 +1172,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if exists.</returns>
-        public async Task<bool> ExistsObjectLock(string guid, CancellationToken token = default)
+        public async Task<bool> ExistsObjectLock(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/objectlocks/" + guid;
             return await Exists(url, token).ConfigureAwait(false);
         }
@@ -1223,9 +1184,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Object lock.</returns>
-        public async Task<ObjectLock> RetrieveObjectLock(string guid, CancellationToken token = default)
+        public async Task<ObjectLock> RetrieveObjectLock(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/objectlocks/" + guid;
             return await Retrieve<ObjectLock>(url, token).ConfigureAwait(false);
         }
@@ -1260,9 +1220,8 @@
         /// <param name="guid">GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if successful.</returns>
-        public async Task<bool> DeleteObjectLock(string guid, CancellationToken token = default)
+        public async Task<bool> DeleteObjectLock(Guid guid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(guid)) throw new ArgumentNullException(nameof(guid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/objectlocks/" + guid;
             return await Delete(url, token).ConfigureAwait(false);
         }

@@ -1,4 +1,4 @@
-﻿namespace View.Sdk.Vector.Ollama
+﻿namespace View.Sdk.Embeddings.Providers.Ollama
 {
     using System;
     using System.Collections.Generic;

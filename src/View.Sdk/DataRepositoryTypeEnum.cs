@@ -38,5 +38,10 @@
         /// </summary>
         [EnumMember(Value = "AzureBlob")]
         AzureBlob,
+        /// <summary>
+        /// Web.
+        /// </summary>
+        [EnumMember(Value = "Web")]
+        Web,
     }
 }

@@ -37,6 +37,7 @@
 
             return false;
         }
+
         /// <summary>
         /// Retrieve nullable Boolean value.
         /// </summary>
@@ -48,6 +49,7 @@
             if (row == null) throw new ArgumentNullException(nameof(row));
             if (String.IsNullOrEmpty(columnName)) throw new ArgumentNullException(nameof(columnName));
             if (!row.Table.Columns.Contains(columnName)) return null;
+            if (row[columnName] == DBNull.Value || row[columnName] == null) return null;
 
             try
             {
@@ -79,6 +81,7 @@
         {
             if (row == null) throw new ArgumentNullException(nameof(row));
             if (String.IsNullOrEmpty(columnName)) throw new ArgumentNullException(nameof(columnName));
+            if (row[columnName] == DBNull.Value || row[columnName] == null) return null;
             return row[columnName] != null ? row[columnName].ToString() : null;
         }
 
@@ -92,6 +95,7 @@
         {
             if (row == null) throw new ArgumentNullException(nameof(row));
             if (String.IsNullOrEmpty(columnName)) throw new ArgumentNullException(nameof(columnName));
+            if (row[columnName] == DBNull.Value || row[columnName] == null) return 0;
             return row[columnName] != null ? Convert.ToInt32(row[columnName]) : 0;
         }
 
@@ -105,6 +109,7 @@
         {
             if (row == null) throw new ArgumentNullException(nameof(row));
             if (String.IsNullOrEmpty(columnName)) throw new ArgumentNullException(nameof(columnName));
+            if (row[columnName] == DBNull.Value || row[columnName] == null) return null;
             return row[columnName] != null ? Convert.ToInt32(row[columnName]) : null;
         }
 
@@ -118,6 +123,7 @@
         {
             if (row == null) throw new ArgumentNullException(nameof(row));
             if (String.IsNullOrEmpty(columnName)) throw new ArgumentNullException(nameof(columnName));
+            if (row[columnName] == DBNull.Value || row[columnName] == null) return 0;
             return row[columnName] != null ? Convert.ToInt64(row[columnName]) : 0;
         }
 
@@ -131,6 +137,7 @@
         {
             if (row == null) throw new ArgumentNullException(nameof(row));
             if (String.IsNullOrEmpty(columnName)) throw new ArgumentNullException(nameof(columnName));
+            if (row[columnName] == DBNull.Value || row[columnName] == null) return null;
             return row[columnName] != null ? Convert.ToInt64(row[columnName]) : null;
         }
 
@@ -144,6 +151,7 @@
         {
             if (row == null) throw new ArgumentNullException(nameof(row));
             if (String.IsNullOrEmpty(columnName)) throw new ArgumentNullException(nameof(columnName));
+            if (row[columnName] == DBNull.Value || row[columnName] == null) return default(Guid);
             return row[columnName] != null ? Guid.Parse(row[columnName].ToString()) : default(Guid);
         }
 
@@ -157,6 +165,7 @@
         {
             if (row == null) throw new ArgumentNullException(nameof(row));
             if (String.IsNullOrEmpty(columnName)) throw new ArgumentNullException(nameof(columnName));
+            if (row[columnName] == DBNull.Value || row[columnName] == null) return null;
             return row[columnName] != null ? Guid.Parse(row[columnName].ToString()) : null;
         }
 
@@ -196,6 +205,7 @@
         {
             if (row == null) throw new ArgumentNullException(nameof(row));
             if (String.IsNullOrEmpty(columnName)) throw new ArgumentNullException(nameof(columnName));
+            if (row[columnName] == DBNull.Value || row[columnName] == null) return null;
             return row[columnName] != null ? DateTime.Parse(row[columnName].ToString()) : null;
         }
 
@@ -209,6 +219,7 @@
         {
             if (row == null) throw new ArgumentNullException(nameof(row));
             if (String.IsNullOrEmpty(columnName)) throw new ArgumentNullException(nameof(columnName));
+            if (row[columnName] == DBNull.Value || row[columnName] == null) return 0m;
             return row[columnName] != null ? Convert.ToDecimal(row[columnName].ToString()) : 0m;
         }
 
@@ -222,7 +233,21 @@
         {
             if (row == null) throw new ArgumentNullException(nameof(row));
             if (String.IsNullOrEmpty(columnName)) throw new ArgumentNullException(nameof(columnName));
+            if (row[columnName] == DBNull.Value || row[columnName] == null) return null;
             return row[columnName] != null ? Convert.ToDecimal(row[columnName].ToString()) : null;
+        }
+
+        /// <summary>
+        /// Retrieve binary value or null.
+        /// </summary>
+        /// <param name="row">DataRow.</param>
+        /// <param name="columnName"></param>
+        /// <returns>Byte array or null.</returns>
+        public static byte[] GetNullableBinaryValue(DataRow row, string columnName)
+        {
+            if (row == null || string.IsNullOrEmpty(columnName)) return null;
+            if (row[columnName] == DBNull.Value || row[columnName] == null) return null;
+            return row[columnName] as byte[];
         }
 
         /// <summary>
@@ -354,19 +379,6 @@
             return obj is IDictionary &&
                    obj.GetType().IsGenericType &&
                    obj.GetType().GetGenericTypeDefinition().IsAssignableFrom(typeof(Dictionary<,>));
-        }
-
-        /// <summary>
-        /// Retrieve binary value or null.
-        /// </summary>
-        /// <param name="row">DataRow.</param>
-        /// <param name="columnName"></param>
-        /// <returns>Byte array or null.</returns>
-        public static byte[] GetNullableBinaryValue(DataRow row, string columnName)
-        {
-            if (row == null || string.IsNullOrEmpty(columnName)) return null;
-            if (row.IsNull(columnName)) return null;
-            return row[columnName] as byte[];
         }
     }
 }

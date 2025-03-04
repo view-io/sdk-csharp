@@ -153,9 +153,9 @@
             Console.WriteLine("");
         }
 
-        private static string GetGuid(string prompt)
+        private static Guid GetGuid(string prompt)
         {
-            return Inputty.GetString(prompt, null, false);
+            return Inputty.GetGuid(prompt, default(Guid));
         }
 
         private static T BuildObject<T>()
@@ -198,19 +198,19 @@
 
         private static async Task ReadTrigger()
         {
-            string guid = GetGuid("GUID:");
+            Guid guid = GetGuid("GUID:");
             EnumerateResponse(await _Sdk.RetrieveTrigger(guid));
         }
 
         private static async Task DeleteTrigger()
         {
-            string guid = GetGuid("GUID:");
+            Guid guid = GetGuid("GUID:");
             await _Sdk.DeleteTrigger(guid);
         }
 
         private static async Task ExistsTrigger()
         {
-            string guid = GetGuid("GUID:");
+            Guid guid = GetGuid("GUID:");
             bool exists = await _Sdk.ExistsTrigger(guid);
             Console.WriteLine("Exists: " + exists);
         }
@@ -232,19 +232,19 @@
 
         private static async Task ReadStep()
         {
-            string guid = GetGuid("GUID:");
+            Guid guid = GetGuid("GUID:");
             EnumerateResponse(await _Sdk.RetrieveStep(guid));
         }
 
         private static async Task DeleteStep()
         {
-            string guid = GetGuid("GUID:");
+            Guid guid = GetGuid("GUID:");
             await _Sdk.DeleteStep(guid);
         }
 
         private static async Task ExistsStep()
         {
-            string guid = GetGuid("GUID:");
+            Guid guid = GetGuid("GUID:");
             bool exists = await _Sdk.ExistsStep(guid);
             Console.WriteLine("Exists: " + exists);
         }
@@ -266,26 +266,26 @@
 
         private static async Task ReadFlow()
         {
-            string guid = GetGuid("GUID:");
+            Guid guid = GetGuid("GUID:");
             EnumerateResponse(await _Sdk.RetrieveDataFlow(guid));
         }
 
         private static async Task ReadFlowLogs()
         {
-            string flowGuid = GetGuid("Data flow GUID:");
-            string reqGuid  = GetGuid("Request GUID  :");
+            Guid flowGuid = GetGuid("Data flow GUID:");
+            Guid reqGuid  = GetGuid("Request GUID  :");
             EnumerateResponse(await _Sdk.RetrieveDataFlowLogs(flowGuid, reqGuid));
         }
 
         private static async Task DeleteFlow()
         {
-            string guid = GetGuid("GUID:");
+            Guid guid = GetGuid("GUID:");
             await _Sdk.DeleteDataFlow(guid);
         }
 
         private static async Task ExistsFlow()
         {
-            string guid = GetGuid("GUID:");
+            Guid guid = GetGuid("GUID:");
             bool exists = await _Sdk.ExistsDataFlow(guid);
             Console.WriteLine("Exists: " + exists);
         }

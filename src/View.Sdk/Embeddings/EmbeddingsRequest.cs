@@ -1,9 +1,9 @@
-﻿namespace View.Sdk.Vector
+﻿namespace View.Sdk.Embeddings
 {
     using System;
     using System.Collections.Generic;
     using Timestamps;
-    using View.Sdk.Vector;
+    using View.Sdk.Semantic;
 
     /// <summary>
     /// Embeddings request.
@@ -13,19 +13,52 @@
         #region Public-Members
 
         /// <summary>
-        /// Boolean indicating success.
+        /// Embeddings rule.
         /// </summary>
-        public bool? Success { get; set; } = null;
+        public EmbeddingsRule EmbeddingsRule
+        {
+            get
+            {
+                return _EmbeddingsRule;
+            }
+            set
+            {
+                if (value == null) throw new ArgumentNullException(nameof(EmbeddingsRule));
+                _EmbeddingsRule = value;
+            }
+        }
 
         /// <summary>
-        /// Model used to generate embeddings.
+        /// Model.
         /// </summary>
-        public string Model { get; set; } = null;
+        public string Model
+        {
+            get
+            {
+                return _Model;
+            }
+            set
+            {
+                if (String.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(Model));
+                _Model = value;
+            }
+        }
 
         /// <summary>
-        /// API key.
+        /// Semantic cells.
         /// </summary>
-        public string ApiKey { get; set; } = null;
+        public List<SemanticCell> SemanticCells
+        { 
+            get
+            {
+                return _SemanticCells;
+            }
+            set
+            {
+                if (value == null) value = new List<SemanticCell>();
+                _SemanticCells = value;
+            }
+        }
 
         /// <summary>
         /// Contents.
@@ -52,6 +85,9 @@
 
         #region Private-Members
 
+        private EmbeddingsRule _EmbeddingsRule = null;
+        private string _Model = null;
+        private List<SemanticCell> _SemanticCells = new List<SemanticCell>();
         private List<string> _Contents = new List<string>();
 
         #endregion

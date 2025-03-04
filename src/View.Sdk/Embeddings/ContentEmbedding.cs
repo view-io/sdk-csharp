@@ -1,4 +1,4 @@
-﻿namespace View.Sdk.Vector
+﻿namespace View.Sdk.Embeddings
 {
     using System;
     using System.Collections.Generic;
@@ -7,9 +7,9 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// Embeddings map.
+    /// Content embedding.
     /// </summary>
-    public class EmbeddingsMap
+    public class ContentEmbedding
     {
         #region Public-Members
 
@@ -45,9 +45,9 @@
         #region Constructors-and-Factories
 
         /// <summary>
-        /// Instantiate.
+        /// Content embedding.
         /// </summary>
-        public EmbeddingsMap()
+        public ContentEmbedding()
         {
 
         }

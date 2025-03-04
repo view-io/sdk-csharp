@@ -1,4 +1,4 @@
-﻿namespace View.Sdk.Vector.OpenAI
+﻿namespace View.Sdk.Embeddings.Providers.OpenAI
 {
     using System;
     using System.Collections.Generic;
@@ -6,7 +6,6 @@
     using System.Text;
     using System.Text.Json.Serialization;
     using System.Threading.Tasks;
-    using View.Sdk.Vector;
 
     /// <summary>
     /// OpenAI embeddings.

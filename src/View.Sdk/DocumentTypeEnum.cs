@@ -44,6 +44,11 @@
         [EnumMember(Value = "Keynote")]
         Keynote,
         /// <summary>
+        /// Markdown.
+        /// </summary>
+        [EnumMember(Value = "Markdown")]
+        Markdown,
+        /// <summary>
         /// Numbers.
         /// </summary>
         [EnumMember(Value = "Numbers")]
@@ -63,6 +68,16 @@
         /// </summary>
         [EnumMember(Value = "Pdf")]
         Pdf,
+        /// <summary>
+        /// PNG.
+        /// </summary>
+        [EnumMember(Value = "Png")]
+        Png,
+        /// <summary>
+        /// PostScript.
+        /// </summary>
+        [EnumMember(Value = "PostScript")]
+        PostScript,
         /// <summary>
         /// PPTX, PowerPoint presentation.
         /// </summary>

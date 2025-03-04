@@ -39,6 +39,8 @@
                         return "Your account, credentials, or the requested resource are marked as inactive.";
                     case ApiErrorEnum.InternalError:
                         return "An internal error has been encountered.";
+                    case ApiErrorEnum.InvalidEmail:
+                        return "An invalid email address has been supplied.";
                     case ApiErrorEnum.InvalidRange:
                         return "An invalid range has been supplied and cannot be fulfilled.";
                     case ApiErrorEnum.InUse:
@@ -138,6 +140,8 @@
                         return 401;
                     case ApiErrorEnum.InternalError:
                         return 500;
+                    case ApiErrorEnum.InvalidEmail:
+                        return 400;
                     case ApiErrorEnum.InvalidRange:
                         return 400;
                     case ApiErrorEnum.InUse:

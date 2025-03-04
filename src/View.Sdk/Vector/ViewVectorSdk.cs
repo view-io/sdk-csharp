@@ -14,6 +14,7 @@
     using System.Linq;
     using System.Reflection.Metadata;
     using LiteGraph.Sdk;
+    using View.Sdk.Embeddings;
 
     /// <summary>
     /// View Vector SDK.
@@ -118,10 +119,9 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if deleted.</returns>
         public async Task<bool> TruncateRepository(
-            string repoGuid,
+            Guid repoGuid,
             CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(repoGuid)) throw new ArgumentNullException(nameof(repoGuid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + repoGuid;
             return await Delete(url, token).ConfigureAwait(false);
         }
@@ -133,10 +133,9 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>Statistics.</returns>
         public async Task<VectorRepositoryStatistics> GetStatistics(
-            string repoGuid,
+            Guid repoGuid,
             CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(repoGuid)) throw new ArgumentNullException(nameof(repoGuid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + repoGuid + "/stats";
             return await Retrieve<VectorRepositoryStatistics>(url, token).ConfigureAwait(false);
         }
@@ -153,12 +152,10 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if deleted.</returns>
         public async Task<bool> DocumentExists(
-            string repoGuid,
-            string docGuid,
+            Guid repoGuid,
+            Guid docGuid,
             CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(repoGuid)) throw new ArgumentNullException(nameof(repoGuid));
-            if (String.IsNullOrEmpty(docGuid)) throw new ArgumentNullException(nameof(docGuid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + repoGuid + "/documents/" + docGuid;
             return await Exists(url, token).ConfigureAwait(false);
         }
@@ -186,12 +183,10 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if deleted.</returns>
         public async Task<bool> DeleteDocument(
-            string repoGuid,
-            string docGuid,
+            Guid repoGuid,
+            Guid docGuid,
             CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(repoGuid)) throw new ArgumentNullException(nameof(repoGuid));
-            if (String.IsNullOrEmpty(docGuid)) throw new ArgumentNullException(nameof(docGuid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + repoGuid + "/documents/" + docGuid;
             return await Delete(url, token).ConfigureAwait(false);
         }
@@ -204,11 +199,10 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if successful.</returns>
         public async Task<bool> DeleteDocumentsByFilter(
-            string repoGuid,
+            Guid repoGuid,
             VectorDeleteRequest deleteRequest,
             CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(repoGuid)) throw new ArgumentNullException(nameof(repoGuid));
             if (deleteRequest == null) throw new ArgumentNullException(nameof(deleteRequest));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + repoGuid + "/documents";
             return await Delete<VectorDeleteRequest>(url, deleteRequest, token).ConfigureAwait(false);
@@ -226,12 +220,10 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>Semantic cells.</returns>
         public async Task<List<SemanticCell>> ReadSemanticCells(
-            string repoGuid,
-            string docGuid,
+            Guid repoGuid,
+            Guid docGuid,
             CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(repoGuid)) throw new ArgumentNullException(nameof(repoGuid));
-            if (String.IsNullOrEmpty(docGuid)) throw new ArgumentNullException(nameof(docGuid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + repoGuid + "/documents/" + docGuid + "/cells";
             return await RetrieveMany<SemanticCell>(url, token).ConfigureAwait(false);
         }
@@ -245,14 +237,11 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>Semantic cell.</returns>
         public async Task<SemanticCell> ReadSemanticCell(
-            string repoGuid,
-            string docGuid,
-            string cellGuid,
+            Guid repoGuid,
+            Guid docGuid,
+            Guid cellGuid,
             CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(repoGuid)) throw new ArgumentNullException(nameof(repoGuid));
-            if (String.IsNullOrEmpty(docGuid)) throw new ArgumentNullException(nameof(docGuid));
-            if (String.IsNullOrEmpty(cellGuid)) throw new ArgumentNullException(nameof(cellGuid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + repoGuid + "/documents/" + docGuid + "/cells/" + cellGuid;
             return await Retrieve<SemanticCell>(url, token).ConfigureAwait(false);
         }
@@ -270,14 +259,11 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>Semantic chunks.</returns>
         public async Task<List<SemanticChunk>> ReadSemanticChunks(
-            string repoGuid,
-            string docGuid,
-            string cellGuid,
+            Guid repoGuid,
+            Guid docGuid,
+            Guid cellGuid,
             CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(repoGuid)) throw new ArgumentNullException(nameof(repoGuid));
-            if (String.IsNullOrEmpty(docGuid)) throw new ArgumentNullException(nameof(docGuid));
-            if (String.IsNullOrEmpty(cellGuid)) throw new ArgumentNullException(nameof(cellGuid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + repoGuid + "/documents/" + docGuid + "/cells/" + cellGuid + "/chunks";
             return await RetrieveMany<SemanticChunk>(url, token).ConfigureAwait(false);
         }
@@ -292,16 +278,12 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>Semantic chunk.</returns>
         public async Task<SemanticChunk> ReadSemanticChunk(
-            string repoGuid,
-            string docGuid,
-            string cellGuid,
-            string chunkGuid,
+            Guid repoGuid,
+            Guid docGuid,
+            Guid cellGuid,
+            Guid chunkGuid,
             CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(repoGuid)) throw new ArgumentNullException(nameof(repoGuid));
-            if (String.IsNullOrEmpty(docGuid)) throw new ArgumentNullException(nameof(docGuid));
-            if (String.IsNullOrEmpty(cellGuid)) throw new ArgumentNullException(nameof(cellGuid));
-            if (String.IsNullOrEmpty(chunkGuid)) throw new ArgumentNullException(nameof(chunkGuid));
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + repoGuid + "/documents/" + docGuid + "/cells/" + cellGuid + "/chunks/" + chunkGuid;
             return await Retrieve<SemanticChunk>(url, token).ConfigureAwait(false);
         }

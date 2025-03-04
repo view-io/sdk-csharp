@@ -1,14 +1,9 @@
-﻿namespace View.Sdk.Vector.VoyageAI
+﻿namespace View.Sdk.Embeddings.Providers.VoyageAI
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Text.Json.Serialization;
-    using System.Threading.Tasks;
-    using View.Sdk.Vector;
-    using View.Sdk.Vector.Langchain;
-    using View.Sdk.Vector.OpenAI;
+    using View.Sdk.Embeddings;
 
     /// <summary>
     /// VoyageAI embeddings request.
