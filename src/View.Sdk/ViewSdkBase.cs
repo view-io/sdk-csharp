@@ -135,6 +135,7 @@
         private string _Endpoint = null;
         private Serializer _Serializer = new Serializer();
         private int _TimeoutMs = 600 * 1000;
+        private bool _Disposed = false;
 
         #endregion
 
@@ -187,9 +188,27 @@
         /// <summary>
         /// Dispose.
         /// </summary>
+        /// <param name="disposing">Disposing.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_Disposed)
+            {
+                if (disposing)
+                {
+                    _Serializer = null;
+                }
+
+                _Disposed = true;
+            }
+        }
+
+        /// <summary>
+        /// Dispose.
+        /// </summary>
         public void Dispose()
         {
-            _Serializer = null;
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>

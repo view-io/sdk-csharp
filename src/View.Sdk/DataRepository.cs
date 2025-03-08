@@ -286,7 +286,7 @@
         /// <summary>
         /// Web authentication type.
         /// </summary>
-        WebAuthenticationTypeEnum WebAuthentication { get; set; } = WebAuthenticationTypeEnum.None;
+        public WebAuthenticationTypeEnum? WebAuthentication { get; set; } = null;
 
         /// <summary>
         /// Username for web basic authentication.
@@ -351,17 +351,50 @@
         /// <summary>
         /// Maximum depth to crawl.
         /// </summary>
-        public int? WebMaxDepth { get; set; } = null;
+        public int? WebMaxDepth
+        {
+            get
+            {
+                return _WebMaxDepth;
+            }
+            set
+            {
+                if (value != null && value.Value < 0) throw new ArgumentOutOfRangeException(nameof(WebMaxDepth));
+                _WebMaxDepth = value;
+            }
+        }
 
         /// <summary>
         /// Maximum number of parallel tasks to use while web crawling.
         /// </summary>
-        public int? WebMaxParallelTasks { get; set; } = null;
+        public int? WebMaxParallelTasks
+        {
+            get
+            {
+                return _WebMaxParallelTasks;
+            }
+            set
+            {
+                if (value != null && value.Value < 0) throw new ArgumentOutOfRangeException(nameof(WebMaxParallelTasks));
+                _WebMaxParallelTasks = value;
+            }
+        }
 
         /// <summary>
         /// Delay in milliseconds to introduce between crawl operations within the same task.
         /// </summary>
-        public int? WebCrawlDelayMs { get; set; } = null;
+        public int? WebCrawlDelayMs
+        {
+            get
+            {
+                return _WebCrawlDelayMs;
+            }
+            set
+            {
+                if (value != null && value.Value < 0) throw new ArgumentOutOfRangeException(nameof(WebCrawlDelayMs));
+                _WebCrawlDelayMs = value;
+            }
+        }
 
         #endregion
 
@@ -382,6 +415,9 @@
         private int? _NfsUserId = null;
         private int? _NfsGroupId = null;
         private string _NfsVersion = null;
+        private int? _WebMaxDepth = null;
+        private int? _WebMaxParallelTasks = null;
+        private int? _WebCrawlDelayMs = null;
 
         private List<string> _ValidNfsVersions = new List<string>()
         {
