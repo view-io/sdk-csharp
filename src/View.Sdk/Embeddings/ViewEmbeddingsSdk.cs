@@ -198,6 +198,8 @@
 
         private SemaphoreSlim _Semaphore = null;
 
+        private bool _Disposed = false;
+
         #endregion
 
         #region Constructors-and-Factories
@@ -267,11 +269,33 @@
         /// <summary>
         /// Dispose.
         /// </summary>
+        /// <param name="disposing">Disposing.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_Disposed)
+            {
+                if (disposing)
+                {
+                    _Serializer = null;
+                    
+                    _Semaphore?.Dispose();
+                    _Semaphore = null;
+
+                    _SdkBase?.Dispose();
+                    _SdkBase = null;
+                }
+
+                _Disposed = true;
+            }
+        }
+
+        /// <summary>
+        /// Dispose.
+        /// </summary>
         public void Dispose()
         {
-            _Serializer = null;
-            _SdkBase.Dispose();
-            _Semaphore = null;
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -315,11 +339,16 @@
 
             if (embedRequest.Contents.Count < 1)
             {
-                return new EmbeddingsResult
+                Log(SeverityEnum.Debug, "no entries found to process");
+
+                return new EmbeddingsResult 
                 {
-                    Success = false,
-                    Error = new ApiErrorResponse(ApiErrorEnum.RequiredPropertiesMissing, null, "No contents were found for embeddings processing."),
-                    StatusCode = 0
+                    Success = true,
+                    Error = null,
+                    StatusCode = 200,
+                    BatchCount = 0,
+                    SemanticCells = embedRequest.SemanticCells,
+                    ContentEmbeddings = new List<ContentEmbedding>()
                 };
             }
             else

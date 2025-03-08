@@ -2655,6 +2655,86 @@
             NFS version.
             </summary>
         </member>
+        <member name="P:View.Sdk.DataRepository.WebAuthentication">
+            <summary>
+            Web authentication type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.WebUsername">
+            <summary>
+            Username for web basic authentication.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.WebPassword">
+            <summary>
+            Password for web basic authentication.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.WebApiKeyHeader">
+            <summary>
+            Header to use for attaching an API key to the web request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.WebApiKey">
+            <summary>
+            Web API key to attach.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.WebBearerToken">
+            <summary>
+            Bearer token to use in the authorization header.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.WebUserAgent">
+            <summary>
+            User agent to use while crawling.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.WebStartUrl">
+            <summary>
+            Starting URL for web crawling.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.WebFollowLinks">
+            <summary>
+            Boolean indicating whether or not links should be followed.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.WebFollowRedirects">
+            <summary>
+            Boolean indicating whether or not redirects should be followed.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.WebIncludeSitemap">
+            <summary>
+            Boolean indicating whether or not the sitemap contents should be included as links.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.WebRestrictToChildUrls">
+            <summary>
+            Boolean indicating whether or not crawling should only consider child links.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.WebRestrictToSameDomain">
+            <summary>
+            Boolean indicating whether or not crawling should consider links within the same domain.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.WebMaxDepth">
+            <summary>
+            Maximum depth to crawl.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.WebMaxParallelTasks">
+            <summary>
+            Maximum number of parallel tasks to use while web crawling.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.WebCrawlDelayMs">
+            <summary>
+            Delay in milliseconds to introduce between crawl operations within the same task.
+            </summary>
+        </member>
         <member name="P:View.Sdk.DataRepository.CreatedUtc">
             <summary>
             Created.
@@ -2698,6 +2778,11 @@
         <member name="F:View.Sdk.DataRepositoryTypeEnum.AzureBlob">
             <summary>
             Azure BLOB.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.DataRepositoryTypeEnum.Web">
+            <summary>
+            Web.
             </summary>
         </member>
         <member name="T:View.Sdk.DataTypeEnum">
@@ -4009,6 +4094,12 @@
             <param name="maxFailures">Maximum number of failures to support before failing an entire operation.</param>
             <param name="timeoutMs">Timeout for each operation, in milliseconds.</param>
         </member>
+        <member name="M:View.Sdk.Embeddings.ViewEmbeddingsSdk.Dispose(System.Boolean)">
+            <summary>
+            Dispose.
+            </summary>
+            <param name="disposing">Disposing.</param>
+        </member>
         <member name="M:View.Sdk.Embeddings.ViewEmbeddingsSdk.Dispose">
             <summary>
             Dispose.
@@ -4041,6 +4132,17 @@
             <param name="tenantGuid">Tenant GUID.</param>
             <param name="endpoint">Base URL, i.e. http://localhost:8000/.  Do not include URL paths, only protocol, hostname, and port.</param>
             <param name="accessKey">API key.</param>
+        </member>
+        <member name="M:View.Sdk.Embeddings.ViewEmbeddingsServerSdk.Dispose(System.Boolean)">
+            <summary>
+            Dispose.
+            </summary>
+            <param name="disposing">Disposing.</param>
+        </member>
+        <member name="M:View.Sdk.Embeddings.ViewEmbeddingsServerSdk.Dispose">
+            <summary>
+            Dispose.
+            </summary>
         </member>
         <member name="M:View.Sdk.Embeddings.ViewEmbeddingsServerSdk.GenerateEmbeddings(View.Sdk.Embeddings.EmbeddingsRequest,System.Threading.CancellationToken)">
             <summary>
@@ -10576,6 +10678,12 @@
             <param name="accessKey">Access key.</param>
             <param name="endpoint">Endpoint.</param>
         </member>
+        <member name="M:View.Sdk.ViewSdkBase.Dispose(System.Boolean)">
+            <summary>
+            Dispose.
+            </summary>
+            <param name="disposing">Disposing.</param>
+        </member>
         <member name="M:View.Sdk.ViewSdkBase.Dispose">
             <summary>
             Dispose.
@@ -10679,6 +10787,31 @@
             <param name="obj">Object.</param>
             <param name="token"></param>
             <returns>True if successful.</returns>
+        </member>
+        <member name="T:View.Sdk.WebAuthenticationTypeEnum">
+            <summary>
+            Web authentication type.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.WebAuthenticationTypeEnum.None">
+            <summary>
+            None.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.WebAuthenticationTypeEnum.Basic">
+            <summary>
+            Basic.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.WebAuthenticationTypeEnum.ApiKey">
+            <summary>
+            API key.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.WebAuthenticationTypeEnum.BearerToken">
+            <summary>
+            Bearer token.
+            </summary>
         </member>
         <member name="T:View.Sdk.WebhookEvent">
             <summary>
