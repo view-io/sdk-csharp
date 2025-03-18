@@ -325,10 +325,15 @@
                 List<SemanticChunk> chunks = SemanticCell.AllChunks(embedRequest.SemanticCells).ToList();
                 Log(SeverityEnum.Debug, "merging contents from " + embedRequest.SemanticCells.Count + " semantic cells and " + chunks.Count + " semantic chunks");
 
+                // HashSet for efficient lookup
+                HashSet<string> uniqueContents = new HashSet<string>(embedRequest.Contents.Where(c => !String.IsNullOrEmpty(c)));
+
                 foreach (SemanticChunk chunk in chunks)
                 {
                     if (String.IsNullOrEmpty(chunk.Content)) continue;
-                    if (!embedRequest.Contents.Any(c => !String.IsNullOrEmpty(c) && c.Equals(chunk.Content)))
+
+                    // HashSet.Add which returns false if the item already exists
+                    if (uniqueContents.Add(chunk.Content))
                     {
                         embedRequest.Contents.Add(chunk.Content);
                     }

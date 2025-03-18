@@ -15,6 +15,11 @@
         public Guid GUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
+        /// Boolean indicating whether or not the request should be processed asynchronously.
+        /// </summary>
+        public bool Async { get; set; } = true;
+
+        /// <summary>
         /// Tenant metadata.
         /// </summary>
         public TenantMetadata Tenant { get; set; } = null;

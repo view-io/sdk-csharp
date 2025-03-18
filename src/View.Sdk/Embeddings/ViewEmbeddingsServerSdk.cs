@@ -46,7 +46,7 @@
         /// Dispose.
         /// </summary>
         /// <param name="disposing">Disposing.</param>
-        protected virtual void Dispose(bool disposing)
+        protected new void Dispose(bool disposing)
         {
             if (!_Disposed)
             {
