@@ -54,6 +54,7 @@
         /// <param name="embedRule">Embeddings rule.</param>
         /// <param name="vectorRepo">Vector repository.</param>
         /// <param name="graphRepo">Graph repository.</param>
+        /// <param name="async">Boolean indicating if the task should be performed asynchronously.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Processor response.</returns>
         public async Task<ProcessorResponse> Process(
@@ -67,6 +68,7 @@
             EmbeddingsRule embedRule, 
             VectorRepository vectorRepo,
             GraphRepository graphRepo,
+            bool async = false,
             CancellationToken token = default)
         {
             if (obj == null) throw new ArgumentNullException(nameof(obj));
@@ -85,6 +87,7 @@
                     ProcessorRequest procReq = new ProcessorRequest
                     {
                         GUID = requestGuid,
+                        Async = async,
                         Tenant = tenant,
                         Collection = collection,
                         Pool = pool,
@@ -181,6 +184,7 @@
         /// <param name="embedRule">Embeddings rule.</param>
         /// <param name="vectorRepo">Vector repository.</param>
         /// <param name="graphRepo">Graph repository.</param>
+        /// <param name="async">Boolean indicating if the task should be performed asynchronously.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Processor response.</returns>
         public async Task<ProcessorResponse> Process(
@@ -193,6 +197,7 @@
             EmbeddingsRule embedRule,
             VectorRepository vectorRepo,
             GraphRepository graphRepo,
+            bool async = false,
             CancellationToken token = default)
         {
             if (obj == null) throw new ArgumentNullException(nameof(obj));
@@ -211,6 +216,7 @@
                     ProcessorRequest procReq = new ProcessorRequest
                     {
                         GUID = requestGuid,
+                        Async = async,
                         Tenant = tenant,
                         Collection = collection,
                         DataRepository = repo,

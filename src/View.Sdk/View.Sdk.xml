@@ -7309,6 +7309,11 @@
             Cleanup request GUID.
             </summary>
         </member>
+        <member name="P:View.Sdk.Processor.CleanupRequest.Async">
+            <summary>
+            Boolean indicating whether or not the request should be processed asynchronously.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Processor.CleanupRequest.Tenant">
             <summary>
             Tenant metadata.
@@ -7379,6 +7384,11 @@
             Boolean indicating success.
             </summary>
         </member>
+        <member name="P:View.Sdk.Processor.CleanupResponse.Async">
+            <summary>
+            Boolean indicating whether or not the task was executed asynchronously.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Processor.CleanupResponse.Timestamp">
             <summary>
             Timestamps.
@@ -7402,6 +7412,11 @@
         <member name="P:View.Sdk.Processor.ProcessorRequest.GUID">
             <summary>
             Processor request GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorRequest.Async">
+            <summary>
+            Boolean indicating whether or not the request should be processed asynchronously.
             </summary>
         </member>
         <member name="P:View.Sdk.Processor.ProcessorRequest.Tenant">
@@ -7474,6 +7489,11 @@
             Boolean indicating success.
             </summary>
         </member>
+        <member name="P:View.Sdk.Processor.ProcessorResponse.Async">
+            <summary>
+            Boolean indicating whether or not the task was executed asynchronously.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Processor.ProcessorResponse.Timestamp">
             <summary>
             Timestamps.
@@ -7522,7 +7542,7 @@
             <param name="accessKey">Access key.</param>
             <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing/cleanup.</param>
         </member>
-        <member name="M:View.Sdk.Processor.ViewCleanupSdk.Process(System.Guid,View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.StoragePool,View.Sdk.BucketMetadata,View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Processor.ViewCleanupSdk.Process(System.Guid,View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.StoragePool,View.Sdk.BucketMetadata,View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Cleanup a document.  This variant is used by the storage server.
             </summary>
@@ -7536,6 +7556,7 @@
             <param name="embedRule">Embeddings rule.</param>
             <param name="vectorRepo">Vector repository.</param>
             <param name="graphRepo">Graph repository.</param>
+            <param name="async">Boolean indicating if the task should be performed asynchronously.</param>
             <param name="token">Cancellation token.</param>
             <returns>Processor response.</returns>
         </member>
@@ -7568,7 +7589,7 @@
             <param name="accessKey">Access key.</param>
             <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing/lexiprocessing.</param>
         </member>
-        <member name="M:View.Sdk.Processor.ViewLexiEmbeddingsSdk.Process(System.Guid,View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.SearchResult,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Processor.ViewLexiEmbeddingsSdk.Process(System.Guid,View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.SearchResult,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Process a document.
             </summary>
@@ -7579,6 +7600,7 @@
             <param name="embedRule">Embeddings rule.</param>
             <param name="vectorRepo">Vector repository.</param>
             <param name="graphRepo">Graph repository.</param>
+            <param name="async">Boolean indicating if the task should be performed asynchronously.</param>
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
@@ -7595,7 +7617,7 @@
             <param name="accessKey">Access key.</param>
             <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing.</param>
         </member>
-        <member name="M:View.Sdk.Processor.ViewProcessorSdk.Process(System.Guid,View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.StoragePool,View.Sdk.BucketMetadata,View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Processor.ViewProcessorSdk.Process(System.Guid,View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.StoragePool,View.Sdk.BucketMetadata,View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Process a document.  This variant is used by the storage server.
             </summary>
@@ -7609,10 +7631,11 @@
             <param name="embedRule">Embeddings rule.</param>
             <param name="vectorRepo">Vector repository.</param>
             <param name="graphRepo">Graph repository.</param>
+            <param name="async">Boolean indicating if the task should be performed asynchronously.</param>
             <param name="token">Cancellation token.</param>
             <returns>Processor response.</returns>
         </member>
-        <member name="M:View.Sdk.Processor.ViewProcessorSdk.Process(System.Guid,View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.DataRepository,View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Processor.ViewProcessorSdk.Process(System.Guid,View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.DataRepository,View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Process a document.  This variant is used by the data crawler.
             </summary>
@@ -7625,6 +7648,7 @@
             <param name="embedRule">Embeddings rule.</param>
             <param name="vectorRepo">Vector repository.</param>
             <param name="graphRepo">Graph repository.</param>
+            <param name="async">Boolean indicating if the task should be performed asynchronously.</param>
             <param name="token">Cancellation token.</param>
             <returns>Processor response.</returns>
         </member>
@@ -7691,6 +7715,11 @@
             Processor request GUID.
             </summary>
         </member>
+        <member name="P:View.Sdk.LexiEmbeddingsRequest.Async">
+            <summary>
+            Boolean indicating whether or not the request should be processed asynchronously.
+            </summary>
+        </member>
         <member name="P:View.Sdk.LexiEmbeddingsRequest.Tenant">
             <summary>
             Tenant metadata.
@@ -7739,6 +7768,11 @@
         <member name="P:View.Sdk.LexiEmbeddingsResponse.Success">
             <summary>
             Boolean indicating success.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.LexiEmbeddingsResponse.Async">
+            <summary>
+            Boolean indicating whether or not the task was executed asynchronously.
             </summary>
         </member>
         <member name="P:View.Sdk.LexiEmbeddingsResponse.Timestamp">

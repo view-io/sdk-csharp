@@ -25,6 +25,11 @@
         public bool Success { get; set; } = true;
 
         /// <summary>
+        /// Boolean indicating whether or not the task was executed asynchronously.
+        /// </summary>
+        public bool Async { get; set; } = false;
+
+        /// <summary>
         /// Timestamps.
         /// </summary>
         public Timestamp Timestamp { get; set; } = new Timestamp();

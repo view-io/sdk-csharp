@@ -49,6 +49,7 @@
         /// <param name="embedRule">Embeddings rule.</param>
         /// <param name="vectorRepo">Vector repository.</param>
         /// <param name="graphRepo">Graph repository.</param>
+        /// <param name="async">Boolean indicating if the task should be performed asynchronously.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Task.</returns>
         public async Task<LexiEmbeddingsResponse> Process(
@@ -59,6 +60,7 @@
             EmbeddingsRule embedRule,
             VectorRepository vectorRepo,
             GraphRepository graphRepo,
+            bool async = false,
             CancellationToken token = default)
         {
             if (results == null) throw new ArgumentNullException(nameof(results));
@@ -77,6 +79,7 @@
                     LexiEmbeddingsRequest procReq = new LexiEmbeddingsRequest
                     {
                         GUID = requestGuid,
+                        Async = async,
                         Tenant = tenant,
                         Collection = collection,
                         Results = results,
