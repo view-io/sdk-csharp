@@ -2785,6 +2785,11 @@
             Web.
             </summary>
         </member>
+        <member name="F:View.Sdk.DataRepositoryTypeEnum.Printer">
+            <summary>
+            Printer.
+            </summary>
+        </member>
         <member name="T:View.Sdk.DataTypeEnum">
             <summary>
             Types of data supported.
