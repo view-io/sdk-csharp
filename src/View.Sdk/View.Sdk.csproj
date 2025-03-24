@@ -6,7 +6,7 @@
 		<Title>C# SDK for View AI.</Title>
 		<Description>C# SDK for View AI.</Description>
 		<PackageReleaseNotes>v1.3.0 release.</PackageReleaseNotes>
-		<Version>1.3.0.1</Version>
+		<Version>1.3.0.2</Version>
 		
 		<ApplicationIcon>Assets\icon.ico</ApplicationIcon>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>

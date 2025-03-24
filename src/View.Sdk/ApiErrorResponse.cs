@@ -54,6 +54,9 @@
                     case ApiErrorEnum.TooLarge:
                         return "The size of your request exceeds the maximum allowed by this server.";
 
+                    case ApiErrorEnum.NoDataRepositoryConnectivity:
+                        return "Unable to establish a connection to the data repository.";
+
                     case ApiErrorEnum.NoTypeDetectorConnectivity:
                         return "Unable to establish a connection to the type detector.";
                     case ApiErrorEnum.UnknownTypeDetected:
@@ -156,6 +159,9 @@
                         return 401;
                     case ApiErrorEnum.TooLarge:
                         return 413;
+
+                    case ApiErrorEnum.NoDataRepositoryConnectivity:
+                        return 500;
 
                     case ApiErrorEnum.NoTypeDetectorConnectivity:
                         return 500;
