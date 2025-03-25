@@ -225,7 +225,7 @@
             int maxParallelTasks = 16,
             int maxRetries = 3,
             int maxFailures = 3,
-            int timeoutMs = 300000)
+            int timeoutMs = 600000)
         {
             TenantGUID = tenantGuid;
             Generator = generator;
@@ -260,6 +260,8 @@
                 default:
                     throw new ArgumentException("Unknown embeddings generator '" + Generator.ToString() + "'.");
             }
+
+            _SdkBase.TimeoutMs = TimeoutMs;
         }
 
         #endregion
