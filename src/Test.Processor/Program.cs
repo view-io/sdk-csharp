@@ -107,15 +107,9 @@
 
             ProcessorResponse resp = await _Sdk.Process(
                 Guid.NewGuid(),
-                req.Tenant,
-                req.Collection,
-                req.Pool,
-                req.Bucket,
-                req.Object, 
-                req.MetadataRule, 
-                req.EmbeddingsRule, 
-                req.VectorRepository,
-                req.GraphRepository);
+                req.MetadataRuleGUID,
+                req.EmbeddingsRuleGUID,
+                req.Object);
 
             EnumerateResponse(resp);
         }

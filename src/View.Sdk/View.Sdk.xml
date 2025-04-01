@@ -7424,59 +7424,19 @@
             Processor request GUID.
             </summary>
         </member>
-        <member name="P:View.Sdk.Processor.ProcessorRequest.Async">
+        <member name="P:View.Sdk.Processor.ProcessorRequest.MetadataRuleGUID">
             <summary>
-            Boolean indicating whether or not the request should be processed asynchronously.
+            Metadata rule GUID.
             </summary>
         </member>
-        <member name="P:View.Sdk.Processor.ProcessorRequest.Tenant">
+        <member name="P:View.Sdk.Processor.ProcessorRequest.EmbeddingsRuleGUID">
             <summary>
-            Tenant metadata.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.ProcessorRequest.Pool">
-            <summary>
-            Storage pool.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.ProcessorRequest.Bucket">
-            <summary>
-            Bucket metadata.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.ProcessorRequest.DataRepository">
-            <summary>
-            Data repository.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.ProcessorRequest.Collection">
-            <summary>
-            Collection.
+            Embeddings rule GUID.
             </summary>
         </member>
         <member name="P:View.Sdk.Processor.ProcessorRequest.Object">
             <summary>
             Object metadata.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.ProcessorRequest.MetadataRule">
-            <summary>
-            Metadata rule.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.ProcessorRequest.EmbeddingsRule">
-            <summary>
-            Embeddings rule.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.ProcessorRequest.VectorRepository">
-            <summary>
-            Vector repository.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.ProcessorRequest.GraphRepository">
-            <summary>
-            Graph repository.
             </summary>
         </member>
         <member name="M:View.Sdk.Processor.ProcessorRequest.#ctor">
@@ -7772,38 +7732,14 @@
             <param name="accessKey">Access key.</param>
             <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing.</param>
         </member>
-        <member name="M:View.Sdk.Processor.ViewProcessorSdk.Process(System.Guid,View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.StoragePool,View.Sdk.BucketMetadata,View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Boolean,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Processor.ViewProcessorSdk.Process(System.Guid,System.Guid,System.Guid,View.Sdk.ObjectMetadata,System.Threading.CancellationToken)">
             <summary>
             Process a document.  This variant is used by the storage server.
             </summary>
             <param name="requestGuid">Request GUID.</param>
-            <param name="tenant">Tenant metadata.</param>
-            <param name="collection">Collection metadata.</param>
-            <param name="bucket">Bucket metadata.</param>
-            <param name="pool">Storage pool metadata.</param>
+            <param name="mdRuleGuid">Metadata rule GUID.</param>
+            <param name="embedRuleGuid">Embeddings rule GUID.</param>
             <param name="obj">Object metadata.</param>
-            <param name="mdRule">Metadata rule.</param>
-            <param name="embedRule">Embeddings rule.</param>
-            <param name="vectorRepo">Vector repository.</param>
-            <param name="graphRepo">Graph repository.</param>
-            <param name="async">Boolean indicating if the task should be performed asynchronously.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Processor response.</returns>
-        </member>
-        <member name="M:View.Sdk.Processor.ViewProcessorSdk.Process(System.Guid,View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.DataRepository,View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Boolean,System.Threading.CancellationToken)">
-            <summary>
-            Process a document.  This variant is used by the data crawler.
-            </summary>
-            <param name="requestGuid">Request GUID.</param>
-            <param name="tenant">Tenant metadata.</param>
-            <param name="collection">Collection metadata.</param>
-            <param name="repo">Data repository.</param>
-            <param name="obj">Object metadata.</param>
-            <param name="mdRule">Metadata rule.</param>
-            <param name="embedRule">Embeddings rule.</param>
-            <param name="vectorRepo">Vector repository.</param>
-            <param name="graphRepo">Graph repository.</param>
-            <param name="async">Boolean indicating if the task should be performed asynchronously.</param>
             <param name="token">Cancellation token.</param>
             <returns>Processor response.</returns>
         </member>

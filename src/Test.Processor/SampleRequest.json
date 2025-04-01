@@ -1,4 +1,7 @@
 {
+  "GUID": "00000000-0000-0000-0000-000000000000",
+  "MetadataRuleGUID": "00000000-0000-0000-0000-000000000000",
+  "EmbeddingsRuleGUID": "00000000-0000-0000-0000-000000000000",
   "Object": {
     "GUID": "00000000-0000-0000-0000-000000000000",
     "ParentGUID": null,
@@ -15,47 +18,5 @@
     "DocumentType": "Text",
     "ContentLength": 13,
     "Data": "VGhpcyBpcyBhIHNhbXBsZSBkb2N1bWVudCB3aXRoIGp1c3QgYSBoYW5kZnVsIG9mIHdvcmRzIHRoYXQgd2lsbCBiZSBwcm9jZXNzZWQgYnkgVmlldw=="
-  },
-  "MetadataRule": {
-    "GUID": "00000000-0000-0000-0000-000000000000",
-    "TenantGUID": "default",
-    "BucketGUID": "data",
-    "OwnerGUID": "default",
-    "Name": "My metadata rule",
-    "ContentType": "text/plain",
-    "UdrEndpoint": "http://localhost:8000/",
-    "DataCatalogType": "Lexi",
-    "DataCatalogEndpoint": "http://localhost:8000/",
-    "DataCatalogCollection": "default",
-    "TopTerms": 10,
-    "CaseInsensitive": true,
-    "IncludeFlattened": true
-  },
-  "EmbeddingsRule": {
-    "GUID": "embeddingsrule",
-    "TenantGUID": "default",
-    "BucketGUID": "example-data-bucket",
-    "OwnerGUID": "default",
-    "Name": "My embeddings rule",
-    "ContentType": "text/plain",
-    "VectorRepositoryGUID": "example-vector-repository",
-    "EmbeddingsGenerator": "LCProxy",
-    "GeneratorUrl": "http://localhost:8000/v1.0/tenants/default/embeddings",
-    "GeneratorApiKey": "[huggingface access token]",
-    "Model": "all-MiniLM-L6-v2"
-  },
-  "VectorRepository": {
-    "GUID": "example-vector-repository",
-    "TenantGUID": "default",
-    "Name": "My vector repository",
-    "RepositoryType": "Pgvector",
-    "Model": "all-MiniLM-L6-v2",
-    "Dimensionality": 384,
-    "DatabaseHostname": "localhost",
-    "DatabaseName": "vectordb",
-    "DatabaseTable": "vectors",
-    "DatabasePort": 5432,
-    "DatabaseUser": "postgres",
-    "DatabasePassword": "password"
   }
 }
