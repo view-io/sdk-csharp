@@ -7539,6 +7539,151 @@
             Instantiate.
             </summary>
         </member>
+        <member name="T:View.Sdk.Processor.ProcessorTask">
+            <summary>
+            Processor task.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorTask.Id">
+            <summary>
+            ID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorTask.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorTask.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorTask.BucketGUID">
+            <summary>
+            Bucket GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorTask.ObjectGUID">
+            <summary>
+            Object GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorTask.DataRepositoryGUID">
+            <summary>
+            Data repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorTask.CollectionGUID">
+            <summary>
+            Collection GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorTask.MetadataRuleGUID">
+            <summary>
+            Metadata rule GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorTask.EmbeddingsRuleGUID">
+            <summary>
+            Embeddings rule GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorTask.VectorRepositoryGUID">
+            <summary>
+            Vector repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorTask.GraphRepositoryGUID">
+            <summary>
+            Graph repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorTask.Key">
+            <summary>
+            Key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorTask.Version">
+            <summary>
+            Version.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorTask.State">
+            <summary>
+            State.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorTask.LastUpdateUtc">
+            <summary>
+            UTC timestamp from last update.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorTask.CreatedUtc">
+            <summary>
+            UTC timestamp from creation.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Processor.ProcessorTask.#ctor">
+            <summary>
+            Processor task.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Processor.ProcessorTaskStateEnum">
+            <summary>
+            Processor task state.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Processor.ProcessorTaskStateEnum.TypeDetection">
+            <summary>
+            TypeDetection.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Processor.ProcessorTaskStateEnum.Atomization">
+            <summary>
+            Atomization.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Processor.ProcessorTaskStateEnum.SemanticCellExtraction">
+            <summary>
+            SemanticCellExtraction.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Processor.ProcessorTaskStateEnum.UdrGeneration">
+            <summary>
+            UdrGeneration.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Processor.ProcessorTaskStateEnum.EmbeddingsGeneration">
+            <summary>
+            EmbeddingsGeneration.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Processor.ProcessorTaskStateEnum.PersistUdr">
+            <summary>
+            PersistUdr.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Processor.ProcessorTaskStateEnum.PersistVector">
+            <summary>
+            PersistVector.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Processor.ProcessorTaskStateEnum.PersistGraph">
+            <summary>
+            PersistGraph.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Processor.ProcessorTaskStateEnum.Success">
+            <summary>
+            Success.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Processor.ProcessorTaskStateEnum.Failure">
+            <summary>
+            Failure.
+            </summary>
+        </member>
         <member name="T:View.Sdk.Processor.ViewCleanupSdk">
             <summary>
             View Cleanup Pipeline SDK.
