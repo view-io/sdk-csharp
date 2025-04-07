@@ -1,0 +1,84 @@
+﻿namespace View.Sdk.Processor
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Timestamps;
+    using View.Sdk.Embeddings;
+
+    /// <summary>
+    /// Processor task response.
+    /// </summary>
+    public class ProcessorTaskResponse
+    {
+        #region Public-Members
+
+        /// <summary>
+        /// GUID.
+        /// </summary>
+        public Guid GUID { get; set; } = Guid.NewGuid();
+
+        /// <summary>
+        /// Boolean indicating success.
+        /// </summary>
+        public bool Success { get; set; } = true;
+
+        /// <summary>
+        /// Error, if any.
+        /// </summary>
+        public ApiErrorResponse Error { get; set; } = null;
+
+        /// <summary>
+        /// Timestamp.
+        /// </summary>
+        public Timestamp Timestamp { get; set; } = new Timestamp();
+
+        /// <summary>
+        /// Input file type.
+        /// </summary>
+        public Type InputFileType { get; set; } = typeof(object);
+
+        /// <summary>
+        /// Input file handle.
+        /// </summary>
+        public string InputFile { get; set; } = null;
+
+        /// <summary>
+        /// Output file type.
+        /// </summary>
+        public Type OutputFileType { get; set; } = typeof(object);
+
+        /// <summary>
+        /// Output file handle.
+        /// </summary>
+        public string OutputFile { get; set; } = null;
+
+        #endregion
+
+        #region Private-Members
+
+        #endregion
+
+        #region Constructors-and-Factories
+
+        /// <summary>
+        /// Processor task response.
+        /// </summary>
+        public ProcessorTaskResponse()
+        {
+
+        }
+
+        #endregion
+
+        #region Public-Methods
+
+        #endregion
+
+        #region Private-Methods
+
+        #endregion
+    }
+}

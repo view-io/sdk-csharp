@@ -9,16 +9,10 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// Processor task state.
+    /// Processor task type.
     /// </summary>
-    public enum ProcessorTaskStateEnum
+    public enum ProcessorTaskTypeEnum
     {
-        /// <summary>
-        /// TypeDetection.
-        /// </summary>
-        [EnumMember(Value = "TypeDetection")]
-        TypeDetection,
-
         /// <summary>
         /// Atomization.
         /// </summary>
@@ -26,22 +20,22 @@
         Atomization,
 
         /// <summary>
-        /// SemanticCellExtraction.
-        /// </summary>
-        [EnumMember(Value = "SemanticCellExtraction")]
-        SemanticCellExtraction,
-
-        /// <summary>
-        /// UdrGeneration.
-        /// </summary>
-        [EnumMember(Value = "UdrGeneration")]
-        UdrGeneration,
-
-        /// <summary>
         /// EmbeddingsGeneration.
         /// </summary>
         [EnumMember(Value = "EmbeddingsGeneration")]
         EmbeddingsGeneration,
+
+        /// <summary>
+        /// FindEmbeddings.
+        /// </summary>
+        [EnumMember(Value = "FindEmbeddings")]
+        FindEmbeddings,
+
+        /// <summary>
+        /// PersistGraph.
+        /// </summary>
+        [EnumMember(Value = "PersistGraph")]
+        PersistGraph
 
         /// <summary>
         /// PersistUdr.
@@ -56,21 +50,21 @@
         PersistVector,
 
         /// <summary>
-        /// PersistGraph.
+        /// SemanticCellExtraction.
         /// </summary>
-        [EnumMember(Value = "PersistGraph")]
-        PersistGraph,
+        [EnumMember(Value = "SemanticCellExtraction")]
+        SemanticCellExtraction,
 
         /// <summary>
-        /// Success.
+        /// TypeDetection.
         /// </summary>
-        [EnumMember(Value = "Success")]
-        Success,
+        [EnumMember(Value = "TypeDetection")]
+        TypeDetection,
 
         /// <summary>
-        /// Failure.
+        /// UdrGeneration.
         /// </summary>
-        [EnumMember(Value = "Failure")]
-        Failure
+        [EnumMember(Value = "UdrGeneration")]
+        UdrGeneration,
     }
 }

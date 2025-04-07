@@ -94,7 +94,7 @@
         /// <summary>
         /// State.
         /// </summary>
-        public ProcessorTaskStateEnum State { get; set; } = ProcessorTaskStateEnum.TypeDetection;
+        public ProcessorTaskTypeEnum State { get; set; } = ProcessorTaskTypeEnum.TypeDetection;
 
         /// <summary>
         /// UTC timestamp from last update.

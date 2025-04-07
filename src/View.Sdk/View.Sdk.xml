@@ -8049,59 +8049,144 @@
             Processor task.
             </summary>
         </member>
-        <member name="T:View.Sdk.Processor.ProcessorTaskStateEnum">
+        <member name="T:View.Sdk.Processor.ProcessorTaskRequest">
             <summary>
-            Processor task state.
+            Processor task request.
             </summary>
         </member>
-        <member name="F:View.Sdk.Processor.ProcessorTaskStateEnum.TypeDetection">
+        <member name="P:View.Sdk.Processor.ProcessorTaskRequest.GUID">
+            <summary>
+            Processor request GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorTaskRequest.Type">
+            <summary>
+            Processor task type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorTaskRequest.InputFileType">
+            <summary>
+            Input file type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorTaskRequest.InputFile">
+            <summary>
+            Input file handle.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorTaskRequest.OutputFileType">
+            <summary>
+            Output file type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorTaskRequest.OutputFile">
+            <summary>
+            Output file handle.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Processor.ProcessorTaskRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Processor.ProcessorTaskResponse">
+            <summary>
+            Processor task response.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorTaskResponse.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorTaskResponse.Success">
+            <summary>
+            Boolean indicating success.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorTaskResponse.Error">
+            <summary>
+            Error, if any.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorTaskResponse.Timestamp">
+            <summary>
+            Timestamp.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorTaskResponse.InputFileType">
+            <summary>
+            Input file type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorTaskResponse.InputFile">
+            <summary>
+            Input file handle.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorTaskResponse.OutputFileType">
+            <summary>
+            Output file type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorTaskResponse.OutputFile">
+            <summary>
+            Output file handle.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Processor.ProcessorTaskResponse.#ctor">
+            <summary>
+            Processor task response.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Processor.ProcessorTaskTypeEnum">
+            <summary>
+            Processor task type.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.TypeDetection">
             <summary>
             TypeDetection.
             </summary>
         </member>
-        <member name="F:View.Sdk.Processor.ProcessorTaskStateEnum.Atomization">
+        <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.Atomization">
             <summary>
             Atomization.
             </summary>
         </member>
-        <member name="F:View.Sdk.Processor.ProcessorTaskStateEnum.SemanticCellExtraction">
+        <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.SemanticCellExtraction">
             <summary>
             SemanticCellExtraction.
             </summary>
         </member>
-        <member name="F:View.Sdk.Processor.ProcessorTaskStateEnum.UdrGeneration">
+        <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.UdrGeneration">
             <summary>
             UdrGeneration.
             </summary>
         </member>
-        <member name="F:View.Sdk.Processor.ProcessorTaskStateEnum.EmbeddingsGeneration">
+        <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.FindEmbeddings">
+            <summary>
+            FindEmbeddings.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.EmbeddingsGeneration">
             <summary>
             EmbeddingsGeneration.
             </summary>
         </member>
-        <member name="F:View.Sdk.Processor.ProcessorTaskStateEnum.PersistUdr">
+        <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.PersistUdr">
             <summary>
             PersistUdr.
             </summary>
         </member>
-        <member name="F:View.Sdk.Processor.ProcessorTaskStateEnum.PersistVector">
+        <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.PersistVector">
             <summary>
             PersistVector.
             </summary>
         </member>
-        <member name="F:View.Sdk.Processor.ProcessorTaskStateEnum.PersistGraph">
+        <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.PersistGraph">
             <summary>
             PersistGraph.
-            </summary>
-        </member>
-        <member name="F:View.Sdk.Processor.ProcessorTaskStateEnum.Success">
-            <summary>
-            Success.
-            </summary>
-        </member>
-        <member name="F:View.Sdk.Processor.ProcessorTaskStateEnum.Failure">
-            <summary>
-            Failure.
             </summary>
         </member>
         <member name="T:View.Sdk.Processor.SemanticCellExtactionRequest">
