@@ -21,19 +21,9 @@
         public ProcessorTaskTypeEnum Type { get; set; } = ProcessorTaskTypeEnum.TypeDetection;
 
         /// <summary>
-        /// Input file type.
-        /// </summary>
-        public Type InputFileType { get; set; } = typeof(object);
-
-        /// <summary>
         /// Input file handle.
         /// </summary>
         public string InputFile { get; set; } = null;
-
-        /// <summary>
-        /// Output file type.
-        /// </summary>
-        public Type OutputFileType { get; set; } = typeof(object);
 
         /// <summary>
         /// Output file handle.

@@ -7309,61 +7309,6 @@
             </summary>
             <param name="value">The token.</param>
         </member>
-        <member name="T:View.Sdk.Processor.AtomizationRequest">
-            <summary>
-            Atomization request.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.AtomizationRequest.GUID">
-            <summary>
-            GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.AtomizationRequest.FileHandle">
-            <summary>
-            File handle.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Processor.AtomizationRequest.#ctor">
-            <summary>
-            Atomization request.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Processor.AtomizationResponse">
-            <summary>
-            Atomization response.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.AtomizationResponse.GUID">
-            <summary>
-            GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.AtomizationResponse.Success">
-            <summary>
-            Boolean indicating success.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.AtomizationResponse.Error">
-            <summary>
-            Error, if any.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.AtomizationResponse.Timestamp">
-            <summary>
-            Timestamp.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.AtomizationResponse.FileHandle">
-            <summary>
-            File handle.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Processor.AtomizationResponse.#ctor">
-            <summary>
-            Atomization response.
-            </summary>
-        </member>
         <member name="T:View.Sdk.Processor.CleanupRequest">
             <summary>
             Cleanup request.
@@ -7467,116 +7412,6 @@
         <member name="M:View.Sdk.Processor.CleanupResponse.#ctor">
             <summary>
             Instantiate.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Processor.FindEmbeddingsRequest">
-            <summary>
-            Find embeddings request.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.FindEmbeddingsRequest.GUID">
-            <summary>
-            GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.FindEmbeddingsRequest.FileHandle">
-            <summary>
-            File handle.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Processor.FindEmbeddingsRequest.#ctor">
-            <summary>
-            Find embeddings request.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Processor.FindEmbeddingsResponse">
-            <summary>
-            Find embeddings response.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.FindEmbeddingsResponse.GUID">
-            <summary>
-            GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.FindEmbeddingsResponse.Success">
-            <summary>
-            Boolean indicating success.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.FindEmbeddingsResponse.Error">
-            <summary>
-            Error, if any.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.FindEmbeddingsResponse.Timestamp">
-            <summary>
-            Timestamp.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.FindEmbeddingsResponse.FileHandle">
-            <summary>
-            File handle.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Processor.FindEmbeddingsResponse.#ctor">
-            <summary>
-            Find embeddings response.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Processor.GenerateEmbeddingsRequest">
-            <summary>
-            Generate embeddings request.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.GenerateEmbeddingsRequest.GUID">
-            <summary>
-            GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.GenerateEmbeddingsRequest.FileHandle">
-            <summary>
-            File handle.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Processor.GenerateEmbeddingsRequest.#ctor">
-            <summary>
-            Generate embeddings request.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Processor.GenerateEmbeddingsResponse">
-            <summary>
-            Generate embeddings response.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.GenerateEmbeddingsResponse.GUID">
-            <summary>
-            GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.GenerateEmbeddingsResponse.Success">
-            <summary>
-            Boolean indicating success.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.GenerateEmbeddingsResponse.Error">
-            <summary>
-            Error, if any.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.GenerateEmbeddingsResponse.Timestamp">
-            <summary>
-            Timestamp.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.GenerateEmbeddingsResponse.FileHandle">
-            <summary>
-            File handle.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Processor.GenerateEmbeddingsResponse.#ctor">
-            <summary>
-            Generate embeddings response.
             </summary>
         </member>
         <member name="T:View.Sdk.Processor.MqMessage">
@@ -7707,171 +7542,6 @@
         <member name="F:View.Sdk.Processor.MqMessageVersionEnum.v1_0">
             <summary>
             Version 1.0.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Processor.PersistEmbeddingsRequest">
-            <summary>
-            Persist embeddings request.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.PersistEmbeddingsRequest.GUID">
-            <summary>
-            GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.PersistEmbeddingsRequest.FileHandle">
-            <summary>
-            File handle.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Processor.PersistEmbeddingsRequest.#ctor">
-            <summary>
-            Persist embeddings request.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Processor.PersistEmbeddingsResponse">
-            <summary>
-            Persist embeddings response.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.PersistEmbeddingsResponse.GUID">
-            <summary>
-            GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.PersistEmbeddingsResponse.Success">
-            <summary>
-            Boolean indicating success.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.PersistEmbeddingsResponse.Error">
-            <summary>
-            Error, if any.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.PersistEmbeddingsResponse.Timestamp">
-            <summary>
-            Timestamp.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.PersistEmbeddingsResponse.FileHandle">
-            <summary>
-            File handle.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Processor.PersistEmbeddingsResponse.#ctor">
-            <summary>
-            Persist embeddings response.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Processor.PersistGraphRequest">
-            <summary>
-            Persist graph request.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.PersistGraphRequest.GUID">
-            <summary>
-            GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.PersistGraphRequest.FileHandle">
-            <summary>
-            File handle.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Processor.PersistGraphRequest.#ctor">
-            <summary>
-            Persist graph request.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Processor.PersistGraphResponse">
-            <summary>
-            Persist graph response.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.PersistGraphResponse.GUID">
-            <summary>
-            GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.PersistGraphResponse.Success">
-            <summary>
-            Boolean indicating success.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.PersistGraphResponse.Error">
-            <summary>
-            Error, if any.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.PersistGraphResponse.Timestamp">
-            <summary>
-            Timestamp.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.PersistGraphResponse.FileHandle">
-            <summary>
-            File handle.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Processor.PersistGraphResponse.#ctor">
-            <summary>
-            Persist graph response.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Processor.PersistMetadataRequest">
-            <summary>
-            Persist metadata request.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.PersistMetadataRequest.GUID">
-            <summary>
-            GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.PersistMetadataRequest.FileHandle">
-            <summary>
-            File handle.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Processor.PersistMetadataRequest.#ctor">
-            <summary>
-            Persist metadata request.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Processor.PersistMetadataResponse">
-            <summary>
-            Persist metadata response.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.PersistMetadataResponse.GUID">
-            <summary>
-            GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.PersistMetadataResponse.Success">
-            <summary>
-            Boolean indicating success.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.PersistMetadataResponse.Error">
-            <summary>
-            Error, if any.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.PersistMetadataResponse.Timestamp">
-            <summary>
-            Timestamp.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.PersistMetadataResponse.FileHandle">
-            <summary>
-            File handle.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Processor.PersistMetadataResponse.#ctor">
-            <summary>
-            Persist metadata response.
             </summary>
         </member>
         <member name="T:View.Sdk.Processor.ProcessorRequest">
@@ -8064,19 +7734,9 @@
             Processor task type.
             </summary>
         </member>
-        <member name="P:View.Sdk.Processor.ProcessorTaskRequest.InputFileType">
-            <summary>
-            Input file type.
-            </summary>
-        </member>
         <member name="P:View.Sdk.Processor.ProcessorTaskRequest.InputFile">
             <summary>
             Input file handle.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.ProcessorTaskRequest.OutputFileType">
-            <summary>
-            Output file type.
             </summary>
         </member>
         <member name="P:View.Sdk.Processor.ProcessorTaskRequest.OutputFile">
@@ -8109,24 +7769,9 @@
             Error, if any.
             </summary>
         </member>
-        <member name="P:View.Sdk.Processor.ProcessorTaskResponse.Timestamp">
-            <summary>
-            Timestamp.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.ProcessorTaskResponse.InputFileType">
-            <summary>
-            Input file type.
-            </summary>
-        </member>
         <member name="P:View.Sdk.Processor.ProcessorTaskResponse.InputFile">
             <summary>
             Input file handle.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.ProcessorTaskResponse.OutputFileType">
-            <summary>
-            Output file type.
             </summary>
         </member>
         <member name="P:View.Sdk.Processor.ProcessorTaskResponse.OutputFile">
@@ -8144,24 +7789,14 @@
             Processor task type.
             </summary>
         </member>
-        <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.TypeDetection">
-            <summary>
-            TypeDetection.
-            </summary>
-        </member>
         <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.Atomization">
             <summary>
             Atomization.
             </summary>
         </member>
-        <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.SemanticCellExtraction">
+        <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.EmbeddingsGeneration">
             <summary>
-            SemanticCellExtraction.
-            </summary>
-        </member>
-        <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.UdrGeneration">
-            <summary>
-            UdrGeneration.
+            EmbeddingsGeneration.
             </summary>
         </member>
         <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.FindEmbeddings">
@@ -8169,9 +7804,9 @@
             FindEmbeddings.
             </summary>
         </member>
-        <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.EmbeddingsGeneration">
+        <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.PersistGraph">
             <summary>
-            EmbeddingsGeneration.
+            PersistGraph.
             </summary>
         </member>
         <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.PersistUdr">
@@ -8184,179 +7819,19 @@
             PersistVector.
             </summary>
         </member>
-        <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.PersistGraph">
+        <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.SemanticCellExtraction">
             <summary>
-            PersistGraph.
+            SemanticCellExtraction.
             </summary>
         </member>
-        <member name="T:View.Sdk.Processor.SemanticCellExtactionRequest">
+        <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.TypeDetection">
             <summary>
-            Semantic cell extraction request.
+            TypeDetection.
             </summary>
         </member>
-        <member name="P:View.Sdk.Processor.SemanticCellExtactionRequest.GUID">
+        <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.UdrGeneration">
             <summary>
-            GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.SemanticCellExtactionRequest.FileHandle">
-            <summary>
-            File handle.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Processor.SemanticCellExtactionRequest.#ctor">
-            <summary>
-            Semantic cell extraction request.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Processor.SemanticCellExtractionResponse">
-            <summary>
-            Semantic cell extraction response.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.SemanticCellExtractionResponse.GUID">
-            <summary>
-            GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.SemanticCellExtractionResponse.Success">
-            <summary>
-            Boolean indicating success.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.SemanticCellExtractionResponse.Error">
-            <summary>
-            Error, if any.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.SemanticCellExtractionResponse.Timestamp">
-            <summary>
-            Timestamp.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.SemanticCellExtractionResponse.FileHandle">
-            <summary>
-            File handle.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Processor.SemanticCellExtractionResponse.#ctor">
-            <summary>
-            Semantic cell extraction response.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Processor.TypeDetectionRequest">
-            <summary>
-            Type detection request.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.TypeDetectionRequest.GUID">
-            <summary>
-            GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.TypeDetectionRequest.ContentType">
-            <summary>
-            Content type.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.TypeDetectionRequest.FileHandle">
-            <summary>
-            File handle.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Processor.TypeDetectionRequest.#ctor">
-            <summary>
-            Type detection request.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Processor.TypeDetectionResponse">
-            <summary>
-            Type detection response.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.TypeDetectionResponse.GUID">
-            <summary>
-            GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.TypeDetectionResponse.Success">
-            <summary>
-            Boolean indicating success.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.TypeDetectionResponse.Error">
-            <summary>
-            Error, if any.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.TypeDetectionResponse.Timestamp">
-            <summary>
-            Timestamp.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.TypeDetectionResponse.FileHandle">
-            <summary>
-            File handle.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Processor.TypeDetectionResponse.#ctor">
-            <summary>
-            Type detection response.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Processor.UdrGenerationRequest">
-            <summary>
-            UDR generation request.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.UdrGenerationRequest.GUID">
-            <summary>
-            GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.UdrGenerationRequest.FileHandle">
-            <summary>
-            File handle.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Processor.UdrGenerationRequest.#ctor">
-            <summary>
-            UDR generation request.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Processor.UdrGenerationResponse">
-            <summary>
-            UDR generation response.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.UdrGenerationResponse.GUID">
-            <summary>
-            GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.UdrGenerationResponse.Success">
-            <summary>
-            Boolean indicating success.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.UdrGenerationResponse.Error">
-            <summary>
-            Error, if any.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.UdrGenerationResponse.Timestamp">
-            <summary>
-            Timestamp.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Processor.UdrGenerationResponse.FileHandle">
-            <summary>
-            File handle.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Processor.UdrGenerationResponse.#ctor">
-            <summary>
-            UDR generation response.
+            UdrGeneration.
             </summary>
         </member>
         <member name="T:View.Sdk.Processor.ViewCleanupSdk">

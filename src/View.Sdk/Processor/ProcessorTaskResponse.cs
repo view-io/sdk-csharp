@@ -31,24 +31,9 @@
         public ApiErrorResponse Error { get; set; } = null;
 
         /// <summary>
-        /// Timestamp.
-        /// </summary>
-        public Timestamp Timestamp { get; set; } = new Timestamp();
-
-        /// <summary>
-        /// Input file type.
-        /// </summary>
-        public Type InputFileType { get; set; } = typeof(object);
-
-        /// <summary>
         /// Input file handle.
         /// </summary>
         public string InputFile { get; set; } = null;
-
-        /// <summary>
-        /// Output file type.
-        /// </summary>
-        public Type OutputFileType { get; set; } = typeof(object);
 
         /// <summary>
         /// Output file handle.

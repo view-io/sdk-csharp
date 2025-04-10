@@ -35,7 +35,7 @@
         /// PersistGraph.
         /// </summary>
         [EnumMember(Value = "PersistGraph")]
-        PersistGraph
+        PersistGraph,
 
         /// <summary>
         /// PersistUdr.
