@@ -25,18 +25,6 @@
         TypeDetectionResponse,
 
         /// <summary>
-        /// AtomExtractionRequest.
-        /// </summary>
-        [EnumMember(Value = "AtomExtractionRequest")]
-        AtomExtractionRequest,
-
-        /// <summary>
-        /// AtomExtractionResponse.
-        /// </summary>
-        [EnumMember(Value = "AtomExtractionResponse")]
-        AtomExtractionResponse,
-
-        /// <summary>
         /// SemanticCellExtractionRequest.
         /// </summary>
         [EnumMember(Value = "SemanticCellExtractionRequest")]

@@ -15,11 +15,6 @@
         #region Public-Members
 
         /// <summary>
-        /// Data flow request GUID.
-        /// </summary>
-        public Guid? DataFlowRequestGUID { get; set; } = null;
-
-        /// <summary>
         /// Boolean indicating success.
         /// </summary>
         public bool Success { get; set; } = true;

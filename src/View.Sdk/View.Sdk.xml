@@ -3437,9 +3437,24 @@
             Tenant GUID.
             </summary>
         </member>
+        <member name="P:View.Sdk.Embeddings.FindEmbeddingsRequest.EmbeddingsRuleGUID">
+            <summary>
+            Embeddings rule GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.FindEmbeddingsRequest.EmbeddingsRule">
+            <summary>
+            Embeddings rule.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Embeddings.FindEmbeddingsRequest.VectorRepositoryGUID">
             <summary>
             Vector repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.FindEmbeddingsRequest.VectorRepository">
+            <summary>
+            Vector repository.
             </summary>
         </member>
         <member name="P:View.Sdk.Embeddings.FindEmbeddingsRequest.Criteria">
@@ -3455,6 +3470,11 @@
         <member name="T:View.Sdk.Embeddings.FindEmbeddingsResult">
             <summary>
             Find embeddings result.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.FindEmbeddingsResult.Success">
+            <summary>
+            Boolean indicating success.
             </summary>
         </member>
         <member name="P:View.Sdk.Embeddings.FindEmbeddingsResult.Timestamp">
@@ -7454,16 +7474,6 @@
             TypeDetectionResponse.
             </summary>
         </member>
-        <member name="F:View.Sdk.Processor.MqMessageTypeEnum.AtomExtractionRequest">
-            <summary>
-            AtomExtractionRequest.
-            </summary>
-        </member>
-        <member name="F:View.Sdk.Processor.MqMessageTypeEnum.AtomExtractionResponse">
-            <summary>
-            AtomExtractionResponse.
-            </summary>
-        </member>
         <member name="F:View.Sdk.Processor.MqMessageTypeEnum.SemanticCellExtractionRequest">
             <summary>
             SemanticCellExtractionRequest.
@@ -7787,11 +7797,6 @@
         <member name="T:View.Sdk.Processor.ProcessorTaskTypeEnum">
             <summary>
             Processor task type.
-            </summary>
-        </member>
-        <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.Atomization">
-            <summary>
-            Atomization.
             </summary>
         </member>
         <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.EmbeddingsGeneration">
@@ -8746,11 +8751,6 @@
             PDF options.
             </summary>
         </member>
-        <member name="P:View.Sdk.Semantic.SemanticCellRequest.MetadataRule">
-            <summary>
-            Metadata rule.
-            </summary>
-        </member>
         <member name="P:View.Sdk.Semantic.SemanticCellRequest.Data">
             <summary>
             Data.
@@ -8765,11 +8765,6 @@
         <member name="T:View.Sdk.Semantic.SemanticCellResponse">
             <summary>
             Semantic cell response.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Semantic.SemanticCellResponse.DataFlowRequestGUID">
-            <summary>
-            Data flow request GUID.
             </summary>
         </member>
         <member name="P:View.Sdk.Semantic.SemanticCellResponse.Success">
@@ -8938,13 +8933,14 @@
             <param name="token">Cancellation token.</param>
             <returns>Semantic cell response.</returns>
         </member>
-        <member name="M:View.Sdk.Semantic.ViewSemanticCellSdk.Process(View.Sdk.DocumentTypeEnum,View.Sdk.MetadataRule,System.Byte[],System.Int32,System.Int32,View.Sdk.Semantic.PdfOptions,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Semantic.ViewSemanticCellSdk.Process(View.Sdk.DocumentTypeEnum,System.Byte[],System.Int32,System.Int32,System.Int32,System.Int32,View.Sdk.Semantic.PdfOptions,System.Threading.CancellationToken)">
             <summary>
             Extract semantic cells from a document.
             </summary>
             <param name="docType">Document type.</param>
-            <param name="mdRule">Metadata rule.</param>
             <param name="data">Data.</param>
+            <param name="maxTokensPerChunk">Maximum tokens per chunk.</param>
+            <param name="minChunkContentLength">Minimum chunk content length.</param>
             <param name="maxChunkContentLength">Maximum chunk content length.</param>
             <param name="shiftSize">Shift size.</param>
             <param name="pdfOptions">PDF options.</param>
@@ -10176,16 +10172,6 @@
             Content-type.
             </summary>
         </member>
-        <member name="P:View.Sdk.UdrDocumentRequest.SemanticCellSplitCharacter">
-            <summary>
-            Character on which to split semantic cells.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.UdrDocumentRequest.MaxChunkContentLength">
-            <summary>
-            Maximum chunk content length.  Minimum is 128 and maximum is 2048.
-            </summary>
-        </member>
         <member name="P:View.Sdk.UdrDocumentRequest.IncludeFlattened">
             <summary>
             True to include a flattened representation of the source document.
@@ -10214,11 +10200,6 @@
         <member name="P:View.Sdk.UdrDocumentRequest.Data">
             <summary>
             Data.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.UdrDocumentRequest.MetadataRule">
-            <summary>
-            Metadata rule.
             </summary>
         </member>
         <member name="M:View.Sdk.UdrDocumentRequest.#ctor">

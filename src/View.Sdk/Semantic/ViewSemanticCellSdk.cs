@@ -50,7 +50,6 @@
         {
             if (scReq == null) throw new ArgumentNullException(nameof(scReq));
             if (scReq.Data == null || scReq.Data.Length < 1) throw new ArgumentException("No data supplied for semantic cell extraction.");
-            if (scReq.MetadataRule == null) throw new ArgumentNullException(nameof(scReq.MetadataRule));
 
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/processing/semanticcell";
             string json = Serializer.SerializeJson(scReq, true);
@@ -125,8 +124,9 @@
         /// Extract semantic cells from a document.
         /// </summary>
         /// <param name="docType">Document type.</param>
-        /// <param name="mdRule">Metadata rule.</param>
         /// <param name="data">Data.</param>
+        /// <param name="maxTokensPerChunk">Maximum tokens per chunk.</param>
+        /// <param name="minChunkContentLength">Minimum chunk content length.</param>
         /// <param name="maxChunkContentLength">Maximum chunk content length.</param>
         /// <param name="shiftSize">Shift size.</param>
         /// <param name="pdfOptions">PDF options.</param>
@@ -134,23 +134,24 @@
         /// <returns>Semantic cell response.</returns>
         public async Task<SemanticCellResponse> Process(
             DocumentTypeEnum docType,
-            MetadataRule mdRule,
             byte[] data,
+            int maxTokensPerChunk = 256,
+            int minChunkContentLength = 2,
             int maxChunkContentLength = 512,
             int shiftSize = 512,
             PdfOptions pdfOptions = null,
             CancellationToken token = default)
         {
             if (data == null || data.Length < 1) throw new ArgumentException("No data supplied for semantic cell extraction.");
-            if (mdRule == null) throw new ArgumentNullException(nameof(mdRule));
 
             string url = Endpoint;
 
             SemanticCellRequest scReq = new SemanticCellRequest
             {
                 DocumentType = docType,
-                MetadataRule = mdRule,
                 Data = data,
+                MaxTokensPerChunk = maxTokensPerChunk,
+                MinChunkContentLength = minChunkContentLength,
                 MaxChunkContentLength = maxChunkContentLength,
                 ShiftSize = shiftSize,
                 Pdf = pdfOptions

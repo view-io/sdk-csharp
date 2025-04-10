@@ -11,6 +11,11 @@
         #region Public-Members
 
         /// <summary>
+        /// Boolean indicating success.
+        /// </summary>
+        public bool Success { get; set; } = true;
+
+        /// <summary>
         /// Timestamps.
         /// </summary>
         public Timestamp Timestamp { get; set; } = new Timestamp();

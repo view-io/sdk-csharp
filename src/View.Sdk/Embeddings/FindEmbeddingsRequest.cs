@@ -16,9 +16,24 @@
         public Guid TenantGUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
+        /// Embeddings rule GUID.
+        /// </summary>
+        public Guid EmbeddingsRuleGUID { get; set; } = Guid.NewGuid();
+
+        /// <summary>
+        /// Embeddings rule.
+        /// </summary>
+        public EmbeddingsRule EmbeddingsRule { get; set; } = null;
+
+        /// <summary>
         /// Vector repository GUID.
         /// </summary>
         public Guid VectorRepositoryGUID { get; set; } = Guid.NewGuid();
+
+        /// <summary>
+        /// Vector repository.
+        /// </summary>
+        public VectorRepository VectorRepository { get; set; } = null;
 
         /// <summary>
         /// List of embeddings parameters on which to match.

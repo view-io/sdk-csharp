@@ -14,12 +14,6 @@
     public enum ProcessorTaskTypeEnum
     {
         /// <summary>
-        /// Atomization.
-        /// </summary>
-        [EnumMember(Value = "Atomization")]
-        Atomization,
-
-        /// <summary>
         /// EmbeddingsGeneration.
         /// </summary>
         [EnumMember(Value = "EmbeddingsGeneration")]
