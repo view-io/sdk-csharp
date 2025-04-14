@@ -7,7 +7,7 @@
     /// Find embeddings request.
     /// </summary>
     public class FindEmbeddingsRequest
-    {
+    { 
         #region Public-Members
 
         /// <summary>
