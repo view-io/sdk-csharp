@@ -4447,6 +4447,11 @@
             Maximum number of results to retrieve.
             </summary>
         </member>
+        <member name="P:View.Sdk.EnumerationResult`1.Skip">
+            <summary>
+            Skip.
+            </summary>
+        </member>
         <member name="P:View.Sdk.EnumerationResult`1.IterationsRequired">
             <summary>
             Iterations required.
