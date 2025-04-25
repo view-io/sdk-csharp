@@ -44,7 +44,7 @@
         /// <param name="scReq">Semantic cell extraction request.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Semantic cell response.</returns>
-        public async Task<SemanticCellResponse> Process(
+        public async Task<SemanticCellResult> Process(
             SemanticCellRequest scReq,
             CancellationToken token = default)
         {
@@ -77,7 +77,7 @@
                                     if (LogResponses) Log(SeverityEnum.Debug, "response body: " + Environment.NewLine + resp.DataAsString);
 
                                     Log(SeverityEnum.Debug, "deserializing response body");
-                                    SemanticCellResponse scr = Serializer.DeserializeJson<SemanticCellResponse>(resp.DataAsString);
+                                    SemanticCellResult scr = Serializer.DeserializeJson<SemanticCellResult>(resp.DataAsString);
                                     return scr;
                                 }
                                 else
@@ -95,7 +95,7 @@
                                     if (LogResponses) Log(SeverityEnum.Warn, "response body: " + Environment.NewLine + resp.DataAsString);
 
                                     Log(SeverityEnum.Debug, "deserializing response body");
-                                    SemanticCellResponse scr = Serializer.DeserializeJson<SemanticCellResponse>(resp.DataAsString);
+                                    SemanticCellResult scr = Serializer.DeserializeJson<SemanticCellResult>(resp.DataAsString);
                                     return scr;
                                 }
                                 else
@@ -132,7 +132,7 @@
         /// <param name="pdfOptions">PDF options.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Semantic cell response.</returns>
-        public async Task<SemanticCellResponse> Process(
+        public async Task<SemanticCellResult> Process(
             DocumentTypeEnum docType,
             byte[] data,
             int maxTokensPerChunk = 256,

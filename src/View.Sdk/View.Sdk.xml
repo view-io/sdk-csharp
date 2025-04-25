@@ -3316,81 +3316,6 @@
             <param name="serializer">Serializer.</param>
             <returns>List of EmbeddingsDocument.</returns>
         </member>
-        <member name="T:View.Sdk.Embeddings.EmbeddingsRequest">
-            <summary>
-            Embeddings request.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsRequest.EmbeddingsRule">
-            <summary>
-            Embeddings rule.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsRequest.Model">
-            <summary>
-            Model.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsRequest.SemanticCells">
-            <summary>
-            Semantic cells.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsRequest.Contents">
-            <summary>
-            Contents.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsRequest.Embeddings">
-            <summary>
-            Embeddings.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.EmbeddingsRequest.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Embeddings.EmbeddingsResult">
-            <summary>
-            Embeddings result.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsResult.Success">
-            <summary>
-            Boolean indicating whether or not the operation was successful.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsResult.StatusCode">
-            <summary>
-            HTTP status code.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsResult.Error">
-            <summary>
-            Error response.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsResult.BatchCount">
-            <summary>
-            The number of batches processed.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsResult.SemanticCells">
-            <summary>
-            Semantic cells.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsResult.ContentEmbeddings">
-            <summary>
-            Content embeddings.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.EmbeddingsResult.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
         <member name="T:View.Sdk.Embeddings.FindEmbeddingsObject">
             <summary>
             Find embeddings object.
@@ -3495,6 +3420,81 @@
         <member name="M:View.Sdk.Embeddings.FindEmbeddingsResult.#ctor">
             <summary>
             Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Embeddings.GenerateEmbeddingsRequest">
+            <summary>
+            Generate embeddings request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsRequest.EmbeddingsRule">
+            <summary>
+            Embeddings rule.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsRequest.Model">
+            <summary>
+            Model.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsRequest.SemanticCells">
+            <summary>
+            Semantic cells.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsRequest.Contents">
+            <summary>
+            Contents.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsRequest.Embeddings">
+            <summary>
+            Embeddings.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.GenerateEmbeddingsRequest.#ctor">
+            <summary>
+            Generate embeddings request.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Embeddings.GenerateEmbeddingsResult">
+            <summary>
+            Generate embeddings result.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsResult.Success">
+            <summary>
+            Boolean indicating whether or not the operation was successful.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsResult.StatusCode">
+            <summary>
+            HTTP status code.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsResult.Error">
+            <summary>
+            Error response.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsResult.BatchCount">
+            <summary>
+            The number of batches processed.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsResult.SemanticCells">
+            <summary>
+            Semantic cells.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsResult.ContentEmbeddings">
+            <summary>
+            Content embeddings.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.GenerateEmbeddingsResult.#ctor">
+            <summary>
+            Generate embeddings result.
             </summary>
         </member>
         <member name="T:View.Sdk.Embeddings.ModelInformation">
@@ -3627,7 +3627,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if connected.</returns>
         </member>
-        <member name="M:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.GenerateEmbeddings(View.Sdk.Embeddings.EmbeddingsRequest,System.Int32,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.GenerateEmbeddings(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Int32,System.Threading.CancellationToken)">
             <summary>
             Generate embeddings.
             </summary>
@@ -3661,7 +3661,7 @@
             Instantiate.
             </summary>
         </member>
-        <member name="M:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsRequest.FromEmbeddingsRequest(View.Sdk.Embeddings.EmbeddingsRequest)">
+        <member name="M:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsRequest.FromEmbeddingsRequest(View.Sdk.Embeddings.GenerateEmbeddingsRequest)">
             <summary>
             Instantiate from embeddings request.
             </summary>
@@ -3703,7 +3703,7 @@
             Instantiate.
             </summary>
         </member>
-        <member name="M:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsResult.ToEmbeddingsResult(View.Sdk.Embeddings.EmbeddingsRequest,System.Boolean,System.Int32,View.Sdk.ApiErrorResponse)">
+        <member name="M:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsResult.ToEmbeddingsResult(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Boolean,System.Int32,View.Sdk.ApiErrorResponse)">
             <summary>
             Create an embeddings result object from the original request and this object, the provider response.
             </summary>
@@ -3724,7 +3724,7 @@
         <member name="M:View.Sdk.Embeddings.Providers.Langchain.ViewLangchainSdk.ValidateConnectivity(System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Embeddings.Providers.Langchain.ViewLangchainSdk.GenerateEmbeddings(View.Sdk.Embeddings.EmbeddingsRequest,System.Int32,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Embeddings.Providers.Langchain.ViewLangchainSdk.GenerateEmbeddings(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Int32,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:View.Sdk.Embeddings.Providers.Ollama.OllamaEmbeddingsRequest">
@@ -3747,7 +3747,7 @@
             Instantiate.
             </summary>
         </member>
-        <member name="M:View.Sdk.Embeddings.Providers.Ollama.OllamaEmbeddingsRequest.FromEmbeddingsRequest(View.Sdk.Embeddings.EmbeddingsRequest)">
+        <member name="M:View.Sdk.Embeddings.Providers.Ollama.OllamaEmbeddingsRequest.FromEmbeddingsRequest(View.Sdk.Embeddings.GenerateEmbeddingsRequest)">
             <summary>
             Instantiate from embeddings request.
             </summary>
@@ -3774,7 +3774,7 @@
             Instantiate.
             </summary>
         </member>
-        <member name="M:View.Sdk.Embeddings.Providers.Ollama.OllamaEmbeddingsResult.ToEmbeddingsResult(View.Sdk.Embeddings.EmbeddingsRequest,System.Boolean,System.Int32,View.Sdk.ApiErrorResponse)">
+        <member name="M:View.Sdk.Embeddings.Providers.Ollama.OllamaEmbeddingsResult.ToEmbeddingsResult(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Boolean,System.Int32,View.Sdk.ApiErrorResponse)">
             <summary>
             Create an embeddings result object from the original request and this object, the provider response.
             </summary>
@@ -3850,7 +3850,7 @@
         <member name="M:View.Sdk.Embeddings.Providers.Ollama.ViewOllamaSdk.ValidateConnectivity(System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Embeddings.Providers.Ollama.ViewOllamaSdk.GenerateEmbeddings(View.Sdk.Embeddings.EmbeddingsRequest,System.Int32,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Embeddings.Providers.Ollama.ViewOllamaSdk.GenerateEmbeddings(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Int32,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddings">
@@ -3898,7 +3898,7 @@
             Instantiate.
             </summary>
         </member>
-        <member name="M:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddingsRequest.FromEmbeddingsRequest(View.Sdk.Embeddings.EmbeddingsRequest)">
+        <member name="M:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddingsRequest.FromEmbeddingsRequest(View.Sdk.Embeddings.GenerateEmbeddingsRequest)">
             <summary>
             Instantiate from embeddings request.
             </summary>
@@ -3925,7 +3925,7 @@
             Instantiate.
             </summary>
         </member>
-        <member name="M:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddingsResult.ToEmbeddingsResult(View.Sdk.Embeddings.EmbeddingsRequest,System.Boolean,System.Int32,View.Sdk.ApiErrorResponse)">
+        <member name="M:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddingsResult.ToEmbeddingsResult(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Boolean,System.Int32,View.Sdk.ApiErrorResponse)">
             <summary>
             Create an embeddings result object from the original request and this object, the provider response.
             </summary>
@@ -3946,7 +3946,7 @@
         <member name="M:View.Sdk.Embeddings.Providers.OpenAI.ViewOpenAiSdk.ValidateConnectivity(System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Embeddings.Providers.OpenAI.ViewOpenAiSdk.GenerateEmbeddings(View.Sdk.Embeddings.EmbeddingsRequest,System.Int32,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Embeddings.Providers.OpenAI.ViewOpenAiSdk.GenerateEmbeddings(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Int32,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:View.Sdk.Embeddings.Providers.VoyageAI.ViewVoyageAiSdk">
@@ -3960,7 +3960,7 @@
         <member name="M:View.Sdk.Embeddings.Providers.VoyageAI.ViewVoyageAiSdk.ValidateConnectivity(System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Embeddings.Providers.VoyageAI.ViewVoyageAiSdk.GenerateEmbeddings(View.Sdk.Embeddings.EmbeddingsRequest,System.Int32,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Embeddings.Providers.VoyageAI.ViewVoyageAiSdk.GenerateEmbeddings(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Int32,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddings">
@@ -4008,7 +4008,7 @@
             Instantiate.
             </summary>
         </member>
-        <member name="M:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddingsRequest.FromEmbeddingsRequest(View.Sdk.Embeddings.EmbeddingsRequest)">
+        <member name="M:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddingsRequest.FromEmbeddingsRequest(View.Sdk.Embeddings.GenerateEmbeddingsRequest)">
             <summary>
             Instantiate from embeddings request.
             </summary>
@@ -4035,7 +4035,7 @@
             Instantiate.
             </summary>
         </member>
-        <member name="M:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddingsResult.ToEmbeddingsResult(View.Sdk.Embeddings.EmbeddingsRequest,System.Boolean,System.Int32,View.Sdk.ApiErrorResponse)">
+        <member name="M:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddingsResult.ToEmbeddingsResult(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Boolean,System.Int32,View.Sdk.ApiErrorResponse)">
             <summary>
             Create an embeddings result object from the original request and this object, the provider response.
             </summary>
@@ -4142,7 +4142,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if connected.</returns>
         </member>
-        <member name="M:View.Sdk.Embeddings.ViewEmbeddingsSdk.GenerateEmbeddings(View.Sdk.Embeddings.EmbeddingsRequest,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Embeddings.ViewEmbeddingsSdk.GenerateEmbeddings(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Threading.CancellationToken)">
             <summary>
             Generate embeddings.
             </summary>
@@ -4174,7 +4174,7 @@
             Dispose.
             </summary>
         </member>
-        <member name="M:View.Sdk.Embeddings.ViewEmbeddingsServerSdk.GenerateEmbeddings(View.Sdk.Embeddings.EmbeddingsRequest,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Embeddings.ViewEmbeddingsServerSdk.GenerateEmbeddings(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Threading.CancellationToken)">
             <summary>
             Generate embeddings.
             </summary>
@@ -4634,1373 +4634,6 @@
             LiteGraph.
             </summary>
         </member>
-        <member name="T:View.Sdk.Graph.Graph">
-            <summary>
-            Graph.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.Graph.TenantGUID">
-            <summary>
-            Tenant GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.Graph.GUID">
-            <summary>
-            Globally-unique identifier.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.Graph.Name">
-            <summary>
-            Name.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.Graph.CreatedUtc">
-            <summary>
-            Timestamp from creation, in UTC.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Graph.Graph.#ctor">
-            <summary>
-            Instantiate the object.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Graph.GraphData">
-            <summary>
-            Graph data.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphData.Type">
-            <summary>
-            Node type.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphData.Tenant">
-            <summary>
-            Tenant metadata.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphData.StoragePool">
-            <summary>
-            Storage pool.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphData.Bucket">
-            <summary>
-            Bucket metadata.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphData.Object">
-            <summary>
-            Object metadata.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphData.Collection">
-            <summary>
-            Collection.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphData.SourceDocument">
-            <summary>
-            Source document.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphData.VectorRepository">
-            <summary>
-            Vector repository.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphData.SemanticCell">
-            <summary>
-            Semantic cell.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphData.SemanticChunk">
-            <summary>
-            Semantic chunk.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphData.DataRepository">
-            <summary>
-            Data repository.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphData.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Graph.GraphEdge">
-            <summary>
-            Graph edge.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphEdge.TenantGUID">
-            <summary>
-            Tenant GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphEdge.GraphGUID">
-            <summary>
-            Globally-unique identifier for the graph.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphEdge.GUID">
-            <summary>
-            Globally-unique identifier.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphEdge.Name">
-            <summary>
-            Name.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphEdge.From">
-            <summary>
-            Globally-unique identifier of the from node.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphEdge.FromNode">
-            <summary>
-            From node.  This property is only populated when retrieving routes.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphEdge.To">
-            <summary>
-            Globally-unique identifier of the to node.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphEdge.ToNode">
-            <summary>
-            To node.  This property is only populated when retrieving routes.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphEdge.Cost">
-            <summary>
-            Cost.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphEdge.CreatedUtc">
-            <summary>
-            Timestamp from creation, in UTC.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphEdge.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Graph.GraphNode">
-            <summary>
-            Graph node.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphNode.TenantGUID">
-            <summary>
-            Tenant GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphNode.GUID">
-            <summary>
-            Globally-unique identifier.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphNode.GraphGUID">
-            <summary>
-            Globally-unique identifier for the graph.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphNode.Name">
-            <summary>
-            Name.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphNode.Data">
-            <summary>
-            Object data.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphNode.CreatedUtc">
-            <summary>
-            Timestamp from creation, in UTC.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphNode.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Graph.GraphNodeTypeEnum">
-            <summary>
-            Graph node type.
-            </summary>
-        </member>
-        <member name="F:View.Sdk.Graph.GraphNodeTypeEnum.Unknown">
-            <summary>
-            Unknown.
-            </summary>
-        </member>
-        <member name="F:View.Sdk.Graph.GraphNodeTypeEnum.Tenant">
-            <summary>
-            Tenant.
-            </summary>
-        </member>
-        <member name="F:View.Sdk.Graph.GraphNodeTypeEnum.StoragePool">
-            <summary>
-            StoragePool.
-            </summary>
-        </member>
-        <member name="F:View.Sdk.Graph.GraphNodeTypeEnum.Bucket">
-            <summary>
-            Bucket.
-            </summary>
-        </member>
-        <member name="F:View.Sdk.Graph.GraphNodeTypeEnum.Object">
-            <summary>
-            Object.
-            </summary>
-        </member>
-        <member name="F:View.Sdk.Graph.GraphNodeTypeEnum.Collection">
-            <summary>
-            Collection.
-            </summary>
-        </member>
-        <member name="F:View.Sdk.Graph.GraphNodeTypeEnum.SourceDocument">
-            <summary>
-            SourceDocument.
-            </summary>
-        </member>
-        <member name="F:View.Sdk.Graph.GraphNodeTypeEnum.VectorRepository">
-            <summary>
-            VectorRepository.
-            </summary>
-        </member>
-        <member name="F:View.Sdk.Graph.GraphNodeTypeEnum.SemanticCell">
-            <summary>
-            SemanticCell.
-            </summary>
-        </member>
-        <member name="F:View.Sdk.Graph.GraphNodeTypeEnum.SemanticChunk">
-            <summary>
-            SemanticChunk.
-            </summary>
-        </member>
-        <member name="F:View.Sdk.Graph.GraphNodeTypeEnum.DataRepository">
-            <summary>
-            Data repository.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Graph.GraphResult">
-            <summary>
-            Graph result.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphResult.Success">
-            <summary>
-            Success or failure.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphResult.Timestamp">
-            <summary>
-            Timestamp.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphResult.Graph">
-            <summary>
-            Graph.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphResult.Tenant">
-            <summary>
-            Tenant.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphResult.StoragePool">
-            <summary>
-            Storage pool.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphResult.Bucket">
-            <summary>
-            Bucket.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphResult.Object">
-            <summary>
-            Object.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphResult.Collection">
-            <summary>
-            Collection.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphResult.SourceDocument">
-            <summary>
-            Source document.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphResult.DataRepository">
-            <summary>
-            Data repository.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphResult.SemanticCells">
-            <summary>
-            Semantic cells.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphResult.SemanticChunks">
-            <summary>
-            Semantic chunks.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphResult.Edges">
-            <summary>
-            Edges.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphResult.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Graph.GraphSdk">
-            <summary>
-            Graph SDK.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphSdk.GraphRepository">
-            <summary>
-            Graph repository.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.GraphSdk.TimestampFormat">
-            <summary>
-            Timestamp format.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.#ctor(View.Sdk.GraphRepository)">
-            <summary>
-            Instantiate.
-            </summary>
-            <param name="repo">Graph repository.</param>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.Dispose">
-            <summary>
-            Dispose.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ValidateConnectivity(System.Threading.CancellationToken)">
-            <summary>
-            Validate connectivity to the graph repository.
-            </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>True if connected.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.InsertObjectMetadata(View.Sdk.TenantMetadata,View.Sdk.StoragePool,View.Sdk.BucketMetadata,View.Sdk.ObjectMetadata,System.Threading.CancellationToken)">
-            <summary>
-            Insert object metadata and its associated objects from storage server.
-            </summary>
-            <param name="tenant">Tenant.</param>
-            <param name="pool">Storage pool.</param>
-            <param name="bucket">Bucket.</param>
-            <param name="obj">Object.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph result.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.InsertObjectMetadata(View.Sdk.TenantMetadata,View.Sdk.DataRepository,View.Sdk.ObjectMetadata,System.Threading.CancellationToken)">
-            <summary>
-            Insert object metadata and its associated objects from crawler.
-            </summary>
-            <param name="tenant">Tenant.</param>
-            <param name="repo">Data repository.</param>
-            <param name="obj">Object metadata.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph result.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.InsertSourceDocument(View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.SourceDocument,System.Threading.CancellationToken)">
-            <summary>
-            Insert source document and its associated objects.
-            </summary>
-            <param name="tenant">Tenant.</param>
-            <param name="collection">Collection.</param>
-            <param name="sourceDoc">Source document.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph result.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.RemoveObjectMetadata(View.Sdk.ObjectMetadata,System.Threading.CancellationToken)">
-            <summary>
-            Remove object metadata and its associated objects.
-            </summary>
-            <param name="obj">Object.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph result.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.RemoveSourceDocument(View.Sdk.SourceDocument,System.Threading.CancellationToken)">
-            <summary>
-            Remove source document and its associated objects.
-            </summary>
-            <param name="doc">Source document.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph result.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.StoragePoolExists(View.Sdk.StoragePool,System.Threading.CancellationToken)">
-            <summary>
-            Check if a storage pool exists.
-            </summary>
-            <param name="pool">Storage pool.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.BucketExists(View.Sdk.BucketMetadata,System.Threading.CancellationToken)">
-            <summary>
-            Check if a bucket exists.
-            </summary>
-            <param name="bucket">Bucket.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ObjectMetadataExists(View.Sdk.ObjectMetadata,System.Threading.CancellationToken)">
-            <summary>
-            Check if an object exists.
-            </summary>
-            <param name="obj">Object.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.CollectionExists(View.Sdk.Collection,System.Threading.CancellationToken)">
-            <summary>
-            Check if a collection exists.
-            </summary>
-            <param name="coll">Collection.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.SourceDocumentExists(View.Sdk.SourceDocument,System.Threading.CancellationToken)">
-            <summary>
-            Check if a source document exists.
-            </summary>
-            <param name="doc">Source document.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.SemanticCellExists(System.Guid,View.Sdk.Semantic.SemanticCell,System.Threading.CancellationToken)">
-            <summary>
-            Check if a semantic cell exists.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="cell">Semantic cell.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.SemanticChunkExists(System.Guid,View.Sdk.Semantic.SemanticChunk,System.Threading.CancellationToken)">
-            <summary>
-            Check if a semantic chunk exists.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="chunk">Semantic chunk.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.DataRepositoryExists(View.Sdk.DataRepository,System.Threading.CancellationToken)">
-            <summary>
-            Check if a data repository exists.
-            </summary>
-            <param name="repo">Data repository.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.StoragePoolExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Check if a storage pool exists by GUID.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.BucketExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Check if a bucket exists.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ObjectMetadataExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Check if an object exists.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.CollectionExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Check if a collection exists.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.SourceDocumentExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Check if a source document exists.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.SemanticCellExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Check if a semantic cell exists.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.SemanticChunkExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Check if a semantic chunk exists.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.DataRepositoryExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Check if a data repository exists.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.CreateGraph(System.Guid,System.Guid,System.String,System.Threading.CancellationToken)">
-            <summary>
-            Create a graph.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="name">Name.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.CreateTenant(View.Sdk.TenantMetadata,System.Threading.CancellationToken)">
-            <summary>
-            Create a tenant.
-            </summary>
-            <param name="tenant">Tenant.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.CreateStoragePool(View.Sdk.StoragePool,System.Threading.CancellationToken)">
-            <summary>
-            Create a storage pool.
-            </summary>
-            <param name="pool">Storage pool.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.CreateBucket(View.Sdk.BucketMetadata,System.Threading.CancellationToken)">
-            <summary>
-            Create a bucket.
-            </summary>
-            <param name="bucket">Bucket.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.CreateObjectMetadata(View.Sdk.ObjectMetadata,System.Threading.CancellationToken)">
-            <summary>
-            Create an object.
-            </summary>
-            <param name="obj">Object metadata.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.CreateCollection(View.Sdk.Collection,System.Threading.CancellationToken)">
-            <summary>
-            Create a collection.
-            </summary>
-            <param name="coll">Collection.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.CreateSourceDocument(View.Sdk.SourceDocument,System.Threading.CancellationToken)">
-            <summary>
-            Create a source document.
-            </summary>
-            <param name="doc">Source document.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.CreateSemanticCell(System.Guid,View.Sdk.Semantic.SemanticCell,System.Threading.CancellationToken)">
-            <summary>
-            Create a semantic cell.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="cell">Semantic cell.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.CreateSemanticChunk(System.Guid,View.Sdk.Semantic.SemanticChunk,System.Threading.CancellationToken)">
-            <summary>
-            Create a semantic chunk.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="chunk">Semantic chunk.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.CreateDataRepository(View.Sdk.DataRepository,System.Threading.CancellationToken)">
-            <summary>
-            Create a data repository.
-            </summary>
-            <param name="repo">Data repository.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ReadGraph(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read graph metadata.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph metadata.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ReadTenant(View.Sdk.TenantMetadata,System.Threading.CancellationToken)">
-            <summary>
-            Read a tenant graph node.
-            </summary>
-            <param name="tenant">Tenant.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ReadStoragePool(View.Sdk.StoragePool,System.Threading.CancellationToken)">
-            <summary>
-            Read a storage pool graph node.
-            </summary>
-            <param name="pool">Storage pool.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ReadBucket(View.Sdk.BucketMetadata,System.Threading.CancellationToken)">
-            <summary>
-            Read a bucket graph node.
-            </summary>
-            <param name="bucket">Bucket.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ReadObjectMetadata(View.Sdk.ObjectMetadata,System.Threading.CancellationToken)">
-            <summary>
-            Read an object node.
-            </summary>
-            <param name="obj">Object.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ReadCollection(View.Sdk.Collection,System.Threading.CancellationToken)">
-            <summary>
-            Read a collection node.
-            </summary>
-            <param name="coll">Collection.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ReadSourceDocument(View.Sdk.SourceDocument,System.Threading.CancellationToken)">
-            <summary>
-            Read a source document node.
-            </summary>
-            <param name="doc">Source document.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ReadSemanticCell(System.Guid,View.Sdk.Semantic.SemanticCell,System.Threading.CancellationToken)">
-            <summary>
-            Read a semantic cell node.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="cell">Semantic cell.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ReadSemanticChunk(System.Guid,View.Sdk.Semantic.SemanticChunk,System.Threading.CancellationToken)">
-            <summary>
-            Read a semantic chunk node.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="chunk">Semantic chunk.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ReadDataRepository(View.Sdk.DataRepository,System.Threading.CancellationToken)">
-            <summary>
-            Read a data repository node.
-            </summary>
-            <param name="repo">Data repository.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ReadTenant(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read a tenant graph node.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ReadStoragePool(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read a storage pool graph node.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ReadBucket(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read a bucket graph node.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ReadObjectMetadata(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read an object node.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ReadCollection(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read a collection node.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ReadSourceDocument(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read a source document node.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ReadSemanticCell(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read a semantic cell node.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ReadSemanticChunk(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read a semantic chunk node.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ReadDataRepository(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read a data repository node.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ReadStoragePools(System.Guid,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
-            <summary>
-            Read storage pools.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="filter">Filter.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>List of graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ReadBuckets(System.Guid,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
-            <summary>
-            Read buckets.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="filter">Filter.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>List of graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ReadObjectMetadata(System.Guid,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
-            <summary>
-            Read objects.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="filter">Filter.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>List of graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ReadCollections(System.Guid,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
-            <summary>
-            Read collections.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="filter">Filter.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>List of graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ReadSourceDocuments(System.Guid,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
-            <summary>
-            Read source documents.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="filter">Filter.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>List of graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ReadSemanticCells(System.Guid,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
-            <summary>
-            Read semantic cells.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="filter">Filter.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>List of graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ReadSemanticChunks(System.Guid,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
-            <summary>
-            Read semantic chunks.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="filter">Filter.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>List of graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.ReadDataRepositories(System.Guid,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
-            <summary>
-            Read data repositories.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="filter">Filter.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>List of graph node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.DeleteStoragePool(View.Sdk.StoragePool,System.Threading.CancellationToken)">
-            <summary>
-            Delete a storage pool.
-            </summary>
-            <param name="pool">Storage pool.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.DeleteBucket(View.Sdk.BucketMetadata,System.Threading.CancellationToken)">
-            <summary>
-            Delete a bucket.
-            </summary>
-            <param name="bucket">Bucket.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.DeleteObjectMetadata(View.Sdk.ObjectMetadata,System.Threading.CancellationToken)">
-            <summary>
-            Delete an object.
-            </summary>
-            <param name="obj">Object.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.DeleteCollection(View.Sdk.Collection,System.Threading.CancellationToken)">
-            <summary>
-            Delete a collection.
-            </summary>
-            <param name="coll">Collection.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.DeleteSourceDocument(View.Sdk.SourceDocument,System.Threading.CancellationToken)">
-            <summary>
-            Delete a source document.
-            </summary>
-            <param name="doc">Source document.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.DeleteSemanticCell(System.Guid,View.Sdk.Semantic.SemanticCell,System.Threading.CancellationToken)">
-            <summary>
-            Delete a semantic cell.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="cell">Semantic cell.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.DeleteSemanticChunk(System.Guid,View.Sdk.Semantic.SemanticChunk,System.Threading.CancellationToken)">
-            <summary>
-            Delete a semantic chunk.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="chunk">Semantic chunk.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.DeleteDataRepository(View.Sdk.DataRepository,System.Threading.CancellationToken)">
-            <summary>
-            Delete a data repository.
-            </summary>
-            <param name="repo">Data repository.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.DeleteStoragePool(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Delete a storage pool.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.DeleteBucket(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Delete a bucket.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.DeleteObjectMetadata(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Delete an object.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.DeleteCollection(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Delete a collection.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.DeleteSourceDocument(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Delete a source document.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.DeleteSemanticCell(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Delete a semantic cell.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.DeleteSemanticChunk(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Delete a semantic chunk.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.DeleteDataRepository(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Delete a data repository.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.GetEdgesTo(View.Sdk.Graph.GraphNode,System.Threading.CancellationToken)">
-            <summary>
-            Get edges to a given graph node.
-            </summary>
-            <param name="node">Graph node.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>List of graph edges.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.GraphSdk.GetEdgesFrom(View.Sdk.Graph.GraphNode,System.Threading.CancellationToken)">
-            <summary>
-            Get edges from a given graph node.
-            </summary>
-            <param name="node">Graph node.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>List of graph edges.</returns>
-        </member>
-        <member name="T:View.Sdk.Graph.IGraphDriver">
-            <summary>
-            Graph database driver interface.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Graph.IGraphDriver.ValidateConnectivity(System.Threading.CancellationToken)">
-            <summary>
-            Validate connectivity to the repository.
-            </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>True if connected.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.IGraphDriver.GraphExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Check if a graph exists.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.IGraphDriver.CreateGraph(System.Guid,System.Guid,System.String,System.Threading.CancellationToken)">
-            <summary>
-            Create a graph.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="name">Name.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.IGraphDriver.ReadGraph(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read a graph.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.IGraphDriver.ReadGraphs(System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read a graph.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.IGraphDriver.UpdateGraph(System.Guid,View.Sdk.Graph.Graph,System.Threading.CancellationToken)">
-            <summary>
-            Update a graph.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graph">Graph.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.IGraphDriver.DeleteGraph(System.Guid,System.Guid,System.Boolean,System.Threading.CancellationToken)">
-            <summary>
-            Delete a graph.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="force">Force deletion of subordinate edges and nodes.</param>
-            <param name="token">Cancellation token.</param>
-        </member>
-        <member name="M:View.Sdk.Graph.IGraphDriver.NodeExists(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Check if a node exists.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.IGraphDriver.CreateNode(System.Guid,View.Sdk.Graph.GraphNode,System.Threading.CancellationToken)">
-            <summary>
-            Create a node.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="node">Node.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.IGraphDriver.ReadNode(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read a node.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="nodeGuid">Node GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Node.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.IGraphDriver.ReadNodes(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read nodes.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Nodes.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.IGraphDriver.SearchNodes(System.Guid,System.Guid,ExpressionTree.Expr,System.Threading.CancellationToken)">
-            <summary>
-            Read nodes.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="expr">Expression.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Nodes.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.IGraphDriver.DeleteNode(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Delete a node.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="nodeGuid">Node GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.IGraphDriver.EdgeExists(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Check if an edge exists.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.IGraphDriver.CreateEdge(System.Guid,View.Sdk.Graph.GraphEdge,System.Threading.CancellationToken)">
-            <summary>
-            Create an edge.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="edge">Edge.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Edge.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.IGraphDriver.ReadEdge(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read an edge.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="edgeGuid">Edge GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Edge.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.IGraphDriver.ReadEdges(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read edges.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Edges.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.IGraphDriver.DeleteEdge(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Delete an edge.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="edgeGuid">Edge GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.IGraphDriver.EdgesFromNode(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Retrieve edges from node.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="nodeGuid">Node GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Edges.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.IGraphDriver.EdgesToNode(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Retrieve edges to node.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="nodeGuid">Node GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Edges.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.IGraphDriver.EdgesBetweenNodes(System.Guid,System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Retrieve edges to node.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="fromNodeGuid">From node GUID.</param>
-            <param name="toNodeGuid">To node GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Edges.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.IGraphDriver.AllNodeEdges(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Retrieve all edges associated with a node.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="nodeGuid">Node GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Edges.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.IGraphDriver.GetNodeParents(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Retrieve parent nodes for a given node, i.e. those nodes that have edges to the given node.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="nodeGuid">Node GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Nodes.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.IGraphDriver.GetNodeChildren(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Retrieve child nodes for a given node, i.e. those nodes to which the given node has edges.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="nodeGuid">Node GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Nodes.</returns>
-        </member>
-        <member name="M:View.Sdk.Graph.IGraphDriver.GetNodeNeighbors(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Retrieve neighboring nodes, i.e. those nodes to which the given node has an edge either to or from.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="nodeGuid">Node GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Nodes.</returns>
-        </member>
-        <member name="T:View.Sdk.Graph.LiteGraphDriver">
-            <summary>
-            LiteGraph driver.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.LiteGraphDriver.Endpoint">
-            <summary>
-            Endpoint.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Graph.LiteGraphDriver.TimeoutMs">
-            <summary>
-            Timeout, in milliseconds.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Graph.LiteGraphDriver.#ctor(System.String,System.String)">
-            <summary>
-            Instantiate.
-            </summary>
-            <param name="endpoint">Endpoint.</param>
-            <param name="accessKey">Access key.</param>
-        </member>
-        <member name="M:View.Sdk.Graph.LiteGraphDriver.Dispose">
-            <summary>
-            Dispose.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Graph.LiteGraphDriver.ValidateConnectivity(System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Graph.LiteGraphDriver.GraphExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Graph.LiteGraphDriver.CreateGraph(System.Guid,System.Guid,System.String,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Graph.LiteGraphDriver.ReadGraph(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Graph.LiteGraphDriver.ReadGraphs(System.Guid,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Graph.LiteGraphDriver.UpdateGraph(System.Guid,View.Sdk.Graph.Graph,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Graph.LiteGraphDriver.DeleteGraph(System.Guid,System.Guid,System.Boolean,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Graph.LiteGraphDriver.NodeExists(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Graph.LiteGraphDriver.CreateNode(System.Guid,View.Sdk.Graph.GraphNode,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Graph.LiteGraphDriver.ReadNode(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Graph.LiteGraphDriver.ReadNodes(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Graph.LiteGraphDriver.SearchNodes(System.Guid,System.Guid,ExpressionTree.Expr,System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="M:View.Sdk.Graph.LiteGraphDriver.DeleteNode(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Graph.LiteGraphDriver.EdgeExists(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Graph.LiteGraphDriver.CreateEdge(System.Guid,View.Sdk.Graph.GraphEdge,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Graph.LiteGraphDriver.ReadEdge(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Graph.LiteGraphDriver.ReadEdges(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Graph.LiteGraphDriver.DeleteEdge(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Graph.LiteGraphDriver.EdgesFromNode(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Graph.LiteGraphDriver.EdgesToNode(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Graph.LiteGraphDriver.EdgesBetweenNodes(System.Guid,System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Graph.LiteGraphDriver.AllNodeEdges(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Graph.LiteGraphDriver.GetNodeParents(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Graph.LiteGraphDriver.GetNodeChildren(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Graph.LiteGraphDriver.GetNodeNeighbors(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
         <member name="T:View.Sdk.Helpers.DataTableHelper">
             <summary>
             Data table helper.
@@ -6167,6 +4800,14 @@
             </summary>
             <param name="obj">Object.</param>
             <returns>True if dictionary.</returns>
+        </member>
+        <member name="M:View.Sdk.Helpers.DataTableHelper.DataTableToListGuid(System.Data.DataTable,System.String)">
+            <summary>
+            Extract a list of GUIDs from a table by column name.
+            </summary>
+            <param name="table">Data table.</param>
+            <param name="columnName">Column name.</param>
+            <returns>List of GUIDs.</returns>
         </member>
         <member name="T:View.Sdk.Helpers.DirectoryHelper">
             <summary>
@@ -7404,37 +6045,37 @@
             Instantiate.
             </summary>
         </member>
-        <member name="T:View.Sdk.Processor.CleanupResponse">
+        <member name="T:View.Sdk.Processor.CleanupResult">
             <summary>
-            Cleanup response.
+            Cleanup result.
             </summary>
         </member>
-        <member name="P:View.Sdk.Processor.CleanupResponse.GUID">
+        <member name="P:View.Sdk.Processor.CleanupResult.GUID">
             <summary>
             Processor request GUID.
             </summary>
         </member>
-        <member name="P:View.Sdk.Processor.CleanupResponse.Success">
+        <member name="P:View.Sdk.Processor.CleanupResult.Success">
             <summary>
             Boolean indicating success.
             </summary>
         </member>
-        <member name="P:View.Sdk.Processor.CleanupResponse.Async">
+        <member name="P:View.Sdk.Processor.CleanupResult.Async">
             <summary>
             Boolean indicating whether or not the task was executed asynchronously.
             </summary>
         </member>
-        <member name="P:View.Sdk.Processor.CleanupResponse.Timestamp">
+        <member name="P:View.Sdk.Processor.CleanupResult.Timestamp">
             <summary>
             Timestamps.
             </summary>
         </member>
-        <member name="P:View.Sdk.Processor.CleanupResponse.Error">
+        <member name="P:View.Sdk.Processor.CleanupResult.Error">
             <summary>
             Error response, if any.
             </summary>
         </member>
-        <member name="M:View.Sdk.Processor.CleanupResponse.#ctor">
+        <member name="M:View.Sdk.Processor.CleanupResult.#ctor">
             <summary>
             Instantiate.
             </summary>
@@ -7589,59 +6230,59 @@
             Instantiate.
             </summary>
         </member>
-        <member name="T:View.Sdk.Processor.ProcessorResponse">
+        <member name="T:View.Sdk.Processor.ProcessorResult">
             <summary>
-            Processor response.
+            Processor result.
             </summary>
         </member>
-        <member name="P:View.Sdk.Processor.ProcessorResponse.GUID">
+        <member name="P:View.Sdk.Processor.ProcessorResult.GUID">
             <summary>
             Processor request GUID.
             </summary>
         </member>
-        <member name="P:View.Sdk.Processor.ProcessorResponse.Success">
+        <member name="P:View.Sdk.Processor.ProcessorResult.Success">
             <summary>
             Boolean indicating success.
             </summary>
         </member>
-        <member name="P:View.Sdk.Processor.ProcessorResponse.Async">
+        <member name="P:View.Sdk.Processor.ProcessorResult.Async">
             <summary>
             Boolean indicating whether or not the task was executed asynchronously.
             </summary>
         </member>
-        <member name="P:View.Sdk.Processor.ProcessorResponse.Timestamp">
+        <member name="P:View.Sdk.Processor.ProcessorResult.Timestamp">
             <summary>
             Timestamps.
             </summary>
         </member>
-        <member name="P:View.Sdk.Processor.ProcessorResponse.Error">
+        <member name="P:View.Sdk.Processor.ProcessorResult.Error">
             <summary>
             Error response, if any.
             </summary>
         </member>
-        <member name="P:View.Sdk.Processor.ProcessorResponse.Type">
+        <member name="P:View.Sdk.Processor.ProcessorResult.Type">
             <summary>
             Type result.
             </summary>
         </member>
-        <member name="P:View.Sdk.Processor.ProcessorResponse.Udr">
+        <member name="P:View.Sdk.Processor.ProcessorResult.Udr">
             <summary>
             UDR document.
             </summary>
         </member>
-        <member name="P:View.Sdk.Processor.ProcessorResponse.Source">
+        <member name="P:View.Sdk.Processor.ProcessorResult.Source">
             <summary>
             Source document in data catalog.
             </summary>
         </member>
-        <member name="P:View.Sdk.Processor.ProcessorResponse.Vector">
+        <member name="P:View.Sdk.Processor.ProcessorResult.Vector">
             <summary>
             Embeddings document.
             </summary>
         </member>
-        <member name="M:View.Sdk.Processor.ProcessorResponse.#ctor">
+        <member name="M:View.Sdk.Processor.ProcessorResult.#ctor">
             <summary>
-            Instantiate.
+            Processor result.
             </summary>
         </member>
         <member name="T:View.Sdk.Processor.ProcessorTask">
@@ -7764,39 +6405,39 @@
             Instantiate.
             </summary>
         </member>
-        <member name="T:View.Sdk.Processor.ProcessorTaskResponse">
+        <member name="T:View.Sdk.Processor.ProcessorTaskResult">
             <summary>
-            Processor task response.
+            Processor task result.
             </summary>
         </member>
-        <member name="P:View.Sdk.Processor.ProcessorTaskResponse.GUID">
+        <member name="P:View.Sdk.Processor.ProcessorTaskResult.GUID">
             <summary>
             GUID.
             </summary>
         </member>
-        <member name="P:View.Sdk.Processor.ProcessorTaskResponse.Success">
+        <member name="P:View.Sdk.Processor.ProcessorTaskResult.Success">
             <summary>
             Boolean indicating success.
             </summary>
         </member>
-        <member name="P:View.Sdk.Processor.ProcessorTaskResponse.Error">
+        <member name="P:View.Sdk.Processor.ProcessorTaskResult.Error">
             <summary>
             Error, if any.
             </summary>
         </member>
-        <member name="P:View.Sdk.Processor.ProcessorTaskResponse.InputFile">
+        <member name="P:View.Sdk.Processor.ProcessorTaskResult.InputFile">
             <summary>
             Input file handle.
             </summary>
         </member>
-        <member name="P:View.Sdk.Processor.ProcessorTaskResponse.OutputFile">
+        <member name="P:View.Sdk.Processor.ProcessorTaskResult.OutputFile">
             <summary>
             Output file handle.
             </summary>
         </member>
-        <member name="M:View.Sdk.Processor.ProcessorTaskResponse.#ctor">
+        <member name="M:View.Sdk.Processor.ProcessorTaskResult.#ctor">
             <summary>
-            Processor task response.
+            Processor task result.
             </summary>
         </member>
         <member name="T:View.Sdk.Processor.ProcessorTaskTypeEnum">
@@ -8046,44 +6687,44 @@
             Instantiate.
             </summary>
         </member>
-        <member name="T:View.Sdk.LexiEmbeddingsResponse">
+        <member name="T:View.Sdk.LexiEmbeddingsResult">
             <summary>
-            Lexi embeddings response.
+            Lexi embeddings result.
             </summary>
         </member>
-        <member name="P:View.Sdk.LexiEmbeddingsResponse.GUID">
+        <member name="P:View.Sdk.LexiEmbeddingsResult.GUID">
             <summary>
             Processor request GUID.
             </summary>
         </member>
-        <member name="P:View.Sdk.LexiEmbeddingsResponse.Success">
+        <member name="P:View.Sdk.LexiEmbeddingsResult.Success">
             <summary>
             Boolean indicating success.
             </summary>
         </member>
-        <member name="P:View.Sdk.LexiEmbeddingsResponse.Async">
+        <member name="P:View.Sdk.LexiEmbeddingsResult.Async">
             <summary>
             Boolean indicating whether or not the task was executed asynchronously.
             </summary>
         </member>
-        <member name="P:View.Sdk.LexiEmbeddingsResponse.Timestamp">
+        <member name="P:View.Sdk.LexiEmbeddingsResult.Timestamp">
             <summary>
             Timestamps.
             </summary>
         </member>
-        <member name="P:View.Sdk.LexiEmbeddingsResponse.Error">
+        <member name="P:View.Sdk.LexiEmbeddingsResult.Error">
             <summary>
             Error response, if any.
             </summary>
         </member>
-        <member name="P:View.Sdk.LexiEmbeddingsResponse.Vector">
+        <member name="P:View.Sdk.LexiEmbeddingsResult.Vector">
             <summary>
             Embeddings documents.
             </summary>
         </member>
-        <member name="M:View.Sdk.LexiEmbeddingsResponse.#ctor">
+        <member name="M:View.Sdk.LexiEmbeddingsResult.#ctor">
             <summary>
-            Instantiate.
+            Lexi embeddings result.
             </summary>
         </member>
         <member name="T:View.Sdk.QueryFilter">
@@ -8767,39 +7408,39 @@
             Instantiate.
             </summary>
         </member>
-        <member name="T:View.Sdk.Semantic.SemanticCellResponse">
+        <member name="T:View.Sdk.Semantic.SemanticCellResult">
             <summary>
-            Semantic cell response.
+            Semantic cell result.
             </summary>
         </member>
-        <member name="P:View.Sdk.Semantic.SemanticCellResponse.Success">
+        <member name="P:View.Sdk.Semantic.SemanticCellResult.Success">
             <summary>
             Boolean indicating success.
             </summary>
         </member>
-        <member name="P:View.Sdk.Semantic.SemanticCellResponse.Timestamp">
+        <member name="P:View.Sdk.Semantic.SemanticCellResult.Timestamp">
             <summary>
             Timestamps.
             </summary>
         </member>
-        <member name="P:View.Sdk.Semantic.SemanticCellResponse.Error">
+        <member name="P:View.Sdk.Semantic.SemanticCellResult.Error">
             <summary>
             Error response, if any.
             </summary>
         </member>
-        <member name="P:View.Sdk.Semantic.SemanticCellResponse.SemanticCells">
+        <member name="P:View.Sdk.Semantic.SemanticCellResult.SemanticCells">
             <summary>
             Semantic cells.
             </summary>
         </member>
-        <member name="P:View.Sdk.Semantic.SemanticCellResponse.Data">
+        <member name="P:View.Sdk.Semantic.SemanticCellResult.Data">
             <summary>
             Additional data, if requested.
             </summary>
         </member>
-        <member name="M:View.Sdk.Semantic.SemanticCellResponse.#ctor">
+        <member name="M:View.Sdk.Semantic.SemanticCellResult.#ctor">
             <summary>
-            Instantiate.
+            Semantic cell result.
             </summary>
         </member>
         <member name="T:View.Sdk.Semantic.SemanticCellTypeEnum">
@@ -10697,6 +9338,31 @@
         <member name="P:View.Sdk.Vector.VectorRepositoryStatistics.ChunkCount">
             <summary>
             Chunk count.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorRepositoryStatistics.CollectionGUIDs">
+            <summary>
+            Collection GUIDs referenced in this repository.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorRepositoryStatistics.DataRepositoryGUIDs">
+            <summary>
+            Data repository GUIDs referenced in this repository.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorRepositoryStatistics.GraphRepositoryGUIDs">
+            <summary>
+            Graph repository GUIDs referenced in this repository.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorRepositoryStatistics.BucketGUIDs">
+            <summary>
+            Bucket GUIDs referenced in this repository.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorRepositoryStatistics.Models">
+            <summary>
+            List of models referenced in this vector repository.
             </summary>
         </member>
         <member name="M:View.Sdk.Vector.VectorRepositoryStatistics.#ctor">

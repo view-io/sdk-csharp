@@ -13,7 +13,6 @@
     using View.Sdk.Semantic;
     using System.Linq;
     using System.Reflection.Metadata;
-    using LiteGraph.Sdk;
     using View.Sdk.Embeddings;
 
     /// <summary>

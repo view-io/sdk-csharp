@@ -62,7 +62,7 @@
         /// </summary>
         /// <param name="req">Embeddings request.</param>
         /// <returns>Ollama embeddings request.</returns>
-        public static OllamaEmbeddingsRequest FromEmbeddingsRequest(EmbeddingsRequest req)
+        public static OllamaEmbeddingsRequest FromEmbeddingsRequest(GenerateEmbeddingsRequest req)
         {
             if (req == null) throw new ArgumentNullException(nameof(req));
 

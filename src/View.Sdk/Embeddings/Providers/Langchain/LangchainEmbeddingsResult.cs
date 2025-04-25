@@ -90,11 +90,11 @@
         /// <param name="statusCode">HTTP status code.</param>
         /// <param name="error">API error response.</param>
         /// <returns>Embeddings result.</returns>
-        public EmbeddingsResult ToEmbeddingsResult(EmbeddingsRequest req, bool success = true, int statusCode = 200, ApiErrorResponse error = null)
+        public GenerateEmbeddingsResult ToEmbeddingsResult(GenerateEmbeddingsRequest req, bool success = true, int statusCode = 200, ApiErrorResponse error = null)
         {
             if (req == null) throw new ArgumentNullException(nameof(req));
 
-            EmbeddingsResult result = new EmbeddingsResult
+            GenerateEmbeddingsResult result = new GenerateEmbeddingsResult
             {
                 Success = success,
                 StatusCode = statusCode,

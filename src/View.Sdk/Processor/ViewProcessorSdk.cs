@@ -50,7 +50,7 @@
         /// <param name="obj">Object metadata.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Processor response.</returns>
-        public async Task<ProcessorResponse> Process(
+        public async Task<ProcessorResult> Process(
             Guid requestGuid,
             Guid mdRuleGuid,
             Guid embedRuleGuid,
@@ -94,7 +94,7 @@
                                 {
                                     try
                                     {
-                                        ProcessorResponse procResp = Serializer.DeserializeJson<ProcessorResponse>(resp.DataAsString);
+                                        ProcessorResult procResp = Serializer.DeserializeJson<ProcessorResult>(resp.DataAsString);
                                         return procResp;
                                     }
                                     catch (Exception)
@@ -116,7 +116,7 @@
                                 {
                                     try
                                     {
-                                        ProcessorResponse procResp = Serializer.DeserializeJson<ProcessorResponse>(resp.DataAsString);
+                                        ProcessorResult procResp = Serializer.DeserializeJson<ProcessorResult>(resp.DataAsString);
                                         return procResp;
                                     }
                                     catch (Exception)
@@ -142,7 +142,7 @@
             catch (HttpRequestException hre)
             {
                 Log(SeverityEnum.Warn, "exception while interacting with " + url + ": " + hre.Message);
-                return new ProcessorResponse
+                return new ProcessorResult
                 {
                     Success = false,
                     Error = new ApiErrorResponse(ApiErrorEnum.InternalError, null, null)

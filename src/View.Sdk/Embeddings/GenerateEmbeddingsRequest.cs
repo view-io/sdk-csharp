@@ -2,54 +2,45 @@
 {
     using System;
     using System.Collections.Generic;
+    using Timestamps;
     using View.Sdk.Semantic;
 
     /// <summary>
-    /// Embeddings result.
+    /// Generate embeddings request.
     /// </summary>
-    public class EmbeddingsResult
+    public class GenerateEmbeddingsRequest
     {
         #region Public-Members
 
         /// <summary>
-        /// Boolean indicating whether or not the operation was successful.
+        /// Embeddings rule.
         /// </summary>
-        public bool Success { get; set; } = false;
-
-        /// <summary>
-        /// HTTP status code.
-        /// </summary>
-        public int StatusCode
+        public EmbeddingsRule EmbeddingsRule
         {
             get
             {
-                return _StatusCode;
+                return _EmbeddingsRule;
             }
             set
             {
-                if (value < 0 || value > 599) throw new ArgumentOutOfRangeException(nameof(StatusCode));
-                _StatusCode = value;
+                if (value == null) throw new ArgumentNullException(nameof(EmbeddingsRule));
+                _EmbeddingsRule = value;
             }
         }
 
         /// <summary>
-        /// Error response.
+        /// Model.
         /// </summary>
-        public ApiErrorResponse Error { get; set; } = null;
-
-        /// <summary>
-        /// The number of batches processed.
-        /// </summary>
-        public int BatchCount
+        public string Model
         {
             get
             {
-                return _BatchCount;
+                return _Model;
             }
             set
             {
-                if (_BatchCount < 0) throw new ArgumentOutOfRangeException(nameof(BatchCount));
-                _BatchCount = value;
+                if (String.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(Model));
+                _Model = value;
             }
         }
 
@@ -57,7 +48,7 @@
         /// Semantic cells.
         /// </summary>
         public List<SemanticCell> SemanticCells
-        {
+        { 
             get
             {
                 return _SemanticCells;
@@ -70,38 +61,43 @@
         }
 
         /// <summary>
-        /// Content embeddings.
+        /// Contents.
         /// </summary>
-        public List<ContentEmbedding> ContentEmbeddings
+        public List<string> Contents
         {
             get
             {
-                return _ContentEmbeddings;
+                return _Contents;
             }
             set
             {
-                if (value == null) value = new List<ContentEmbedding>();
-                _ContentEmbeddings = value;
+                if (value == null) value = new List<string>();
+                _Contents = value;
             }
         }
+
+        /// <summary>
+        /// Embeddings.
+        /// </summary>
+        public List<List<float>> Embeddings { get; set; } = null;
 
         #endregion
 
         #region Private-Members
 
-        private int _StatusCode = 200;
-        private int _BatchCount = 0;
+        private EmbeddingsRule _EmbeddingsRule = null;
+        private string _Model = null;
         private List<SemanticCell> _SemanticCells = new List<SemanticCell>();
-        private List<ContentEmbedding> _ContentEmbeddings = new List<ContentEmbedding>();
+        private List<string> _Contents = new List<string>();
 
         #endregion
 
         #region Constructors-and-Factories
 
         /// <summary>
-        /// Instantiate.
+        /// Generate embeddings request.
         /// </summary>
-        public EmbeddingsResult()
+        public GenerateEmbeddingsRequest()
         {
         }
 

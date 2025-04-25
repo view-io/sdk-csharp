@@ -9,9 +9,9 @@
     using View.Sdk.Embeddings;
 
     /// <summary>
-    /// Processor task response.
+    /// Processor task result.
     /// </summary>
-    public class ProcessorTaskResponse
+    public class ProcessorTaskResult
     {
         #region Public-Members
 
@@ -49,9 +49,9 @@
         #region Constructors-and-Factories
 
         /// <summary>
-        /// Processor task response.
+        /// Processor task result.
         /// </summary>
-        public ProcessorTaskResponse()
+        public ProcessorTaskResult()
         {
 
         }

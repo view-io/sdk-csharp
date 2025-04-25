@@ -1,31 +1,23 @@
-﻿namespace View.Sdk
+﻿namespace View.Sdk.Semantic
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
     using Timestamps;
-    using View.Sdk.Embeddings;
 
     /// <summary>
-    /// Lexi embeddings response.
+    /// Semantic cell result.
     /// </summary>
-    public class LexiEmbeddingsResponse
+    public class SemanticCellResult
     {
         #region Public-Members
-
-        /// <summary>
-        /// Processor request GUID.
-        /// </summary>
-        public Guid GUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Boolean indicating success.
         /// </summary>
         public bool Success { get; set; } = true;
-
-        /// <summary>
-        /// Boolean indicating whether or not the task was executed asynchronously.
-        /// </summary>
-        public bool Async { get; set; } = false;
 
         /// <summary>
         /// Timestamps.
@@ -38,35 +30,27 @@
         public ApiErrorResponse Error { get; set; } = null;
 
         /// <summary>
-        /// Embeddings documents.
+        /// Semantic cells.
         /// </summary>
-        public List<EmbeddingsDocument> Vector
-        {
-            get
-            {
-                return _Vectors;
-            }
-            set
-            {
-                if (value == null) value = new List<EmbeddingsDocument>();
-                _Vectors = value;
-            }
-        }
+        public List<SemanticCell> SemanticCells { get; set; } = null;
+
+        /// <summary>
+        /// Additional data, if requested.
+        /// </summary>
+        public byte[] Data { get; set; } = null;
 
         #endregion
 
         #region Private-Members
-
-        private List<EmbeddingsDocument> _Vectors = new List<EmbeddingsDocument>();
 
         #endregion
 
         #region Constructors-and-Factories
 
         /// <summary>
-        /// Instantiate.
+        /// Semantic cell result.
         /// </summary>
-        public LexiEmbeddingsResponse()
+        public SemanticCellResult()
         {
 
         }

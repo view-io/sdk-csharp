@@ -6,11 +6,12 @@
     using System.Text;
     using System.Threading.Tasks;
     using Timestamps;
+    using View.Sdk.Embeddings;
 
     /// <summary>
-    /// Cleanup response.
+    /// Processor result.
     /// </summary>
-    public class CleanupResponse
+    public class ProcessorResult
     {
         #region Public-Members
 
@@ -39,6 +40,26 @@
         /// </summary>
         public ApiErrorResponse Error { get; set; } = null;
 
+        /// <summary>
+        /// Type result.
+        /// </summary>
+        public TypeResult Type { get; set; } = null;
+
+        /// <summary>
+        /// UDR document.
+        /// </summary>
+        public UdrDocument Udr { get; set; } = null;
+
+        /// <summary>
+        /// Source document in data catalog.
+        /// </summary>
+        public SourceDocument Source { get; set; } = null;
+
+        /// <summary>
+        /// Embeddings document.
+        /// </summary>
+        public EmbeddingsDocument Vector { get; set; } = null;
+
         #endregion
 
         #region Private-Members
@@ -48,9 +69,9 @@
         #region Constructors-and-Factories
 
         /// <summary>
-        /// Instantiate.
+        /// Processor result.
         /// </summary>
-        public CleanupResponse()
+        public ProcessorResult()
         {
 
         }

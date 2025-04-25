@@ -181,10 +181,10 @@
             if (!File.Exists(file)) return;
 
             List<SemanticCell> cells = _Serializer.DeserializeJson<List<SemanticCell>>(File.ReadAllText(file));
-            EmbeddingsResult result;
+            GenerateEmbeddingsResult result;
             double? totalMs = 0;
 
-            EmbeddingsRequest req = new EmbeddingsRequest
+            GenerateEmbeddingsRequest req = new GenerateEmbeddingsRequest
             {
                 EmbeddingsRule = new EmbeddingsRule
                 {
@@ -229,14 +229,14 @@
 
             if (contents.Count > 0)
             {
-                EmbeddingsResult result;
+                GenerateEmbeddingsResult result;
                 double? totalMs = 0;
 
                 using (Timestamp ts = new Timestamp())
                 {
                     ts.Start = DateTime.UtcNow;
 
-                    result = await _Sdk.GenerateEmbeddings(new EmbeddingsRequest
+                    result = await _Sdk.GenerateEmbeddings(new GenerateEmbeddingsRequest
                     {
                         EmbeddingsRule = new EmbeddingsRule
                         {

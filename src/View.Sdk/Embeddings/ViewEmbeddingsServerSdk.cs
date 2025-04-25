@@ -75,8 +75,8 @@
         /// <param name="embedRequest">Embeddings request.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Embeddings response.</returns>
-        public async Task<EmbeddingsResult> GenerateEmbeddings(
-            EmbeddingsRequest embedRequest, 
+        public async Task<GenerateEmbeddingsResult> GenerateEmbeddings(
+            GenerateEmbeddingsRequest embedRequest, 
             CancellationToken token = default)
         {
             if (embedRequest == null) throw new ArgumentNullException(nameof(embedRequest));
@@ -84,7 +84,7 @@
             if (String.IsNullOrEmpty(embedRequest.EmbeddingsRule.EmbeddingsGeneratorUrl)) throw new ArgumentNullException(nameof(EmbeddingsRule.EmbeddingsGeneratorUrl));
 
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/embeddings";
-            return await Post<EmbeddingsRequest, EmbeddingsResult>(url, embedRequest, token).ConfigureAwait(false);
+            return await Post<GenerateEmbeddingsRequest, GenerateEmbeddingsResult>(url, embedRequest, token).ConfigureAwait(false);
         }
 
         #endregion

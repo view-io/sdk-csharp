@@ -1,47 +1,43 @@
-﻿namespace View.Sdk.Graph
+﻿namespace View.Sdk.Processor
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using Timestamps;
 
     /// <summary>
-    /// Graph node.
+    /// Cleanup result.
     /// </summary>
-    public class GraphNode
+    public class CleanupResult
     {
         #region Public-Members
 
         /// <summary>
-        /// Tenant GUID.
-        /// </summary>
-        public Guid TenantGUID { get; set; } = Guid.NewGuid();
-
-        /// <summary>
-        /// Globally-unique identifier.
+        /// Processor request GUID.
         /// </summary>
         public Guid GUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
-        /// Globally-unique identifier for the graph.
+        /// Boolean indicating success.
         /// </summary>
-        public Guid GraphGUID { get; set; } = Guid.NewGuid();
+        public bool Success { get; set; } = true;
 
         /// <summary>
-        /// Name.
+        /// Boolean indicating whether or not the task was executed asynchronously.
         /// </summary>
-        public string Name { get; set; } = null;
+        public bool Async { get; set; } = false;
 
         /// <summary>
-        /// Object data.
+        /// Timestamps.
         /// </summary>
-        public GraphData Data { get; set; } = null;
+        public Timestamp Timestamp { get; set; } = new Timestamp();
 
         /// <summary>
-        /// Timestamp from creation, in UTC.
+        /// Error response, if any.
         /// </summary>
-        public DateTime CreatedUtc { get; set; } = DateTime.Now.ToUniversalTime();
+        public ApiErrorResponse Error { get; set; } = null;
 
         #endregion
 
@@ -54,8 +50,9 @@
         /// <summary>
         /// Instantiate.
         /// </summary>
-        public GraphNode()
-        { 
+        public CleanupResult()
+        {
+
         }
 
         #endregion

@@ -90,8 +90,8 @@
         }
 
         /// <inheritdoc />
-        public override async Task<EmbeddingsResult> GenerateEmbeddings(
-            EmbeddingsRequest embedRequest,
+        public override async Task<GenerateEmbeddingsResult> GenerateEmbeddings(
+            GenerateEmbeddingsRequest embedRequest,
             int timeoutMs = 30000,
             CancellationToken token = default)
         {
@@ -115,7 +115,7 @@
                     if (resp == null)
                     {
                         Log(SeverityEnum.Warn, "no response from " + url);
-                        return new EmbeddingsResult
+                        return new GenerateEmbeddingsResult
                         {
                             Success = false,
                             StatusCode = resp.StatusCode,
@@ -137,7 +137,7 @@
                             else
                             {
                                 Log(SeverityEnum.Warn, "no data received from " + url);
-                                return new EmbeddingsResult
+                                return new GenerateEmbeddingsResult
                                 {
                                     Success = false,
                                     StatusCode = resp.StatusCode,
@@ -148,7 +148,7 @@
                         else
                         {
                             Log(SeverityEnum.Warn, "status " + resp.StatusCode + " received from " + url + ": " + Environment.NewLine + resp.DataAsString);
-                            return new EmbeddingsResult
+                            return new GenerateEmbeddingsResult
                             {
                                 Success = false,
                                 StatusCode = resp.StatusCode,

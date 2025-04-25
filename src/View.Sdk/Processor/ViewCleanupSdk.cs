@@ -57,7 +57,7 @@
         /// <param name="async">Boolean indicating if the task should be performed asynchronously.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Processor response.</returns>
-        public async Task<CleanupResponse> Process(
+        public async Task<CleanupResult> Process(
             Guid requestGuid,
             TenantMetadata tenant,
             Collection collection,
@@ -116,7 +116,7 @@
                                 {
                                     try
                                     {
-                                        CleanupResponse cleanupResp = Serializer.DeserializeJson<CleanupResponse>(resp.DataAsString);
+                                        CleanupResult cleanupResp = Serializer.DeserializeJson<CleanupResult>(resp.DataAsString);
                                         return cleanupResp;
                                     }
                                     catch (Exception)
@@ -138,7 +138,7 @@
                                 {
                                     try
                                     {
-                                        CleanupResponse cleanupResp = Serializer.DeserializeJson<CleanupResponse>(resp.DataAsString);
+                                        CleanupResult cleanupResp = Serializer.DeserializeJson<CleanupResult>(resp.DataAsString);
                                         return cleanupResp;
                                     }
                                     catch (Exception)
@@ -164,7 +164,7 @@
             catch (HttpRequestException hre)
             {
                 Log(SeverityEnum.Warn, "exception while interacting with " + url + ": " + hre.Message);
-                return new CleanupResponse
+                return new CleanupResult
                 {
                     Success = false,
                     Error = new ApiErrorResponse(ApiErrorEnum.InternalError, null, null)
@@ -186,7 +186,7 @@
         /// <param name="graphRepo">Graph repository.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Processor response.</returns>
-        public async Task<CleanupResponse> Process(
+        public async Task<CleanupResult> Process(
             Guid requestGuid,
             TenantMetadata tenant,
             Collection collection,
@@ -241,7 +241,7 @@
                                 {
                                     try
                                     {
-                                        CleanupResponse cleanupResp = Serializer.DeserializeJson<CleanupResponse>(resp.DataAsString);
+                                        CleanupResult cleanupResp = Serializer.DeserializeJson<CleanupResult>(resp.DataAsString);
                                         return cleanupResp;
                                     }
                                     catch (Exception)
@@ -263,7 +263,7 @@
                                 {
                                     try
                                     {
-                                        CleanupResponse cleanupResp = Serializer.DeserializeJson<CleanupResponse>(resp.DataAsString);
+                                        CleanupResult cleanupResp = Serializer.DeserializeJson<CleanupResult>(resp.DataAsString);
                                         return cleanupResp;
                                     }
                                     catch (Exception)
@@ -289,7 +289,7 @@
             catch (HttpRequestException hre)
             {
                 Log(SeverityEnum.Warn, "exception while interacting with " + url + ": " + hre.Message);
-                return new CleanupResponse
+                return new CleanupResult
                 {
                     Success = false,
                     Error = new ApiErrorResponse(ApiErrorEnum.InternalError, null, null)
