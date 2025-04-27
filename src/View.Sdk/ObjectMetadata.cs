@@ -7,6 +7,7 @@
     using System.Security.Cryptography;
     using System.Text.Json.Serialization;
     using System.Xml.Linq;
+    using View.Sdk.Serialization;
 
     /// <summary>
     /// Object metadata.
@@ -43,12 +44,12 @@
         /// <summary>
         /// Pool GUID.
         /// </summary>
-        public Guid PoolGUID { get; set; } = Guid.NewGuid();
+        public Guid? PoolGUID { get; set; } = null;
 
         /// <summary>
         /// Bucket GUID.
         /// </summary>
-        public Guid BucketGUID { get; set; } = Guid.NewGuid();
+        public Guid? BucketGUID { get; set; } = null;
 
         /// <summary>
         /// Bucket name.
@@ -74,6 +75,11 @@
         /// Data repository GUID.
         /// </summary>
         public Guid? DataRepositoryGUID { get; set; } = null;
+
+        /// <summary>
+        /// Crawl operation GUID.
+        /// </summary>
+        public Guid? CrawlOperationGUID { get; set; } = null;
 
         /// <summary>
         /// Graph repository GUID.
@@ -218,6 +224,23 @@
         public ObjectMetadata()
         {
 
+        }
+
+        /// <summary>
+        /// Create a copy.
+        /// </summary>
+        /// <param name="serializer">Serializer.</param>
+        /// <param name="obj">Object metadata.</param>
+        /// <param name="includeData">True to include data.</param>
+        /// <returns>Object metadata.</returns>
+        public static ObjectMetadata Copy(Serializer serializer, ObjectMetadata obj, bool includeData = true)
+        {
+            if (obj == null) return null;
+
+            ObjectMetadata ret = serializer.CopyObject<ObjectMetadata>(obj);
+            if (!includeData) ret.Data = null;
+
+            return ret;
         }
 
         #endregion

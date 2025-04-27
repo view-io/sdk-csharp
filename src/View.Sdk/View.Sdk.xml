@@ -5631,6 +5631,11 @@
             Data repository GUID.
             </summary>
         </member>
+        <member name="P:View.Sdk.ObjectMetadata.CrawlOperationGUID">
+            <summary>
+            Crawl operation GUID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.ObjectMetadata.GraphRepositoryGUID">
             <summary>
             Graph repository GUID.
@@ -5740,6 +5745,15 @@
             <summary>
             Instantiate.
             </summary>
+        </member>
+        <member name="M:View.Sdk.ObjectMetadata.Copy(View.Sdk.Serialization.Serializer,View.Sdk.ObjectMetadata,System.Boolean)">
+            <summary>
+            Create a copy.
+            </summary>
+            <param name="serializer">Serializer.</param>
+            <param name="obj">Object metadata.</param>
+            <param name="includeData">True to include data.</param>
+            <returns>Object metadata.</returns>
         </member>
         <member name="T:View.Sdk.ObjectStatistics">
             <summary>
@@ -6320,6 +6334,16 @@
             Data repository GUID.
             </summary>
         </member>
+        <member name="P:View.Sdk.Processor.ProcessorTask.CrawlPlanGUID">
+            <summary>
+            Crawl plan GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.ProcessorTask.CrawlOperationGUID">
+            <summary>
+            Crawl operation GUID.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Processor.ProcessorTask.CollectionGUID">
             <summary>
             Collection GUID.
@@ -6415,6 +6439,11 @@
             GUID.
             </summary>
         </member>
+        <member name="P:View.Sdk.Processor.ProcessorTaskResult.Type">
+            <summary>
+            Processor task type.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Processor.ProcessorTaskResult.Success">
             <summary>
             Boolean indicating success.
@@ -6443,6 +6472,11 @@
         <member name="T:View.Sdk.Processor.ProcessorTaskTypeEnum">
             <summary>
             Processor task type.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.Completion">
+            <summary>
+            Completion.
             </summary>
         </member>
         <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.EmbeddingsGeneration">

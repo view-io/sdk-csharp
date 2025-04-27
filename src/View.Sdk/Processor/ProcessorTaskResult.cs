@@ -21,6 +21,11 @@
         public Guid GUID { get; set; } = Guid.NewGuid();
 
         /// <summary>
+        /// Processor task type.
+        /// </summary>
+        public ProcessorTaskTypeEnum Type { get; set; } = ProcessorTaskTypeEnum.TypeDetection;
+
+        /// <summary>
         /// Boolean indicating success.
         /// </summary>
         public bool Success { get; set; } = true;

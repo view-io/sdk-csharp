@@ -14,6 +14,12 @@
     public enum ProcessorTaskTypeEnum
     {
         /// <summary>
+        /// Completion.
+        /// </summary>
+        [EnumMember(Value = "Completion")]
+        Completion,
+
+        /// <summary>
         /// EmbeddingsGeneration.
         /// </summary>
         [EnumMember(Value = "EmbeddingsGeneration")]

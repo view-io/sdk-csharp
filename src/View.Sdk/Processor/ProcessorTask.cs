@@ -57,6 +57,16 @@
         public Guid? DataRepositoryGUID { get; set; } = null;
 
         /// <summary>
+        /// Crawl plan GUID.
+        /// </summary>
+        public Guid? CrawlPlanGUID { get; set; } = null;
+
+        /// <summary>
+        /// Crawl operation GUID.
+        /// </summary>
+        public Guid? CrawlOperationGUID { get; set; } = null;
+
+        /// <summary>
         /// Collection GUID.
         /// </summary>
         public Guid? CollectionGUID { get; set; } = null;
