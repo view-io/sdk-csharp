@@ -74,6 +74,106 @@
         public string ProcessingAccessKey { get; set; } = "default";
 
         /// <summary>
+        /// Chunking server URL.
+        /// </summary>
+        public string ChunkingServerUrl { get; set; } = "http://nginx-chunker:8000/v1.0/tenants/00000000-0000-0000-0000-000000000000/chunking";
+
+        /// <summary>
+        /// Chunking server API key.
+        /// </summary>
+        public string ChunkingServerApiKey { get; set; } = "default";
+
+        /// <summary>
+        /// Tokenization model.
+        /// </summary>
+        public string TokenizationModel { get; set; } = "sentence-transformers/all-MiniLM-L6-v2";
+
+        /// <summary>
+        /// HuggingFace API key.
+        /// </summary>
+        public string HuggingFaceApiKey { get; set; } = null;
+
+        /// <summary>
+        /// Maximum number of parallel chunking tasks, i.e. number of semantic cells to process concurrently.  Default is 16.
+        /// </summary>
+        public int MaxChunkingTasks
+        {
+            get
+            {
+                return _MaxChunkingTasks;
+            }
+            set
+            {
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(MaxChunkingTasks));
+                _MaxChunkingTasks = value;
+            }
+        }
+
+        /// <summary>
+        /// Minimum chunk content length.  Minimum is 1.
+        /// </summary>
+        public int MinChunkContentLength
+        {
+            get
+            {
+                return _MinChunkContentLength;
+            }
+            set
+            {
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(MinChunkContentLength));
+                _MinChunkContentLength = value;
+            }
+        }
+
+        /// <summary>
+        /// Maximum chunk content length.  Minimum is 256 and maximum is 16384.
+        /// </summary>
+        public int MaxChunkContentLength
+        {
+            get
+            {
+                return _MaxChunkContentLength;
+            }
+            set
+            {
+                if (value < 256 || value > 16384) throw new ArgumentOutOfRangeException(nameof(MaxChunkContentLength));
+                _MaxChunkContentLength = value;
+            }
+        }
+
+        /// <summary>
+        /// Maximum number of tokens per chunk.
+        /// </summary>
+        public int MaxTokensPerChunk
+        {
+            get
+            {
+                return _MaxTokensPerChunk;
+            }
+            set
+            {
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(MaxTokensPerChunk));
+                _MaxTokensPerChunk = value;
+            }
+        }
+
+        /// <summary>
+        /// Token overlap, used to determine overlap amongst neighboring chunks.
+        /// </summary>
+        public int? TokenOverlap
+        {
+            get
+            {
+                return _TokenOverlap;
+            }
+            set
+            {
+                if (value != null && value.Value < 0) throw new ArgumentException("TokenOverlap must be greater than or equal to zero when set to a value.");
+                _TokenOverlap = value;
+            }
+        }
+
+        /// <summary>
         /// Embeddings server URL.
         /// </summary>
         public string EmbeddingsServerUrl { get; set; } = "http://nginx-processor:8000/";
@@ -99,66 +199,66 @@
         public string EmbeddingsGeneratorApiKey { get; set; } = "default";
 
         /// <summary>
-        /// Maximum number of chunks to process per request.  Default is 16.
+        /// Maximum number of chunks to process per embeddings request.  Default is 16.
         /// </summary>
-        public int BatchSize
+        public int EmbeddingsBatchSize
         {
             get
             {
-                return _BatchSize;
+                return _EmbeddingsBatchSize;
             }
             set
             {
-                if (value < 1) throw new ArgumentOutOfRangeException(nameof(BatchSize));
-                _BatchSize = value;
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(EmbeddingsBatchSize));
+                _EmbeddingsBatchSize = value;
             }
         }
 
         /// <summary>
         /// Maximum number of parallel embeddings generation tasks.  Default is 16.
         /// </summary>
-        public int MaxGeneratorTasks
+        public int MaxEmbeddingsTasks
         {
             get
             {
-                return _MaxGeneratorTasks;
+                return _MaxEmbeddingsTasks;
             }
             set
             {
-                if (value < 1) throw new ArgumentOutOfRangeException(nameof(MaxGeneratorTasks));
-                _MaxGeneratorTasks = value;
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(MaxEmbeddingsTasks));
+                _MaxEmbeddingsTasks = value;
             }
         }
 
         /// <summary>
-        /// Maximum number of retries to perform on any given task.  Default is 3.
+        /// Maximum number of retries to perform on any given embeddings task.  Default is 3.
         /// </summary>
-        public int MaxRetries
+        public int MaxEmbeddingsRetries
         {
             get
             {
-                return _MaxRetries;
+                return _MaxEmbeddingsRetries;
             }
             set
             {
-                if (value < 1) throw new ArgumentOutOfRangeException(nameof(MaxRetries));
-                _MaxRetries = value;
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(MaxEmbeddingsRetries));
+                _MaxEmbeddingsRetries = value;
             }
         }
 
         /// <summary>
-        /// Maximum number of failures to support before failing the operation.  Default is 3.
+        /// Maximum number of embedding failures to support before failing the operation.  Default is 3.
         /// </summary>
-        public int MaxFailures
+        public int MaxEmbeddingsFailures
         {
             get
             {
-                return _MaxFailures;
+                return _MaxEmbeddingsFailures;
             }
             set
             {
-                if (value < 1) throw new ArgumentOutOfRangeException(nameof(MaxFailures));
-                _MaxFailures = value;
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(MaxEmbeddingsFailures));
+                _MaxEmbeddingsFailures = value;
             }
         }
 
@@ -214,11 +314,18 @@
         #region Private-Members
 
         private int? _RetentionMinutes = null;
-        private int _BatchSize = 16;
-        private int _MaxGeneratorTasks = 16;
+
+        private int _MaxChunkingTasks = 16;
+        private int _MinChunkContentLength = 2;
+        private int _MaxChunkContentLength = 512;
+        private int _MaxTokensPerChunk = 256;
+        private int? _TokenOverlap = null;
+
+        private int _EmbeddingsBatchSize = 16;
+        private int _MaxEmbeddingsTasks = 16;
         private int _MaxContentLength = 16 * 1024 * 1024;
-        private int _MaxRetries = 3;
-        private int _MaxFailures = 3;
+        private int _MaxEmbeddingsRetries = 3;
+        private int _MaxEmbeddingsFailures = 3;
 
         #endregion
 

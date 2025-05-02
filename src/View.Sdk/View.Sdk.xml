@@ -3080,6 +3080,51 @@
             Access key for processing endpoint.
             </summary>
         </member>
+        <member name="P:View.Sdk.EmbeddingsRule.ChunkingServerUrl">
+            <summary>
+            Chunking server URL.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EmbeddingsRule.ChunkingServerApiKey">
+            <summary>
+            Chunking server API key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EmbeddingsRule.TokenizationModel">
+            <summary>
+            Tokenization model.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EmbeddingsRule.HuggingFaceApiKey">
+            <summary>
+            HuggingFace API key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EmbeddingsRule.MaxChunkingTasks">
+            <summary>
+            Maximum number of parallel chunking tasks, i.e. number of semantic cells to process concurrently.  Default is 16.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EmbeddingsRule.MinChunkContentLength">
+            <summary>
+            Minimum chunk content length.  Minimum is 1.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EmbeddingsRule.MaxChunkContentLength">
+            <summary>
+            Maximum chunk content length.  Minimum is 256 and maximum is 16384.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EmbeddingsRule.MaxTokensPerChunk">
+            <summary>
+            Maximum number of tokens per chunk.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EmbeddingsRule.TokenOverlap">
+            <summary>
+            Token overlap, used to determine overlap amongst neighboring chunks.
+            </summary>
+        </member>
         <member name="P:View.Sdk.EmbeddingsRule.EmbeddingsServerUrl">
             <summary>
             Embeddings server URL.
@@ -3105,24 +3150,24 @@
             Embeddings provider API key.
             </summary>
         </member>
-        <member name="P:View.Sdk.EmbeddingsRule.BatchSize">
+        <member name="P:View.Sdk.EmbeddingsRule.EmbeddingsBatchSize">
             <summary>
-            Maximum number of chunks to process per request.  Default is 16.
+            Maximum number of chunks to process per embeddings request.  Default is 16.
             </summary>
         </member>
-        <member name="P:View.Sdk.EmbeddingsRule.MaxGeneratorTasks">
+        <member name="P:View.Sdk.EmbeddingsRule.MaxEmbeddingsTasks">
             <summary>
             Maximum number of parallel embeddings generation tasks.  Default is 16.
             </summary>
         </member>
-        <member name="P:View.Sdk.EmbeddingsRule.MaxRetries">
+        <member name="P:View.Sdk.EmbeddingsRule.MaxEmbeddingsRetries">
             <summary>
-            Maximum number of retries to perform on any given task.  Default is 3.
+            Maximum number of retries to perform on any given embeddings task.  Default is 3.
             </summary>
         </member>
-        <member name="P:View.Sdk.EmbeddingsRule.MaxFailures">
+        <member name="P:View.Sdk.EmbeddingsRule.MaxEmbeddingsFailures">
             <summary>
-            Maximum number of failures to support before failing the operation.  Default is 3.
+            Maximum number of embedding failures to support before failing the operation.  Default is 3.
             </summary>
         </member>
         <member name="P:View.Sdk.EmbeddingsRule.VectorStoreUrl">
@@ -3223,6 +3268,16 @@
         <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.DataRepositoryGUID">
             <summary>
             Data repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.CrawlPlanGUID">
+            <summary>
+            Crawl plan GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.CrawlOperationGUID">
+            <summary>
+            Crawl operation GUID.
             </summary>
         </member>
         <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.BucketGUID">
@@ -4809,6 +4864,14 @@
             <param name="columnName">Column name.</param>
             <returns>List of GUIDs.</returns>
         </member>
+        <member name="M:View.Sdk.Helpers.DataTableHelper.GetLength(System.Data.DataTable)">
+            <summary>
+            Calculate DataTable length.
+            This calculation adds the length of column names and row values.
+            </summary>
+            <param name="dt">DataTable.</param>
+            <returns>Length.</returns>
+        </member>
         <member name="T:View.Sdk.Helpers.DirectoryHelper">
             <summary>
             Directory helper.
@@ -4854,6 +4917,28 @@
             <param name="stream">Stream.</param>
             <returns>MD5 hash.</returns>
         </member>
+        <member name="M:View.Sdk.Helpers.HashHelper.MD5Hash(System.String)">
+            <summary>
+            Generate an MD5 hash of a string.
+            </summary>
+            <param name="str">String.</param>
+            <returns>MD5 hash.</returns>
+        </member>
+        <member name="M:View.Sdk.Helpers.HashHelper.MD5Hash(System.Collections.Generic.List{System.String})">
+            <summary>
+            Generate an MD5 hash of a list of strings.
+            </summary>
+            <param name="strings">Strings.</param>
+            <returns>MD5 hash.</returns>
+        </member>
+        <member name="M:View.Sdk.Helpers.HashHelper.MD5Hash(System.Data.DataTable)">
+            <summary>
+            Generate an MD5 hash of a DataTable.
+            This method concatenates column names (separated by a null character) and all cell values (separated by a null character).  Any null cells have their value replaced with the string NULL.
+            </summary>
+            <param name="dt">DataTable. </param>
+            <returns>MD5 hash.</returns>
+        </member>
         <member name="M:View.Sdk.Helpers.HashHelper.SHA1Hash(System.Byte[])">
             <summary>
             Generate a SHA1 hash of a byte array.
@@ -4868,6 +4953,28 @@
             <param name="stream">Stream.</param>
             <returns>MD5 hash.</returns>
         </member>
+        <member name="M:View.Sdk.Helpers.HashHelper.SHA1Hash(System.String)">
+            <summary>
+            Generate a SHA1 hash of a string.
+            </summary>
+            <param name="str">String.</param>
+            <returns>SHA1 hash.</returns>
+        </member>
+        <member name="M:View.Sdk.Helpers.HashHelper.SHA1Hash(System.Collections.Generic.List{System.String})">
+            <summary>
+            Generate a SHA1 hash of a list of strings.
+            </summary>
+            <param name="strings">Strings.</param>
+            <returns>SHA1 hash.</returns>
+        </member>
+        <member name="M:View.Sdk.Helpers.HashHelper.SHA1Hash(System.Data.DataTable)">
+            <summary>
+            Generate a SHA1 hash of a DataTable.
+            This method concatenates column names (separated by a null character) and all cell values (separated by a null character).  Any null cells have their value replaced with the string NULL.
+            </summary>
+            <param name="dt">DataTable. </param>
+            <returns>SHA1 hash.</returns>
+        </member>
         <member name="M:View.Sdk.Helpers.HashHelper.SHA256Hash(System.Byte[])">
             <summary>
             Generate a SHA256 hash of a byte array.
@@ -4881,6 +4988,28 @@
             </summary>
             <param name="stream">Stream.</param>
             <returns>MD5 hash.</returns>
+        </member>
+        <member name="M:View.Sdk.Helpers.HashHelper.SHA256Hash(System.String)">
+            <summary>
+            Generate a SHA256 hash of a string.
+            </summary>
+            <param name="str">String.</param>
+            <returns>SHA256 hash.</returns>
+        </member>
+        <member name="M:View.Sdk.Helpers.HashHelper.SHA256Hash(System.Collections.Generic.List{System.String})">
+            <summary>
+            Generate a SHA256 hash of a list of strings.
+            </summary>
+            <param name="strings">Strings.</param>
+            <returns>SHA256 hash.</returns>
+        </member>
+        <member name="M:View.Sdk.Helpers.HashHelper.SHA256Hash(System.Data.DataTable)">
+            <summary>
+            Generate a SHA256 hash of a DataTable.
+            This method concatenates column names (separated by a null character) and all cell values (separated by a null character).  Any null cells have their value replaced with the string NULL.
+            </summary>
+            <param name="dt">DataTable. </param>
+            <returns>SHA256 hash.</returns>
         </member>
         <member name="T:View.Sdk.Helpers.StreamHelper">
             <summary>
@@ -5296,29 +5425,6 @@
         <member name="P:View.Sdk.MetadataRule.CleanupAccessKey">
             <summary>
             Access key for cleanup endpoint.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.MetadataRule.MinChunkContentLength">
-            <summary>
-            Minimum chunk content length.  Minimum is 1.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.MetadataRule.MaxChunkContentLength">
-            <summary>
-            Maximum chunk content length.  Minimum is 256 and maximum is 16384.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.MetadataRule.MaxTokensPerChunk">
-            <summary>
-            Maximum number of tokens per chunk.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.MetadataRule.ShiftSize">
-            <summary>
-            Shift size, used to determine overlap amongst neighboring chunks.
-            When set to the same value as the maximum chunk content length, no overlap will exist amongst neighboring chunks.
-            When set to a smaller amount than the maximum chunk content length, overlap will exist amongst neighboring chunks.
-            This value must be equal to or less than the maximum chunk content length.
             </summary>
         </member>
         <member name="P:View.Sdk.MetadataRule.ImageTextExtraction">
@@ -6384,6 +6490,11 @@
             State.
             </summary>
         </member>
+        <member name="P:View.Sdk.Processor.ProcessorTask.AdditionalData">
+            <summary>
+            Additional data.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Processor.ProcessorTask.LastUpdateUtc">
             <summary>
             UTC timestamp from last update.
@@ -6474,9 +6585,19 @@
             Processor task type.
             </summary>
         </member>
-        <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.Completion">
+        <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.Success">
             <summary>
-            Completion.
+            Success.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.Failure">
+            <summary>
+            Failure.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.Chunking">
+            <summary>
+            Chunking.
             </summary>
         </member>
         <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.EmbeddingsGeneration">
@@ -6499,9 +6620,9 @@
             PersistUdr.
             </summary>
         </member>
-        <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.PersistVector">
+        <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.PersistEmbeddings">
             <summary>
-            PersistVector.
+            PersistEmbeddings.
             </summary>
         </member>
         <member name="F:View.Sdk.Processor.ProcessorTaskTypeEnum.SemanticCellExtraction">
@@ -7275,6 +7396,41 @@
             Length.
             </summary>
         </member>
+        <member name="P:View.Sdk.Semantic.SemanticCell.Binary">
+            <summary>
+            Binary data.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Semantic.SemanticCell.Content">
+            <summary>
+            Content.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Semantic.SemanticCell.UnorderedList">
+            <summary>
+            Unordered list elements.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Semantic.SemanticCell.OrderedList">
+            <summary>
+            Ordered list elements.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Semantic.SemanticCell.Table">
+            <summary>
+            Data table.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Semantic.SemanticCell.Object">
+            <summary>
+            Object of semi-structured data such as JSON or XML.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Semantic.SemanticCell.Array">
+            <summary>
+            Array of semi-structured data such as JSON or XML.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Semantic.SemanticCell.Chunks">
             <summary>
             Chunks.
@@ -7311,6 +7467,20 @@
             <param name="dt">DataTable.</param>
             <param name="distinct">True to only return distinct records.</param>
             <returns>List of SemanticCell.</returns>
+        </member>
+        <member name="M:View.Sdk.Semantic.SemanticCell.AllCells(System.Collections.Generic.List{View.Sdk.Semantic.SemanticCell})">
+            <summary>
+            Retrieve all semantic cells in a list through recursion.
+            </summary>
+            <param name="cells">Semantic cells.</param>
+            <returns>Semantic cells.</returns>
+        </member>
+        <member name="M:View.Sdk.Semantic.SemanticCell.AllCellsWithChunks(System.Collections.Generic.List{View.Sdk.Semantic.SemanticCell})">
+            <summary>
+            Retrieve all semantic cells with chunks from a list through recursion.
+            </summary>
+            <param name="cells">Semantic cells.</param>
+            <returns>Semantic cells.</returns>
         </member>
         <member name="M:View.Sdk.Semantic.SemanticCell.AllChunks(System.Collections.Generic.List{View.Sdk.Semantic.SemanticCell})">
             <summary>
@@ -7403,34 +7573,6 @@
             Document type.
             </summary>
         </member>
-        <member name="P:View.Sdk.Semantic.SemanticCellRequest.MinChunkContentLength">
-            <summary>
-            Minimum chunk content length.  Minimum is 1.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Semantic.SemanticCellRequest.MaxChunkContentLength">
-            <summary>
-            Maximum chunk content length.  Minimum is 256 and maximum is 16384.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Semantic.SemanticCellRequest.MaxTokensPerChunk">
-            <summary>
-            Maximum number of tokens per chunk.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Semantic.SemanticCellRequest.ShiftSize">
-            <summary>
-            Shift size, used to determine overlap amongst neighboring chunks.
-            When set to the same value as the maximum chunk content length, no overlap will exist amongst neighboring chunks.
-            When set to a smaller amount than the maximum chunk content length, overlap will exist amongst neighboring chunks.
-            This value must be equal to or less than the maximum chunk content length.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Semantic.SemanticCellRequest.Pdf">
-            <summary>
-            PDF options.
-            </summary>
-        </member>
         <member name="P:View.Sdk.Semantic.SemanticCellRequest.Data">
             <summary>
             Data.
@@ -7500,6 +7642,16 @@
         <member name="F:View.Sdk.Semantic.SemanticCellTypeEnum.Binary">
             <summary>
             Binary.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Semantic.SemanticCellTypeEnum.Object">
+            <summary>
+            Object.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.Semantic.SemanticCellTypeEnum.Array">
+            <summary>
+            Array.
             </summary>
         </member>
         <member name="T:View.Sdk.Semantic.SemanticChunk">
@@ -7613,17 +7765,12 @@
             <param name="token">Cancellation token.</param>
             <returns>Semantic cell response.</returns>
         </member>
-        <member name="M:View.Sdk.Semantic.ViewSemanticCellSdk.Process(View.Sdk.DocumentTypeEnum,System.Byte[],System.Int32,System.Int32,System.Int32,System.Int32,View.Sdk.Semantic.PdfOptions,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Semantic.ViewSemanticCellSdk.Process(View.Sdk.DocumentTypeEnum,System.Byte[],System.Threading.CancellationToken)">
             <summary>
             Extract semantic cells from a document.
             </summary>
             <param name="docType">Document type.</param>
             <param name="data">Data.</param>
-            <param name="maxTokensPerChunk">Maximum tokens per chunk.</param>
-            <param name="minChunkContentLength">Minimum chunk content length.</param>
-            <param name="maxChunkContentLength">Maximum chunk content length.</param>
-            <param name="shiftSize">Shift size.</param>
-            <param name="pdfOptions">PDF options.</param>
             <param name="token">Cancellation token.</param>
             <returns>Semantic cell response.</returns>
         </member>

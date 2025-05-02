@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Data;
     using System.Linq;
+    using SerializableDataTables;
     using View.Sdk.Helpers;
     using View.Sdk.Serialization;
 
@@ -72,6 +73,63 @@
         }
 
         /// <summary>
+        /// Binary data.
+        /// </summary>
+        public byte[] Binary
+        {
+            get
+            {
+                return _Binary;
+            }
+            set
+            {
+                if (value != null) _Length = value.Length;
+                _Binary = value;
+            }
+        }
+
+        /// <summary>
+        /// Content.
+        /// </summary>
+        public string Content
+        {
+            get
+            {
+                return _Content;
+            }
+            set
+            {
+                if (!String.IsNullOrEmpty(value)) _Length = value.Length;
+                _Content = value;
+            }
+        }
+
+        /// <summary>
+        /// Unordered list elements.
+        /// </summary>
+        public List<string> UnorderedList { get; set; } = null;
+
+        /// <summary>
+        /// Ordered list elements.
+        /// </summary>
+        public List<string> OrderedList { get; set; } = null;
+
+        /// <summary>
+        /// Data table.
+        /// </summary>
+        public SerializableDataTable Table { get; set; } = null;
+
+        /// <summary>
+        /// Object of semi-structured data such as JSON or XML.
+        /// </summary>
+        public object Object { get; set; } = null;
+
+        /// <summary>
+        /// Array of semi-structured data such as JSON or XML.
+        /// </summary>
+        public List<object> Array { get; set; } = null;
+
+        /// <summary>
         /// Chunks.
         /// </summary>
         public List<SemanticChunk> Chunks
@@ -109,6 +167,8 @@
 
         private int _Position = 0;
         private int _Length = 0;
+        private byte[] _Binary = null;
+        private string _Content = null;
         private List<SemanticChunk> _Chunks = new List<SemanticChunk>();
         private List<SemanticCell> _Children = new List<SemanticCell>();
 
@@ -180,14 +240,64 @@
         }
 
         /// <summary>
+        /// Retrieve all semantic cells in a list through recursion.
+        /// </summary>
+        /// <param name="cells">Semantic cells.</param>
+        /// <returns>Semantic cells.</returns>
+        public static IEnumerable<SemanticCell> AllCells(List<SemanticCell> cells)
+        {
+            if (cells != null && cells.Count > 0)
+            {
+                foreach (SemanticCell cell in cells)
+                {
+                    yield return cell;
+
+                    if (cell.Children != null && cell.Children.Count > 0)
+                    {
+                        foreach (SemanticCell child in AllCells(cell.Children))
+                        {
+                            yield return child;
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Retrieve all semantic cells with chunks from a list through recursion.
+        /// </summary>
+        /// <param name="cells">Semantic cells.</param>
+        /// <returns>Semantic cells.</returns>
+        public static IEnumerable<SemanticCell> AllCellsWithChunks(List<SemanticCell> cells)
+        {
+            if (cells != null && cells.Count > 0)
+            {
+                foreach (SemanticCell cell in cells)
+                { 
+                    if (cell.Chunks != null && cell.Chunks.Count > 0)
+                    {
+                        yield return cell;
+                    }
+
+                    if (cell.Children != null && cell.Children.Count > 0)
+                    {
+                        foreach (SemanticCell child in AllCellsWithChunks(cell.Children))
+                        {
+                            yield return child;
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Retrieve all semantic chunks.
         /// </summary>
         /// <param name="cells">Semantic cells.</param>
         /// <returns>Semantic chunks.</returns>
         public static IEnumerable<SemanticChunk> AllChunks(List<SemanticCell> cells)
         {
-            if (cells == null)
-                return Enumerable.Empty<SemanticChunk>();
+            if (cells == null) return Enumerable.Empty<SemanticChunk>();
 
             return cells.SelectMany(cell => GetCellChunks(cell));
         }

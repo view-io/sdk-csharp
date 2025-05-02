@@ -125,21 +125,11 @@
         /// </summary>
         /// <param name="docType">Document type.</param>
         /// <param name="data">Data.</param>
-        /// <param name="maxTokensPerChunk">Maximum tokens per chunk.</param>
-        /// <param name="minChunkContentLength">Minimum chunk content length.</param>
-        /// <param name="maxChunkContentLength">Maximum chunk content length.</param>
-        /// <param name="shiftSize">Shift size.</param>
-        /// <param name="pdfOptions">PDF options.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Semantic cell response.</returns>
         public async Task<SemanticCellResult> Process(
             DocumentTypeEnum docType,
             byte[] data,
-            int maxTokensPerChunk = 256,
-            int minChunkContentLength = 2,
-            int maxChunkContentLength = 512,
-            int shiftSize = 512,
-            PdfOptions pdfOptions = null,
             CancellationToken token = default)
         {
             if (data == null || data.Length < 1) throw new ArgumentException("No data supplied for semantic cell extraction.");
@@ -149,12 +139,7 @@
             SemanticCellRequest scReq = new SemanticCellRequest
             {
                 DocumentType = docType,
-                Data = data,
-                MaxTokensPerChunk = maxTokensPerChunk,
-                MinChunkContentLength = minChunkContentLength,
-                MaxChunkContentLength = maxChunkContentLength,
-                ShiftSize = shiftSize,
-                Pdf = pdfOptions
+                Data = data
             };
 
             return await Process(scReq);

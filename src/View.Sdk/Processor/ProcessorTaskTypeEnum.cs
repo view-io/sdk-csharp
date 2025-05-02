@@ -14,10 +14,22 @@
     public enum ProcessorTaskTypeEnum
     {
         /// <summary>
-        /// Completion.
+        /// Success.
         /// </summary>
         [EnumMember(Value = "Completion")]
-        Completion,
+        Success,
+
+        /// <summary>
+        /// Failure.
+        /// </summary>
+        [EnumMember(Value = "Failure")]
+        Failure,
+
+        /// <summary>
+        /// Chunking.
+        /// </summary>
+        [EnumMember(Value = "Chunking")]
+        Chunking,
 
         /// <summary>
         /// EmbeddingsGeneration.
@@ -44,10 +56,10 @@
         PersistUdr,
 
         /// <summary>
-        /// PersistVector.
+        /// PersistEmbeddings.
         /// </summary>
-        [EnumMember(Value = "PersistVector")]
-        PersistVector,
+        [EnumMember(Value = "PersistEmbeddings")]
+        PersistEmbeddings,
 
         /// <summary>
         /// SemanticCellExtraction.

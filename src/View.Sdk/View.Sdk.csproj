@@ -6,7 +6,7 @@
 		<Title>C# SDK for View AI.</Title>
 		<Description>C# SDK for View AI.</Description>
 		<PackageReleaseNotes>v1.4.0 release.</PackageReleaseNotes>
-		<Version>1.4.0.47</Version>
+		<Version>1.4.0.64</Version>
 		
 		<ApplicationIcon>Assets\icon.ico</ApplicationIcon>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
@@ -64,6 +64,7 @@
 		<PackageReference Include="ExpressionTree" Version="1.1.2" />
 		<PackageReference Include="PrettyId" Version="1.0.5" />
 		<PackageReference Include="RestWrapper" Version="3.1.5" />
+		<PackageReference Include="SerializableDataTable" Version="1.0.1" />
 		<PackageReference Include="SS.NuGet.Publish" Version="1.0.2311.32">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

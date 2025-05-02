@@ -107,6 +107,11 @@
         public ProcessorTaskTypeEnum State { get; set; } = ProcessorTaskTypeEnum.TypeDetection;
 
         /// <summary>
+        /// Additional data.
+        /// </summary>
+        public string AdditionalData { get; set; } = null;
+
+        /// <summary>
         /// UTC timestamp from last update.
         /// </summary>
         public DateTime LastUpdateUtc { get; set; } = DateTime.UtcNow;

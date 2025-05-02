@@ -67,6 +67,16 @@
         public Guid? DataRepositoryGUID { get; set; } = null;
 
         /// <summary>
+        /// Crawl plan GUID.
+        /// </summary>
+        public Guid? CrawlPlanGUID { get; set; } = null;
+
+        /// <summary>
+        /// Crawl operation GUID.
+        /// </summary>
+        public Guid? CrawlOperationGUID { get; set; } = null;
+
+        /// <summary>
         /// Bucket GUID.
         /// </summary>
         public Guid? BucketGUID { get; set; } = null;
@@ -185,6 +195,8 @@
                 CollectionGUID = DataTableHelper.GetNullableGuidValue(row, "collection_guid"),
                 SourceDocumentGUID = DataTableHelper.GetNullableGuidValue(row, "source_document_guid"),
                 DataRepositoryGUID = DataTableHelper.GetNullableGuidValue(row, "data_repository_guid"),
+                CrawlPlanGUID = DataTableHelper.GetNullableGuidValue(row, "crawl_plan_guid"),
+                CrawlOperationGUID = DataTableHelper.GetNullableGuidValue(row, "crawl_operation_guid"),
                 VectorRepositoryGUID = DataTableHelper.GetNullableGuidValue(row, "vector_repository_guid"),
                 GraphRepositoryGUID = DataTableHelper.GetNullableGuidValue(row, "graph_repository_guid"),
                 GraphNodeIdentifier = DataTableHelper.GetStringValue(row, "graph_node_identifier"),
