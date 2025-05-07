@@ -264,6 +264,31 @@
         }
 
         /// <summary>
+        /// Retrieve all semantic cells in a list through recursion by type of semantic cell.
+        /// </summary>
+        /// <param name="cells">Semantic cells.</param>
+        /// <param name="type">Type.</param>
+        /// <returns>Semantic cells.</returns>
+        public static IEnumerable<SemanticCell> AllCellsByType(List<SemanticCell> cells, SemanticCellTypeEnum type)
+        {
+            if (cells != null && cells.Count > 0)
+            {
+                foreach (SemanticCell cell in cells)
+                {
+                    if (cell.CellType == type) yield return cell;
+
+                    if (cell.Children != null && cell.Children.Count > 0)
+                    {
+                        foreach (SemanticCell child in AllCells(cell.Children))
+                        {
+                            if (child.CellType == type) yield return child;
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Retrieve all semantic cells with chunks from a list through recursion.
         /// </summary>
         /// <param name="cells">Semantic cells.</param>

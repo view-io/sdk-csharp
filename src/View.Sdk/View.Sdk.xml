@@ -7475,6 +7475,14 @@
             <param name="cells">Semantic cells.</param>
             <returns>Semantic cells.</returns>
         </member>
+        <member name="M:View.Sdk.Semantic.SemanticCell.AllCellsByType(System.Collections.Generic.List{View.Sdk.Semantic.SemanticCell},View.Sdk.Semantic.SemanticCellTypeEnum)">
+            <summary>
+            Retrieve all semantic cells in a list through recursion by type of semantic cell.
+            </summary>
+            <param name="cells">Semantic cells.</param>
+            <param name="type">Type.</param>
+            <returns>Semantic cells.</returns>
+        </member>
         <member name="M:View.Sdk.Semantic.SemanticCell.AllCellsWithChunks(System.Collections.Generic.List{View.Sdk.Semantic.SemanticCell})">
             <summary>
             Retrieve all semantic cells with chunks from a list through recursion.
