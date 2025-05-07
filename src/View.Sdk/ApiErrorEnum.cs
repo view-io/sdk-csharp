@@ -35,6 +35,12 @@
         RequiredPropertiesMissing,
 
         /// <summary>
+        /// No connectivity to the specified data repository.
+        /// </summary>
+        [EnumMember(Value = "NoDataRepositoryConnectivity")]
+        NoDataRepositoryConnectivity,
+
+        /// <summary>
         /// No connectivity to the specified graph.
         /// </summary>
         [EnumMember(Value = "NoGraphConnectivity")]

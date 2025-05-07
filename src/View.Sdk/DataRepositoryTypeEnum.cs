@@ -43,5 +43,10 @@
         /// </summary>
         [EnumMember(Value = "Web")]
         Web,
+        /// <summary>
+        /// Printer.
+        /// </summary>
+        [EnumMember(Value = "Printer")]
+        Printer
     }
 }

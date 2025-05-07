@@ -139,6 +139,11 @@
             Required properties were missing.
             </summary>
         </member>
+        <member name="F:View.Sdk.ApiErrorEnum.NoDataRepositoryConnectivity">
+            <summary>
+            No connectivity to the specified data repository.
+            </summary>
+        </member>
         <member name="F:View.Sdk.ApiErrorEnum.NoGraphConnectivity">
             <summary>
             No connectivity to the specified graph.
@@ -2783,6 +2788,11 @@
         <member name="F:View.Sdk.DataRepositoryTypeEnum.Web">
             <summary>
             Web.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.DataRepositoryTypeEnum.Printer">
+            <summary>
+            Printer.
             </summary>
         </member>
         <member name="T:View.Sdk.DataTypeEnum">
