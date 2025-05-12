@@ -5617,14 +5617,9 @@
             Graph node identifier.
             </summary>
         </member>
-        <member name="P:View.Sdk.ObjectMetadata.DataFlowRequestGUID">
+        <member name="P:View.Sdk.ObjectMetadata.ProcessingSuccess">
             <summary>
-            Data flow request GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.ObjectMetadata.DataFlowSuccess">
-            <summary>
-            Boolean indicating if the data flow was successful in processing the object.
+            Boolean indicating if processing was successful.
             </summary>
         </member>
         <member name="P:View.Sdk.ObjectMetadata.Key">
@@ -6993,9 +6988,9 @@
             Maximum number of results to retrieve.
             </summary>
         </member>
-        <member name="P:View.Sdk.SearchResult.DataFlowRequestGUID">
+        <member name="P:View.Sdk.SearchResult.ProcessingRequestGUID">
             <summary>
-            Data flow request GUID.
+            Processing request GUID.
             </summary>
         </member>
         <member name="P:View.Sdk.SearchResult.EndOfResults">
@@ -7890,14 +7885,9 @@
             Data repository GUID.
             </summary>
         </member>
-        <member name="P:View.Sdk.SourceDocument.DataFlowRequestGUID">
+        <member name="P:View.Sdk.SourceDocument.ProcessingSuccess">
             <summary>
-            Data flow request GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.SourceDocument.DataFlowSuccess">
-            <summary>
-            Boolean indicating if the data flow was successful in processing the object.
+            Boolean indicating if processing was successful.
             </summary>
         </member>
         <member name="P:View.Sdk.SourceDocument.ObjectKey">

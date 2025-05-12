@@ -40,9 +40,9 @@
         }
 
         /// <summary>
-        /// Data flow request GUID.
+        /// Processing request GUID.
         /// </summary>
-        public Guid? DataFlowRequestGUID { get; set; } = null;
+        public Guid? ProcessingRequestGUID { get; set; } = null;
 
         /// <summary>
         /// Boolean indicating end of results.

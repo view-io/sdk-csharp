@@ -92,14 +92,9 @@
         public string GraphNodeIdentifier { get; set; } = null;
 
         /// <summary>
-        /// Data flow request GUID.
+        /// Boolean indicating if processing was successful.
         /// </summary>
-        public Guid? DataFlowRequestGUID { get; set; } = null;
-
-        /// <summary>
-        /// Boolean indicating if the data flow was successful in processing the object.
-        /// </summary>
-        public bool? DataFlowSuccess { get; set; } = null;
+        public bool? ProcessingSuccess { get; set; } = null;
 
         /// <summary>
         /// Key.
