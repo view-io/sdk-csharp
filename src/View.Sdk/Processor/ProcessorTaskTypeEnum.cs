@@ -44,6 +44,12 @@
         FindEmbeddings,
 
         /// <summary>
+        /// Initiate.
+        /// </summary>
+        [EnumMember(Value = "Initiate")]
+        Initiate,
+
+        /// <summary>
         /// PersistGraph.
         /// </summary>
         [EnumMember(Value = "PersistGraph")]
