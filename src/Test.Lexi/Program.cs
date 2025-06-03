@@ -178,42 +178,42 @@
 
         private static async Task RetrieveAllCollections() 
         {
-            List<Collection> collections = await _Sdk.RetrieveCollections();
+            List<Collection> collections = await _Sdk.Collection.RetrieveMany();
             EnumerateResponse(collections);
         }
 
         private static async Task RetrieveCollection() 
         {
-            Collection coll = await _Sdk.RetrieveCollection(GetCollectionGuid());
+            Collection coll = await _Sdk.Collection.Retrieve(GetCollectionGuid());
             EnumerateResponse(coll);
         }
 
         private static async Task RetrieveCollectionStatistics() 
         {
-            CollectionStatistics stats = await _Sdk.RetrieveCollectionStatistics(GetCollectionGuid());
+            CollectionStatistics stats = await _Sdk.Collection.RetrieveStatistics(GetCollectionGuid());
             EnumerateResponse(stats);
         }
 
         private static async Task WriteCollection() 
         {
-            Collection coll = await _Sdk.CreateCollection(BuildCollection());
+            Collection coll = await _Sdk.Collection.Create(BuildCollection());
             EnumerateResponse(coll);
         }
 
         private static async Task DeleteCollection() 
         {
-            await _Sdk.DeleteCollection(GetCollectionGuid());
+            await _Sdk.Collection.Delete(GetCollectionGuid());
         }
 
         private static async Task RetrieveAllDocuments()
         {
-            List<SourceDocument> documents = await _Sdk.RetrieveDocuments(GetCollectionGuid());
+            List<SourceDocument> documents = await _Sdk.SourceDocument.RetrieveMany(GetCollectionGuid());
             EnumerateResponse(documents);
         }
 
         private static async Task RetrieveDocument()
         {
-            SourceDocument doc = await _Sdk.RetrieveDocument(
+            SourceDocument doc = await _Sdk.SourceDocument.Retrieve(
                 GetCollectionGuid(),
                 GetDocumentGuid(),
                 true);
@@ -222,7 +222,7 @@
 
         private static async Task RetrieveDocumentStatistics()
         {
-            SourceDocumentStatistics stats = await _Sdk.RetrieveDocumentStatistics(
+            SourceDocumentStatistics stats = await _Sdk.SourceDocument.RetrieveStatistics(
                 GetCollectionGuid(),
                 GetDocumentGuid());
             EnumerateResponse(stats);
@@ -230,20 +230,20 @@
 
         private static async Task WriteDocument() 
         {
-            SourceDocument document = await _Sdk.UploadDocument(BuildSourceDocument());
+            SourceDocument document = await _Sdk.SourceDocument.Upload(BuildSourceDocument());
             EnumerateResponse(document);
         }
 
         private static async Task DeleteDocument()
         {
-            await _Sdk.DeleteDocument(
+            await _Sdk.SourceDocument.Delete(
                 GetCollectionGuid(),
                 GetDocumentGuid());
         }
 
         private static async Task EnumerateCollection() 
         {
-            EnumerationResult<SourceDocument> result = await _Sdk.Enumerate(
+            EnumerationResult<SourceDocument> result = await _Sdk.Enumerate.Enumerate(
                 GetCollectionGuid(),
                 BuildEnumerationQuery());
             EnumerateResponse(result);
@@ -251,7 +251,7 @@
 
         private static async Task SearchCollection()
         {
-            SearchResult result = await _Sdk.Search(
+            SearchResult result = await _Sdk.Search.Search(
                 GetCollectionGuid(),
                 BuildSearchQuery());
             EnumerateResponse(result);

@@ -122,6 +122,11 @@
             }
         }
 
+        /// <summary>
+        /// Optional xToken header value.
+        /// </summary>
+        public string XToken { get; set; } = null;
+
         #endregion
 
         #region Internal-Members
@@ -274,7 +279,10 @@
                 req.TimeoutMilliseconds = TimeoutMs;
                 req.Authorization.BearerToken = _AccessKey;
                 req.ContentType = "application/json";
-
+                if (!string.IsNullOrWhiteSpace(XToken))
+                {
+                    req.Headers.Add("x-token", XToken);
+                }
                 string json = Serializer.SerializeJson(obj, true);
                 if (LogRequests) Log(SeverityEnum.Debug, "request: " + Environment.NewLine + json);
 
@@ -486,7 +494,10 @@
             {
                 req.TimeoutMilliseconds = TimeoutMs;
                 req.Authorization.BearerToken = _AccessKey;
-
+                if (!string.IsNullOrWhiteSpace(XToken))
+                {
+                    req.Headers.Add("x-token", XToken);
+                }
                 using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
                 {
                     if (resp != null)
@@ -537,6 +548,11 @@
             {
                 req.TimeoutMilliseconds = TimeoutMs;
                 req.Authorization.BearerToken = _AccessKey;
+
+                if (!string.IsNullOrWhiteSpace(XToken))
+                {
+                    req.Headers.Add("x-token", XToken);
+                }
 
                 using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
                 {
@@ -644,7 +660,10 @@
             {
                 req.TimeoutMilliseconds = TimeoutMs;
                 req.Authorization.BearerToken = _AccessKey;
-
+                if (!string.IsNullOrWhiteSpace(XToken))
+                {
+                    req.Headers.Add("x-token", XToken);
+                }
                 using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
                 {
                     if (resp != null)
@@ -716,6 +735,52 @@
                         Log(SeverityEnum.Warn, "no response from " + url);
                         return false;
                     }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Executes a GET request to enumerate a list of objects from the specified URL.
+        /// </summary>
+        /// <typeparam name="T">The type of items in the enumeration result.</typeparam>
+        /// <param name="url">The API endpoint URL to fetch the enumeration from.</param>
+        /// <param name="token">Optional cancellation token.</param>
+        /// <returns>The deserialized <see cref="EnumerationResult{T}"/> if successful; otherwise, null.</returns>
+        public async Task<EnumerationResult<T>> Enumerate<T>(string url, CancellationToken token = default)
+        {
+            using (RestRequest req = new RestRequest(url))
+            {
+                req.TimeoutMilliseconds = TimeoutMs;
+                req.Authorization.BearerToken = AccessKey;
+
+                if (!string.IsNullOrWhiteSpace(XToken))
+                {
+                    req.Headers.Add("X-Token", XToken);
+                }
+
+                using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
+                {
+                    if (resp != null)
+                    {
+                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                        {
+                            Log(SeverityEnum.Debug, $"success reported from {url}: {resp.StatusCode}, {resp.ContentLength} bytes");
+                            if (!string.IsNullOrEmpty(resp.DataAsString))
+                            {
+                                Log(SeverityEnum.Debug, "deserializing response body");
+                                return Serializer.DeserializeJson<EnumerationResult<T>>(resp.DataAsString);
+                            }
+
+                            Log(SeverityEnum.Debug, "empty response body, returning null");
+                            return null;
+                        }
+
+                        Log(SeverityEnum.Warn, $"non-success reported from {url}: {resp.StatusCode}, {resp.ContentLength} bytes");
+                        return null;
+                    }
+
+                    Log(SeverityEnum.Warn, $"no response from {url}");
+                    return null;
                 }
             }
         }

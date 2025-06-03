@@ -168,7 +168,7 @@
             string requestJson =    Inputty.GetString("Request JSON           :", null, true);
             if (String.IsNullOrEmpty(requestJson)) return;
 
-            EmbeddingsDocument doc = await _Sdk.WriteDocument(
+            EmbeddingsDocument doc = await _Sdk.Document.Write(
                 _Serializer.DeserializeJson<EmbeddingsDocument>(requestJson)
                 );
 
@@ -179,7 +179,7 @@
         {
             Guid repoGuid = Inputty.GetGuid("Repository GUID:", default(Guid));
             Guid docGuid = Inputty.GetGuid("Document GUID  :", default(Guid));
-            bool success = await _Sdk.DeleteDocument(repoGuid, docGuid);
+            bool success = await _Sdk.Document.Delete(repoGuid, docGuid);
             Console.WriteLine("Success: " + success);
         }
 
@@ -187,7 +187,7 @@
         {
             Guid repoGuid = Inputty.GetGuid("Repository GUID:", default(Guid));
 
-            bool success = await _Sdk.TruncateRepository(repoGuid);
+            bool success = await _Sdk.Repository.Truncate(repoGuid);
             Console.WriteLine("Success: " + success);
         }
 
@@ -218,7 +218,7 @@
             string requestJson = Inputty.GetString("Request JSON           :", null, true);
             if (String.IsNullOrEmpty(requestJson)) return;
 
-            List<VectorChunk> chunks = await _Sdk.VectorSearch(
+            List<VectorChunk> chunks = await _Sdk.Vector.Search(
                 _Serializer.DeserializeJson<VectorSearchRequest>(requestJson)
                 );
 
@@ -254,7 +254,7 @@
             string requestJson = Inputty.GetString("Request JSON           :", null, true);
             if (String.IsNullOrEmpty(requestJson)) return;
 
-            FindEmbeddingsResult result = await _Sdk.FindEmbeddings(
+            FindEmbeddingsResult result = await _Sdk.Vector.Find(
                 _Serializer.DeserializeJson<FindEmbeddingsRequest>(requestJson)
                 );
 
@@ -275,7 +275,7 @@
             string requestJson = Inputty.GetString("Request JSON           :", null, true);
             if (String.IsNullOrEmpty(requestJson)) return;
 
-            string ret = await _Sdk.VectorQuery(
+            string ret = await _Sdk.Vector.Query(
                 _Serializer.DeserializeJson<VectorQueryRequest>(requestJson)
                 );
 

@@ -182,36 +182,36 @@
         private static async Task WriteTrigger()
         {
             Trigger obj = BuildObject<Trigger>();
-            EnumerateResponse(await _Sdk.CreateTrigger(obj));
+            EnumerateResponse(await _Sdk.Trigger.Create(obj));
         }
 
         private static async Task UpdateTrigger()
         {
             Trigger obj = BuildObject<Trigger>();
-            EnumerateResponse(await _Sdk.UpdateTrigger(obj));
+            EnumerateResponse(await _Sdk.Trigger.Update(obj));
         }
 
         private static async Task ReadTriggers()
         {
-            EnumerateResponse(await _Sdk.RetrieveTriggers());
+            EnumerateResponse(await _Sdk.Trigger.RetrieveMany());
         }
 
         private static async Task ReadTrigger()
         {
             Guid guid = GetGuid("GUID:");
-            EnumerateResponse(await _Sdk.RetrieveTrigger(guid));
+            EnumerateResponse(await _Sdk.Trigger.Retrieve(guid));
         }
 
         private static async Task DeleteTrigger()
         {
             Guid guid = GetGuid("GUID:");
-            await _Sdk.DeleteTrigger(guid);
+            await _Sdk.Trigger.Delete(guid);
         }
 
         private static async Task ExistsTrigger()
         {
             Guid guid = GetGuid("GUID:");
-            bool exists = await _Sdk.ExistsTrigger(guid);
+            bool exists = await _Sdk.Trigger.Exists(guid);
             Console.WriteLine("Exists: " + exists);
         }
 
@@ -222,30 +222,30 @@
         private static async Task WriteStep()
         {
             StepMetadata obj = BuildObject<StepMetadata>();
-            EnumerateResponse(await _Sdk.CreateStep(obj));
+            EnumerateResponse(await _Sdk.Step.Create(obj));
         }
 
         private static async Task ReadSteps()
         {
-            EnumerateResponse(await _Sdk.RetrieveSteps());
+            EnumerateResponse(await _Sdk.Step.RetrieveMany());
         }
 
         private static async Task ReadStep()
         {
             Guid guid = GetGuid("GUID:");
-            EnumerateResponse(await _Sdk.RetrieveStep(guid));
+            EnumerateResponse(await _Sdk.Step.Retrieve(guid));
         }
 
         private static async Task DeleteStep()
         {
             Guid guid = GetGuid("GUID:");
-            await _Sdk.DeleteStep(guid);
+            await _Sdk.Step.Delete(guid);
         }
 
         private static async Task ExistsStep()
         {
             Guid guid = GetGuid("GUID:");
-            bool exists = await _Sdk.ExistsStep(guid);
+            bool exists = await _Sdk.Step.Exists(guid);
             Console.WriteLine("Exists: " + exists);
         }
 
@@ -256,37 +256,37 @@
         private static async Task WriteFlow()
         {
             DataFlow obj = BuildObject<DataFlow>();
-            EnumerateResponse(await _Sdk.CreateDataFlow(obj));
+            EnumerateResponse(await _Sdk.DataFlow.Create(obj));
         }
 
         private static async Task ReadFlows()
         {
-            EnumerateResponse(await _Sdk.RetrieveDataFlows());
+            EnumerateResponse(await _Sdk.DataFlow.RetrieveMany());
         }
 
         private static async Task ReadFlow()
         {
             Guid guid = GetGuid("GUID:");
-            EnumerateResponse(await _Sdk.RetrieveDataFlow(guid));
+            EnumerateResponse(await _Sdk.DataFlow.Retrieve(guid));
         }
 
         private static async Task ReadFlowLogs()
         {
             Guid flowGuid = GetGuid("Data flow GUID:");
             Guid reqGuid  = GetGuid("Request GUID  :");
-            EnumerateResponse(await _Sdk.RetrieveDataFlowLogs(flowGuid, reqGuid));
+            EnumerateResponse(await _Sdk.DataFlowLog.Retrieve(flowGuid, reqGuid));
         }
 
         private static async Task DeleteFlow()
         {
             Guid guid = GetGuid("GUID:");
-            await _Sdk.DeleteDataFlow(guid);
+            await _Sdk.DataFlow.Delete(guid);
         }
 
         private static async Task ExistsFlow()
         {
             Guid guid = GetGuid("GUID:");
-            bool exists = await _Sdk.ExistsDataFlow(guid);
+            bool exists = await _Sdk.DataFlow.Exists(guid);
             Console.WriteLine("Exists: " + exists);
         }
 
