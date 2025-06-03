@@ -274,7 +274,7 @@
         {
             Guid flowGuid = GetGuid("Data flow GUID:");
             Guid reqGuid  = GetGuid("Request GUID  :");
-            EnumerateResponse(await _Sdk.DataFlowLog.Retrieve(flowGuid, reqGuid));
+            EnumerateResponse(await _Sdk.DataFlowLog.RetrieveLogs(flowGuid, reqGuid));
         }
 
         private static async Task DeleteFlow()

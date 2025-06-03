@@ -40,14 +40,14 @@ namespace View.Sdk.Orchestrator.Implementations
         #region Public-Methods
 
         /// <inheritdoc />
-        public async Task<List<DataFlowLog>> RetrieveMany(Guid dataFlowGuid, Guid requestGuid, CancellationToken token = default)
+        public async Task<List<DataFlowLog>> RetrieveLogs(Guid dataFlowGuid, Guid requestGuid, CancellationToken token = default)
         {
             string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/dataflows/" + dataFlowGuid + "/logs?request=" + requestGuid;
             return await _Sdk.RetrieveMany<DataFlowLog>(url, token).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
-        public async Task<string> Retrieve(Guid dataFlowGuid, Guid requestGuid, CancellationToken token = default)
+        public async Task<string> RetrieveLogfile(Guid dataFlowGuid, Guid requestGuid, CancellationToken token = default)
         {
             string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/dataflows/" + dataFlowGuid + "/logfile?request=" + requestGuid;
 

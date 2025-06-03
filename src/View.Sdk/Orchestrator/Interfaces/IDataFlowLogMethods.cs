@@ -17,7 +17,7 @@ namespace View.Sdk.Orchestrator.Interfaces
         /// <param name="requestGuid">Request GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>List of DataFlowLog.</returns>
-        public Task<List<DataFlowLog>> RetrieveMany(Guid dataFlowGuid, Guid requestGuid, CancellationToken token = default);
+        public Task<List<DataFlowLog>> RetrieveLogs(Guid dataFlowGuid, Guid requestGuid, CancellationToken token = default);
 
         /// <summary>
         /// Read data flow logfile.
@@ -26,6 +26,6 @@ namespace View.Sdk.Orchestrator.Interfaces
         /// <param name="requestGuid">Request GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Log file.</returns>
-        public Task<string> Retrieve(Guid dataFlowGuid, Guid requestGuid, CancellationToken token = default);
+        public Task<string> RetrieveLogfile(Guid dataFlowGuid, Guid requestGuid, CancellationToken token = default);
     }
 }

@@ -8234,10 +8234,10 @@
             </summary>
             <param name="sdk">View SDK.</param>
         </member>
-        <member name="M:View.Sdk.Orchestrator.Implementations.DataFlowLogMethods.RetrieveMany(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Orchestrator.Implementations.DataFlowLogMethods.RetrieveLogs(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Orchestrator.Implementations.DataFlowLogMethods.Retrieve(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Orchestrator.Implementations.DataFlowLogMethods.RetrieveLogfile(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:View.Sdk.Orchestrator.Implementations.DataFlowMethods">
@@ -8326,7 +8326,7 @@
             Interface for data flow log methods.
             </summary>
         </member>
-        <member name="M:View.Sdk.Orchestrator.Interfaces.IDataFlowLogMethods.RetrieveMany(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Orchestrator.Interfaces.IDataFlowLogMethods.RetrieveLogs(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read data flow logs.
             </summary>
@@ -8335,7 +8335,7 @@
             <param name="token">Cancellation token.</param>
             <returns>List of DataFlowLog.</returns>
         </member>
-        <member name="M:View.Sdk.Orchestrator.Interfaces.IDataFlowLogMethods.Retrieve(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Orchestrator.Interfaces.IDataFlowLogMethods.RetrieveLogfile(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read data flow logfile.
             </summary>
