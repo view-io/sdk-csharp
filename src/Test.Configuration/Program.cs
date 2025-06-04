@@ -16,7 +16,7 @@
 
         private static bool _RunForever = true;
         private static Guid _TenantGuid = default(Guid);
-        private static string _Endpoint = "http://view.homedns.org:8000/";
+        private static string _Endpoint = "http://localhost:8000/";
         private static string _AccessKey = "default";
         private static string _XToken = "";
         private static ViewConfigurationSdk _Sdk = null;
