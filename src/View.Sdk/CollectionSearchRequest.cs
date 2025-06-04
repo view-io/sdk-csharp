@@ -14,19 +14,19 @@
         /// The GUID of the search operation.
         /// </summary>
         [JsonPropertyOrder(1)]
-        public Guid GUID { get; set; } = Guid.NewGuid();
+        public Guid? GUID { get; set; } = null;
 
         /// <summary>
         /// Tenant GUID.
         /// </summary>
         [JsonPropertyOrder(2)]
-        public Guid TenantGUID { get; set; } = Guid.NewGuid();
+        public Guid? TenantGUID { get; set; } = null;
 
         /// <summary>
         /// Collection GUID.
         /// </summary>
         [JsonPropertyOrder(3)]
-        public Guid CollectionGUID { get; set; } = Guid.NewGuid();
+        public Guid? CollectionGUID { get; set; } = null;
 
         /// <summary>
         /// Maximum number of results to retrieve.

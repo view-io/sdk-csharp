@@ -1076,6 +1076,28 @@
             Instantiate.
             </summary>
         </member>
+        <member name="T:View.Sdk.CollectionTopTerms">
+            <summary>
+            Collection top terms.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CollectionTopTerms.Terms">
+            <summary>
+            Dictionary of terms and their frequencies.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.CollectionTopTerms.GetTermFrequency(System.String)">
+            <summary>
+            Helper method to get term frequency as integer
+            </summary>
+            <param name="term">The term to get frequency for</param>
+            <returns>The frequency as integer, or 0 if not found</returns>
+        </member>
+        <member name="M:View.Sdk.CollectionTopTerms.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
         <member name="T:View.Sdk.CompressionTypeEnum">
             <summary>
             Compression type.
@@ -1101,223 +1123,715 @@
             Adaptive.
             </summary>
         </member>
-        <member name="T:View.Sdk.Configuration.ViewConfigurationSdk">
+        <member name="T:View.Sdk.Configuration.Implementations.AuthenticationMethods">
             <summary>
-            View Configuration SDK.
+            Authentication methods
             </summary>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.#ctor(System.Guid,System.String,System.String)">
+        <member name="M:View.Sdk.Configuration.Implementations.AuthenticationMethods.#ctor(View.Sdk.ViewSdkBase)">
             <summary>
-            Instantiate.
+            Authentication methods.
             </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="accessKey">Access key.</param>
-            <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/.</param>
+            <param name="sdk">View SDK.</param>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateNode(View.Sdk.Node,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Implementations.AuthenticationMethods.RetrieveTenants(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.AuthenticationMethods.GenerateTokenWithPassword(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.AuthenticationMethods.GenerateTokenWithPasswordSha256(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.AuthenticationMethods.GenerateAdminTokenWithPassword(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.AuthenticationMethods.GenerateAdminTokenWithPasswordSha256(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.AuthenticationMethods.ValidateToken(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.AuthenticationMethods.RetrieveTokenDetails(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Configuration.Implementations.BlobMethods">
             <summary>
-            Create a node.
+            Blob methods
             </summary>
-            <param name="node">Node.</param>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.BlobMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Blob methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.BlobMethods.Create(View.Sdk.Blob,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.BlobMethods.Retrieve(System.String,System.Boolean,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.BlobMethods.Read(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.BlobMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.BlobMethods.Update(View.Sdk.Blob,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.BlobMethods.Delete(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.BlobMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Configuration.Implementations.BucketMethods">
+            <summary>
+            Bucket methods
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.BucketMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Bucket methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.BucketMethods.Create(View.Sdk.BucketMetadata,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.BucketMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.BucketMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.BucketMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.BucketMethods.Update(View.Sdk.BucketMetadata,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.BucketMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Configuration.Implementations.CollectionMethods">
+            <summary>
+            Collection methods
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.CollectionMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Collection methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.CollectionMethods.Create(View.Sdk.Collection,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.CollectionMethods.Retrieve(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.CollectionMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.CollectionMethods.RetrieveStatistics(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.CollectionMethods.Delete(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.CollectionMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.CollectionMethods.Exists(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Configuration.Implementations.CredentialMethods">
+            <summary>
+            Credential methods
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.CredentialMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Credential methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.CredentialMethods.Create(View.Sdk.Credential,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.CredentialMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.CredentialMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.CredentialMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.CredentialMethods.Update(View.Sdk.Credential,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.CredentialMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.CredentialMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Configuration.Implementations.DataRepositoryMethods">
+            <summary>
+            Data repository methods
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.DataRepositoryMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Data repository methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.DataRepositoryMethods.Create(View.Sdk.DataRepository,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.DataRepositoryMethods.Retrieve(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.DataRepositoryMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.DataRepositoryMethods.Update(View.Sdk.DataRepository,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.DataRepositoryMethods.Delete(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.DataRepositoryMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Configuration.Implementations.EmbeddingsRuleMethods">
+            <summary>
+            Embeddings rule methods
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.EmbeddingsRuleMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Embeddings rule methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.EmbeddingsRuleMethods.Create(View.Sdk.EmbeddingsRule,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.EmbeddingsRuleMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.EmbeddingsRuleMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.EmbeddingsRuleMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.EmbeddingsRuleMethods.Update(View.Sdk.EmbeddingsRule,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.EmbeddingsRuleMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.EmbeddingsRuleMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Configuration.Implementations.EncryptionKeyMethods">
+            <summary>
+            Encryptionkey methods
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.EncryptionKeyMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            EncryptionKey methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.EncryptionKeyMethods.Create(View.Sdk.EncryptionKey,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.EncryptionKeyMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.EncryptionKeyMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.EncryptionKeyMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.EncryptionKeyMethods.Update(View.Sdk.EncryptionKey,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.EncryptionKeyMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.EncryptionKeyMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Configuration.Implementations.GraphRepositoryMethods">
+            <summary>
+            Graph repository methods
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.GraphRepositoryMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Graph repository methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.GraphRepositoryMethods.Create(View.Sdk.GraphRepository,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.GraphRepositoryMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.GraphRepositoryMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.GraphRepositoryMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.GraphRepositoryMethods.Update(View.Sdk.GraphRepository,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.GraphRepositoryMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.GraphRepositoryMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate graph repositories.
+            </summary>
+            <param name="maxKeys">Maximum number of keys to return.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Node.</returns>
+            <returns>Enumeration result.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsNode(System.Guid,System.Threading.CancellationToken)">
+        <member name="T:View.Sdk.Configuration.Implementations.MetadataRuleMethods">
             <summary>
-            Check if a node exists.
+            Metadata rule methods
             </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveNode(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Implementations.MetadataRuleMethods.#ctor(View.Sdk.ViewSdkBase)">
             <summary>
-            Read a node.
+            Metadata rule methods.
             </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Node.</returns>
+            <param name="sdk">View SDK.</param>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveNodes(System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Implementations.MetadataRuleMethods.Create(View.Sdk.MetadataRule,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.MetadataRuleMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.MetadataRuleMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.MetadataRuleMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.MetadataRuleMethods.Update(View.Sdk.MetadataRule,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.MetadataRuleMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.MetadataRuleMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.NodeMethods.#ctor(View.Sdk.ViewSdkBase)">
             <summary>
-            Read nodes.
+            Node methods.
             </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>Nodes.</returns>
+            <param name="sdk">View SDK.</param>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.UpdateNode(View.Sdk.Node,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Implementations.NodeMethods.Create(View.Sdk.Node,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.NodeMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.NodeMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.NodeMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.NodeMethods.Update(View.Sdk.Node,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.NodeMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.NodeMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Configuration.Implementations.ObjectLockMethods">
             <summary>
-            Update a node.
+            Object lock methods
             </summary>
-            <param name="node">Node.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Node.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteNode(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Implementations.ObjectLockMethods.#ctor(View.Sdk.ViewSdkBase)">
             <summary>
-            Delete a node.
+            Object lock methods.
             </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if successful.</returns>
+            <param name="sdk">View SDK.</param>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveTenant(System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Implementations.ObjectLockMethods.Create(View.Sdk.ObjectLock,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.ObjectLockMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.ObjectLockMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.ObjectLockMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.ObjectLockMethods.Update(View.Sdk.ObjectLock,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.ObjectLockMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.ObjectLockMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Configuration.Implementations.PoolMethods">
             <summary>
-            Read a tenant.
+            Pool methods
             </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>Tenant.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.UpdateTenant(View.Sdk.TenantMetadata,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Implementations.PoolMethods.#ctor(View.Sdk.ViewSdkBase)">
             <summary>
-            Update a tenant.
+            Pool methods.
             </summary>
-            <param name="tenant">Tenant.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Tenant.</returns>
+            <param name="sdk">View SDK.</param>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateUser(View.Sdk.UserMaster,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Implementations.PoolMethods.Create(View.Sdk.StoragePool,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.PoolMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.PoolMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.PoolMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.PoolMethods.Update(View.Sdk.StoragePool,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.PoolMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Configuration.Implementations.TenantMethods">
             <summary>
-            Create a user.
+            Tenant methods
             </summary>
-            <param name="user">User.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>User.</returns>
+            
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsUser(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Implementations.TenantMethods.#ctor(View.Sdk.ViewSdkBase)">
             <summary>
-            Check if a user exists.
+            Tenant methods.
             </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
+            <param name="sdk">View SDK.</param>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveUser(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Implementations.TenantMethods.Retrieve(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.TenantMethods.Update(View.Sdk.TenantMetadata,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.TenantMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.TenantMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.TenantMethods.Create(View.Sdk.TenantMetadata,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.TenantMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Configuration.Implementations.UserMethods">
             <summary>
-            Read a user.
+            User methods
             </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>User.</returns>
+            
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveUsers(System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Implementations.UserMethods.#ctor(View.Sdk.ViewSdkBase)">
             <summary>
-            Read users.
+            User methods.
             </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>Users.</returns>
+            <param name="sdk">View SDK.</param>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.UpdateUser(View.Sdk.UserMaster,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Implementations.UserMethods.Create(View.Sdk.UserMaster,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.UserMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.UserMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.UserMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.UserMethods.Update(View.Sdk.UserMaster,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.UserMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.UserMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Configuration.Implementations.VectorRepositoryMethods">
             <summary>
-            Update a user.
+            Vector repository methods
             </summary>
-            <param name="user">User.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>User.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteUser(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Implementations.VectorRepositoryMethods.#ctor(View.Sdk.ViewSdkBase)">
             <summary>
-            Delete a user.
+            Vector repository methods.
             </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if successful.</returns>
+            <param name="sdk">View SDK.</param>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateCredential(View.Sdk.Credential,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Implementations.VectorRepositoryMethods.Create(View.Sdk.VectorRepository,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.VectorRepositoryMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.VectorRepositoryMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.VectorRepositoryMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.VectorRepositoryMethods.Update(View.Sdk.VectorRepository,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.VectorRepositoryMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.VectorRepositoryMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Configuration.Implementations.WebhookEventMethods">
             <summary>
-            Create a credential.
+            Webhook event methods
             </summary>
-            <param name="cred">Credential.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Credential.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsCredential(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Implementations.WebhookEventMethods.#ctor(View.Sdk.ViewSdkBase)">
             <summary>
-            Check if a credential exists.
+            Webhook event methods.
             </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
+            <param name="sdk">View SDK.</param>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveCredential(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Implementations.WebhookEventMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.WebhookEventMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.WebhookEventMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.WebhookEventMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Configuration.Implementations.WebhookRuleMethods">
             <summary>
-            Read a credential.
+            Webhook rule methods
             </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Credential.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveCredentials(System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Implementations.WebhookRuleMethods.#ctor(View.Sdk.ViewSdkBase)">
             <summary>
-            Read nodes.
+            Webhook rule methods.
             </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>Nodes.</returns>
+            <param name="sdk">View SDK.</param>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.UpdateCredential(View.Sdk.Credential,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Implementations.WebhookRuleMethods.Create(View.Sdk.WebhookRule,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.WebhookRuleMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.WebhookRuleMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.WebhookRuleMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.WebhookRuleMethods.Update(View.Sdk.WebhookRule,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.WebhookRuleMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.WebhookRuleMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Configuration.Implementations.WebhookTargetMethods">
             <summary>
-            Update a credential.
+            Webhook target methods
             </summary>
-            <param name="cred">Credential.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Credential.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteCredential(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Implementations.WebhookTargetMethods.#ctor(View.Sdk.ViewSdkBase)">
             <summary>
-            Delete a credential.
+            Webhook target methods.
             </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if successful.</returns>
+            <param name="sdk">View SDK.</param>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreatePool(View.Sdk.StoragePool,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Implementations.WebhookTargetMethods.Create(View.Sdk.WebhookTarget,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.WebhookTargetMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.WebhookTargetMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.WebhookTargetMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.WebhookTargetMethods.Update(View.Sdk.WebhookTarget,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.WebhookTargetMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.WebhookTargetMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Configuration.Interfaces.IAuthenticationMethods">
             <summary>
-            Create a pool.
+            Authentication methods interface
             </summary>
-            <param name="pool">Pool.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Pool.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsPool(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.IAuthenticationMethods.RetrieveTenants(System.Threading.CancellationToken)">
             <summary>
-            Check if a pool exists.
+            Retrieve tenants.
             </summary>
-            <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
+            <returns>List of tenant metadata.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrievePool(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.IAuthenticationMethods.GenerateTokenWithPassword(System.Threading.CancellationToken)">
             <summary>
-            Read a pool.
+            Generate authentication token using password.
             </summary>
-            <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Pool.</returns>
+            <returns>Authentication token.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrievePools(System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.IAuthenticationMethods.GenerateTokenWithPasswordSha256(System.Threading.CancellationToken)">
             <summary>
-            Read pools.
+            Generate authentication token using password SHA-256.
             </summary>
             <param name="token">Cancellation token.</param>
-            <returns>Pools.</returns>
+            <returns>Authentication token.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.UpdatePool(View.Sdk.StoragePool,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.IAuthenticationMethods.GenerateAdminTokenWithPassword(System.Threading.CancellationToken)">
             <summary>
-            Update a pool.
+            Generate administrator token using password.
             </summary>
-            <param name="pool">Pool.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Pool.</returns>
+            <returns>Authentication token.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeletePool(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.IAuthenticationMethods.GenerateAdminTokenWithPasswordSha256(System.Threading.CancellationToken)">
             <summary>
-            Delete a pool.
+            Generate administrator token using password SHA-256.
             </summary>
-            <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
-            <returns>True if successful.</returns>
+            <returns>Authentication token.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateBucket(View.Sdk.BucketMetadata,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.IAuthenticationMethods.ValidateToken(System.Threading.CancellationToken)">
+            <summary>
+            Validate authentication token.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Authentication token with validity information.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IAuthenticationMethods.RetrieveTokenDetails(System.Threading.CancellationToken)">
+            <summary>
+            Retrieve token details.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Authentication token with details.</returns>
+        </member>
+        <member name="T:View.Sdk.Configuration.Interfaces.IBlobMethods">
+            <summary>
+            Methods for working with blobs.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IBlobMethods.Create(View.Sdk.Blob,System.Threading.CancellationToken)">
+            <summary>
+            Create a blob.
+            </summary>
+            <param name="blob">Blob.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Blob.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IBlobMethods.Retrieve(System.String,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve a blob.
+            </summary>
+            <param name="blobGuid">Blob GUID.</param>
+            <param name="inclData">Include blob data in response.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Blob.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IBlobMethods.Read(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a public blob.
+            </summary>
+            <param name="blobGuid">Blob GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Blob.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IBlobMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Retrieve multiple blobs.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>List of blobs.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IBlobMethods.Update(View.Sdk.Blob,System.Threading.CancellationToken)">
+            <summary>
+            Update a blob.
+            </summary>
+            <param name="blob">Blob.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Blob.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IBlobMethods.Delete(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a blob.
+            </summary>
+            <param name="blobGuid">Blob GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Boolean indicating success.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IBlobMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate blobs.
+            </summary>
+            <param name="maxKeys">Maximum number of keys to return.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result.</returns>
+        </member>
+        <member name="T:View.Sdk.Configuration.Interfaces.IBucketMethods">
+            <summary>
+            Interface for bucket methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IBucketMethods.Create(View.Sdk.BucketMetadata,System.Threading.CancellationToken)">
             <summary>
             Create a bucket.
             </summary>
@@ -1325,7 +1839,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Bucket.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsBucket(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.IBucketMethods.Exists(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Check if a bucket exists.
             </summary>
@@ -1333,7 +1847,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveBucket(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.IBucketMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read a bucket.
             </summary>
@@ -1341,14 +1855,14 @@
             <param name="token">Cancellation token.</param>
             <returns>Bucket.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveBuckets(System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.IBucketMethods.RetrieveMany(System.Threading.CancellationToken)">
             <summary>
             Read buckets.
             </summary>
             <param name="token">Cancellation token.</param>
             <returns>Buckets.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.UpdateBucket(View.Sdk.BucketMetadata,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.IBucketMethods.Update(View.Sdk.BucketMetadata,System.Threading.CancellationToken)">
             <summary>
             Update a bucket.
             </summary>
@@ -1356,7 +1870,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Bucket.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteBucket(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.IBucketMethods.Delete(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Delete a bucket.
             </summary>
@@ -1364,249 +1878,20 @@
             <param name="token">Cancellation token.</param>
             <returns>True if successful.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateEncryptionKey(View.Sdk.EncryptionKey,System.Threading.CancellationToken)">
+        <member name="T:View.Sdk.Configuration.Interfaces.ICollectionMethods">
             <summary>
-            Create an encryption key.
+            Interface for collection methods.
             </summary>
-            <param name="key">Encryption key.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Encryption key.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsEncryptionKey(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.ICollectionMethods.Create(View.Sdk.Collection,System.Threading.CancellationToken)">
             <summary>
-            Check if an encryption key exists.
+            Create a collection.
             </summary>
-            <param name="guid">GUID.</param>
+            <param name="collection">Collection.</param>
             <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
+            <returns>Collection.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveEncryptionKey(System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read an encryption key.
-            </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Encryption key.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveEncryptionKeys(System.Threading.CancellationToken)">
-            <summary>
-            Read encryption keys.
-            </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>Encryption keys.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.UpdateEncryptionKey(View.Sdk.EncryptionKey,System.Threading.CancellationToken)">
-            <summary>
-            Update an encryption key.
-            </summary>
-            <param name="key">Encryption key.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Encryption key.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteEncryptionKey(System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Delete an encryption key.
-            </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if successful.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateMetadataRule(View.Sdk.MetadataRule,System.Threading.CancellationToken)">
-            <summary>
-            Create a metadata rule.
-            </summary>
-            <param name="rule">Metadata rule.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Metadata rule.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsMetadataRule(System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Check if a metadata rule exists.
-            </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveMetadataRule(System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read a metadata rule.
-            </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Metadata rule.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveMetadataRules(System.Threading.CancellationToken)">
-            <summary>
-            Read metadata rules.
-            </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>Metadata rules.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.UpdateMetadataRule(View.Sdk.MetadataRule,System.Threading.CancellationToken)">
-            <summary>
-            Update a metadata rule.
-            </summary>
-            <param name="rule">Metadata rule.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Metadata rule.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteMetadataRule(System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Delete a metadata rule.
-            </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if successful.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateEmbeddingsRule(View.Sdk.EmbeddingsRule,System.Threading.CancellationToken)">
-            <summary>
-            Create a embeddings rule.
-            </summary>
-            <param name="rule">Embeddings rule.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Embeddings rule.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsEmbeddingsRule(System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Check if a embeddings rule exists.
-            </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveEmbeddingsRule(System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read a embeddings rule.
-            </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Embeddings rule.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveEmbeddingsRules(System.Threading.CancellationToken)">
-            <summary>
-            Read embeddings rules.
-            </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>Embeddings rules.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.UpdateEmbeddingsRule(View.Sdk.EmbeddingsRule,System.Threading.CancellationToken)">
-            <summary>
-            Update a embeddings rule.
-            </summary>
-            <param name="rule">Embeddings rule.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Embeddings rule.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteEmbeddingsRule(System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Delete a embeddings rule.
-            </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if successful.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateVectorRepository(View.Sdk.VectorRepository,System.Threading.CancellationToken)">
-            <summary>
-            Create a vector repository.
-            </summary>
-            <param name="repo">Vector repository.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Vector repository.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsVectorRepository(System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Check if a vector repository exists.
-            </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveVectorRepository(System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read a vector repository.
-            </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>vector repository.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveVectorRepositories(System.Threading.CancellationToken)">
-            <summary>
-            Read vector repositories.
-            </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>Vector repositories.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.UpdateVectorRepository(View.Sdk.VectorRepository,System.Threading.CancellationToken)">
-            <summary>
-            Update a vector repository.
-            </summary>
-            <param name="repo">Vector repository.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Vector repository.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteVectorRepository(System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Delete a vector repository.
-            </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if successful.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateGraphRepository(View.Sdk.GraphRepository,System.Threading.CancellationToken)">
-            <summary>
-            Create a graph repository.
-            </summary>
-            <param name="repo">Graph repository.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph repository.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsGraphRepository(System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Check if a graph repository exists.
-            </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveGraphRepository(System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read a graph repository.
-            </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph repository.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveGraphRepositories(System.Threading.CancellationToken)">
-            <summary>
-            Read graph repositories.
-            </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph repositories.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.UpdateGraphRepository(View.Sdk.GraphRepository,System.Threading.CancellationToken)">
-            <summary>
-            Update a graph repository.
-            </summary>
-            <param name="repo">graph repository.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph repository.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteGraphRepository(System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Delete a graph repository.
-            </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if successful.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveCollections(System.Threading.CancellationToken)">
-            <summary>
-            Retrieve collections.
-            </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>List of collection.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveCollection(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.ICollectionMethods.Retrieve(System.String,System.Threading.CancellationToken)">
             <summary>
             Retrieve a collection.
             </summary>
@@ -1614,7 +1899,14 @@
             <param name="token">Cancellation token.</param>
             <returns>Collection.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveCollectionStatistics(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.ICollectionMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Retrieve collections.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>List of collection.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.ICollectionMethods.RetrieveStatistics(System.String,System.Threading.CancellationToken)">
             <summary>
             Retrieve collection statistics.
             </summary>
@@ -1622,15 +1914,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Collection statistics.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateCollection(View.Sdk.Collection,System.Threading.CancellationToken)">
-            <summary>
-            Create collection.
-            </summary>
-            <param name="collection">Collection.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Collection.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteCollection(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.ICollectionMethods.Delete(System.String,System.Threading.CancellationToken)">
             <summary>
             Delete collection.
             </summary>
@@ -1638,22 +1922,88 @@
             <param name="token">Cancellation token.</param>
             <returns>True if successful.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveDataRepositories(System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.ICollectionMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
             <summary>
-            Retrieve data repositories.
+            Enumerate collections.
+            </summary>
+            <param name="maxKeys">Maximum number of keys to return.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>EnumerationResult containing collections.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.ICollectionMethods.Exists(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a collection exists.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if the collection exists.</returns>
+        </member>
+        <member name="T:View.Sdk.Configuration.Interfaces.ICredentialMethods">
+            <summary>
+            Interface for credential methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.ICredentialMethods.Create(View.Sdk.Credential,System.Threading.CancellationToken)">
+            <summary>
+            Create a credential.
+            </summary>
+            <param name="cred">Credential.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Credential.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.ICredentialMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a credential exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.ICredentialMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read a credential.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Credential.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.ICredentialMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Read nodes.
             </summary>
             <param name="token">Cancellation token.</param>
-            <returns>List of data repository.</returns>
+            <returns>Nodes.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveDataRepository(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.ICredentialMethods.Update(View.Sdk.Credential,System.Threading.CancellationToken)">
             <summary>
-            Retrieve a data repository.
+            Update a credential.
             </summary>
-            <param name="repositoryGuid">GUID.</param>
+            <param name="cred">Credential.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Data repository.</returns>
+            <returns>Credential.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateDataRepository(View.Sdk.DataRepository,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.ICredentialMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a credential.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.ICredentialMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate credentials with pagination support.
+            </summary>
+            <param name="maxKeys">Maximum number of keys to return.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result containing credentials.</returns>
+        </member>
+        <member name="T:View.Sdk.Configuration.Interfaces.IDataRepositoryMethods">
+            <summary>
+            Interface for data repository methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IDataRepositoryMethods.Create(View.Sdk.DataRepository,System.Threading.CancellationToken)">
             <summary>
             Create data repository.
             </summary>
@@ -1661,7 +2011,30 @@
             <param name="token">Cancellation token.</param>
             <returns>Data repository.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteDataRepository(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.IDataRepositoryMethods.Retrieve(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve a data repository.
+            </summary>
+            <param name="repositoryGuid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Data repository.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IDataRepositoryMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Retrieve data repositories.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>List of data repository.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IDataRepositoryMethods.Update(View.Sdk.DataRepository,System.Threading.CancellationToken)">
+            <summary>
+            Update data repository.
+            </summary>
+            <param name="repository">Data repository.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Data repository.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IDataRepositoryMethods.Delete(System.String,System.Threading.CancellationToken)">
             <summary>
             Delete data repository.
             </summary>
@@ -1669,124 +2042,320 @@
             <param name="token">Cancellation token.</param>
             <returns>True if successful.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsWebhookEvent(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.IDataRepositoryMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
             <summary>
-            Check if a webhook event exists.
+            Data repository with pagination support.
+            </summary>
+            <param name="maxKeys">Maximum number of keys to return in the response. Default is 5.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>EnumerationResult containing Data repository.</returns>
+        </member>
+        <member name="T:View.Sdk.Configuration.Interfaces.IEmbeddingsRuleMethods">
+            <summary>
+            Interface for embeddings rule methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IEmbeddingsRuleMethods.Create(View.Sdk.EmbeddingsRule,System.Threading.CancellationToken)">
+            <summary>
+            Create a embeddings rule.
+            </summary>
+            <param name="rule">Embeddings rule.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Embeddings rule.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IEmbeddingsRuleMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a embeddings rule exists.
             </summary>
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveWebhookEvent(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.IEmbeddingsRuleMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
             <summary>
-            Read a webhook event.
+            Read a embeddings rule.
             </summary>
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
             <returns>Embeddings rule.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveWebhookEvents(System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.IEmbeddingsRuleMethods.RetrieveMany(System.Threading.CancellationToken)">
             <summary>
-            Read webhook events.
+            Read embeddings rules.
             </summary>
             <param name="token">Cancellation token.</param>
-            <returns>Webhook events.</returns>
+            <returns>Embeddings rules.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateWebhookRule(View.Sdk.WebhookRule,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.IEmbeddingsRuleMethods.Update(View.Sdk.EmbeddingsRule,System.Threading.CancellationToken)">
             <summary>
-            Create a webhook rule.
+            Update a embeddings rule.
             </summary>
-            <param name="rule">Webhook rule.</param>
+            <param name="rule">Embeddings rule.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Webhook rule.</returns>
+            <returns>Embeddings rule.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsWebhookRule(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.IEmbeddingsRuleMethods.Delete(System.Guid,System.Threading.CancellationToken)">
             <summary>
-            Check if a webhook rule exists.
-            </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveWebhookRule(System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read a webhook rule.
-            </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Webhook rule.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveWebhookRules(System.Threading.CancellationToken)">
-            <summary>
-            Read webhook rules.
-            </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>Webhook rules.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.UpdateWebhookRule(View.Sdk.WebhookRule,System.Threading.CancellationToken)">
-            <summary>
-            Update a webhook rule.
-            </summary>
-            <param name="rule">Webhook rule.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Webhook rule.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteWebhookRule(System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Delete a webhook rule.
+            Delete a embeddings rule.
             </summary>
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
             <returns>True if successful.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateWebhookTarget(View.Sdk.WebhookTarget,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.IEmbeddingsRuleMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
             <summary>
-            Create a webhook target.
+            Enumerate embeddings rules with pagination support.
             </summary>
-            <param name="target">Webhook target.</param>
+            <param name="maxKeys">Maximum number of keys to return.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Webhook target.</returns>
+            <returns>Enumeration result containing embeddings rules.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsWebhookTarget(System.Guid,System.Threading.CancellationToken)">
+        <member name="T:View.Sdk.Configuration.Interfaces.IEncryptionKeyMethods">
             <summary>
-            Check if a webhook target exists.
+            Interface for encryptionkey methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IEncryptionKeyMethods.Create(View.Sdk.EncryptionKey,System.Threading.CancellationToken)">
+            <summary>
+            Create an encryption key.
+            </summary>
+            <param name="key">Encryption key.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Encryption key.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IEncryptionKeyMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if an encryption key exists.
             </summary>
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveWebhookTarget(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.IEncryptionKeyMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
             <summary>
-            Read a webhook target.
+            Read an encryption key.
             </summary>
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Webhook target.</returns>
+            <returns>Encryption key.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveWebhookTargets(System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.IEncryptionKeyMethods.RetrieveMany(System.Threading.CancellationToken)">
             <summary>
-            Read webhook targets.
+            Read encryption keys.
             </summary>
             <param name="token">Cancellation token.</param>
-            <returns>Webhook targets.</returns>
+            <returns>Encryption keys.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.UpdateWebhookTarget(View.Sdk.WebhookTarget,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.IEncryptionKeyMethods.Update(View.Sdk.EncryptionKey,System.Threading.CancellationToken)">
             <summary>
-            Update a webhook target.
+            Update an encryption key.
             </summary>
-            <param name="target">Webhook target.</param>
+            <param name="key">Encryption key.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Webhook target.</returns>
+            <returns>Encryption key.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteWebhookTarget(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.IEncryptionKeyMethods.Delete(System.Guid,System.Threading.CancellationToken)">
             <summary>
-            Delete a webhook target.
+            Delete an encryption key.
             </summary>
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
             <returns>True if successful.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.CreateObjectLock(View.Sdk.ObjectLock,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.IEncryptionKeyMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate encryption keys.
+            </summary>
+            <param name="maxKeys">Maximum number of keys to return.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result containing encryption keys.</returns>
+        </member>
+        <member name="T:View.Sdk.Configuration.Interfaces.IGraphRepositoryMethods">
+            <summary>
+            Interface for graph repository methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IGraphRepositoryMethods.Create(View.Sdk.GraphRepository,System.Threading.CancellationToken)">
+            <summary>
+            Create a graph repository.
+            </summary>
+            <param name="repo">Graph repository.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph repository.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IGraphRepositoryMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a graph repository exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IGraphRepositoryMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read a graph repository.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph repository.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IGraphRepositoryMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Read graph repositories.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph repositories.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IGraphRepositoryMethods.Update(View.Sdk.GraphRepository,System.Threading.CancellationToken)">
+            <summary>
+            Update a graph repository.
+            </summary>
+            <param name="repo">graph repository.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph repository.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IGraphRepositoryMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a graph repository.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IGraphRepositoryMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate graph repositories.
+            </summary>
+            <param name="maxKeys">Maximum number of keys to return.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result.</returns>
+        </member>
+        <member name="T:View.Sdk.Configuration.Interfaces.IMetadataRuleMethods">
+            <summary>
+            Interface for metadata rule methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IMetadataRuleMethods.Create(View.Sdk.MetadataRule,System.Threading.CancellationToken)">
+            <summary>
+            Create a metadata rule.
+            </summary>
+            <param name="rule">Metadata rule.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Metadata rule.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IMetadataRuleMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a metadata rule exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IMetadataRuleMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read a metadata rule.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Metadata rule.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IMetadataRuleMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Read metadata rules.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Metadata rules.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IMetadataRuleMethods.Update(View.Sdk.MetadataRule,System.Threading.CancellationToken)">
+            <summary>
+            Update a metadata rule.
+            </summary>
+            <param name="rule">Metadata rule.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Metadata rule.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IMetadataRuleMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a metadata rule.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IMetadataRuleMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate metadata rules.
+            </summary>
+            <param name="maxKeys">Maximum number of rules to return.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result containing metadata rules.</returns>
+        </member>
+        <member name="T:View.Sdk.Configuration.Interfaces.INodeMethods">
+            <summary>
+            Interface for node methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.INodeMethods.Create(View.Sdk.Node,System.Threading.CancellationToken)">
+            <summary>
+            Create a node.
+            </summary>
+            <param name="node">Node.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Node.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.INodeMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a node exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.INodeMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read a node.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Node.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.INodeMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Read nodes.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Nodes.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.INodeMethods.Update(View.Sdk.Node,System.Threading.CancellationToken)">
+            <summary>
+            Update a node.
+            </summary>
+            <param name="node">Node.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Node.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.INodeMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a node.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.INodeMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate nodes with pagination support.
+            </summary>
+            <param name="maxKeys">Maximum number of keys to return in the response. Default is 5.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>EnumerationResult containing nodes.</returns>
+        </member>
+        <member name="T:View.Sdk.Configuration.Interfaces.IObjectLockMethods">
+            <summary>
+            Interface for object lock methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IObjectLockMethods.Create(View.Sdk.ObjectLock,System.Threading.CancellationToken)">
             <summary>
             Create an object lock.
             </summary>
@@ -1794,7 +2363,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Object lock.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.ExistsObjectLock(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.IObjectLockMethods.Exists(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Check if an object lock exists.
             </summary>
@@ -1802,7 +2371,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveObjectLock(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.IObjectLockMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Read an object lock.
             </summary>
@@ -1810,14 +2379,14 @@
             <param name="token">Cancellation token.</param>
             <returns>Object lock.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.RetrieveObjectLocks(System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.IObjectLockMethods.RetrieveMany(System.Threading.CancellationToken)">
             <summary>
             Read Object locks.
             </summary>
             <param name="token">Cancellation token.</param>
             <returns>Object locks.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.UpdateObjectLock(View.Sdk.ObjectLock,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.IObjectLockMethods.Update(View.Sdk.ObjectLock,System.Threading.CancellationToken)">
             <summary>
             Update an object lock.
             </summary>
@@ -1825,13 +2394,512 @@
             <param name="token">Cancellation token.</param>
             <returns>Object lock.</returns>
         </member>
-        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.DeleteObjectLock(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.IObjectLockMethods.Delete(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Delete an object lock.
             </summary>
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
             <returns>True if successful.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IObjectLockMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate object locks with pagination support.
+            </summary>
+            <param name="maxKeys">Maximum number of keys to return in a single operation.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result containing object locks.</returns>
+        </member>
+        <member name="T:View.Sdk.Configuration.Interfaces.IPoolMethods">
+            <summary>
+            Interface for pool methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IPoolMethods.Create(View.Sdk.StoragePool,System.Threading.CancellationToken)">
+            <summary>
+            Create a pool.
+            </summary>
+            <param name="pool">Pool.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Pool.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IPoolMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a pool exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IPoolMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read a pool.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Pool.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IPoolMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Read pools.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Pools.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IPoolMethods.Update(View.Sdk.StoragePool,System.Threading.CancellationToken)">
+            <summary>
+            Update a pool.
+            </summary>
+            <param name="pool">Pool.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Pool.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IPoolMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a pool.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="T:View.Sdk.Configuration.Interfaces.ITenantMethods">
+            <summary>
+            Interface for tenant methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.ITenantMethods.Retrieve(System.Threading.CancellationToken)">
+            <summary>
+            Read a tenant.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Tenant.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.ITenantMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Retrieve multiple tenants.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>List of tenants.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.ITenantMethods.Create(View.Sdk.TenantMetadata,System.Threading.CancellationToken)">
+            <summary>
+            Create a new tenant.
+            </summary>
+            <param name="tenant">Tenant to create.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Tenant setup result.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.ITenantMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a tenant.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.ITenantMethods.Update(View.Sdk.TenantMetadata,System.Threading.CancellationToken)">
+            <summary>
+            Update a tenant.
+            </summary>
+            <param name="tenant">Tenant.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Tenant.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.ITenantMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate tenants.
+            </summary>
+            <param name="maxKeys">Maximum number of keys to return.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result.</returns>
+        </member>
+        <member name="T:View.Sdk.Configuration.Interfaces.IUserMethods">
+            <summary>
+            Interface for user methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IUserMethods.Create(View.Sdk.UserMaster,System.Threading.CancellationToken)">
+            <summary>
+            Create a user.
+            </summary>
+            <param name="user">User.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>User.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IUserMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a user exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IUserMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read a user.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>User.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IUserMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Read users.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Users.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IUserMethods.Update(View.Sdk.UserMaster,System.Threading.CancellationToken)">
+            <summary>
+            Update a user.
+            </summary>
+            <param name="user">User.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>User.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IUserMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate users with pagination support.
+            </summary>
+            <param name="maxKeys">Maximum number of keys to return.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result containing users.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IUserMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a user.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="T:View.Sdk.Configuration.Interfaces.IVectorRepositoryMethods">
+            <summary>
+            Interface for vector repository methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IVectorRepositoryMethods.Create(View.Sdk.VectorRepository,System.Threading.CancellationToken)">
+            <summary>
+            Create a vector repository.
+            </summary>
+            <param name="repo">Vector repository.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Vector repository.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IVectorRepositoryMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a vector repository exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IVectorRepositoryMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read a vector repository.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>vector repository.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IVectorRepositoryMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Read vector repositories.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Vector repositories.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IVectorRepositoryMethods.Update(View.Sdk.VectorRepository,System.Threading.CancellationToken)">
+            <summary>
+            Update a vector repository.
+            </summary>
+            <param name="repo">Vector repository.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Vector repository.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IVectorRepositoryMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a vector repository.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IVectorRepositoryMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate vector repositories with pagination support.
+            </summary>
+            <param name="maxKeys">Maximum number of keys to return in a single operation.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result containing vector repositories.</returns>
+        </member>
+        <member name="T:View.Sdk.Configuration.Interfaces.IWebhookEventMethods">
+            <summary>
+            Interface for webhook event methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IWebhookEventMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a webhook event exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IWebhookEventMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read a webhook event.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Embeddings rule.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IWebhookEventMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Read webhook events.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Webhook events.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IWebhookEventMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate webhook events with pagination support.
+            </summary>
+            <param name="maxKeys">Maximum number of keys to return in a single operation.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result containing webhook events.</returns>
+        </member>
+        <member name="T:View.Sdk.Configuration.Interfaces.IWebhookRuleMethods">
+            <summary>
+            Interface for webhook rule methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IWebhookRuleMethods.Create(View.Sdk.WebhookRule,System.Threading.CancellationToken)">
+            <summary>
+            Create a webhook rule.
+            </summary>
+            <param name="rule">Webhook rule.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Webhook rule.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IWebhookRuleMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a webhook rule exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IWebhookRuleMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read a webhook rule.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Webhook rule.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IWebhookRuleMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Read webhook rules.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Webhook rules.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IWebhookRuleMethods.Update(View.Sdk.WebhookRule,System.Threading.CancellationToken)">
+            <summary>
+            Update a webhook rule.
+            </summary>
+            <param name="rule">Webhook rule.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Webhook rule.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IWebhookRuleMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a webhook rule.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IWebhookRuleMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate webhook rules with pagination support.
+            </summary>
+            <param name="maxKeys">Maximum number of keys to return in a single operation.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result containing webhook rules.</returns>
+        </member>
+        <member name="T:View.Sdk.Configuration.Interfaces.IWebhookTargetMethods">
+            <summary>
+            Interface for webhook target methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IWebhookTargetMethods.Create(View.Sdk.WebhookTarget,System.Threading.CancellationToken)">
+            <summary>
+            Create a webhook target.
+            </summary>
+            <param name="target">Webhook target.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Webhook target.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IWebhookTargetMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a webhook target exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IWebhookTargetMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read a webhook target.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Webhook target.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IWebhookTargetMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Read webhook targets.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Webhook targets.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IWebhookTargetMethods.Update(View.Sdk.WebhookTarget,System.Threading.CancellationToken)">
+            <summary>
+            Update a webhook target.
+            </summary>
+            <param name="target">Webhook target.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Webhook target.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IWebhookTargetMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a webhook target.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IWebhookTargetMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate webhook targets with pagination support.
+            </summary>
+            <param name="maxKeys">Maximum number of keys to return in a single operation.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result containing webhook targets.</returns>
+        </member>
+        <member name="T:View.Sdk.Configuration.ViewConfigurationSdk">
+            <summary>
+            View Configuration SDK.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.Bucket">
+            <summary>
+            Bucket methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.Node">
+            <summary>
+            Node methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.Tenant">
+            <summary>
+            Tenant methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.User">
+            <summary>
+            User methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.Credential">
+            <summary>
+            Credential methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.Pool">
+            <summary>
+            Pool methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.EncryptionKey">
+            <summary>
+            Encryption key methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.WebhookRule">
+            <summary>
+            Webhook rule methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.WebhookTarget">
+            <summary>
+            Webhook target methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.WebhookEvent">
+            <summary>
+            Webhook event methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.MetadataRule">
+            <summary>
+            Metadata rule methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.Collection">
+            <summary>
+            Collection methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.Authentication">
+            <summary>
+            Authentication methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.DataRepository">
+            <summary>
+            Data repository methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.GraphRepository">
+            <summary>
+            Graph repository methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.VectorRepository">
+            <summary>
+            Vector repository methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.ObjectLock">
+            <summary>
+            Object lock methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.EmbeddingsRule">
+            <summary>
+            Embeddings rule methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.Blob">
+            <summary>
+            Blob methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.#ctor(System.Guid,System.String,System.String,System.String)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="accessKey">Access key.</param>
+            <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/.</param>
+            <param name="xToken">
+            Optional token to be included as the <c>x-token</c> header in API requests that require additional authorization.
+            This is used in cases where certain endpoints require an extra level of authentication.
+            </param>
         </member>
         <member name="T:View.Sdk.CrawlFilter">
             <summary>
@@ -5067,27 +6135,158 @@
             Pages.
             </summary>
         </member>
-        <member name="T:View.Sdk.Lexi.ViewLexiSdk">
+        <member name="T:View.Sdk.Lexi.Implementations.CollectionMethods">
             <summary>
-            View Lexi search SDK.
+            Collection methods
             </summary>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.#ctor(System.Guid,System.String,System.String)">
+        <member name="M:View.Sdk.Lexi.Implementations.CollectionMethods.#ctor(View.Sdk.ViewSdkBase)">
             <summary>
-            Instantiate.
+            Collection methods.
             </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="accessKey">Access key.</param>
-            <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/.</param>
+            <param name="sdk">View SDK.</param>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveCollections(System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Lexi.Implementations.CollectionMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.CollectionMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.CollectionMethods.RetrieveStatistics(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.CollectionMethods.Create(View.Sdk.Collection,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.CollectionMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.CollectionMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.CollectionMethods.RetrieveTopTerms(System.Guid,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.CollectionMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Lexi.Implementations.EnumerateMethods">
+            <summary>
+            Enumerate methods
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.EnumerateMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Enumerate methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.EnumerateMethods.Enumerate(System.Guid,View.Sdk.EnumerationQuery,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Lexi.Implementations.IngestQueueMethods">
+            <summary>
+            Ingest queue methods
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.IngestQueueMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Ingest queue methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.IngestQueueMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.IngestQueueMethods.Retrieve(System.Guid,System.Boolean,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.IngestQueueMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.IngestQueueMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Lexi.Implementations.SearchMethods">
+            <summary>
+            Search methods
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.SearchMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Search methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.SearchMethods.Search(System.Guid,View.Sdk.CollectionSearchRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.SearchMethods.SearchIncludeData(System.Guid,View.Sdk.CollectionSearchRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.SearchMethods.SearchIncludeTopTerms(System.Guid,View.Sdk.CollectionSearchRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.SearchMethods.SearchAsync(System.Guid,View.Sdk.CollectionSearchRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.SearchMethods.Enumerate(System.Guid,View.Sdk.CollectionSearchRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.SearchMethods.ExecuteSearchRequest(System.String,View.Sdk.CollectionSearchRequest,System.Threading.CancellationToken)">
+            <summary>
+            Execute a search request to the specified URL with the given query.
+            </summary>
+            <param name="url">The API endpoint URL.</param>
+            <param name="query">The search query.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Search result.</returns>
+        </member>
+        <member name="T:View.Sdk.Lexi.Implementations.SourceDocumentMethods">
+            <summary>
+            Source document methods
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.SourceDocumentMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Source document methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.SourceDocumentMethods.RetrieveMany(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.SourceDocumentMethods.Retrieve(System.Guid,System.Guid,System.Boolean,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.SourceDocumentMethods.RetrieveStatistics(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.SourceDocumentMethods.Upload(View.Sdk.SourceDocument,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.SourceDocumentMethods.Delete(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.SourceDocumentMethods.Delete(System.Guid,System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.SourceDocumentMethods.Exists(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Lexi.Interfaces.ICollectionMethods">
+            <summary>
+            Interface for collection methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Lexi.Interfaces.ICollectionMethods.RetrieveMany(System.Threading.CancellationToken)">
             <summary>
             Retrieve collections.
             </summary>
             <param name="token">Cancellation token.</param>
             <returns>List of collection.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveCollection(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Lexi.Interfaces.ICollectionMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Retrieve a collection.
             </summary>
@@ -5095,7 +6294,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Collection.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveCollectionStatistics(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Lexi.Interfaces.ICollectionMethods.RetrieveStatistics(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Retrieve collection statistics.
             </summary>
@@ -5103,7 +6302,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Collection statistics.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.CreateCollection(View.Sdk.Collection,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Lexi.Interfaces.ICollectionMethods.Create(View.Sdk.Collection,System.Threading.CancellationToken)">
             <summary>
             Create collection.
             </summary>
@@ -5111,7 +6310,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Collection.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.DeleteCollection(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Lexi.Interfaces.ICollectionMethods.Delete(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Delete collection.
             </summary>
@@ -5119,7 +6318,138 @@
             <param name="token">Cancellation token.</param>
             <returns>True if successful.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveDocuments(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Lexi.Interfaces.ICollectionMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate collections.
+            </summary>
+            <param name="maxKeys">Maximum number of keys to return.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>EnumerationResult containing collections.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.Interfaces.ICollectionMethods.RetrieveTopTerms(System.Guid,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve top terms for a collection.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="maxKeys">Maximum number of top terms to return. Default is 10.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Collection top terms.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.Interfaces.ICollectionMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a collection exists.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if the collection exists.</returns>
+        </member>
+        <member name="T:View.Sdk.Lexi.Interfaces.IEnumerateMethods">
+            <summary>
+            Interface for enumerate methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Lexi.Interfaces.IEnumerateMethods.Enumerate(System.Guid,View.Sdk.EnumerationQuery,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate a collection.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="query">Query.</param>
+            <param name="token">Token.</param>
+            <returns>Enumeration result.</returns>
+        </member>
+        <member name="T:View.Sdk.Lexi.Interfaces.IIngestQueueMethods">
+            <summary>
+            Interface for ingest queue methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Lexi.Interfaces.IIngestQueueMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if an ingest queue entry exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.Interfaces.IIngestQueueMethods.Retrieve(System.Guid,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Read an ingest queue entry.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="includeStats">Include statistics in the query.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Ingest queue entry.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.Interfaces.IIngestQueueMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Read ingest queue entries.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Ingest queue entries.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.Interfaces.IIngestQueueMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete an ingest queue entry.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="T:View.Sdk.Lexi.Interfaces.ISearchMethods">
+            <summary>
+            Interface for search methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Lexi.Interfaces.ISearchMethods.Search(System.Guid,View.Sdk.CollectionSearchRequest,System.Threading.CancellationToken)">
+            <summary>
+            Search a collection.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="query">Query.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Search result.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.Interfaces.ISearchMethods.SearchIncludeData(System.Guid,View.Sdk.CollectionSearchRequest,System.Threading.CancellationToken)">
+            <summary>
+            Search a collection and include document data in the results.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="query">Query.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Search result with document data included.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.Interfaces.ISearchMethods.SearchIncludeTopTerms(System.Guid,View.Sdk.CollectionSearchRequest,System.Threading.CancellationToken)">
+            <summary>
+            Search a collection and include top terms in the results.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="query">Query.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Search result with top terms.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.Interfaces.ISearchMethods.SearchAsync(System.Guid,View.Sdk.CollectionSearchRequest,System.Threading.CancellationToken)">
+            <summary>
+            Search a collection asynchronously.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="query">Query.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Search result.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.Interfaces.ISearchMethods.Enumerate(System.Guid,View.Sdk.CollectionSearchRequest,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate documents in a collection.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="query">Query.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result containing source documents.</returns>
+        </member>
+        <member name="T:View.Sdk.Lexi.Interfaces.ISourceDocumentMethods">
+            <summary>
+            Interface for source document methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Lexi.Interfaces.ISourceDocumentMethods.RetrieveMany(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Retrieve documents.
             </summary>
@@ -5127,7 +6457,7 @@
             <param name="token">Cancellation token.</param>
             <returns>List of source documents.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveDocument(System.Guid,System.Guid,System.Boolean,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Lexi.Interfaces.ISourceDocumentMethods.Retrieve(System.Guid,System.Guid,System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Retrieve document.
             </summary>
@@ -5137,7 +6467,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Source document.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveDocumentStatistics(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Lexi.Interfaces.ISourceDocumentMethods.RetrieveStatistics(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>
             Retrieve document statistics.
             </summary>
@@ -5146,7 +6476,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Source document statistics.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.UploadDocument(View.Sdk.SourceDocument,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Lexi.Interfaces.ISourceDocumentMethods.Upload(View.Sdk.SourceDocument,System.Threading.CancellationToken)">
             <summary>
             Upload a document.
             </summary>
@@ -5154,7 +6484,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Source document.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.DeleteDocument(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Lexi.Interfaces.ISourceDocumentMethods.Delete(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>
             Delete a document.
             </summary>
@@ -5163,7 +6493,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if successful.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.DeleteDocument(System.Guid,System.String,System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Lexi.Interfaces.ISourceDocumentMethods.Delete(System.Guid,System.String,System.String,System.Threading.CancellationToken)">
             <summary>
             Delete a document.
             </summary>
@@ -5173,54 +6503,52 @@
             <param name="token">Cancellation token.</param>
             <returns>True if successful.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.ExistsIngestQueueEntry(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Lexi.Interfaces.ISourceDocumentMethods.Exists(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>
-            Check if an ingest queue entry exists.
+            Check if a document exists.
             </summary>
-            <param name="guid">GUID.</param>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="documentGuid">Document GUID.</param>
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveIngestQueueEntry(System.Guid,System.Threading.CancellationToken)">
+        <member name="T:View.Sdk.Lexi.ViewLexiSdk">
             <summary>
-            Read an ingest queue entry.
+            View Lexi search SDK.
             </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Ingest queue entry.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.RetrieveIngestQueueEntries(System.Threading.CancellationToken)">
+        <member name="P:View.Sdk.Lexi.ViewLexiSdk.Collection">
             <summary>
-            Read users.
+            Collection methods.
             </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>Ingest queue entries.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.DeleteIngestQueueEntry(System.Guid,System.Threading.CancellationToken)">
+        <member name="P:View.Sdk.Lexi.ViewLexiSdk.SourceDocument">
             <summary>
-            Delete an ingest queue entry.
+            Source document methods.
             </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if successful.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.Enumerate(System.Guid,View.Sdk.EnumerationQuery,System.Threading.CancellationToken)">
+        <member name="P:View.Sdk.Lexi.ViewLexiSdk.IngestQueue">
             <summary>
-            Enumerate a collection.
+            Ingest queue methods.
             </summary>
-            <param name="collectionGuid">Collection GUID.</param>
-            <param name="query">Query.</param>
-            <param name="token">Token.</param>
-            <returns>Enumeration result.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.ViewLexiSdk.Search(System.Guid,View.Sdk.CollectionSearchRequest,System.Threading.CancellationToken)">
+        <member name="P:View.Sdk.Lexi.ViewLexiSdk.Enumerate">
             <summary>
-            Search a collection.
+            Enumerate methods.
             </summary>
-            <param name="collectionGuid">Collection GUID.</param>
-            <param name="query">Query.</param>
-            <param name="token"></param>
-            <returns>Search result.</returns>
+        </member>
+        <member name="P:View.Sdk.Lexi.ViewLexiSdk.Search">
+            <summary>
+            Search methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Lexi.ViewLexiSdk.#ctor(System.Guid,System.String,System.String)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="accessKey">Access key.</param>
+            <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/.</param>
         </member>
         <member name="T:View.Sdk.MetadataRule">
             <summary>
@@ -5705,6 +7033,11 @@
         <member name="P:View.Sdk.ObjectMetadata.Data">
             <summary>
             Data.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ObjectMetadata.DataTable">
+            <summary>
+            Data table.
             </summary>
         </member>
         <member name="M:View.Sdk.ObjectMetadata.#ctor">
@@ -8720,6 +10053,251 @@
             Pgvector.
             </summary>
         </member>
+        <member name="T:View.Sdk.Vector.Implementations.DocumentMethods">
+            <summary>
+            Document methods
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.Implementations.DocumentMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Document methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Vector.Implementations.DocumentMethods.Exists(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Vector.Implementations.DocumentMethods.Write(View.Sdk.Embeddings.EmbeddingsDocument,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Vector.Implementations.DocumentMethods.Delete(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Vector.Implementations.DocumentMethods.DeleteByFilter(System.Guid,View.Sdk.Vector.VectorDeleteRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Vector.Implementations.RepositoryMethods">
+            <summary>
+            Repository methods
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.Implementations.RepositoryMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Repository methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Vector.Implementations.RepositoryMethods.EnumerateMany(View.Sdk.EnumerationQuery,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Vector.Implementations.RepositoryMethods.Truncate(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Vector.Implementations.RepositoryMethods.GetStatistics(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Vector.Implementations.SemanticCellMethods">
+            <summary>
+            Semantic cell methods
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.Implementations.SemanticCellMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Semantic cell methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Vector.Implementations.SemanticCellMethods.ReadMany(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Vector.Implementations.SemanticCellMethods.Read(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Vector.Implementations.SemanticChunkMethods">
+            <summary>
+            Semantic chunk methods
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.Implementations.SemanticChunkMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Semantic chunk methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Vector.Implementations.SemanticChunkMethods.ReadMany(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Vector.Implementations.SemanticChunkMethods.Read(System.Guid,System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Vector.Implementations.VectorMethods">
+            <summary>
+            Vector search and enumerate methods
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.Implementations.VectorMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Search and enumerate methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Vector.Implementations.VectorMethods.Query(View.Sdk.Vector.VectorQueryRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Vector.Implementations.VectorMethods.Search(View.Sdk.Vector.VectorSearchRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Vector.Implementations.VectorMethods.Find(View.Sdk.Embeddings.FindEmbeddingsRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Vector.Interfaces.IDocumentMethods">
+            <summary>
+            Interface for document methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.Interfaces.IDocumentMethods.Exists(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a document exists.
+            </summary>
+            <param name="repoGuid">Vector repository GUID.</param>
+            <param name="docGuid">Document GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if deleted.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.Interfaces.IDocumentMethods.Write(View.Sdk.Embeddings.EmbeddingsDocument,System.Threading.CancellationToken)">
+            <summary>
+            Write a document.
+            </summary>
+            <param name="document">Embeddings document.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.Interfaces.IDocumentMethods.Delete(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a document.
+            </summary>
+            <param name="repoGuid">Vector repository GUID.</param>
+            <param name="docGuid">Document GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if deleted.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.Interfaces.IDocumentMethods.DeleteByFilter(System.Guid,View.Sdk.Vector.VectorDeleteRequest,System.Threading.CancellationToken)">
+            <summary>
+            Delete documents by filter.
+            </summary>
+            <param name="repoGuid">Repository GUID.</param>
+            <param name="deleteRequest">Delete request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="T:View.Sdk.Vector.Interfaces.IRepositoryMethods">
+            <summary>
+            Interface for repository methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.Interfaces.IRepositoryMethods.EnumerateMany(View.Sdk.EnumerationQuery,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate documents.
+            </summary>
+            <param name="query">Enumeration query.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.Interfaces.IRepositoryMethods.Truncate(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Truncate repository.
+            </summary>
+            <param name="repoGuid">Vector repository GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if deleted.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.Interfaces.IRepositoryMethods.GetStatistics(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Get statistics for a repository.
+            </summary>
+            <param name="repoGuid">Vector repository GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Statistics.</returns>
+        </member>
+        <member name="T:View.Sdk.Vector.Interfaces.ISemanticCellMethods">
+            <summary>
+            Interface for semantic cell methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.Interfaces.ISemanticCellMethods.ReadMany(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read semantic cells for a given document.
+            </summary>
+            <param name="repoGuid">Vector repository GUID.</param>
+            <param name="docGuid">Document GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Semantic cells.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.Interfaces.ISemanticCellMethods.Read(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read a specific semantic cell for a given document.
+            </summary>
+            <param name="repoGuid">Vector repository GUID.</param>
+            <param name="docGuid">Document GUID.</param>
+            <param name="cellGuid">Cell GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Semantic cell.</returns>
+        </member>
+        <member name="T:View.Sdk.Vector.Interfaces.ISemanticChunkMethods">
+            <summary>
+            Interface for semantic chunk methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.Interfaces.ISemanticChunkMethods.ReadMany(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read semantic chunks for a given document.
+            </summary>
+            <param name="repoGuid">Vector repository GUID.</param>
+            <param name="docGuid">Document GUID.</param>
+            <param name="cellGuid">Cell GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Semantic chunks.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.Interfaces.ISemanticChunkMethods.Read(System.Guid,System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read a specific semantic chunk for a given document.
+            </summary>
+            <param name="repoGuid">Vector repository GUID.</param>
+            <param name="docGuid">Document GUID.</param>
+            <param name="cellGuid">Cell GUID.</param>
+            <param name="chunkGuid">Chunk GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Semantic chunk.</returns>
+        </member>
+        <member name="T:View.Sdk.Vector.Interfaces.IVectorMethods">
+            <summary>
+            Interface for search and enumerate methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Vector.Interfaces.IVectorMethods.Query(View.Sdk.Vector.VectorQueryRequest,System.Threading.CancellationToken)">
+            <summary>
+            Vector query.
+            </summary>
+            <param name="queryReq">Query request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.Interfaces.IVectorMethods.Search(View.Sdk.Vector.VectorSearchRequest,System.Threading.CancellationToken)">
+            <summary>
+            Vector search.
+            </summary>
+            <param name="searchReq">Search request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>List of vector chunks.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.Interfaces.IVectorMethods.Find(View.Sdk.Embeddings.FindEmbeddingsRequest,System.Threading.CancellationToken)">
+            <summary>
+            Find existing embeddings.
+            </summary>
+            <param name="findReq">Find embeddings request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Find embeddings result.</returns>
+        </member>
         <member name="T:View.Sdk.Vector.VectorChunk">
             <summary>
             Vector chunk.
@@ -9119,6 +10697,31 @@
             View Vector SDK.
             </summary>
         </member>
+        <member name="P:View.Sdk.Vector.ViewVectorSdk.Document">
+            <summary>
+            Document methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.ViewVectorSdk.Repository">
+            <summary>
+            Repository methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.ViewVectorSdk.Vector">
+            <summary>
+            Vector methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.ViewVectorSdk.SemanticCell">
+            <summary>
+            SemanticCell methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.ViewVectorSdk.SemanticChunk">
+            <summary>
+            SemanticChunk methods.
+            </summary>
+        </member>
         <member name="M:View.Sdk.Vector.ViewVectorSdk.#ctor(System.Guid,System.String,System.String)">
             <summary>
             Instantiate.
@@ -9126,129 +10729,6 @@
             <param name="tenantGuid">Tenant GUID.</param>
             <param name="accessKey">Access key.</param>
             <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/.</param>
-        </member>
-        <member name="M:View.Sdk.Vector.ViewVectorSdk.VectorQuery(View.Sdk.Vector.VectorQueryRequest,System.Threading.CancellationToken)">
-            <summary>
-            Vector query.
-            </summary>
-            <param name="queryReq">Query request.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:View.Sdk.Vector.ViewVectorSdk.VectorSearch(View.Sdk.Vector.VectorSearchRequest,System.Threading.CancellationToken)">
-            <summary>
-            Vector search.
-            </summary>
-            <param name="searchReq">Search request.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>List of vector chunks.</returns>
-        </member>
-        <member name="M:View.Sdk.Vector.ViewVectorSdk.FindEmbeddings(View.Sdk.Embeddings.FindEmbeddingsRequest,System.Threading.CancellationToken)">
-            <summary>
-            Find existing embeddings.
-            </summary>
-            <param name="findReq">Find embeddings request.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Find embeddings result.</returns>
-        </member>
-        <member name="M:View.Sdk.Vector.ViewVectorSdk.EnumerateDocuments(View.Sdk.EnumerationQuery,System.Threading.CancellationToken)">
-            <summary>
-            Enumerate documents.
-            </summary>
-            <param name="query">Enumeration query.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Enumeration result.</returns>
-        </member>
-        <member name="M:View.Sdk.Vector.ViewVectorSdk.TruncateRepository(System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Truncate repository.
-            </summary>
-            <param name="repoGuid">Vector repository GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if deleted.</returns>
-        </member>
-        <member name="M:View.Sdk.Vector.ViewVectorSdk.GetStatistics(System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Get statistics for a repository.
-            </summary>
-            <param name="repoGuid">Vector repository GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Statistics.</returns>
-        </member>
-        <member name="M:View.Sdk.Vector.ViewVectorSdk.DocumentExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Check if a document exists.
-            </summary>
-            <param name="repoGuid">Vector repository GUID.</param>
-            <param name="docGuid">Document GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if deleted.</returns>
-        </member>
-        <member name="M:View.Sdk.Vector.ViewVectorSdk.WriteDocument(View.Sdk.Embeddings.EmbeddingsDocument,System.Threading.CancellationToken)">
-            <summary>
-            Write a document.
-            </summary>
-            <param name="document">Embeddings document.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:View.Sdk.Vector.ViewVectorSdk.DeleteDocument(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Delete a document.
-            </summary>
-            <param name="repoGuid">Vector repository GUID.</param>
-            <param name="docGuid">Document GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if deleted.</returns>
-        </member>
-        <member name="M:View.Sdk.Vector.ViewVectorSdk.DeleteDocumentsByFilter(System.Guid,View.Sdk.Vector.VectorDeleteRequest,System.Threading.CancellationToken)">
-            <summary>
-            Delete documents by filter.
-            </summary>
-            <param name="repoGuid">Repository GUID.</param>
-            <param name="deleteRequest">Delete request.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if successful.</returns>
-        </member>
-        <member name="M:View.Sdk.Vector.ViewVectorSdk.ReadSemanticCells(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read semantic cells for a given document.
-            </summary>
-            <param name="repoGuid">Vector repository GUID.</param>
-            <param name="docGuid">Document GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Semantic cells.</returns>
-        </member>
-        <member name="M:View.Sdk.Vector.ViewVectorSdk.ReadSemanticCell(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read a specific semantic cell for a given document.
-            </summary>
-            <param name="repoGuid">Vector repository GUID.</param>
-            <param name="docGuid">Document GUID.</param>
-            <param name="cellGuid">Cell GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Semantic cell.</returns>
-        </member>
-        <member name="M:View.Sdk.Vector.ViewVectorSdk.ReadSemanticChunks(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read semantic chunks for a given document.
-            </summary>
-            <param name="repoGuid">Vector repository GUID.</param>
-            <param name="docGuid">Document GUID.</param>
-            <param name="cellGuid">Cell GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Semantic chunks.</returns>
-        </member>
-        <member name="M:View.Sdk.Vector.ViewVectorSdk.ReadSemanticChunk(System.Guid,System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read a specific semantic chunk for a given document.
-            </summary>
-            <param name="repoGuid">Vector repository GUID.</param>
-            <param name="docGuid">Document GUID.</param>
-            <param name="cellGuid">Cell GUID.</param>
-            <param name="chunkGuid">Chunk GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Semantic chunk.</returns>
         </member>
         <member name="T:View.Sdk.ViewSdkBase">
             <summary>
@@ -9298,6 +10778,26 @@
         <member name="P:View.Sdk.ViewSdkBase.TimeoutMs">
             <summary>
             Timeout, in milliseconds.  Default is 600 seconds.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewSdkBase.XToken">
+            <summary>
+            Optional xToken header value.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewSdkBase.Email">
+            <summary>
+            Optional email address to include in the request headers. 
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewSdkBase.Password">
+            <summary>
+            Optional plain-text password to include in the request headers.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewSdkBase.PasswordSha256">
+            <summary>
+            Optional SHA-256 hash of the password to include in the request headers.
             </summary>
         </member>
         <member name="M:View.Sdk.ViewSdkBase.#ctor(System.String)">
@@ -9430,6 +10930,15 @@
             <param name="obj">Object.</param>
             <param name="token"></param>
             <returns>True if successful.</returns>
+        </member>
+        <member name="M:View.Sdk.ViewSdkBase.Enumerate``1(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Executes a GET request to enumerate a list of objects from the specified URL.
+            </summary>
+            <typeparam name="T">The type of items in the enumeration result.</typeparam>
+            <param name="url">The API endpoint URL to fetch the enumeration from.</param>
+            <param name="token">Optional cancellation token.</param>
+            <returns>The deserialized <see cref="T:View.Sdk.EnumerationResult`1"/> if successful; otherwise, null.</returns>
         </member>
         <member name="T:View.Sdk.WebAuthenticationTypeEnum">
             <summary>

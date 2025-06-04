@@ -8,6 +8,7 @@
     using System.Text.Json.Serialization;
     using System.Xml.Linq;
     using View.Sdk.Serialization;
+    using SerializableDataTables;
 
     /// <summary>
     /// Object metadata.
@@ -201,6 +202,11 @@
                 _Data = value;
             }
         }
+
+        /// <summary>
+        /// Data table.
+        /// </summary>
+        public SerializableDataTable DataTable { get; set; } = null;
 
         #endregion
 
