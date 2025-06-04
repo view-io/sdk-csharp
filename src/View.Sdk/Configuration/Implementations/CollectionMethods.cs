@@ -83,14 +83,6 @@ namespace View.Sdk.Configuration.Implementations
             return await _Sdk.Enumerate<Collection>(url, token).ConfigureAwait(false);
         }
 
-        /// <inheritdoc />
-        public async Task<bool> Exists(string collectionGuid, CancellationToken token = default)
-        {
-            if (String.IsNullOrEmpty(collectionGuid)) throw new ArgumentNullException(nameof(collectionGuid));
-            string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/collections/" + collectionGuid;
-            return await _Sdk.Exists(url, token).ConfigureAwait(false);
-        }
-
         #endregion
 
         #region Private-Methods

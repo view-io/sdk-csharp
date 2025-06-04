@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
-    using View.Sdk;
     using View.Sdk.Lexi.Interfaces;
 
     /// <summary>
@@ -71,27 +70,6 @@
         {
             string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/collections/" + collectionGuid;
             return await _Sdk.Delete(url, token).ConfigureAwait(false);
-        }
-
-        /// <inheritdoc />
-        public async Task<EnumerationResult<Collection>> Enumerate(int maxKeys = 5, CancellationToken token = default)
-        {
-            string url = _Sdk.Endpoint + "v2.0/tenants/" + _Sdk.TenantGUID + "/collections?max-keys=" + maxKeys + "&token=" + _Sdk.TenantGUID;
-            return await _Sdk.Enumerate<Collection>(url, token).ConfigureAwait(false);
-        }
-
-        /// <inheritdoc />
-        public async Task<CollectionTopTerms> RetrieveTopTerms(Guid collectionGuid, int maxKeys = 10, CancellationToken token = default)
-        {
-            string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/collections/" + collectionGuid + "/topterms?max-keys=" + maxKeys;
-            return await _Sdk.Retrieve<CollectionTopTerms>(url, token).ConfigureAwait(false);
-        }
-
-        /// <inheritdoc />
-        public async Task<bool> Exists(Guid collectionGuid, CancellationToken token = default)
-        {
-            string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/collections/" + collectionGuid;
-            return await _Sdk.Exists(url, token).ConfigureAwait(false);
         }
 
         #endregion
