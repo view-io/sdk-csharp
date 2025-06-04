@@ -62,6 +62,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="LiteGraph.Sdk" Version="3.1.5" />
+		<PackageReference Include="SerializableDataTable" Version="1.0.2" />
 		<PackageReference Include="SS.NuGet.Publish" Version="1.0.2311.32">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

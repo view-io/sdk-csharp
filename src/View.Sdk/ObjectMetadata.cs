@@ -7,7 +7,7 @@
     using System.Security.Cryptography;
     using System.Text.Json.Serialization;
     using System.Xml.Linq;
-
+    using SerializableDataTables;
     /// <summary>
     /// Object metadata.
     /// </summary>
@@ -200,6 +200,11 @@
                 _Data = value;
             }
         }
+
+        /// <summary>
+        /// Data table.
+        /// </summary>
+        public SerializableDataTable DataTable { get; set; } = null;
 
         #endregion
 
