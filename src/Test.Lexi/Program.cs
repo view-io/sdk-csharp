@@ -13,7 +13,7 @@
     {
         private static bool _RunForever = true;
         private static Guid _TenantGuid = default(Guid);
-        private static string _Endpoint = "http://view.homedns.org:8000/";
+        private static string _Endpoint = "http://localhost:8000/";
         private static string _AccessKey = "default";
         private static ViewLexiSdk _Sdk = null;
         private static Serializer _Serializer = new Serializer();
@@ -68,6 +68,9 @@
                     case "topterms coll":
                         RetrieveCollectionTopTerms().Wait();
                         break;
+                    case "exists coll":
+                        CollectionExists().Wait();
+                        break;
                     case "docs":
                         RetrieveAllDocuments().Wait();
                         break;
@@ -83,12 +86,42 @@
                     case "del doc":
                         DeleteDocument().Wait();
                         break;
+                    case "exists doc":
+                        DocumentExists().Wait();
+                        break;
 
                     case "enumerate":
                         EnumerateCollection().Wait();
                         break;
-                    case "search":
+                    case "search":                        
                         SearchCollection().Wait();
+                        break;
+                    case "search incldata":
+                        SearchCollectionIncludeData().Wait();
+                        break;
+                    case "search topterms":
+                        SearchCollectionIncludeTopTerms().Wait();
+                        break;
+                    case "search async":
+                        SearchCollectionAsync().Wait();
+                        break;
+                    case "search enumerate":
+                        SearchEnumerate().Wait();
+                        break;
+                    case "ingest queue":
+                        RetrieveAllIngestQueueEntries().Wait();
+                        break;
+                    case "ingest entry":
+                        RetrieveIngestQueueEntry().Wait();
+                        break;
+                    case "ingest entry stats":
+                        RetrieveIngestQueueEntryWithStats().Wait();
+                        break;
+                    case "del ingest entry":
+                        DeleteIngestQueueEntry().Wait();
+                        break;
+                    case "exists ingest entry":
+                        IngestQueueEntryExists().Wait();
                         break;
                 }
             }
@@ -110,15 +143,28 @@
             Console.WriteLine("  del coll      Delete collection");
             Console.WriteLine("  enum colls    Enumerate collections");
             Console.WriteLine("  topterms coll     Retrieve collection top terms");
+            Console.WriteLine("  exists coll   Check if collection exists");
             Console.WriteLine("");
             Console.WriteLine("  docs          List documents in collection");
             Console.WriteLine("  doc           Retrieve document from collection");
             Console.WriteLine("  doc stats     Retrieve document statistics");
             Console.WriteLine("  write doc     Write document");
             Console.WriteLine("  del doc       Delete document");
+            Console.WriteLine("  exists doc    Check if document exists");
             Console.WriteLine("");
             Console.WriteLine("  enumerate     Enumerate collection documents");
+            Console.WriteLine("");
             Console.WriteLine("  search        Search collection");
+            Console.WriteLine("  search incldata  Search collection with included data");
+            Console.WriteLine("  search topterms  Search collection with top terms");
+            Console.WriteLine("  search async     Search collection asynchronously");
+            Console.WriteLine("  search enumerate Enumerate documents using search");
+            Console.WriteLine("");
+            Console.WriteLine("  ingest queue         List all ingest queue entries");
+            Console.WriteLine("  ingest entry         Retrieve ingest queue entry");
+            Console.WriteLine("  ingest entry stats   Retrieve ingest queue entry with statistics");
+            Console.WriteLine("  del ingest entry     Delete ingest queue entry");
+            Console.WriteLine("  exists ingest entry  Check if ingest queue entry exists");
             Console.WriteLine("");
         }
 
@@ -220,6 +266,25 @@
             EnumerateResponse(documents);
         }
 
+        private static async Task RetrieveCollectionTopTerms()
+        {
+            Guid collectionGuid = GetCollectionGuid();
+            int maxKeys = Inputty.GetInteger("Max top terms :", 10, true, false);
+
+            CollectionTopTerms topTerms = await _Sdk.Collection.RetrieveTopTerms(collectionGuid, maxKeys);
+            EnumerateResponse(topTerms);
+        }
+
+        private static async Task CollectionExists()
+        {
+            Guid collectionGuid = GetCollectionGuid();
+
+            bool exists = await _Sdk.Collection.Exists(collectionGuid);
+            Console.WriteLine("");
+            Console.WriteLine($"Collection exists: {exists}");
+            Console.WriteLine("");
+        }
+
         private static async Task RetrieveDocument()
         {
             SourceDocument doc = await _Sdk.SourceDocument.Retrieve(
@@ -249,7 +314,16 @@
                 GetCollectionGuid(),
                 GetDocumentGuid());
         }
+        private static async Task DocumentExists()
+        {
+            Guid collectionGuid = GetCollectionGuid();
+            Guid documentGuid = GetDocumentGuid();
 
+            bool exists = await _Sdk.SourceDocument.Exists(collectionGuid, documentGuid);
+            Console.WriteLine("");
+            Console.WriteLine($"Document exists: {exists}");
+            Console.WriteLine("");
+        }
         private static async Task EnumerateCollection() 
         {
             EnumerationResult<SourceDocument> result = await _Sdk.Enumerate.Enumerate(
@@ -271,15 +345,80 @@
                 GetCollectionGuid(),
                 BuildSearchQuery());
             EnumerateResponse(result);
-        } 
+        }
 
-        private static async Task RetrieveCollectionTopTerms()
+        private static async Task SearchCollectionIncludeData()
         {
-            Guid collectionGuid = GetCollectionGuid();
-            int maxKeys = Inputty.GetInteger("Max top terms :", 10, true, false);
-            
-            CollectionTopTerms topTerms = await _Sdk.Collection.RetrieveTopTerms(collectionGuid, maxKeys);
-            EnumerateResponse(topTerms);
-        } 
+            SearchResult result = await _Sdk.Search.SearchIncludeData(
+                GetCollectionGuid(),
+                BuildSearchQuery());
+            EnumerateResponse(result);
+        }
+
+        private static async Task SearchCollectionIncludeTopTerms()
+        {
+            SearchResult result = await _Sdk.Search.SearchIncludeTopTerms(
+                GetCollectionGuid(),
+                BuildSearchQuery());
+            EnumerateResponse(result);
+        }
+
+        private static async Task SearchCollectionAsync()
+        {
+            SearchResult result = await _Sdk.Search.SearchAsync(
+                GetCollectionGuid(),
+                BuildSearchQuery());
+            EnumerateResponse(result);
+        }
+
+        private static async Task SearchEnumerate()
+        {
+            EnumerationResult<SourceDocument> result = await _Sdk.Search.Enumerate(
+                GetCollectionGuid(),
+                BuildSearchQuery());
+            EnumerateResponse(result);
+        }
+
+        private static Guid GetIngestQueueEntryGuid()
+        {
+            return Inputty.GetGuid("Ingest Queue Entry GUID :", default(Guid));
+        }
+
+        private static async Task RetrieveAllIngestQueueEntries()
+        {
+            List<IngestionQueueEntry> entries = await _Sdk.IngestQueue.RetrieveMany();
+            EnumerateResponse(entries);
+        }
+
+        private static async Task RetrieveIngestQueueEntry()
+        {
+            IngestionQueueEntry entry = await _Sdk.IngestQueue.Retrieve(
+                GetIngestQueueEntryGuid(),
+                false);
+            EnumerateResponse(entry);
+        }
+
+        private static async Task RetrieveIngestQueueEntryWithStats()
+        {
+            IngestionQueueEntry entry = await _Sdk.IngestQueue.Retrieve(
+                GetIngestQueueEntryGuid(),
+                true);
+            EnumerateResponse(entry);
+        }
+
+        private static async Task DeleteIngestQueueEntry()
+        {
+            await _Sdk.IngestQueue.Delete(GetIngestQueueEntryGuid());
+        }
+
+        private static async Task IngestQueueEntryExists()
+        {
+            Guid entryGuid = GetIngestQueueEntryGuid();
+
+            bool exists = await _Sdk.IngestQueue.Exists(entryGuid);
+            Console.WriteLine("");
+            Console.WriteLine($"Ingest queue entry exists: {exists}");
+            Console.WriteLine("");
+        }
     }
 }

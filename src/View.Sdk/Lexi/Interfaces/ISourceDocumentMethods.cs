@@ -63,5 +63,14 @@ namespace View.Sdk.Lexi.Interfaces
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if successful.</returns>
         public Task<bool> Delete(Guid collectionGuid, string key, string version, CancellationToken token = default);
+
+        /// <summary>
+        /// Check if a document exists.
+        /// </summary>
+        /// <param name="collectionGuid">Collection GUID.</param>
+        /// <param name="documentGuid">Document GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>True if exists.</returns>
+        public Task<bool> Exists(Guid collectionGuid, Guid documentGuid, CancellationToken token = default);
     }
 }

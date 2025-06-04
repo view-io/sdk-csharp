@@ -22,9 +22,10 @@ namespace View.Sdk.Lexi.Interfaces
         /// Read an ingest queue entry.
         /// </summary>
         /// <param name="guid">GUID.</param>
+        /// <param name="includeStats">Include statistics in the query.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Ingest queue entry.</returns>
-        public Task<IngestionQueueEntry> Retrieve(Guid guid, CancellationToken token = default);
+        public Task<IngestionQueueEntry> Retrieve(Guid guid, bool includeStats = false, CancellationToken token = default);
 
         /// <summary>
         /// Read ingest queue entries.

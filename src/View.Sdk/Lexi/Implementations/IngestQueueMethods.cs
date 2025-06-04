@@ -44,9 +44,14 @@ namespace View.Sdk.Lexi.Implementations
         }
 
         /// <inheritdoc />
-        public async Task<IngestionQueueEntry> Retrieve(Guid guid, CancellationToken token = default)
+        public async Task<IngestionQueueEntry> Retrieve(Guid guid, bool includeStats = false, CancellationToken token = default)
         {
-            string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/ingestqueue/" + guid;
+            string url;
+            if (includeStats)
+                url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/ingestqueue?stats";
+            else
+                url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/ingestqueue/" + guid;
+
             return await _Sdk.Retrieve<IngestionQueueEntry>(url, token).ConfigureAwait(false);
         }
 

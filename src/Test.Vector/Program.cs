@@ -68,6 +68,27 @@
                     case "find":
                         FindEmbeddings().Wait();
                         break;
+                    case "exists doc":
+                        DocumentExists().Wait();
+                        break;
+                    case "del filter":
+                        DeleteDocumentsByFilter().Wait();
+                        break;
+                    case "repo stats":
+                        GetRepositoryStatistics().Wait();
+                        break;
+                    case "read cells":
+                        ReadSemanticCells().Wait();
+                        break;
+                    case "read cell":
+                        ReadSemanticCell().Wait();
+                        break;
+                    case "read chunks":
+                        ReadSemanticChunks().Wait();
+                        break;
+                    case "read chunk":
+                        ReadSemanticChunk().Wait();
+                        break;
                 }
             }
         }
@@ -83,7 +104,17 @@
             Console.WriteLine("");
             Console.WriteLine("  write         Write embeddings document");
             Console.WriteLine("  del           Delete embeddings document");
+            Console.WriteLine("  exists doc    Check if document exists");
+            Console.WriteLine("  del filter    Delete documents by filter");
             Console.WriteLine("  truncate      Truncate table");
+            Console.WriteLine("");
+            Console.WriteLine("  repo stats    Get repository statistics");
+            Console.WriteLine("");
+            Console.WriteLine("  read cells    Read semantic cells for a document");
+            Console.WriteLine("  read cell     Read a specific semantic cell");
+            Console.WriteLine("  read chunks   Read semantic chunks for a cell");
+            Console.WriteLine("  read chunk    Read a specific semantic chunk");
+            Console.WriteLine("");
             Console.WriteLine("  search        Execute similarity search");
             Console.WriteLine("  query         Execute raw query");
             Console.WriteLine("  find          Find embeddings by SHA-256");
@@ -282,6 +313,90 @@
             Console.WriteLine("");
             Console.WriteLine(ret);
             Console.WriteLine("");
+        }
+
+        private static async Task DocumentExists()
+        {
+            Guid repoGuid = Inputty.GetGuid("Repository GUID:", default(Guid));
+            Guid docGuid = Inputty.GetGuid("Document GUID  :", default(Guid));
+            
+            bool exists = await _Sdk.Document.Exists(repoGuid, docGuid);
+            Console.WriteLine("");
+            Console.WriteLine($"Document exists: {exists}");
+            Console.WriteLine("");
+        }
+
+        private static async Task DeleteDocumentsByFilter()
+        {
+            Console.WriteLine("");
+            Console.WriteLine("Example delete request:");
+            Console.WriteLine(_Serializer.SerializeJson(new VectorDeleteRequest
+            {
+                ObjectKey = "test.json",
+                ObjectVersion = "1"
+            }, false));
+            Console.WriteLine("");
+
+            Guid repoGuid = Inputty.GetGuid("Repository GUID:", default(Guid));
+            string requestJson = Inputty.GetString("Delete request JSON :", null, true);
+            if (String.IsNullOrEmpty(requestJson)) return;
+
+            bool success = await _Sdk.Document.DeleteByFilter(
+                repoGuid,
+                _Serializer.DeserializeJson<VectorDeleteRequest>(requestJson)
+                );
+
+            Console.WriteLine("");
+            Console.WriteLine($"Delete by filter success: {success}");
+            Console.WriteLine("");
+        }
+
+        private static async Task GetRepositoryStatistics()
+        {
+            Guid repoGuid = Inputty.GetGuid("Repository GUID:", default(Guid));
+            
+            VectorRepositoryStatistics stats = await _Sdk.Repository.GetStatistics(repoGuid);
+            EnumerateResponse(stats);
+        }
+
+        private static async Task ReadSemanticCells()
+        {
+            Guid repoGuid = Inputty.GetGuid("Repository GUID:", default(Guid));
+            Guid docGuid = Inputty.GetGuid("Document GUID  :", default(Guid));
+            
+            List<SemanticCell> cells = await _Sdk.SemanticCell.ReadMany(repoGuid, docGuid);
+            EnumerateResponse(cells);
+        }
+
+        private static async Task ReadSemanticCell()
+        {
+            Guid repoGuid = Inputty.GetGuid("Repository GUID:", default(Guid));
+            Guid docGuid = Inputty.GetGuid("Document GUID  :", default(Guid));
+            Guid cellGuid = Inputty.GetGuid("Cell GUID     :", default(Guid));
+            
+            SemanticCell cell = await _Sdk.SemanticCell.Read(repoGuid, docGuid, cellGuid);
+            EnumerateResponse(cell);
+        }
+
+        private static async Task ReadSemanticChunks()
+        {
+            Guid repoGuid = Inputty.GetGuid("Repository GUID:", default(Guid));
+            Guid docGuid = Inputty.GetGuid("Document GUID  :", default(Guid));
+            Guid cellGuid = Inputty.GetGuid("Cell GUID     :", default(Guid));
+            
+            List<SemanticChunk> chunks = await _Sdk.SemanticChunk.ReadMany(repoGuid, docGuid, cellGuid);
+            EnumerateResponse(chunks);
+        }
+
+        private static async Task ReadSemanticChunk()
+        {
+            Guid repoGuid = Inputty.GetGuid("Repository GUID:", default(Guid));
+            Guid docGuid = Inputty.GetGuid("Document GUID  :", default(Guid));
+            Guid cellGuid = Inputty.GetGuid("Cell GUID     :", default(Guid));
+            Guid chunkGuid = Inputty.GetGuid("Chunk GUID    :", default(Guid));
+            
+            SemanticChunk chunk = await _Sdk.SemanticChunk.Read(repoGuid, docGuid, cellGuid, chunkGuid);
+            EnumerateResponse(chunk);
         }
 
 #pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.

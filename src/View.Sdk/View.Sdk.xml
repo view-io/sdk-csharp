@@ -6108,7 +6108,7 @@
         <member name="M:View.Sdk.Lexi.Implementations.IngestQueueMethods.Exists(System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Lexi.Implementations.IngestQueueMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Lexi.Implementations.IngestQueueMethods.Retrieve(System.Guid,System.Boolean,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:View.Sdk.Lexi.Implementations.IngestQueueMethods.RetrieveMany(System.Threading.CancellationToken)">
@@ -6130,6 +6130,27 @@
         </member>
         <member name="M:View.Sdk.Lexi.Implementations.SearchMethods.Search(System.Guid,View.Sdk.CollectionSearchRequest,System.Threading.CancellationToken)">
             <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.SearchMethods.SearchIncludeData(System.Guid,View.Sdk.CollectionSearchRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.SearchMethods.SearchIncludeTopTerms(System.Guid,View.Sdk.CollectionSearchRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.SearchMethods.SearchAsync(System.Guid,View.Sdk.CollectionSearchRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.SearchMethods.Enumerate(System.Guid,View.Sdk.CollectionSearchRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.SearchMethods.ExecuteSearchRequest(System.String,View.Sdk.CollectionSearchRequest,System.Threading.CancellationToken)">
+            <summary>
+            Execute a search request to the specified URL with the given query.
+            </summary>
+            <param name="url">The API endpoint URL.</param>
+            <param name="query">The search query.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Search result.</returns>
         </member>
         <member name="T:View.Sdk.Lexi.Implementations.SourceDocumentMethods">
             <summary>
@@ -6158,6 +6179,9 @@
             <inheritdoc />
         </member>
         <member name="M:View.Sdk.Lexi.Implementations.SourceDocumentMethods.Delete(System.Guid,System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.SourceDocumentMethods.Exists(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:View.Sdk.Lexi.Interfaces.ICollectionMethods">
@@ -6256,11 +6280,12 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:View.Sdk.Lexi.Interfaces.IIngestQueueMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Lexi.Interfaces.IIngestQueueMethods.Retrieve(System.Guid,System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Read an ingest queue entry.
             </summary>
             <param name="guid">GUID.</param>
+            <param name="includeStats">Include statistics in the query.</param>
             <param name="token">Cancellation token.</param>
             <returns>Ingest queue entry.</returns>
         </member>
@@ -6292,6 +6317,42 @@
             <param name="query">Query.</param>
             <param name="token">Cancellation token.</param>
             <returns>Search result.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.Interfaces.ISearchMethods.SearchIncludeData(System.Guid,View.Sdk.CollectionSearchRequest,System.Threading.CancellationToken)">
+            <summary>
+            Search a collection and include document data in the results.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="query">Query.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Search result with document data included.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.Interfaces.ISearchMethods.SearchIncludeTopTerms(System.Guid,View.Sdk.CollectionSearchRequest,System.Threading.CancellationToken)">
+            <summary>
+            Search a collection and include top terms in the results.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="query">Query.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Search result with top terms.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.Interfaces.ISearchMethods.SearchAsync(System.Guid,View.Sdk.CollectionSearchRequest,System.Threading.CancellationToken)">
+            <summary>
+            Search a collection asynchronously.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="query">Query.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Search result.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.Interfaces.ISearchMethods.Enumerate(System.Guid,View.Sdk.CollectionSearchRequest,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate documents in a collection.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="query">Query.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result containing source documents.</returns>
         </member>
         <member name="T:View.Sdk.Lexi.Interfaces.ISourceDocumentMethods">
             <summary>
@@ -6351,6 +6412,15 @@
             <param name="version">Document version.</param>
             <param name="token">Cancellation token.</param>
             <returns>True if successful.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.Interfaces.ISourceDocumentMethods.Exists(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a document exists.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="documentGuid">Document GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
         </member>
         <member name="T:View.Sdk.Lexi.ViewLexiSdk">
             <summary>
@@ -10432,6 +10502,31 @@
         <member name="P:View.Sdk.Vector.VectorRepositoryStatistics.ChunkCount">
             <summary>
             Chunk count.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorRepositoryStatistics.CollectionGUIDs">
+            <summary>
+            Collection GUIDs referenced in this repository.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorRepositoryStatistics.DataRepositoryGUIDs">
+            <summary>
+            Data repository GUIDs referenced in this repository.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorRepositoryStatistics.GraphRepositoryGUIDs">
+            <summary>
+            Graph repository GUIDs referenced in this repository.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorRepositoryStatistics.BucketGUIDs">
+            <summary>
+            Bucket GUIDs referenced in this repository.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Vector.VectorRepositoryStatistics.Models">
+            <summary>
+            List of models referenced in this vector repository.
             </summary>
         </member>
         <member name="M:View.Sdk.Vector.VectorRepositoryStatistics.#ctor">
