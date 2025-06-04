@@ -13,7 +13,8 @@
     {
         private static bool _RunForever = true;
         private static Guid _TenantGuid = default(Guid);
-        private static string _Endpoint = "http://localhost:8000/";
+        private static string _Endpoint = "http://view.homedns.org:8000/";
+        private static string _AccessKey = "default";
         private static ViewLexiSdk _Sdk = null;
         private static Serializer _Serializer = new Serializer();
         private static bool _EnableLogging = true;
@@ -22,7 +23,8 @@
         {
             _TenantGuid =   Inputty.GetGuid("Tenant GUID :", _TenantGuid);
             _Endpoint   = Inputty.GetString("Endpoint    :", _Endpoint, false);
-            _Sdk = new ViewLexiSdk(_TenantGuid, _Endpoint);
+            _AccessKey = Inputty.GetString("Access key  :", _AccessKey, false);
+            _Sdk = new ViewLexiSdk(_TenantGuid, _AccessKey, _Endpoint);
             if (_EnableLogging) _Sdk.Logger = EmitLogMessage;
 
             while (_RunForever)
@@ -60,7 +62,12 @@
                     case "del coll":
                         DeleteCollection().Wait();
                         break;
-
+                    case "enum colls":
+                        EnumerateCollections().Wait();
+                        break;
+                    case "topterms coll":
+                        RetrieveCollectionTopTerms().Wait();
+                        break;
                     case "docs":
                         RetrieveAllDocuments().Wait();
                         break;
@@ -101,6 +108,8 @@
             Console.WriteLine("  coll stats    Retrieve collection statistics");
             Console.WriteLine("  write coll    Create collection");
             Console.WriteLine("  del coll      Delete collection");
+            Console.WriteLine("  enum colls    Enumerate collections");
+            Console.WriteLine("  topterms coll     Retrieve collection top terms");
             Console.WriteLine("");
             Console.WriteLine("  docs          List documents in collection");
             Console.WriteLine("  doc           Retrieve document from collection");
@@ -108,7 +117,7 @@
             Console.WriteLine("  write doc     Write document");
             Console.WriteLine("  del doc       Delete document");
             Console.WriteLine("");
-            Console.WriteLine("  enumerate     Enumerate collection");
+            Console.WriteLine("  enumerate     Enumerate collection documents");
             Console.WriteLine("  search        Search collection");
             Console.WriteLine("");
         }
@@ -178,42 +187,42 @@
 
         private static async Task RetrieveAllCollections() 
         {
-            List<Collection> collections = await _Sdk.RetrieveCollections();
+            List<Collection> collections = await _Sdk.Collection.RetrieveMany();
             EnumerateResponse(collections);
         }
 
         private static async Task RetrieveCollection() 
         {
-            Collection coll = await _Sdk.RetrieveCollection(GetCollectionGuid());
+            Collection coll = await _Sdk.Collection.Retrieve(GetCollectionGuid());
             EnumerateResponse(coll);
         }
 
         private static async Task RetrieveCollectionStatistics() 
         {
-            CollectionStatistics stats = await _Sdk.RetrieveCollectionStatistics(GetCollectionGuid());
+            CollectionStatistics stats = await _Sdk.Collection.RetrieveStatistics(GetCollectionGuid());
             EnumerateResponse(stats);
         }
 
         private static async Task WriteCollection() 
         {
-            Collection coll = await _Sdk.CreateCollection(BuildCollection());
+            Collection coll = await _Sdk.Collection.Create(BuildCollection());
             EnumerateResponse(coll);
         }
 
         private static async Task DeleteCollection() 
         {
-            await _Sdk.DeleteCollection(GetCollectionGuid());
+            await _Sdk.Collection.Delete(GetCollectionGuid());
         }
 
         private static async Task RetrieveAllDocuments()
         {
-            List<SourceDocument> documents = await _Sdk.RetrieveDocuments(GetCollectionGuid());
+            List<SourceDocument> documents = await _Sdk.SourceDocument.RetrieveMany(GetCollectionGuid());
             EnumerateResponse(documents);
         }
 
         private static async Task RetrieveDocument()
         {
-            SourceDocument doc = await _Sdk.RetrieveDocument(
+            SourceDocument doc = await _Sdk.SourceDocument.Retrieve(
                 GetCollectionGuid(),
                 GetDocumentGuid(),
                 true);
@@ -222,7 +231,7 @@
 
         private static async Task RetrieveDocumentStatistics()
         {
-            SourceDocumentStatistics stats = await _Sdk.RetrieveDocumentStatistics(
+            SourceDocumentStatistics stats = await _Sdk.SourceDocument.RetrieveStatistics(
                 GetCollectionGuid(),
                 GetDocumentGuid());
             EnumerateResponse(stats);
@@ -230,31 +239,47 @@
 
         private static async Task WriteDocument() 
         {
-            SourceDocument document = await _Sdk.UploadDocument(BuildSourceDocument());
+            SourceDocument document = await _Sdk.SourceDocument.Upload(BuildSourceDocument());
             EnumerateResponse(document);
         }
 
         private static async Task DeleteDocument()
         {
-            await _Sdk.DeleteDocument(
+            await _Sdk.SourceDocument.Delete(
                 GetCollectionGuid(),
                 GetDocumentGuid());
         }
 
         private static async Task EnumerateCollection() 
         {
-            EnumerationResult<SourceDocument> result = await _Sdk.Enumerate(
+            EnumerationResult<SourceDocument> result = await _Sdk.Enumerate.Enumerate(
                 GetCollectionGuid(),
                 BuildEnumerationQuery());
             EnumerateResponse(result);
         }
 
+        private static async Task EnumerateCollections()
+        {
+            int maxKeys = Inputty.GetInteger("Max keys :", 5, true, false);
+            EnumerationResult<Collection> result = await _Sdk.Collection.Enumerate(maxKeys);
+            EnumerateResponse(result);
+        }
+
         private static async Task SearchCollection()
         {
-            SearchResult result = await _Sdk.Search(
+            SearchResult result = await _Sdk.Search.Search(
                 GetCollectionGuid(),
                 BuildSearchQuery());
             EnumerateResponse(result);
+        } 
+
+        private static async Task RetrieveCollectionTopTerms()
+        {
+            Guid collectionGuid = GetCollectionGuid();
+            int maxKeys = Inputty.GetInteger("Max top terms :", 10, true, false);
+            
+            CollectionTopTerms topTerms = await _Sdk.Collection.RetrieveTopTerms(collectionGuid, maxKeys);
+            EnumerateResponse(topTerms);
         } 
     }
 }

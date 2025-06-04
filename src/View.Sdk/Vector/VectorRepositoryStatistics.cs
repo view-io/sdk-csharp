@@ -93,86 +93,6 @@
             }
         }
 
-        /// <summary>
-        /// Collection GUIDs referenced in this repository.
-        /// </summary>
-        public List<Guid> CollectionGUIDs
-        {
-            get
-            {
-                return _CollectionGUIDs;
-            }
-            set
-            {
-                if (value == null) value = new List<Guid>();
-                _CollectionGUIDs = value;
-            }
-        }
-
-        /// <summary>
-        /// Data repository GUIDs referenced in this repository.
-        /// </summary>
-        public List<Guid> DataRepositoryGUIDs
-        {
-            get
-            {
-                return _DataRepositoryGUIDs;
-            }
-            set
-            {
-                if (value == null) value = new List<Guid>();
-                _DataRepositoryGUIDs = value;
-            }
-        }
-
-        /// <summary>
-        /// Graph repository GUIDs referenced in this repository.
-        /// </summary>
-        public List<Guid> GraphRepositoryGUIDs
-        {
-            get
-            {
-                return _GraphRepositoryGUIDs;
-            }
-            set
-            {
-                if (value == null) value = new List<Guid>();
-                _GraphRepositoryGUIDs = value;
-            }
-        }
-
-        /// <summary>
-        /// Bucket GUIDs referenced in this repository.
-        /// </summary>
-        public List<Guid> BucketGUIDs
-        {
-            get
-            {
-                return _BucketGUIDs;
-            }
-            set
-            {
-                if (value == null) value = new List<Guid>();
-                _BucketGUIDs = value;
-            }
-        }
-
-        /// <summary>
-        /// List of models referenced in this vector repository.
-        /// </summary>
-        public List<string> Models
-        {
-            get
-            {
-                return _Models;
-            }
-            set
-            {
-                if (value == null) value = new List<string>();
-                _Models = value;
-            }
-        }
-
         #endregion
 
         #region Private-Members
@@ -182,12 +102,6 @@
         private long _TotalBytes = 0;
         private long _CellCount = 0;
         private long _ChunkCount = 0;
-
-        private List<Guid> _CollectionGUIDs = new List<Guid>();
-        private List<Guid> _DataRepositoryGUIDs = new List<Guid>();
-        private List<Guid> _GraphRepositoryGUIDs = new List<Guid>();
-        private List<Guid> _BucketGUIDs = new List<Guid>();
-        private List<string> _Models = new List<string>();
 
         #endregion
 

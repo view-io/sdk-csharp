@@ -18,17 +18,19 @@
         private static Guid _TenantGuid = default(Guid);
         private static string _Endpoint = "http://localhost:8000/";
         private static string _AccessKey = "default";
+        private static string _XToken = "";
         private static ViewConfigurationSdk _Sdk = null;
         private static Serializer _Serializer = new Serializer();
         private static bool _EnableLogging = true;
 
         public static void Main(string[] args)
         {
-            _TenantGuid =   Inputty.GetGuid("Tenant GUID :", _TenantGuid);
-            _Endpoint =   Inputty.GetString("Endpoint    :", _Endpoint, false);
-            _AccessKey =  Inputty.GetString("Access key  :", _AccessKey, false);
+            _TenantGuid = Inputty.GetGuid("Tenant GUID :", _TenantGuid);
+            _Endpoint = Inputty.GetString("Endpoint    :", _Endpoint, false);
+            _AccessKey = Inputty.GetString("Access key  :", _AccessKey, false);
+            _XToken = Inputty.GetString("X-Token  :", _XToken, true);
 
-            _Sdk = new ViewConfigurationSdk(_TenantGuid, _AccessKey, _Endpoint);
+            _Sdk = new ViewConfigurationSdk(_TenantGuid, _AccessKey, _Endpoint, _XToken);
             if (_EnableLogging) _Sdk.Logger = EmitLogMessage;
 
             while (_RunForever)
@@ -38,7 +40,7 @@
                 if (userInput.Equals("q"))
                 {
                     _RunForever = false;
-                    break; 
+                    break;
                 }
                 else if (userInput.Equals("?"))
                 {
@@ -79,7 +81,11 @@
                         }
                         else if (parts[0].Equals("exists"))
                         {
-                            Exists(parts[1]).Wait();  
+                            Exists(parts[1]).Wait();
+                        }
+                        else if (parts[0].Equals("enumerate"))
+                        {
+                            Enumerate(parts[1]).Wait();
                         }
                     }
                 }
@@ -104,7 +110,7 @@
             Console.WriteLine("");
             Console.WriteLine("  [type] is one of:");
             Console.WriteLine("    node    tenant     user     cred    pool      bucket    enckey");
-            Console.WriteLine("    mdrule  embedrule  whevent  whrule  whtarget  lock");
+            Console.WriteLine("    mdrule  embedrule  whevent  whrule  whtarget  lock  vector  collection  datarepository  blob  graph");
             Console.WriteLine("");
             Console.WriteLine("Not all object types support all commands");
             Console.WriteLine("");
@@ -132,48 +138,70 @@
             {
                 case "node":
                     Node node = BuildObject<Node>();
-                    EnumerateResponse(await _Sdk.CreateNode(node));
+                    EnumerateResponse(await _Sdk.Node.Create(node));
                     return;
                 case "tenant":
+                    TenantMetadata tenant = BuildObject<TenantMetadata>();
+                    EnumerateResponse(await _Sdk.Tenant.Create(tenant));
                     return;
                 case "user":
                     UserMaster user = BuildObject<UserMaster>();
-                    EnumerateResponse(await _Sdk.CreateUser(user));
+                    EnumerateResponse(await _Sdk.User.Create(user));
                     return;
                 case "cred":
                     Credential cred = BuildObject<Credential>();
-                    EnumerateResponse(await _Sdk.CreateCredential(cred));
+                    EnumerateResponse(await _Sdk.Credential.Create(cred));
                     return;
                 case "pool":
                     StoragePool pool = BuildObject<StoragePool>();
-                    EnumerateResponse(await _Sdk.CreatePool(pool));
+                    EnumerateResponse(await _Sdk.Pool.Create(pool));
                     return;
                 case "bucket":
                     BucketMetadata bucket = BuildObject<BucketMetadata>();
-                    EnumerateResponse(await _Sdk.CreateBucket(bucket));
+                    EnumerateResponse(await _Sdk.Bucket.Create(bucket));
                     return;
                 case "enckey":
                     EncryptionKey key = BuildObject<EncryptionKey>();
-                    EnumerateResponse(await _Sdk.CreateEncryptionKey(key));
+                    EnumerateResponse(await _Sdk.EncryptionKey.Create(key));
                     return;
                 case "mdrule":
                     MetadataRule mdRule = BuildObject<MetadataRule>();
-                    EnumerateResponse(await _Sdk.CreateMetadataRule(mdRule));
+                    EnumerateResponse(await _Sdk.MetadataRule.Create(mdRule));
                     return;
                 case "embedrule":
                     EmbeddingsRule embedRule = BuildObject<EmbeddingsRule>();
-                    EnumerateResponse(await _Sdk.CreateEmbeddingsRule(embedRule));
+                    EnumerateResponse(await _Sdk.EmbeddingsRule.Create(embedRule));
                     return;
                 case "whevent":
                     return;
                 case "whrule":
                     WebhookRule whRule = BuildObject<WebhookRule>();
-                    EnumerateResponse(await _Sdk.CreateWebhookRule(whRule));
+                    EnumerateResponse(await _Sdk.WebhookRule.Create(whRule));
                     break;
                 case "whtarget":
                     WebhookTarget whTarget = BuildObject<WebhookTarget>();
-                    EnumerateResponse(await _Sdk.CreateWebhookTarget(whTarget));
+                    EnumerateResponse(await _Sdk.WebhookTarget.Create(whTarget));
                     break;
+                case "vector":
+                    VectorRepository vectorRepo = BuildObject<VectorRepository>();
+                    EnumerateResponse(await _Sdk.VectorRepository.Create(vectorRepo));
+                    return;
+                case "graph":
+                    GraphRepository graphRepo = BuildObject<GraphRepository>();
+                    EnumerateResponse(await _Sdk.GraphRepository.Create(graphRepo));
+                    return;
+                case "collection":
+                    Collection collection = BuildObject<Collection>();
+                    EnumerateResponse(await _Sdk.Collection.Create(collection));
+                    return;
+                case "datarepository":
+                    DataRepository dataRepo = BuildObject<DataRepository>();
+                    EnumerateResponse(await _Sdk.DataRepository.Create(dataRepo));
+                    return;
+                case "blob":
+                    Blob blob = BuildObject<Blob>();
+                    EnumerateResponse(await _Sdk.Blob.Create(blob));
+                    return;
                 case "lock":
                     break;
                 default:
@@ -191,44 +219,68 @@
             switch (type)
             {
                 case "node":
-                    EnumerateResponse(await _Sdk.RetrieveNode(guid));
+                    EnumerateResponse(await _Sdk.Node.Retrieve(guid));
                     return;
                 case "tenant":
-                    EnumerateResponse(await _Sdk.RetrieveTenant());
+                    EnumerateResponse(await _Sdk.Tenant.Retrieve());
                     return;
                 case "user":
-                    EnumerateResponse(await _Sdk.RetrieveUser(guid));
+                    EnumerateResponse(await _Sdk.User.Retrieve(guid));
                     return;
                 case "cred":
-                    EnumerateResponse(await _Sdk.RetrieveCredential(guid));
+                    EnumerateResponse(await _Sdk.Credential.Retrieve(guid));
                     return;
                 case "pool":
-                    EnumerateResponse(await _Sdk.RetrievePool(guid));
+                    EnumerateResponse(await _Sdk.Pool.Retrieve(guid));
                     return;
                 case "bucket":
-                    EnumerateResponse(await _Sdk.RetrieveBucket(guid));
+                    EnumerateResponse(await _Sdk.Bucket.Retrieve(guid));
                     return;
                 case "enckey":
-                    EnumerateResponse(await _Sdk.RetrieveEncryptionKey(guid));
+                    EnumerateResponse(await _Sdk.EncryptionKey.Retrieve(guid));
                     return;
                 case "mdrule":
-                    EnumerateResponse(await _Sdk.RetrieveMetadataRule(guid));
+                    EnumerateResponse(await _Sdk.MetadataRule.Retrieve(guid));
                     return;
                 case "embedrule":
-                    EnumerateResponse(await _Sdk.RetrieveEmbeddingsRule(guid));
+                    EnumerateResponse(await _Sdk.EmbeddingsRule.Retrieve(guid));
                     return;
                 case "whevent":
-                    EnumerateResponse(await _Sdk.RetrieveWebhookEvent(guid));
+                    EnumerateResponse(await _Sdk.WebhookEvent.Retrieve(guid));
                     return;
                 case "whrule":
-                    EnumerateResponse(await _Sdk.RetrieveWebhookRule(guid));
+                    EnumerateResponse(await _Sdk.WebhookRule.Retrieve(guid));
                     break;
                 case "whtarget":
-                    EnumerateResponse(await _Sdk.RetrieveWebhookTarget(guid));
+                    EnumerateResponse(await _Sdk.WebhookTarget.Retrieve(guid));
                     break;
+                case "vector":
+                    EnumerateResponse(await _Sdk.VectorRepository.Retrieve(guid));
+                    return;
+                case "graph":
+                    EnumerateResponse(await _Sdk.GraphRepository.Retrieve(guid));
+                    return;
+                case "collection":
+                    EnumerateResponse(await _Sdk.Collection.Retrieve(guid.ToString()));
+                    return;
                 case "lock":
-                    EnumerateResponse(await _Sdk.RetrieveObjectLock(guid));
+                    EnumerateResponse(await _Sdk.ObjectLock.Retrieve(guid));
                     break;
+                case "datarepository":
+                    EnumerateResponse(await _Sdk.DataRepository.Retrieve(guid.ToString()));
+                    return;
+                case "blob":
+                    bool isPublic = Inputty.GetBoolean("Is public blob?", false);
+                    if (isPublic)
+                    {
+                        EnumerateResponse(await _Sdk.Blob.Read(guid.ToString()));
+                    }
+                    else
+                    {
+                        bool inclData = Inputty.GetBoolean("Include data?", false);
+                        EnumerateResponse(await _Sdk.Blob.Retrieve(guid.ToString(), inclData));
+                    }
+                    return;
                 default:
                     return;
             }
@@ -241,43 +293,59 @@
             switch (type)
             {
                 case "node":
-                    EnumerateResponse(await _Sdk.RetrieveNodes());
+                    EnumerateResponse(await _Sdk.Node.RetrieveMany());
                     return;
                 case "tenant":
+                    EnumerateResponse(await _Sdk.Tenant.RetrieveMany());
                     return;
                 case "user":
-                    EnumerateResponse(await _Sdk.RetrieveUsers());
+                    EnumerateResponse(await _Sdk.User.RetrieveMany());
                     return;
                 case "cred":
-                    EnumerateResponse(await _Sdk.RetrieveCredentials());
+                    EnumerateResponse(await _Sdk.Credential.RetrieveMany());
                     return;
                 case "pool":
-                    EnumerateResponse(await _Sdk.RetrievePools());
+                    EnumerateResponse(await _Sdk.Pool.RetrieveMany());
                     return;
                 case "bucket":
-                    EnumerateResponse(await _Sdk.RetrieveBuckets());
+                    EnumerateResponse(await _Sdk.Bucket.RetrieveMany());
                     return;
                 case "enckey":
-                    EnumerateResponse(await _Sdk.RetrieveEncryptionKeys());
+                    EnumerateResponse(await _Sdk.EncryptionKey.RetrieveMany());
                     return;
                 case "mdrule":
-                    EnumerateResponse(await _Sdk.RetrieveMetadataRules());
+                    EnumerateResponse(await _Sdk.MetadataRule.RetrieveMany());
                     return;
                 case "embedrule":
-                    EnumerateResponse(await _Sdk.RetrieveEmbeddingsRules());
+                    EnumerateResponse(await _Sdk.EmbeddingsRule.RetrieveMany());
                     return;
                 case "whevent":
-                    EnumerateResponse(await _Sdk.RetrieveWebhookEvents());
+                    EnumerateResponse(await _Sdk.WebhookEvent.RetrieveMany());
                     return;
                 case "whrule":
-                    EnumerateResponse(await _Sdk.RetrieveWebhookRules());
+                    EnumerateResponse(await _Sdk.WebhookRule.RetrieveMany());
                     break;
                 case "whtarget":
-                    EnumerateResponse(await _Sdk.RetrieveWebhookTargets());
+                    EnumerateResponse(await _Sdk.WebhookTarget.RetrieveMany());
                     break;
+                case "vector":
+                    EnumerateResponse(await _Sdk.VectorRepository.RetrieveMany());
+                    return;
+                case "graph":
+                    EnumerateResponse(await _Sdk.GraphRepository.RetrieveMany());
+                    return;
+                case "collection":
+                    EnumerateResponse(await _Sdk.Collection.RetrieveMany());
+                    return;
                 case "lock":
-                    EnumerateResponse(await _Sdk.RetrieveObjectLocks());
+                    EnumerateResponse(await _Sdk.ObjectLock.RetrieveMany());
                     break;
+                case "datarepository":
+                    EnumerateResponse(await _Sdk.DataRepository.RetrieveMany());
+                    return;
+                case "blob":
+                    EnumerateResponse(await _Sdk.Blob.RetrieveMany());
+                    return;
                 default:
                     return;
             }
@@ -291,52 +359,68 @@
             {
                 case "node":
                     Node node = BuildObject<Node>();
-                    EnumerateResponse(await _Sdk.UpdateNode(node));
+                    EnumerateResponse(await _Sdk.Node.Update(node));
                     return;
                 case "tenant":
                     TenantMetadata tenant = BuildObject<TenantMetadata>();
-                    EnumerateResponse(await _Sdk.UpdateTenant(tenant));
+                    EnumerateResponse(await _Sdk.Tenant.Update(tenant));
                     return;
                 case "user":
                     UserMaster user = BuildObject<UserMaster>();
-                    EnumerateResponse(await _Sdk.UpdateUser(user));
+                    EnumerateResponse(await _Sdk.User.Update(user));
                     return;
                 case "cred":
                     Credential cred = BuildObject<Credential>();
-                    EnumerateResponse(await _Sdk.UpdateCredential(cred));
+                    EnumerateResponse(await _Sdk.Credential.Update(cred));
                     return;
                 case "pool":
                     StoragePool pool = BuildObject<StoragePool>();
-                    EnumerateResponse(await _Sdk.UpdatePool(pool));
+                    EnumerateResponse(await _Sdk.Pool.Update(pool));
                     return;
                 case "bucket":
                     BucketMetadata bucket = BuildObject<BucketMetadata>();
-                    EnumerateResponse(await _Sdk.UpdateBucket(bucket));
+                    EnumerateResponse(await _Sdk.Bucket.Update(bucket));
                     return;
                 case "enckey":
                     EncryptionKey key = BuildObject<EncryptionKey>();
-                    EnumerateResponse(await _Sdk.UpdateEncryptionKey(key));
+                    EnumerateResponse(await _Sdk.EncryptionKey.Update(key));
                     return;
                 case "mdrule":
                     MetadataRule mdRule = BuildObject<MetadataRule>();
-                    EnumerateResponse(await _Sdk.UpdateMetadataRule(mdRule));
+                    EnumerateResponse(await _Sdk.MetadataRule.Update(mdRule));
                     return;
                 case "embedrule":
                     EmbeddingsRule embedRule = BuildObject<EmbeddingsRule>();
-                    EnumerateResponse(await _Sdk.UpdateEmbeddingsRule(embedRule));
+                    EnumerateResponse(await _Sdk.EmbeddingsRule.Update(embedRule));
                     return;
                 case "whevent":
                     return;
                 case "whrule":
                     WebhookRule whRule = BuildObject<WebhookRule>();
-                    EnumerateResponse(await _Sdk.UpdateWebhookRule(whRule));
+                    EnumerateResponse(await _Sdk.WebhookRule.Update(whRule));
                     break;
                 case "whtarget":
                     WebhookTarget whTarget = BuildObject<WebhookTarget>();
-                    EnumerateResponse(await _Sdk.UpdateWebhookTarget(whTarget));
+                    EnumerateResponse(await _Sdk.WebhookTarget.Update(whTarget));
                     break;
+                case "vector":
+                    VectorRepository vectorRepo = BuildObject<VectorRepository>();
+                    EnumerateResponse(await _Sdk.VectorRepository.Update(vectorRepo));
+                    return;
+                case "graph":
+                    GraphRepository graphRepo = BuildObject<GraphRepository>();
+                    EnumerateResponse(await _Sdk.GraphRepository.Update(graphRepo));
+                    return;
                 case "lock":
                     break;
+                case "datarepository":
+                    DataRepository dataRepo = BuildObject<DataRepository>();
+                    EnumerateResponse(await _Sdk.DataRepository.Update(dataRepo));
+                    break;
+                case "blob":
+                    Blob blob = BuildObject<Blob>();
+                    EnumerateResponse(await _Sdk.Blob.Update(blob));
+                    return;
                 default:
                     return;
             }
@@ -351,42 +435,59 @@
             switch (type)
             {
                 case "node":
-                    await _Sdk.DeleteNode(guid);
+                    await _Sdk.Node.Delete(guid);
                     return;
                 case "tenant":
+                    await _Sdk.Tenant.Delete(guid);
                     return;
                 case "user":
-                    await _Sdk.DeleteUser(guid);
+                    await _Sdk.User.Delete(guid);
                     return;
                 case "cred":
-                    await _Sdk.DeleteCredential(guid);
+                    await _Sdk.Credential.Delete(guid);
                     return;
                 case "pool":
-                    await _Sdk.DeletePool(guid);
+                    await _Sdk.Pool.Delete(guid);
                     return;
                 case "bucket":
-                    await _Sdk.DeleteBucket(guid);
+                    await _Sdk.Bucket.Delete(guid);
                     return;
                 case "enckey":
-                    await _Sdk.DeleteEncryptionKey(guid);
+                    await _Sdk.EncryptionKey.Delete(guid);
                     return;
                 case "mdrule":
-                    await _Sdk.DeleteMetadataRule(guid);
+                    await _Sdk.MetadataRule.Delete(guid);
                     return;
                 case "embedrule":
-                    await _Sdk.DeleteEmbeddingsRule(guid);
+                    await _Sdk.EmbeddingsRule.Delete(guid);
                     return;
                 case "whevent":
                     return;
                 case "whrule":
-                    await _Sdk.DeleteWebhookRule(guid);
+                    await _Sdk.WebhookRule.Delete(guid);
                     break;
                 case "whtarget":
-                    await _Sdk.DeleteWebhookTarget(guid);
+                    await _Sdk.WebhookTarget.Delete(guid);
                     break;
+                case "vector":
+                    await _Sdk.VectorRepository.Delete(guid);
+                    return;
+                case "graph":
+                    await _Sdk.GraphRepository.Delete(guid);
+                    return;
+                case "collection":
+                    await _Sdk.Collection.Delete(guid.ToString());
+                    return;
                 case "lock":
-                    await _Sdk.DeleteObjectLock(guid);
+                    await _Sdk.ObjectLock.Delete(guid);
                     break;
+                case "datarepository":
+                    await _Sdk.DataRepository.Delete(guid.ToString());
+                    break;
+                case "blob":
+                    string blobGuid = guid.ToString();
+                    await _Sdk.Blob.Delete(blobGuid);
+                    return;
                 default:
                     return;
             }
@@ -403,39 +504,45 @@
             switch (type)
             {
                 case "node":
-                    exists = await _Sdk.ExistsNode(guid);
+                    exists = await _Sdk.Node.Exists(guid);
                     break;
                 case "tenant":
                     return;
                 case "user":
-                    exists = await _Sdk.ExistsUser(guid);
+                    exists = await _Sdk.User.Exists(guid);
                     break;
                 case "cred":
-                    exists = await _Sdk.ExistsCredential(guid);
+                    exists = await _Sdk.Credential.Exists(guid);
                     break;
                 case "pool":
-                    exists = await _Sdk.ExistsPool(guid);
+                    exists = await _Sdk.Pool.Exists(guid);
                     break;
                 case "bucket":
-                    exists = await _Sdk.ExistsBucket(guid);
+                    exists = await _Sdk.Bucket.Exists(guid);
                     break;
                 case "enckey":
-                    exists = await _Sdk.ExistsEncryptionKey(guid);
+                    exists = await _Sdk.EncryptionKey.Exists(guid);
                     break;
                 case "mdrule":
-                    exists = await _Sdk.ExistsMetadataRule(guid);
+                    exists = await _Sdk.MetadataRule.Exists(guid);
                     break;
                 case "embedrule":
-                    exists = await _Sdk.ExistsEmbeddingsRule(guid);
+                    exists = await _Sdk.EmbeddingsRule.Exists(guid);
                     break;
                 case "whevent":
-                    exists = await _Sdk.ExistsWebhookEvent(guid);
+                    exists = await _Sdk.WebhookEvent.Exists(guid);
                     break;
                 case "whrule":
-                    exists = await _Sdk.ExistsWebhookRule(guid);
+                    exists = await _Sdk.WebhookRule.Exists(guid);
                     break;
                 case "whtarget":
-                    exists = await _Sdk.ExistsWebhookTarget(guid);
+                    exists = await _Sdk.WebhookTarget.Exists(guid);
+                    break;
+                case "vector":
+                    exists = await _Sdk.VectorRepository.Exists(guid);
+                    break;
+                case "graph":
+                    exists = await _Sdk.GraphRepository.Exists(guid);
                     break;
                 case "lock":
                     break;
@@ -444,6 +551,63 @@
             }
 
             Console.WriteLine("Exists: " + exists);
+            Console.WriteLine("");
+        }
+
+        private static async Task Enumerate(string type)
+        {
+            switch (type)
+            {
+                case "node":
+                    EnumerateResponse(await _Sdk.Node.Enumerate());
+                    break;
+                case "tenant":
+                    EnumerateResponse(await _Sdk.Tenant.Enumerate());
+                    break;
+                case "collection":
+                    EnumerateResponse(await _Sdk.Collection.Enumerate());
+                    break;
+                case "user":
+                    EnumerateResponse(await _Sdk.User.Enumerate());
+                    return;
+                case "cred":
+                    EnumerateResponse(await _Sdk.Credential.Enumerate());
+                    return;
+                case "enckey":
+                    EnumerateResponse(await _Sdk.EncryptionKey.Enumerate());
+                    return;
+                case "mdrule":
+                    EnumerateResponse(await _Sdk.MetadataRule.Enumerate());
+                    return;
+                case "embedrule":
+                    EnumerateResponse(await _Sdk.EmbeddingsRule.Enumerate());
+                    return;
+                case "vector":
+                    EnumerateResponse(await _Sdk.VectorRepository.Enumerate());
+                    return;
+                case "graph":
+                    EnumerateResponse(await _Sdk.GraphRepository.Enumerate());
+                    return;
+                case "whevent":
+                    EnumerateResponse(await _Sdk.WebhookEvent.Enumerate());
+                    return;
+                case "whrule":
+                    EnumerateResponse(await _Sdk.WebhookRule.Enumerate());
+                    break;
+                case "whtarget":
+                    EnumerateResponse(await _Sdk.WebhookTarget.Enumerate());
+                    break;
+                case "lock":
+                    break;
+                case "datarepository":
+                    EnumerateResponse(await _Sdk.DataRepository.Enumerate());
+                    break;
+                case "blob":
+                    EnumerateResponse(await _Sdk.Blob.Enumerate());
+                    break;
+                default:
+                    return;
+            }
             Console.WriteLine("");
         }
 
