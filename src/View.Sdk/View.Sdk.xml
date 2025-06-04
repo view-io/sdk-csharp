@@ -1076,6 +1076,28 @@
             Instantiate.
             </summary>
         </member>
+        <member name="T:View.Sdk.CollectionTopTerms">
+            <summary>
+            Collection top terms.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CollectionTopTerms.Terms">
+            <summary>
+            Dictionary of terms and their frequencies.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.CollectionTopTerms.GetTermFrequency(System.String)">
+            <summary>
+            Helper method to get term frequency as integer
+            </summary>
+            <param name="term">The term to get frequency for</param>
+            <returns>The frequency as integer, or 0 if not found</returns>
+        </member>
+        <member name="M:View.Sdk.CollectionTopTerms.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
         <member name="T:View.Sdk.CompressionTypeEnum">
             <summary>
             Compression type.
@@ -1189,6 +1211,9 @@
             <inheritdoc />
         </member>
         <member name="M:View.Sdk.Configuration.Implementations.CollectionMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.CollectionMethods.Exists(System.String,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:View.Sdk.Configuration.Implementations.CredentialMethods">
@@ -1819,6 +1844,14 @@
             <param name="maxKeys">Maximum number of keys to return.</param>
             <param name="token">Cancellation token.</param>
             <returns>EnumerationResult containing collections.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.ICollectionMethods.Exists(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a collection exists.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if the collection exists.</returns>
         </member>
         <member name="T:View.Sdk.Configuration.Interfaces.ICredentialMethods">
             <summary>
@@ -7383,6 +7416,15 @@
         <member name="M:View.Sdk.Lexi.Implementations.CollectionMethods.Delete(System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:View.Sdk.Lexi.Implementations.CollectionMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.CollectionMethods.RetrieveTopTerms(System.Guid,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.CollectionMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="T:View.Sdk.Lexi.Implementations.EnumerateMethods">
             <summary>
             Enumerate methods
@@ -7506,6 +7548,31 @@
             <param name="collectionGuid">Collection GUID.</param>
             <param name="token">Cancellation token.</param>
             <returns>True if successful.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.Interfaces.ICollectionMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate collections.
+            </summary>
+            <param name="maxKeys">Maximum number of keys to return.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>EnumerationResult containing collections.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.Interfaces.ICollectionMethods.RetrieveTopTerms(System.Guid,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve top terms for a collection.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="maxKeys">Maximum number of top terms to return. Default is 10.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Collection top terms.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.Interfaces.ICollectionMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a collection exists.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if the collection exists.</returns>
         </member>
         <member name="T:View.Sdk.Lexi.Interfaces.IEnumerateMethods">
             <summary>

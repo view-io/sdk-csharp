@@ -56,5 +56,13 @@ namespace View.Sdk.Configuration.Interfaces
         /// <param name="token">Cancellation token.</param>
         /// <returns>EnumerationResult containing collections.</returns>
         public Task<EnumerationResult<Collection>> Enumerate(int maxKeys = 5, CancellationToken token = default);
+
+        /// <summary>
+        /// Check if a collection exists.
+        /// </summary>
+        /// <param name="collectionGuid">Collection GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>True if the collection exists.</returns>
+        public Task<bool> Exists(string collectionGuid, CancellationToken token = default);
     }
 }
