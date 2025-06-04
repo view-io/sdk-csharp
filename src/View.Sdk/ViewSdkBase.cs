@@ -56,7 +56,7 @@
         /// <summary>
         /// Tenant GUID.
         /// </summary>
-        public Guid TenantGUID { get; set; } = Guid.NewGuid();
+        public Guid? TenantGUID { get; set; } = null;
 
         /// <summary>
         /// Access key.
@@ -126,6 +126,22 @@
         /// Optional xToken header value.
         /// </summary>
         public string XToken { get; set; } = null;
+
+        /// <summary>
+        /// Optional email address to include in the request headers. 
+        /// </summary>
+        public string Email { get; set; } = null;
+
+        /// <summary>
+        /// Optional plain-text password to include in the request headers.
+        /// </summary>
+        public string Password { get; set; } = null;
+
+        /// <summary>
+        /// Optional SHA-256 hash of the password to include in the request headers.
+        /// </summary>
+        public string PasswordSha256 { get; set; } = null;
+
 
         #endregion
 
@@ -494,10 +510,12 @@
             {
                 req.TimeoutMilliseconds = TimeoutMs;
                 req.Authorization.BearerToken = _AccessKey;
-                if (!string.IsNullOrWhiteSpace(XToken))
-                {
-                    req.Headers.Add("x-token", XToken);
-                }
+                if (!string.IsNullOrWhiteSpace(XToken)) req.Headers.Add("x-token", XToken);
+                if (!string.IsNullOrWhiteSpace(Email)) req.Headers.Add("x-email", Email);
+                if (!string.IsNullOrWhiteSpace(Password)) req.Headers.Add("x-password", Password);
+                if (!string.IsNullOrWhiteSpace(PasswordSha256)) req.Headers.Add("x-password-sha256", PasswordSha256);
+                if (!string.IsNullOrWhiteSpace(TenantGUID.ToString())) req.Headers.Add("x-tenant-guid", TenantGUID.ToString());
+
                 using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
                 {
                     if (resp != null)

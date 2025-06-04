@@ -16,7 +16,7 @@
 
         private static bool _RunForever = true;
         private static Guid _TenantGuid = default(Guid);
-        private static string _Endpoint = "http://localhost:8000/";
+        private static string _Endpoint = "http://view.homedns.org:8000/";
         private static string _AccessKey = "default";
         private static string _XToken = "";
         private static ViewConfigurationSdk _Sdk = null;
@@ -53,6 +53,40 @@
                 else if (userInput.Equals("conn"))
                 {
                     TestConnectivity().Wait();
+                }
+                else if (userInput.StartsWith("auth "))
+                {
+                    string[] parts = userInput.Split(" ");
+                    if (parts.Length >= 2)
+                    {
+                        switch (parts[1])
+                        {
+                            case "tenants":
+                                TestRetrieveTenants().Wait();
+                                break;
+                            case "token":
+                                TestGenerateTokenWithPassword().Wait();
+                                break;
+                            case "tokensha256":
+                                TestGenerateTokenWithPasswordSha256().Wait();
+                                break;
+                            case "admintoken":
+                                TestGenerateAdminTokenWithPassword().Wait();
+                                break;
+                            case "admintokensha256":
+                                TestGenerateAdminTokenWithPasswordSha256().Wait();
+                                break;
+                            case "validate":
+                                TestValidateToken().Wait();
+                                break;
+                            case "details":
+                                TestRetrieveTokenDetails().Wait();
+                                break;
+                            default:
+                                Console.WriteLine("Unknown authentication command: " + parts[1]);
+                                break;
+                        }
+                    }
                 }
                 else
                 {
@@ -111,6 +145,15 @@
             Console.WriteLine("  [type] is one of:");
             Console.WriteLine("    node    tenant     user     cred    pool      bucket    enckey");
             Console.WriteLine("    mdrule  embedrule  whevent  whrule  whtarget  lock  vector  collection  datarepository  blob  graph");
+            Console.WriteLine("");
+            Console.WriteLine("Authentication commands:");
+            Console.WriteLine("  auth tenants      Retrieve tenants");
+            Console.WriteLine("  auth token        Generate token with password");
+            Console.WriteLine("  auth tokensha256  Generate token with password SHA-256");
+            Console.WriteLine("  auth admintoken   Generate admin token with password");
+            Console.WriteLine("  auth admintokensha256  Generate admin token with password SHA-256");
+            Console.WriteLine("  auth validate     Validate token");
+            Console.WriteLine("  auth details      Retrieve token details");
             Console.WriteLine("");
             Console.WriteLine("Not all object types support all commands");
             Console.WriteLine("");
@@ -628,6 +671,103 @@
                 Console.WriteLine("Not connected");
 
             Console.WriteLine("");
+        }
+
+        private static async Task TestRetrieveTenants()
+        {
+            Console.WriteLine("");
+            string email = Inputty.GetString("Email    :", "default@user.com", false);
+            _Sdk.Email = email; 
+            _Sdk.Password = null;
+            _Sdk.PasswordSha256 = null;
+            _Sdk.TenantGUID = null;
+            _Sdk.XToken = null;
+            List<TenantMetadata> tenants = await _Sdk.Authentication.RetrieveTenants();
+            EnumerateResponse(tenants);
+        }
+
+        private static async Task TestGenerateTokenWithPassword()
+        {
+            Console.WriteLine("");
+            string email = Inputty.GetString("Email    :", "default@user.com", false);
+            string password = Inputty.GetString("Password :", "password", true);
+            Guid tenantGuid = Inputty.GetGuid("Tenant GUID :", _TenantGuid);
+            _Sdk.Email = email;
+            _Sdk.Password = password;
+            _Sdk.PasswordSha256 = null;
+            _Sdk.TenantGUID = tenantGuid;
+            _Sdk.XToken = null;
+            AuthenticationToken token = await _Sdk.Authentication.GenerateTokenWithPassword();
+            EnumerateResponse(token);
+        }
+
+        private static async Task TestGenerateTokenWithPasswordSha256()
+        {
+            Console.WriteLine("");
+            string email = Inputty.GetString("Email         :", "default@user.com", false);
+            string passwordSha256 = Inputty.GetString("Password SHA256:", "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8", true);
+            Guid tenantGuid = Inputty.GetGuid("Tenant GUID    :", _TenantGuid);
+            _Sdk.Email = email;
+            _Sdk.Password = null;
+            _Sdk.PasswordSha256 = passwordSha256;
+            _Sdk.TenantGUID = tenantGuid;
+            _Sdk.XToken = null;
+            AuthenticationToken token = await _Sdk.Authentication.GenerateTokenWithPasswordSha256();
+            EnumerateResponse(token);
+        }
+
+        private static async Task TestGenerateAdminTokenWithPassword()
+        {
+            Console.WriteLine("");
+            string email = Inputty.GetString("Admin Email    :", "admin@view.io", false);
+            string password = Inputty.GetString("Admin Password :", "viewadmin", true);
+            _Sdk.Email = email;
+            _Sdk.Password = password;
+            _Sdk.PasswordSha256 = null;
+            _Sdk.TenantGUID = null;
+            _Sdk.XToken = null;
+            AuthenticationToken token = await _Sdk.Authentication.GenerateAdminTokenWithPassword();
+            EnumerateResponse(token);
+        }
+
+        private static async Task TestGenerateAdminTokenWithPasswordSha256()
+        {
+            Console.WriteLine("");
+            string email = Inputty.GetString("Admin Email         :", "admin@view.io", false);
+            string passwordSha256 = Inputty.GetString("Admin Password SHA256:", "e75255193871e245472533552fe45dfda25768d26e9eb92507e75263e90c6a48", true);
+            _Sdk.Email = email;
+            _Sdk.Password = null;
+            _Sdk.PasswordSha256 = passwordSha256;
+            _Sdk.TenantGUID = null;
+            _Sdk.XToken = null;
+            AuthenticationToken token = await _Sdk.Authentication.GenerateAdminTokenWithPasswordSha256();
+            EnumerateResponse(token);
+        }
+
+        private static async Task TestValidateToken()
+        {
+            Console.WriteLine("");
+            string authToken = Inputty.GetString("Auth Token :", _XToken, true);
+            _Sdk.Email = null;
+            _Sdk.Password = null;
+            _Sdk.PasswordSha256 = null;
+            _Sdk.TenantGUID = null;
+            _Sdk.XToken = authToken;
+            AuthenticationToken token = await _Sdk.Authentication.ValidateToken();
+            EnumerateResponse(token);
+        }
+
+        private static async Task TestRetrieveTokenDetails()
+        {
+            Console.WriteLine("");
+            string authToken = Inputty.GetString("Auth Token :", _XToken, true);
+            _Sdk.Email = null;
+            _Sdk.Password = null;
+            _Sdk.PasswordSha256 = null;
+            _Sdk.TenantGUID = null;
+            _Sdk.XToken = authToken;
+            AuthenticationToken token = await _Sdk.Authentication.RetrieveTokenDetails();
+            EnumerateResponse(token);
         }
 
 #pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.

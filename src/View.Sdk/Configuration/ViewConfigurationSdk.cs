@@ -73,6 +73,11 @@
         public ICollectionMethods Collection { get; set; }
 
         /// <summary>
+        /// Authentication methods.
+        /// </summary>
+        public IAuthenticationMethods Authentication { get; set; }
+
+        /// <summary>
         /// Data repository methods.
         /// </summary>
         public IDataRepositoryMethods DataRepository { get; set; }
@@ -136,6 +141,7 @@
             WebhookEvent = new WebhookEventMethods(this);
             MetadataRule = new MetadataRuleMethods(this);
             Collection = new CollectionMethods(this);
+            Authentication = new AuthenticationMethods(this);
             DataRepository = new DataRepositoryMethods(this);
             GraphRepository = new GraphRepositoryMethods(this);
             VectorRepository = new VectorRepositoryMethods(this);

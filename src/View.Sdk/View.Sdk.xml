@@ -1123,6 +1123,38 @@
             Adaptive.
             </summary>
         </member>
+        <member name="T:View.Sdk.Configuration.Implementations.AuthenticationMethods">
+            <summary>
+            Authentication methods
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.AuthenticationMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Authentication methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.AuthenticationMethods.RetrieveTenants(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.AuthenticationMethods.GenerateTokenWithPassword(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.AuthenticationMethods.GenerateTokenWithPasswordSha256(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.AuthenticationMethods.GenerateAdminTokenWithPassword(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.AuthenticationMethods.GenerateAdminTokenWithPasswordSha256(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.AuthenticationMethods.ValidateToken(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.AuthenticationMethods.RetrieveTokenDetails(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="T:View.Sdk.Configuration.Implementations.BlobMethods">
             <summary>
             Blob methods
@@ -1679,6 +1711,59 @@
         </member>
         <member name="M:View.Sdk.Configuration.Implementations.WebhookTargetMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
             <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Configuration.Interfaces.IAuthenticationMethods">
+            <summary>
+            Authentication methods interface
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IAuthenticationMethods.RetrieveTenants(System.Threading.CancellationToken)">
+            <summary>
+            Retrieve tenants.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>List of tenant metadata.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IAuthenticationMethods.GenerateTokenWithPassword(System.Threading.CancellationToken)">
+            <summary>
+            Generate authentication token using password.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Authentication token.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IAuthenticationMethods.GenerateTokenWithPasswordSha256(System.Threading.CancellationToken)">
+            <summary>
+            Generate authentication token using password SHA-256.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Authentication token.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IAuthenticationMethods.GenerateAdminTokenWithPassword(System.Threading.CancellationToken)">
+            <summary>
+            Generate administrator token using password.
+            </summary>
+            <returns>Authentication token.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IAuthenticationMethods.GenerateAdminTokenWithPasswordSha256(System.Threading.CancellationToken)">
+            <summary>
+            Generate administrator token using password SHA-256.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Authentication token.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IAuthenticationMethods.ValidateToken(System.Threading.CancellationToken)">
+            <summary>
+            Validate authentication token.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Authentication token with validity information.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IAuthenticationMethods.RetrieveTokenDetails(System.Threading.CancellationToken)">
+            <summary>
+            Retrieve token details.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Authentication token with details.</returns>
         </member>
         <member name="T:View.Sdk.Configuration.Interfaces.IBlobMethods">
             <summary>
@@ -2767,6 +2852,11 @@
         <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.Collection">
             <summary>
             Collection methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.Authentication">
+            <summary>
+            Authentication methods.
             </summary>
         </member>
         <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.DataRepository">
@@ -10693,6 +10783,21 @@
         <member name="P:View.Sdk.ViewSdkBase.XToken">
             <summary>
             Optional xToken header value.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewSdkBase.Email">
+            <summary>
+            Optional email address to include in the request headers. 
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewSdkBase.Password">
+            <summary>
+            Optional plain-text password to include in the request headers.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ViewSdkBase.PasswordSha256">
+            <summary>
+            Optional SHA-256 hash of the password to include in the request headers.
             </summary>
         </member>
         <member name="M:View.Sdk.ViewSdkBase.#ctor(System.String)">
