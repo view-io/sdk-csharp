@@ -23,10 +23,20 @@ namespace View.Sdk.Lexi.Interfaces
         /// </summary>
         /// <param name="collectionGuid">Collection GUID.</param>
         /// <param name="documentGuid">Document GUID.</param>
-        /// <param name="includeData">Flag to indiate whether or not source document data should be included.</param>
+        /// <param name="includeData">Flag to indicate whether or not source document data should be included.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Source document.</returns>
         public Task<SourceDocument> Retrieve(Guid collectionGuid, Guid documentGuid, bool includeData = false, CancellationToken token = default);
+
+        /// <summary>
+        /// Retrieve top terms for a document.
+        /// </summary>
+        /// <param name="collectionGuid">Collection GUID.</param>
+        /// <param name="documentGuid">Document GUID.</param>
+        /// <param name="maxKeys">Maximum number of top terms to return. Default is 10.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Document top terms.</returns>
+        public Task<CollectionTopTerms> RetrieveTopTerms(Guid collectionGuid, Guid documentGuid, int maxKeys = 5, CancellationToken token = default);
 
         /// <summary>
         /// Retrieve document statistics.

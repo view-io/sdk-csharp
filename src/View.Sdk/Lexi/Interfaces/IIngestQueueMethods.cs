@@ -41,5 +41,12 @@ namespace View.Sdk.Lexi.Interfaces
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if successful.</returns>
         public Task<bool> Delete(Guid guid, CancellationToken token = default);
+
+        /// <summary>
+        /// Retrieve statistics for the ingest queue.
+        /// </summary>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Ingest queue statistics.</returns>
+        public Task<IngestQueueStatistics> RetrieveStatistics(CancellationToken token = default);
     }
 }

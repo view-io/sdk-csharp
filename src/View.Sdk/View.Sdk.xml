@@ -7213,6 +7213,9 @@
         <member name="M:View.Sdk.Lexi.Implementations.IngestQueueMethods.Delete(System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:View.Sdk.Lexi.Implementations.IngestQueueMethods.RetrieveStatistics(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="T:View.Sdk.Lexi.Implementations.SearchMethods">
             <summary>
             Search methods
@@ -7263,6 +7266,9 @@
             <inheritdoc />
         </member>
         <member name="M:View.Sdk.Lexi.Implementations.SourceDocumentMethods.Retrieve(System.Guid,System.Guid,System.Boolean,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.SourceDocumentMethods.RetrieveTopTerms(System.Guid,System.Guid,System.Int32,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:View.Sdk.Lexi.Implementations.SourceDocumentMethods.RetrieveStatistics(System.Guid,System.Guid,System.Threading.CancellationToken)">
@@ -7400,6 +7406,13 @@
             <param name="token">Cancellation token.</param>
             <returns>True if successful.</returns>
         </member>
+        <member name="M:View.Sdk.Lexi.Interfaces.IIngestQueueMethods.RetrieveStatistics(System.Threading.CancellationToken)">
+            <summary>
+            Retrieve statistics for the ingest queue.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Ingest queue statistics.</returns>
+        </member>
         <member name="T:View.Sdk.Lexi.Interfaces.ISearchMethods">
             <summary>
             Interface for search methods.
@@ -7469,9 +7482,19 @@
             </summary>
             <param name="collectionGuid">Collection GUID.</param>
             <param name="documentGuid">Document GUID.</param>
-            <param name="includeData">Flag to indiate whether or not source document data should be included.</param>
+            <param name="includeData">Flag to indicate whether or not source document data should be included.</param>
             <param name="token">Cancellation token.</param>
             <returns>Source document.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.Interfaces.ISourceDocumentMethods.RetrieveTopTerms(System.Guid,System.Guid,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve top terms for a document.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="documentGuid">Document GUID.</param>
+            <param name="maxKeys">Maximum number of top terms to return. Default is 10.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Document top terms.</returns>
         </member>
         <member name="M:View.Sdk.Lexi.Interfaces.ISourceDocumentMethods.RetrieveStatistics(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>

@@ -89,6 +89,9 @@
                     case "exists doc":
                         DocumentExists().Wait();
                         break;
+                    case "topterms doc":
+                        RetrieveDocumentTopTerms().Wait();
+                        break;
 
                     case "enumerate":
                         EnumerateCollection().Wait();
@@ -123,6 +126,9 @@
                     case "exists ingest entry":
                         IngestQueueEntryExists().Wait();
                         break;
+                    case "ingest queue stats":
+                        RetrieveIngestQueueStatistics().Wait();
+                        break;
                 }
             }
         }
@@ -151,6 +157,7 @@
             Console.WriteLine("  write doc     Write document");
             Console.WriteLine("  del doc       Delete document");
             Console.WriteLine("  exists doc    Check if document exists");
+            Console.WriteLine("  topterms doc  Retrieve document top terms");
             Console.WriteLine("");
             Console.WriteLine("  enumerate     Enumerate collection documents");
             Console.WriteLine("");
@@ -163,6 +170,7 @@
             Console.WriteLine("  ingest queue         List all ingest queue entries");
             Console.WriteLine("  ingest entry         Retrieve ingest queue entry");
             Console.WriteLine("  ingest entry stats   Retrieve ingest queue entry with statistics");
+            Console.WriteLine("  ingest queue stats   Retrieve ingest queue statistics");
             Console.WriteLine("  del ingest entry     Delete ingest queue entry");
             Console.WriteLine("  exists ingest entry  Check if ingest queue entry exists");
             Console.WriteLine("");
@@ -324,6 +332,15 @@
             Console.WriteLine($"Document exists: {exists}");
             Console.WriteLine("");
         }
+
+        private static async Task RetrieveDocumentTopTerms()
+        {
+            Guid collectionGuid = GetCollectionGuid();
+            Guid documentGuid = GetDocumentGuid();
+            CollectionTopTerms topTerms = await _Sdk.SourceDocument.RetrieveTopTerms(collectionGuid, documentGuid);
+            EnumerateResponse(topTerms);
+        }
+
         private static async Task EnumerateCollection() 
         {
             EnumerationResult<SourceDocument> result = await _Sdk.Enumerate.Enumerate(
@@ -419,6 +436,12 @@
             Console.WriteLine("");
             Console.WriteLine($"Ingest queue entry exists: {exists}");
             Console.WriteLine("");
+        }
+
+        private static async Task RetrieveIngestQueueStatistics()
+        {
+            IngestQueueStatistics stats = await _Sdk.IngestQueue.RetrieveStatistics();
+            EnumerateResponse(stats);
         }
     }
 }

@@ -52,6 +52,13 @@ namespace View.Sdk.Lexi.Implementations
         }
 
         /// <inheritdoc />
+        public async Task<CollectionTopTerms> RetrieveTopTerms(Guid collectionGuid, Guid documentGuid, int maxKeys = 5, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/collections/" + collectionGuid + "/documents/"+ documentGuid + "/topterms?max-keys=" + maxKeys;
+            return await _Sdk.Retrieve<CollectionTopTerms>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
         public async Task<SourceDocumentStatistics> RetrieveStatistics(Guid collectionGuid, Guid documentGuid, CancellationToken token = default)
         {
             string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/collections/" + collectionGuid + "/documents/" + documentGuid + "?stats";
