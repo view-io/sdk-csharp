@@ -1501,6 +1501,38 @@
         <member name="M:View.Sdk.Configuration.Implementations.ObjectLockMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="T:View.Sdk.Configuration.Implementations.PermissionMethods">
+            <summary>
+            Permission methods
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.PermissionMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Permission methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.PermissionMethods.Create(View.Sdk.Permission,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.PermissionMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.PermissionMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.PermissionMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.PermissionMethods.Update(View.Sdk.Permission,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.PermissionMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.PermissionMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="T:View.Sdk.Configuration.Implementations.PoolMethods">
             <summary>
             Pool methods
@@ -1528,6 +1560,70 @@
             <inheritdoc />
         </member>
         <member name="M:View.Sdk.Configuration.Implementations.PoolMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Configuration.Implementations.RoleMethods">
+            <summary>
+            Role methods
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RoleMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Role methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RoleMethods.Create(View.Sdk.Role,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RoleMethods.Retrieve(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RoleMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RoleMethods.Update(View.Sdk.Role,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RoleMethods.Delete(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RoleMethods.Exists(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RoleMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Configuration.Implementations.RolePermissionMapMethods">
+            <summary>
+            Role permission map methods
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RolePermissionMapMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Role permission map methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RolePermissionMapMethods.Create(View.Sdk.RolePermissionMap,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RolePermissionMapMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RolePermissionMapMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RolePermissionMapMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RolePermissionMapMethods.Update(View.Sdk.RolePermissionMap,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RolePermissionMapMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RolePermissionMapMethods.Enumerate(System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:View.Sdk.Configuration.Implementations.TenantMethods">
@@ -1591,6 +1687,38 @@
             <inheritdoc />
         </member>
         <member name="M:View.Sdk.Configuration.Implementations.UserMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Configuration.Implementations.UserRoleMapMethods">
+            <summary>
+            User role map methods
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.UserRoleMapMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            User role map methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.UserRoleMapMethods.Create(View.Sdk.UserRoleMap,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.UserRoleMapMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.UserRoleMapMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.UserRoleMapMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.UserRoleMapMethods.Update(View.Sdk.UserRoleMap,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.UserRoleMapMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.UserRoleMapMethods.Enumerate(System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:View.Sdk.Configuration.Implementations.VectorRepositoryMethods">
@@ -2444,6 +2572,66 @@
             <param name="token">Cancellation token.</param>
             <returns>Enumeration result containing object locks.</returns>
         </member>
+        <member name="T:View.Sdk.Configuration.Interfaces.IPermissionMethods">
+            <summary>
+            Interface for permission methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IPermissionMethods.Create(View.Sdk.Permission,System.Threading.CancellationToken)">
+            <summary>
+            Create a permission.
+            </summary>
+            <param name="permission">Permission.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Permission.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IPermissionMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a permission exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IPermissionMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read a permission.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Permission.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IPermissionMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Read permissions.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Permissions.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IPermissionMethods.Update(View.Sdk.Permission,System.Threading.CancellationToken)">
+            <summary>
+            Update a permission.
+            </summary>
+            <param name="permission">Permission.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Permission.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IPermissionMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a permission.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IPermissionMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate permissions with pagination support.
+            </summary>
+            <param name="maxKeys">Maximum number of keys to return in a single operation.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result containing permissions.</returns>
+        </member>
         <member name="T:View.Sdk.Configuration.Interfaces.IPoolMethods">
             <summary>
             Interface for pool methods.
@@ -2495,6 +2683,125 @@
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
             <returns>True if successful.</returns>
+        </member>
+        <member name="T:View.Sdk.Configuration.Interfaces.IRoleMethods">
+            <summary>
+            Methods for working with roles.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IRoleMethods.Create(View.Sdk.Role,System.Threading.CancellationToken)">
+            <summary>
+            Create a role.
+            </summary>
+            <param name="role">Role.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Role.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IRoleMethods.Retrieve(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve a role.
+            </summary>
+            <param name="roleGuid">Role GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Role.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IRoleMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Retrieve multiple roles.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>List of roles.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IRoleMethods.Update(View.Sdk.Role,System.Threading.CancellationToken)">
+            <summary>
+            Update a role.
+            </summary>
+            <param name="role">Role.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Role.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IRoleMethods.Delete(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a role.
+            </summary>
+            <param name="roleGuid">Role GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Boolean indicating success.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IRoleMethods.Exists(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a role exists.
+            </summary>
+            <param name="roleGuid">Role GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Boolean indicating if the role exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IRoleMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate roles.
+            </summary>
+            <param name="maxKeys">Maximum number of keys to return.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result.</returns>
+        </member>
+        <member name="T:View.Sdk.Configuration.Interfaces.IRolePermissionMapMethods">
+            <summary>
+            Interface for role permission map methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IRolePermissionMapMethods.Create(View.Sdk.RolePermissionMap,System.Threading.CancellationToken)">
+            <summary>
+            Create a role permission map.
+            </summary>
+            <param name="rolePermissionMap">Role permission map.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Role permission map.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IRolePermissionMapMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a role permission map exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IRolePermissionMapMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read a role permission map.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Role permission map.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IRolePermissionMapMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Read role permission maps.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Role permission maps.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IRolePermissionMapMethods.Update(View.Sdk.RolePermissionMap,System.Threading.CancellationToken)">
+            <summary>
+            Update a role permission map.
+            </summary>
+            <param name="rolePermissionMap">Role permission map.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Role permission map.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IRolePermissionMapMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a role permission map.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IRolePermissionMapMethods.Enumerate(System.Threading.CancellationToken)">
+            <summary>
+            Enumerate role permission maps.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result containing role permission maps.</returns>
         </member>
         <member name="T:View.Sdk.Configuration.Interfaces.ITenantMethods">
             <summary>
@@ -2606,6 +2913,65 @@
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
             <returns>True if successful.</returns>
+        </member>
+        <member name="T:View.Sdk.Configuration.Interfaces.IUserRoleMapMethods">
+            <summary>
+            Interface for user role map methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IUserRoleMapMethods.Create(View.Sdk.UserRoleMap,System.Threading.CancellationToken)">
+            <summary>
+            Create a user role map.
+            </summary>
+            <param name="userRoleMap">User role map.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>User role map.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IUserRoleMapMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a user role map exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IUserRoleMapMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read a user role map.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>User role map.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IUserRoleMapMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Read user role maps.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>User role maps.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IUserRoleMapMethods.Update(View.Sdk.UserRoleMap,System.Threading.CancellationToken)">
+            <summary>
+            Update a user role map.
+            </summary>
+            <param name="userRoleMap">User role map.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>User role map.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IUserRoleMapMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a user role map.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IUserRoleMapMethods.Enumerate(System.Threading.CancellationToken)">
+            <summary>
+            Enumerate user role maps.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result containing user role maps.</returns>
         </member>
         <member name="T:View.Sdk.Configuration.Interfaces.IVectorRepositoryMethods">
             <summary>
@@ -2921,6 +3287,26 @@
         <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.Blob">
             <summary>
             Blob methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.Permission">
+            <summary>
+            Permission methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.Role">
+            <summary>
+            Role methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.RolePermissionMap">
+            <summary>
+            Role permission map methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.UserRoleMap">
+            <summary>
+            User role map methods.
             </summary>
         </member>
         <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.#ctor(System.Guid,System.String,System.String,System.String)">
@@ -7130,6 +7516,56 @@
             Object GUID.
             </summary>
         </member>
+        <member name="T:View.Sdk.Permission">
+            <summary>
+            Permission.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Permission.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Permission.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Permission.ResourceTypes">
+            <summary>
+            Resource types.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Permission.OperationTypes">
+            <summary>
+            Operation types.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Permission.PermissionType">
+            <summary>
+            Permission type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Permission.Active">
+            <summary>
+            Active.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Permission.IsProtected">
+            <summary>
+            Is protected.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Permission.CreatedUtc">
+            <summary>
+            Created UTC.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Permission.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
         <member name="T:View.Sdk.Posting">
             <summary>
             A posting from a parsed document.
@@ -8002,6 +8438,98 @@
             <summary>
             Instantiate.
             </summary>
+        </member>
+        <member name="T:View.Sdk.Role">
+            <summary>
+            Role.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Role.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Role.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Role.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Role.Active">
+            <summary>
+            Is active.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Role.IsProtected">
+            <summary>
+            Is protected.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Role.CreatedUtc">
+            <summary>
+            Created UTC.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Role.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.RolePermissionMap">
+            <summary>
+            Role Permission Map.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.RolePermissionMap.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.RolePermissionMap.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.RolePermissionMap.RoleGUID">
+            <summary>
+            Role GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.RolePermissionMap.PermissionGUID">
+            <summary>
+            Permission GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.RolePermissionMap.Active">
+            <summary>
+            Is active.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.RolePermissionMap.IsProtected">
+            <summary>
+            Is protected.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.RolePermissionMap.CreatedUtc">
+            <summary>
+            Created UTC.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.RolePermissionMap.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.RolePermissionMap.#ctor(System.Guid,System.Guid)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="roleGuid">Role GUID.</param>
+            <param name="permissionGuid">Permission GUID.</param>
         </member>
         <member name="T:View.Sdk.ScheduleIntervalEnum">
             <summary>
@@ -9976,6 +10504,58 @@
             <param name="serializer">Serializer.</param>
             <param name="users">Users.</param>
             <returns>List.</returns>
+        </member>
+        <member name="T:View.Sdk.UserRoleMap">
+            <summary>
+            User Role Map.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UserRoleMap.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UserRoleMap.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UserRoleMap.UserGUID">
+            <summary>
+            User GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UserRoleMap.RoleGUID">
+            <summary>
+            Role GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UserRoleMap.Active">
+            <summary>
+            Is active.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UserRoleMap.IsProtected">
+            <summary>
+            Is protected.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UserRoleMap.CreatedUtc">
+            <summary>
+            Created UTC.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.UserRoleMap.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.UserRoleMap.#ctor(System.Guid,System.Guid)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="userGuid">User GUID.</param>
+            <param name="roleGuid">Role GUID.</param>
         </member>
         <member name="T:View.Sdk.VectorRepository">
             <summary>

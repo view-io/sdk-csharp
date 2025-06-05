@@ -107,6 +107,26 @@
         /// </summary>
         public IBlobMethods Blob { get; set; }
 
+        /// <summary>
+        /// Permission methods.
+        /// </summary>
+        public IPermissionMethods Permission { get; set; }
+
+        /// <summary>
+        /// Role methods.
+        /// </summary>
+        public IRoleMethods Role { get; set; }
+
+        /// <summary>
+        /// Role permission map methods.
+        /// </summary>
+        public IRolePermissionMapMethods RolePermissionMap { get; set; }
+
+        /// <summary>
+        /// User role map methods.
+        /// </summary>
+        public IUserRoleMapMethods UserRoleMap { get; set; }
+
         #endregion
 
         #region Private-Members
@@ -148,6 +168,10 @@
             ObjectLock = new ObjectLockMethods(this);
             EmbeddingsRule = new EmbeddingsRuleMethods(this);
             Blob = new BlobMethods(this);
+            Permission = new PermissionMethods(this);
+            Role = new RoleMethods(this);
+            RolePermissionMap = new RolePermissionMapMethods(this);
+            UserRoleMap = new UserRoleMapMethods(this);
         }
 
         #endregion
