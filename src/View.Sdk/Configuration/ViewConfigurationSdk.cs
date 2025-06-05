@@ -78,11 +78,6 @@
         public IAuthenticationMethods Authentication { get; set; }
 
         /// <summary>
-        /// Data repository methods.
-        /// </summary>
-        public IDataRepositoryMethods DataRepository { get; set; }
-
-        /// <summary>
         /// Graph repository methods.
         /// </summary>
         public IGraphRepositoryMethods GraphRepository { get; set; }
@@ -127,6 +122,11 @@
         /// </summary>
         public IUserRoleMapMethods UserRoleMap { get; set; }
 
+        /// <summary>
+        /// Deployment type methods.
+        /// </summary>
+        public IDeploymentTypeMethods DeploymentType { get; set; }
+
         #endregion
 
         #region Private-Members
@@ -162,7 +162,6 @@
             MetadataRule = new MetadataRuleMethods(this);
             Collection = new CollectionMethods(this);
             Authentication = new AuthenticationMethods(this);
-            DataRepository = new DataRepositoryMethods(this);
             GraphRepository = new GraphRepositoryMethods(this);
             VectorRepository = new VectorRepositoryMethods(this);
             ObjectLock = new ObjectLockMethods(this);
@@ -172,6 +171,7 @@
             Role = new RoleMethods(this);
             RolePermissionMap = new RolePermissionMapMethods(this);
             UserRoleMap = new UserRoleMapMethods(this);
+            DeploymentType = new DeploymentTypeMethods(this);
         }
 
         #endregion

@@ -1,11 +1,11 @@
-namespace View.Sdk.Configuration.Implementations
+namespace View.Sdk.Crawler.Implementations
 {
     using System;
     using System.Collections.Generic;
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
-    using View.Sdk.Configuration.Interfaces;
+    using View.Sdk.Crawler.Interfaces;
 
     /// <summary>
     /// Data repository methods
@@ -42,7 +42,15 @@ namespace View.Sdk.Configuration.Implementations
         {
             if (repository == null) throw new ArgumentNullException(nameof(repository));
             string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/datarepositories";
-            return await _Sdk.Create<DataRepository>(url, repository, token).ConfigureAwait(false);
+            return await _Sdk.Create(url, repository, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<bool> Exists(string repositoryGuid, CancellationToken token = default)
+        {
+            if (string.IsNullOrEmpty(repositoryGuid)) throw new ArgumentNullException(nameof(repositoryGuid));
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/datarepositories/" + repositoryGuid;
+            return await _Sdk.Exists(url, token).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
@@ -64,13 +72,13 @@ namespace View.Sdk.Configuration.Implementations
         {
             if (repository == null) throw new ArgumentNullException(nameof(repository));
             string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/datarepositories/" + repository.GUID;
-            return await _Sdk.Update<DataRepository>(url, repository, token).ConfigureAwait(false);
+            return await _Sdk.Update(url, repository, token).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
         public async Task<bool> Delete(string repositoryGuid, CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(repositoryGuid)) throw new ArgumentNullException(nameof(repositoryGuid));
+            if (string.IsNullOrEmpty(repositoryGuid)) throw new ArgumentNullException(nameof(repositoryGuid));
             string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/datarepositories/" + repositoryGuid;
             return await _Sdk.Delete(url, token).ConfigureAwait(false);
         }
@@ -78,7 +86,7 @@ namespace View.Sdk.Configuration.Implementations
         /// <inheritdoc />
         public async Task<EnumerationResult<DataRepository>> Enumerate(int maxKeys = 5, CancellationToken token = default)
         {
-            string url = _Sdk.Endpoint + "v2.0/tenants/" + _Sdk.TenantGUID + "/datarepositories?max-keys=" + maxKeys + "&token=" + _Sdk.TenantGUID;
+            string url = _Sdk.Endpoint + "v2.0/tenants/" + _Sdk.TenantGUID + "/datarepositories?max-keys=" + maxKeys;
             return await _Sdk.Enumerate<DataRepository>(url, token).ConfigureAwait(false);
         }
 

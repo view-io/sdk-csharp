@@ -16,7 +16,7 @@
 
         private static bool _RunForever = true;
         private static Guid _TenantGuid = default(Guid);
-        private static string _Endpoint = "http://view.homedns.org:8000/";
+        private static string _Endpoint = "http://localhost:8000/";
         private static string _AccessKey = "default";
         private static string _XToken = "";
         private static ViewConfigurationSdk _Sdk = null;
@@ -143,8 +143,9 @@
             Console.WriteLine("    write  update  read  reads  delete  exists");
             Console.WriteLine("");
             Console.WriteLine("  [type] is one of:");
-            Console.WriteLine("    node    tenant     user     cred    pool      bucket    enckey");
-            Console.WriteLine("    mdrule  embedrule  whevent  whrule  whtarget  lock  vector  collection  datarepository  blob  graph  permission  role  rolepermmap  userrole");
+            Console.WriteLine("    node    tenant     user     cred    pool       bucket enckey");
+            Console.WriteLine("    mdrule  embedrule  whevent  whrule  whtarget   lock   vector      collection ");
+            Console.WriteLine("    datarepository     blob     graph   permission role   rolepermmap  userrole  deployment");
             Console.WriteLine("");
             Console.WriteLine("Authentication commands:");
             Console.WriteLine("  auth tenants      Retrieve tenants");
@@ -237,10 +238,6 @@
                     Collection collection = BuildObject<Collection>();
                     EnumerateResponse(await _Sdk.Collection.Create(collection));
                     return;
-                case "datarepository":
-                    DataRepository dataRepo = BuildObject<DataRepository>();
-                    EnumerateResponse(await _Sdk.DataRepository.Create(dataRepo));
-                    return;
                 case "blob":
                     Blob blob = BuildObject<Blob>();
                     EnumerateResponse(await _Sdk.Blob.Create(blob));
@@ -272,8 +269,13 @@
 
         private static async Task Read(string type)
         {
-            Guid guid = Inputty.GetGuid("GUID:", _TenantGuid);
+            if (type == "deployment")
+            {
+                EnumerateResponse(await _Sdk.DeploymentType.Retrieve());
+                return;
+            }
 
+            Guid guid = Inputty.GetGuid("GUID:", _TenantGuid);
             switch (type)
             {
                 case "node":
@@ -324,9 +326,6 @@
                 case "lock":
                     EnumerateResponse(await _Sdk.ObjectLock.Retrieve(guid));
                     break;
-                case "datarepository":
-                    EnumerateResponse(await _Sdk.DataRepository.Retrieve(guid.ToString()));
-                    return;
                 case "blob":
                     bool isPublic = Inputty.GetBoolean("Is public blob?", false);
                     if (isPublic)
@@ -410,9 +409,6 @@
                 case "lock":
                     EnumerateResponse(await _Sdk.ObjectLock.RetrieveMany());
                     break;
-                case "datarepository":
-                    EnumerateResponse(await _Sdk.DataRepository.RetrieveMany());
-                    return;
                 case "blob":
                     EnumerateResponse(await _Sdk.Blob.RetrieveMany());
                     return;
@@ -495,10 +491,6 @@
                     return;
                 case "lock":
                     break;
-                case "datarepository":
-                    DataRepository dataRepo = BuildObject<DataRepository>();
-                    EnumerateResponse(await _Sdk.DataRepository.Update(dataRepo));
-                    break;
                 case "blob":
                     Blob blob = BuildObject<Blob>();
                     EnumerateResponse(await _Sdk.Blob.Update(blob));
@@ -578,9 +570,6 @@
                     return;
                 case "lock":
                     await _Sdk.ObjectLock.Delete(guid);
-                    break;
-                case "datarepository":
-                    await _Sdk.DataRepository.Delete(guid.ToString());
                     break;
                 case "blob":
                     string blobGuid = guid.ToString();
@@ -720,9 +709,6 @@
                     EnumerateResponse(await _Sdk.WebhookTarget.Enumerate());
                     break;
                 case "lock":
-                    break;
-                case "datarepository":
-                    EnumerateResponse(await _Sdk.DataRepository.Enumerate());
                     break;
                 case "blob":
                     EnumerateResponse(await _Sdk.Blob.Enumerate());

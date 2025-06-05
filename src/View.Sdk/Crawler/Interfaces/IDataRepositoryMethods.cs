@@ -1,6 +1,5 @@
-namespace View.Sdk.Configuration.Interfaces
+namespace View.Sdk.Crawler.Interfaces
 {
-    using System;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
@@ -17,6 +16,14 @@ namespace View.Sdk.Configuration.Interfaces
         /// <param name="token">Cancellation token.</param>
         /// <returns>Data repository.</returns>
         public Task<DataRepository> Create(DataRepository repository, CancellationToken token = default);
+
+        /// <summary>
+        /// Check if a data repository exists.
+        /// </summary>
+        /// <param name="repositoryGuid">Repository GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>True if exists.</returns>
+        public Task<bool> Exists(string repositoryGuid, CancellationToken token = default);
 
         /// <summary>
         /// Retrieve a data repository.
