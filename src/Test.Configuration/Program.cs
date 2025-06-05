@@ -16,7 +16,7 @@
 
         private static bool _RunForever = true;
         private static Guid _TenantGuid = default(Guid);
-        private static string _Endpoint = "http://view.homedns.org:8000/";
+        private static string _Endpoint = "http://localhost:8000/";
         private static string _AccessKey = "default";
         private static string _XToken = "";
         private static ViewConfigurationSdk _Sdk = null;
@@ -143,8 +143,9 @@
             Console.WriteLine("    write  update  read  reads  delete  exists");
             Console.WriteLine("");
             Console.WriteLine("  [type] is one of:");
-            Console.WriteLine("    node    tenant     user     cred    pool      bucket    enckey");
-            Console.WriteLine("    mdrule  embedrule  whevent  whrule  whtarget  lock  vector  collection  datarepository  blob  graph");
+            Console.WriteLine("    node    tenant     user     cred    pool       bucket enckey");
+            Console.WriteLine("    mdrule  embedrule  whevent  whrule  whtarget   lock   vector      collection ");
+            Console.WriteLine("    datarepository     blob     graph   permission role   rolepermmap  userrole  deployment");
             Console.WriteLine("");
             Console.WriteLine("Authentication commands:");
             Console.WriteLine("  auth tenants      Retrieve tenants");
@@ -237,13 +238,25 @@
                     Collection collection = BuildObject<Collection>();
                     EnumerateResponse(await _Sdk.Collection.Create(collection));
                     return;
-                case "datarepository":
-                    DataRepository dataRepo = BuildObject<DataRepository>();
-                    EnumerateResponse(await _Sdk.DataRepository.Create(dataRepo));
-                    return;
                 case "blob":
                     Blob blob = BuildObject<Blob>();
                     EnumerateResponse(await _Sdk.Blob.Create(blob));
+                    return;
+                case "permission":
+                    Permission permission = BuildObject<Permission>();
+                    EnumerateResponse(await _Sdk.Permission.Create(permission));
+                    return;
+                case "role":
+                    Role role = BuildObject<Role>();
+                    EnumerateResponse(await _Sdk.Role.Create(role));
+                    return;
+                case "rolepermmap":
+                    RolePermissionMap rolePermMap = BuildObject<RolePermissionMap>();
+                    EnumerateResponse(await _Sdk.RolePermissionMap.Create(rolePermMap));
+                    return;
+                case "userrole":
+                    UserRoleMap userRoleMap = BuildObject<UserRoleMap>();
+                    EnumerateResponse(await _Sdk.UserRoleMap.Create(userRoleMap));
                     return;
                 case "lock":
                     break;
@@ -256,9 +269,13 @@
 
         private static async Task Read(string type)
         {
-            Guid guid = Inputty.GetGuid("GUID:", _TenantGuid);
-            if (!type.Equals("tenant")) return;
+            if (type == "deployment")
+            {
+                EnumerateResponse(await _Sdk.DeploymentType.Retrieve());
+                return;
+            }
 
+            Guid guid = Inputty.GetGuid("GUID:", _TenantGuid);
             switch (type)
             {
                 case "node":
@@ -309,9 +326,6 @@
                 case "lock":
                     EnumerateResponse(await _Sdk.ObjectLock.Retrieve(guid));
                     break;
-                case "datarepository":
-                    EnumerateResponse(await _Sdk.DataRepository.Retrieve(guid.ToString()));
-                    return;
                 case "blob":
                     bool isPublic = Inputty.GetBoolean("Is public blob?", false);
                     if (isPublic)
@@ -323,6 +337,18 @@
                         bool inclData = Inputty.GetBoolean("Include data?", false);
                         EnumerateResponse(await _Sdk.Blob.Retrieve(guid.ToString(), inclData));
                     }
+                    return;
+                case "permission":
+                    EnumerateResponse(await _Sdk.Permission.Retrieve(guid));
+                    return;
+                case "role":
+                    EnumerateResponse(await _Sdk.Role.Retrieve(guid.ToString()));
+                    return;
+                case "rolepermmap":
+                    EnumerateResponse(await _Sdk.RolePermissionMap.Retrieve(guid));
+                    return;
+                case "userrole":
+                    EnumerateResponse(await _Sdk.UserRoleMap.Retrieve(guid));
                     return;
                 default:
                     return;
@@ -383,11 +409,20 @@
                 case "lock":
                     EnumerateResponse(await _Sdk.ObjectLock.RetrieveMany());
                     break;
-                case "datarepository":
-                    EnumerateResponse(await _Sdk.DataRepository.RetrieveMany());
-                    return;
                 case "blob":
                     EnumerateResponse(await _Sdk.Blob.RetrieveMany());
+                    return;
+                case "permission":
+                    EnumerateResponse(await _Sdk.Permission.RetrieveMany());
+                    return;
+                case "role":
+                    EnumerateResponse(await _Sdk.Role.RetrieveMany());
+                    return;
+                case "rolepermmap":
+                    EnumerateResponse(await _Sdk.RolePermissionMap.RetrieveMany());
+                    return;
+                case "userrole":
+                    EnumerateResponse(await _Sdk.UserRoleMap.RetrieveMany());
                     return;
                 default:
                     return;
@@ -456,13 +491,25 @@
                     return;
                 case "lock":
                     break;
-                case "datarepository":
-                    DataRepository dataRepo = BuildObject<DataRepository>();
-                    EnumerateResponse(await _Sdk.DataRepository.Update(dataRepo));
-                    break;
                 case "blob":
                     Blob blob = BuildObject<Blob>();
                     EnumerateResponse(await _Sdk.Blob.Update(blob));
+                    return;
+                case "permission":
+                    Permission permission = BuildObject<Permission>();
+                    EnumerateResponse(await _Sdk.Permission.Update(permission));
+                    return;
+                case "role":
+                    Role role = BuildObject<Role>();
+                    EnumerateResponse(await _Sdk.Role.Update(role));
+                    return;
+                case "rolepermmap":
+                    RolePermissionMap rolePermMap = BuildObject<RolePermissionMap>();
+                    EnumerateResponse(await _Sdk.RolePermissionMap.Update(rolePermMap));
+                    return;
+                case "userrole":
+                    UserRoleMap userRoleMap = BuildObject<UserRoleMap>();
+                    EnumerateResponse(await _Sdk.UserRoleMap.Update(userRoleMap));
                     return;
                 default:
                     return;
@@ -524,12 +571,21 @@
                 case "lock":
                     await _Sdk.ObjectLock.Delete(guid);
                     break;
-                case "datarepository":
-                    await _Sdk.DataRepository.Delete(guid.ToString());
-                    break;
                 case "blob":
                     string blobGuid = guid.ToString();
                     await _Sdk.Blob.Delete(blobGuid);
+                    return;
+                case "permission":
+                    await _Sdk.Permission.Delete(guid);
+                    return;
+                case "role":
+                    await _Sdk.Role.Delete(guid.ToString());
+                    return;
+                case "rolepermmap":
+                    await _Sdk.RolePermissionMap.Delete(guid);
+                    return;
+                case "userrole":
+                    await _Sdk.UserRoleMap.Delete(guid);
                     return;
                 default:
                     return;
@@ -589,6 +645,18 @@
                     break;
                 case "lock":
                     break;
+                case "permission":
+                    exists = await _Sdk.Permission.Exists(guid);
+                    break;
+                case "role":
+                    exists = await _Sdk.Role.Exists(guid.ToString());
+                    break;
+                case "rolepermmap":
+                    exists = await _Sdk.RolePermissionMap.Exists(guid);
+                    break;
+                case "userrole":
+                    exists = await _Sdk.UserRoleMap.Exists(guid);
+                    break;
                 default:
                     return;
             }
@@ -642,11 +710,20 @@
                     break;
                 case "lock":
                     break;
-                case "datarepository":
-                    EnumerateResponse(await _Sdk.DataRepository.Enumerate());
-                    break;
                 case "blob":
                     EnumerateResponse(await _Sdk.Blob.Enumerate());
+                    break;
+                case "permission":
+                    EnumerateResponse(await _Sdk.Permission.Enumerate());
+                    break;
+                case "role":
+                    EnumerateResponse(await _Sdk.Role.Enumerate());
+                    break;
+                case "rolepermmap":
+                    EnumerateResponse(await _Sdk.RolePermissionMap.Enumerate());
+                    break;
+                case "userrole":
+                    EnumerateResponse(await _Sdk.UserRoleMap.Enumerate());
                     break;
                 default:
                     return;

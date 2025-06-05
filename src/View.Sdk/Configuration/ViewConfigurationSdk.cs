@@ -78,11 +78,6 @@
         public IAuthenticationMethods Authentication { get; set; }
 
         /// <summary>
-        /// Data repository methods.
-        /// </summary>
-        public IDataRepositoryMethods DataRepository { get; set; }
-
-        /// <summary>
         /// Graph repository methods.
         /// </summary>
         public IGraphRepositoryMethods GraphRepository { get; set; }
@@ -106,6 +101,31 @@
         /// Blob methods.
         /// </summary>
         public IBlobMethods Blob { get; set; }
+
+        /// <summary>
+        /// Permission methods.
+        /// </summary>
+        public IPermissionMethods Permission { get; set; }
+
+        /// <summary>
+        /// Role methods.
+        /// </summary>
+        public IRoleMethods Role { get; set; }
+
+        /// <summary>
+        /// Role permission map methods.
+        /// </summary>
+        public IRolePermissionMapMethods RolePermissionMap { get; set; }
+
+        /// <summary>
+        /// User role map methods.
+        /// </summary>
+        public IUserRoleMapMethods UserRoleMap { get; set; }
+
+        /// <summary>
+        /// Deployment type methods.
+        /// </summary>
+        public IDeploymentTypeMethods DeploymentType { get; set; }
 
         #endregion
 
@@ -142,12 +162,16 @@
             MetadataRule = new MetadataRuleMethods(this);
             Collection = new CollectionMethods(this);
             Authentication = new AuthenticationMethods(this);
-            DataRepository = new DataRepositoryMethods(this);
             GraphRepository = new GraphRepositoryMethods(this);
             VectorRepository = new VectorRepositoryMethods(this);
             ObjectLock = new ObjectLockMethods(this);
             EmbeddingsRule = new EmbeddingsRuleMethods(this);
             Blob = new BlobMethods(this);
+            Permission = new PermissionMethods(this);
+            Role = new RoleMethods(this);
+            RolePermissionMap = new RolePermissionMapMethods(this);
+            UserRoleMap = new UserRoleMapMethods(this);
+            DeploymentType = new DeploymentTypeMethods(this);
         }
 
         #endregion

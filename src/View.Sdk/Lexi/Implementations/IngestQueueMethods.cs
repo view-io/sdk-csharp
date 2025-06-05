@@ -69,6 +69,13 @@ namespace View.Sdk.Lexi.Implementations
             return await _Sdk.Delete(url, token).ConfigureAwait(false);
         }
 
+        /// <inheritdoc />
+        public async Task<IngestQueueStatistics> RetrieveStatistics(CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/ingestqueue?stats";
+            return await _Sdk.Retrieve<IngestQueueStatistics>(url, token).ConfigureAwait(false);
+        }
+
         #endregion
 
         #region Private-Methods

@@ -1280,33 +1280,18 @@
         <member name="M:View.Sdk.Configuration.Implementations.CredentialMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="T:View.Sdk.Configuration.Implementations.DataRepositoryMethods">
+        <member name="T:View.Sdk.Configuration.Implementations.DeploymentTypeMethods">
             <summary>
-            Data repository methods
+            Deployment type methods
             </summary>
         </member>
-        <member name="M:View.Sdk.Configuration.Implementations.DataRepositoryMethods.#ctor(View.Sdk.ViewSdkBase)">
+        <member name="M:View.Sdk.Configuration.Implementations.DeploymentTypeMethods.#ctor(View.Sdk.ViewSdkBase)">
             <summary>
-            Data repository methods.
+            Deployment type methods.
             </summary>
             <param name="sdk">View SDK.</param>
         </member>
-        <member name="M:View.Sdk.Configuration.Implementations.DataRepositoryMethods.Create(View.Sdk.DataRepository,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Configuration.Implementations.DataRepositoryMethods.Retrieve(System.String,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Configuration.Implementations.DataRepositoryMethods.RetrieveMany(System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Configuration.Implementations.DataRepositoryMethods.Update(View.Sdk.DataRepository,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Configuration.Implementations.DataRepositoryMethods.Delete(System.String,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Configuration.Implementations.DataRepositoryMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Implementations.DeploymentTypeMethods.Retrieve(System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:View.Sdk.Configuration.Implementations.EmbeddingsRuleMethods">
@@ -1501,6 +1486,38 @@
         <member name="M:View.Sdk.Configuration.Implementations.ObjectLockMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="T:View.Sdk.Configuration.Implementations.PermissionMethods">
+            <summary>
+            Permission methods
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.PermissionMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Permission methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.PermissionMethods.Create(View.Sdk.Permission,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.PermissionMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.PermissionMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.PermissionMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.PermissionMethods.Update(View.Sdk.Permission,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.PermissionMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.PermissionMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="T:View.Sdk.Configuration.Implementations.PoolMethods">
             <summary>
             Pool methods
@@ -1528,6 +1545,70 @@
             <inheritdoc />
         </member>
         <member name="M:View.Sdk.Configuration.Implementations.PoolMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Configuration.Implementations.RoleMethods">
+            <summary>
+            Role methods
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RoleMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Role methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RoleMethods.Create(View.Sdk.Role,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RoleMethods.Retrieve(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RoleMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RoleMethods.Update(View.Sdk.Role,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RoleMethods.Delete(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RoleMethods.Exists(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RoleMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Configuration.Implementations.RolePermissionMapMethods">
+            <summary>
+            Role permission map methods
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RolePermissionMapMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Role permission map methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RolePermissionMapMethods.Create(View.Sdk.RolePermissionMap,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RolePermissionMapMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RolePermissionMapMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RolePermissionMapMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RolePermissionMapMethods.Update(View.Sdk.RolePermissionMap,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RolePermissionMapMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.RolePermissionMapMethods.Enumerate(System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:View.Sdk.Configuration.Implementations.TenantMethods">
@@ -1591,6 +1672,38 @@
             <inheritdoc />
         </member>
         <member name="M:View.Sdk.Configuration.Implementations.UserMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Configuration.Implementations.UserRoleMapMethods">
+            <summary>
+            User role map methods
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.UserRoleMapMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            User role map methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.UserRoleMapMethods.Create(View.Sdk.UserRoleMap,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.UserRoleMapMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.UserRoleMapMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.UserRoleMapMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.UserRoleMapMethods.Update(View.Sdk.UserRoleMap,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.UserRoleMapMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.UserRoleMapMethods.Enumerate(System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:View.Sdk.Configuration.Implementations.VectorRepositoryMethods">
@@ -1714,13 +1827,17 @@
         </member>
         <member name="T:View.Sdk.Configuration.Interfaces.IAuthenticationMethods">
             <summary>
-            Authentication methods interface
+            Authentication methods interface.
             </summary>
         </member>
         <member name="M:View.Sdk.Configuration.Interfaces.IAuthenticationMethods.RetrieveTenants(System.Threading.CancellationToken)">
             <summary>
             Retrieve tenants.
             </summary>
+            <remarks>
+            Required headers:
+            - <c>x-email</c>: email address.
+            </remarks>
             <param name="token">Cancellation token.</param>
             <returns>List of tenant metadata.</returns>
         </member>
@@ -1728,40 +1845,70 @@
             <summary>
             Generate authentication token using password.
             </summary>
+            <remarks>
+            Required headers:
+            - <c>x-email</c>: User's email address.
+            - <c>x-password</c>: Plain-text password.
+            </remarks>
             <param name="token">Cancellation token.</param>
             <returns>Authentication token.</returns>
         </member>
         <member name="M:View.Sdk.Configuration.Interfaces.IAuthenticationMethods.GenerateTokenWithPasswordSha256(System.Threading.CancellationToken)">
             <summary>
-            Generate authentication token using password SHA-256.
+            Generate authentication token using SHA-256 password hash.
             </summary>
+            <remarks>
+            Required headers:
+            - <c>x-email</c>: User's email address.
+            - <c>x-password-sha256</c>: SHA-256 hash of the password.
+            - <c>x-tenant-guid</c>: Tenant GUID.
+            </remarks>
             <param name="token">Cancellation token.</param>
             <returns>Authentication token.</returns>
         </member>
         <member name="M:View.Sdk.Configuration.Interfaces.IAuthenticationMethods.GenerateAdminTokenWithPassword(System.Threading.CancellationToken)">
             <summary>
-            Generate administrator token using password.
+            Generate administrator authentication token using password.
             </summary>
+            <remarks>
+            Required headers:
+            - <c>x-email</c>: Administrator's email address.
+            - <c>x-password</c>: Plain-text password.
+            </remarks>
+            <param name="token">Cancellation token.</param>
             <returns>Authentication token.</returns>
         </member>
         <member name="M:View.Sdk.Configuration.Interfaces.IAuthenticationMethods.GenerateAdminTokenWithPasswordSha256(System.Threading.CancellationToken)">
             <summary>
-            Generate administrator token using password SHA-256.
+            Generate administrator authentication token using SHA-256 password hash.
             </summary>
+            <remarks>
+            Required headers:
+            - <c>x-email</c>: Administrator's email address.
+            - <c>x-password-sha256</c>: SHA-256 hash of the password.
+            </remarks>
             <param name="token">Cancellation token.</param>
             <returns>Authentication token.</returns>
         </member>
         <member name="M:View.Sdk.Configuration.Interfaces.IAuthenticationMethods.ValidateToken(System.Threading.CancellationToken)">
             <summary>
-            Validate authentication token.
+            Validate an existing authentication token.
             </summary>
+            <remarks>
+            Required headers:
+            - <c>x-token</c>: The authentication token to validate.
+            </remarks>
             <param name="token">Cancellation token.</param>
             <returns>Authentication token with validity information.</returns>
         </member>
         <member name="M:View.Sdk.Configuration.Interfaces.IAuthenticationMethods.RetrieveTokenDetails(System.Threading.CancellationToken)">
             <summary>
-            Retrieve token details.
+            Retrieve authentication token details.
             </summary>
+            <remarks>
+            Required headers:
+            - <c>x-token</c>: The authentication token.
+            </remarks>
             <param name="token">Cancellation token.</param>
             <returns>Authentication token with details.</returns>
         </member>
@@ -1998,57 +2145,17 @@
             <param name="token">Cancellation token.</param>
             <returns>Enumeration result containing credentials.</returns>
         </member>
-        <member name="T:View.Sdk.Configuration.Interfaces.IDataRepositoryMethods">
+        <member name="T:View.Sdk.Configuration.Interfaces.IDeploymentTypeMethods">
             <summary>
-            Interface for data repository methods.
+            Interface for deployment type methods.
             </summary>
         </member>
-        <member name="M:View.Sdk.Configuration.Interfaces.IDataRepositoryMethods.Create(View.Sdk.DataRepository,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.IDeploymentTypeMethods.Retrieve(System.Threading.CancellationToken)">
             <summary>
-            Create data repository.
-            </summary>
-            <param name="repository">Data repository.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Data repository.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.Interfaces.IDataRepositoryMethods.Retrieve(System.String,System.Threading.CancellationToken)">
-            <summary>
-            Retrieve a data repository.
-            </summary>
-            <param name="repositoryGuid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Data repository.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.Interfaces.IDataRepositoryMethods.RetrieveMany(System.Threading.CancellationToken)">
-            <summary>
-            Retrieve data repositories.
+            Retrieve deployment type information.
             </summary>
             <param name="token">Cancellation token.</param>
-            <returns>List of data repository.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.Interfaces.IDataRepositoryMethods.Update(View.Sdk.DataRepository,System.Threading.CancellationToken)">
-            <summary>
-            Update data repository.
-            </summary>
-            <param name="repository">Data repository.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Data repository.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.Interfaces.IDataRepositoryMethods.Delete(System.String,System.Threading.CancellationToken)">
-            <summary>
-            Delete data repository.
-            </summary>
-            <param name="repositoryGuid">Data repository GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if successful.</returns>
-        </member>
-        <member name="M:View.Sdk.Configuration.Interfaces.IDataRepositoryMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
-            <summary>
-            Data repository with pagination support.
-            </summary>
-            <param name="maxKeys">Maximum number of keys to return in the response. Default is 5.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>EnumerationResult containing Data repository.</returns>
+            <returns>Deployment type information.</returns>
         </member>
         <member name="T:View.Sdk.Configuration.Interfaces.IEmbeddingsRuleMethods">
             <summary>
@@ -2410,6 +2517,66 @@
             <param name="token">Cancellation token.</param>
             <returns>Enumeration result containing object locks.</returns>
         </member>
+        <member name="T:View.Sdk.Configuration.Interfaces.IPermissionMethods">
+            <summary>
+            Interface for permission methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IPermissionMethods.Create(View.Sdk.Permission,System.Threading.CancellationToken)">
+            <summary>
+            Create a permission.
+            </summary>
+            <param name="permission">Permission.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Permission.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IPermissionMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a permission exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IPermissionMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read a permission.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Permission.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IPermissionMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Read permissions.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Permissions.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IPermissionMethods.Update(View.Sdk.Permission,System.Threading.CancellationToken)">
+            <summary>
+            Update a permission.
+            </summary>
+            <param name="permission">Permission.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Permission.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IPermissionMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a permission.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IPermissionMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate permissions with pagination support.
+            </summary>
+            <param name="maxKeys">Maximum number of keys to return in a single operation.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result containing permissions.</returns>
+        </member>
         <member name="T:View.Sdk.Configuration.Interfaces.IPoolMethods">
             <summary>
             Interface for pool methods.
@@ -2461,6 +2628,125 @@
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
             <returns>True if successful.</returns>
+        </member>
+        <member name="T:View.Sdk.Configuration.Interfaces.IRoleMethods">
+            <summary>
+            Methods for working with roles.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IRoleMethods.Create(View.Sdk.Role,System.Threading.CancellationToken)">
+            <summary>
+            Create a role.
+            </summary>
+            <param name="role">Role.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Role.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IRoleMethods.Retrieve(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve a role.
+            </summary>
+            <param name="roleGuid">Role GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Role.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IRoleMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Retrieve multiple roles.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>List of roles.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IRoleMethods.Update(View.Sdk.Role,System.Threading.CancellationToken)">
+            <summary>
+            Update a role.
+            </summary>
+            <param name="role">Role.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Role.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IRoleMethods.Delete(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a role.
+            </summary>
+            <param name="roleGuid">Role GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Boolean indicating success.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IRoleMethods.Exists(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a role exists.
+            </summary>
+            <param name="roleGuid">Role GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Boolean indicating if the role exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IRoleMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate roles.
+            </summary>
+            <param name="maxKeys">Maximum number of keys to return.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result.</returns>
+        </member>
+        <member name="T:View.Sdk.Configuration.Interfaces.IRolePermissionMapMethods">
+            <summary>
+            Interface for role permission map methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IRolePermissionMapMethods.Create(View.Sdk.RolePermissionMap,System.Threading.CancellationToken)">
+            <summary>
+            Create a role permission map.
+            </summary>
+            <param name="rolePermissionMap">Role permission map.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Role permission map.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IRolePermissionMapMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a role permission map exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IRolePermissionMapMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read a role permission map.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Role permission map.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IRolePermissionMapMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Read role permission maps.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Role permission maps.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IRolePermissionMapMethods.Update(View.Sdk.RolePermissionMap,System.Threading.CancellationToken)">
+            <summary>
+            Update a role permission map.
+            </summary>
+            <param name="rolePermissionMap">Role permission map.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Role permission map.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IRolePermissionMapMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a role permission map.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IRolePermissionMapMethods.Enumerate(System.Threading.CancellationToken)">
+            <summary>
+            Enumerate role permission maps.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result containing role permission maps.</returns>
         </member>
         <member name="T:View.Sdk.Configuration.Interfaces.ITenantMethods">
             <summary>
@@ -2572,6 +2858,65 @@
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
             <returns>True if successful.</returns>
+        </member>
+        <member name="T:View.Sdk.Configuration.Interfaces.IUserRoleMapMethods">
+            <summary>
+            Interface for user role map methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IUserRoleMapMethods.Create(View.Sdk.UserRoleMap,System.Threading.CancellationToken)">
+            <summary>
+            Create a user role map.
+            </summary>
+            <param name="userRoleMap">User role map.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>User role map.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IUserRoleMapMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a user role map exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IUserRoleMapMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read a user role map.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>User role map.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IUserRoleMapMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Read user role maps.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>User role maps.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IUserRoleMapMethods.Update(View.Sdk.UserRoleMap,System.Threading.CancellationToken)">
+            <summary>
+            Update a user role map.
+            </summary>
+            <param name="userRoleMap">User role map.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>User role map.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IUserRoleMapMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a user role map.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IUserRoleMapMethods.Enumerate(System.Threading.CancellationToken)">
+            <summary>
+            Enumerate user role maps.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result containing user role maps.</returns>
         </member>
         <member name="T:View.Sdk.Configuration.Interfaces.IVectorRepositoryMethods">
             <summary>
@@ -2859,11 +3204,6 @@
             Authentication methods.
             </summary>
         </member>
-        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.DataRepository">
-            <summary>
-            Data repository methods.
-            </summary>
-        </member>
         <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.GraphRepository">
             <summary>
             Graph repository methods.
@@ -2889,6 +3229,31 @@
             Blob methods.
             </summary>
         </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.Permission">
+            <summary>
+            Permission methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.Role">
+            <summary>
+            Role methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.RolePermissionMap">
+            <summary>
+            Role permission map methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.UserRoleMap">
+            <summary>
+            User role map methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.DeploymentType">
+            <summary>
+            Deployment type methods.
+            </summary>
+        </member>
         <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.#ctor(System.Guid,System.String,System.String,System.String)">
             <summary>
             Instantiate.
@@ -2900,6 +3265,587 @@
             Optional token to be included as the <c>x-token</c> header in API requests that require additional authorization.
             This is used in cases where certain endpoints require an extra level of authentication.
             </param>
+        </member>
+        <member name="T:View.Sdk.CrawlEnumeration">
+            <summary>
+            Crawl enumeration result.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlEnumeration.CurrentEnumeration">
+            <summary>
+            Current enumeration items.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlEnumeration.Deleted">
+            <summary>
+            Deleted items.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlEnumeration.Added">
+            <summary>
+            Added items.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlEnumeration.Changed">
+            <summary>
+            Changed items.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlEnumeration.Unchanged">
+            <summary>
+            Unchanged items.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.CrawlEnumeration.Success">
+            <summary>
+            Successfully processed items.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.CrawlEnumeration.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Crawler.CrawlOperationRequest">
+            <summary>
+            Request object for crawl operation actions.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Crawler.CrawlOperationRequest.GUID">
+            <summary>
+            GUID of the crawl operation.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Crawler.CrawlOperationRequest.Name">
+            <summary>
+            Name of the crawl operation.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Crawler.CrawlOperationRequest.#ctor">
+            <summary>
+            Instantiate the object.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Crawler.CrawlOperationRequest.#ctor(System.String)">
+            <summary>
+            Instantiate the object.
+            </summary>
+            <param name="name">Name of the crawl operation.</param>
+        </member>
+        <member name="M:View.Sdk.Crawler.CrawlOperationRequest.#ctor(System.Guid,System.String)">
+            <summary>
+            Instantiate the object.
+            </summary>
+            <param name="guid">GUID of the crawl operation.</param>
+            <param name="name">Name of the crawl operation.</param>
+        </member>
+        <member name="T:View.Sdk.Crawler.Implementations.CrawlFilterMethods">
+            <summary>
+            Crawl filter methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlFilterMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Crawl filter methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlFilterMethods.Create(View.Sdk.CrawlFilter,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlFilterMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlFilterMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlFilterMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlFilterMethods.Update(View.Sdk.CrawlFilter,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlFilterMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlFilterMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Crawler.Implementations.CrawlOperationMethods">
+            <summary>
+            Crawl operation methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlOperationMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Crawl operation methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlOperationMethods.Enumerate(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlOperationMethods.RetrieveAll(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlOperationMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlOperationMethods.RetrieveEnumeration(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlOperationMethods.Start(View.Sdk.Crawler.CrawlOperationRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlOperationMethods.Stop(View.Sdk.Crawler.CrawlOperationRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlOperationMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlOperationMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Crawler.Implementations.CrawlPlanMethods">
+            <summary>
+            Crawl plan methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlPlanMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Crawl plan methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlPlanMethods.Create(View.Sdk.CrawlPlan,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlPlanMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlPlanMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlPlanMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlPlanMethods.Update(View.Sdk.CrawlPlan,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlPlanMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlPlanMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Crawler.Implementations.CrawlScheduleMethods">
+            <summary>
+            Crawl schedule methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlScheduleMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Crawl schedule methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlScheduleMethods.Create(View.Sdk.CrawlSchedule,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlScheduleMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlScheduleMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlScheduleMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlScheduleMethods.Update(View.Sdk.CrawlSchedule,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlScheduleMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.CrawlScheduleMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Crawler.Implementations.DataRepositoryMethods">
+            <summary>
+            Data repository methods
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.DataRepositoryMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Data repository methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.DataRepositoryMethods.Create(View.Sdk.DataRepository,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.DataRepositoryMethods.Exists(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.DataRepositoryMethods.Retrieve(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.DataRepositoryMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.DataRepositoryMethods.Update(View.Sdk.DataRepository,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.DataRepositoryMethods.Delete(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Crawler.Implementations.DataRepositoryMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Crawler.Interfaces.ICrawlFilterMethods">
+            <summary>
+            Interface for crawl filter methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.ICrawlFilterMethods.Create(View.Sdk.CrawlFilter,System.Threading.CancellationToken)">
+            <summary>
+            Create a crawl filter.
+            </summary>
+            <param name="filter">Crawl filter.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Crawl filter.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.ICrawlFilterMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a crawl filter exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.ICrawlFilterMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve a crawl filter.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Crawl filter.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.ICrawlFilterMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Retrieve crawl filters.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>List of crawl filters.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.ICrawlFilterMethods.Update(View.Sdk.CrawlFilter,System.Threading.CancellationToken)">
+            <summary>
+            Update a crawl filter.
+            </summary>
+            <param name="filter">Crawl filter.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Crawl filter.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.ICrawlFilterMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a crawl filter.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.ICrawlFilterMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate crawl filters.
+            </summary>
+            <param name="maxKeys">Maximum number of keys to return.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result.</returns>
+        </member>
+        <member name="T:View.Sdk.Crawler.Interfaces.ICrawlOperationMethods">
+            <summary>
+            Interface for crawl operation methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.ICrawlOperationMethods.Enumerate(System.Threading.CancellationToken)">
+            <summary>
+            Enumerate crawl operations.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>List of crawl operations.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.ICrawlOperationMethods.RetrieveAll(System.Threading.CancellationToken)">
+            <summary>
+            Retrieve all crawl operations.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>List of crawl operations.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.ICrawlOperationMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve a crawl operation.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Crawl operation.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.ICrawlOperationMethods.RetrieveEnumeration(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve enumeration for a crawl operation.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.ICrawlOperationMethods.Start(View.Sdk.Crawler.CrawlOperationRequest,System.Threading.CancellationToken)">
+            <summary>
+            Start a crawl operation.
+            </summary>
+            <param name="request">Crawl operation request containing the operation GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Crawl operation.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.ICrawlOperationMethods.Stop(View.Sdk.Crawler.CrawlOperationRequest,System.Threading.CancellationToken)">
+            <summary>
+            Stop a crawl operation.
+            </summary>
+            <param name="request">Crawl operation request containing the operation GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Crawl operation.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.ICrawlOperationMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a crawl operation.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.ICrawlOperationMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a crawl operation exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="T:View.Sdk.Crawler.Interfaces.ICrawlPlanMethods">
+            <summary>
+            Interface for crawl plan methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.ICrawlPlanMethods.Create(View.Sdk.CrawlPlan,System.Threading.CancellationToken)">
+            <summary>
+            Create a crawl plan.
+            </summary>
+            <param name="plan">Crawl plan.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Crawl plan.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.ICrawlPlanMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a crawl plan exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.ICrawlPlanMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve a crawl plan.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Crawl plan.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.ICrawlPlanMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Retrieve crawl plans.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>List of crawl plans.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.ICrawlPlanMethods.Update(View.Sdk.CrawlPlan,System.Threading.CancellationToken)">
+            <summary>
+            Update a crawl plan.
+            </summary>
+            <param name="plan">Crawl plan.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Crawl plan.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.ICrawlPlanMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a crawl plan.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.ICrawlPlanMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate crawl plans.
+            </summary>
+            <param name="maxKeys">Maximum number of keys to return.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result.</returns>
+        </member>
+        <member name="T:View.Sdk.Crawler.Interfaces.ICrawlScheduleMethods">
+            <summary>
+            Interface for crawl schedule methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.ICrawlScheduleMethods.Create(View.Sdk.CrawlSchedule,System.Threading.CancellationToken)">
+            <summary>
+            Create a crawl schedule.
+            </summary>
+            <param name="schedule">Crawl schedule.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Crawl schedule.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.ICrawlScheduleMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a crawl schedule exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.ICrawlScheduleMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve a crawl schedule.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Crawl schedule.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.ICrawlScheduleMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Retrieve crawl schedules.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>List of crawl schedules.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.ICrawlScheduleMethods.Update(View.Sdk.CrawlSchedule,System.Threading.CancellationToken)">
+            <summary>
+            Update a crawl schedule.
+            </summary>
+            <param name="schedule">Crawl schedule.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Crawl schedule.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.ICrawlScheduleMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a crawl schedule.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.ICrawlScheduleMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate crawl schedules.
+            </summary>
+            <param name="maxKeys">Maximum number of keys to return.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result.</returns>
+        </member>
+        <member name="T:View.Sdk.Crawler.Interfaces.IDataRepositoryMethods">
+            <summary>
+            Interface for data repository methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.IDataRepositoryMethods.Create(View.Sdk.DataRepository,System.Threading.CancellationToken)">
+            <summary>
+            Create data repository.
+            </summary>
+            <param name="repository">Data repository.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Data repository.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.IDataRepositoryMethods.Exists(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a data repository exists.
+            </summary>
+            <param name="repositoryGuid">Repository GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.IDataRepositoryMethods.Retrieve(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve a data repository.
+            </summary>
+            <param name="repositoryGuid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Data repository.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.IDataRepositoryMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Retrieve data repositories.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>List of data repository.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.IDataRepositoryMethods.Update(View.Sdk.DataRepository,System.Threading.CancellationToken)">
+            <summary>
+            Update data repository.
+            </summary>
+            <param name="repository">Data repository.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Data repository.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.IDataRepositoryMethods.Delete(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete data repository.
+            </summary>
+            <param name="repositoryGuid">Data repository GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="M:View.Sdk.Crawler.Interfaces.IDataRepositoryMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Data repository with pagination support.
+            </summary>
+            <param name="maxKeys">Maximum number of keys to return in the response. Default is 5.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>EnumerationResult containing Data repository.</returns>
+        </member>
+        <member name="T:View.Sdk.Crawler.ViewCrawlerSdk">
+            <summary>
+            View Crawler SDK.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Crawler.ViewCrawlerSdk.DataRepository">
+            <summary>
+            Data repository methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Crawler.ViewCrawlerSdk.CrawlSchedule">
+            <summary>
+            Crawl schedule methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Crawler.ViewCrawlerSdk.CrawlFilter">
+            <summary>
+            Crawl filter methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Crawler.ViewCrawlerSdk.CrawlPlan">
+            <summary>
+            Crawl plan methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Crawler.ViewCrawlerSdk.CrawlOperation">
+            <summary>
+            Crawl operation methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Crawler.ViewCrawlerSdk.#ctor(System.Guid,System.String,System.String)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="accessKey">Access key.</param>
+            <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/.</param>
         </member>
         <member name="T:View.Sdk.CrawlFilter">
             <summary>
@@ -3796,6 +4742,21 @@
         <member name="F:View.Sdk.DataTypeEnum.Unknown">
             <summary>
             Unknown.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.DeploymentType">
+            <summary>
+            Deployment type information.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DeploymentType.Type">
+            <summary>
+            The type of deployment.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.DeploymentType.#ctor">
+            <summary>
+            Instantiate the object.
             </summary>
         </member>
         <member name="T:View.Sdk.DocumentScore">
@@ -5275,6 +6236,51 @@
             Local encryption.
             </summary>
         </member>
+        <member name="T:View.Sdk.EnumerationItem">
+            <summary>
+            Enumeration item.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationItem.Key">
+            <summary>
+            Key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationItem.IsFolder">
+            <summary>
+            Indicates if the item is a folder.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationItem.ContentLength">
+            <summary>
+            Content length in bytes.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationItem.ETag">
+            <summary>
+            ETag.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationItem.MD5Hash">
+            <summary>
+            MD5 hash.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationItem.SHA1Hash">
+            <summary>
+            SHA1 hash.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnumerationItem.SHA256Hash">
+            <summary>
+            SHA256 hash.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.EnumerationItem.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
         <member name="T:View.Sdk.EnumerationOrderEnum">
             <summary>
             Enumeration order.
@@ -6207,6 +7213,9 @@
         <member name="M:View.Sdk.Lexi.Implementations.IngestQueueMethods.Delete(System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:View.Sdk.Lexi.Implementations.IngestQueueMethods.RetrieveStatistics(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="T:View.Sdk.Lexi.Implementations.SearchMethods">
             <summary>
             Search methods
@@ -6257,6 +7266,9 @@
             <inheritdoc />
         </member>
         <member name="M:View.Sdk.Lexi.Implementations.SourceDocumentMethods.Retrieve(System.Guid,System.Guid,System.Boolean,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Lexi.Implementations.SourceDocumentMethods.RetrieveTopTerms(System.Guid,System.Guid,System.Int32,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:View.Sdk.Lexi.Implementations.SourceDocumentMethods.RetrieveStatistics(System.Guid,System.Guid,System.Threading.CancellationToken)">
@@ -6394,6 +7406,13 @@
             <param name="token">Cancellation token.</param>
             <returns>True if successful.</returns>
         </member>
+        <member name="M:View.Sdk.Lexi.Interfaces.IIngestQueueMethods.RetrieveStatistics(System.Threading.CancellationToken)">
+            <summary>
+            Retrieve statistics for the ingest queue.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Ingest queue statistics.</returns>
+        </member>
         <member name="T:View.Sdk.Lexi.Interfaces.ISearchMethods">
             <summary>
             Interface for search methods.
@@ -6463,9 +7482,19 @@
             </summary>
             <param name="collectionGuid">Collection GUID.</param>
             <param name="documentGuid">Document GUID.</param>
-            <param name="includeData">Flag to indiate whether or not source document data should be included.</param>
+            <param name="includeData">Flag to indicate whether or not source document data should be included.</param>
             <param name="token">Cancellation token.</param>
             <returns>Source document.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.Interfaces.ISourceDocumentMethods.RetrieveTopTerms(System.Guid,System.Guid,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve top terms for a document.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="documentGuid">Document GUID.</param>
+            <param name="maxKeys">Maximum number of top terms to return. Default is 10.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Document top terms.</returns>
         </member>
         <member name="M:View.Sdk.Lexi.Interfaces.ISourceDocumentMethods.RetrieveStatistics(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>
@@ -7094,6 +8123,56 @@
         <member name="F:View.Sdk.ObjectWriteModeEnum.GUID">
             <summary>
             Object GUID.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Permission">
+            <summary>
+            Permission.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Permission.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Permission.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Permission.ResourceTypes">
+            <summary>
+            Resource types.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Permission.OperationTypes">
+            <summary>
+            Operation types.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Permission.PermissionType">
+            <summary>
+            Permission type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Permission.Active">
+            <summary>
+            Active.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Permission.IsProtected">
+            <summary>
+            Is protected.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Permission.CreatedUtc">
+            <summary>
+            Created UTC.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Permission.#ctor">
+            <summary>
+            Instantiate.
             </summary>
         </member>
         <member name="T:View.Sdk.Posting">
@@ -7968,6 +9047,98 @@
             <summary>
             Instantiate.
             </summary>
+        </member>
+        <member name="T:View.Sdk.Role">
+            <summary>
+            Role.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Role.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Role.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Role.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Role.Active">
+            <summary>
+            Is active.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Role.IsProtected">
+            <summary>
+            Is protected.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Role.CreatedUtc">
+            <summary>
+            Created UTC.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Role.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.RolePermissionMap">
+            <summary>
+            Role Permission Map.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.RolePermissionMap.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.RolePermissionMap.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.RolePermissionMap.RoleGUID">
+            <summary>
+            Role GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.RolePermissionMap.PermissionGUID">
+            <summary>
+            Permission GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.RolePermissionMap.Active">
+            <summary>
+            Is active.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.RolePermissionMap.IsProtected">
+            <summary>
+            Is protected.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.RolePermissionMap.CreatedUtc">
+            <summary>
+            Created UTC.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.RolePermissionMap.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.RolePermissionMap.#ctor(System.Guid,System.Guid)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="roleGuid">Role GUID.</param>
+            <param name="permissionGuid">Permission GUID.</param>
         </member>
         <member name="T:View.Sdk.ScheduleIntervalEnum">
             <summary>
@@ -9942,6 +11113,58 @@
             <param name="serializer">Serializer.</param>
             <param name="users">Users.</param>
             <returns>List.</returns>
+        </member>
+        <member name="T:View.Sdk.UserRoleMap">
+            <summary>
+            User Role Map.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UserRoleMap.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UserRoleMap.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UserRoleMap.UserGUID">
+            <summary>
+            User GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UserRoleMap.RoleGUID">
+            <summary>
+            Role GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UserRoleMap.Active">
+            <summary>
+            Is active.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UserRoleMap.IsProtected">
+            <summary>
+            Is protected.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UserRoleMap.CreatedUtc">
+            <summary>
+            Created UTC.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.UserRoleMap.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.UserRoleMap.#ctor(System.Guid,System.Guid)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="userGuid">User GUID.</param>
+            <param name="roleGuid">Role GUID.</param>
         </member>
         <member name="T:View.Sdk.VectorRepository">
             <summary>
