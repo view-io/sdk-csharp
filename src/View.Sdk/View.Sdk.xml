@@ -1714,13 +1714,17 @@
         </member>
         <member name="T:View.Sdk.Configuration.Interfaces.IAuthenticationMethods">
             <summary>
-            Authentication methods interface
+            Authentication methods interface.
             </summary>
         </member>
         <member name="M:View.Sdk.Configuration.Interfaces.IAuthenticationMethods.RetrieveTenants(System.Threading.CancellationToken)">
             <summary>
             Retrieve tenants.
             </summary>
+            <remarks>
+            Required headers:
+            - <c>x-email</c>: email address.
+            </remarks>
             <param name="token">Cancellation token.</param>
             <returns>List of tenant metadata.</returns>
         </member>
@@ -1728,40 +1732,70 @@
             <summary>
             Generate authentication token using password.
             </summary>
+            <remarks>
+            Required headers:
+            - <c>x-email</c>: User's email address.
+            - <c>x-password</c>: Plain-text password.
+            </remarks>
             <param name="token">Cancellation token.</param>
             <returns>Authentication token.</returns>
         </member>
         <member name="M:View.Sdk.Configuration.Interfaces.IAuthenticationMethods.GenerateTokenWithPasswordSha256(System.Threading.CancellationToken)">
             <summary>
-            Generate authentication token using password SHA-256.
+            Generate authentication token using SHA-256 password hash.
             </summary>
+            <remarks>
+            Required headers:
+            - <c>x-email</c>: User's email address.
+            - <c>x-password-sha256</c>: SHA-256 hash of the password.
+            - <c>x-tenant-guid</c>: Tenant GUID.
+            </remarks>
             <param name="token">Cancellation token.</param>
             <returns>Authentication token.</returns>
         </member>
         <member name="M:View.Sdk.Configuration.Interfaces.IAuthenticationMethods.GenerateAdminTokenWithPassword(System.Threading.CancellationToken)">
             <summary>
-            Generate administrator token using password.
+            Generate administrator authentication token using password.
             </summary>
+            <remarks>
+            Required headers:
+            - <c>x-email</c>: Administrator's email address.
+            - <c>x-password</c>: Plain-text password.
+            </remarks>
+            <param name="token">Cancellation token.</param>
             <returns>Authentication token.</returns>
         </member>
         <member name="M:View.Sdk.Configuration.Interfaces.IAuthenticationMethods.GenerateAdminTokenWithPasswordSha256(System.Threading.CancellationToken)">
             <summary>
-            Generate administrator token using password SHA-256.
+            Generate administrator authentication token using SHA-256 password hash.
             </summary>
+            <remarks>
+            Required headers:
+            - <c>x-email</c>: Administrator's email address.
+            - <c>x-password-sha256</c>: SHA-256 hash of the password.
+            </remarks>
             <param name="token">Cancellation token.</param>
             <returns>Authentication token.</returns>
         </member>
         <member name="M:View.Sdk.Configuration.Interfaces.IAuthenticationMethods.ValidateToken(System.Threading.CancellationToken)">
             <summary>
-            Validate authentication token.
+            Validate an existing authentication token.
             </summary>
+            <remarks>
+            Required headers:
+            - <c>x-token</c>: The authentication token to validate.
+            </remarks>
             <param name="token">Cancellation token.</param>
             <returns>Authentication token with validity information.</returns>
         </member>
         <member name="M:View.Sdk.Configuration.Interfaces.IAuthenticationMethods.RetrieveTokenDetails(System.Threading.CancellationToken)">
             <summary>
-            Retrieve token details.
+            Retrieve authentication token details.
             </summary>
+            <remarks>
+            Required headers:
+            - <c>x-token</c>: The authentication token.
+            </remarks>
             <param name="token">Cancellation token.</param>
             <returns>Authentication token with details.</returns>
         </member>
