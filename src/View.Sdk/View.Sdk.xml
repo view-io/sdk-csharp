@@ -11002,9 +11002,760 @@
             Instantiate the object.
             </summary>
         </member>
+        <member name="T:View.Sdk.Storage.BucketAcl">
+            <summary>
+            Bucket access control list.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.BucketAcl.Owner">
+            <summary>
+            Owner.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.BucketAcl.Users">
+            <summary>
+            Users.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.BucketAcl.Entries">
+            <summary>
+            Entries.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Storage.BucketAcl.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Storage.BucketAclEntry">
+            <summary>
+            Bucket access control list entry.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.BucketAclEntry.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.BucketAclEntry.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.BucketAclEntry.BucketGUID">
+            <summary>
+            Bucket GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.BucketAclEntry.OwnerGUID">
+            <summary>
+            Owner GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.BucketAclEntry.UserGUID">
+            <summary>
+            User GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.BucketAclEntry.CanonicalUser">
+            <summary>
+            Canonical user.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.BucketAclEntry.EnableRead">
+            <summary>
+            Enable read permission.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.BucketAclEntry.EnableReadAcp">
+            <summary>
+            Enable read ACP permission.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.BucketAclEntry.EnableWrite">
+            <summary>
+            Enable write permission.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.BucketAclEntry.EnableWriteAcp">
+            <summary>
+            Enable write ACP permission.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.BucketAclEntry.FullControl">
+            <summary>
+            Full control permission.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.BucketAclEntry.CreatedUtc">
+            <summary>
+            Creation time, in UTC.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Storage.BucketAclEntry.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Storage.BucketTag">
+            <summary>
+            Bucket tag.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.BucketTag.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.BucketTag.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.BucketTag.BucketGUID">
+            <summary>
+            Bucket GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.BucketTag.OwnerGUID">
+            <summary>
+            Owner GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.BucketTag.Key">
+            <summary>
+            Tag key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.BucketTag.Value">
+            <summary>
+            Tag value.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.BucketTag.CreatedUtc">
+            <summary>
+            Created UTC time.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Storage.BucketTag.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Storage.Implementations.BucketMethods">
+            <summary>
+            Bucket methods implementation.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.BucketMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Bucket methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.BucketMethods.Create(View.Sdk.BucketMetadata,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.BucketMethods.RetrieveMetadata(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.BucketMethods.RetrieveStatistics(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.BucketMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.BucketMethods.Update(View.Sdk.BucketMetadata,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.BucketMethods.Delete(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.BucketMethods.Enumerate(System.String,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.BucketMethods.RetrieveTags(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.BucketMethods.CreateTag(System.Guid,System.Collections.Generic.List{View.Sdk.Storage.BucketTag},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.BucketMethods.DeleteTag(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.BucketMethods.RetrieveACL(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.BucketMethods.CreateACL(System.String,View.Sdk.Storage.BucketAcl,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.BucketMethods.DeleteACL(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Storage.Implementations.MultipartUploadMethods">
+            <summary>
+            Multipart upload methods implementation.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.MultipartUploadMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Multipart upload methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.MultipartUploadMethods.Create(System.String,View.Sdk.Storage.MultipartUploadMetadata,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.MultipartUploadMethods.RetrieveMany(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.MultipartUploadMethods.Retrieve(System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.MultipartUploadMethods.DeleteUpload(System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.MultipartUploadMethods.CompleteUpload(System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.MultipartUploadMethods.UploadPart(System.String,System.String,System.Int32,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.MultipartUploadMethods.RetrievePart(System.String,System.String,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.MultipartUploadMethods.DeletePart(System.String,System.String,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Storage.Implementations.ObjectMethods">
+            <summary>
+            Object methods implementation.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.ObjectMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Object methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.ObjectMethods.Exists(System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.ObjectMethods.Retrieve(System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.ObjectMethods.RetrieveRange(System.String,System.String,System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.ObjectMethods.RetrieveMetadata(System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.ObjectMethods.Delete(System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.ObjectMethods.CreateNonChunked(System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.ObjectMethods.CreateChunked(System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.ObjectMethods.CreateExpiration(System.String,System.String,View.Sdk.Expiration,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.ObjectMethods.RetrieveACL(System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.ObjectMethods.CreateACL(System.String,System.String,View.Sdk.Storage.BucketAcl,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.ObjectMethods.DeleteACL(System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.ObjectMethods.CreateTags(System.String,System.String,System.Collections.Generic.List{View.Sdk.Storage.BucketTag},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.ObjectMethods.RetrieveTags(System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.ObjectMethods.DeleteTags(System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Storage.Implementations.ObjectMethods.Reprocess(System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Storage.Interfaces.IBucketMethods">
+            <summary>
+            Interface for bucket methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IBucketMethods.Create(View.Sdk.BucketMetadata,System.Threading.CancellationToken)">
+            <summary>
+            Create a bucket.
+            </summary>
+            <param name="bucket">Bucket metadata.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Bucket metadata.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IBucketMethods.RetrieveMetadata(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve bucket metadata.
+            </summary>
+            <param name="bucketGuid">Bucket GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Bucket metadata.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IBucketMethods.RetrieveStatistics(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve bucket statistics.
+            </summary>
+            <param name="bucketGuid">Bucket GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Bucket statistics.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IBucketMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Retrieve multiple buckets.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>List of bucket metadata.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IBucketMethods.Update(View.Sdk.BucketMetadata,System.Threading.CancellationToken)">
+            <summary>
+            Update bucket.
+            </summary>
+            <param name="bucket">Bucket metadata.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Bucket metadata.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IBucketMethods.Delete(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete bucket.
+            </summary>
+            <param name="bucketGuid">Bucket GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IBucketMethods.Enumerate(System.String,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate bucket contents with pagination support.
+            </summary>
+            <param name="bucketGuid">Bucket GUID.</param>
+            <param name="maxKeys">Maximum number of keys to return in the response. Default is 5.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>BucketEnumerationResult containing objects in the bucket.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IBucketMethods.RetrieveTags(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve bucket tags.
+            </summary>
+            <param name="bucketGuid">Bucket GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>List of bucket tags.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IBucketMethods.CreateTag(System.Guid,System.Collections.Generic.List{View.Sdk.Storage.BucketTag},System.Threading.CancellationToken)">
+            <summary>
+            Create a bucket tag.
+            </summary>
+            <param name="buckedGuid">Bucket GUID.</param>
+            <param name="tag">Bucket tag list.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Created bucket tag.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IBucketMethods.DeleteTag(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a bucket tag.
+            </summary>
+            <param name="bucketGuid">Bucket GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IBucketMethods.RetrieveACL(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve bucket acl.
+            </summary>
+            <param name="bucketGuid">Bucket GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Bucket acl.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IBucketMethods.CreateACL(System.String,View.Sdk.Storage.BucketAcl,System.Threading.CancellationToken)">
+            <summary>
+            Create bucket acl.
+            </summary>
+            <param name="bucketGuid">Bucket GUID.</param>
+            <param name="acl">Bucket acl.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Created bucket acl.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IBucketMethods.DeleteACL(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete bucket acl.
+            </summary>
+            <param name="bucketGuid">Bucket GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="T:View.Sdk.Storage.Interfaces.IMultipartUploadMethods">
+            <summary>
+            Defines operations for managing multipart uploads and their parts.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IMultipartUploadMethods.Create(System.String,View.Sdk.Storage.MultipartUploadMetadata,System.Threading.CancellationToken)">
+            <summary>
+            Initiates a new multipart upload session for a specified object in the given bucket.
+            </summary>
+            <param name="bucketGuid">The unique identifier of the bucket.</param>
+            <param name="obj">Metadata describing the multipart upload.</param>
+            <param name="token">A token to monitor for cancellation requests.</param>
+            <returns>A task that represents the asynchronous operation, returning metadata for the initiated multipart upload.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IMultipartUploadMethods.RetrieveMany(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Retrieves all ongoing multipart uploads for the specified bucket.
+            </summary>
+            <param name="bucketGuid">The unique identifier of the bucket.</param>
+            <param name="token">A token to monitor for cancellation requests.</param>
+            <returns>A task that represents the asynchronous operation, returning a list of multipart upload metadata.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IMultipartUploadMethods.Retrieve(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Retrieves the metadata for a specific multipart upload.
+            </summary>
+            <param name="bucketGuid">The unique identifier of the bucket.</param>
+            <param name="objectKey">The key (name) of the object being uploaded.</param>
+            <param name="token">A token to monitor for cancellation requests.</param>
+            <returns>A task that represents the asynchronous operation, returning metadata for the specified multipart upload.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IMultipartUploadMethods.DeleteUpload(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Cancels and deletes a multipart upload for a specified object.
+            </summary>
+            <param name="bucketGuid">The unique identifier of the bucket.</param>
+            <param name="objectKey">The key (name) of the object being uploaded.</param>
+            <param name="token">A token to monitor for cancellation requests.</param>
+            <returns>A task that represents the asynchronous operation, returning true if the deletion was successful.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IMultipartUploadMethods.CompleteUpload(System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Completes the multipart upload by assembling previously uploaded parts.
+            </summary>
+            <param name="bucketGuid">The unique identifier of the bucket.</param>
+            <param name="objectKey">The key (name) of the object being uploaded.</param>
+            <param name="data">The finalization data or part list used for assembly.</param>
+            <param name="token">A token to monitor for cancellation requests.</param>
+            <returns>A task that represents the asynchronous operation, returning the metadata of the completed object.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IMultipartUploadMethods.UploadPart(System.String,System.String,System.Int32,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Uploads a single part of a multipart upload.
+            </summary>
+            <param name="bucketGuid">The unique identifier of the bucket.</param>
+            <param name="objectKey">The key (name) of the object being uploaded.</param>
+            <param name="partNumber">The sequence number of the part being uploaded.</param>
+            <param name="data">The string data representing the part's content.</param>
+            <param name="token">A token to monitor for cancellation requests.</param>
+            <returns>A task that represents the asynchronous operation, returning metadata for the uploaded part.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IMultipartUploadMethods.RetrievePart(System.String,System.String,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Retrieves the data for a specific part of a multipart upload.
+            </summary>
+            <param name="bucketGuid">The unique identifier of the bucket.</param>
+            <param name="objectKey">The key (name) of the object being uploaded.</param>
+            <param name="partNumber">The sequence number of the part to retrieve.</param>
+            <param name="token">A token to monitor for cancellation requests.</param>
+            <returns>A task that represents the asynchronous operation, returning the string data of the requested part.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IMultipartUploadMethods.DeletePart(System.String,System.String,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Deletes a specific part from a multipart upload.
+            </summary>
+            <param name="bucketGuid">The unique identifier of the bucket.</param>
+            <param name="objectKey">The key (name) of the object being uploaded.</param>
+            <param name="partNumber">The sequence number of the part to delete.</param>
+            <param name="token">A token to monitor for cancellation requests.</param>
+            <returns>A task that represents the asynchronous operation, returning true if the deletion was successful.</returns>
+        </member>
+        <member name="T:View.Sdk.Storage.Interfaces.IObjectMethods">
+            <summary>
+            Interface for object methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IObjectMethods.Exists(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if an object exists in a bucket.
+            </summary>
+            <param name="bucketGuid">Bucket GUID.</param>
+            <param name="objectKey">Object key.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if the object exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IObjectMethods.Retrieve(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve an object from a bucket.
+            </summary>
+            <param name="bucketGuid">Bucket GUID.</param>
+            <param name="objectKey">Object key.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Raw object data as string.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IObjectMethods.RetrieveRange(System.String,System.String,System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve a byte range from an object in a bucket.
+            </summary>
+            <param name="bucketGuid">Bucket GUID.</param>
+            <param name="objectKey">Object key.</param>
+            <param name="startByte">Start byte position (inclusive).</param>
+            <param name="endByte">End byte position (inclusive).</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Raw object data as string for the specified range.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IObjectMethods.RetrieveMetadata(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve object metadata from a bucket.
+            </summary>
+            <param name="bucketGuid">Bucket GUID.</param>
+            <param name="objectKey">Object key.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Object metadata.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IObjectMethods.Delete(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete an object from a bucket.
+            </summary>
+            <param name="bucketGuid">Bucket GUID.</param>
+            <param name="objectKey">Object key.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IObjectMethods.CreateNonChunked(System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Create a non-chunked object in a bucket.
+            </summary>
+            <param name="bucketGuid">Bucket GUID.</param>
+            <param name="objectKey">Object key.</param>
+            <param name="data">Raw object data as string.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Object metadata of the created object.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IObjectMethods.CreateChunked(System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Create a chunked object in a bucket.
+            </summary>
+            <param name="bucketGuid">Bucket GUID.</param>
+            <param name="objectKey">Object key.</param>
+            <param name="data">Raw chunked object data as string.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Object metadata of the created object.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IObjectMethods.CreateExpiration(System.String,System.String,View.Sdk.Expiration,System.Threading.CancellationToken)">
+            <summary>
+            Create an object with expiration in a bucket.
+            </summary>
+            <param name="bucketGuid">Bucket GUID.</param>
+            <param name="objectKey">Object key.</param>
+            <param name="expiration">Expiration object with expiration date.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Return object metadata.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IObjectMethods.RetrieveACL(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve object ACL from a bucket.
+            </summary>
+            <param name="bucketGuid">Bucket GUID.</param>
+            <param name="objectKey">Object key.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Object ACL.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IObjectMethods.CreateACL(System.String,System.String,View.Sdk.Storage.BucketAcl,System.Threading.CancellationToken)">
+            <summary>
+            Create object ACL in a bucket.
+            </summary>
+            <param name="bucketGuid">Bucket GUID.</param>
+            <param name="objectKey">Object key.</param>
+            <param name="acl">Object ACL.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Created object ACL.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IObjectMethods.DeleteACL(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete object ACL from a bucket.
+            </summary>
+            <param name="bucketGuid">Bucket GUID.</param>
+            <param name="objectKey">Object key.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IObjectMethods.CreateTags(System.String,System.String,System.Collections.Generic.List{View.Sdk.Storage.BucketTag},System.Threading.CancellationToken)">
+            <summary>
+            Create tags for an object in a bucket.
+            </summary>
+            <param name="bucketGuid">Bucket GUID.</param>
+            <param name="objectKey">Object key.</param>
+            <param name="tags">List of object tags.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>List of created object tags.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IObjectMethods.RetrieveTags(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve tags for an object from a bucket.
+            </summary>
+            <param name="bucketGuid">Bucket GUID.</param>
+            <param name="objectKey">Object key.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>List of object tags.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IObjectMethods.DeleteTags(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete tags for an object from a bucket.
+            </summary>
+            <param name="bucketGuid">Bucket GUID.</param>
+            <param name="objectKey">Object key.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="M:View.Sdk.Storage.Interfaces.IObjectMethods.Reprocess(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Trigger reprocessing of an object in a bucket.
+            </summary>
+            <param name="bucketGuid">Bucket GUID.</param>
+            <param name="objectKey">Object key.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="T:View.Sdk.Storage.MultipartUploadMetadata">
+            <summary>
+            Multipart upload metadata.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.MultipartUploadMetadata.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.MultipartUploadMetadata.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.MultipartUploadMetadata.BucketGUID">
+            <summary>
+            Bucket GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.MultipartUploadMetadata.PoolGUID">
+            <summary>
+            Pool GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.MultipartUploadMetadata.NodeGUID">
+            <summary>
+            Node GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.MultipartUploadMetadata.OwnerGUID">
+            <summary>
+            Owner GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.MultipartUploadMetadata.UploadGUID">
+            <summary>
+            Upload GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.MultipartUploadMetadata.Key">
+            <summary>
+            Object key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.MultipartUploadMetadata.StartedUtc">
+            <summary>
+            Started UTC time.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.MultipartUploadMetadata.LastAccessUtc">
+            <summary>
+            Last access UTC time.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.MultipartUploadMetadata.CreatedUtc">
+            <summary>
+            Created UTC time.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.MultipartUploadMetadata.ExpirationUtc">
+            <summary>
+            Expiration UTC time.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.MultipartUploadMetadata.Owner">
+            <summary>
+            Owner information.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.MultipartUploadMetadata.Parts">
+            <summary>
+            Parts list.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Storage.MultipartUploadMetadata.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Storage.PartMetadata">
+            <summary>
+            Part metadata for multipart uploads.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.PartMetadata.PartNumber">
+            <summary>
+            Part number.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.PartMetadata.ETag">
+            <summary>
+            ETag of the part.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.PartMetadata.Size">
+            <summary>
+            Size of the part in bytes.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.PartMetadata.LastModifiedUtc">
+            <summary>
+            Last modified UTC time.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Storage.PartMetadata.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Storage.PartMetadata.#ctor(System.Int32)">
+            <summary>
+            Instantiate with part number.
+            </summary>
+            <param name="partNumber">Part number.</param>
+        </member>
         <member name="T:View.Sdk.Storage.ViewStorageSdk">
             <summary>
             View Storage SDK.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.ViewStorageSdk.Bucket">
+            <summary>
+            Bucket methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.ViewStorageSdk.Object">
+            <summary>
+            Object methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Storage.ViewStorageSdk.MultipartUpload">
+            <summary>
+            Multipart upload methods.
             </summary>
         </member>
         <member name="M:View.Sdk.Storage.ViewStorageSdk.#ctor(System.Guid,System.String,System.String)">
