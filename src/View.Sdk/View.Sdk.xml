@@ -11299,6 +11299,9 @@
         <member name="M:View.Sdk.Vector.Implementations.DocumentMethods.DeleteByFilter(System.Guid,View.Sdk.Vector.VectorDeleteRequest,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:View.Sdk.Vector.Implementations.DocumentMethods.Retrieve(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="T:View.Sdk.Vector.Implementations.RepositoryMethods">
             <summary>
             Repository methods
@@ -11336,6 +11339,9 @@
         <member name="M:View.Sdk.Vector.Implementations.SemanticCellMethods.Read(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:View.Sdk.Vector.Implementations.SemanticCellMethods.Exists(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="T:View.Sdk.Vector.Implementations.SemanticChunkMethods">
             <summary>
             Semantic chunk methods
@@ -11351,6 +11357,9 @@
             <inheritdoc />
         </member>
         <member name="M:View.Sdk.Vector.Implementations.SemanticChunkMethods.Read(System.Guid,System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Vector.Implementations.SemanticChunkMethods.Exists(System.Guid,System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:View.Sdk.Vector.Implementations.VectorMethods">
@@ -11413,6 +11422,15 @@
             <param name="token">Cancellation token.</param>
             <returns>True if successful.</returns>
         </member>
+        <member name="M:View.Sdk.Vector.Interfaces.IDocumentMethods.Retrieve(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve a document.
+            </summary>
+            <param name="repoGuid">Vector repository GUID.</param>
+            <param name="docGuid">Document GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Embeddings document.</returns>
+        </member>
         <member name="T:View.Sdk.Vector.Interfaces.IRepositoryMethods">
             <summary>
             Interface for repository methods.
@@ -11466,6 +11484,16 @@
             <param name="token">Cancellation token.</param>
             <returns>Semantic cell.</returns>
         </member>
+        <member name="M:View.Sdk.Vector.Interfaces.ISemanticCellMethods.Exists(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a specific semantic cell exists for a given document.
+            </summary>
+            <param name="repoGuid">Vector repository GUID.</param>
+            <param name="docGuid">Document GUID.</param>
+            <param name="cellGuid">Cell GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if the semantic cell exists.</returns>
+        </member>
         <member name="T:View.Sdk.Vector.Interfaces.ISemanticChunkMethods">
             <summary>
             Interface for semantic chunk methods.
@@ -11491,6 +11519,17 @@
             <param name="chunkGuid">Chunk GUID.</param>
             <param name="token">Cancellation token.</param>
             <returns>Semantic chunk.</returns>
+        </member>
+        <member name="M:View.Sdk.Vector.Interfaces.ISemanticChunkMethods.Exists(System.Guid,System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a specific semantic chunk exists for a given document.
+            </summary>
+            <param name="repoGuid">Vector repository GUID.</param>
+            <param name="docGuid">Document GUID.</param>
+            <param name="cellGuid">Cell GUID.</param>
+            <param name="chunkGuid">Chunk GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if the semantic chunk exists.</returns>
         </member>
         <member name="T:View.Sdk.Vector.Interfaces.IVectorMethods">
             <summary>

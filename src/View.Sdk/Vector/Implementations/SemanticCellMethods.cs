@@ -60,6 +60,17 @@ namespace View.Sdk.Vector.Implementations
             return await _Sdk.Retrieve<SemanticCell>(url, token).ConfigureAwait(false);
         }
 
+        /// <inheritdoc />
+        public async Task<bool> Exists(
+            Guid repoGuid,
+            Guid docGuid,
+            Guid cellGuid,
+            CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/vectorrepositories/" + repoGuid + "/documents/" + docGuid + "/cells/" + cellGuid;
+            return await _Sdk.Exists(url, token).ConfigureAwait(false);
+        }
+
         #endregion
 
         #region Private-Methods

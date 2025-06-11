@@ -83,11 +83,20 @@
                     case "read cell":
                         ReadSemanticCell().Wait();
                         break;
+                    case "exists cell":
+                        SemanticCellExists().Wait();
+                        break;
                     case "read chunks":
                         ReadSemanticChunks().Wait();
                         break;
                     case "read chunk":
                         ReadSemanticChunk().Wait();
+                        break;
+                    case "exists chunk":
+                        SemanticChunkExists().Wait();
+                        break;
+                    case "retrieve doc":
+                        RetrieveDocument().Wait();
                         break;
                 }
             }
@@ -105,6 +114,7 @@
             Console.WriteLine("  write         Write embeddings document");
             Console.WriteLine("  del           Delete embeddings document");
             Console.WriteLine("  exists doc    Check if document exists");
+            Console.WriteLine("  retrieve doc  Retrieve a document");
             Console.WriteLine("  del filter    Delete documents by filter");
             Console.WriteLine("  truncate      Truncate table");
             Console.WriteLine("");
@@ -112,8 +122,11 @@
             Console.WriteLine("");
             Console.WriteLine("  read cells    Read semantic cells for a document");
             Console.WriteLine("  read cell     Read a specific semantic cell");
+            Console.WriteLine("  exists cell   Check if semantic cell exists");
+            Console.WriteLine("");
             Console.WriteLine("  read chunks   Read semantic chunks for a cell");
             Console.WriteLine("  read chunk    Read a specific semantic chunk");
+            Console.WriteLine("  exists chunk   Check if semantic chunk exists");
             Console.WriteLine("");
             Console.WriteLine("  search        Execute similarity search");
             Console.WriteLine("  query         Execute raw query");
@@ -326,6 +339,15 @@
             Console.WriteLine("");
         }
 
+        private static async Task RetrieveDocument()
+        {
+            Guid repoGuid = Inputty.GetGuid("Vecot repository GUID:", default(Guid));
+            Guid docGuid = Inputty.GetGuid("Document GUID  :", default(Guid));
+
+            EmbeddingsDocument document = await _Sdk.Document.Retrieve(repoGuid, docGuid);
+            EnumerateResponse(document);
+        }
+
         private static async Task DeleteDocumentsByFilter()
         {
             Console.WriteLine("");
@@ -378,6 +400,18 @@
             EnumerateResponse(cell);
         }
 
+        private static async Task SemanticCellExists()
+        {
+            Guid repoGuid = Inputty.GetGuid("Repository GUID:", default(Guid));
+            Guid docGuid = Inputty.GetGuid("Document GUID  :", default(Guid));
+            Guid cellGuid = Inputty.GetGuid("Cell GUID      :", default(Guid));
+
+            bool exists = await _Sdk.SemanticCell.Exists(repoGuid, docGuid, cellGuid);
+            Console.WriteLine("");
+            Console.WriteLine($"Semantic cell exists: {exists}");
+            Console.WriteLine("");
+        }
+
         private static async Task ReadSemanticChunks()
         {
             Guid repoGuid = Inputty.GetGuid("Repository GUID:", default(Guid));
@@ -397,6 +431,19 @@
             
             SemanticChunk chunk = await _Sdk.SemanticChunk.Read(repoGuid, docGuid, cellGuid, chunkGuid);
             EnumerateResponse(chunk);
+        }
+
+        private static async Task SemanticChunkExists()
+        {
+            Guid repoGuid = Inputty.GetGuid("Repository GUID:", default(Guid));
+            Guid docGuid = Inputty.GetGuid("Document GUID  :", default(Guid));
+            Guid cellGuid = Inputty.GetGuid("Cell GUID      :", default(Guid));
+            Guid chunkGuid = Inputty.GetGuid("Chunk GUID    :", default(Guid));
+
+            bool exists = await _Sdk.SemanticChunk.Exists(repoGuid, docGuid, cellGuid, chunkGuid);
+            Console.WriteLine("");
+            Console.WriteLine($"Semantic chunk exists: {exists}");
+            Console.WriteLine("");
         }
 
 #pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.

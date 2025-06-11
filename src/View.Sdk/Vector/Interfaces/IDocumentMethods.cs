@@ -55,5 +55,17 @@ namespace View.Sdk.Vector.Interfaces
             Guid repoGuid,
             VectorDeleteRequest deleteRequest,
             CancellationToken token = default);
+
+        /// <summary>
+        /// Retrieve a document.
+        /// </summary>
+        /// <param name="repoGuid">Vector repository GUID.</param>
+        /// <param name="docGuid">Document GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Embeddings document.</returns>
+        Task<EmbeddingsDocument> Retrieve(
+            Guid repoGuid,
+            Guid docGuid,
+            CancellationToken token = default);
     }
 }
