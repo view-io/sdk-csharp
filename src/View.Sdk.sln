@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticCellGenerator", "Se
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Crawler", "Test.Crawler\Test.Crawler.csproj", "{EC88A794-B04B-4208-B7AE-11FA0471846B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Healthcheck", "Test.Healthcheck\Test.Healthcheck.csproj", "{37C0E578-E28F-C3BD-C4CD-796586C30E37}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{EC88A794-B04B-4208-B7AE-11FA0471846B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC88A794-B04B-4208-B7AE-11FA0471846B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC88A794-B04B-4208-B7AE-11FA0471846B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37C0E578-E28F-C3BD-C4CD-796586C30E37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37C0E578-E28F-C3BD-C4CD-796586C30E37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37C0E578-E28F-C3BD-C4CD-796586C30E37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37C0E578-E28F-C3BD-C4CD-796586C30E37}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

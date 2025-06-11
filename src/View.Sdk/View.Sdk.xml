@@ -6628,6 +6628,360 @@
             LiteGraph.
             </summary>
         </member>
+        <member name="T:View.Sdk.Healthcheck.Implementations.AssistantMethods">
+            <summary>
+            Assistant healthcheck methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Implementations.AssistantMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Assistant healthcheck methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Implementations.AssistantMethods.Exists(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Healthcheck.Implementations.ConfigMethods">
+            <summary>
+            Configuration healthcheck methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Implementations.ConfigMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Configuration healthcheck methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Implementations.ConfigMethods.Exists(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Healthcheck.Implementations.CrawlerMethods">
+            <summary>
+            Crawler healthcheck methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Implementations.CrawlerMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Crawler healthcheck methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Implementations.CrawlerMethods.Exists(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Healthcheck.Implementations.DirectorMethods">
+            <summary>
+            Director healthcheck methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Implementations.DirectorMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Director healthcheck methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Implementations.DirectorMethods.Exists(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Healthcheck.Implementations.EmbeddingMethods">
+            <summary>
+            Embedding healthcheck methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Implementations.EmbeddingMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Embedding healthcheck methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Implementations.EmbeddingMethods.Exists(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Healthcheck.Implementations.LexiMethods">
+            <summary>
+            Lexi healthcheck methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Implementations.LexiMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Lexi healthcheck methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Implementations.LexiMethods.Exists(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Healthcheck.Implementations.OrchestratorMethods">
+            <summary>
+            Orchestrator healthcheck methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Implementations.OrchestratorMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Orchestrator healthcheck methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Implementations.OrchestratorMethods.Exists(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Healthcheck.Implementations.ProcessorMethods">
+            <summary>
+            Processor healthcheck methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Implementations.ProcessorMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Processor healthcheck methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Implementations.ProcessorMethods.Exists(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Healthcheck.Implementations.StorageMethods">
+            <summary>
+            Storage healthcheck methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Implementations.StorageMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Storage healthcheck methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Implementations.StorageMethods.Exists(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Healthcheck.Implementations.SwitchboardMethods">
+            <summary>
+            Switchboard healthcheck methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Implementations.SwitchboardMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Switchboard healthcheck methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Implementations.SwitchboardMethods.Exists(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Healthcheck.Implementations.VectorMethods">
+            <summary>
+            Vector healthcheck methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Implementations.VectorMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Vector healthcheck methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Implementations.VectorMethods.Exists(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Healthcheck.Interfaces.IAssistantMethods">
+            <summary>
+            Interface for assistant healthcheck methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Interfaces.IAssistantMethods.Exists(System.Threading.CancellationToken)">
+            <summary>
+            Check if assistant service exists and is accessible.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists and accessible.</returns>
+        </member>
+        <member name="T:View.Sdk.Healthcheck.Interfaces.IConfigMethods">
+            <summary>
+            Interface for configuration healthcheck methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Interfaces.IConfigMethods.Exists(System.Threading.CancellationToken)">
+            <summary>
+            Check if configuration service exists and is accessible.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists and accessible.</returns>
+        </member>
+        <member name="T:View.Sdk.Healthcheck.Interfaces.ICrawlerMethods">
+            <summary>
+            Interface for crawler healthcheck methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Interfaces.ICrawlerMethods.Exists(System.Threading.CancellationToken)">
+            <summary>
+            Check if crawler service exists and is accessible.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists and accessible.</returns>
+        </member>
+        <member name="T:View.Sdk.Healthcheck.Interfaces.IDirectorMethods">
+            <summary>
+            Interface for director healthcheck methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Interfaces.IDirectorMethods.Exists(System.Threading.CancellationToken)">
+            <summary>
+            Check if director service exists and is accessible.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists and accessible.</returns>
+        </member>
+        <member name="T:View.Sdk.Healthcheck.Interfaces.IEmbeddingMethods">
+            <summary>
+            Interface for embedding healthcheck methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Interfaces.IEmbeddingMethods.Exists(System.Threading.CancellationToken)">
+            <summary>
+            Check if embedding service exists and is accessible.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists and accessible.</returns>
+        </member>
+        <member name="T:View.Sdk.Healthcheck.Interfaces.ILexiMethods">
+            <summary>
+            Interface for lexi healthcheck methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Interfaces.ILexiMethods.Exists(System.Threading.CancellationToken)">
+            <summary>
+            Check if lexi service exists and is accessible.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists and accessible.</returns>
+        </member>
+        <member name="T:View.Sdk.Healthcheck.Interfaces.IOrchestratorMethods">
+            <summary>
+            Interface for orchestrator healthcheck methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Interfaces.IOrchestratorMethods.Exists(System.Threading.CancellationToken)">
+            <summary>
+            Check if orchestrator service exists and is accessible.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists and accessible.</returns>
+        </member>
+        <member name="T:View.Sdk.Healthcheck.Interfaces.IProcessorMethods">
+            <summary>
+            Interface for processor healthcheck methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Interfaces.IProcessorMethods.Exists(System.Threading.CancellationToken)">
+            <summary>
+            Check if processor service exists and is accessible.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists and accessible.</returns>
+        </member>
+        <member name="T:View.Sdk.Healthcheck.Interfaces.IStorageMethods">
+            <summary>
+            Interface for storage healthcheck methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Interfaces.IStorageMethods.Exists(System.Threading.CancellationToken)">
+            <summary>
+            Check if storage service exists and is accessible.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists and accessible.</returns>
+        </member>
+        <member name="T:View.Sdk.Healthcheck.Interfaces.ISwitchboardMethods">
+            <summary>
+            Interface for switchboard healthcheck methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Interfaces.ISwitchboardMethods.Exists(System.Threading.CancellationToken)">
+            <summary>
+            Check if switchboard exists and is accessible.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists and accessible.</returns>
+        </member>
+        <member name="T:View.Sdk.Healthcheck.Interfaces.IVectorMethods">
+            <summary>
+            Interface for vector healthcheck methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.Interfaces.IVectorMethods.Exists(System.Threading.CancellationToken)">
+            <summary>
+            Check if vector service exists and is accessible.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists and accessible.</returns>
+        </member>
+        <member name="T:View.Sdk.Healthcheck.ViewHealthcheckSdk">
+            <summary>
+            View Healthcheck SDK.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Healthcheck.ViewHealthcheckSdk.Switchboard">
+            <summary>
+            Switchboard healthcheck methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Healthcheck.ViewHealthcheckSdk.Config">
+            <summary>
+            Configuration healthcheck methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Healthcheck.ViewHealthcheckSdk.Storage">
+            <summary>
+            Storage healthcheck methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Healthcheck.ViewHealthcheckSdk.Vector">
+            <summary>
+            Vector healthcheck methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Healthcheck.ViewHealthcheckSdk.Processor">
+            <summary>
+            Processor healthcheck methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Healthcheck.ViewHealthcheckSdk.Assistant">
+            <summary>
+            Assistant healthcheck methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Healthcheck.ViewHealthcheckSdk.Orchestrator">
+            <summary>
+            Orchestrator healthcheck methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Healthcheck.ViewHealthcheckSdk.Crawler">
+            <summary>
+            Crawler healthcheck methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Healthcheck.ViewHealthcheckSdk.Lexi">
+            <summary>
+            Lexi healthcheck methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Healthcheck.ViewHealthcheckSdk.Embedding">
+            <summary>
+            Embedding healthcheck methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Healthcheck.ViewHealthcheckSdk.Director">
+            <summary>
+            Director healthcheck methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Healthcheck.ViewHealthcheckSdk.#ctor(System.Guid,System.String,System.String)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="accessKey">Access key.</param>
+            <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/.</param>
+        </member>
         <member name="T:View.Sdk.Helpers.DataTableHelper">
             <summary>
             Data table helper.
