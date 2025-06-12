@@ -10172,6 +10172,21 @@
             Document type.
             </summary>
         </member>
+        <member name="P:View.Sdk.Semantic.SemanticCellRequest.MinChunkContentLength">
+            <summary>
+            Gets or sets the minimum length of chunk content.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Semantic.SemanticCellRequest.MaxChunkContentLength">
+            <summary>
+            Gets or sets the maximum length of chunk content.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Semantic.SemanticCellRequest.ShiftSize">
+            <summary>
+            Gets or sets the size of the shift used when creating chunks.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Semantic.SemanticCellRequest.Data">
             <summary>
             Data.
