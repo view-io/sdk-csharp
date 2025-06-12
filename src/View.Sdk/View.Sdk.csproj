@@ -72,4 +72,9 @@
 		</PackageReference>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Assistant\Implementations\" />
+	  <Folder Include="Assistant\Interfaces\" />
+	</ItemGroup>
+
 </Project>

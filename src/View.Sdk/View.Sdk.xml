@@ -428,114 +428,939 @@
             Instantiate.
             </summary>
         </member>
-        <member name="T:View.Sdk.Assistant.AssistantRagRequest">
+        <member name="T:View.Sdk.Assistant.AssistantConfig">
             <summary>
-            View Assistant RAG request.
+            Assistant configuration.
             </summary>
         </member>
-        <member name="P:View.Sdk.Assistant.AssistantRagRequest.PromptPrefix">
+        <member name="P:View.Sdk.Assistant.AssistantConfig.GUID">
             <summary>
-            Prompt prefix.
+            GUID.
             </summary>
         </member>
-        <member name="P:View.Sdk.Assistant.AssistantRagRequest.Question">
+        <member name="P:View.Sdk.Assistant.AssistantConfig.Name">
             <summary>
-            Question.
+            Name.
             </summary>
         </member>
-        <member name="P:View.Sdk.Assistant.AssistantRagRequest.MaxResults">
+        <member name="P:View.Sdk.Assistant.AssistantConfig.Description">
             <summary>
-            Maximum number of documents to retrieve, between 1 and 100.
+            Description.
             </summary>
         </member>
-        <member name="P:View.Sdk.Assistant.AssistantRagRequest.Temperature">
+        <member name="P:View.Sdk.Assistant.AssistantConfig.SystemPrompt">
             <summary>
-            Temperature, between 0 and 1.
+            System prompt.
             </summary>
         </member>
-        <member name="P:View.Sdk.Assistant.AssistantRagRequest.TopP">
+        <member name="P:View.Sdk.Assistant.AssistantConfig.EmbeddingModel">
             <summary>
-            Top P, between 0 and 1.
+            Embedding model.
             </summary>
         </member>
-        <member name="P:View.Sdk.Assistant.AssistantRagRequest.MaxTokens">
+        <member name="P:View.Sdk.Assistant.AssistantConfig.MaxResults">
             <summary>
-            Maximum number of tokens to generate, between 1 and 16384.
+            Maximum results.
             </summary>
         </member>
-        <member name="P:View.Sdk.Assistant.AssistantRagRequest.GenerationModel">
-            <summary>
-            Generation model and tag; default is llama3.1:latest.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Assistant.AssistantRagRequest.GenerationProvider">
-            <summary>
-            Generation provider.  Value values are: ollama.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Assistant.AssistantRagRequest.OllamaHostname">
-            <summary>
-            Ollama hostname.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Assistant.AssistantRagRequest.OllamaPort">
-            <summary>
-            Ollama TCP port.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Assistant.AssistantRagRequest.VectorDatabaseHostname">
-            <summary>
-            Vector database hostname.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Assistant.AssistantRagRequest.VectorDatabasePort">
-            <summary>
-            Vector database port.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Assistant.AssistantRagRequest.VectorDatabaseName">
+        <member name="P:View.Sdk.Assistant.AssistantConfig.VectorDatabaseName">
             <summary>
             Vector database name.
             </summary>
         </member>
-        <member name="P:View.Sdk.Assistant.AssistantRagRequest.VectorDatabaseUser">
+        <member name="P:View.Sdk.Assistant.AssistantConfig.VectorDatabaseTable">
+            <summary>
+            Vector database table.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfig.VectorDatabaseHostname">
+            <summary>
+            Vector database hostname.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfig.VectorDatabasePort">
+            <summary>
+            Vector database port.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfig.VectorDatabaseUser">
             <summary>
             Vector database user.
             </summary>
         </member>
-        <member name="P:View.Sdk.Assistant.AssistantRagRequest.VectorDatabasePassword">
+        <member name="P:View.Sdk.Assistant.AssistantConfig.VectorDatabasePassword">
             <summary>
             Vector database password.
             </summary>
         </member>
-        <member name="P:View.Sdk.Assistant.AssistantRagRequest.Stream">
+        <member name="P:View.Sdk.Assistant.AssistantConfig.GenerationProvider">
+            <summary>
+            Generation provider.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfig.GenerationApiKey">
+            <summary>
+            Generation API key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfig.GenerationModel">
+            <summary>
+            Generation model.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfig.HuggingFaceApiKey">
+            <summary>
+            HuggingFace API key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfig.Temperature">
+            <summary>
+            Temperature.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfig.TopP">
+            <summary>
+            Top P.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfig.MaxTokens">
+            <summary>
+            Maximum tokens.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfig.OllamaHostname">
+            <summary>
+            Ollama hostname.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfig.OllamaPort">
+            <summary>
+            Ollama port.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfig.OllamaContextLength">
+            <summary>
+            Ollama context length.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfig.ContextSort">
+            <summary>
+            Context sort.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfig.SortByMaxSimilarity">
+            <summary>
+            Sort by max similarity.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfig.ContextScope">
+            <summary>
+            Context scope.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfig.Rerank">
+            <summary>
+            Rerank.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfig.RerankModel">
+            <summary>
+            Rerank model.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfig.RerankTopK">
+            <summary>
+            Rerank top K.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfig.RerankLevel">
+            <summary>
+            Rerank level.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfig.TimestampEnabled">
+            <summary>
+            Timestamp enabled.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfig.TimestampFormat">
+            <summary>
+            Timestamp format.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfig.TimestampTimezone">
+            <summary>
+            Timestamp timezone.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfig.UseCitations">
+            <summary>
+            Use citations.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfig.QueryClassification">
+            <summary>
+            Query classification.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfig.QueryRewriting">
+            <summary>
+            Query rewriting.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfig.CreatedUTC">
+            <summary>
+            Created UTC.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfig.LastModifiedUTC">
+            <summary>
+            Last modified UTC.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfig.ChatOnly">
+            <summary>
+            Chat only.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Assistant.AssistantConfig.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Assistant.QueryClassification">
+            <summary>
+            Query classification.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.QueryClassification.Enabled">
+            <summary>
+            Enabled.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.QueryClassification.ConfidenceThreshold">
+            <summary>
+            Confidence threshold.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.QueryClassification.ModelName">
+            <summary>
+            Model name.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Assistant.QueryRewriting">
+            <summary>
+            Query rewriting.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.QueryRewriting.Enabled">
+            <summary>
+            Enabled.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.QueryRewriting.ContextHistoryDepth">
+            <summary>
+            Context history depth.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.QueryRewriting.ModelName">
+            <summary>
+            Model name.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Assistant.AssistantConfigurationResponse">
+            <summary>
+            Response containing a list of assistant configurations.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfigurationResponse.AssistantConfigs">
+            <summary>
+            List of assistant configurations.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Assistant.AssistantConfiguration">
+            <summary>
+            Represents a single assistant configuration.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfiguration.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfiguration.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfiguration.Description">
+            <summary>
+            Description.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantConfiguration.CreatedUTC">
+            <summary>
+            Created UTC.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Assistant.AssistantRequest">
+            <summary>
+            View Assistant RAG request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRequest.Messages">
+            <summary>
+            Collection of chat messages exchanged between the user, assistant, or system.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRequest.PromptPrefix">
+            <summary>
+            Prompt prefix.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRequest.Question">
+            <summary>
+            Question.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRequest.MaxResults">
+            <summary>
+            Maximum number of documents to retrieve, between 1 and 100.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRequest.Temperature">
+            <summary>
+            Temperature, between 0 and 1.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRequest.TopP">
+            <summary>
+            Top P, between 0 and 1.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRequest.MaxTokens">
+            <summary>
+            Maximum number of tokens to generate, between 1 and 16384.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRequest.GenerationModel">
+            <summary>
+            Generation model and tag; default is llama3.1:latest.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRequest.GenerationProvider">
+            <summary>
+            Generation provider.  Value values are: ollama.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRequest.OllamaHostname">
+            <summary>
+            Ollama hostname.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRequest.OllamaPort">
+            <summary>
+            Ollama TCP port.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRequest.VectorDatabaseHostname">
+            <summary>
+            Vector database hostname.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRequest.VectorDatabasePort">
+            <summary>
+            Vector database port.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRequest.VectorDatabaseName">
+            <summary>
+            Vector database name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRequest.VectorDatabaseUser">
+            <summary>
+            Vector database user.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRequest.VectorDatabasePassword">
+            <summary>
+            Vector database password.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRequest.Stream">
             <summary>
             Streaming.
             </summary>
         </member>
-        <member name="P:View.Sdk.Assistant.AssistantRagRequest.ContextSort">
+        <member name="P:View.Sdk.Assistant.AssistantRequest.ContextSort">
             <summary>
             Enable or disable contextual sorting.
             </summary>
         </member>
-        <member name="P:View.Sdk.Assistant.AssistantRagRequest.ContextScope">
+        <member name="P:View.Sdk.Assistant.AssistantRequest.ContextScope">
             <summary>
             Context scope; number of neighboring data elements to retrieve.  Must be between 1 and 16.
             </summary>
         </member>
-        <member name="P:View.Sdk.Assistant.AssistantRagRequest.Rerank">
+        <member name="P:View.Sdk.Assistant.AssistantRequest.Rerank">
             <summary>
             Enable or disable re-ranking of chunks or documents.
             </summary>
         </member>
-        <member name="P:View.Sdk.Assistant.AssistantRagRequest.RerankTopK">
+        <member name="P:View.Sdk.Assistant.AssistantRequest.RerankTopK">
             <summary>
             Re-ranking of top chunks or documents.  Must be between 1 and 16.
             </summary>
         </member>
-        <member name="M:View.Sdk.Assistant.AssistantRagRequest.#ctor">
+        <member name="M:View.Sdk.Assistant.AssistantRequest.#ctor">
             <summary>
             Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Assistant.ChatMessage">
+            <summary>
+            Chat message for assistant interactions.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ChatMessage.Role">
+            <summary>
+            Role of the message sender (e.g., "user", "assistant", "system").
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ChatMessage.Content">
+            <summary>
+            Content of the message.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ChatMessage.CreatedUTC">
+            <summary>
+            Creation timestamp in UTC.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ChatMessage.Timestamp">
+            <summary>
+            Creation timestamp.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ChatMessage.Metadata">
+            <summary>
+            Metadata associated with the chat messages.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Assistant.ChatMessage.#ctor">
+            <summary>
+            Instantiate the object.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Assistant.ChatMessage.#ctor(System.String,System.String)">
+            <summary>
+            Instantiate the object.
+            </summary>
+            <param name="role">Role of the message sender.</param>
+            <param name="content">Content of the message.</param>
+        </member>
+        <member name="T:View.Sdk.Assistant.ChatThread">
+            <summary>
+            Chat thread for assistant interactions.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ChatThread.GUID">
+            <summary>
+            Unique identifier for the chat thread.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ChatThread.Title">
+            <summary>
+            Title of the chat thread.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ChatThread.Description">
+            <summary>
+            Description of the chat thread.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ChatThread.MessageCount">
+            <summary>
+            Number of messages in the thread.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ChatThread.Messages">
+            <summary>
+            Messages in the thread.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ChatThread.CreatedUTC">
+            <summary>
+            Creation timestamp in UTC.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ChatThread.LastModifiedUTC">
+            <summary>
+            Last modified timestamp in UTC.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ChatThread.AssistantConfigGUID">
+            <summary>
+            Assistant configuration GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ChatThread.Metadata">
+            <summary>
+            Metadata associated with the chat thread.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Assistant.ChatThread.#ctor">
+            <summary>
+            Instantiate the object.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Assistant.ChatThread.#ctor(System.String,System.String,System.Guid)">
+            <summary>
+            Instantiate the object.
+            </summary>
+            <param name="title">Title of the chat thread.</param>
+            <param name="description">Description of the chat thread.</param>
+            <param name="assistantConfigGuid">Assistant configuration GUID.</param>
+        </member>
+        <member name="T:View.Sdk.Assistant.ChatThreadsResponse">
+            <summary>
+            Response containing a list of chat threads.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ChatThreadsResponse.ChatThreads">
+            <summary>
+            List of chat threads.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Assistant.ChatThreadsResponse.#ctor">
+            <summary>
+            Instantiate the object.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Assistant.Implementations.ChatMethods">
+            <summary>
+            Assistant chat methods implementation.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Assistant.Implementations.ChatMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Assistant chat methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Assistant.Implementations.ChatMethods.ProcessConfigChat(System.Guid,View.Sdk.Assistant.AssistantRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Assistant.Implementations.ChatMethods.ProcessRagMessage(View.Sdk.Assistant.AssistantRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Assistant.Implementations.ChatMethods.ProcessChatOnlyQuestion(View.Sdk.Assistant.AssistantRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Assistant.Implementations.ChatMethods.ProcessChatOnlyMessage(View.Sdk.Assistant.AssistantRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Assistant.Implementations.ChatMethods.ProcessChatOnlyMessageOpenAI(View.Sdk.Assistant.AssistantRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Assistant.Implementations.ChatThreadMethods">
+            <summary>
+            Assistant chat thread methods implementation.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Assistant.Implementations.ChatThreadMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Assistant chat thread methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Assistant.Implementations.ChatThreadMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Assistant.Implementations.ChatThreadMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Assistant.Implementations.ChatThreadMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Assistant.Implementations.ChatThreadMethods.Create(View.Sdk.Assistant.ChatThread,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Assistant.Implementations.ChatThreadMethods.Append(System.Guid,View.Sdk.Assistant.ChatMessage,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Assistant.Implementations.ChatThreadMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Assistant.Implementations.ConfigMethods">
+            <summary>
+            Assistant configuration methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Assistant.Implementations.ConfigMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Assistant configuration methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Assistant.Implementations.ConfigMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Assistant.Implementations.ConfigMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Assistant.Implementations.ConfigMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Assistant.Implementations.ConfigMethods.CreateRag(View.Sdk.Assistant.AssistantConfig,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Assistant.Implementations.ConfigMethods.CreateChat(View.Sdk.Assistant.AssistantConfig,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Assistant.Implementations.ConfigMethods.Update(View.Sdk.Assistant.AssistantConfig,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Assistant.Implementations.ConfigMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Assistant.Implementations.ModelMethods">
+            <summary>
+            Assistant model methods implementation.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Assistant.Implementations.ModelMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Assistant model methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Assistant.Implementations.ModelMethods.RetrieveMany(View.Sdk.Assistant.ModelRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Assistant.Implementations.ModelMethods.Retrieve(View.Sdk.Assistant.ModelRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Assistant.Implementations.ModelMethods.Delete(View.Sdk.Assistant.ModelRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Assistant.Implementations.ModelMethods.PreLoad(View.Sdk.Assistant.ModelRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Assistant.Implementations.ModelMethods.Unload(View.Sdk.Assistant.ModelRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Assistant.Interfaces.IChatMethods">
+            <summary>
+            Interface for assistant chat methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Assistant.Interfaces.IChatMethods.ProcessConfigChat(System.Guid,View.Sdk.Assistant.AssistantRequest,System.Threading.CancellationToken)">
+            <summary>
+            Process a chat request with a specific assistant configuration.
+            </summary>
+            <param name="configGuid">Configuration GUID.</param>
+            <param name="request">Chat request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumerable of tokens.</returns>
+        </member>
+        <member name="M:View.Sdk.Assistant.Interfaces.IChatMethods.ProcessRagMessage(View.Sdk.Assistant.AssistantRequest,System.Threading.CancellationToken)">
+            <summary>
+            Process a RAG message request.
+            </summary>
+            <param name="request">RAG message request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumerable of tokens.</returns>
+        </member>
+        <member name="M:View.Sdk.Assistant.Interfaces.IChatMethods.ProcessChatOnlyQuestion(View.Sdk.Assistant.AssistantRequest,System.Threading.CancellationToken)">
+            <summary>
+            Process a chat-only question request.
+            </summary>
+            <param name="request">Chat-only question request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumerable of tokens.</returns>
+        </member>
+        <member name="M:View.Sdk.Assistant.Interfaces.IChatMethods.ProcessChatOnlyMessage(View.Sdk.Assistant.AssistantRequest,System.Threading.CancellationToken)">
+            <summary>
+            Process a chat-only message request.
+            </summary>
+            <param name="request">Chat-only message request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumerable of tokens.</returns>
+        </member>
+        <member name="M:View.Sdk.Assistant.Interfaces.IChatMethods.ProcessChatOnlyMessageOpenAI(View.Sdk.Assistant.AssistantRequest,System.Threading.CancellationToken)">
+            <summary>
+            Process a chat-only message request with OpenAI.
+            </summary>
+            <param name="request">Chat-only message request for OpenAI.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumerable of tokens.</returns>
+        </member>
+        <member name="T:View.Sdk.Assistant.Interfaces.IChatThreadMethods">
+            <summary>
+            Interface for assistant chat thread methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Assistant.Interfaces.IChatThreadMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Retrieve chat threads.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>List of chat threads.</returns>
+        </member>
+        <member name="M:View.Sdk.Assistant.Interfaces.IChatThreadMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve a chat thread.
+            </summary>
+            <param name="threadGuid">Thread GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Chat thread.</returns>
+        </member>
+        <member name="M:View.Sdk.Assistant.Interfaces.IChatThreadMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a chat thread exists.
+            </summary>
+            <param name="threadGuid">Thread GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Assistant.Interfaces.IChatThreadMethods.Create(View.Sdk.Assistant.ChatThread,System.Threading.CancellationToken)">
+            <summary>
+            Create a chat thread.
+            </summary>
+            <param name="chatThread">Chat thread to create.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Created chat thread.</returns>
+        </member>
+        <member name="M:View.Sdk.Assistant.Interfaces.IChatThreadMethods.Append(System.Guid,View.Sdk.Assistant.ChatMessage,System.Threading.CancellationToken)">
+            <summary>
+            Append a message to a chat thread.
+            </summary>
+            <param name="threadGuid">Thread GUID.</param>
+            <param name="message">Message to append.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Updated chat thread.</returns>
+        </member>
+        <member name="M:View.Sdk.Assistant.Interfaces.IChatThreadMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a chat thread.
+            </summary>
+            <param name="threadGuid">Thread GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if deleted.</returns>
+        </member>
+        <member name="T:View.Sdk.Assistant.Interfaces.IConfigMethods">
+            <summary>
+            Interface for assistant configuration methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Assistant.Interfaces.IConfigMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Retrieve assistant configurations.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>List of assistant configurations.</returns>
+        </member>
+        <member name="M:View.Sdk.Assistant.Interfaces.IConfigMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve an assistant configuration.
+            </summary>
+            <param name="configGuid">Configuration GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Assistant configuration.</returns>
+        </member>
+        <member name="M:View.Sdk.Assistant.Interfaces.IConfigMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if an assistant configuration exists.
+            </summary>
+            <param name="configGuid">Configuration GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Assistant.Interfaces.IConfigMethods.CreateRag(View.Sdk.Assistant.AssistantConfig,System.Threading.CancellationToken)">
+            <summary>
+            Create a RAG assistant configuration.
+            </summary>
+            <param name="config">Assistant configuration.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Created assistant configuration.</returns>
+        </member>
+        <member name="M:View.Sdk.Assistant.Interfaces.IConfigMethods.CreateChat(View.Sdk.Assistant.AssistantConfig,System.Threading.CancellationToken)">
+            <summary>
+            Create a chat-only assistant configuration.
+            </summary>
+            <param name="config">Assistant configuration.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Created assistant configuration.</returns>
+        </member>
+        <member name="M:View.Sdk.Assistant.Interfaces.IConfigMethods.Update(View.Sdk.Assistant.AssistantConfig,System.Threading.CancellationToken)">
+            <summary>
+            Update an assistant configuration.
+            </summary>
+            <param name="config">Assistant configuration.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Updated assistant configuration.</returns>
+        </member>
+        <member name="M:View.Sdk.Assistant.Interfaces.IConfigMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete an assistant configuration.
+            </summary>
+            <param name="configGuid">Configuration GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if deleted successfully.</returns>
+        </member>
+        <member name="T:View.Sdk.Assistant.Interfaces.IModelMethods">
+            <summary>
+            Interface for assistant model methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Assistant.Interfaces.IModelMethods.RetrieveMany(View.Sdk.Assistant.ModelRequest,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve available models.
+            </summary>
+            <param name="request">Model request with Ollama hostname and port.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>List of available models.</returns>
+        </member>
+        <member name="M:View.Sdk.Assistant.Interfaces.IModelMethods.Retrieve(View.Sdk.Assistant.ModelRequest,System.Threading.CancellationToken)">
+            <summary>
+            Pulls (retrieves) a specific model from the Ollama host and streams progress updates.
+            </summary>
+            <param name="request">The model request containing the model name, Ollama hostname, and port information.</param>
+            <param name="token">A cancellation token to cancel the operation.</param>
+            <returns>
+            An asynchronous stream of progress messages from the model pulling operation. 
+            Each item represents a status update from the server, such as download progress.
+            </returns>
+        </member>
+        <member name="M:View.Sdk.Assistant.Interfaces.IModelMethods.Delete(View.Sdk.Assistant.ModelRequest,System.Threading.CancellationToken)">
+            <summary>
+            Delete a specific model.
+            </summary>
+            <param name="request">Model request with model name, Ollama hostname and port.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Model operation response.</returns>
+        </member>
+        <member name="M:View.Sdk.Assistant.Interfaces.IModelMethods.PreLoad(View.Sdk.Assistant.ModelRequest,System.Threading.CancellationToken)">
+            <summary>
+            Preload a specific model.
+            </summary>
+            <param name="request">Model request with model name, Ollama hostname and port.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Model operation response.</returns>
+        </member>
+        <member name="M:View.Sdk.Assistant.Interfaces.IModelMethods.Unload(View.Sdk.Assistant.ModelRequest,System.Threading.CancellationToken)">
+            <summary>
+            Unload a specific model.
+            </summary>
+            <param name="request">Model request with model name, Ollama hostname and port.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Model operation response.</returns>
+        </member>
+        <member name="T:View.Sdk.Assistant.Model">
+            <summary>
+            Model information.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.Model.ModelName">
+            <summary>
+            Model name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.Model.ModelFamily">
+            <summary>
+            Model family.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.Model.ParameterSize">
+            <summary>
+            Parameter size.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Assistant.ModelRequest">
+            <summary>
+            Model request for operations like pull, delete, load, and unload.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ModelRequest.ModelName">
+            <summary>
+            Model name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ModelRequest.OllamaHostname">
+            <summary>
+            Ollama hostname.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ModelRequest.OllamaPort">
+            <summary>
+            Ollama port.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ModelRequest.Unload">
+            <summary>
+            Unload flag for load/unload operations.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Assistant.ModelResponse">
+            <summary>
+            Model operation response.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ModelResponse.Message">
+            <summary>
+            Response message.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ModelResponse.Details">
+            <summary>
+            Response details.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Assistant.ModelResponseDetails">
+            <summary>
+            Model response details.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ModelResponseDetails.Model">
+            <summary>
+            Model name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ModelResponseDetails.CreatedAt">
+            <summary>
+            Created at timestamp.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ModelResponseDetails.Message">
+            <summary>
+            Message information.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ModelResponseDetails.DoneReason">
+            <summary>
+            Done reason.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ModelResponseDetails.Done">
+            <summary>
+            Done flag.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Assistant.ModelResponseMessage">
+            <summary>
+            Model response message.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ModelResponseMessage.Role">
+            <summary>
+            Message role.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ModelResponseMessage.Content">
+            <summary>
+            Message content.
             </summary>
         </member>
         <member name="T:View.Sdk.Assistant.ViewAssistantSdk">
@@ -543,23 +1368,33 @@
             View Assistant SDK.
             </summary>
         </member>
-        <member name="M:View.Sdk.Assistant.ViewAssistantSdk.#ctor(System.String)">
+        <member name="P:View.Sdk.Assistant.ViewAssistantSdk.Config">
+            <summary>
+            Assistant configuration methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ViewAssistantSdk.Chat">
+            <summary>
+            Assistant chat methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ViewAssistantSdk.Thread">
+            <summary>
+            Assistant chat thread methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.ViewAssistantSdk.Model">
+            <summary>
+            Assistant model methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Assistant.ViewAssistantSdk.#ctor(System.Guid,System.String,System.String)">
             <summary>
             Instantiate.
             </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="accessKey">Access key.</param>
             <param name="endpoint">Endpoint URL.</param>
-        </member>
-        <member name="M:View.Sdk.Assistant.ViewAssistantSdk.ProcessRag(View.Sdk.Assistant.AssistantRagRequest,System.Threading.CancellationToken)">
-            <summary>
-            Process a RAG request.
-            </summary>
-            <returns>Enumerable of tokens.</returns>
-        </member>
-        <member name="M:View.Sdk.Assistant.ViewAssistantSdk.ProcessChat(View.Sdk.Assistant.AssistantChatRequest,System.Threading.CancellationToken)">
-            <summary>
-            Process a chat request.
-            </summary>
-            <returns>Enumerable of tokens.</returns>
         </member>
         <member name="T:View.Sdk.AuthenticationResultEnum">
             <summary>
