@@ -9214,6 +9214,22 @@
             <param name="token">Cancellation token.</param>
             <returns>Processor response.</returns>
         </member>
+        <member name="M:View.Sdk.Processor.ViewProcessorSdk.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate processor tasks.
+            </summary>
+            <param name="maxKeys">Maximum number of keys to return.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result containing processor tasks.</returns>
+        </member>
+        <member name="M:View.Sdk.Processor.ViewProcessorSdk.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve a processor task by GUID.
+            </summary>
+            <param name="guid">Processor task GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Processor task.</returns>
+        </member>
         <member name="T:View.Sdk.Processor.ViewTypeDetectorSdk">
             <summary>
             View Type Detector SDK.

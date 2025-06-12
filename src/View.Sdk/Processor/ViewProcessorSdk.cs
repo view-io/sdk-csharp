@@ -1,15 +1,16 @@
 ﻿namespace View.Sdk.Processor
 {
+    using RestWrapper;
     using System;
     using System.Collections.Generic;
     using System.Net;
     using System.Net.Http;
+    using System.Net.Sockets;
+    using System.Reflection.PortableExecutable;
     using System.Threading;
     using System.Threading.Tasks;
-    using RestWrapper;
-    using View.Sdk.Serialization;
     using View.Sdk;
-    using System.Net.Sockets;
+    using View.Sdk.Serialization;
 
     /// <summary>
     /// View Processing Pipeline SDK.
@@ -150,10 +151,152 @@
             }
         }
 
+        /// <summary>
+        /// Enumerate processor tasks.
+        /// </summary>
+        /// <param name="maxKeys">Maximum number of keys to return.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Enumeration result containing processor tasks.</returns>
+        public async Task<EnumerationResult<ProcessorTask>> Enumerate(
+            int maxKeys = 5,
+            CancellationToken token = default)
+        {
+            string url = Endpoint.Replace("/processing", "/processortasks/") + $"?max-keys={maxKeys}";
+
+            try
+            {
+                using (RestRequest req = new RestRequest(url, HttpMethod.Get))
+                {
+                    req.TimeoutMilliseconds = TimeoutMs;
+                    req.ContentType = "application/json";
+                    req.Authorization.BearerToken =AccessKey;
+
+                    if (LogRequests) Log(SeverityEnum.Debug, Header + "request: " + url);
+
+                    using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
+                    {
+                        if (resp != null)
+                        {
+                            if (LogResponses) Log(SeverityEnum.Debug, Header + "response (status " + resp.StatusCode + "):" + Environment.NewLine + resp.DataAsString);
+
+                            if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                            {
+                                Log(SeverityEnum.Debug, Header + "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+
+                                if (!String.IsNullOrEmpty(resp.DataAsString))
+                                {
+                                    try
+                                    {
+                                        EnumerationResult<ProcessorTask> enumResult = Serializer.DeserializeJson<EnumerationResult<ProcessorTask>>(resp.DataAsString);
+                                        return enumResult;
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Log(SeverityEnum.Warn, Header + "unable to deserialize response body: " + ex.Message);
+                                        return null;
+                                    }
+                                }
+                                else
+                                {
+                                    return null;
+                                }
+                            }
+                            else
+                            {
+                                Log(SeverityEnum.Warn, Header + "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                                return null;
+                            }
+                        }
+                        else
+                        {
+                            Log(SeverityEnum.Warn, Header + "no response from " + url);
+                            return null;
+                        }
+                    }
+                }
+            }
+            catch (HttpRequestException hre)
+            {
+                Log(SeverityEnum.Warn, Header + "exception while interacting with " + url + ": " + hre.Message);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Retrieve a processor task by GUID.
+        /// </summary>
+        /// <param name="guid">Processor task GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Processor task.</returns>
+        public async Task<ProcessorTask> Retrieve(
+            Guid guid,
+            CancellationToken token = default)
+        {
+            string url = Endpoint.Replace("/processing", "/processortasks/") + guid.ToString();
+
+            try
+            {
+                using (RestRequest req = new RestRequest(url, HttpMethod.Get))
+                {
+                    req.TimeoutMilliseconds = TimeoutMs;
+                    req.ContentType = "application/json";
+                    req.Authorization.BearerToken = AccessKey;
+
+                    if (LogRequests) Log(SeverityEnum.Debug, Header + "request: " + url);
+
+                    using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
+                    {
+                        if (resp != null)
+                        {
+                            if (LogResponses) Log(SeverityEnum.Debug, Header + "response (status " + resp.StatusCode + "):" + Environment.NewLine + resp.DataAsString);
+
+                            if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                            {
+                                Log(SeverityEnum.Debug, Header + "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+
+                                if (!String.IsNullOrEmpty(resp.DataAsString))
+                                {
+                                    try
+                                    {
+                                        ProcessorTask task = Serializer.DeserializeJson<ProcessorTask>(resp.DataAsString);
+                                        return task;
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Log(SeverityEnum.Warn, Header + "unable to deserialize response body: " + ex.Message);
+                                        return null;
+                                    }
+                                }
+                                else
+                                {
+                                    return null;
+                                }
+                            }
+                            else
+                            {
+                                Log(SeverityEnum.Warn, Header + "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                                return null;
+                            }
+                        }
+                        else
+                        {
+                            Log(SeverityEnum.Warn, Header + "no response from " + url);
+                            return null;
+                        }
+                    }
+                }
+            }
+            catch (HttpRequestException hre)
+            {
+                Log(SeverityEnum.Warn, Header + "exception while interacting with " + url + ": " + hre.Message);
+                return null;
+            }
+        }
+
         #endregion
 
         #region Private-Methods
-         
+
         #endregion
     }
 }
