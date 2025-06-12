@@ -336,25 +336,25 @@ namespace Test.Storage
         private static async Task UploadPart()
         {
             Guid bucketGuid = Inputty.GetGuid("Bucket GUID: ", default(Guid));
-            string objectKey = Inputty.GetString("Object key:", "test-object", false);
+            Guid uploadGuid = Inputty.GetGuid("Upload GUID: ", default(Guid));
             int partNumber = Inputty.GetInteger("Part number:", 1, true, false);
             string data = Inputty.GetString("Data:", "Part data content", false);
-            EnumerateResponse(await _Sdk.MultipartUpload.UploadPart(bucketGuid.ToString(), objectKey, partNumber, data));
+            EnumerateResponse(await _Sdk.MultipartUpload.UploadPart(bucketGuid.ToString(), uploadGuid.ToString(), partNumber, data));
         }
 
         private static async Task CompleteUpload()
         {
             Guid bucketGuid = Inputty.GetGuid("Bucket GUID: ", default(Guid));
-            string objectKey = Inputty.GetString("Object key:", "test-object", false);
+            Guid uploadGuid = Inputty.GetGuid("Upload GUID: ", default(Guid));
             string data = Inputty.GetString("Completion data:", null, false);
-            EnumerateResponse(await _Sdk.MultipartUpload.CompleteUpload(bucketGuid.ToString(), objectKey, data));
+            EnumerateResponse(await _Sdk.MultipartUpload.CompleteUpload(bucketGuid.ToString(), uploadGuid.ToString(), data));
         }
 
         private static async Task RetrieveUpload()
         {
             Guid bucketGuid = Inputty.GetGuid("Bucket GUID: ", default(Guid));
-            string objectKey = Inputty.GetString("Object key:", "test-object", false);
-            EnumerateResponse(await _Sdk.MultipartUpload.Retrieve(bucketGuid.ToString(), objectKey));
+            Guid uploadGuid = Inputty.GetGuid("Upload GUID: ", default(Guid));
+            EnumerateResponse(await _Sdk.MultipartUpload.Retrieve(bucketGuid.ToString(), uploadGuid.ToString()));
         }
 
         private static async Task RetrieveUploads()
@@ -366,25 +366,25 @@ namespace Test.Storage
         private static async Task DeleteUpload()
         {
             Guid bucketGuid = Inputty.GetGuid("Bucket GUID: ", default(Guid));
-            string objectKey = Inputty.GetString("Object key:", "test-object", false);
-            bool result = await _Sdk.MultipartUpload.DeleteUpload(bucketGuid.ToString(), objectKey);
+            Guid uploadGuid = Inputty.GetGuid("Upload GUID: ", default(Guid));
+            bool result = await _Sdk.MultipartUpload.DeleteUpload(bucketGuid.ToString(), uploadGuid.ToString());
             Console.WriteLine($"Delete upload result: {result}");
         }
 
         private static async Task RetrievePart()
         {
             Guid bucketGuid = Inputty.GetGuid("Bucket GUID: ", default(Guid));
-            string objectKey = Inputty.GetString("Object key:", "test-object", false);
+            Guid uploadGuid = Inputty.GetGuid("Upload GUID: ", default(Guid));
             int partNumber = Inputty.GetInteger("Part number:", 1, true, false);
-            EnumerateResponse(await _Sdk.MultipartUpload.RetrievePart(bucketGuid.ToString(), objectKey, partNumber));
+            EnumerateResponse(await _Sdk.MultipartUpload.RetrievePart(bucketGuid.ToString(), uploadGuid.ToString(), partNumber));
         }
 
         private static async Task DeletePart()
         {
             Guid bucketGuid = Inputty.GetGuid("Bucket GUID: ", default(Guid));
-            string objectKey = Inputty.GetString("Object key:", "test-object", false);
+            Guid uploadGuid = Inputty.GetGuid("Upload GUID: ", default(Guid));
             int partNumber = Inputty.GetInteger("Part number:", 1, true, false);
-            bool result = await _Sdk.MultipartUpload.DeletePart(bucketGuid.ToString(), objectKey, partNumber);
+            bool result = await _Sdk.MultipartUpload.DeletePart(bucketGuid.ToString(), uploadGuid.ToString(), partNumber);
             Console.WriteLine($"Delete part result: {result}");
         }
 

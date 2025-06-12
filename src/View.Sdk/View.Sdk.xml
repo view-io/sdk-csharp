@@ -11460,16 +11460,16 @@
             Retrieves the metadata for a specific multipart upload.
             </summary>
             <param name="bucketGuid">The unique identifier of the bucket.</param>
-            <param name="objectKey">The key (name) of the object being uploaded.</param>
+            <param name="uploadGuid">The unique identifier of the multipart upload.</param>
             <param name="token">A token to monitor for cancellation requests.</param>
             <returns>A task that represents the asynchronous operation, returning metadata for the specified multipart upload.</returns>
         </member>
         <member name="M:View.Sdk.Storage.Interfaces.IMultipartUploadMethods.DeleteUpload(System.String,System.String,System.Threading.CancellationToken)">
             <summary>
-            Cancels and deletes a multipart upload for a specified object.
+            Cancels and deletes a multipart upload.
             </summary>
             <param name="bucketGuid">The unique identifier of the bucket.</param>
-            <param name="objectKey">The key (name) of the object being uploaded.</param>
+            <param name="uploadGuid">The unique identifier of the multipart upload.</param>
             <param name="token">A token to monitor for cancellation requests.</param>
             <returns>A task that represents the asynchronous operation, returning true if the deletion was successful.</returns>
         </member>
@@ -11478,7 +11478,7 @@
             Completes the multipart upload by assembling previously uploaded parts.
             </summary>
             <param name="bucketGuid">The unique identifier of the bucket.</param>
-            <param name="objectKey">The key (name) of the object being uploaded.</param>
+            <param name="uploadGuid">The unique identifier of the multipart upload.</param>
             <param name="data">The finalization data or part list used for assembly.</param>
             <param name="token">A token to monitor for cancellation requests.</param>
             <returns>A task that represents the asynchronous operation, returning the metadata of the completed object.</returns>
@@ -11488,7 +11488,7 @@
             Uploads a single part of a multipart upload.
             </summary>
             <param name="bucketGuid">The unique identifier of the bucket.</param>
-            <param name="objectKey">The key (name) of the object being uploaded.</param>
+            <param name="uploadGuid">The unique identifier of the multipart upload.</param>
             <param name="partNumber">The sequence number of the part being uploaded.</param>
             <param name="data">The string data representing the part's content.</param>
             <param name="token">A token to monitor for cancellation requests.</param>
@@ -11499,7 +11499,7 @@
             Retrieves the data for a specific part of a multipart upload.
             </summary>
             <param name="bucketGuid">The unique identifier of the bucket.</param>
-            <param name="objectKey">The key (name) of the object being uploaded.</param>
+            <param name="uploadGuid">The unique identifier of the multipart upload.</param>
             <param name="partNumber">The sequence number of the part to retrieve.</param>
             <param name="token">A token to monitor for cancellation requests.</param>
             <returns>A task that represents the asynchronous operation, returning the string data of the requested part.</returns>
@@ -11509,7 +11509,7 @@
             Deletes a specific part from a multipart upload.
             </summary>
             <param name="bucketGuid">The unique identifier of the bucket.</param>
-            <param name="objectKey">The key (name) of the object being uploaded.</param>
+            <param name="uploadGuid">The unique identifier of the multipart upload.</param>
             <param name="partNumber">The sequence number of the part to delete.</param>
             <param name="token">A token to monitor for cancellation requests.</param>
             <returns>A task that represents the asynchronous operation, returning true if the deletion was successful.</returns>

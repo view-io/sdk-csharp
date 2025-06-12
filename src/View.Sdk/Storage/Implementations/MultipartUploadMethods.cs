@@ -60,32 +60,32 @@ namespace View.Sdk.Storage.Implementations
         }
 
         /// <inheritdoc />
-        public async Task<MultipartUploadMetadata> Retrieve(string bucketGuid, string objectKey, CancellationToken token = default)
+        public async Task<MultipartUploadMetadata> Retrieve(string bucketGuid, string uploadGuid, CancellationToken token = default)
         {
             if (string.IsNullOrEmpty(bucketGuid)) throw new ArgumentNullException(nameof(bucketGuid));
-            if (string.IsNullOrEmpty(objectKey)) throw new ArgumentNullException(nameof(objectKey));
+            if (string.IsNullOrEmpty(uploadGuid)) throw new ArgumentNullException(nameof(uploadGuid));
             
-            string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/buckets/" + bucketGuid + "/uploads/" + objectKey;
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/buckets/" + bucketGuid + "/uploads/" + uploadGuid;
             return await _Sdk.Retrieve<MultipartUploadMetadata>(url, token).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
-        public async Task<bool> DeleteUpload(string bucketGuid, string objectKey, CancellationToken token = default)
+        public async Task<bool> DeleteUpload(string bucketGuid, string uploadGuid, CancellationToken token = default)
         {
             if (string.IsNullOrEmpty(bucketGuid)) throw new ArgumentNullException(nameof(bucketGuid));
-            if (string.IsNullOrEmpty(objectKey)) throw new ArgumentNullException(nameof(objectKey));
+            if (string.IsNullOrEmpty(uploadGuid)) throw new ArgumentNullException(nameof(uploadGuid));
             
-            string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/buckets/" + bucketGuid + "/uploads/" + objectKey;
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/buckets/" + bucketGuid + "/uploads/" + uploadGuid;
             return await _Sdk.Delete(url,token).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
-        public async Task<ObjectMetadata> CompleteUpload(string bucketGuid, string objectKey, string data, CancellationToken token = default)
+        public async Task<ObjectMetadata> CompleteUpload(string bucketGuid, string uploadGuid, string data, CancellationToken token = default)
         {
             if (string.IsNullOrEmpty(bucketGuid)) throw new ArgumentNullException(nameof(bucketGuid));
-            if (string.IsNullOrEmpty(objectKey)) throw new ArgumentNullException(nameof(objectKey));
+            if (string.IsNullOrEmpty(uploadGuid)) throw new ArgumentNullException(nameof(uploadGuid));
             
-            string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/buckets/" + bucketGuid + "/uploads/" + objectKey;
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/buckets/" + bucketGuid + "/uploads/" + uploadGuid;
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Post))
             {
@@ -134,14 +134,13 @@ namespace View.Sdk.Storage.Implementations
         #region Part-Operations
 
         /// <inheritdoc />
-        public async Task<PartMetadata> UploadPart(string bucketGuid, string objectKey, int partNumber, string data, CancellationToken token = default)
+        public async Task<PartMetadata> UploadPart(string bucketGuid, string uploadGuid, int partNumber, string data, CancellationToken token = default)
         {
             if (string.IsNullOrEmpty(bucketGuid)) throw new ArgumentNullException(nameof(bucketGuid));
-            if (string.IsNullOrEmpty(objectKey)) throw new ArgumentNullException(nameof(objectKey));
-            if (partNumber < 1) throw new ArgumentOutOfRangeException(nameof(partNumber));
+            if (string.IsNullOrEmpty(uploadGuid)) throw new ArgumentNullException(nameof(uploadGuid));
             if (string.IsNullOrEmpty(data)) throw new ArgumentNullException(nameof(data));
             
-            string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/buckets/" + bucketGuid + "/uploads/" + objectKey + "/parts?partNumber=" + partNumber;
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/buckets/" + bucketGuid + "/uploads/" + uploadGuid + "/parts?partNumber=" + partNumber;
             using (RestRequest req = new RestRequest(url, HttpMethod.Put))
             {
                 req.TimeoutMilliseconds = _Sdk.TimeoutMs;
@@ -196,12 +195,12 @@ namespace View.Sdk.Storage.Implementations
         }
 
         /// <inheritdoc />
-        public async Task<bool> DeletePart(string bucketGuid, string objectKey, int partNumber, CancellationToken token = default)
+        public async Task<bool> DeletePart(string bucketGuid, string uploadGuid, int partNumber, CancellationToken token = default)
         {
             if (string.IsNullOrEmpty(bucketGuid)) throw new ArgumentNullException(nameof(bucketGuid));
-            if (string.IsNullOrEmpty(objectKey)) throw new ArgumentNullException(nameof(objectKey));
+            if (string.IsNullOrEmpty(uploadGuid)) throw new ArgumentNullException(nameof(uploadGuid));
             
-            string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/buckets/" + bucketGuid + "/uploads/" + objectKey + "?partNumber=" + partNumber;
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/buckets/" + bucketGuid + "/uploads/" + uploadGuid + "?partNumber=" + partNumber;
             return await _Sdk.Delete(url, token).ConfigureAwait(false);
         }
 

@@ -116,7 +116,7 @@ namespace View.Sdk.Storage.Interfaces
         /// <param name="acl">Bucket acl.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Created bucket acl.</returns>
-        public Task<BucketAcl> CreateACL(string bucketGuid, BucketAcl acl, CancellationToken token = default);
+        public Task<List<BucketAclEntry>> CreateACL(string bucketGuid, BucketAcl acl, CancellationToken token = default);
 
         /// <summary>
         /// Delete bucket acl.

@@ -1,8 +1,11 @@
 namespace View.Sdk.Storage.Implementations
 {
+    using RestWrapper;
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Net;
+    using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
     using View.Sdk.Storage.Interfaces;
@@ -59,7 +62,7 @@ namespace View.Sdk.Storage.Implementations
         public async Task<BucketStatistics> RetrieveStatistics(string bucketGuid, CancellationToken token = default)
         {
             if (string.IsNullOrEmpty(bucketGuid)) throw new ArgumentNullException(nameof(bucketGuid));
-            string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/buckets/" + bucketGuid;
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/buckets/" + bucketGuid + "/stats";
             return await _Sdk.Retrieve<BucketStatistics>(url, token).ConfigureAwait(false);
         }
 
@@ -137,13 +140,53 @@ namespace View.Sdk.Storage.Implementations
         }
 
         /// <inheritdoc />
-        public async Task<BucketAcl> CreateACL(string bucketGuid, BucketAcl acl, CancellationToken token = default)
+        public async Task<List<BucketAclEntry>> CreateACL(string bucketGuid, BucketAcl acl, CancellationToken token = default)
         {
             if (string.IsNullOrEmpty(bucketGuid)) throw new ArgumentNullException(nameof(bucketGuid));
             if (acl == null) throw new ArgumentNullException(nameof(acl));
 
             string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/buckets/" + bucketGuid + "?acl";
-            return await _Sdk.Create(url, acl, token).ConfigureAwait(false);
+            using (RestRequest req = new RestRequest(url, HttpMethod.Put))
+            {
+                req.TimeoutMilliseconds = _Sdk.TimeoutMs;
+                req.Authorization.BearerToken = _Sdk.AccessKey;
+                req.ContentType = "application/json";
+                string json = _Sdk.Serializer.SerializeJson(acl, true);
+                if (_Sdk.LogRequests) _Sdk.Log(SeverityEnum.Debug, "request: " + Environment.NewLine + json);
+
+                using (RestResponse resp = await req.SendAsync(_Sdk.Serializer.SerializeJson(acl, true), token).ConfigureAwait(false))
+                {
+                    if (resp != null)
+                    {
+                        if (_Sdk.LogResponses) _Sdk.Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+
+                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                        {
+                            _Sdk.Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            if (!String.IsNullOrEmpty(resp.DataAsString))
+                            {
+                                _Sdk.Log(SeverityEnum.Debug, "deserializing response body");
+                                return _Sdk.Serializer.DeserializeJson<List<BucketAclEntry>>(resp.DataAsString);
+                            }
+                            else
+                            {
+                                _Sdk.Log(SeverityEnum.Debug, "empty response body, returning null");
+                                return null;
+                            }
+                        }
+                        else
+                        {
+                            _Sdk.Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            return null;
+                        }
+                    }
+                    else
+                    {
+                        _Sdk.Log(SeverityEnum.Warn, "no response from " + url);
+                        return null;
+                    }
+                }
+            }
         }
 
         /// <inheritdoc />
