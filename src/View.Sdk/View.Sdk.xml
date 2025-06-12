@@ -6131,6 +6131,14 @@
             <param name="token">Cancellation token.</param>
             <returns>Embeddings response.</returns>
         </member>
+        <member name="M:View.Sdk.Embeddings.ViewEmbeddingsServerSdk.FindByHash(View.Sdk.Embeddings.FindEmbeddingsRequest,System.Threading.CancellationToken)">
+            <summary>
+            Find embeddings by SHA256 hash.
+            </summary>
+            <param name="request">Embeddings request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Find embeddings result containing existing and missing embeddings.</returns>
+        </member>
         <member name="T:View.Sdk.EncryptionKey">
             <summary>
             Encryption key.

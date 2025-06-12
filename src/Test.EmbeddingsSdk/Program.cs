@@ -27,6 +27,7 @@
         private static string _BaseUrlOllama = "http://localhost:11434/";
 
         private static string _ApiKey = null;
+        private static string _AccessKey = "default";
 
         private static string _DefaultModel = null;
         private static string _DefaultLcproxyModel = "all-MiniLM-L6-v2";
@@ -129,6 +130,9 @@
                     case "text":
                         await ProcessText();
                         break;
+                    case "hash":
+                        await FindByHash();
+                        break;
                 }
             }
         }
@@ -144,6 +148,7 @@
             Console.WriteLine("  tasks         Set max parallel tasks (currently " + _Sdk.MaxParallelTasks + ")");
             Console.WriteLine("  cells         Process semantic cells");
             Console.WriteLine("  text          Process from raw text");
+            Console.WriteLine("  hash          Find embeddings by SHA256 hash");
             Console.WriteLine("");
         }
 
@@ -262,6 +267,24 @@
         private static void SdkLogger(SeverityEnum sev, string msg)
         {
             if (!String.IsNullOrEmpty(msg)) Console.WriteLine(sev.ToString() + " " + msg);
+        }
+
+        private static async Task FindByHash()
+        {
+            // Create a ViewEmbeddingsServerSdk instance
+            ViewEmbeddingsServerSdk serverSdk = new ViewEmbeddingsServerSdk(
+                _TenantGUID,
+                _BaseUrl,
+                _AccessKey);
+
+            FindEmbeddingsRequest request = BuildObject<FindEmbeddingsRequest>();
+            EnumerateResponse(await serverSdk.FindByHash(request));
+        }
+
+        private static T BuildObject<T>()
+        {
+            string json = Inputty.GetString("JSON :", null, false);
+            return _Serializer.DeserializeJson<T>(json);
         }
 
 #pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.

@@ -162,64 +162,7 @@
             CancellationToken token = default)
         {
             string url = Endpoint.Replace("/processing", "/processortasks/") + $"?max-keys={maxKeys}";
-
-            try
-            {
-                using (RestRequest req = new RestRequest(url, HttpMethod.Get))
-                {
-                    req.TimeoutMilliseconds = TimeoutMs;
-                    req.ContentType = "application/json";
-                    req.Authorization.BearerToken =AccessKey;
-
-                    if (LogRequests) Log(SeverityEnum.Debug, Header + "request: " + url);
-
-                    using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
-                    {
-                        if (resp != null)
-                        {
-                            if (LogResponses) Log(SeverityEnum.Debug, Header + "response (status " + resp.StatusCode + "):" + Environment.NewLine + resp.DataAsString);
-
-                            if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                            {
-                                Log(SeverityEnum.Debug, Header + "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-
-                                if (!String.IsNullOrEmpty(resp.DataAsString))
-                                {
-                                    try
-                                    {
-                                        EnumerationResult<ProcessorTask> enumResult = Serializer.DeserializeJson<EnumerationResult<ProcessorTask>>(resp.DataAsString);
-                                        return enumResult;
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        Log(SeverityEnum.Warn, Header + "unable to deserialize response body: " + ex.Message);
-                                        return null;
-                                    }
-                                }
-                                else
-                                {
-                                    return null;
-                                }
-                            }
-                            else
-                            {
-                                Log(SeverityEnum.Warn, Header + "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                                return null;
-                            }
-                        }
-                        else
-                        {
-                            Log(SeverityEnum.Warn, Header + "no response from " + url);
-                            return null;
-                        }
-                    }
-                }
-            }
-            catch (HttpRequestException hre)
-            {
-                Log(SeverityEnum.Warn, Header + "exception while interacting with " + url + ": " + hre.Message);
-                return null;
-            }
+            return await Enumerate<ProcessorTask>(url, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -233,64 +176,7 @@
             CancellationToken token = default)
         {
             string url = Endpoint.Replace("/processing", "/processortasks/") + guid.ToString();
-
-            try
-            {
-                using (RestRequest req = new RestRequest(url, HttpMethod.Get))
-                {
-                    req.TimeoutMilliseconds = TimeoutMs;
-                    req.ContentType = "application/json";
-                    req.Authorization.BearerToken = AccessKey;
-
-                    if (LogRequests) Log(SeverityEnum.Debug, Header + "request: " + url);
-
-                    using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
-                    {
-                        if (resp != null)
-                        {
-                            if (LogResponses) Log(SeverityEnum.Debug, Header + "response (status " + resp.StatusCode + "):" + Environment.NewLine + resp.DataAsString);
-
-                            if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                            {
-                                Log(SeverityEnum.Debug, Header + "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-
-                                if (!String.IsNullOrEmpty(resp.DataAsString))
-                                {
-                                    try
-                                    {
-                                        ProcessorTask task = Serializer.DeserializeJson<ProcessorTask>(resp.DataAsString);
-                                        return task;
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        Log(SeverityEnum.Warn, Header + "unable to deserialize response body: " + ex.Message);
-                                        return null;
-                                    }
-                                }
-                                else
-                                {
-                                    return null;
-                                }
-                            }
-                            else
-                            {
-                                Log(SeverityEnum.Warn, Header + "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                                return null;
-                            }
-                        }
-                        else
-                        {
-                            Log(SeverityEnum.Warn, Header + "no response from " + url);
-                            return null;
-                        }
-                    }
-                }
-            }
-            catch (HttpRequestException hre)
-            {
-                Log(SeverityEnum.Warn, Header + "exception while interacting with " + url + ": " + hre.Message);
-                return null;
-            }
+            return await Retrieve<ProcessorTask>(url, token).ConfigureAwait(false);
         }
 
         #endregion

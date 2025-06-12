@@ -76,7 +76,7 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>Embeddings response.</returns>
         public async Task<GenerateEmbeddingsResult> GenerateEmbeddings(
-            GenerateEmbeddingsRequest embedRequest, 
+            GenerateEmbeddingsRequest embedRequest,
             CancellationToken token = default)
         {
             if (embedRequest == null) throw new ArgumentNullException(nameof(embedRequest));
@@ -85,6 +85,21 @@
 
             string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/embeddings";
             return await Post<GenerateEmbeddingsRequest, GenerateEmbeddingsResult>(url, embedRequest, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Find embeddings by SHA256 hash.
+        /// </summary>
+        /// <param name="request">Embeddings request.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Find embeddings result containing existing and missing embeddings.</returns>
+        public async Task<FindEmbeddingsResult> FindByHash(
+            FindEmbeddingsRequest request,
+            CancellationToken token = default)
+        {
+            if (request == null) throw new ArgumentNullException(nameof(EmbeddingsRule));
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/vectorrepositories/" + request.VectorRepositoryGUID + "/find";
+            return await Post<FindEmbeddingsRequest, FindEmbeddingsResult>(url, request, token).ConfigureAwait(false);
         }
 
         #endregion
