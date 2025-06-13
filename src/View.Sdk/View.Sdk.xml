@@ -7079,6 +7079,830 @@
             Local encryption.
             </summary>
         </member>
+        <member name="T:View.Sdk.EnterpriseDesktop.DesktopGroup">
+            <summary>
+            Desktop group.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopGroup.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopGroup.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopGroup.Description">
+            <summary>
+            Description.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopGroup.Assistants">
+            <summary>
+            Assistants.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopGroup.Buckets">
+            <summary>
+            Buckets.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopGroup.Printers">
+            <summary>
+            Printers.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopGroup.Groups">
+            <summary>
+            Groups.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopGroup.CreatedUTC">
+            <summary>
+            Created UTC timestamp.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopGroup.Detail">
+            <summary>
+            Error detail.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.DesktopGroup.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.EnterpriseDesktop.DesktopPrinter">
+            <summary>
+            Desktop printer.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopPrinter.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopPrinter.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopPrinter.Description">
+            <summary>
+            Description.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopPrinter.Async">
+            <summary>
+            Async.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopPrinter.Tenant">
+            <summary>
+            Tenant.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopPrinter.Collection">
+            <summary>
+            Collection.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopPrinter.Bucket">
+            <summary>
+            Bucket.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopPrinter.MetadataRule">
+            <summary>
+            Metadata rule.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopPrinter.EmbeddingsRule">
+            <summary>
+            Embeddings rule.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopPrinter.VectorRepository">
+            <summary>
+            Vector repository.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopPrinter.GraphRepository">
+            <summary>
+            Graph repository.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopPrinter.CreatedUTC">
+            <summary>
+            Created UTC timestamp.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopPrinter.Detail">
+            <summary>
+            Error detail.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.DesktopPrinter.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.EnterpriseDesktop.Tenant">
+            <summary>
+            Tenant information.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.Tenant.GUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.Tenant.Name">
+            <summary>
+            Tenant name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.Tenant.Region">
+            <summary>
+            Tenant region.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.Tenant.S3BaseDomain">
+            <summary>
+            S3 base domain.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.Tenant.DefaultPoolGUID">
+            <summary>
+            Default pool GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.Tenant.Active">
+            <summary>
+            Is tenant active.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.EnterpriseDesktop.DesktopCollection">
+            <summary>
+            Represents a desktop collection.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopCollection.GUID">
+            <summary>
+            Collection GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopCollection.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopCollection.Name">
+            <summary>
+            Collection name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopCollection.AllowOverwrites">
+            <summary>
+            Whether overwrites are allowed.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopCollection.AdditionalData">
+            <summary>
+            Additional data or notes.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.EnterpriseDesktop.DesktopMetadataRule">
+            <summary>
+            Represents a desktop metadata rule.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopMetadataRule.GUID">
+            <summary>
+            Metadata rule GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopMetadataRule.TenantGUID">
+            <summary>Tenant GUID.</summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopMetadataRule.BucketGUID">
+            <summary>
+            Bucket GUID
+            .</summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopMetadataRule.OwnerGUID">
+            <summary>
+            Owner GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopMetadataRule.Name">
+            <summary>
+            Rule name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopMetadataRule.ContentType">
+            <summary>
+            Accepted content type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopMetadataRule.MaxContentLength">
+            <summary>
+            Maximum allowed content length in bytes.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopMetadataRule.DataFlowEndpoint">
+            <summary>
+            Data flow endpoint URL.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopMetadataRule.TypeDetectorEndpoint">
+            <summary>
+            Type detector endpoint URL.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopMetadataRule.SemanticCellEndpoint">
+            <summary>
+            Semantic cell service endpoint URL.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopMetadataRule.MaxChunkContentLength">
+            <summary>
+            Maximum chunk content length.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopMetadataRule.ShiftSize">
+            <summary>
+            Chunk shift size.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopMetadataRule.UdrEndpoint">
+            <summary>
+            UDR endpoint URL.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopMetadataRule.TopTerms">
+            <summary>
+            Top terms limit.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopMetadataRule.CaseInsensitive">
+            <summary>
+            Case insensitive parsing flag.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopMetadataRule.IncludeFlattened">
+            <summary>
+            Include flattened data flag.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopMetadataRule.DataCatalogEndpoint">
+            <summary>
+            Data catalog endpoint URL.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopMetadataRule.DataCatalogType">
+            <summary>
+            Type of the data catalog (e.g., Lexi).
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopMetadataRule.DataCatalogCollection">
+            <summary>
+            Data catalog collection GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopMetadataRule.GraphRepositoryGUID">
+            <summary>
+            Graph repository GUID.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.EnterpriseDesktop.DesktopEmbeddingsRule">
+            <summary>
+            Represents a desktop embeddings rule.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopEmbeddingsRule.GUID">
+            <summary>
+            Embeddings rule GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopEmbeddingsRule.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopEmbeddingsRule.BucketGUID">
+            <summary>
+            Bucket GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopEmbeddingsRule.OwnerGUID">
+            <summary>
+            Owner GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopEmbeddingsRule.Name">
+            <summary>
+            Rule name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopEmbeddingsRule.ContentType">
+            <summary>
+            Accepted content type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopEmbeddingsRule.GraphRepositoryGUID">
+            <summary>
+            Graph repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopEmbeddingsRule.VectorRepositoryGUID">
+            <summary>
+            Vector repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopEmbeddingsRule.DataFlowEndpoint">
+            <summary>
+            Data flow endpoint URL.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopEmbeddingsRule.EmbeddingsGenerator">
+            <summary>
+            Embeddings generator name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopEmbeddingsRule.GeneratorUrl">
+            <summary>
+            Generator service URL.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopEmbeddingsRule.GeneratorApiKey">
+            <summary>
+            Generator API key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopEmbeddingsRule.VectorStoreUrl">
+            <summary>
+            Vector store service URL.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopEmbeddingsRule.MaxContentLength">
+            <summary>
+            Maximum allowed content length.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.EnterpriseDesktop.DesktopVectorRepository">
+            <summary>
+            Represents a desktop vector repository.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopVectorRepository.GUID">
+            <summary>
+            Repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopVectorRepository.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopVectorRepository.Name">
+            <summary>
+            Repository name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopVectorRepository.RepositoryType">
+            <summary>
+            Type of the repository (e.g., Pgvector).
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopVectorRepository.Model">
+            <summary>
+            Embedding model used.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopVectorRepository.Dimensionality">
+            <summary>
+            Vector dimensionality.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopVectorRepository.DatabaseHostname">
+            <summary>
+            Database hostname.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopVectorRepository.DatabaseName">
+            <summary>
+            Database name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopVectorRepository.DatabaseTable">
+            <summary>
+            Table in the vector database.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopVectorRepository.DatabasePort">
+            <summary>
+            Database port number.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopVectorRepository.DatabaseUser">
+            <summary>
+            Database user.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopVectorRepository.DatabasePassword">
+            <summary>
+            Database password.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.EnterpriseDesktop.DesktopGraphRepository">
+            <summary>
+            Represents a desktop graph repository.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopGraphRepository.GUID">
+            <summary>
+            Graph repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopGraphRepository.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopGraphRepository.Name">
+            <summary>
+            Repository name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopGraphRepository.RepositoryType">
+            <summary>
+            Type of the repository (e.g., LiteGraph).
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopGraphRepository.EndpointUrl">
+            <summary>
+            Endpoint URL of the graph service.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopGraphRepository.ApiKey">
+            <summary>
+            API key for the graph service.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopGraphRepository.GraphIdentifier">
+            <summary>
+            Identifier of the graph.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.EnterpriseDesktop.DesktopUser">
+            <summary>
+            Desktop user.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopUser.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopUser.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopUser.Email">
+            <summary>
+            Email address.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopUser.Description">
+            <summary>
+            Description.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopUser.Assistants">
+            <summary>
+            Assistants.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopUser.Buckets">
+            <summary>
+            Buckets.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopUser.Printers">
+            <summary>
+            Printers.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopUser.Groups">
+            <summary>
+            Groups.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopUser.CreatedUTC">
+            <summary>
+            Created UTC timestamp.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.DesktopUser.Detail">
+            <summary>
+            Error detail.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.DesktopUser.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.EnterpriseDesktop.NameGuidPair">
+            <summary>
+            Name-GUID pair.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.NameGuidPair.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.NameGuidPair.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.EnterpriseDesktop.Implementations.DesktopGroupMethods">
+            <summary>
+            Desktop group methods implementation.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Implementations.DesktopGroupMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Desktop group methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Implementations.DesktopGroupMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Implementations.DesktopGroupMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Implementations.DesktopGroupMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Implementations.DesktopGroupMethods.Create(View.Sdk.EnterpriseDesktop.DesktopGroup,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Implementations.DesktopGroupMethods.Update(View.Sdk.EnterpriseDesktop.DesktopGroup,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Implementations.DesktopGroupMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.EnterpriseDesktop.Implementations.DesktopPrinterMethods">
+            <summary>
+            Desktop printer methods implementation.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Implementations.DesktopPrinterMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Desktop printer methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Implementations.DesktopPrinterMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Implementations.DesktopPrinterMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Implementations.DesktopPrinterMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Implementations.DesktopPrinterMethods.Create(View.Sdk.EnterpriseDesktop.DesktopPrinter,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Implementations.DesktopPrinterMethods.Update(View.Sdk.EnterpriseDesktop.DesktopPrinter,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Implementations.DesktopPrinterMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.EnterpriseDesktop.Implementations.DesktopUserMethods">
+            <summary>
+            Desktop user methods implementation.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Implementations.DesktopUserMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Desktop user methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Implementations.DesktopUserMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Implementations.DesktopUserMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Implementations.DesktopUserMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Implementations.DesktopUserMethods.Create(View.Sdk.EnterpriseDesktop.DesktopUser,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Implementations.DesktopUserMethods.Update(View.Sdk.EnterpriseDesktop.DesktopUser,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Implementations.DesktopUserMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.EnterpriseDesktop.Interfaces.IDesktopGroupMethods">
+            <summary>
+            Interface for desktop group methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Interfaces.IDesktopGroupMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Retrieve many desktop groups.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>List of desktop groups.</returns>
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Interfaces.IDesktopGroupMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve a desktop group.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Desktop group.</returns>
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Interfaces.IDesktopGroupMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a desktop group exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Interfaces.IDesktopGroupMethods.Create(View.Sdk.EnterpriseDesktop.DesktopGroup,System.Threading.CancellationToken)">
+            <summary>
+            Create a desktop group.
+            </summary>
+            <param name="group">Desktop group.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Created desktop group.</returns>
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Interfaces.IDesktopGroupMethods.Update(View.Sdk.EnterpriseDesktop.DesktopGroup,System.Threading.CancellationToken)">
+            <summary>
+            Update a desktop group.
+            </summary>
+            <param name="group">Desktop group.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Updated desktop group.</returns>
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Interfaces.IDesktopGroupMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a desktop group.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>>True if deleted.</returns>
+        </member>
+        <member name="T:View.Sdk.EnterpriseDesktop.Interfaces.IDesktopPrinterMethods">
+            <summary>
+            Interface for desktop printer methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Interfaces.IDesktopPrinterMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Retrieve many desktop printers.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>List of desktop printers.</returns>
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Interfaces.IDesktopPrinterMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve a desktop printer.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Desktop printer.</returns>
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Interfaces.IDesktopPrinterMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a desktop printer exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Interfaces.IDesktopPrinterMethods.Create(View.Sdk.EnterpriseDesktop.DesktopPrinter,System.Threading.CancellationToken)">
+            <summary>
+            Create a desktop printer.
+            </summary>
+            <param name="printer">Desktop printer.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Created desktop printer.</returns>
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Interfaces.IDesktopPrinterMethods.Update(View.Sdk.EnterpriseDesktop.DesktopPrinter,System.Threading.CancellationToken)">
+            <summary>
+            Update a desktop printer.
+            </summary>
+            <param name="printer">Desktop printer.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Updated desktop printer.</returns>
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Interfaces.IDesktopPrinterMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a desktop printer.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>>True if deleted.</returns>
+        </member>
+        <member name="T:View.Sdk.EnterpriseDesktop.Interfaces.IDesktopUserMethods">
+            <summary>
+            Interface for desktop user methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Interfaces.IDesktopUserMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Retrieve many desktop users.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>List of desktop users.</returns>
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Interfaces.IDesktopUserMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve a desktop user.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Desktop user.</returns>
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Interfaces.IDesktopUserMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a desktop user exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Interfaces.IDesktopUserMethods.Create(View.Sdk.EnterpriseDesktop.DesktopUser,System.Threading.CancellationToken)">
+            <summary>
+            Create a desktop user.
+            </summary>
+            <param name="user">Desktop user.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Created desktop user.</returns>
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Interfaces.IDesktopUserMethods.Update(View.Sdk.EnterpriseDesktop.DesktopUser,System.Threading.CancellationToken)">
+            <summary>
+            Update a desktop user.
+            </summary>
+            <param name="user">Desktop user.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Updated desktop user.</returns>
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.Interfaces.IDesktopUserMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a desktop user.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>>True if deleted.</returns>
+        </member>
+        <member name="T:View.Sdk.EnterpriseDesktop.ViewEnterpriseDesktopSdk">
+            <summary>
+            View Enterprise Desktop SDK.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.ViewEnterpriseDesktopSdk.DesktopUser">
+            <summary>
+            Desktop user methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.ViewEnterpriseDesktopSdk.DesktopGroup">
+            <summary>
+            Desktop group methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.EnterpriseDesktop.ViewEnterpriseDesktopSdk.DesktopPrinter">
+            <summary>
+            Desktop printer methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.EnterpriseDesktop.ViewEnterpriseDesktopSdk.#ctor(System.Guid,System.String,System.String)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="accessKey">Access key.</param>
+            <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/.</param>
+        </member>
         <member name="T:View.Sdk.EnumerationItem">
             <summary>
             Enumeration item.
