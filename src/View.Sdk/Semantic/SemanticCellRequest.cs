@@ -25,11 +25,6 @@
         public int MaxChunkContentLength { get; set; }
 
         /// <summary>
-        /// Gets or sets the size of the shift used when creating chunks.
-        /// </summary>
-        public int ShiftSize { get; set; }
-
-        /// <summary>
         /// Data.
         /// When serializing, convert to a base64-encoded string.
         /// </summary>
