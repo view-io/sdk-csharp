@@ -15,6 +15,16 @@
         public DocumentTypeEnum DocumentType { get; set; } = DocumentTypeEnum.Unknown;
 
         /// <summary>
+        /// Gets or sets the minimum length of chunk content.
+        /// </summary>
+        public int MinChunkContentLength { get; set; }
+
+        /// <summary>
+        /// Gets or sets the maximum length of chunk content.
+        /// </summary>
+        public int MaxChunkContentLength { get; set; }
+
+        /// <summary>
         /// Data.
         /// When serializing, convert to a base64-encoded string.
         /// </summary>

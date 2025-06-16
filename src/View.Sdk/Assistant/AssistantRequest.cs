@@ -10,9 +10,14 @@
     /// <summary>
     /// View Assistant RAG request.
     /// </summary>
-    public class AssistantRagRequest
+    public class AssistantRequest
     {
         #region Public-Members
+
+        /// <summary>
+        /// Collection of chat messages exchanged between the user, assistant, or system.
+        /// </summary>
+        public List<ChatMessage> Messages { get; set; }
 
         /// <summary>
         /// Prompt prefix.
@@ -341,7 +346,7 @@
         /// <summary>
         /// Instantiate.
         /// </summary>
-        public AssistantRagRequest()
+        public AssistantRequest()
         {
 
         }

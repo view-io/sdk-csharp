@@ -53,7 +53,16 @@
 
                     case "process":
                         ProcessDocument().Wait();
-                        break;                }
+                        break;
+                        
+                    case "enumerate":
+                        EnumerateProcessorTasks().Wait();
+                        break;
+                        
+                    case "retrieve":
+                        RetrieveProcessorTask().Wait();
+                        break;
+                }
             }
         }
 
@@ -67,6 +76,8 @@
             Console.WriteLine("  conn          Test connectivity");
             Console.WriteLine("");
             Console.WriteLine("  process       Process a document request");
+            Console.WriteLine("  enumerate     Enumerate processor tasks");
+            Console.WriteLine("  retrieve      Retrieve a processor task by GUID");
             Console.WriteLine("");
         }
 
@@ -112,6 +123,18 @@
                 req.Object);
 
             EnumerateResponse(resp);
+        }
+
+        private static async Task EnumerateProcessorTasks()
+        {
+            int maxKeys = Inputty.GetInteger("Max keys to return:", 3, true, true);          
+            EnumerateResponse(await _Sdk.Enumerate(maxKeys));
+        }
+
+        private static async Task RetrieveProcessorTask()
+        {
+            Guid taskGuid = Inputty.GetGuid("Processor task GUID:", default(Guid));
+            EnumerateResponse(await _Sdk.Retrieve(taskGuid));
         }
 
 #pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.

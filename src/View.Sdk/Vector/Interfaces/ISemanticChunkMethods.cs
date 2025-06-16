@@ -40,5 +40,21 @@ namespace View.Sdk.Vector.Interfaces
             Guid cellGuid,
             Guid chunkGuid,
             CancellationToken token = default);
+
+        /// <summary>
+        /// Check if a specific semantic chunk exists for a given document.
+        /// </summary>
+        /// <param name="repoGuid">Vector repository GUID.</param>
+        /// <param name="docGuid">Document GUID.</param>
+        /// <param name="cellGuid">Cell GUID.</param>
+        /// <param name="chunkGuid">Chunk GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>True if the semantic chunk exists.</returns>
+        Task<bool> Exists(
+            Guid repoGuid,
+            Guid docGuid,
+            Guid cellGuid,
+            Guid chunkGuid,
+            CancellationToken token = default);
     }
 }

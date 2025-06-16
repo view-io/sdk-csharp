@@ -1,15 +1,16 @@
 ﻿namespace View.Sdk.Processor
 {
+    using RestWrapper;
     using System;
     using System.Collections.Generic;
     using System.Net;
     using System.Net.Http;
+    using System.Net.Sockets;
+    using System.Reflection.PortableExecutable;
     using System.Threading;
     using System.Threading.Tasks;
-    using RestWrapper;
-    using View.Sdk.Serialization;
     using View.Sdk;
-    using System.Net.Sockets;
+    using View.Sdk.Serialization;
 
     /// <summary>
     /// View Processing Pipeline SDK.
@@ -150,10 +151,38 @@
             }
         }
 
+        /// <summary>
+        /// Enumerate processor tasks.
+        /// </summary>
+        /// <param name="maxKeys">Maximum number of keys to return.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Enumeration result containing processor tasks.</returns>
+        public async Task<EnumerationResult<ProcessorTask>> Enumerate(
+            int maxKeys = 5,
+            CancellationToken token = default)
+        {
+            string url = Endpoint.Replace("/processing", "/processortasks/") + $"?max-keys={maxKeys}";
+            return await Enumerate<ProcessorTask>(url, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Retrieve a processor task by GUID.
+        /// </summary>
+        /// <param name="guid">Processor task GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Processor task.</returns>
+        public async Task<ProcessorTask> Retrieve(
+            Guid guid,
+            CancellationToken token = default)
+        {
+            string url = Endpoint.Replace("/processing", "/processortasks/") + guid.ToString();
+            return await Retrieve<ProcessorTask>(url, token).ConfigureAwait(false);
+        }
+
         #endregion
 
         #region Private-Methods
-         
+
         #endregion
     }
 }

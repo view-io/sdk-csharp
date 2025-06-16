@@ -62,6 +62,18 @@ namespace View.Sdk.Vector.Implementations
             return await _Sdk.Retrieve<SemanticChunk>(url, token).ConfigureAwait(false);
         }
 
+        /// <inheritdoc />
+        public async Task<bool> Exists(
+            Guid repoGuid,
+            Guid docGuid,
+            Guid cellGuid,
+            Guid chunkGuid,
+            CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/vectorrepositories/" + repoGuid + "/documents/" + docGuid + "/cells/" + cellGuid + "/chunks/" + chunkGuid;
+            return await _Sdk.Exists(url, token).ConfigureAwait(false);
+        }
+
         #endregion
 
         #region Private-Methods

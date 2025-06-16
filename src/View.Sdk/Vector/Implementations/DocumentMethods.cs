@@ -79,6 +79,16 @@ namespace View.Sdk.Vector.Implementations
             return await _Sdk.Delete<VectorDeleteRequest>(url, deleteRequest, token).ConfigureAwait(false);
         }
 
+        /// <inheritdoc />
+        public async Task<EmbeddingsDocument> Retrieve(
+            Guid repoGuid,
+            Guid docGuid,
+            CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/vectorrepositories/" + repoGuid + "/documents/" + docGuid;
+            return await _Sdk.Retrieve<EmbeddingsDocument>(url, token).ConfigureAwait(false);
+        }
+
         #endregion
 
         #region Private-Methods
