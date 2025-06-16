@@ -5594,6 +5594,100 @@
             Instantiate the object.
             </summary>
         </member>
+        <member name="T:View.Sdk.Director.DirectorEmbeddingsRequest">
+            <summary>
+            Director embeddings request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Director.DirectorEmbeddingsRequest.Model">
+            <summary>
+            Model to use for generating embeddings.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Director.DirectorEmbeddingsRequest.ApiKey">
+            <summary>
+            API key for the embeddings service.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Director.DirectorEmbeddingsRequest.Contents">
+            <summary>
+            Contents to generate embeddings for.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Director.DirectorEmbeddingsRequest.#ctor">
+            <summary>
+            Director embeddings request.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Director.DirectorEmbeddingsResult">
+            <summary>
+            Director embeddings result.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Director.DirectorEmbeddingsResult.Success">
+            <summary>
+            Boolean indicating whether or not the operation was successful.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Director.DirectorEmbeddingsResult.StatusCode">
+            <summary>
+            HTTP status code.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Director.DirectorEmbeddingsResult.Error">
+            <summary>
+            Error response.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Director.DirectorEmbeddingsResult.Model">
+            <summary>
+            Model used for generating embeddings.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Director.DirectorEmbeddingsResult.Embeddings">
+            <summary>
+            List of embeddings results.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Director.DirectorEmbeddingsResult.#ctor">
+            <summary>
+            Director embeddings result.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Director.ViewDirectorSdk">
+            <summary>
+            View Director SDK for interacting with the View Director REST API.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Director.ViewDirectorSdk.#ctor(System.String)">
+            <summary>
+            Instantiate the View Director SDK.
+            </summary>
+            <param name="endpoint">Endpoint.</param>
+        </member>
+        <member name="M:View.Sdk.Director.ViewDirectorSdk.#ctor(System.Guid,System.String,System.String)">
+            <summary>
+            Instantiate the View Director SDK.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="accessKey">Access key.</param>
+            <param name="endpoint">Endpoint.</param>
+        </member>
+        <member name="M:View.Sdk.Director.ViewDirectorSdk.ConnectionList(System.Threading.CancellationToken)">
+            <summary>
+            Retrieve a list of connections from the Director API.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Connection list.</returns>
+        </member>
+        <member name="M:View.Sdk.Director.ViewDirectorSdk.GenerateEmbeddings(View.Sdk.Director.DirectorEmbeddingsRequest,System.Threading.CancellationToken)">
+            <summary>
+            Generate embeddings for the specified content using the Director API.
+            </summary>
+            <param name="request">Embeddings request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Embeddings result.</returns>
+        </member>
         <member name="T:View.Sdk.DocumentScore">
             <summary>
             Document score.
@@ -11839,11 +11933,6 @@
         <member name="P:View.Sdk.Semantic.SemanticCellRequest.MaxChunkContentLength">
             <summary>
             Gets or sets the maximum length of chunk content.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Semantic.SemanticCellRequest.ShiftSize">
-            <summary>
-            Gets or sets the size of the shift used when creating chunks.
             </summary>
         </member>
         <member name="P:View.Sdk.Semantic.SemanticCellRequest.Data">
