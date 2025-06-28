@@ -27,11 +27,6 @@
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 	</PropertyGroup>
 	
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<NuGetPublishType>remote</NuGetPublishType>
-		<NuGetPublishLocation>https://nuget.view.io</NuGetPublishLocation>
-	</PropertyGroup>
-	
 	<ItemGroup>
 		<Content Include="Assets\icon.ico" />
 	</ItemGroup>
@@ -66,17 +61,6 @@
 		<PackageReference Include="RestWrapper" Version="3.1.5" />
 		<PackageReference Include="LiteGraph.Sdk" Version="3.1.5" />
 		<PackageReference Include="SerializableDataTable" Version="1.0.2" />
-		<PackageReference Include="SS.NuGet.Publish" Version="1.0.2311.32">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Assistant\Implementations\" />
-	  <Folder Include="Assistant\Interfaces\" />
-	  <Folder Include="EnterpriseDesktop\Implementations\" />
-	  <Folder Include="EnterpriseDesktop\Interfaces\" />
 	</ItemGroup>
 
 </Project>
