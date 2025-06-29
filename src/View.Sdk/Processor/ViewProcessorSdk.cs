@@ -33,7 +33,11 @@
         /// <param name="tenantGuid">Tenant GUID.</param>
         /// <param name="accessKey">Access key.</param>
         /// <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing.</param>
-        public ViewProcessorSdk(Guid tenantGuid, string accessKey, string endpoint = "http://localhost:8000/v1.0/tenants/default/processing") : base(tenantGuid, accessKey, endpoint)
+        public ViewProcessorSdk(
+            Guid tenantGuid, 
+            string accessKey, 
+            string endpoint = "http://localhost:8000/") : 
+            base(tenantGuid, accessKey, endpoint)
         {
             Header = "[ViewProcessorSdk] ";
         }
@@ -60,7 +64,7 @@
         {
             if (obj == null) throw new ArgumentNullException(nameof(obj));
 
-            string url = Endpoint;
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/processing";
 
             try
             {
@@ -161,7 +165,7 @@
             int maxKeys = 5,
             CancellationToken token = default)
         {
-            string url = Endpoint.Replace("/processing", "/processortasks/") + $"?max-keys={maxKeys}";
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/processortasks?max-keys=" + maxKeys;
             return await Enumerate<ProcessorTask>(url, token).ConfigureAwait(false);
         }
 
@@ -175,7 +179,7 @@
             Guid guid,
             CancellationToken token = default)
         {
-            string url = Endpoint.Replace("/processing", "/processortasks/") + guid.ToString();
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/processortasks/" + guid;
             return await Retrieve<ProcessorTask>(url, token).ConfigureAwait(false);
         }
 
