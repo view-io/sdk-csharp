@@ -31,7 +31,7 @@
         /// <summary>
         /// Bucket GUID.
         /// </summary>
-        public Guid BucketGUID { get; set; } = Guid.NewGuid();
+        public Guid? BucketGUID { get; set; } = null;
         
         /// <summary>
         /// Owner GUID.

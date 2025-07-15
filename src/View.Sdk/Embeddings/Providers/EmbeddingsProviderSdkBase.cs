@@ -191,8 +191,8 @@
         /// <param name="timeoutMs">Timeout in milliseconds.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns></returns>
-        public abstract Task<EmbeddingsResult> GenerateEmbeddings(
-            EmbeddingsRequest embedRequest,
+        public abstract Task<GenerateEmbeddingsResult> GenerateEmbeddings(
+            GenerateEmbeddingsRequest embedRequest,
             int timeoutMs = 30000,
             CancellationToken token = default);
 

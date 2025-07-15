@@ -52,7 +52,7 @@
         /// <param name="async">Boolean indicating if the task should be performed asynchronously.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Task.</returns>
-        public async Task<LexiEmbeddingsResponse> Process(
+        public async Task<LexiEmbeddingsResult> Process(
             Guid requestGuid,
             TenantMetadata tenant,
             Collection collection,
@@ -106,7 +106,7 @@
                                 {
                                     try
                                     {
-                                        LexiEmbeddingsResponse procResp = Serializer.DeserializeJson<LexiEmbeddingsResponse>(resp.DataAsString);
+                                        LexiEmbeddingsResult procResp = Serializer.DeserializeJson<LexiEmbeddingsResult>(resp.DataAsString);
                                         return procResp;
                                     }
                                     catch (Exception)
@@ -128,7 +128,7 @@
                                 {
                                     try
                                     {
-                                        LexiEmbeddingsResponse procResp = Serializer.DeserializeJson<LexiEmbeddingsResponse>(resp.DataAsString);
+                                        LexiEmbeddingsResult procResp = Serializer.DeserializeJson<LexiEmbeddingsResult>(resp.DataAsString);
                                         return procResp;
                                     }
                                     catch (Exception)
@@ -154,7 +154,7 @@
             catch (HttpRequestException hre)
             {
                 Log(SeverityEnum.Warn, "exception while interacting with " + url + ": " + hre.Message);
-                return new LexiEmbeddingsResponse
+                return new LexiEmbeddingsResult
                 {
                     Success = false,
                     Error = new ApiErrorResponse(ApiErrorEnum.InternalError, null, null)

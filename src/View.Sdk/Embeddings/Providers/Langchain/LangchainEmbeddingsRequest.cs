@@ -65,7 +65,7 @@
         /// </summary>
         /// <param name="req">Embeddings request.</param>
         /// <returns>Langchain embeddings request.</returns>
-        public static LangchainEmbeddingsRequest FromEmbeddingsRequest(EmbeddingsRequest req)
+        public static LangchainEmbeddingsRequest FromEmbeddingsRequest(GenerateEmbeddingsRequest req)
         {
             if (req == null) throw new ArgumentNullException(nameof(req));
             if (req.EmbeddingsRule == null) throw new ArgumentNullException(nameof(req.EmbeddingsRule));

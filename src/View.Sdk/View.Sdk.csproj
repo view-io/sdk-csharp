@@ -5,8 +5,8 @@
 		
 		<Title>C# SDK for View AI.</Title>
 		<Description>C# SDK for View AI.</Description>
-		<PackageReleaseNotes>v1.3.0 release.</PackageReleaseNotes>
-		<Version>1.3.0.3</Version>
+		<PackageReleaseNotes>v1.4.0 release.</PackageReleaseNotes>
+		<Version>1.4.0.70</Version>
 		
 		<ApplicationIcon>Assets\icon.ico</ApplicationIcon>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
@@ -25,11 +25,6 @@
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-	</PropertyGroup>
-	
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<NuGetPublishType>remote</NuGetPublishType>
-		<NuGetPublishLocation>https://nuget.view.io</NuGetPublishLocation>
 	</PropertyGroup>
 	
 	<ItemGroup>
@@ -61,11 +56,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="ExpressionTree" Version="1.1.2" />
+		<PackageReference Include="PrettyId" Version="1.0.5" />
+		<PackageReference Include="RestWrapper" Version="3.1.5" />
 		<PackageReference Include="LiteGraph.Sdk" Version="3.1.5" />
-		<PackageReference Include="SS.NuGet.Publish" Version="1.0.2311.32">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
+		<PackageReference Include="SerializableDataTable" Version="1.0.2" />
 	</ItemGroup>
 
 </Project>

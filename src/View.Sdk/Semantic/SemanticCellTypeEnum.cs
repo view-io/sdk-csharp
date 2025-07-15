@@ -27,6 +27,16 @@
         /// Binary.
         /// </summary>
         [EnumMember(Value = "Binary")]
-        Binary
+        Binary,
+        /// <summary>
+        /// Object.
+        /// </summary>
+        [EnumMember(Value = "Object")]
+        Object,
+        /// <summary>
+        /// Array.
+        /// </summary>
+        [EnumMember(Value = "Array")]
+        Array
     }
 }

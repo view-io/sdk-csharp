@@ -316,7 +316,7 @@
         /// <param name="embedRequest">Embeddings request.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Embeddings response.</returns>
-        public async Task<EmbeddingsResult> GenerateEmbeddings(EmbeddingsRequest embedRequest, CancellationToken token = default)
+        public async Task<GenerateEmbeddingsResult> GenerateEmbeddings(GenerateEmbeddingsRequest embedRequest, CancellationToken token = default)
         {
             if (embedRequest == null) throw new ArgumentNullException(nameof(embedRequest));
 
@@ -348,7 +348,7 @@
             {
                 Log(SeverityEnum.Debug, "no entries found to process");
 
-                return new EmbeddingsResult 
+                return new GenerateEmbeddingsResult 
                 {
                     Success = true,
                     Error = null,
@@ -376,7 +376,7 @@
             if (batches == null || batches.Count < 1)
             {
                 Log(SeverityEnum.Debug, "no batches found in supplied input");
-                return new EmbeddingsResult
+                return new GenerateEmbeddingsResult
                 {
                     Success = true,
                     Error = null,
@@ -395,7 +395,7 @@
 
             object batchLock = new object();
 
-            EmbeddingsResult embedResult = new EmbeddingsResult
+            GenerateEmbeddingsResult embedResult = new GenerateEmbeddingsResult
             {
                 Success = true,
                 Error = null,
@@ -456,8 +456,8 @@
         }
 
         private async Task<bool> ProcessBatch(
-            EmbeddingsRequest req,
-            EmbeddingsResult result,
+            GenerateEmbeddingsRequest req,
+            GenerateEmbeddingsResult result,
             List<string> batch,
             object resultLock,
             CancellationToken token = default)
@@ -466,12 +466,12 @@
 
             int failureCount = 0;
 
-            EmbeddingsRequest batchRequest = new EmbeddingsRequest();
+            GenerateEmbeddingsRequest batchRequest = new GenerateEmbeddingsRequest();
             batchRequest.EmbeddingsRule = req.EmbeddingsRule;
             batchRequest.Model = req.Model;
             batchRequest.Contents = batch;
 
-            EmbeddingsResult batchResult = new EmbeddingsResult();
+            GenerateEmbeddingsResult batchResult = new GenerateEmbeddingsResult();
             batchResult.Success = false;
 
             #endregion

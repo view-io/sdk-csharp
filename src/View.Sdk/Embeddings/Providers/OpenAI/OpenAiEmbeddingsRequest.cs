@@ -61,7 +61,7 @@
         /// </summary>
         /// <param name="req">Embeddings request.</param>
         /// <returns>OpenAI embeddings request.</returns>
-        public static OpenAiEmbeddingsRequest FromEmbeddingsRequest(EmbeddingsRequest req)
+        public static OpenAiEmbeddingsRequest FromEmbeddingsRequest(GenerateEmbeddingsRequest req)
         {
             if (req == null) throw new ArgumentNullException(nameof(req));
 

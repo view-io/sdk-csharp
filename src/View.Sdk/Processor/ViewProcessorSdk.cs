@@ -1,15 +1,16 @@
 ﻿namespace View.Sdk.Processor
 {
+    using RestWrapper;
     using System;
     using System.Collections.Generic;
     using System.Net;
     using System.Net.Http;
+    using System.Net.Sockets;
+    using System.Reflection.PortableExecutable;
     using System.Threading;
     using System.Threading.Tasks;
-    using RestWrapper;
-    using View.Sdk.Serialization;
     using View.Sdk;
-    using System.Net.Sockets;
+    using View.Sdk.Serialization;
 
     /// <summary>
     /// View Processing Pipeline SDK.
@@ -32,7 +33,11 @@
         /// <param name="tenantGuid">Tenant GUID.</param>
         /// <param name="accessKey">Access key.</param>
         /// <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing.</param>
-        public ViewProcessorSdk(Guid tenantGuid, string accessKey, string endpoint = "http://localhost:8000/v1.0/tenants/default/processing") : base(tenantGuid, accessKey, endpoint)
+        public ViewProcessorSdk(
+            Guid tenantGuid, 
+            string accessKey, 
+            string endpoint = "http://localhost:8000/") : 
+            base(tenantGuid, accessKey, endpoint)
         {
             Header = "[ViewProcessorSdk] ";
         }
@@ -45,36 +50,21 @@
         /// Process a document.  This variant is used by the storage server.
         /// </summary>
         /// <param name="requestGuid">Request GUID.</param>
-        /// <param name="tenant">Tenant metadata.</param>
-        /// <param name="collection">Collection metadata.</param>
-        /// <param name="bucket">Bucket metadata.</param>
-        /// <param name="pool">Storage pool metadata.</param>
+        /// <param name="mdRuleGuid">Metadata rule GUID.</param>
+        /// <param name="embedRuleGuid">Embeddings rule GUID.</param>
         /// <param name="obj">Object metadata.</param>
-        /// <param name="mdRule">Metadata rule.</param>
-        /// <param name="embedRule">Embeddings rule.</param>
-        /// <param name="vectorRepo">Vector repository.</param>
-        /// <param name="graphRepo">Graph repository.</param>
-        /// <param name="async">Boolean indicating if the task should be performed asynchronously.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Processor response.</returns>
-        public async Task<ProcessorResponse> Process(
+        public async Task<ProcessorResult> Process(
             Guid requestGuid,
-            TenantMetadata tenant,
-            Collection collection,
-            StoragePool pool,
-            BucketMetadata bucket,
-            ObjectMetadata obj, 
-            MetadataRule mdRule, 
-            EmbeddingsRule embedRule, 
-            VectorRepository vectorRepo,
-            GraphRepository graphRepo,
-            bool async = false,
+            Guid mdRuleGuid,
+            Guid embedRuleGuid,
+            ObjectMetadata obj,
             CancellationToken token = default)
         {
             if (obj == null) throw new ArgumentNullException(nameof(obj));
-            if (mdRule == null) throw new ArgumentNullException(nameof(mdRule));
 
-            string url = Endpoint;
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/processing";
 
             try
             {
@@ -87,16 +77,9 @@
                     ProcessorRequest procReq = new ProcessorRequest
                     {
                         GUID = requestGuid,
-                        Async = async,
-                        Tenant = tenant,
-                        Collection = collection,
-                        Pool = pool,
-                        Bucket = bucket,
-                        Object = obj,
-                        MetadataRule = mdRule,
-                        EmbeddingsRule = embedRule,
-                        VectorRepository = vectorRepo,
-                        GraphRepository = graphRepo
+                        MetadataRuleGUID = mdRuleGuid,
+                        EmbeddingsRuleGUID = embedRuleGuid,
+                        Object = obj
                     };
 
                     string json = Serializer.SerializeJson(procReq, true);
@@ -116,7 +99,7 @@
                                 {
                                     try
                                     {
-                                        ProcessorResponse procResp = Serializer.DeserializeJson<ProcessorResponse>(resp.DataAsString);
+                                        ProcessorResult procResp = Serializer.DeserializeJson<ProcessorResult>(resp.DataAsString);
                                         return procResp;
                                     }
                                     catch (Exception)
@@ -138,7 +121,7 @@
                                 {
                                     try
                                     {
-                                        ProcessorResponse procResp = Serializer.DeserializeJson<ProcessorResponse>(resp.DataAsString);
+                                        ProcessorResult procResp = Serializer.DeserializeJson<ProcessorResult>(resp.DataAsString);
                                         return procResp;
                                     }
                                     catch (Exception)
@@ -164,7 +147,7 @@
             catch (HttpRequestException hre)
             {
                 Log(SeverityEnum.Warn, "exception while interacting with " + url + ": " + hre.Message);
-                return new ProcessorResponse
+                return new ProcessorResult
                 {
                     Success = false,
                     Error = new ApiErrorResponse(ApiErrorEnum.InternalError, null, null)
@@ -173,137 +156,37 @@
         }
 
         /// <summary>
-        /// Process a document.  This variant is used by the data crawler.
+        /// Enumerate processor tasks.
         /// </summary>
-        /// <param name="requestGuid">Request GUID.</param>
-        /// <param name="tenant">Tenant metadata.</param>
-        /// <param name="collection">Collection metadata.</param>
-        /// <param name="repo">Data repository.</param>
-        /// <param name="obj">Object metadata.</param>
-        /// <param name="mdRule">Metadata rule.</param>
-        /// <param name="embedRule">Embeddings rule.</param>
-        /// <param name="vectorRepo">Vector repository.</param>
-        /// <param name="graphRepo">Graph repository.</param>
-        /// <param name="async">Boolean indicating if the task should be performed asynchronously.</param>
+        /// <param name="maxKeys">Maximum number of keys to return.</param>
         /// <param name="token">Cancellation token.</param>
-        /// <returns>Processor response.</returns>
-        public async Task<ProcessorResponse> Process(
-            Guid requestGuid,
-            TenantMetadata tenant,
-            Collection collection,
-            DataRepository repo,
-            ObjectMetadata obj,
-            MetadataRule mdRule,
-            EmbeddingsRule embedRule,
-            VectorRepository vectorRepo,
-            GraphRepository graphRepo,
-            bool async = false,
+        /// <returns>Enumeration result containing processor tasks.</returns>
+        public async Task<EnumerationResult<ProcessorTask>> Enumerate(
+            int maxKeys = 5,
             CancellationToken token = default)
         {
-            if (obj == null) throw new ArgumentNullException(nameof(obj));
-            if (mdRule == null) throw new ArgumentNullException(nameof(mdRule));
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/processortasks?max-keys=" + maxKeys;
+            return await Enumerate<ProcessorTask>(url, token).ConfigureAwait(false);
+        }
 
-            string url = Endpoint;
-
-            try
-            {
-                using (RestRequest req = new RestRequest(url, HttpMethod.Post))
-                {
-                    req.TimeoutMilliseconds = TimeoutMs;
-                    req.ContentType = "application/json";
-                    req.Authorization.BearerToken = AccessKey;
-
-                    ProcessorRequest procReq = new ProcessorRequest
-                    {
-                        GUID = requestGuid,
-                        Async = async,
-                        Tenant = tenant,
-                        Collection = collection,
-                        DataRepository = repo,
-                        Object = obj,
-                        MetadataRule = mdRule,
-                        EmbeddingsRule = embedRule,
-                        VectorRepository = vectorRepo,
-                        GraphRepository = graphRepo
-                    };
-
-                    string json = Serializer.SerializeJson(procReq, true);
-                    if (LogRequests) Log(SeverityEnum.Debug, "request: " + Environment.NewLine + json);
-
-                    using (RestResponse resp = await req.SendAsync(json, token).ConfigureAwait(false))
-                    {
-                        if (resp != null)
-                        {
-                            if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "):" + Environment.NewLine + resp.DataAsString);
-
-                            if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                            {
-                                Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-
-                                if (!String.IsNullOrEmpty(resp.DataAsString))
-                                {
-                                    try
-                                    {
-                                        ProcessorResponse procResp = Serializer.DeserializeJson<ProcessorResponse>(resp.DataAsString);
-                                        return procResp;
-                                    }
-                                    catch (Exception)
-                                    {
-                                        Log(SeverityEnum.Warn, "unable to deserialize response body, returning null");
-                                        return null;
-                                    }
-                                }
-                                else
-                                {
-                                    return null;
-                                }
-                            }
-                            else
-                            {
-                                Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-
-                                if (!String.IsNullOrEmpty(resp.DataAsString))
-                                {
-                                    try
-                                    {
-                                        ProcessorResponse procResp = Serializer.DeserializeJson<ProcessorResponse>(resp.DataAsString);
-                                        return procResp;
-                                    }
-                                    catch (Exception)
-                                    {
-                                        Log(SeverityEnum.Warn, "unable to deserialize response body, returning null");
-                                        return null;
-                                    }
-                                }
-                                else
-                                {
-                                    return null;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            Log(SeverityEnum.Warn, "no response from " + url);
-                            return null;
-                        }
-                    }
-                }
-            }
-            catch (HttpRequestException hre)
-            {
-                Log(SeverityEnum.Warn, "exception while interacting with " + url + ": " + hre.Message);
-                return new ProcessorResponse
-                {
-                    Success = false,
-                    Error = new ApiErrorResponse(ApiErrorEnum.InternalError, null, null)
-                };
-            }
+        /// <summary>
+        /// Retrieve a processor task by GUID.
+        /// </summary>
+        /// <param name="guid">Processor task GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Processor task.</returns>
+        public async Task<ProcessorTask> Retrieve(
+            Guid guid,
+            CancellationToken token = default)
+        {
+            string url = Endpoint + "v1.0/tenants/" + TenantGUID + "/processortasks/" + guid;
+            return await Retrieve<ProcessorTask>(url, token).ConfigureAwait(false);
         }
 
         #endregion
 
         #region Private-Methods
-         
+
         #endregion
     }
 }
