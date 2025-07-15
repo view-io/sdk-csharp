@@ -7,6 +7,8 @@
     using System.Security.Cryptography;
     using System.Text.Json.Serialization;
     using System.Xml.Linq;
+    using View.Sdk.Serialization;
+    using SerializableDataTables;
 
     /// <summary>
     /// Object metadata.
@@ -43,12 +45,12 @@
         /// <summary>
         /// Pool GUID.
         /// </summary>
-        public Guid PoolGUID { get; set; } = Guid.NewGuid();
+        public Guid? PoolGUID { get; set; } = null;
 
         /// <summary>
         /// Bucket GUID.
         /// </summary>
-        public Guid BucketGUID { get; set; } = Guid.NewGuid();
+        public Guid? BucketGUID { get; set; } = null;
 
         /// <summary>
         /// Bucket name.
@@ -76,6 +78,11 @@
         public Guid? DataRepositoryGUID { get; set; } = null;
 
         /// <summary>
+        /// Crawl operation GUID.
+        /// </summary>
+        public Guid? CrawlOperationGUID { get; set; } = null;
+
+        /// <summary>
         /// Graph repository GUID.
         /// </summary>
         public Guid? GraphRepositoryGUID { get; set; } = null;
@@ -86,14 +93,9 @@
         public string GraphNodeIdentifier { get; set; } = null;
 
         /// <summary>
-        /// Data flow request GUID.
+        /// Boolean indicating if processing was successful.
         /// </summary>
-        public Guid? DataFlowRequestGUID { get; set; } = null;
-
-        /// <summary>
-        /// Boolean indicating if the data flow was successful in processing the object.
-        /// </summary>
-        public bool? DataFlowSuccess { get; set; } = null;
+        public bool? ProcessingSuccess { get; set; } = null;
 
         /// <summary>
         /// Key.
@@ -201,6 +203,11 @@
             }
         }
 
+        /// <summary>
+        /// Data table.
+        /// </summary>
+        public SerializableDataTable DataTable { get; set; } = null;
+
         #endregion
 
         #region Private-Members
@@ -218,6 +225,23 @@
         public ObjectMetadata()
         {
 
+        }
+
+        /// <summary>
+        /// Create a copy.
+        /// </summary>
+        /// <param name="serializer">Serializer.</param>
+        /// <param name="obj">Object metadata.</param>
+        /// <param name="includeData">True to include data.</param>
+        /// <returns>Object metadata.</returns>
+        public static ObjectMetadata Copy(Serializer serializer, ObjectMetadata obj, bool includeData = true)
+        {
+            if (obj == null) return null;
+
+            ObjectMetadata ret = serializer.CopyObject<ObjectMetadata>(obj);
+            if (!includeData) ret.Data = null;
+
+            return ret;
         }
 
         #endregion

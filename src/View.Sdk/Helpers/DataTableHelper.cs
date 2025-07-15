@@ -380,5 +380,61 @@
                    obj.GetType().IsGenericType &&
                    obj.GetType().GetGenericTypeDefinition().IsAssignableFrom(typeof(Dictionary<,>));
         }
+
+        /// <summary>
+        /// Extract a list of GUIDs from a table by column name.
+        /// </summary>
+        /// <param name="table">Data table.</param>
+        /// <param name="columnName">Column name.</param>
+        /// <returns>List of GUIDs.</returns>
+        public static List<Guid> DataTableToListGuid(DataTable table, string columnName)
+        {
+            List<Guid> ret = new List<Guid>();
+
+            if (table == null) return ret;
+            if (String.IsNullOrEmpty(columnName)) return ret;
+
+            if (!table.Columns.Contains(columnName)) return ret;
+
+            foreach (DataRow row in table.Rows)
+            {
+                if (row[columnName] == null || row[columnName] == DBNull.Value) continue;
+                if (row[columnName] is Guid guid) ret.Add(guid);
+                else if (Guid.TryParse(row[columnName].ToString(), out guid)) ret.Add(guid);
+            }
+
+            return ret;
+        }
+
+        /// <summary>
+        /// Calculate DataTable length.
+        /// This calculation adds the length of column names and row values.
+        /// </summary>
+        /// <param name="dt">DataTable.</param>
+        /// <returns>Length.</returns>
+        public static int GetLength(DataTable dt)
+        {
+            if (dt == null || dt.Columns.Count == 0 || dt.Rows.Count == 0) return 0;
+
+            int len = 0;
+
+            foreach (DataColumn col in dt.Columns)
+            {
+                len += col.ColumnName.Length;
+            }
+
+            foreach (DataRow row in dt.Rows)
+            {
+                foreach (var item in row.ItemArray)
+                {
+                    if (item != null)
+                    {
+                        len += item.ToString().Length;
+                    }
+                }
+            }
+
+            return len;
+        }
     }
 }

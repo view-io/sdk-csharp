@@ -11,6 +11,8 @@
     using System.Threading.Tasks;
     using RestWrapper;
     using View.Sdk;
+    using View.Sdk.Assistant.Implementations;
+    using View.Sdk.Assistant.Interfaces;
 
     /// <summary>
     /// View Assistant SDK.
@@ -18,6 +20,26 @@
     public class ViewAssistantSdk : ViewSdkBase, IDisposable
     {
         #region Public-Members
+
+        /// <summary>
+        /// Assistant configuration methods.
+        /// </summary>
+        public IConfigMethods Config { get; set; }
+        
+        /// <summary>
+        /// Assistant chat methods.
+        /// </summary>
+        public IChatMethods Chat { get; set; }
+
+        /// <summary>
+        /// Assistant chat thread methods.
+        /// </summary>
+        public IChatThreadMethods Thread { get; set; }
+
+        /// <summary>
+        /// Assistant model methods.
+        /// </summary>
+        public IModelMethods Model { get; set; }
 
         #endregion
 
@@ -30,131 +52,25 @@
         /// <summary>
         /// Instantiate.
         /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="accessKey">Access key.</param>
         /// <param name="endpoint">Endpoint URL.</param>
-        public ViewAssistantSdk(string endpoint = "http://localhost:8000/") : base(endpoint)
-        {
+        public ViewAssistantSdk(Guid tenantGuid, string accessKey, string endpoint = "http://localhost:8000/") : base(tenantGuid, accessKey, endpoint)
+        { 
             Header = "[ViewAssistantSdk] ";
+            Config = new ConfigMethods(this);
+            Chat = new ChatMethods(this);
+            Thread = new ChatThreadMethods(this);
+            Model = new ModelMethods(this);
         }
 
         #endregion
 
         #region Public-Methods
 
-        /// <summary>
-        /// Process a RAG request.
-        /// </summary>
-        /// <returns>Enumerable of tokens.</returns>
-        public async IAsyncEnumerable<string> ProcessRag(AssistantRagRequest ragRequest, [EnumeratorCancellation] CancellationToken token = default)
-        {
-            if (ragRequest == null) throw new ArgumentNullException(nameof(ragRequest));
-
-            string url = Endpoint + "v1.0/rag";
-            string json = Serializer.SerializeJson(ragRequest, true);
-
-            using (RestRequest req = new RestRequest(url, HttpMethod.Post, "application/json"))
-            {
-                req.TimeoutMilliseconds = TimeoutMs;
-                req.Authorization.BearerToken = AccessKey;
-                req.ContentType = "application/json";
-
-                if (LogRequests) Log(SeverityEnum.Debug, "request body: " + Environment.NewLine + json);
-
-                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(ragRequest, true), token).ConfigureAwait(false))
-                {
-                    if (resp != null)
-                    {
-                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                        {
-                            while (true)
-                            {
-                                ServerSentEvent sse = await resp.ReadEventAsync();
-                                if (sse != null) yield return ExtractToken(sse.Data);
-                                else
-                                    yield break;
-                            }
-                        }
-                        else
-                        {
-                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            yield break;
-                        }
-                    }
-                    else
-                    {
-                        Log(SeverityEnum.Warn, "no response from " + url);
-                        yield break;
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Process a chat request.
-        /// </summary>
-        /// <returns>Enumerable of tokens.</returns>
-        public async IAsyncEnumerable<string> ProcessChat(AssistantChatRequest chatRequest, [EnumeratorCancellation] CancellationToken token = default)
-        {
-            if (chatRequest == null) throw new ArgumentNullException(nameof(chatRequest));
-
-            string url = Endpoint + "v1.0/chat";
-            string json = Serializer.SerializeJson(chatRequest, true);
-
-            using (RestRequest req = new RestRequest(url, HttpMethod.Post, "application/json"))
-            {
-                req.TimeoutMilliseconds = TimeoutMs;
-                req.Authorization.BearerToken = AccessKey;
-                req.ContentType = "application/json";
-
-                if (LogRequests) Log(SeverityEnum.Debug, "request body: " + Environment.NewLine + json);
-
-                using (RestResponse resp = await req.SendAsync(Serializer.SerializeJson(chatRequest, true), token).ConfigureAwait(false))
-                {
-                    if (resp != null)
-                    {
-                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
-                        {
-                            while (true)
-                            {
-                                ServerSentEvent sse = await resp.ReadEventAsync();
-                                if (sse != null) yield return ExtractToken(sse.Data);
-                                else
-                                    yield break;
-                            }
-                        }
-                        else
-                        {
-                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            yield break;
-                        }
-                    }
-                    else
-                    {
-                        Log(SeverityEnum.Warn, "no response from " + url);
-                        yield break;
-                    }
-                }
-            }
-        }
-
         #endregion
 
         #region Private-Methods
-        private string ExtractToken(string json)
-        {
-            try
-            {
-                using (JsonDocument doc = System.Text.Json.JsonDocument.Parse(json))
-                {
-                    return doc.RootElement.TryGetProperty("token", out var tokenElement)
-                        ? tokenElement.GetString()
-                        : null;
-                }
-            }
-            catch
-            {
-                return null;
-            }
-        }
 
         #endregion
     }

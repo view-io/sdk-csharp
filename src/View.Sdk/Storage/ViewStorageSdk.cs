@@ -1,13 +1,9 @@
 ﻿namespace View.Sdk.Storage
 {
-    using RestWrapper;
     using System;
-    using System.Collections.Generic;
-    using System.Net.Http;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using View.Sdk.Serialization;
     using View.Sdk;
+    using View.Sdk.Storage.Implementations;
+    using View.Sdk.Storage.Interfaces;
 
     /// <summary>
     /// View Storage SDK.
@@ -15,6 +11,21 @@
     public class ViewStorageSdk : ViewSdkBase, IDisposable
     {
         #region Public-Members
+
+        /// <summary>
+        /// Bucket methods.
+        /// </summary>
+        public IBucketMethods Bucket { get; set; }
+        
+        /// <summary>
+        /// Object methods.
+        /// </summary>
+        public IObjectMethods Object { get; set; }
+        
+        /// <summary>
+        /// Multipart upload methods.
+        /// </summary>
+        public IMultipartUploadMethods MultipartUpload { get; set; }
 
         #endregion
 
@@ -33,31 +44,14 @@
         public ViewStorageSdk(Guid tenantGuid, string accessKey, string endpoint = "http://localhost:8001/") : base(tenantGuid, accessKey, endpoint)
         {
             Header = "[ViewStorageSdk] ";
+            Bucket = new BucketMethods(this);
+            Object = new ObjectMethods(this);
+            MultipartUpload = new MultipartUploadMethods(this);
         }
 
         #endregion
 
         #region Public-Methods
-
-        #region Buckets
-
-        #endregion
-
-        #region Objects
-
-        #endregion
-
-        #region Multipart-Uploads
-
-        #endregion
-
-        #region Tags
-
-        #endregion
-
-        #region ACLs
-
-        #endregion
 
         #endregion
 

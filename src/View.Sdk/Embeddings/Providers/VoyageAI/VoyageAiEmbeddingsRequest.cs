@@ -58,7 +58,7 @@
         /// </summary>
         /// <param name="req">Embeddings request.</param>
         /// <returns>Voyage AI embeddings request.</returns>
-        public static VoyageAiEmbeddingsRequest FromEmbeddingsRequest(EmbeddingsRequest req)
+        public static VoyageAiEmbeddingsRequest FromEmbeddingsRequest(GenerateEmbeddingsRequest req)
         {
             if (req == null) throw new ArgumentNullException(nameof(req));
 
