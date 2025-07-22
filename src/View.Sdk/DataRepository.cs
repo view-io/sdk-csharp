@@ -2,6 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.ComponentModel.DataAnnotations;
     using System.Text.Json.Serialization;
 
     /// <summary>
@@ -320,8 +322,14 @@
 
         /// <summary>
         /// Starting URL for web crawling.
-        /// </summary>
+        /// </summary
         public string WebStartUrl { get; set; } = null;
+
+        /// <summary>
+        /// Boolean indicating whether or not a headless browser should be used for crawling.
+        /// Headless browsers are slower than RESTful retrievals, but overcome a number of crawling challenges related to security and rendering.
+        /// </summary>
+        public bool? WebUseHeadlessBrowser { get; set; } = null;
 
         /// <summary>
         /// Boolean indicating whether or not links should be followed.
@@ -344,9 +352,19 @@
         public bool? WebRestrictToChildUrls { get; set; } = null;
 
         /// <summary>
-        /// Boolean indicating whether or not crawling should consider links within the same domain.
+        /// Boolean indicating whether or not crawling should consider links within the same subdomain.
         /// </summary>
-        public bool? WebRestrictToSameDomain { get; set; } = null;
+        public bool? WebRestrictToSubdomain { get; set; } = null;
+
+        /// <summary>
+        /// Boolean indicating whether or not crawling should consider links within the same root domain.
+        /// </summary>
+        public bool? WebRestrictToRootDomain { get; set; } = null;
+
+        /// <summary>
+        /// Boolean indicating whether or not crawling should ignore the robots.txt file.
+        /// </summary>
+        public bool? WebIgnoreRobotsTxt { get; set; } = null;
 
         /// <summary>
         /// Maximum depth to crawl.
@@ -418,6 +436,7 @@
         private int? _WebMaxDepth = null;
         private int? _WebMaxParallelTasks = null;
         private int? _WebCrawlDelayMs = null;
+
 
         private List<string> _ValidNfsVersions = new List<string>()
         {

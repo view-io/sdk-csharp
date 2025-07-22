@@ -5409,9 +5409,11 @@
             User agent to use while crawling.
             </summary>
         </member>
-        <member name="P:View.Sdk.DataRepository.WebStartUrl">
+        <!-- Badly formed XML comment ignored for member "P:View.Sdk.DataRepository.WebStartUrl" -->
+        <member name="P:View.Sdk.DataRepository.WebUseHeadlessBrowser">
             <summary>
-            Starting URL for web crawling.
+            Boolean indicating whether or not a headless browser should be used for crawling.
+            Headless browsers are slower than RESTful retrievals, but overcome a number of crawling challenges related to security and rendering.
             </summary>
         </member>
         <member name="P:View.Sdk.DataRepository.WebFollowLinks">
@@ -5434,9 +5436,19 @@
             Boolean indicating whether or not crawling should only consider child links.
             </summary>
         </member>
-        <member name="P:View.Sdk.DataRepository.WebRestrictToSameDomain">
+        <member name="P:View.Sdk.DataRepository.WebRestrictToSubdomain">
             <summary>
-            Boolean indicating whether or not crawling should consider links within the same domain.
+            Boolean indicating whether or not crawling should consider links within the same subdomain.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.WebRestrictToRootDomain">
+            <summary>
+            Boolean indicating whether or not crawling should consider links within the same root domain.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.WebIgnoreRobotsTxt">
+            <summary>
+            Boolean indicating whether or not crawling should ignore the robots.txt file.
             </summary>
         </member>
         <member name="P:View.Sdk.DataRepository.WebMaxDepth">
