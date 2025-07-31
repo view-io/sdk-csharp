@@ -88,6 +88,7 @@
             string url = _Sdk.Endpoint + "v1.0/tenants/" + guid;
             return await _Sdk.Exists(url, token).ConfigureAwait(false);
         }
+
         #endregion
 
         #region Private-Methods

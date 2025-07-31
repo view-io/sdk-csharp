@@ -102,6 +102,7 @@ namespace View.Sdk.Configuration.Implementations
             string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/blobs/" + guid;
             return await _Sdk.Exists(url, token).ConfigureAwait(false);
         }
+
         #endregion
 
         #region Private-Methods
