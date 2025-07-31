@@ -2022,6 +2022,9 @@
         <member name="M:View.Sdk.Configuration.Implementations.BlobMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:View.Sdk.Configuration.Implementations.BlobMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="T:View.Sdk.Configuration.Implementations.BucketMethods">
             <summary>
             Bucket methods
@@ -2476,6 +2479,9 @@
         <member name="M:View.Sdk.Configuration.Implementations.TenantMethods.Delete(System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:View.Sdk.Configuration.Implementations.TenantMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="T:View.Sdk.Configuration.Implementations.UserMethods">
             <summary>
             User methods
@@ -2807,6 +2813,14 @@
             <param name="maxKeys">Maximum number of keys to return.</param>
             <param name="token">Cancellation token.</param>
             <returns>Enumeration result.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IBlobMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a blob exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
         </member>
         <member name="T:View.Sdk.Configuration.Interfaces.IBucketMethods">
             <summary>
@@ -3633,6 +3647,14 @@
             <param name="maxKeys">Maximum number of keys to return.</param>
             <param name="token">Cancellation token.</param>
             <returns>Enumeration result.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.ITenantMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a tentant exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
         </member>
         <member name="T:View.Sdk.Configuration.Interfaces.IUserMethods">
             <summary>
@@ -5409,7 +5431,11 @@
             User agent to use while crawling.
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "P:View.Sdk.DataRepository.WebStartUrl" -->
+        <member name="P:View.Sdk.DataRepository.WebStartUrl">
+            <summary>
+            Starting URL for web crawling.
+            </summary>
+        </member>
         <member name="P:View.Sdk.DataRepository.WebUseHeadlessBrowser">
             <summary>
             Boolean indicating whether or not a headless browser should be used for crawling.

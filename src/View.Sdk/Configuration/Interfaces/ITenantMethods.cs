@@ -55,5 +55,13 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>Enumeration result.</returns>
         public Task<EnumerationResult<TenantMetadata>> Enumerate(int maxKeys = 5, CancellationToken token = default);
+
+        /// <summary>
+        /// Check if a tentant exists.
+        /// </summary>
+        /// <param name="guid">GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>True if exists.</returns>
+        public Task<bool> Exists(Guid guid, CancellationToken token = default);
     }
 }

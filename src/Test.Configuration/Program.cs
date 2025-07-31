@@ -606,7 +606,8 @@
                     exists = await _Sdk.Node.Exists(guid);
                     break;
                 case "tenant":
-                    return;
+                    exists = await _Sdk.Tenant.Exists(guid);
+                    break;
                 case "user":
                     exists = await _Sdk.User.Exists(guid);
                     break;
@@ -639,6 +640,9 @@
                     break;
                 case "vector":
                     exists = await _Sdk.VectorRepository.Exists(guid);
+                    break;
+                case "blob":
+                    exists = await _Sdk.Blob.Exists(guid);
                     break;
                 case "graph":
                     exists = await _Sdk.GraphRepository.Exists(guid);

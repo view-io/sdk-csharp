@@ -322,7 +322,7 @@
 
         /// <summary>
         /// Starting URL for web crawling.
-        /// </summary
+        /// </summary>
         public string WebStartUrl { get; set; } = null;
 
         /// <summary>
