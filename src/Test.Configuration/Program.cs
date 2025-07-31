@@ -641,6 +641,9 @@
                 case "vector":
                     exists = await _Sdk.VectorRepository.Exists(guid);
                     break;
+                case "blob":
+                    exists = await _Sdk.Blob.Exists(guid);
+                    break;
                 case "graph":
                     exists = await _Sdk.GraphRepository.Exists(guid);
                     break;
