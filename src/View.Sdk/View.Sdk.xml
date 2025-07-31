@@ -2476,6 +2476,9 @@
         <member name="M:View.Sdk.Configuration.Implementations.TenantMethods.Delete(System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:View.Sdk.Configuration.Implementations.TenantMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="T:View.Sdk.Configuration.Implementations.UserMethods">
             <summary>
             User methods
@@ -3633,6 +3636,14 @@
             <param name="maxKeys">Maximum number of keys to return.</param>
             <param name="token">Cancellation token.</param>
             <returns>Enumeration result.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.ITenantMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a tentant exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
         </member>
         <member name="T:View.Sdk.Configuration.Interfaces.IUserMethods">
             <summary>

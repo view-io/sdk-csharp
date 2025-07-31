@@ -606,7 +606,8 @@
                     exists = await _Sdk.Node.Exists(guid);
                     break;
                 case "tenant":
-                    return;
+                    exists = await _Sdk.Tenant.Exists(guid);
+                    break;
                 case "user":
                     exists = await _Sdk.User.Exists(guid);
                     break;
