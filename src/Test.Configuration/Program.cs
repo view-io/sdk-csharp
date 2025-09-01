@@ -180,10 +180,6 @@
         {
             switch (type)
             {
-                case "node":
-                    Node node = BuildObject<Node>();
-                    EnumerateResponse(await _Sdk.Node.Create(node));
-                    return;
                 case "tenant":
                     TenantMetadata tenant = BuildObject<TenantMetadata>();
                     EnumerateResponse(await _Sdk.Tenant.Create(tenant));
