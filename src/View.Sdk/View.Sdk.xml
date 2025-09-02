@@ -2271,9 +2271,6 @@
             </summary>
             <param name="sdk">View SDK.</param>
         </member>
-        <member name="M:View.Sdk.Configuration.Implementations.NodeMethods.Create(View.Sdk.Node,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
         <member name="M:View.Sdk.Configuration.Implementations.NodeMethods.Exists(System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
@@ -3250,14 +3247,6 @@
             <summary>
             Interface for node methods.
             </summary>
-        </member>
-        <member name="M:View.Sdk.Configuration.Interfaces.INodeMethods.Create(View.Sdk.Node,System.Threading.CancellationToken)">
-            <summary>
-            Create a node.
-            </summary>
-            <param name="node">Node.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Node.</returns>
         </member>
         <member name="M:View.Sdk.Configuration.Interfaces.INodeMethods.Exists(System.Guid,System.Threading.CancellationToken)">
             <summary>

@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
-    using RestWrapper;
     using View.Sdk.Configuration.Interfaces;
 
     internal class NodeMethods : INodeMethods
@@ -34,14 +33,6 @@
         #endregion
 
         #region Public-Methods
-
-        /// <inheritdoc />
-        public async Task<Node> Create(Node node, CancellationToken token = default)
-        {
-            if (node == null) throw new ArgumentNullException(nameof(node));
-            string url = _Sdk.Endpoint + "v1.0/nodes";
-            return await _Sdk.Create<Node>(url, node, token).ConfigureAwait(false);
-        }
 
         /// <inheritdoc />
         public async Task<bool> Exists(Guid guid, CancellationToken token = default)

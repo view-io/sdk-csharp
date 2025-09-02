@@ -10,13 +10,6 @@
     /// </summary>
     public interface INodeMethods
     {
-        /// <summary>
-        /// Create a node.
-        /// </summary>
-        /// <param name="node">Node.</param>
-        /// <param name="token">Cancellation token.</param>
-        /// <returns>Node.</returns>
-        public Task<Node> Create(Node node, CancellationToken token = default);
 
         /// <summary>
         /// Check if a node exists.
