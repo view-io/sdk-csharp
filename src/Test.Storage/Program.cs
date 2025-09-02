@@ -258,7 +258,8 @@ namespace Test.Storage
         private static async Task RetrieveBuckets()
         {
             Console.WriteLine("Retrieving all buckets...");
-            EnumerateResponse(await _Sdk.Bucket.RetrieveMany());
+            Guid bucketGuid = Inputty.GetGuid("Bucket GUID: ", default(Guid));
+            EnumerateResponse(await _Sdk.Bucket.RetrieveMany(bucketGuid.ToString()));
         }
 
         private static async Task UpdateBucket()

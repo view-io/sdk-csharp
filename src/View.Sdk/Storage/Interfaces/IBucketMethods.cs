@@ -39,9 +39,10 @@ namespace View.Sdk.Storage.Interfaces
         /// <summary>
         /// Retrieve multiple buckets.
         /// </summary>
+        /// <param name="bucketGuid">Bucket GUID.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>List of bucket metadata.</returns>
-        public Task<List<BucketMetadata>> RetrieveMany(CancellationToken token = default);
+        public Task<List<BucketMetadata>> RetrieveMany(string bucketGuid, CancellationToken token = default);
 
         /// <summary>
         /// Update bucket.
