@@ -788,6 +788,36 @@
             Vector database password.
             </summary>
         </member>
+        <member name="P:View.Sdk.Assistant.AssistantRequest.EmbeddingModel">
+            <summary>
+            Name/identifier of the embedding model used to vectorize text.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRequest.GenerationApiKey">
+            <summary>
+            API key for the text generation provider (if it requires authentication).
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRequest.HuggingFaceApiKey">
+            <summary>
+            API key for Hugging Face Inference endpoints.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRequest.VectorDatabaseTable">
+            <summary>
+            Table name in the vector database that stores embeddings and metadata.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRequest.SortByMaxSimilarity">
+            <summary>
+            When <c>true</c>, sorts retrieved context by the maximum similarity score (descending).
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Assistant.AssistantRequest.RerankModel">
+            <summary>
+            Name/identifier of the reranking model used to reorder retrieved chunks/documents by relevance.
+            </summary>
+        </member>
         <member name="P:View.Sdk.Assistant.AssistantRequest.Stream">
             <summary>
             Streaming.
@@ -952,6 +982,9 @@
         <member name="M:View.Sdk.Assistant.Implementations.ChatMethods.ProcessConfigChat(System.Guid,View.Sdk.Assistant.AssistantRequest,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:View.Sdk.Assistant.Implementations.ChatMethods.ProcessRagGuestion(View.Sdk.Assistant.AssistantRequest,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
         <member name="M:View.Sdk.Assistant.Implementations.ChatMethods.ProcessRagMessage(View.Sdk.Assistant.AssistantRequest,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
@@ -1062,6 +1095,14 @@
             </summary>
             <param name="configGuid">Configuration GUID.</param>
             <param name="request">Chat request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumerable of tokens.</returns>
+        </member>
+        <member name="M:View.Sdk.Assistant.Interfaces.IChatMethods.ProcessRagGuestion(View.Sdk.Assistant.AssistantRequest,System.Threading.CancellationToken)">
+            <summary>
+            Process a RAG question request.
+            </summary>
+            <param name="request">RAG question request.</param>
             <param name="token">Cancellation token.</param>
             <returns>Enumerable of tokens.</returns>
         </member>
@@ -9811,6 +9852,11 @@
             Enable or disable inclusion of flattened representation of processed content.
             </summary>
         </member>
+        <member name="P:View.Sdk.MetadataRule.UdrEndpoint">
+            <summary>
+            Udr endpoint.
+            </summary>
+        </member>
         <member name="P:View.Sdk.MetadataRule.DataCatalogType">
             <summary>
             Data catalog type.
@@ -10458,6 +10504,203 @@
             Instantiate.
             </summary>
         </member>
+        <member name="T:View.Sdk.Processor.Implementations.CleanupMethods">
+            <summary>
+            Cleanup methods implementation.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Processor.Implementations.CleanupMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="sdk">View SDK base instance.</param>
+        </member>
+        <member name="M:View.Sdk.Processor.Implementations.CleanupMethods.Process(View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.StoragePool,View.Sdk.BucketMetadata,View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Boolean,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:View.Sdk.Processor.Implementations.LexiEmbeddingsMethods">
+            <summary>
+            Lexi embeddings methods implementation.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Processor.Implementations.LexiEmbeddingsMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="sdk">View SDK base instance.</param>
+        </member>
+        <member name="M:View.Sdk.Processor.Implementations.LexiEmbeddingsMethods.Process(View.Sdk.SearchResult,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:View.Sdk.Processor.Implementations.ProcessorMethods">
+            <summary>
+            Processor methods implementation.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Processor.Implementations.ProcessorMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="sdk">View SDK base instance.</param>
+        </member>
+        <member name="M:View.Sdk.Processor.Implementations.ProcessorMethods.Process(System.Guid,System.Guid,View.Sdk.ObjectMetadata,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:View.Sdk.Processor.Implementations.ProcessorMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:View.Sdk.Processor.Implementations.ProcessorMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:View.Sdk.Processor.Implementations.SemanticCellExtractionMethods">
+            <summary>
+            Semantic cell extraction methods implementation.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Processor.Implementations.SemanticCellExtractionMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Processor.Implementations.SemanticCellExtractionMethods.Process(View.Sdk.Processor.SemanticCellExtractionRequest,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:View.Sdk.Processor.Implementations.TypeDetectorMethods">
+            <summary>
+            Type detector methods implementation.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Processor.Implementations.TypeDetectorMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="sdk">View SDK base instance.</param>
+        </member>
+        <member name="M:View.Sdk.Processor.Implementations.TypeDetectorMethods.DetectType(System.String,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:View.Sdk.Processor.Implementations.UdrGeneratorMethods">
+            <summary>
+            UDR generator methods implementation.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Processor.Implementations.UdrGeneratorMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="sdk">View SDK base instance.</param>
+        </member>
+        <member name="M:View.Sdk.Processor.Implementations.UdrGeneratorMethods.GenerateUdr(View.Sdk.UdrDocumentRequest,System.String,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:View.Sdk.Processor.Interfaces.ICleanupMethods">
+            <summary>
+            Cleanup methods interface.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Processor.Interfaces.ICleanupMethods.Process(View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.StoragePool,View.Sdk.BucketMetadata,View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Cleanup a document.  This variant is used by the storage server.
+            </summary>
+            <param name="tenant">Tenant metadata.</param>
+            <param name="collection">Collection metadata.</param>
+            <param name="bucket">Bucket metadata.</param>
+            <param name="pool">Storage pool metadata.</param>
+            <param name="obj">Object metadata.</param>
+            <param name="mdRule">Metadata rule.</param>
+            <param name="embedRule">Embeddings rule.</param>
+            <param name="vectorRepo">Vector repository.</param>
+            <param name="graphRepo">Graph repository.</param>
+            <param name="async">Boolean indicating if the task should be performed asynchronously.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Cleanup response.</returns>
+        </member>
+        <member name="T:View.Sdk.Processor.Interfaces.ILexiEmbeddingsMethods">
+            <summary>
+            Lexi embeddings methods interface.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Processor.Interfaces.ILexiEmbeddingsMethods.Process(View.Sdk.SearchResult,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,System.Threading.CancellationToken)">
+            <summary>
+            Process a document.
+            </summary>
+            <param name="results">Search results.</param>
+            <param name="embedRule">Embeddings rule.</param>
+            <param name="vectorRepo">Vector repository.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="T:View.Sdk.Processor.Interfaces.IProcessorMethods">
+            <summary>
+            Processor methods interface.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Processor.Interfaces.IProcessorMethods.Process(System.Guid,System.Guid,View.Sdk.ObjectMetadata,System.Threading.CancellationToken)">
+            <summary>
+            Process a document.  This variant is used by the storage server.
+            </summary>
+            <param name="mdRuleGuid">Metadata rule GUID.</param>
+            <param name="embedRuleGuid">Embeddings rule GUID.</param>
+            <param name="obj">Object metadata.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Processor response.</returns>
+        </member>
+        <member name="M:View.Sdk.Processor.Interfaces.IProcessorMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate processor tasks.
+            </summary>
+            <param name="maxKeys">Maximum number of keys to return.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result containing processor tasks.</returns>
+        </member>
+        <member name="M:View.Sdk.Processor.Interfaces.IProcessorMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve a processor task by GUID.
+            </summary>
+            <param name="guid">Processor task GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Processor task.</returns>
+        </member>
+        <member name="T:View.Sdk.Processor.Interfaces.ISemanticCellExtractionMethods">
+            <summary>
+            Semantic cell extraction methods interface (processing pipeline).
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Processor.Interfaces.ISemanticCellExtractionMethods.Process(View.Sdk.Processor.SemanticCellExtractionRequest,System.Threading.CancellationToken)">
+            <summary>
+            Extract semantic cells from a document.
+            </summary>
+            <param name="request">Semantic cell extraction request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Semantic cell extraction result.</returns>
+        </member>
+        <member name="T:View.Sdk.Processor.Interfaces.ITypeDetectorMethods">
+            <summary>
+            Type detector methods interface.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Processor.Interfaces.ITypeDetectorMethods.DetectType(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Detect the type of a document.
+            </summary>
+            <param name="jsonContent">JSON content to analyze.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Type detection response.</returns>
+        </member>
+        <member name="T:View.Sdk.Processor.Interfaces.IUdrGeneratorMethods">
+            <summary>
+            UDR generator methods interface.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Processor.Interfaces.IUdrGeneratorMethods.GenerateUdr(View.Sdk.UdrDocumentRequest,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Process document.
+            </summary>
+            <param name="doc">Document request.</param>
+            <param name="filename">Filename containing data.  Setting this value will overwrite the 'Data' property in the document request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Document response.</returns>
+        </member>
         <member name="T:View.Sdk.Processor.MqMessage">
             <summary>
             Message queue message.
@@ -10903,173 +11146,107 @@
             UdrGeneration.
             </summary>
         </member>
-        <member name="T:View.Sdk.Processor.ViewCleanupSdk">
+        <member name="T:View.Sdk.Processor.SemanticCellExtractionRequest">
             <summary>
-            View Cleanup Pipeline SDK.
+            Semantic cell extraction request (processing pipeline).
             </summary>
         </member>
-        <member name="M:View.Sdk.Processor.ViewCleanupSdk.#ctor(System.Guid,System.String,System.String)">
+        <member name="P:View.Sdk.Processor.SemanticCellExtractionRequest.DocumentType">
+            <summary>
+            Document type to parse.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.SemanticCellExtractionRequest.MetadataRule">
+            <summary>
+            Metadata rule with extractor configuration.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.SemanticCellExtractionRequest.Data">
+            <summary>
+            Base64-encoded document data.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Processor.SemanticCellExtractionRequest.#ctor">
             <summary>
             Instantiate.
             </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="accessKey">Access key.</param>
-            <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing/cleanup.</param>
         </member>
-        <member name="M:View.Sdk.Processor.ViewCleanupSdk.Process(System.Guid,View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.StoragePool,View.Sdk.BucketMetadata,View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Boolean,System.Threading.CancellationToken)">
+        <member name="T:View.Sdk.Processor.SemanticCellMetadataRule">
             <summary>
-            Cleanup a document.  This variant is used by the storage server.
-            </summary>
-            <param name="requestGuid">Request GUID.</param>
-            <param name="tenant">Tenant metadata.</param>
-            <param name="collection">Collection metadata.</param>
-            <param name="bucket">Bucket metadata.</param>
-            <param name="pool">Storage pool metadata.</param>
-            <param name="obj">Object metadata.</param>
-            <param name="mdRule">Metadata rule.</param>
-            <param name="embedRule">Embeddings rule.</param>
-            <param name="vectorRepo">Vector repository.</param>
-            <param name="graphRepo">Graph repository.</param>
-            <param name="async">Boolean indicating if the task should be performed asynchronously.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Processor response.</returns>
-        </member>
-        <member name="M:View.Sdk.Processor.ViewCleanupSdk.Process(System.Guid,View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.DataRepository,View.Sdk.ObjectMetadata,View.Sdk.MetadataRule,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Threading.CancellationToken)">
-            <summary>
-            Cleanup a document.  This variant is used by the data crawler.
-            </summary>
-            <param name="requestGuid">Request GUID.</param>
-            <param name="tenant">Tenant metadata.</param>
-            <param name="collection">Collection metadata.</param>
-            <param name="repo">Data repository.</param>
-            <param name="obj">Object metadata.</param>
-            <param name="mdRule">Metadata rule.</param>
-            <param name="embedRule">Embeddings rule.</param>
-            <param name="vectorRepo">Vector repository.</param>
-            <param name="graphRepo">Graph repository.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Processor response.</returns>
-        </member>
-        <member name="T:View.Sdk.Processor.ViewLexiEmbeddingsSdk">
-            <summary>
-            View SDK for generating embeddings with Lexi search results.
+            Semantic cell metadata rule.
             </summary>
         </member>
-        <member name="M:View.Sdk.Processor.ViewLexiEmbeddingsSdk.#ctor(System.Guid,System.String,System.String)">
+        <member name="P:View.Sdk.Processor.SemanticCellMetadataRule.SemanticCellEndpoint">
+            <summary>
+            Endpoint for the semantic cell extractor service.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.SemanticCellMetadataRule.MinChunkContentLength">
+            <summary>
+            Minimum chunk content length.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.SemanticCellMetadataRule.MaxChunkContentLength">
+            <summary>
+            Maximum chunk content length.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Processor.SemanticCellMetadataRule.ShiftSize">
+            <summary>
+            Shift size for chunking.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Processor.SemanticCellMetadataRule.#ctor">
             <summary>
             Instantiate.
             </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="accessKey">Access key.</param>
-            <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing/lexiprocessing.</param>
-        </member>
-        <member name="M:View.Sdk.Processor.ViewLexiEmbeddingsSdk.Process(System.Guid,View.Sdk.TenantMetadata,View.Sdk.Collection,View.Sdk.SearchResult,View.Sdk.EmbeddingsRule,View.Sdk.VectorRepository,View.Sdk.GraphRepository,System.Boolean,System.Threading.CancellationToken)">
-            <summary>
-            Process a document.
-            </summary>
-            <param name="requestGuid">Request GUID.</param>
-            <param name="tenant">Tenant metadata.</param>
-            <param name="collection">Collection.</param>
-            <param name="results">Search results.</param>
-            <param name="embedRule">Embeddings rule.</param>
-            <param name="vectorRepo">Vector repository.</param>
-            <param name="graphRepo">Graph repository.</param>
-            <param name="async">Boolean indicating if the task should be performed asynchronously.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
         </member>
         <member name="T:View.Sdk.Processor.ViewProcessorSdk">
             <summary>
-            View Processing Pipeline SDK.
+            View Processor SDK.
             </summary>
         </member>
-        <member name="M:View.Sdk.Processor.ViewProcessorSdk.#ctor(System.Guid,System.String,System.String)">
+        <member name="P:View.Sdk.Processor.ViewProcessorSdk.Processor">
             <summary>
-            Instantiate.
+            Processor methods.
             </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="accessKey">Access key.</param>
-            <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing.</param>
         </member>
-        <member name="M:View.Sdk.Processor.ViewProcessorSdk.Process(System.Guid,System.Guid,System.Guid,View.Sdk.ObjectMetadata,System.Threading.CancellationToken)">
+        <member name="P:View.Sdk.Processor.ViewProcessorSdk.Cleanup">
             <summary>
-            Process a document.  This variant is used by the storage server.
+            Cleanup methods.
             </summary>
-            <param name="requestGuid">Request GUID.</param>
-            <param name="mdRuleGuid">Metadata rule GUID.</param>
-            <param name="embedRuleGuid">Embeddings rule GUID.</param>
-            <param name="obj">Object metadata.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Processor response.</returns>
         </member>
-        <member name="M:View.Sdk.Processor.ViewProcessorSdk.Enumerate(System.Int32,System.Threading.CancellationToken)">
+        <member name="P:View.Sdk.Processor.ViewProcessorSdk.LexiEmbeddings">
             <summary>
-            Enumerate processor tasks.
+            Lexi embeddings methods.
             </summary>
-            <param name="maxKeys">Maximum number of keys to return.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Enumeration result containing processor tasks.</returns>
         </member>
-        <member name="M:View.Sdk.Processor.ViewProcessorSdk.Retrieve(System.Guid,System.Threading.CancellationToken)">
+        <member name="P:View.Sdk.Processor.ViewProcessorSdk.TypeDetector">
             <summary>
-            Retrieve a processor task by GUID.
+            Type detector methods.
             </summary>
-            <param name="guid">Processor task GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Processor task.</returns>
         </member>
-        <member name="T:View.Sdk.Processor.ViewTypeDetectorSdk">
+        <member name="P:View.Sdk.Processor.ViewProcessorSdk.UdrGenerator">
             <summary>
-            View Type Detector SDK.
+            UDR generator methods.
             </summary>
         </member>
-        <member name="M:View.Sdk.Processor.ViewTypeDetectorSdk.#ctor(System.Guid,System.String,System.String)">
+        <member name="P:View.Sdk.Processor.ViewProcessorSdk.SemanticCellExtraction">
+            <summary>
+            Semantic cell extraction methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Processor.ViewProcessorSdk.#ctor(System.Guid,System.String,System.String,System.String)">
             <summary>
             Instantiate.
             </summary>
             <param name="tenantGuid">Tenant GUID.</param>
             <param name="accessKey">Access key.</param>
             <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/.</param>
-        </member>
-        <member name="M:View.Sdk.Processor.ViewTypeDetectorSdk.Process(System.Byte[],System.String,System.Threading.CancellationToken)">
-            <summary>
-            Determine a document type.
-            </summary>
-            <param name="data">Data.</param>
-            <param name="contentType">Content-type.  CSV content-types are inferred using this header's value.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>TypeResult.</returns>
-        </member>
-        <member name="T:View.Sdk.Processor.ViewUdrGeneratorSdk">
-            <summary>
-            View document processor SDK.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Processor.ViewUdrGeneratorSdk.#ctor(System.Guid,System.String,System.String)">
-            <summary>
-            Instantiate.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="accessKey">Access key.</param>
-            <param name="endpoint">Endpoint URL, i.e. http://localhost:8000/v1.0/tenants/tenant-guid/processing/udr.</param>
-        </member>
-        <member name="M:View.Sdk.Processor.ViewUdrGeneratorSdk.ProcessDocument(View.Sdk.UdrDocumentRequest,System.String,System.Threading.CancellationToken)">
-            <summary>
-            Process document.
-            </summary>
-            <param name="doc">Document request.</param>
-            <param name="filename">Filename containing data.  Setting this value will overwrite the 'Data' property in the document request.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Document response.</returns>
-        </member>
-        <member name="M:View.Sdk.Processor.ViewUdrGeneratorSdk.ProcessDataTable(View.Sdk.UdrDataTableRequest,System.String,System.Threading.CancellationToken)">
-            <summary>
-            Process data table.
-            </summary>
-            <param name="dt">Data table request.</param>
-            <param name="filename">Filename containing data.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Document response.</returns>
+            <param name="xToken">
+            Optional token to be included as the <c>x-token</c> header in API requests that require additional authorization.
+            This is used in cases where certain endpoints require an extra level of authentication.
+            </param>
         </member>
         <member name="T:View.Sdk.LexiEmbeddingsRequest">
             <summary>
@@ -11638,6 +11815,16 @@
         <member name="P:View.Sdk.SearchResult.Success">
             <summary>
             Indicates if the parser was successful.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SearchResult.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.SearchResult.CollectionGUID">
+            <summary>
+            Collection GUID.
             </summary>
         </member>
         <member name="P:View.Sdk.SearchResult.Timestamp">
@@ -12976,7 +13163,7 @@
         <member name="M:View.Sdk.Storage.Implementations.BucketMethods.RetrieveStatistics(System.String,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Storage.Implementations.BucketMethods.RetrieveMany(System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Storage.Implementations.BucketMethods.RetrieveMany(System.String,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:View.Sdk.Storage.Implementations.BucketMethods.Update(View.Sdk.BucketMetadata,System.Threading.CancellationToken)">
@@ -13126,10 +13313,11 @@
             <param name="token">Cancellation token.</param>
             <returns>Bucket statistics.</returns>
         </member>
-        <member name="M:View.Sdk.Storage.Interfaces.IBucketMethods.RetrieveMany(System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Storage.Interfaces.IBucketMethods.RetrieveMany(System.String,System.Threading.CancellationToken)">
             <summary>
             Retrieve multiple buckets.
             </summary>
+            <param name="bucketGuid">Bucket GUID.</param>
             <param name="token">Cancellation token.</param>
             <returns>List of bucket metadata.</returns>
         </member>
@@ -13850,6 +14038,11 @@
             Key.
             </summary>
         </member>
+        <member name="P:View.Sdk.UdrDocument.TypeResult">
+            <summary>
+            Type result.
+            </summary>
+        </member>
         <member name="P:View.Sdk.UdrDocument.Type">
             <summary>
             Document type.
@@ -13937,12 +14130,22 @@
             Additional data, not used by the service.
             </summary>
         </member>
+        <member name="P:View.Sdk.UdrDocumentRequest.MetadataRule">
+            <summary>
+            Metadata rule.
+            </summary>
+        </member>
         <member name="P:View.Sdk.UdrDocumentRequest.Metadata">
             <summary>
             Metadata, attached to the result.
             </summary>
         </member>
         <member name="P:View.Sdk.UdrDocumentRequest.Data">
+            <summary>
+            Data.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.UdrDocumentRequest.ContentBytes">
             <summary>
             Data.
             </summary>

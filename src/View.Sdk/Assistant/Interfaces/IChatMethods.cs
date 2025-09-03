@@ -20,12 +20,21 @@ namespace View.Sdk.Assistant.Interfaces
         public IAsyncEnumerable<string> ProcessConfigChat(Guid configGuid, AssistantRequest request, CancellationToken token = default);
 
         /// <summary>
+        /// Process a RAG question request.
+        /// </summary>
+        /// <param name="request">RAG question request.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Enumerable of tokens.</returns>
+        public IAsyncEnumerable<string> ProcessRagGuestion(AssistantRequest request, CancellationToken token = default);
+
+        /// <summary>
         /// Process a RAG message request.
         /// </summary>
         /// <param name="request">RAG message request.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Enumerable of tokens.</returns>
         public IAsyncEnumerable<string> ProcessRagMessage(AssistantRequest request, CancellationToken token = default);
+
 
         /// <summary>
         /// Process a chat-only question request.
