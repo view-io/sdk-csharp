@@ -60,6 +60,11 @@
         public string Key { get; set; } = null;
 
         /// <summary>
+        /// Type result.
+        /// </summary>
+        public TypeResult TypeResult { get; set; } = new TypeResult();
+
+        /// <summary>
         /// Document type.
         /// </summary>
         public DocumentTypeEnum Type { get; set; }

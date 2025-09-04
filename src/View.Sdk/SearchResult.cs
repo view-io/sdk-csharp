@@ -19,6 +19,16 @@
         public bool Success { get; set; } = false;
 
         /// <summary>
+        /// Tenant GUID.
+        /// </summary>
+        public Guid TenantGUID { get; set; } = Guid.NewGuid();
+
+        /// <summary>
+        /// Collection GUID.
+        /// </summary>
+        public Guid CollectionGUID { get; set; } = Guid.NewGuid();
+
+        /// <summary>
         /// Timestamps.
         /// </summary>
         public Timestamp Timestamp { get; set; } = new Timestamp();

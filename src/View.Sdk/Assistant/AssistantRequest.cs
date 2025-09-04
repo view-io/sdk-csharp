@@ -2,10 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// View Assistant RAG request.
@@ -31,6 +27,7 @@
             set
             {
                 if (String.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(PromptPrefix));
+                _PromptPrefix = value ?? string.Empty;
             }
         }
 
@@ -198,7 +195,7 @@
         /// <summary>
         /// Vector database port.
         /// </summary>
-        private int VectorDatabasePort
+        public int VectorDatabasePort
         {
             get
             {
@@ -260,9 +257,39 @@
         }
 
         /// <summary>
+        /// Name/identifier of the embedding model used to vectorize text.
+        /// </summary>
+        public string EmbeddingModel { get; set; }
+
+        /// <summary>
+        /// API key for the text generation provider (if it requires authentication).
+        /// </summary>
+        public string GenerationApiKey { get; set; }
+
+        /// <summary>
+        /// API key for Hugging Face Inference endpoints.
+        /// </summary>
+        public string HuggingFaceApiKey { get; set; }
+
+        /// <summary>
+        /// Table name in the vector database that stores embeddings and metadata.
+        /// </summary>
+        public string VectorDatabaseTable { get; set; }
+
+        /// <summary>
+        /// When <c>true</c>, sorts retrieved context by the maximum similarity score (descending).
+        /// </summary>
+        public bool SortByMaxSimilarity { get; set; } = true;
+
+        /// <summary>
+        /// Name/identifier of the reranking model used to reorder retrieved chunks/documents by relevance.
+        /// </summary>
+        public string RerankModel { get; set; }
+
+        /// <summary>
         /// Streaming.
         /// </summary>
-        public bool Stream { get; } = true;
+        public bool Stream { get; set; } = true;
 
         /// <summary>
         /// Enable or disable contextual sorting.

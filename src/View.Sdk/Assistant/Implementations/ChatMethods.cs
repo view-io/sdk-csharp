@@ -6,7 +6,6 @@ namespace View.Sdk.Assistant.Implementations
     using System.Runtime.CompilerServices;
     using System.Text.Json;
     using System.Threading;
-    using System.Threading.Tasks;
     using RestWrapper;
     using View.Sdk.Assistant.Interfaces;
 
@@ -46,6 +45,59 @@ namespace View.Sdk.Assistant.Implementations
             if (request == null) throw new ArgumentNullException(nameof(request));
 
             string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/assistant/chat/" + configGuid;
+            string json = _Sdk.Serializer.SerializeJson(request, true);
+
+            using (RestRequest req = new RestRequest(url, HttpMethod.Post, "application/json"))
+            {
+                req.TimeoutMilliseconds = _Sdk.TimeoutMs;
+                req.Authorization.BearerToken = _Sdk.AccessKey;
+                req.ContentType = "application/json";
+
+                if (_Sdk.LogRequests) _Sdk.Log(SeverityEnum.Debug, "request body: " + Environment.NewLine + json);
+
+                using (RestResponse resp = await req.SendAsync(json, token).ConfigureAwait(false))
+                {
+                    if (resp != null)
+                    {
+                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                        {
+                            if (request.Stream)
+                            {
+                                while (true)
+                                {
+                                    ServerSentEvent sse = await resp.ReadEventAsync();
+                                    if (sse != null) yield return ExtractToken(sse.Data);
+                                    else
+                                        yield break;
+                                }
+                            }
+                            else
+                            {
+                                if (_Sdk.LogResponses) _Sdk.Log(SeverityEnum.Debug, "response: " + resp.DataAsString);
+                                yield return resp.DataAsString;
+                            }
+                        }
+                        else
+                        {
+                            _Sdk.Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            yield break;
+                        }
+                    }
+                    else
+                    {
+                        _Sdk.Log(SeverityEnum.Warn, "no response from " + url);
+                        yield break;
+                    }
+                }
+            }
+        }
+
+        /// <inheritdoc/>
+        public async IAsyncEnumerable<string> ProcessRagQuestion(AssistantRequest request, [EnumeratorCancellation] CancellationToken token = default)
+        {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/assistant/rag";
             string json = _Sdk.Serializer.SerializeJson(request, true);
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Post, "application/json"))

@@ -1,8 +1,6 @@
 ﻿namespace View.Sdk
 {
     using System;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.ComponentModel.DataAnnotations;
     using System.Text.Json.Serialization;
 
     /// <summary>
@@ -114,6 +112,11 @@
         /// Enable or disable inclusion of flattened representation of processed content.
         /// </summary>
         public bool IncludeFlattened { get; set; } = true;
+
+        /// <summary>
+        /// Udr endpoint.
+        /// </summary>
+        public string UdrEndpoint { get; set; } = "http://localhost:8000/";
 
         #endregion
 
