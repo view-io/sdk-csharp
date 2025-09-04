@@ -94,34 +94,34 @@
         {
             Console.WriteLine("");
             Console.WriteLine("Available commands:");
-            Console.WriteLine("  q             Quit this program");
-            Console.WriteLine("  ?             Help, this menu");
-            Console.WriteLine("  cls           Clear the screen");
-            Console.WriteLine("  conn          Test connectivity");
+            Console.WriteLine("  q                  Quit this program");
+            Console.WriteLine("  ?                  Help, this menu");
+            Console.WriteLine("  cls                Clear the screen");
+            Console.WriteLine("  conn               Test connectivity");
             Console.WriteLine("");
             Console.WriteLine("Processor Methods:");
-            Console.WriteLine("  process       Process a document request");
-            Console.WriteLine("  enumerate     Enumerate processor tasks");
-            Console.WriteLine("  retrieve      Retrieve a processor task by GUID");
+            Console.WriteLine("  process            Process a document request");
+            Console.WriteLine("  enumerate          Enumerate processor tasks");
+            Console.WriteLine("  retrieve           Retrieve a processor task by GUID");
             Console.WriteLine("");
             Console.WriteLine("Cleanup Methods:");
-            Console.WriteLine("  cleanup       Cleanup a document");
+            Console.WriteLine("  cleanup            Cleanup a document");
             Console.WriteLine("  cleanup-enumerate  Enumerate cleanup tasks");
             Console.WriteLine("  cleanup-retrieve   Retrieve a cleanup task by GUID");
             Console.WriteLine("");
             Console.WriteLine("Lexi Embeddings Methods:");
-            Console.WriteLine("  lexi          Process Lexi embeddings");
+            Console.WriteLine("  lexi               Process Lexi embeddings");
             Console.WriteLine("  lexi-enumerate     Enumerate Lexi embeddings tasks");
             Console.WriteLine("  lexi-retrieve      Retrieve a Lexi embeddings task by GUID");
             Console.WriteLine("");
             Console.WriteLine("Type Detector Methods:");
-            Console.WriteLine("  type-detect   Detect document type");
+            Console.WriteLine("  type-detect        Detect document type");
             Console.WriteLine("");
             Console.WriteLine("UDR Generator Methods:");
-            Console.WriteLine("  udr           Generate UDR document");
+            Console.WriteLine("  udr                Generate UDR document");
             Console.WriteLine("");
             Console.WriteLine("Semantic Cell Extraction:");
-            Console.WriteLine("  semanticcell  Extract semantic cells from a document");
+            Console.WriteLine("  semanticcell       Extract semantic cells from a document");
             Console.WriteLine("");
         }
 
@@ -243,8 +243,6 @@
             try
             {
                 Guid guid = Inputty.GetGuid("GUID:", default(Guid));
-                TenantMetadata tenant = BuildObject<TenantMetadata>();
-                Collection collection = BuildObject<Collection>();
                 SearchResult search = BuildObject<SearchResult>();
                 EmbeddingsRule embedRule = BuildObject<EmbeddingsRule>();
                 VectorRepository vectorRepo = BuildObject<VectorRepository>();
