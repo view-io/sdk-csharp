@@ -982,7 +982,7 @@
         <member name="M:View.Sdk.Assistant.Implementations.ChatMethods.ProcessConfigChat(System.Guid,View.Sdk.Assistant.AssistantRequest,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Assistant.Implementations.ChatMethods.ProcessRagGuestion(View.Sdk.Assistant.AssistantRequest,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Assistant.Implementations.ChatMethods.ProcessRagQuestion(View.Sdk.Assistant.AssistantRequest,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="M:View.Sdk.Assistant.Implementations.ChatMethods.ProcessRagMessage(View.Sdk.Assistant.AssistantRequest,System.Threading.CancellationToken)">
@@ -1098,7 +1098,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Enumerable of tokens.</returns>
         </member>
-        <member name="M:View.Sdk.Assistant.Interfaces.IChatMethods.ProcessRagGuestion(View.Sdk.Assistant.AssistantRequest,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Assistant.Interfaces.IChatMethods.ProcessRagQuestion(View.Sdk.Assistant.AssistantRequest,System.Threading.CancellationToken)">
             <summary>
             Process a RAG question request.
             </summary>

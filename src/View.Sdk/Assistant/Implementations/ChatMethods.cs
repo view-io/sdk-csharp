@@ -93,7 +93,7 @@ namespace View.Sdk.Assistant.Implementations
         }
 
         /// <inheritdoc/>
-        public async IAsyncEnumerable<string> ProcessRagGuestion(AssistantRequest request, [EnumeratorCancellation] CancellationToken token = default)
+        public async IAsyncEnumerable<string> ProcessRagQuestion(AssistantRequest request, [EnumeratorCancellation] CancellationToken token = default)
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 

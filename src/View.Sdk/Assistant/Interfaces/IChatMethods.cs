@@ -25,7 +25,7 @@ namespace View.Sdk.Assistant.Interfaces
         /// <param name="request">RAG question request.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Enumerable of tokens.</returns>
-        public IAsyncEnumerable<string> ProcessRagGuestion(AssistantRequest request, CancellationToken token = default);
+        public IAsyncEnumerable<string> ProcessRagQuestion(AssistantRequest request, CancellationToken token = default);
 
         /// <summary>
         /// Process a RAG message request.
