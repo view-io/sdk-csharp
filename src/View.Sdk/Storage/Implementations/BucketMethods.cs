@@ -1,13 +1,11 @@
 namespace View.Sdk.Storage.Implementations
 {
-    using RestWrapper;
     using System;
-    using System.Collections;
     using System.Collections.Generic;
-    using System.Net;
     using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
+    using RestWrapper;
     using View.Sdk.Storage.Interfaces;
 
     /// <summary>
@@ -64,6 +62,13 @@ namespace View.Sdk.Storage.Implementations
             if (string.IsNullOrEmpty(bucketGuid)) throw new ArgumentNullException(nameof(bucketGuid));
             string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/buckets/" + bucketGuid + "/stats";
             return await _Sdk.Retrieve<BucketStatistics>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<List<BucketMetadata>> RetrieveMany(CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/buckets";
+            return await _Sdk.RetrieveMany<BucketMetadata>(url, token).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
