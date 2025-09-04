@@ -13163,7 +13163,7 @@
         <member name="M:View.Sdk.Storage.Implementations.BucketMethods.RetrieveStatistics(System.String,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Storage.Implementations.BucketMethods.RetrieveMany(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Storage.Implementations.BucketMethods.ListObjects(System.String,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:View.Sdk.Storage.Implementations.BucketMethods.Update(View.Sdk.BucketMetadata,System.Threading.CancellationToken)">
@@ -13313,9 +13313,9 @@
             <param name="token">Cancellation token.</param>
             <returns>Bucket statistics.</returns>
         </member>
-        <member name="M:View.Sdk.Storage.Interfaces.IBucketMethods.RetrieveMany(System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Storage.Interfaces.IBucketMethods.ListObjects(System.String,System.Threading.CancellationToken)">
             <summary>
-            Retrieve multiple buckets.
+            Object list.
             </summary>
             <param name="bucketGuid">Bucket GUID.</param>
             <param name="token">Cancellation token.</param>

@@ -67,7 +67,7 @@ namespace View.Sdk.Storage.Implementations
         }
 
         /// <inheritdoc />
-        public async Task<List<BucketMetadata>> RetrieveMany(string bucketGuid, CancellationToken token = default)
+        public async Task<List<BucketMetadata>> ListObjects(string bucketGuid, CancellationToken token = default)
         {
             string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/buckets/" + bucketGuid;
             return await _Sdk.RetrieveMany<BucketMetadata>(url, token).ConfigureAwait(false);
