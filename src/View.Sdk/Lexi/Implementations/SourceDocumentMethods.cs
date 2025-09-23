@@ -52,6 +52,16 @@ namespace View.Sdk.Lexi.Implementations
         }
 
         /// <inheritdoc />
+        public async Task<SourceDocument> Retrieve(Guid collectionGuid, string key, string version, bool includeData = false, CancellationToken token = default)
+        {
+            if (String.IsNullOrEmpty(key)) throw new ArgumentNullException(nameof(key));
+            if (String.IsNullOrEmpty(version)) throw new ArgumentNullException(nameof(version));
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/collections/" + collectionGuid + "/documents?key=" + key + "&versionId=" + version;
+            if (includeData) url += "&incldata";
+            return await _Sdk.Retrieve<SourceDocument>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
         public async Task<CollectionTopTerms> RetrieveTopTerms(Guid collectionGuid, Guid documentGuid, int maxKeys = 5, CancellationToken token = default)
         {
             string url = _Sdk.Endpoint + "v1.0/tenants/" + _Sdk.TenantGUID + "/collections/" + collectionGuid + "/documents/"+ documentGuid + "/topterms?max-keys=" + maxKeys;

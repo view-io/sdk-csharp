@@ -9410,6 +9410,9 @@
         <member name="M:View.Sdk.Lexi.Implementations.SourceDocumentMethods.Retrieve(System.Guid,System.Guid,System.Boolean,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:View.Sdk.Lexi.Implementations.SourceDocumentMethods.Retrieve(System.Guid,System.String,System.String,System.Boolean,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="M:View.Sdk.Lexi.Implementations.SourceDocumentMethods.RetrieveTopTerms(System.Guid,System.Guid,System.Int32,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
@@ -9624,6 +9627,17 @@
             </summary>
             <param name="collectionGuid">Collection GUID.</param>
             <param name="documentGuid">Document GUID.</param>
+            <param name="includeData">Flag to indicate whether or not source document data should be included.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Source document.</returns>
+        </member>
+        <member name="M:View.Sdk.Lexi.Interfaces.ISourceDocumentMethods.Retrieve(System.Guid,System.String,System.String,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve document.
+            </summary>
+            <param name="collectionGuid">Collection GUID.</param>
+            <param name="key">Key.</param>
+            <param name="version">Version.</param>
             <param name="includeData">Flag to indicate whether or not source document data should be included.</param>
             <param name="token">Cancellation token.</param>
             <returns>Source document.</returns>
