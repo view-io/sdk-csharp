@@ -62,6 +62,11 @@
         public string AdditionalData { get; set; } = null;
 
         /// <summary>
+        /// Metadata rule.
+        /// </summary>
+        public MetadataRule MetadataRule { get; set; } = new MetadataRule();
+       
+        /// <summary>
         /// Metadata, attached to the result.
         /// </summary>
         public Dictionary<string, object> Metadata
@@ -80,7 +85,12 @@
         /// <summary>
         /// Data.
         /// </summary>
-        public byte[] Data
+        public string Data { get; set; } = null;
+
+        /// <summary>
+        /// Data.
+        /// </summary>
+        public byte[] ContentBytes
         {
             get
             {
@@ -88,7 +98,7 @@
             }
             set
             {
-                if (value == null) throw new ArgumentNullException(nameof(Data));
+                if (value == null) throw new ArgumentNullException(nameof(ContentBytes));
                 _Data = value;
             }
         }
