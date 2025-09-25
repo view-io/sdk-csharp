@@ -29,6 +29,17 @@ namespace View.Sdk.Lexi.Interfaces
         public Task<SourceDocument> Retrieve(Guid collectionGuid, Guid documentGuid, bool includeData = false, CancellationToken token = default);
 
         /// <summary>
+        /// Retrieve document.
+        /// </summary>
+        /// <param name="collectionGuid">Collection GUID.</param>
+        /// <param name="key">Key.</param>
+        /// <param name="version">Version.</param>
+        /// <param name="includeData">Flag to indicate whether or not source document data should be included.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Source document.</returns>
+        public Task<SourceDocument> Retrieve(Guid collectionGuid, string key, string version, bool includeData = false, CancellationToken token = default);
+
+        /// <summary>
         /// Retrieve top terms for a document.
         /// </summary>
         /// <param name="collectionGuid">Collection GUID.</param>
