@@ -1933,6 +1933,1418 @@
             Instantiate.
             </summary>
         </member>
+        <member name="T:View.Sdk.CompletionsProviderEnum">
+            <summary>
+            Completions provider.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.CompletionsProviderEnum.OpenAI">
+            <summary>
+            OpenAI.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.CompletionsProviderEnum.Ollama">
+            <summary>
+            Ollama.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Completions.CompletionToken">
+            <summary>
+            Completion token.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.CompletionToken.Content">
+            <summary>
+            The actual token/text content in this chunk
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.CompletionToken.Index">
+            <summary>
+            Index of this token in the stream (0-based)
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.CompletionToken.FinishReason">
+            <summary>
+            Reason for completion ending (only set on final token)
+            e.g., "stop", "length", "content_filter", etc.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.CompletionToken.IsComplete">
+            <summary>
+            Indicates if this is the final token in the stream
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.CompletionToken.TimestampUtc">
+            <summary>
+            Timestamp when this token was received
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Completions.CompletionToken.#ctor">
+            <summary>
+            Completion token.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Completions.GenerateCompletionRequest">
+            <summary>
+            Generate completion request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionRequest.Model">
+            <summary>
+            The model to use for completion (required)
+            e.g., "gpt-4", "llama2", "mistral"
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionRequest.Messages">
+            <summary>
+            The messages to generate a completion for
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionRequest.Prompt">
+            <summary>
+            Single prompt string (alternative to Messages for simpler requests)
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionRequest.Temperature">
+            <summary>
+            Temperature for sampling (0.0 to 2.0)
+            Higher values = more random
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionRequest.TopP">
+            <summary>
+            Nucleus sampling - consider tokens with top_p probability mass (0.0 to 1.0)
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionRequest.TopK">
+            <summary>
+            Only sample from top K tokens (1 to 1000)
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionRequest.MaxTokens">
+            <summary>
+            Maximum number of tokens to generate (1 to 128000)
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionRequest.Stop">
+            <summary>
+            Stop sequences - generation stops if these are encountered
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionRequest.Stream">
+            <summary>
+            Whether to stream the response
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionRequest.N">
+            <summary>
+            Number of completions to generate (1 to 10)
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionRequest.PresencePenalty">
+            <summary>
+            Presence penalty (-2.0 to 2.0)
+            Positive values penalize new tokens based on whether they appear in the text so far
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionRequest.FrequencyPenalty">
+            <summary>
+            Frequency penalty (-2.0 to 2.0)
+            Positive values penalize tokens based on their frequency in the text so far
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionRequest.RepeatPenalty">
+            <summary>
+            Penalize repetition of sequences (0.0 to 2.0)
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionRequest.Seed">
+            <summary>
+            Random seed for deterministic generation (any valid int32)
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionRequest.System">
+            <summary>
+            System message/instruction (can also be included in Messages)
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionRequest.ResponseFormat">
+            <summary>
+            Response format (e.g., "json" for JSON mode)
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionRequest.User">
+            <summary>
+            User identifier for tracking
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionRequest.NumKeep">
+            <summary>
+            Number of tokens to keep from prompt (0 to context size)
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionRequest.NumCtx">
+            <summary>
+            Number of tokens for context window (128 to 128000)
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionRequest.NumPredict">
+            <summary>
+            Number of tokens to predict (1 to 128000)
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionRequest.TfsZ">
+            <summary>
+            Tail free sampling (0.0 to 1.0)
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionRequest.TypicalP">
+            <summary>
+            Typical p sampling (0.0 to 1.0)
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionRequest.Mirostat">
+            <summary>
+            Mirostat sampling mode (0, 1, or 2)
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionRequest.MirostatTau">
+            <summary>
+            Mirostat target entropy (0.0 to 10.0)
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionRequest.MirostatEta">
+            <summary>
+            Mirostat learning rate (0.0 to 1.0)
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionRequest.NumThread">
+            <summary>
+            Number of threads to use (1 to 128)
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Completions.GenerateCompletionRequest.#ctor">
+            <summary>
+            Generate completion request.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Completions.GenerateCompletionResult">
+            <summary>
+            Generate completion result.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionResult.Provider">
+            <summary>
+            Completion provider.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionResult.Tokens">
+            <summary>
+            Tokens.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionResult.Model">
+            <summary>
+            Model.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionResult.StartUtc">
+            <summary>
+            Start UTC.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionResult.FirstTokenUtc">
+            <summary>
+            UTC time at which first token arrived.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionResult.LastTokenUtc">
+            <summary>
+            UTC time at which the last token arrived.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionResult.FirstToken">
+            <summary>
+            Time to first token from the start time.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionResult.TotalTime">
+            <summary>
+            Time to last token from the start time.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.GenerateCompletionResult.StreamingTime">
+            <summary>
+            Total streaming time between first token and last token.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Completions.GenerateCompletionResult.#ctor">
+            <summary>
+            Generate completion result.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Completions.Message">
+            <summary>
+            Completion message.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Message.Role">
+            <summary>
+            Role: "system", "user", "assistant"
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Message.Content">
+            <summary>
+            The message content
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Message.Name">
+            <summary>
+            Optional name identifier for the message sender
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Completions.Message.#ctor">
+            <summary>
+            Completion message.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Embeddings.Providers.CompletionsProviderSdkBase">
+            <summary>
+            View completions provider SDK base class.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.CompletionsProviderSdkBase.LogRequests">
+            <summary>
+            Enable or disable logging of request bodies.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.CompletionsProviderSdkBase.LogResponses">
+            <summary>
+            Enable or disable logging of response bodies.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.CompletionsProviderSdkBase.Logger">
+            <summary>
+            Method to invoke to send log messages.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.CompletionsProviderSdkBase.Header">
+            <summary>
+            Header to prepend to log messages.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.CompletionsProviderSdkBase.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.CompletionsProviderSdkBase.Provider">
+            <summary>
+            Completions provider.  Default is Ollama.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.CompletionsProviderSdkBase.Serializer">
+            <summary>
+            Serializer.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.CompletionsProviderSdkBase.ApiKey">
+            <summary>
+            API key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.CompletionsProviderSdkBase.BaseUrl">
+            <summary>
+            Base URL.  Default is http://localhost:8000/.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.CompletionsProviderSdkBase.TimeoutMs">
+            <summary>
+            Timeout in milliseconds.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.CompletionsProviderSdkBase.#ctor(System.Guid,View.Sdk.CompletionsProviderEnum,System.String,System.String)">
+            <summary>
+            View completions provider SDK base class.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="provider">Completions provider.</param>
+            <param name="endpoint">Endpoint URL.</param>
+            <param name="apiKey">API key.</param>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.CompletionsProviderSdkBase.Dispose">
+            <summary>
+            Dispose.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.CompletionsProviderSdkBase.Log(View.Sdk.SeverityEnum,System.String)">
+            <summary>
+            Emit a log message.
+            </summary>
+            <param name="sev">Severity.</param>
+            <param name="msg">Message.</param>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.CompletionsProviderSdkBase.ValidateConnectivity(System.Threading.CancellationToken)">
+            <summary>
+            Validate connectivity.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>True if connected.</returns>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.CompletionsProviderSdkBase.GenerateCompletionAsync(View.Sdk.Completions.GenerateCompletionRequest,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Generate a completion.
+            </summary>
+            <param name="req">Completion request.</param>
+            <param name="timeoutMs">Timeout in milliseconds.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Completion response.</returns>
+        </member>
+        <member name="T:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase">
+            <summary>
+            View embeddings generator SDK base class.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.LogRequests">
+            <summary>
+            Enable or disable logging of request bodies.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.LogResponses">
+            <summary>
+            Enable or disable logging of response bodies.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.Logger">
+            <summary>
+            Method to invoke to send log messages.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.Header">
+            <summary>
+            Header to prepend to log messages.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.Generator">
+            <summary>
+            Embeddings generator.  Default is LCProxy.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.Serializer">
+            <summary>
+            Serializer.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.ApiKey">
+            <summary>
+            API key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.BaseUrl">
+            <summary>
+            Base URL.  Default is http://localhost:8000/.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.TimeoutMs">
+            <summary>
+            Timeout in milliseconds.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.#ctor(System.Guid,View.Sdk.EmbeddingsGeneratorEnum,System.String,System.String)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="generator">Embeddings generator.</param>
+            <param name="endpoint">Endpoint URL.</param>
+            <param name="apiKey">API key.</param>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.Dispose">
+            <summary>
+            Dispose.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.Log(View.Sdk.SeverityEnum,System.String)">
+            <summary>
+            Emit a log message.
+            </summary>
+            <param name="sev">Severity.</param>
+            <param name="msg">Message.</param>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.ValidateConnectivity(System.Threading.CancellationToken)">
+            <summary>
+            Validate connectivity.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>True if connected.</returns>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.GenerateEmbeddings(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Generate embeddings.
+            </summary>
+            <param name="embedRequest">Embeddings request.</param>
+            <param name="timeoutMs">Timeout in milliseconds.</param>
+            <param name="token">Cancellation token.</param>
+            <returns></returns>
+        </member>
+        <member name="T:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsRequest">
+            <summary>
+            Langchain embeddings request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsRequest.Model">
+            <summary>
+            Model used to generate embeddings.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsRequest.ApiKey">
+            <summary>
+            API key for Huggingface.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsRequest.Contents">
+            <summary>
+            Contents.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsRequest.FromEmbeddingsRequest(View.Sdk.Embeddings.GenerateEmbeddingsRequest)">
+            <summary>
+            Instantiate from embeddings request.
+            </summary>
+            <param name="req">Embeddings request.</param>
+            <returns>Langchain embeddings request.</returns>
+        </member>
+        <member name="T:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsResult">
+            <summary>
+            Lcproxy embeddings result.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsResult.Success">
+            <summary>
+            Boolean indicating whether or not the operation was successful.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsResult.StatusCode">
+            <summary>
+            HTTP status code.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsResult.Model">
+            <summary>
+            Model used to generate embeddings.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsResult.Contents">
+            <summary>
+            Contents.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsResult.Embeddings">
+            <summary>
+            List of embeddings.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsResult.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsResult.ToEmbeddingsResult(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Boolean,System.Int32,View.Sdk.ApiErrorResponse)">
+            <summary>
+            Create an embeddings result object from the original request and this object, the provider response.
+            </summary>
+            <param name="req">Original embeddings request.</param>
+            <param name="success">Boolean indicating whether or not the request succeeded.</param>
+            <param name="statusCode">HTTP status code.</param>
+            <param name="error">API error response.</param>
+            <returns>Embeddings result.</returns>
+        </member>
+        <member name="T:View.Sdk.Embeddings.Providers.Langchain.ViewLangchainSdk">
+            <summary>
+            View Langchain SDK.  This SDK interacts directly with the underlying View Embeddings microservice that acts as a Langchain proxy.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.Langchain.ViewLangchainSdk.#ctor(System.Guid,System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.Langchain.ViewLangchainSdk.ValidateConnectivity(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.Langchain.ViewLangchainSdk.GenerateEmbeddings(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Embeddings.Providers.Ollama.OllamaEmbeddingsRequest">
+            <summary>
+            Ollama embeddings request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.Ollama.OllamaEmbeddingsRequest.Model">
+            <summary>
+            Model used to generate embeddings.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.Ollama.OllamaEmbeddingsRequest.Contents">
+            <summary>
+            Contents.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.Ollama.OllamaEmbeddingsRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.Ollama.OllamaEmbeddingsRequest.FromEmbeddingsRequest(View.Sdk.Embeddings.GenerateEmbeddingsRequest)">
+            <summary>
+            Instantiate from embeddings request.
+            </summary>
+            <param name="req">Embeddings request.</param>
+            <returns>Ollama embeddings request.</returns>
+        </member>
+        <member name="T:View.Sdk.Embeddings.Providers.Ollama.OllamaEmbeddingsResult">
+            <summary>
+            Ollama embeddings result.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.Ollama.OllamaEmbeddingsResult.Model">
+            <summary>
+            Model.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.Ollama.OllamaEmbeddingsResult.Embeddings">
+            <summary>
+            List of embeddings.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.Ollama.OllamaEmbeddingsResult.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.Ollama.OllamaEmbeddingsResult.ToEmbeddingsResult(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Boolean,System.Int32,View.Sdk.ApiErrorResponse)">
+            <summary>
+            Create an embeddings result object from the original request and this object, the provider response.
+            </summary>
+            <param name="req">Original embeddings request.</param>
+            <param name="success">Boolean indicating whether or not the request succeeded.</param>
+            <param name="statusCode">HTTP status code.</param>
+            <param name="error">API error response.</param>
+            <returns>Embeddings result.</returns>
+        </member>
+        <member name="T:View.Sdk.Embeddings.Providers.Ollama.OllamaModelResult">
+            <summary>
+            Ollama model result.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.Ollama.OllamaModelResult.Models">
+            <summary>
+            List of model details.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.Ollama.OllamaModelResult.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Embeddings.Providers.Ollama.OllamaModelResult.OllamaModelDetail">
+            <summary>
+            Ollama model detail.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.Ollama.OllamaModelResult.OllamaModelDetail.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.Ollama.OllamaModelResult.OllamaModelDetail.Model">
+            <summary>
+            Model.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.Ollama.OllamaModelResult.OllamaModelDetail.LastModifiedUtc">
+            <summary>
+            Last modified timestamp, in UTC time.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.Ollama.OllamaModelResult.OllamaModelDetail.Size">
+            <summary>
+            Size.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.Ollama.OllamaModelResult.OllamaModelDetail.Digest">
+            <summary>
+            Digest.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.Ollama.OllamaModelResult.OllamaModelDetail.Details">
+            <summary>
+            Details.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.Ollama.OllamaModelResult.OllamaModelDetail.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Embeddings.Providers.Ollama.ViewOllamaSdk">
+            <summary>
+            View Ollama SDK.  This SDK interacts directly with an underlying Ollama microservice.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.Ollama.ViewOllamaSdk.#ctor(System.Guid,System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.Ollama.ViewOllamaSdk.ValidateConnectivity(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.Ollama.ViewOllamaSdk.GenerateEmbeddings(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddings">
+            <summary>
+            OpenAI embeddings.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddings.Embeddings">
+            <summary>
+            Embeddings.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddings.Index">
+            <summary>
+            Index.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddings.ObjectType">
+            <summary>
+            Object type.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddings.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddingsRequest">
+            <summary>
+            OpenAI embeddings request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddingsRequest.Model">
+            <summary>
+            Model used to generate embeddings.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddingsRequest.Contents">
+            <summary>
+            Contents.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddingsRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddingsRequest.FromEmbeddingsRequest(View.Sdk.Embeddings.GenerateEmbeddingsRequest)">
+            <summary>
+            Instantiate from embeddings request.
+            </summary>
+            <param name="req">Embeddings request.</param>
+            <returns>OpenAI embeddings request.</returns>
+        </member>
+        <member name="T:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddingsResult">
+            <summary>
+            OpenAI embeddings result.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddingsResult.Object">
+            <summary>
+            Object type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddingsResult.Data">
+            <summary>
+            Data.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddingsResult.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddingsResult.ToEmbeddingsResult(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Boolean,System.Int32,View.Sdk.ApiErrorResponse)">
+            <summary>
+            Create an embeddings result object from the original request and this object, the provider response.
+            </summary>
+            <param name="req">Original embeddings request.</param>
+            <param name="success">Boolean indicating whether or not the request succeeded.</param>
+            <param name="statusCode">HTTP status code.</param>
+            <param name="error">API error response.</param>
+            <returns>Embeddings result.</returns>
+        </member>
+        <member name="T:View.Sdk.Embeddings.Providers.OpenAI.ViewOpenAiSdk">
+            <summary>
+            OpenAI SDK.  This SDK interacts directly with the OpenAI API for generating embeddings.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.OpenAI.ViewOpenAiSdk.#ctor(System.Guid,System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.OpenAI.ViewOpenAiSdk.ValidateConnectivity(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.OpenAI.ViewOpenAiSdk.GenerateEmbeddings(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Embeddings.Providers.VoyageAI.ViewVoyageAiSdk">
+            <summary>
+            VoyageAI SDK.  This SDK interacts directly with the VoyageAI API for generating embeddings.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.VoyageAI.ViewVoyageAiSdk.#ctor(System.Guid,System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.VoyageAI.ViewVoyageAiSdk.ValidateConnectivity(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.VoyageAI.ViewVoyageAiSdk.GenerateEmbeddings(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddings">
+            <summary>
+            VoyageAI embeddings.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddings.Embeddings">
+            <summary>
+            Embeddings.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddings.Index">
+            <summary>
+            Index.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddings.ObjectType">
+            <summary>
+            Object type.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddings.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddingsRequest">
+            <summary>
+            VoyageAI embeddings request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddingsRequest.Model">
+            <summary>
+            Model used to generate embeddings.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddingsRequest.Contents">
+            <summary>
+            Contents.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddingsRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddingsRequest.FromEmbeddingsRequest(View.Sdk.Embeddings.GenerateEmbeddingsRequest)">
+            <summary>
+            Instantiate from embeddings request.
+            </summary>
+            <param name="req">Embeddings request.</param>
+            <returns>Voyage AI embeddings request.</returns>
+        </member>
+        <member name="T:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddingsResult">
+            <summary>
+            VoyageAI embeddings result.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddingsResult.Object">
+            <summary>
+            Object type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddingsResult.Data">
+            <summary>
+            Data.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddingsResult.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddingsResult.ToEmbeddingsResult(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Boolean,System.Int32,View.Sdk.ApiErrorResponse)">
+            <summary>
+            Create an embeddings result object from the original request and this object, the provider response.
+            </summary>
+            <param name="req">Original embeddings request.</param>
+            <param name="success">Boolean indicating whether or not the request succeeded.</param>
+            <param name="statusCode">HTTP status code.</param>
+            <param name="error">API error response.</param>
+            <returns>Embeddings result.</returns>
+        </member>
+        <member name="T:View.Sdk.Embeddings.ContentEmbedding">
+            <summary>
+            Content embedding.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.ContentEmbedding.Content">
+            <summary>
+            Content.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.ContentEmbedding.Embeddings">
+            <summary>
+            Embeddings.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.ContentEmbedding.#ctor">
+            <summary>
+            Content embedding.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Embeddings.EmbeddingsDocument">
+            <summary>
+            Embeddings document.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.Success">
+            <summary>
+            Indicates if the parser was successful.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.Exception">
+            <summary>
+            Exception, if any.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.Id">
+            <summary>
+            ID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.DocumentGUID">
+            <summary>
+            Document GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.CollectionGUID">
+            <summary>
+            Collection GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.SourceDocumentGUID">
+            <summary>
+            Source document GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.DataRepositoryGUID">
+            <summary>
+            Data repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.CrawlPlanGUID">
+            <summary>
+            Crawl plan GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.CrawlOperationGUID">
+            <summary>
+            Crawl operation GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.BucketGUID">
+            <summary>
+            Bucket GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.VectorRepositoryGUID">
+            <summary>
+            Vector repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.GraphRepositoryGUID">
+            <summary>
+            Graph repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.GraphNodeIdentifier">
+            <summary>
+            Graph node identifier.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.ObjectGUID">
+            <summary>
+            Object GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.ObjectKey">
+            <summary>
+            Object key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.ObjectVersion">
+            <summary>
+            Object version.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.Model">
+            <summary>
+            Model.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.EmbeddingsRule">
+            <summary>
+            Embeddings rule.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.Content">
+            <summary>
+            Content.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.Score">
+            <summary>
+            Score.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.Distance">
+            <summary>
+            Distance.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.SemanticCells">
+            <summary>
+            Semantic cells.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.CreatedUtc">
+            <summary>
+            Creation timestamp in UTC.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.EmbeddingsDocument.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.EmbeddingsDocument.FromDataRow(System.Data.DataRow,View.Sdk.Serialization.Serializer)">
+            <summary>
+            Instantiate from DataRow.
+            </summary>
+            <param name="row">DataRow.</param>
+            <param name="serializer">Serializer.</param>
+            <returns>EmbeddingsDocument.</returns>
+        </member>
+        <member name="M:View.Sdk.Embeddings.EmbeddingsDocument.FromDataTable(System.Data.DataTable,View.Sdk.Serialization.Serializer)">
+            <summary>
+            Instantiate from DataTable.
+            </summary>
+            <param name="dt">DataTable.</param>
+            <param name="serializer">Serializer.</param>
+            <returns>List of EmbeddingsDocument.</returns>
+        </member>
+        <member name="T:View.Sdk.Embeddings.FindEmbeddingsObject">
+            <summary>
+            Find embeddings object.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.FindEmbeddingsObject.SHA256Hash">
+            <summary>
+            SHA256 on which to match.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.FindEmbeddingsObject.Embeddings">
+            <summary>
+            Embeddings.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.FindEmbeddingsObject.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.FindEmbeddingsObject.FromDataRow(System.Data.DataRow,View.Sdk.Serialization.Serializer)">
+            <summary>
+            Instantiate from DataRow.
+            </summary>
+            <param name="row">DataRow.</param>
+            <param name="serializer">Serializer.</param>
+            <returns>FindEmbeddingsObject.</returns>
+        </member>
+        <member name="M:View.Sdk.Embeddings.FindEmbeddingsObject.FromDataTable(System.Data.DataTable,View.Sdk.Serialization.Serializer)">
+            <summary>
+            Instantiate from DataTable.
+            </summary>
+            <param name="dt">DataTable.</param>
+            <param name="serializer">Serializer.</param>
+            <returns>List of FindEmbeddingsObject.</returns>
+        </member>
+        <member name="T:View.Sdk.Embeddings.FindEmbeddingsRequest">
+            <summary>
+            Find embeddings request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.FindEmbeddingsRequest.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.FindEmbeddingsRequest.EmbeddingsRuleGUID">
+            <summary>
+            Embeddings rule GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.FindEmbeddingsRequest.EmbeddingsRule">
+            <summary>
+            Embeddings rule.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.FindEmbeddingsRequest.VectorRepositoryGUID">
+            <summary>
+            Vector repository GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.FindEmbeddingsRequest.VectorRepository">
+            <summary>
+            Vector repository.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.FindEmbeddingsRequest.Criteria">
+            <summary>
+            List of embeddings parameters on which to match.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.FindEmbeddingsRequest.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Embeddings.FindEmbeddingsResult">
+            <summary>
+            Find embeddings result.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.FindEmbeddingsResult.Success">
+            <summary>
+            Boolean indicating success.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.FindEmbeddingsResult.Timestamp">
+            <summary>
+            Timestamps.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.FindEmbeddingsResult.Existing">
+            <summary>
+            List of found embeddings records.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.FindEmbeddingsResult.Missing">
+            <summary>
+            List of missing embeddings records.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.FindEmbeddingsResult.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Embeddings.GenerateEmbeddingsRequest">
+            <summary>
+            Generate embeddings request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsRequest.EmbeddingsRule">
+            <summary>
+            Embeddings rule.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsRequest.Model">
+            <summary>
+            Model.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsRequest.SemanticCells">
+            <summary>
+            Semantic cells.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsRequest.Contents">
+            <summary>
+            Contents.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsRequest.Embeddings">
+            <summary>
+            Embeddings.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.GenerateEmbeddingsRequest.#ctor">
+            <summary>
+            Generate embeddings request.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Embeddings.GenerateEmbeddingsResult">
+            <summary>
+            Generate embeddings result.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsResult.Success">
+            <summary>
+            Boolean indicating whether or not the operation was successful.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsResult.StatusCode">
+            <summary>
+            HTTP status code.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsResult.Error">
+            <summary>
+            Error response.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsResult.BatchCount">
+            <summary>
+            The number of batches processed.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsResult.SemanticCells">
+            <summary>
+            Semantic cells.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsResult.ContentEmbeddings">
+            <summary>
+            Content embeddings.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.GenerateEmbeddingsResult.#ctor">
+            <summary>
+            Generate embeddings result.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Embeddings.ModelInformation">
+            <summary>
+            Model information.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.ModelInformation.Model">
+            <summary>
+            Model.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.ModelInformation.Size">
+            <summary>
+            Size.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.ModelInformation.LastModifiedUtc">
+            <summary>
+            Last modified timestamp, in UTC time.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.ModelInformation.MD5Hash">
+            <summary>
+            MD5 hash.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.ModelInformation.SHA1Hash">
+            <summary>
+            SHA1 hash.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.ModelInformation.SHA256Hash">
+            <summary>
+            SHA256 hash.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.ModelInformation.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.ModelInformation.FromOllamaResponse(View.Sdk.Embeddings.Providers.Ollama.OllamaModelResult)">
+            <summary>
+            Instantiate from Ollama model response.
+            </summary>
+            <param name="resp">Response.</param>
+            <returns>List of model information.</returns>
+        </member>
+        <member name="T:View.Sdk.Embeddings.ViewEmbeddingsSdk">
+            <summary>
+            View embeddings generator SDK.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.ViewEmbeddingsSdk.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.ViewEmbeddingsSdk.Generator">
+            <summary>
+            Embeddings generator.  Default is LCProxy.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.ViewEmbeddingsSdk.ApiKey">
+            <summary>
+            API key.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.ViewEmbeddingsSdk.BaseUrl">
+            <summary>
+            Base URL.  Default is http://localhost:8000/.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.ViewEmbeddingsSdk.BatchSize">
+            <summary>
+            Maximum number of chunks to include in an individual processing batch.  Default is 16.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.ViewEmbeddingsSdk.MaxParallelTasks">
+            <summary>
+            Maximum number of batches to process in parallel.  Default is 16.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.ViewEmbeddingsSdk.MaxRetries">
+            <summary>
+            Maximum number of retries to perform on any given batch.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.ViewEmbeddingsSdk.MaxFailures">
+            <summary>
+            Maximum number of failed batches before failing the operation.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.ViewEmbeddingsSdk.TimeoutMs">
+            <summary>
+            Timeout in milliseconds for each batch.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.ViewEmbeddingsSdk.LogRequests">
+            <summary>
+            Enable or disable logging of request bodies.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.ViewEmbeddingsSdk.LogResponses">
+            <summary>
+            Enable or disable logging of response bodies.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Embeddings.ViewEmbeddingsSdk.Logger">
+            <summary>
+            Method to invoke to send log messages.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.ViewEmbeddingsSdk.#ctor(System.Guid,View.Sdk.EmbeddingsGeneratorEnum,System.String,System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Instantiate.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="generator">Embeddings generator type.</param>
+            <param name="baseUrl">Base URL, i.e. http://localhost:8000/.  Do not include URL paths, only protocol, hostname, and port.</param>
+            <param name="apiKey">API key.</param>
+            <param name="batchSize">Batch size, that is, the maximum number of distinct content entries to process at once..</param>
+            <param name="maxParallelTasks">Maximum number of parallel tasks, that is, the maximum number of parallel batches to process concurrently.</param>
+            <param name="maxRetries">Maximum number of retries to perform on any given batch before failing.</param>
+            <param name="maxFailures">Maximum number of failures to support before failing an entire operation.</param>
+            <param name="timeoutMs">Timeout for each operation, in milliseconds.</param>
+        </member>
+        <member name="M:View.Sdk.Embeddings.ViewEmbeddingsSdk.Dispose(System.Boolean)">
+            <summary>
+            Dispose.
+            </summary>
+            <param name="disposing">Disposing.</param>
+        </member>
+        <member name="M:View.Sdk.Embeddings.ViewEmbeddingsSdk.Dispose">
+            <summary>
+            Dispose.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.ViewEmbeddingsSdk.ValidateConnectivity(System.Threading.CancellationToken)">
+            <summary>
+            Validate connectivity.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>True if connected.</returns>
+        </member>
+        <member name="M:View.Sdk.Embeddings.ViewEmbeddingsSdk.GenerateEmbeddings(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Threading.CancellationToken)">
+            <summary>
+            Generate embeddings.
+            </summary>
+            <param name="embedRequest">Embeddings request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Embeddings response.</returns>
+        </member>
+        <member name="T:View.Sdk.Embeddings.ViewEmbeddingsServerSdk">
+            <summary>
+            View embeddings server SDK.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.ViewEmbeddingsServerSdk.#ctor(System.Guid,System.String,System.String)">
+            <summary>
+            View embeddings server SDK.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="endpoint">Base URL, i.e. http://localhost:8000/.  Do not include URL paths, only protocol, hostname, and port.</param>
+            <param name="accessKey">API key.</param>
+        </member>
+        <member name="M:View.Sdk.Embeddings.ViewEmbeddingsServerSdk.Dispose(System.Boolean)">
+            <summary>
+            Dispose.
+            </summary>
+            <param name="disposing">Disposing.</param>
+        </member>
+        <member name="M:View.Sdk.Embeddings.ViewEmbeddingsServerSdk.Dispose">
+            <summary>
+            Dispose.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Embeddings.ViewEmbeddingsServerSdk.GenerateEmbeddings(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Threading.CancellationToken)">
+            <summary>
+            Generate embeddings.
+            </summary>
+            <param name="embedRequest">Embeddings request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Embeddings response.</returns>
+        </member>
+        <member name="M:View.Sdk.Embeddings.ViewEmbeddingsServerSdk.FindByHash(View.Sdk.Embeddings.FindEmbeddingsRequest,System.Threading.CancellationToken)">
+            <summary>
+            Find embeddings by SHA256 hash.
+            </summary>
+            <param name="request">Embeddings request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Find embeddings result containing existing and missing embeddings.</returns>
+        </member>
         <member name="T:View.Sdk.CompressionTypeEnum">
             <summary>
             Compression type.
@@ -6050,1051 +7462,6 @@
             Instantiate the object.
             </summary>
         </member>
-        <member name="T:View.Sdk.Embeddings.ContentEmbedding">
-            <summary>
-            Content embedding.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.ContentEmbedding.Content">
-            <summary>
-            Content.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.ContentEmbedding.Embeddings">
-            <summary>
-            Embeddings.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.ContentEmbedding.#ctor">
-            <summary>
-            Content embedding.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Embeddings.EmbeddingsDocument">
-            <summary>
-            Embeddings document.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.Success">
-            <summary>
-            Indicates if the parser was successful.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.Exception">
-            <summary>
-            Exception, if any.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.Id">
-            <summary>
-            ID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.GUID">
-            <summary>
-            GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.DocumentGUID">
-            <summary>
-            Document GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.TenantGUID">
-            <summary>
-            Tenant GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.CollectionGUID">
-            <summary>
-            Collection GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.SourceDocumentGUID">
-            <summary>
-            Source document GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.DataRepositoryGUID">
-            <summary>
-            Data repository GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.CrawlPlanGUID">
-            <summary>
-            Crawl plan GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.CrawlOperationGUID">
-            <summary>
-            Crawl operation GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.BucketGUID">
-            <summary>
-            Bucket GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.VectorRepositoryGUID">
-            <summary>
-            Vector repository GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.GraphRepositoryGUID">
-            <summary>
-            Graph repository GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.GraphNodeIdentifier">
-            <summary>
-            Graph node identifier.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.ObjectGUID">
-            <summary>
-            Object GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.ObjectKey">
-            <summary>
-            Object key.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.ObjectVersion">
-            <summary>
-            Object version.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.Model">
-            <summary>
-            Model.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.EmbeddingsRule">
-            <summary>
-            Embeddings rule.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.Content">
-            <summary>
-            Content.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.Score">
-            <summary>
-            Score.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.Distance">
-            <summary>
-            Distance.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.SemanticCells">
-            <summary>
-            Semantic cells.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.EmbeddingsDocument.CreatedUtc">
-            <summary>
-            Creation timestamp in UTC.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.EmbeddingsDocument.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.EmbeddingsDocument.FromDataRow(System.Data.DataRow,View.Sdk.Serialization.Serializer)">
-            <summary>
-            Instantiate from DataRow.
-            </summary>
-            <param name="row">DataRow.</param>
-            <param name="serializer">Serializer.</param>
-            <returns>EmbeddingsDocument.</returns>
-        </member>
-        <member name="M:View.Sdk.Embeddings.EmbeddingsDocument.FromDataTable(System.Data.DataTable,View.Sdk.Serialization.Serializer)">
-            <summary>
-            Instantiate from DataTable.
-            </summary>
-            <param name="dt">DataTable.</param>
-            <param name="serializer">Serializer.</param>
-            <returns>List of EmbeddingsDocument.</returns>
-        </member>
-        <member name="T:View.Sdk.Embeddings.FindEmbeddingsObject">
-            <summary>
-            Find embeddings object.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.FindEmbeddingsObject.SHA256Hash">
-            <summary>
-            SHA256 on which to match.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.FindEmbeddingsObject.Embeddings">
-            <summary>
-            Embeddings.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.FindEmbeddingsObject.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.FindEmbeddingsObject.FromDataRow(System.Data.DataRow,View.Sdk.Serialization.Serializer)">
-            <summary>
-            Instantiate from DataRow.
-            </summary>
-            <param name="row">DataRow.</param>
-            <param name="serializer">Serializer.</param>
-            <returns>FindEmbeddingsObject.</returns>
-        </member>
-        <member name="M:View.Sdk.Embeddings.FindEmbeddingsObject.FromDataTable(System.Data.DataTable,View.Sdk.Serialization.Serializer)">
-            <summary>
-            Instantiate from DataTable.
-            </summary>
-            <param name="dt">DataTable.</param>
-            <param name="serializer">Serializer.</param>
-            <returns>List of FindEmbeddingsObject.</returns>
-        </member>
-        <member name="T:View.Sdk.Embeddings.FindEmbeddingsRequest">
-            <summary>
-            Find embeddings request.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.FindEmbeddingsRequest.TenantGUID">
-            <summary>
-            Tenant GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.FindEmbeddingsRequest.EmbeddingsRuleGUID">
-            <summary>
-            Embeddings rule GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.FindEmbeddingsRequest.EmbeddingsRule">
-            <summary>
-            Embeddings rule.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.FindEmbeddingsRequest.VectorRepositoryGUID">
-            <summary>
-            Vector repository GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.FindEmbeddingsRequest.VectorRepository">
-            <summary>
-            Vector repository.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.FindEmbeddingsRequest.Criteria">
-            <summary>
-            List of embeddings parameters on which to match.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.FindEmbeddingsRequest.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Embeddings.FindEmbeddingsResult">
-            <summary>
-            Find embeddings result.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.FindEmbeddingsResult.Success">
-            <summary>
-            Boolean indicating success.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.FindEmbeddingsResult.Timestamp">
-            <summary>
-            Timestamps.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.FindEmbeddingsResult.Existing">
-            <summary>
-            List of found embeddings records.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.FindEmbeddingsResult.Missing">
-            <summary>
-            List of missing embeddings records.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.FindEmbeddingsResult.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Embeddings.GenerateEmbeddingsRequest">
-            <summary>
-            Generate embeddings request.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsRequest.EmbeddingsRule">
-            <summary>
-            Embeddings rule.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsRequest.Model">
-            <summary>
-            Model.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsRequest.SemanticCells">
-            <summary>
-            Semantic cells.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsRequest.Contents">
-            <summary>
-            Contents.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsRequest.Embeddings">
-            <summary>
-            Embeddings.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.GenerateEmbeddingsRequest.#ctor">
-            <summary>
-            Generate embeddings request.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Embeddings.GenerateEmbeddingsResult">
-            <summary>
-            Generate embeddings result.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsResult.Success">
-            <summary>
-            Boolean indicating whether or not the operation was successful.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsResult.StatusCode">
-            <summary>
-            HTTP status code.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsResult.Error">
-            <summary>
-            Error response.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsResult.BatchCount">
-            <summary>
-            The number of batches processed.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsResult.SemanticCells">
-            <summary>
-            Semantic cells.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.GenerateEmbeddingsResult.ContentEmbeddings">
-            <summary>
-            Content embeddings.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.GenerateEmbeddingsResult.#ctor">
-            <summary>
-            Generate embeddings result.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Embeddings.ModelInformation">
-            <summary>
-            Model information.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.ModelInformation.Model">
-            <summary>
-            Model.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.ModelInformation.Size">
-            <summary>
-            Size.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.ModelInformation.LastModifiedUtc">
-            <summary>
-            Last modified timestamp, in UTC time.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.ModelInformation.MD5Hash">
-            <summary>
-            MD5 hash.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.ModelInformation.SHA1Hash">
-            <summary>
-            SHA1 hash.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.ModelInformation.SHA256Hash">
-            <summary>
-            SHA256 hash.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.ModelInformation.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.ModelInformation.FromOllamaResponse(View.Sdk.Embeddings.Providers.Ollama.OllamaModelResult)">
-            <summary>
-            Instantiate from Ollama model response.
-            </summary>
-            <param name="resp">Response.</param>
-            <returns>List of model information.</returns>
-        </member>
-        <member name="T:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase">
-            <summary>
-            View embeddings generator SDK base class.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.LogRequests">
-            <summary>
-            Enable or disable logging of request bodies.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.LogResponses">
-            <summary>
-            Enable or disable logging of response bodies.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.Logger">
-            <summary>
-            Method to invoke to send log messages.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.Header">
-            <summary>
-            Header to prepend to log messages.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.TenantGUID">
-            <summary>
-            Tenant GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.Generator">
-            <summary>
-            Embeddings generator.  Default is LCProxy.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.Serializer">
-            <summary>
-            Serializer.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.ApiKey">
-            <summary>
-            API key.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.BaseUrl">
-            <summary>
-            Base URL.  Default is http://localhost:8000/.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.TimeoutMs">
-            <summary>
-            Timeout in milliseconds.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.#ctor(System.Guid,View.Sdk.EmbeddingsGeneratorEnum,System.String,System.String)">
-            <summary>
-            Instantiate.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="generator">Embeddings generator.</param>
-            <param name="endpoint">Endpoint URL.</param>
-            <param name="apiKey">API key.</param>
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.Dispose">
-            <summary>
-            Dispose.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.Log(View.Sdk.SeverityEnum,System.String)">
-            <summary>
-            Emit a log message.
-            </summary>
-            <param name="sev">Severity.</param>
-            <param name="msg">Message.</param>
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.ValidateConnectivity(System.Threading.CancellationToken)">
-            <summary>
-            Validate connectivity.
-            </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>True if connected.</returns>
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.GenerateEmbeddings(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Int32,System.Threading.CancellationToken)">
-            <summary>
-            Generate embeddings.
-            </summary>
-            <param name="embedRequest">Embeddings request.</param>
-            <param name="timeoutMs">Timeout in milliseconds.</param>
-            <param name="token">Cancellation token.</param>
-            <returns></returns>
-        </member>
-        <member name="T:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsRequest">
-            <summary>
-            Langchain embeddings request.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsRequest.Model">
-            <summary>
-            Model used to generate embeddings.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsRequest.ApiKey">
-            <summary>
-            API key for Huggingface.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsRequest.Contents">
-            <summary>
-            Contents.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsRequest.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsRequest.FromEmbeddingsRequest(View.Sdk.Embeddings.GenerateEmbeddingsRequest)">
-            <summary>
-            Instantiate from embeddings request.
-            </summary>
-            <param name="req">Embeddings request.</param>
-            <returns>Langchain embeddings request.</returns>
-        </member>
-        <member name="T:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsResult">
-            <summary>
-            Lcproxy embeddings result.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsResult.Success">
-            <summary>
-            Boolean indicating whether or not the operation was successful.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsResult.StatusCode">
-            <summary>
-            HTTP status code.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsResult.Model">
-            <summary>
-            Model used to generate embeddings.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsResult.Contents">
-            <summary>
-            Contents.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsResult.Embeddings">
-            <summary>
-            List of embeddings.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsResult.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsResult.ToEmbeddingsResult(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Boolean,System.Int32,View.Sdk.ApiErrorResponse)">
-            <summary>
-            Create an embeddings result object from the original request and this object, the provider response.
-            </summary>
-            <param name="req">Original embeddings request.</param>
-            <param name="success">Boolean indicating whether or not the request succeeded.</param>
-            <param name="statusCode">HTTP status code.</param>
-            <param name="error">API error response.</param>
-            <returns>Embeddings result.</returns>
-        </member>
-        <member name="T:View.Sdk.Embeddings.Providers.Langchain.ViewLangchainSdk">
-            <summary>
-            View Langchain SDK.  This SDK interacts directly with the underlying View Embeddings microservice that acts as a Langchain proxy.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.Langchain.ViewLangchainSdk.#ctor(System.Guid,System.String,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.Langchain.ViewLangchainSdk.ValidateConnectivity(System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.Langchain.ViewLangchainSdk.GenerateEmbeddings(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Int32,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="T:View.Sdk.Embeddings.Providers.Ollama.OllamaEmbeddingsRequest">
-            <summary>
-            Ollama embeddings request.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.Ollama.OllamaEmbeddingsRequest.Model">
-            <summary>
-            Model used to generate embeddings.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.Ollama.OllamaEmbeddingsRequest.Contents">
-            <summary>
-            Contents.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.Ollama.OllamaEmbeddingsRequest.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.Ollama.OllamaEmbeddingsRequest.FromEmbeddingsRequest(View.Sdk.Embeddings.GenerateEmbeddingsRequest)">
-            <summary>
-            Instantiate from embeddings request.
-            </summary>
-            <param name="req">Embeddings request.</param>
-            <returns>Ollama embeddings request.</returns>
-        </member>
-        <member name="T:View.Sdk.Embeddings.Providers.Ollama.OllamaEmbeddingsResult">
-            <summary>
-            Ollama embeddings result.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.Ollama.OllamaEmbeddingsResult.Model">
-            <summary>
-            Model.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.Ollama.OllamaEmbeddingsResult.Embeddings">
-            <summary>
-            List of embeddings.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.Ollama.OllamaEmbeddingsResult.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.Ollama.OllamaEmbeddingsResult.ToEmbeddingsResult(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Boolean,System.Int32,View.Sdk.ApiErrorResponse)">
-            <summary>
-            Create an embeddings result object from the original request and this object, the provider response.
-            </summary>
-            <param name="req">Original embeddings request.</param>
-            <param name="success">Boolean indicating whether or not the request succeeded.</param>
-            <param name="statusCode">HTTP status code.</param>
-            <param name="error">API error response.</param>
-            <returns>Embeddings result.</returns>
-        </member>
-        <member name="T:View.Sdk.Embeddings.Providers.Ollama.OllamaModelResult">
-            <summary>
-            Ollama model result.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.Ollama.OllamaModelResult.Models">
-            <summary>
-            List of model details.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.Ollama.OllamaModelResult.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Embeddings.Providers.Ollama.OllamaModelResult.OllamaModelDetail">
-            <summary>
-            Ollama model detail.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.Ollama.OllamaModelResult.OllamaModelDetail.Name">
-            <summary>
-            Name.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.Ollama.OllamaModelResult.OllamaModelDetail.Model">
-            <summary>
-            Model.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.Ollama.OllamaModelResult.OllamaModelDetail.LastModifiedUtc">
-            <summary>
-            Last modified timestamp, in UTC time.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.Ollama.OllamaModelResult.OllamaModelDetail.Size">
-            <summary>
-            Size.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.Ollama.OllamaModelResult.OllamaModelDetail.Digest">
-            <summary>
-            Digest.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.Ollama.OllamaModelResult.OllamaModelDetail.Details">
-            <summary>
-            Details.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.Ollama.OllamaModelResult.OllamaModelDetail.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Embeddings.Providers.Ollama.ViewOllamaSdk">
-            <summary>
-            View Ollama SDK.  This SDK interacts directly with an underlying Ollama microservice.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.Ollama.ViewOllamaSdk.#ctor(System.Guid,System.String,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.Ollama.ViewOllamaSdk.ValidateConnectivity(System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.Ollama.ViewOllamaSdk.GenerateEmbeddings(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Int32,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="T:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddings">
-            <summary>
-            OpenAI embeddings.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddings.Embeddings">
-            <summary>
-            Embeddings.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddings.Index">
-            <summary>
-            Index.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddings.ObjectType">
-            <summary>
-            Object type.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddings.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddingsRequest">
-            <summary>
-            OpenAI embeddings request.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddingsRequest.Model">
-            <summary>
-            Model used to generate embeddings.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddingsRequest.Contents">
-            <summary>
-            Contents.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddingsRequest.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddingsRequest.FromEmbeddingsRequest(View.Sdk.Embeddings.GenerateEmbeddingsRequest)">
-            <summary>
-            Instantiate from embeddings request.
-            </summary>
-            <param name="req">Embeddings request.</param>
-            <returns>OpenAI embeddings request.</returns>
-        </member>
-        <member name="T:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddingsResult">
-            <summary>
-            OpenAI embeddings result.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddingsResult.Object">
-            <summary>
-            Object type.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddingsResult.Data">
-            <summary>
-            Data.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddingsResult.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddingsResult.ToEmbeddingsResult(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Boolean,System.Int32,View.Sdk.ApiErrorResponse)">
-            <summary>
-            Create an embeddings result object from the original request and this object, the provider response.
-            </summary>
-            <param name="req">Original embeddings request.</param>
-            <param name="success">Boolean indicating whether or not the request succeeded.</param>
-            <param name="statusCode">HTTP status code.</param>
-            <param name="error">API error response.</param>
-            <returns>Embeddings result.</returns>
-        </member>
-        <member name="T:View.Sdk.Embeddings.Providers.OpenAI.ViewOpenAiSdk">
-            <summary>
-            OpenAI SDK.  This SDK interacts directly with the OpenAI API for generating embeddings.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.OpenAI.ViewOpenAiSdk.#ctor(System.Guid,System.String,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.OpenAI.ViewOpenAiSdk.ValidateConnectivity(System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.OpenAI.ViewOpenAiSdk.GenerateEmbeddings(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Int32,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="T:View.Sdk.Embeddings.Providers.VoyageAI.ViewVoyageAiSdk">
-            <summary>
-            VoyageAI SDK.  This SDK interacts directly with the VoyageAI API for generating embeddings.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.VoyageAI.ViewVoyageAiSdk.#ctor(System.Guid,System.String,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.VoyageAI.ViewVoyageAiSdk.ValidateConnectivity(System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.VoyageAI.ViewVoyageAiSdk.GenerateEmbeddings(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Int32,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="T:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddings">
-            <summary>
-            VoyageAI embeddings.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddings.Embeddings">
-            <summary>
-            Embeddings.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddings.Index">
-            <summary>
-            Index.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddings.ObjectType">
-            <summary>
-            Object type.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddings.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="T:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddingsRequest">
-            <summary>
-            VoyageAI embeddings request.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddingsRequest.Model">
-            <summary>
-            Model used to generate embeddings.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddingsRequest.Contents">
-            <summary>
-            Contents.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddingsRequest.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddingsRequest.FromEmbeddingsRequest(View.Sdk.Embeddings.GenerateEmbeddingsRequest)">
-            <summary>
-            Instantiate from embeddings request.
-            </summary>
-            <param name="req">Embeddings request.</param>
-            <returns>Voyage AI embeddings request.</returns>
-        </member>
-        <member name="T:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddingsResult">
-            <summary>
-            VoyageAI embeddings result.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddingsResult.Object">
-            <summary>
-            Object type.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddingsResult.Data">
-            <summary>
-            Data.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddingsResult.#ctor">
-            <summary>
-            Instantiate.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddingsResult.ToEmbeddingsResult(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Boolean,System.Int32,View.Sdk.ApiErrorResponse)">
-            <summary>
-            Create an embeddings result object from the original request and this object, the provider response.
-            </summary>
-            <param name="req">Original embeddings request.</param>
-            <param name="success">Boolean indicating whether or not the request succeeded.</param>
-            <param name="statusCode">HTTP status code.</param>
-            <param name="error">API error response.</param>
-            <returns>Embeddings result.</returns>
-        </member>
-        <member name="T:View.Sdk.Embeddings.ViewEmbeddingsSdk">
-            <summary>
-            View embeddings generator SDK.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.ViewEmbeddingsSdk.TenantGUID">
-            <summary>
-            Tenant GUID.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.ViewEmbeddingsSdk.Generator">
-            <summary>
-            Embeddings generator.  Default is LCProxy.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.ViewEmbeddingsSdk.ApiKey">
-            <summary>
-            API key.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.ViewEmbeddingsSdk.BaseUrl">
-            <summary>
-            Base URL.  Default is http://localhost:8000/.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.ViewEmbeddingsSdk.BatchSize">
-            <summary>
-            Maximum number of chunks to include in an individual processing batch.  Default is 16.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.ViewEmbeddingsSdk.MaxParallelTasks">
-            <summary>
-            Maximum number of batches to process in parallel.  Default is 16.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.ViewEmbeddingsSdk.MaxRetries">
-            <summary>
-            Maximum number of retries to perform on any given batch.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.ViewEmbeddingsSdk.MaxFailures">
-            <summary>
-            Maximum number of failed batches before failing the operation.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.ViewEmbeddingsSdk.TimeoutMs">
-            <summary>
-            Timeout in milliseconds for each batch.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.ViewEmbeddingsSdk.LogRequests">
-            <summary>
-            Enable or disable logging of request bodies.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.ViewEmbeddingsSdk.LogResponses">
-            <summary>
-            Enable or disable logging of response bodies.
-            </summary>
-        </member>
-        <member name="P:View.Sdk.Embeddings.ViewEmbeddingsSdk.Logger">
-            <summary>
-            Method to invoke to send log messages.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.ViewEmbeddingsSdk.#ctor(System.Guid,View.Sdk.EmbeddingsGeneratorEnum,System.String,System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Instantiate.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="generator">Embeddings generator type.</param>
-            <param name="baseUrl">Base URL, i.e. http://localhost:8000/.  Do not include URL paths, only protocol, hostname, and port.</param>
-            <param name="apiKey">API key.</param>
-            <param name="batchSize">Batch size, that is, the maximum number of distinct content entries to process at once..</param>
-            <param name="maxParallelTasks">Maximum number of parallel tasks, that is, the maximum number of parallel batches to process concurrently.</param>
-            <param name="maxRetries">Maximum number of retries to perform on any given batch before failing.</param>
-            <param name="maxFailures">Maximum number of failures to support before failing an entire operation.</param>
-            <param name="timeoutMs">Timeout for each operation, in milliseconds.</param>
-        </member>
-        <member name="M:View.Sdk.Embeddings.ViewEmbeddingsSdk.Dispose(System.Boolean)">
-            <summary>
-            Dispose.
-            </summary>
-            <param name="disposing">Disposing.</param>
-        </member>
-        <member name="M:View.Sdk.Embeddings.ViewEmbeddingsSdk.Dispose">
-            <summary>
-            Dispose.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.ViewEmbeddingsSdk.ValidateConnectivity(System.Threading.CancellationToken)">
-            <summary>
-            Validate connectivity.
-            </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>True if connected.</returns>
-        </member>
-        <member name="M:View.Sdk.Embeddings.ViewEmbeddingsSdk.GenerateEmbeddings(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Threading.CancellationToken)">
-            <summary>
-            Generate embeddings.
-            </summary>
-            <param name="embedRequest">Embeddings request.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Embeddings response.</returns>
-        </member>
-        <member name="T:View.Sdk.Embeddings.ViewEmbeddingsServerSdk">
-            <summary>
-            View embeddings server SDK.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.ViewEmbeddingsServerSdk.#ctor(System.Guid,System.String,System.String)">
-            <summary>
-            View embeddings server SDK.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="endpoint">Base URL, i.e. http://localhost:8000/.  Do not include URL paths, only protocol, hostname, and port.</param>
-            <param name="accessKey">API key.</param>
-        </member>
-        <member name="M:View.Sdk.Embeddings.ViewEmbeddingsServerSdk.Dispose(System.Boolean)">
-            <summary>
-            Dispose.
-            </summary>
-            <param name="disposing">Disposing.</param>
-        </member>
-        <member name="M:View.Sdk.Embeddings.ViewEmbeddingsServerSdk.Dispose">
-            <summary>
-            Dispose.
-            </summary>
-        </member>
-        <member name="M:View.Sdk.Embeddings.ViewEmbeddingsServerSdk.GenerateEmbeddings(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Threading.CancellationToken)">
-            <summary>
-            Generate embeddings.
-            </summary>
-            <param name="embedRequest">Embeddings request.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Embeddings response.</returns>
-        </member>
-        <member name="M:View.Sdk.Embeddings.ViewEmbeddingsServerSdk.FindByHash(View.Sdk.Embeddings.FindEmbeddingsRequest,System.Threading.CancellationToken)">
-            <summary>
-            Find embeddings by SHA256 hash.
-            </summary>
-            <param name="request">Embeddings request.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Find embeddings result containing existing and missing embeddings.</returns>
-        </member>
         <member name="T:View.Sdk.EncryptionKey">
             <summary>
             Encryption key.
@@ -9863,6 +10230,238 @@
         <member name="M:View.Sdk.MetadataRule.#ctor">
             <summary>
             Instantiate the object.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.ModelApiTypeEnum">
+            <summary>
+            Model API type.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.ModelApiTypeEnum.Ollama">
+            <summary>
+            Ollama.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.ModelApiTypeEnum.OpenAi">
+            <summary>
+            OpenAi.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.ModelConfiguration">
+            <summary>
+            Model configuration.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelConfiguration.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelConfiguration.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelConfiguration.ModelName">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelConfiguration.Embeddings">
+            <summary>
+            Model is capable of being used for embeddings.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelConfiguration.Completions">
+            <summary>
+            Model is capable of being used for embeddings.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelConfiguration.ContextSize">
+            <summary>
+            Gets or sets the context size (input tokens) for the model.
+            Default: 4096. Valid range: 1 to Int32.Max.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelConfiguration.MaxOutputTokens">
+            <summary>
+            Gets or sets the maximum output tokens the model can generate.
+            Default: 4096. Valid range: 1 to 2,000,000.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelConfiguration.Temperature">
+            <summary>
+            Gets or sets the temperature for output randomness.
+            Default: 0.2. Valid range: 0.0 to 2.0.
+            Lower values make output more deterministic, higher values more creative.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelConfiguration.TopP">
+            <summary>
+            Gets or sets the nucleus sampling parameter.
+            Default: 1.0. Valid range: 0.0 to 1.0.
+            Controls diversity via nucleus sampling: 0.5 means half of all likelihood-weighted options are considered.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelConfiguration.TopK">
+            <summary>
+            Gets or sets the top-k sampling parameter.
+            Default: 40. Valid range: 1 to 100.
+            Limits the number of highest probability vocabulary tokens to keep for top-k filtering.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelConfiguration.FrequencyPenalty">
+            <summary>
+            Gets or sets the frequency penalty to reduce repetition.
+            Default: 0.0. Valid range: -2.0 to 2.0.
+            Positive values decrease the likelihood of repeating tokens based on their frequency.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelConfiguration.PresencePenalty">
+            <summary>
+            Gets or sets the presence penalty to encourage topic diversity.
+            Default: 0.0. Valid range: -2.0 to 2.0.
+            Positive values decrease the likelihood of repeating any tokens that have appeared.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelConfiguration.EnableStreaming">
+            <summary>
+            Gets or sets whether streaming mode is enabled for this model.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelConfiguration.TimeoutMs">
+            <summary>
+            Request timeout.  Default is 30000 (30 seconds).
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelConfiguration.AdditionalData">
+            <summary>
+            Additional data.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelConfiguration.Active">
+            <summary>
+            Active.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelConfiguration.CreatedUtc">
+            <summary>
+            Created.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.ModelConfiguration.#ctor">
+            <summary>
+            Model configuration.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.ModelEndpoint">
+            <summary>
+            Model endpoint.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelEndpoint.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelEndpoint.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelEndpoint.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelEndpoint.EndpointUrl">
+            <summary>
+            Endpoint URL, e.g. http://localhost:8000/
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelEndpoint.BearerToken">
+            <summary>
+            Bearer token.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelEndpoint.ApiType">
+            <summary>
+            Model API type.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelEndpoint.TimeoutMs">
+            <summary>
+            Request timeout.  Default is 30000 (30 seconds).
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelEndpoint.AdditionalData">
+            <summary>
+            Additional data.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelEndpoint.Active">
+            <summary>
+            Active.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelEndpoint.CreatedUtc">
+            <summary>
+            Created.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.ModelEndpoint.#ctor">
+            <summary>
+            Model endpoint.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.ModelProfile">
+            <summary>
+            Model profiles.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelProfile.GUID">
+            <summary>
+            GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelProfile.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelProfile.ModelConfigurationGUID">
+            <summary>
+            Model configuration GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelProfile.ModelEndpointGUID">
+            <summary>
+            Model endpoint GUID.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelProfile.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelProfile.AdditionalData">
+            <summary>
+            Additional data.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelProfile.Active">
+            <summary>
+            Active.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.ModelProfile.CreatedUtc">
+            <summary>
+            Created.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.ModelProfile.#ctor">
+            <summary>
+            Model profile.
             </summary>
         </member>
         <member name="T:View.Sdk.MultiDeleteErrorEnum">

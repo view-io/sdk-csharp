@@ -242,19 +242,19 @@
             switch (Generator)
             {
                 case EmbeddingsGeneratorEnum.LCProxy:
-                    _SdkBase = new ViewLangchainSdk(TenantGUID, BaseUrl, ApiKey);
+                    _SdkBase = new ViewLangchainEmbeddingsSdk(TenantGUID, BaseUrl, ApiKey);
                     _Header = "[EmbeddingsSdk-LCProxy] ";
                     break;
                 case EmbeddingsGeneratorEnum.Ollama:
-                    _SdkBase = new ViewOllamaSdk(TenantGUID, BaseUrl, ApiKey);
+                    _SdkBase = new ViewOllamaEmbeddingsSdk(TenantGUID, BaseUrl, ApiKey);
                     _Header = "[EmbeddingsSdk-Ollama] ";
                     break;
                 case EmbeddingsGeneratorEnum.OpenAI:
-                    _SdkBase = new ViewOpenAiSdk(TenantGUID, BaseUrl, ApiKey);
+                    _SdkBase = new ViewOpenAiEmbeddingsSdk(TenantGUID, BaseUrl, ApiKey);
                     _Header = "[EmbeddingsSdk-OpenAI] ";
                     break;
                 case EmbeddingsGeneratorEnum.VoyageAI:
-                    _SdkBase = new ViewVoyageAiSdk(TenantGUID, BaseUrl, ApiKey);
+                    _SdkBase = new ViewVoyageAiEmbeddingsSdk(TenantGUID, BaseUrl, ApiKey);
                     _Header = "[EmbeddingsSdk-VoyageAI] ";
                     break;
                 default:

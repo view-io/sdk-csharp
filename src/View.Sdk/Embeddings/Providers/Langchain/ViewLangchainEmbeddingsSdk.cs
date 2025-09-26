@@ -1,48 +1,46 @@
-﻿namespace View.Sdk.Embeddings.Providers.Ollama
+﻿namespace View.Sdk.Embeddings.Providers.Langchain
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
+    using System.Net;
     using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
     using RestWrapper;
     using View.Sdk;
-    using View.Sdk.Serialization;
     using View.Sdk.Embeddings;
     using View.Sdk.Embeddings.Providers;
+    using View.Sdk.Semantic;
+    using View.Sdk.Serialization;
 
     /// <summary>
-    /// View Ollama SDK.  This SDK interacts directly with an underlying Ollama microservice.
+    /// View Langchain embeddings SDK.  This SDK interacts directly with the underlying View Embeddings microservice that acts as a Langchain proxy.
     /// </summary>
-    public class ViewOllamaSdk : EmbeddingsProviderSdkBase, IDisposable
+    public class ViewLangchainEmbeddingsSdk : EmbeddingsProviderSdkBase, IDisposable
     {
-#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
-
         #region Public-Members
 
         #endregion
 
         #region Private-Members
 
-        private Serializer _Serializer = new Serializer();
-        private string _DefaultModel = "llama3";
+        private string _DefaultModel = "all-MiniLM-L6-v2";
 
         #endregion
 
         #region Constructors-and-Factories
 
         /// <inheritdoc />
-        public ViewOllamaSdk(
+        public ViewLangchainEmbeddingsSdk(
             Guid tenantGuid,
-            string baseUrl = "http://localhost:11434/",
+            string baseUrl = "http://localhost:8000/",
             string apiKey = null) : base(
                 tenantGuid,
-                EmbeddingsGeneratorEnum.Ollama,
+                EmbeddingsGeneratorEnum.LCProxy,
                 baseUrl,
                 apiKey)
         {
-            Header = "[OllamaSdk] ";
+            Header = "[LangchainSdk] ";
         }
 
         #endregion
@@ -99,7 +97,7 @@
             if (timeoutMs < 1) throw new ArgumentOutOfRangeException(nameof(timeoutMs));
             if (string.IsNullOrEmpty(embedRequest.Model)) embedRequest.Model = _DefaultModel;
 
-            string url = BaseUrl + "api/embed";
+            string url = embedRequest.EmbeddingsRule.EmbeddingsGeneratorUrl + "v1.0/tenants/" + TenantGUID + "/embeddings/";
 
             using (RestRequest req = new RestRequest(url, HttpMethod.Post))
             {
@@ -107,7 +105,7 @@
                 req.TimeoutMilliseconds = timeoutMs;
                 req.Authorization.BearerToken = ApiKey;
 
-                string json = Serializer.SerializeJson(OllamaEmbeddingsRequest.FromEmbeddingsRequest(embedRequest), true);
+                string json = Serializer.SerializeJson(LangchainEmbeddingsRequest.FromEmbeddingsRequest(embedRequest), true);
                 if (LogRequests) Log(SeverityEnum.Debug, "request:" + Environment.NewLine + json);
 
                 using (RestResponse resp = await req.SendAsync(json, token).ConfigureAwait(false))
@@ -131,8 +129,8 @@
                             if (!string.IsNullOrEmpty(resp.DataAsString))
                             {
                                 Log(SeverityEnum.Debug, "deserializing response body");
-                                OllamaEmbeddingsResult ollamaResult = Serializer.DeserializeJson<OllamaEmbeddingsResult>(resp.DataAsString);
-                                return ollamaResult.ToEmbeddingsResult(embedRequest, true, resp.StatusCode, null);
+                                LangchainEmbeddingsResult langchainResult = Serializer.DeserializeJson<LangchainEmbeddingsResult>(resp.DataAsString);
+                                return langchainResult.ToEmbeddingsResult(embedRequest, true, resp.StatusCode, null);
                             }
                             else
                             {
@@ -165,7 +163,5 @@
         #region Private-Methods
 
         #endregion
-
-#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
     }
 }

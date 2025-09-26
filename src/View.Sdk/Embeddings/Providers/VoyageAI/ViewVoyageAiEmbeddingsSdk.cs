@@ -1,11 +1,8 @@
-﻿namespace View.Sdk.Embeddings.Providers.OpenAI
+﻿namespace View.Sdk.Embeddings.Providers.VoyageAI
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Linq.Expressions;
     using System.Net.Http;
-    using System.Runtime.InteropServices;
     using System.Threading;
     using System.Threading.Tasks;
     using RestWrapper;
@@ -15,9 +12,9 @@
     using View.Sdk.Serialization;
 
     /// <summary>
-    /// OpenAI SDK.  This SDK interacts directly with the OpenAI API for generating embeddings.
+    /// VoyageAI embeddings SDK.  This SDK interacts directly with the VoyageAI API for generating embeddings.
     /// </summary>
-    public class ViewOpenAiSdk : EmbeddingsProviderSdkBase, IDisposable
+    public class ViewVoyageAiEmbeddingsSdk : EmbeddingsProviderSdkBase, IDisposable
     {
         #region Public-Members
 
@@ -25,23 +22,23 @@
 
         #region Private-Members
 
-        private string _DefaultModel = "text-embedding-ada-002";
+        private string _DefaultModel = "voyage-large-2-instruct";
 
         #endregion
 
         #region Constructors-and-Factories
 
         /// <inheritdoc />
-        public ViewOpenAiSdk(
+        public ViewVoyageAiEmbeddingsSdk(
             Guid tenantGuid,
-            string baseUrl = "https://api.openai.com/",
+            string baseUrl = "https://api.voyageai.com/",
             string apiKey = null) : base(
                 tenantGuid,
-                EmbeddingsGeneratorEnum.OpenAI,
+                EmbeddingsGeneratorEnum.VoyageAI,
                 baseUrl,
                 apiKey)
         {
-            Header = "[OpenAiSdk] ";
+            Header = "[VoyageAiSdk] ";
         }
 
         #endregion
@@ -51,7 +48,7 @@
         /// <inheritdoc />
         public override async Task<bool> ValidateConnectivity(CancellationToken token = default)
         {
-            string url = BaseUrl + "v1/models";
+            string url = BaseUrl + "healthz";
 
             try
             {
@@ -106,7 +103,7 @@
                 req.TimeoutMilliseconds = timeoutMs;
                 req.Authorization.BearerToken = ApiKey;
 
-                string json = Serializer.SerializeJson(OpenAiEmbeddingsRequest.FromEmbeddingsRequest(embedRequest), true);
+                string json = Serializer.SerializeJson(VoyageAiEmbeddingsRequest.FromEmbeddingsRequest(embedRequest), true);
                 if (LogRequests) Log(SeverityEnum.Debug, "request:" + Environment.NewLine + json);
 
                 using (RestResponse resp = await req.SendAsync(json, token).ConfigureAwait(false))
@@ -130,8 +127,8 @@
                             if (!string.IsNullOrEmpty(resp.DataAsString))
                             {
                                 Log(SeverityEnum.Debug, "deserializing response body");
-                                OpenAiEmbeddingsResult openAiResult = Serializer.DeserializeJson<OpenAiEmbeddingsResult>(resp.DataAsString);
-                                return openAiResult.ToEmbeddingsResult(embedRequest, true, resp.StatusCode, null);
+                                VoyageAiEmbeddingsResult voyageAiResult = Serializer.DeserializeJson<VoyageAiEmbeddingsResult>(resp.DataAsString);
+                                return voyageAiResult.ToEmbeddingsResult(embedRequest, true, resp.StatusCode, null);
                             }
                             else
                             {
