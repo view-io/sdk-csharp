@@ -416,6 +416,35 @@
 
         #endregion
 
+        #region Git
+
+        /// <summary>
+        /// Git endpoint URL, e.g. https://github.com
+        /// </summary>
+        public string GitEndpointUrl
+        {
+            get
+            {
+                return _GitEndpointUrl;
+            }
+            set
+            {
+                if (!String.IsNullOrEmpty(value))
+                {
+                    value = value.Replace("\\", "/");
+                    if (!value.EndsWith("/")) value += "/";
+                }
+                _GitEndpointUrl = value;
+            }
+        }
+
+        /// <summary>
+        /// Git auth token.
+        /// </summary>
+        public string GitAuthToken { get; set; } = null;
+
+        #endregion
+
         /// <summary>
         /// Created.
         /// </summary>
@@ -436,6 +465,7 @@
         private int? _WebMaxDepth = null;
         private int? _WebMaxParallelTasks = null;
         private int? _WebCrawlDelayMs = null;
+        private string _GitEndpointUrl = null;
 
 
         private List<string> _ValidNfsVersions = new List<string>()

@@ -56,6 +56,9 @@ namespace Test.Storage
                     case "read buckets":
                         RetrieveBuckets().Wait();
                         break;
+                    case "read object list":
+                        RetrieveListObjects().Wait();
+                        break;
                     case "update bucket":
                         UpdateBucket().Wait();
                         break;
@@ -182,6 +185,7 @@ namespace Test.Storage
             Console.WriteLine("  {0,-24} {1}", "read bucket", "Retrieve a bucket by GUID");
             Console.WriteLine("  {0,-24} {1}", "retrieve bucket metadata", "Retrieve a bucket's metadata");
             Console.WriteLine("  {0,-24} {1}", "read buckets", "Retrieve all buckets");
+            Console.WriteLine("  {0,-24} {1}", "read object list", "Retrieve object list");
             Console.WriteLine("  {0,-24} {1}", "update bucket", "Update a bucket");
             Console.WriteLine("  {0,-24} {1}", "delete bucket", "Delete a bucket");
             Console.WriteLine("  {0,-24} {1}", "bucket stats", "Get bucket statistics");
@@ -257,8 +261,13 @@ namespace Test.Storage
 
         private static async Task RetrieveBuckets()
         {
-            Console.WriteLine("Retrieving all buckets...");
             EnumerateResponse(await _Sdk.Bucket.RetrieveMany());
+        }
+
+        private static async Task RetrieveListObjects()
+        {
+            Guid bucketGuid = Inputty.GetGuid("Bucket GUID: ", default(Guid));
+            EnumerateResponse(await _Sdk.Bucket.ListObjects(bucketGuid.ToString()));
         }
 
         private static async Task UpdateBucket()

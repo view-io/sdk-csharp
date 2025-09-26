@@ -47,6 +47,11 @@
         /// Printer.
         /// </summary>
         [EnumMember(Value = "Printer")]
-        Printer
+        Printer,
+        /// <summary>
+        /// Git.
+        /// </summary>
+        [EnumMember(Value = "Git")]
+        Git
     }
 }
