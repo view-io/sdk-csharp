@@ -5522,6 +5522,16 @@
             Delay in milliseconds to introduce between crawl operations within the same task.
             </summary>
         </member>
+        <member name="P:View.Sdk.DataRepository.GitEndpointUrl">
+            <summary>
+            Git endpoint URL, e.g. https://github.com
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.GitAuthToken">
+            <summary>
+            Git auth token.
+            </summary>
+        </member>
         <member name="P:View.Sdk.DataRepository.CreatedUtc">
             <summary>
             Created.
@@ -5575,6 +5585,11 @@
         <member name="F:View.Sdk.DataRepositoryTypeEnum.Printer">
             <summary>
             Printer.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.DataRepositoryTypeEnum.Git">
+            <summary>
+            Git.
             </summary>
         </member>
         <member name="T:View.Sdk.DataTypeEnum">

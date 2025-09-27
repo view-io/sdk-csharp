@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Text.Json.Serialization;
 
     /// <summary>
     /// View Assistant RAG request.
@@ -13,6 +14,7 @@
         /// <summary>
         /// Collection of chat messages exchanged between the user, assistant, or system.
         /// </summary>
+        [JsonPropertyName("messages")]
         public List<ChatMessage> Messages { get; set; }
 
         /// <summary>
