@@ -1974,17 +1974,17 @@
             Instantiate.
             </summary>
         </member>
-        <member name="T:View.Sdk.CompletionsProviderEnum">
+        <member name="T:View.Sdk.Completions.CompletionsProviderEnum">
             <summary>
             Completions provider.
             </summary>
         </member>
-        <member name="F:View.Sdk.CompletionsProviderEnum.OpenAI">
+        <member name="F:View.Sdk.Completions.CompletionsProviderEnum.OpenAI">
             <summary>
             OpenAI.
             </summary>
         </member>
-        <member name="F:View.Sdk.CompletionsProviderEnum.Ollama">
+        <member name="F:View.Sdk.Completions.CompletionsProviderEnum.Ollama">
             <summary>
             Ollama.
             </summary>
@@ -2249,6 +2249,609 @@
             Completion message.
             </summary>
         </member>
+        <member name="T:View.Sdk.Completions.Providers.Ollama.OllamaCompletionsRequest">
+            <summary>
+            Ollama completions request object for interacting with the Ollama API.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaCompletionsRequest.Model">
+            <summary>
+            Model name to use for completion generation. Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaCompletionsRequest.Prompt">
+            <summary>
+            The prompt to generate a response for (legacy format). Default is null.
+            Used when not using the chat/messages format.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaCompletionsRequest.Messages">
+            <summary>
+            Messages for chat format. Default is empty list.
+            Cannot be null - will be replaced with empty list if null is provided.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaCompletionsRequest.System">
+            <summary>
+            System prompt to prepend to the conversation. Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaCompletionsRequest.Options">
+            <summary>
+            Additional model parameters for fine-tuning generation. Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaCompletionsRequest.Stream">
+            <summary>
+            Whether to stream the response token by token. Default is false.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaCompletionsRequest.KeepAlive">
+            <summary>
+            Duration to keep the model loaded in memory. Default is null.
+            Format examples: "5m", "1h", "24h".
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Completions.Providers.Ollama.OllamaCompletionsRequest.#ctor">
+            <summary>
+            Instantiate a new Ollama completions request.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Completions.Providers.Ollama.OllamaCompletionsRequest.FromCompletionRequest(View.Sdk.Completions.GenerateCompletionRequest)">
+            <summary>
+            Create an Ollama completions request from a generic completion request.
+            </summary>
+            <param name="req">Generic completions request.</param>
+            <returns>Ollama-specific completions request.</returns>
+        </member>
+        <member name="T:View.Sdk.Completions.Providers.Ollama.OllamaCompletionsResult">
+            <summary>
+            Ollama completions result object containing the response from the Ollama API.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaCompletionsResult.Model">
+            <summary>
+            Model that generated the response. Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaCompletionsResult.CreatedAt">
+            <summary>
+            Timestamp when the response was created. Default is null.
+            ISO 8601 format string.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaCompletionsResult.Message">
+            <summary>
+            Message response for chat completions. Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaCompletionsResult.Response">
+            <summary>
+            Response content for non-chat completions. Default is null.
+            Used when in prompt/response format rather than chat format.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaCompletionsResult.Done">
+            <summary>
+            Whether the response generation is complete. Default is false.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaCompletionsResult.DoneReason">
+            <summary>
+            Reason why the generation ended. Default is null.
+            Common values: "stop", "length", "abort".
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaCompletionsResult.Context">
+            <summary>
+            Context tokens that can be used to continue the conversation. Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaCompletionsResult.TotalDuration">
+            <summary>
+            Total duration of the request in nanoseconds. Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaCompletionsResult.LoadDuration">
+            <summary>
+            Time spent loading the model in nanoseconds. Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaCompletionsResult.PromptEvalCount">
+            <summary>
+            Number of tokens in the prompt that were evaluated. Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaCompletionsResult.PromptEvalDuration">
+            <summary>
+            Time spent evaluating the prompt in nanoseconds. Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaCompletionsResult.EvalCount">
+            <summary>
+            Number of tokens generated in the response. Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaCompletionsResult.EvalDuration">
+            <summary>
+            Time spent generating the response in nanoseconds. Default is null.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Completions.Providers.Ollama.OllamaCompletionsResult.#ctor">
+            <summary>
+            Instantiate a new Ollama completions result.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Completions.Providers.Ollama.OllamaCompletionsResult.ToCompletionResult(View.Sdk.Completions.GenerateCompletionRequest,System.Boolean,System.Int32,View.Sdk.ApiErrorResponse)">
+            <summary>
+            Convert this Ollama-specific result to a generic completions result.
+            </summary>
+            <param name="req">Original completions request.</param>
+            <param name="success">Whether the request succeeded. Default is true.</param>
+            <param name="statusCode">HTTP status code from the response. Default is 200.</param>
+            <param name="error">Error information if the request failed. Default is null.</param>
+            <returns>Generic completions result.</returns>
+        </member>
+        <member name="M:View.Sdk.Completions.Providers.Ollama.OllamaCompletionsResult.ToCompletionToken(System.Int32)">
+            <summary>
+            Convert a streaming chunk to a completion token.
+            </summary>
+            <param name="index">Zero-based index of this token in the stream.</param>
+            <returns>Completion token representing this chunk.</returns>
+        </member>
+        <member name="T:View.Sdk.Completions.Providers.Ollama.OllamaMessage">
+            <summary>
+            Represents a single message in an Ollama chat conversation.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaMessage.Role">
+            <summary>
+            Role of the message sender. Valid values are "system", "user", "assistant". Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaMessage.Content">
+            <summary>
+            Content of the message. Default is null.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Completions.Providers.Ollama.OllamaMessage.#ctor">
+            <summary>
+            Ollama message.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Completions.Providers.Ollama.OllamaOptions">
+            <summary>
+            Ollama-specific options for fine-tuning completion generation.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaOptions.Temperature">
+            <summary>
+            Temperature for sampling. Range: 0.0 to 2.0. Default is null.
+            Higher values produce more random output, lower values are more deterministic.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaOptions.TopP">
+            <summary>
+            Top-p (nucleus) sampling. Range: 0.0 to 1.0. Default is null.
+            Consider tokens with cumulative probability of top_p.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaOptions.TopK">
+            <summary>
+            Top-k sampling. Range: 1 to 1000. Default is null.
+            Only sample from the top K tokens.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaOptions.NumPredict">
+            <summary>
+            Maximum number of tokens to predict. Range: 1 to 128000. Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaOptions.NumCtx">
+            <summary>
+            Size of the context window. Range: 128 to 128000. Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaOptions.NumKeep">
+            <summary>
+            Number of tokens to keep from the initial prompt. Range: 0 to context size. Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaOptions.Seed">
+            <summary>
+            Random seed for deterministic generation. Any valid int32 value. Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaOptions.RepeatPenalty">
+            <summary>
+            Penalty for repeating tokens. Range: 0.0 to 2.0. Default is null.
+            Higher values discourage repetition.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaOptions.PenalizePresence">
+            <summary>
+            Presence penalty. Range: -2.0 to 2.0. Default is null.
+            Positive values penalize tokens based on whether they appear in the text so far.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaOptions.PenalizeFrequency">
+            <summary>
+            Frequency penalty. Range: -2.0 to 2.0. Default is null.
+            Positive values penalize tokens based on their frequency in the text so far.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaOptions.TfsZ">
+            <summary>
+            Tail-free sampling. Range: 0.0 to 1.0. Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaOptions.TypicalP">
+            <summary>
+            Typical-p sampling. Range: 0.0 to 1.0. Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaOptions.Mirostat">
+            <summary>
+            Mirostat sampling mode. Valid values: 0, 1, or 2. Default is null.
+            0 = disabled, 1 = Mirostat v1, 2 = Mirostat v2.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaOptions.MirostatTau">
+            <summary>
+            Mirostat target entropy. Range: 0.0 to 10.0. Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaOptions.MirostatEta">
+            <summary>
+            Mirostat learning rate. Range: 0.0 to 1.0. Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaOptions.NumThread">
+            <summary>
+            Number of threads to use for generation. Range: 1 to 128. Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.Ollama.OllamaOptions.Stop">
+            <summary>
+            Sequences where generation should stop. Default is null.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Completions.Providers.Ollama.OllamaOptions.#ctor">
+            <summary>
+            Instantiate a new Ollama options object.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Completions.Providers.Ollama.ViewOllamaCompletionsSdk">
+            <summary>
+            View Ollama completions SDK for interacting with the Ollama API to generate text completions.
+            Supports both streaming and non-streaming responses.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Completions.Providers.Ollama.ViewOllamaCompletionsSdk.#ctor(System.Guid,System.String,System.String)">
+            <summary>
+            Instantiate a new View Ollama completions SDK.
+            </summary>
+            <param name="tenantGuid">Tenant GUID for multi-tenancy support.</param>
+            <param name="baseUrl">Base URL for the Ollama API. Default is "http://localhost:11434/".</param>
+            <param name="apiKey">API key for authentication. Default is null.</param>
+        </member>
+        <member name="M:View.Sdk.Completions.Providers.Ollama.ViewOllamaCompletionsSdk.ValidateConnectivity(System.Threading.CancellationToken)">
+            <summary>
+            Validate connectivity to the Ollama API endpoint.
+            </summary>
+            <param name="token">Cancellation token for the operation.</param>
+            <returns>True if connectivity is successful, false otherwise.</returns>
+        </member>
+        <member name="M:View.Sdk.Completions.Providers.Ollama.ViewOllamaCompletionsSdk.GenerateCompletionAsync(View.Sdk.Completions.GenerateCompletionRequest,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Generate a completion using the Ollama API.
+            Supports both streaming and non-streaming modes based on the request configuration.
+            </summary>
+            <param name="req">Completion request containing model, messages, and generation parameters.</param>
+            <param name="timeoutMs">Timeout in milliseconds. Range: 1 to int.MaxValue. Default is 30000.</param>
+            <param name="token">Cancellation token for the operation.</param>
+            <returns>Completion result containing the generated tokens.</returns>
+        </member>
+        <member name="T:View.Sdk.Completions.Providers.OpenAI.OpenAiChoice">
+            <summary>
+            Represents a single completion choice from the OpenAI API.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiChoice.Index">
+            <summary>
+            Index of this choice in the list of choices. Default is 0.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiChoice.Message">
+            <summary>
+            Complete message for this choice (non-streaming responses). Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiChoice.Delta">
+            <summary>
+            Partial message delta for this choice (streaming responses). Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiChoice.FinishReason">
+            <summary>
+            Reason the model stopped generating tokens. Default is null.
+            Common values: "stop", "length", "function_call", "content_filter".
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiChoice.Logprobs">
+            <summary>
+            Log probabilities for the tokens in this choice. Default is null.
+            Only present when requested in the API call.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Completions.Providers.OpenAI.OpenAiCompletionsRequest">
+            <summary>
+            OpenAI completions request object for interacting with the OpenAI Chat Completions API.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiCompletionsRequest.Model">
+            <summary>
+            Model to use for completion generation. Default is null.
+            Examples: "gpt-3.5-turbo", "gpt-4", "gpt-4-turbo".
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiCompletionsRequest.Messages">
+            <summary>
+            List of messages comprising the conversation so far. Default is empty list.
+            Cannot be null - will be replaced with empty list if null is provided.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiCompletionsRequest.Temperature">
+            <summary>
+            Temperature for sampling. Range: 0.0 to 2.0. Default is null.
+            Higher values make output more random, lower values more deterministic.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiCompletionsRequest.TopP">
+            <summary>
+            Nucleus sampling parameter. Range: 0.0 to 1.0. Default is null.
+            Consider tokens with cumulative probability mass of top_p.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiCompletionsRequest.N">
+            <summary>
+            Number of completions to generate for each prompt. Range: 1 to 10. Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiCompletionsRequest.Stream">
+            <summary>
+            Whether to stream partial message deltas. Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiCompletionsRequest.Stop">
+            <summary>
+            Sequences where the API will stop generating further tokens. Default is null.
+            Can be a string or array of strings.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiCompletionsRequest.MaxTokens">
+            <summary>
+            Maximum number of tokens to generate. Range: 1 to 128000. Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiCompletionsRequest.PresencePenalty">
+            <summary>
+            Presence penalty. Range: -2.0 to 2.0. Default is null.
+            Positive values penalize new tokens based on whether they appear in the text so far.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiCompletionsRequest.FrequencyPenalty">
+            <summary>
+            Frequency penalty. Range: -2.0 to 2.0. Default is null.
+            Positive values penalize tokens based on their frequency in the text so far.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiCompletionsRequest.LogitBias">
+            <summary>
+            Modify the likelihood of specified tokens appearing in the completion. Default is null.
+            Maps token IDs to bias values from -100 to 100.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiCompletionsRequest.User">
+            <summary>
+            Unique identifier representing the end-user. Default is null.
+            Helps OpenAI monitor and detect abuse.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiCompletionsRequest.Seed">
+            <summary>
+            Random seed for deterministic generation. Any valid int32 value. Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiCompletionsRequest.ResponseFormat">
+            <summary>
+            Response format specification. Default is null.
+            Used to enable JSON mode or other structured outputs.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiCompletionsRequest.TopK">
+            <summary>
+            Top-k sampling parameter. Range: 1 to 1000. Default is null.
+            Only available for certain models.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Completions.Providers.OpenAI.OpenAiCompletionsRequest.#ctor">
+            <summary>
+            Instantiate a new OpenAI completions request.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Completions.Providers.OpenAI.OpenAiCompletionsRequest.FromCompletionRequest(View.Sdk.Completions.GenerateCompletionRequest)">
+            <summary>
+            Create an OpenAI completions request from a generic completion request.
+            </summary>
+            <param name="req">Generic completions request.</param>
+            <returns>OpenAI-specific completions request.</returns>
+        </member>
+        <member name="T:View.Sdk.Completions.Providers.OpenAI.OpenAiCompletionsResult">
+            <summary>
+            OpenAI completions result object containing the response from the OpenAI Chat Completions API.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiCompletionsResult.Id">
+            <summary>
+            Unique identifier for the completion. Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiCompletionsResult.Object">
+            <summary>
+            Object type returned by the API. Default is null.
+            Typically "chat.completion" or "chat.completion.chunk" for streaming.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiCompletionsResult.Created">
+            <summary>
+            Unix timestamp (seconds since epoch) when the completion was created. Default is 0.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiCompletionsResult.Model">
+            <summary>
+            Model that was used to generate the completion. Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiCompletionsResult.Choices">
+            <summary>
+            List of completion choices. Default is empty list.
+            Cannot be null - will be replaced with empty list if null is provided.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiCompletionsResult.Usage">
+            <summary>
+            Token usage statistics for the completion. Default is null.
+            Only present in non-streaming responses.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiCompletionsResult.SystemFingerprint">
+            <summary>
+            System fingerprint for the completion. Default is null.
+            Used for debugging and tracking model versions.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Completions.Providers.OpenAI.OpenAiCompletionsResult.#ctor">
+            <summary>
+            Instantiate a new OpenAI completions result.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Completions.Providers.OpenAI.OpenAiCompletionsResult.ToCompletionResult(View.Sdk.Completions.GenerateCompletionRequest,System.Boolean,System.Int32,View.Sdk.ApiErrorResponse)">
+            <summary>
+            Convert this OpenAI-specific result to a generic completions result.
+            </summary>
+            <param name="req">Original completions request.</param>
+            <param name="success">Whether the request succeeded. Default is true.</param>
+            <param name="statusCode">HTTP status code from the response. Default is 200.</param>
+            <param name="error">Error information if the request failed. Default is null.</param>
+            <returns>Generic completions result.</returns>
+        </member>
+        <member name="M:View.Sdk.Completions.Providers.OpenAI.OpenAiCompletionsResult.ToCompletionToken(System.Int32)">
+            <summary>
+            Convert a streaming chunk to a completion token.
+            </summary>
+            <param name="index">Zero-based index of this token in the stream.</param>
+            <returns>Completion token representing this chunk.</returns>
+        </member>
+        <member name="T:View.Sdk.Completions.Providers.OpenAI.OpenAiDelta">
+            <summary>
+            Represents a partial message delta in streaming responses.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiDelta.Role">
+            <summary>
+            Role of the message author. Default is null.
+            Only present in the first chunk of a streaming response.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiDelta.Content">
+            <summary>
+            Partial content being streamed. Default is null.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Completions.Providers.OpenAI.OpenAiMessage">
+            <summary>
+            Represents a single message in an OpenAI chat conversation.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiMessage.Role">
+            <summary>
+            Role of the message author. Valid values: "system", "user", "assistant", "function". Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiMessage.Content">
+            <summary>
+            Content of the message. Default is null.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiMessage.Name">
+            <summary>
+            Optional name of the message author. Default is null.
+            Used to differentiate between multiple users or functions.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Completions.Providers.OpenAI.OpenAiResponseFormat">
+            <summary>
+            Specifies the format that the model must output.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiResponseFormat.Type">
+            <summary>
+            Type of response format. Valid values: "text", "json", "json_object". Default is null.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Completions.Providers.OpenAI.OpenAiUsage">
+            <summary>
+            Token usage statistics for a completion request.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiUsage.PromptTokens">
+            <summary>
+            Number of tokens in the prompt. Default is 0.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiUsage.CompletionTokens">
+            <summary>
+            Number of tokens in the generated completion. Default is 0.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Completions.Providers.OpenAI.OpenAiUsage.TotalTokens">
+            <summary>
+            Total number of tokens used (prompt + completion). Default is 0.
+            </summary>
+        </member>
+        <member name="T:View.Sdk.Completions.Providers.OpenAI.ViewOpenAiCompletionsSdk">
+            <summary>
+            View OpenAI completions SDK for interacting with the OpenAI Chat Completions API to generate text completions.
+            Supports both streaming and non-streaming responses with Server-Sent Events (SSE) for streaming.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Completions.Providers.OpenAI.ViewOpenAiCompletionsSdk.#ctor(System.Guid,System.String,System.String)">
+            <summary>
+            Instantiate a new View OpenAI completions SDK.
+            </summary>
+            <param name="tenantGuid">Tenant GUID for multi-tenancy support.</param>
+            <param name="baseUrl">Base URL for the OpenAI API. Default is "https://api.openai.com/".</param>
+            <param name="apiKey">API key for authentication. Required for OpenAI API access. Default is null.</param>
+        </member>
+        <member name="M:View.Sdk.Completions.Providers.OpenAI.ViewOpenAiCompletionsSdk.ValidateConnectivity(System.Threading.CancellationToken)">
+            <summary>
+            Validate connectivity to the OpenAI API endpoint.
+            Tests connectivity by fetching the list of available models.
+            </summary>
+            <param name="token">Cancellation token for the operation.</param>
+            <returns>True if connectivity is successful, false otherwise.</returns>
+        </member>
+        <member name="M:View.Sdk.Completions.Providers.OpenAI.ViewOpenAiCompletionsSdk.GenerateCompletionAsync(View.Sdk.Completions.GenerateCompletionRequest,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Generate a completion using the OpenAI Chat Completions API.
+            Supports both streaming (SSE) and non-streaming modes based on the request configuration.
+            </summary>
+            <param name="req">Completion request containing model, messages, and generation parameters.</param>
+            <param name="timeoutMs">Timeout in milliseconds. Range: 1 to int.MaxValue. Default is 30000.</param>
+            <param name="token">Cancellation token for the operation.</param>
+            <returns>Completion result containing the generated tokens.</returns>
+        </member>
         <member name="T:View.Sdk.Embeddings.Providers.CompletionsProviderSdkBase">
             <summary>
             View completions provider SDK base class.
@@ -2304,7 +2907,7 @@
             Timeout in milliseconds.
             </summary>
         </member>
-        <member name="M:View.Sdk.Embeddings.Providers.CompletionsProviderSdkBase.#ctor(System.Guid,View.Sdk.CompletionsProviderEnum,System.String,System.String)">
+        <member name="M:View.Sdk.Embeddings.Providers.CompletionsProviderSdkBase.#ctor(System.Guid,View.Sdk.Completions.CompletionsProviderEnum,System.String,System.String)">
             <summary>
             View completions provider SDK base class.
             </summary>
@@ -2510,18 +3113,18 @@
             <param name="error">API error response.</param>
             <returns>Embeddings result.</returns>
         </member>
-        <member name="T:View.Sdk.Embeddings.Providers.Langchain.ViewLangchainSdk">
+        <member name="T:View.Sdk.Embeddings.Providers.Langchain.ViewLangchainEmbeddingsSdk">
             <summary>
-            View Langchain SDK.  This SDK interacts directly with the underlying View Embeddings microservice that acts as a Langchain proxy.
+            View Langchain embeddings SDK.  This SDK interacts directly with the underlying View Embeddings microservice that acts as a Langchain proxy.
             </summary>
         </member>
-        <member name="M:View.Sdk.Embeddings.Providers.Langchain.ViewLangchainSdk.#ctor(System.Guid,System.String,System.String)">
+        <member name="M:View.Sdk.Embeddings.Providers.Langchain.ViewLangchainEmbeddingsSdk.#ctor(System.Guid,System.String,System.String)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Embeddings.Providers.Langchain.ViewLangchainSdk.ValidateConnectivity(System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Embeddings.Providers.Langchain.ViewLangchainEmbeddingsSdk.ValidateConnectivity(System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Embeddings.Providers.Langchain.ViewLangchainSdk.GenerateEmbeddings(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Int32,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Embeddings.Providers.Langchain.ViewLangchainEmbeddingsSdk.GenerateEmbeddings(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Int32,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:View.Sdk.Embeddings.Providers.Ollama.OllamaEmbeddingsRequest">
@@ -2636,18 +3239,18 @@
             Instantiate.
             </summary>
         </member>
-        <member name="T:View.Sdk.Embeddings.Providers.Ollama.ViewOllamaSdk">
+        <member name="T:View.Sdk.Embeddings.Providers.Ollama.ViewOllamaEmbeddingsSdk">
             <summary>
-            View Ollama SDK.  This SDK interacts directly with an underlying Ollama microservice.
+            View Ollama embeddings SDK.  This SDK interacts directly with an underlying Ollama microservice.
             </summary>
         </member>
-        <member name="M:View.Sdk.Embeddings.Providers.Ollama.ViewOllamaSdk.#ctor(System.Guid,System.String,System.String)">
+        <member name="M:View.Sdk.Embeddings.Providers.Ollama.ViewOllamaEmbeddingsSdk.#ctor(System.Guid,System.String,System.String)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Embeddings.Providers.Ollama.ViewOllamaSdk.ValidateConnectivity(System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Embeddings.Providers.Ollama.ViewOllamaEmbeddingsSdk.ValidateConnectivity(System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Embeddings.Providers.Ollama.ViewOllamaSdk.GenerateEmbeddings(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Int32,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Embeddings.Providers.Ollama.ViewOllamaEmbeddingsSdk.GenerateEmbeddings(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Int32,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:View.Sdk.Embeddings.Providers.OpenAI.OpenAiEmbeddings">
@@ -2732,32 +3335,32 @@
             <param name="error">API error response.</param>
             <returns>Embeddings result.</returns>
         </member>
-        <member name="T:View.Sdk.Embeddings.Providers.OpenAI.ViewOpenAiSdk">
+        <member name="T:View.Sdk.Embeddings.Providers.OpenAI.ViewOpenAiEmbeddingsSdk">
             <summary>
-            OpenAI SDK.  This SDK interacts directly with the OpenAI API for generating embeddings.
+            OpenAI embeddings SDK.  This SDK interacts directly with the OpenAI API for generating embeddings.
             </summary>
         </member>
-        <member name="M:View.Sdk.Embeddings.Providers.OpenAI.ViewOpenAiSdk.#ctor(System.Guid,System.String,System.String)">
+        <member name="M:View.Sdk.Embeddings.Providers.OpenAI.ViewOpenAiEmbeddingsSdk.#ctor(System.Guid,System.String,System.String)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Embeddings.Providers.OpenAI.ViewOpenAiSdk.ValidateConnectivity(System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Embeddings.Providers.OpenAI.ViewOpenAiEmbeddingsSdk.ValidateConnectivity(System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Embeddings.Providers.OpenAI.ViewOpenAiSdk.GenerateEmbeddings(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Int32,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Embeddings.Providers.OpenAI.ViewOpenAiEmbeddingsSdk.GenerateEmbeddings(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Int32,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="T:View.Sdk.Embeddings.Providers.VoyageAI.ViewVoyageAiSdk">
+        <member name="T:View.Sdk.Embeddings.Providers.VoyageAI.ViewVoyageAiEmbeddingsSdk">
             <summary>
-            VoyageAI SDK.  This SDK interacts directly with the VoyageAI API for generating embeddings.
+            VoyageAI embeddings SDK.  This SDK interacts directly with the VoyageAI API for generating embeddings.
             </summary>
         </member>
-        <member name="M:View.Sdk.Embeddings.Providers.VoyageAI.ViewVoyageAiSdk.#ctor(System.Guid,System.String,System.String)">
+        <member name="M:View.Sdk.Embeddings.Providers.VoyageAI.ViewVoyageAiEmbeddingsSdk.#ctor(System.Guid,System.String,System.String)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Embeddings.Providers.VoyageAI.ViewVoyageAiSdk.ValidateConnectivity(System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Embeddings.Providers.VoyageAI.ViewVoyageAiEmbeddingsSdk.ValidateConnectivity(System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:View.Sdk.Embeddings.Providers.VoyageAI.ViewVoyageAiSdk.GenerateEmbeddings(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Int32,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Embeddings.Providers.VoyageAI.ViewVoyageAiEmbeddingsSdk.GenerateEmbeddings(View.Sdk.Embeddings.GenerateEmbeddingsRequest,System.Int32,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:View.Sdk.Embeddings.Providers.VoyageAI.VoyageAiEmbeddings">
@@ -6934,6 +7537,16 @@
             Delay in milliseconds to introduce between crawl operations within the same task.
             </summary>
         </member>
+        <member name="P:View.Sdk.DataRepository.GitEndpointUrl">
+            <summary>
+            Git endpoint URL, e.g. https://github.com
+            </summary>
+        </member>
+        <member name="P:View.Sdk.DataRepository.GitAuthToken">
+            <summary>
+            Git auth token.
+            </summary>
+        </member>
         <member name="P:View.Sdk.DataRepository.CreatedUtc">
             <summary>
             Created.
@@ -6987,6 +7600,11 @@
         <member name="F:View.Sdk.DataRepositoryTypeEnum.Printer">
             <summary>
             Printer.
+            </summary>
+        </member>
+        <member name="F:View.Sdk.DataRepositoryTypeEnum.Git">
+            <summary>
+            Git.
             </summary>
         </member>
         <member name="T:View.Sdk.DataTypeEnum">
