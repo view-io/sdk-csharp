@@ -6,10 +6,6 @@
 
 View AI enables organizations to rapidly deploy conversational AI experiences and yield instant insights.  This SDK enables simplified consumption of the on-premises View AI services.
 
-## License
-
-View software is licensed under the [Fair Core License (FCL)](https://fcl.dev/) with graduation after two years to an Apache 2.0 license.  Use of the software requires acceptance of the license terms found in the file `LICENSE.md`.
-
 ## Feedback and Issues
 
 Have feedback or issues?  Please file an issue here.
