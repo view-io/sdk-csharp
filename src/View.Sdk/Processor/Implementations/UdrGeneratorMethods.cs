@@ -55,13 +55,15 @@ namespace View.Sdk.Processor.Implementations
                 {
                     if (resp != null)
                     {
+                        string responseData = await _Sdk.ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
                             _Sdk.Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
+                            if (!String.IsNullOrEmpty(responseData))
                             {
                                 _Sdk.Log(SeverityEnum.Debug, "deserializing response body");
-                                UdrDocument docResp = _Sdk.Serializer.DeserializeJson<UdrDocument>(resp.DataAsString);
+                                UdrDocument docResp = _Sdk.Serializer.DeserializeJson<UdrDocument>(responseData);
                                 return docResp;
                             }
                             else
@@ -73,10 +75,10 @@ namespace View.Sdk.Processor.Implementations
                         else
                         {
                             _Sdk.Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
+                            if (!String.IsNullOrEmpty(responseData))
                             {
                                 _Sdk.Log(SeverityEnum.Debug, "deserializing response body");
-                                UdrDocument docResp = _Sdk.Serializer.DeserializeJson<UdrDocument>(resp.DataAsString);
+                                UdrDocument docResp = _Sdk.Serializer.DeserializeJson<UdrDocument>(responseData);
                                 return docResp;
                             }
                             else

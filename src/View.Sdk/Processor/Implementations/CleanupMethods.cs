@@ -82,17 +82,19 @@ namespace View.Sdk.Processor.Implementations
                     {
                         if (resp != null)
                         {
-                            if (_Sdk.LogResponses) _Sdk.Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "):" + Environment.NewLine + resp.DataAsString);
+                            string responseData = await _Sdk.ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+
+                            if (_Sdk.LogResponses) _Sdk.Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "):" + Environment.NewLine + responseData);
 
                             if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                             {
                                 _Sdk.Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
 
-                                if (!String.IsNullOrEmpty(resp.DataAsString))
+                                if (!String.IsNullOrEmpty(responseData))
                                 {
                                     try
                                     {
-                                        CleanupResult cleanupResp = _Sdk.Serializer.DeserializeJson<CleanupResult>(resp.DataAsString);
+                                        CleanupResult cleanupResp = _Sdk.Serializer.DeserializeJson<CleanupResult>(responseData);
                                         return cleanupResp;
                                     }
                                     catch (Exception)
@@ -110,11 +112,11 @@ namespace View.Sdk.Processor.Implementations
                             {
                                 _Sdk.Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
 
-                                if (!String.IsNullOrEmpty(resp.DataAsString))
+                                if (!String.IsNullOrEmpty(responseData))
                                 {
                                     try
                                     {
-                                        CleanupResult cleanupResp = _Sdk.Serializer.DeserializeJson<CleanupResult>(resp.DataAsString);
+                                        CleanupResult cleanupResp = _Sdk.Serializer.DeserializeJson<CleanupResult>(responseData);
                                         return cleanupResp;
                                     }
                                     catch (Exception)

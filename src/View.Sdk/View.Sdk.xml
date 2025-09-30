@@ -2944,6 +2944,15 @@
             <param name="token">Cancellation token.</param>
             <returns>Completion response.</returns>
         </member>
+        <member name="M:View.Sdk.Embeddings.Providers.CompletionsProviderSdkBase.ReadResponseDataAsync(RestWrapper.RestResponse,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read response data from RestResponse, handling both chunked and non-chunked responses.
+            </summary>
+            <param name="resp">RestResponse object.</param>
+            <param name="url">URL for logging purposes.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Response data as string.</returns>
+        </member>
         <member name="T:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase">
             <summary>
             View embeddings generator SDK base class.
@@ -3035,6 +3044,15 @@
             <param name="timeoutMs">Timeout in milliseconds.</param>
             <param name="token">Cancellation token.</param>
             <returns></returns>
+        </member>
+        <member name="M:View.Sdk.Embeddings.Providers.EmbeddingsProviderSdkBase.ReadResponseDataAsync(RestWrapper.RestResponse,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read response data from RestResponse, handling both chunked and non-chunked responses.
+            </summary>
+            <param name="resp">RestResponse object.</param>
+            <param name="url">URL for logging purposes.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Response data as string.</returns>
         </member>
         <member name="T:View.Sdk.Embeddings.Providers.Langchain.LangchainEmbeddingsRequest">
             <summary>
@@ -16564,6 +16582,15 @@
             <param name="url">The API endpoint URL to fetch the enumeration from.</param>
             <param name="token">Optional cancellation token.</param>
             <returns>The deserialized <see cref="T:View.Sdk.EnumerationResult`1"/> if successful; otherwise, null.</returns>
+        </member>
+        <member name="M:View.Sdk.ViewSdkBase.ReadResponseDataAsync(RestWrapper.RestResponse,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read response data from RestResponse, handling both chunked and non-chunked responses.
+            </summary>
+            <param name="resp">RestResponse object.</param>
+            <param name="url">URL for logging purposes.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Response data as string.</returns>
         </member>
         <member name="T:View.Sdk.WebAuthenticationTypeEnum">
             <summary>

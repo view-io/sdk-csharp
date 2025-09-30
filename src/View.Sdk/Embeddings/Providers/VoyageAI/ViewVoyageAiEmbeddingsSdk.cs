@@ -120,14 +120,16 @@
                     }
                     else
                     {
-                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+                        string responseData = await ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+
+                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + responseData);
 
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
-                            if (!string.IsNullOrEmpty(resp.DataAsString))
+                            if (!string.IsNullOrEmpty(responseData))
                             {
                                 Log(SeverityEnum.Debug, "deserializing response body");
-                                VoyageAiEmbeddingsResult voyageAiResult = Serializer.DeserializeJson<VoyageAiEmbeddingsResult>(resp.DataAsString);
+                                VoyageAiEmbeddingsResult voyageAiResult = Serializer.DeserializeJson<VoyageAiEmbeddingsResult>(responseData);
                                 return voyageAiResult.ToEmbeddingsResult(embedRequest, true, resp.StatusCode, null);
                             }
                             else
@@ -143,7 +145,7 @@
                         }
                         else
                         {
-                            Log(SeverityEnum.Warn, "status " + resp.StatusCode + " received from " + url + ": " + Environment.NewLine + resp.DataAsString);
+                            Log(SeverityEnum.Warn, "status " + resp.StatusCode + " received from " + url + ": " + Environment.NewLine + responseData);
                             return new GenerateEmbeddingsResult
                             {
                                 Success = false,
