@@ -54,13 +54,15 @@ namespace View.Sdk.Lexi.Implementations
                 {
                     if (resp != null)
                     {
+                        string responseData = await _Sdk.ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
                             _Sdk.Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
+                            if (!String.IsNullOrEmpty(responseData))
                             {
                                 _Sdk.Log(SeverityEnum.Debug, "deserializing response body");
-                                return _Sdk.Serializer.DeserializeJson<EnumerationResult<SourceDocument>>(resp.DataAsString);
+                                return _Sdk.Serializer.DeserializeJson<EnumerationResult<SourceDocument>>(responseData);
                             }
                             else
                             {

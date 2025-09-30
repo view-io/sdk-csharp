@@ -73,8 +73,9 @@ namespace View.Sdk.Assistant.Implementations
                             }
                             else
                             {
-                                if (_Sdk.LogResponses) _Sdk.Log(SeverityEnum.Debug, "response: " + resp.DataAsString);
-                                yield return resp.DataAsString;
+                                string responseData = await _Sdk.ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+                                if (_Sdk.LogResponses) _Sdk.Log(SeverityEnum.Debug, "response: " + responseData);
+                                yield return responseData;
                             }
                         }
                         else
@@ -126,8 +127,9 @@ namespace View.Sdk.Assistant.Implementations
                             }
                             else
                             {
-                                if (_Sdk.LogResponses) _Sdk.Log(SeverityEnum.Debug, "response: " + resp.DataAsString);
-                                yield return resp.DataAsString;
+                                string responseData = await _Sdk.ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+                                if (_Sdk.LogResponses) _Sdk.Log(SeverityEnum.Debug, "response: " + responseData);
+                                yield return responseData;
                             }
                         }
                         else
@@ -179,8 +181,9 @@ namespace View.Sdk.Assistant.Implementations
                             }
                             else
                             {
-                                if (_Sdk.LogResponses) _Sdk.Log(SeverityEnum.Debug, "response: " + resp.DataAsString);
-                                yield return resp.DataAsString;
+                                string responseData = await _Sdk.ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+                                if (_Sdk.LogResponses) _Sdk.Log(SeverityEnum.Debug, "response: " + responseData);
+                                yield return responseData;
                             }
                         }
                         else
@@ -232,8 +235,9 @@ namespace View.Sdk.Assistant.Implementations
                             }
                             else
                             {
-                                if (_Sdk.LogResponses) _Sdk.Log(SeverityEnum.Debug, "response: " + resp.DataAsString);
-                                yield return resp.DataAsString;
+                                string responseData = await _Sdk.ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+                                if (_Sdk.LogResponses) _Sdk.Log(SeverityEnum.Debug, "response: " + responseData);
+                                yield return responseData;
                             }
                         }
                         else
@@ -285,8 +289,9 @@ namespace View.Sdk.Assistant.Implementations
                             }
                             else
                             {
-                                if (_Sdk.LogResponses) _Sdk.Log(SeverityEnum.Debug, "response: " + resp.DataAsString);
-                                yield return resp.DataAsString;
+                                string responseData = await _Sdk.ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+                                if (_Sdk.LogResponses) _Sdk.Log(SeverityEnum.Debug, "response: " + responseData);
+                                yield return responseData;
                             }
                         }
                         else
@@ -338,8 +343,9 @@ namespace View.Sdk.Assistant.Implementations
                             }
                             else
                             {
-                                if (_Sdk.LogResponses) _Sdk.Log(SeverityEnum.Debug, "response: " + resp.DataAsString);
-                                yield return resp.DataAsString;
+                                string responseData = await _Sdk.ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+                                if (_Sdk.LogResponses) _Sdk.Log(SeverityEnum.Debug, "response: " + responseData);
+                                yield return responseData;
                             }
                         }
                         else

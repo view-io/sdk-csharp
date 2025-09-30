@@ -58,7 +58,7 @@
 	<ItemGroup>
 		<PackageReference Include="ExpressionTree" Version="1.1.2" />
 		<PackageReference Include="PrettyId" Version="1.0.5" />
-		<PackageReference Include="RestWrapper" Version="3.1.5" />
+		<PackageReference Include="RestWrapper" Version="3.1.6" />
 		<PackageReference Include="LiteGraph.Sdk" Version="4.1.0" />
 		<PackageReference Include="SerializableDataTable" Version="1.0.2" />
 	</ItemGroup>

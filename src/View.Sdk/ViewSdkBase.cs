@@ -306,15 +306,17 @@
                 {
                     if (resp != null)
                     {
-                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+                        string responseData = await ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+
+                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + responseData);
 
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
                             Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
+                            if (!String.IsNullOrEmpty(responseData))
                             {
                                 Log(SeverityEnum.Debug, "deserializing response body");
-                                return Serializer.DeserializeJson<T>(resp.DataAsString);
+                                return Serializer.DeserializeJson<T>(responseData);
                             }
                             else
                             {
@@ -363,16 +365,18 @@
                 {
                     if (resp != null)
                     {
-                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+                        string responseData = await ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+
+                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + responseData);
 
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
                             Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
 
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
+                            if (!String.IsNullOrEmpty(responseData))
                             {
                                 Log(SeverityEnum.Debug, "deserializing response body");
-                                return Serializer.DeserializeJson<T>(resp.DataAsString);
+                                return Serializer.DeserializeJson<T>(responseData);
                             }
                             else
                             {
@@ -422,16 +426,18 @@
                 {
                     if (resp != null)
                     {
-                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+                        string responseData = await ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+
+                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + responseData);
 
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
                             Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
 
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
+                            if (!String.IsNullOrEmpty(responseData))
                             {
                                 Log(SeverityEnum.Debug, "deserializing response body");
-                                return Serializer.DeserializeJson<T2>(resp.DataAsString);
+                                return Serializer.DeserializeJson<T2>(responseData);
                             }
                             else
                             {
@@ -473,7 +479,30 @@
                 {
                     if (resp != null)
                     {
-                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+                        string responseData = null;
+                        
+                        // Handle chunked transfer encoding
+                        if (resp.ChunkedTransferEncoding)
+                        {
+                            Log(SeverityEnum.Debug, "reading chunked response from " + url);
+                            var chunks = new List<string>();
+                            ChunkData chunk;
+                            while ((chunk = await resp.ReadChunkAsync(token).ConfigureAwait(false)) != null)
+                            {
+                                if (chunk.Data != null && chunk.Data.Length > 0)
+                                {
+                                    chunks.Add(System.Text.Encoding.UTF8.GetString(chunk.Data));
+                                }
+                                if (chunk.IsFinal) break;
+                            }
+                            responseData = string.Join("", chunks);
+                        }
+                        else
+                        {
+                            responseData = resp.DataAsString;
+                        }
+
+                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + responseData);
 
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
@@ -520,15 +549,17 @@
                 {
                     if (resp != null)
                     {
-                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+                        string responseData = await ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+
+                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + responseData);
 
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
                             Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
+                            if (!String.IsNullOrEmpty(responseData))
                             {
                                 Log(SeverityEnum.Debug, "deserializing response body");
-                                return Serializer.DeserializeJson<T>(resp.DataAsString);
+                                return Serializer.DeserializeJson<T>(responseData);
                             }
                             else
                             {
@@ -576,15 +607,17 @@
                 {
                     if (resp != null)
                     {
-                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+                        string responseData = await ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+
+                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + responseData);
 
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
                             Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
+                            if (!String.IsNullOrEmpty(responseData))
                             {
                                 Log(SeverityEnum.Debug, "deserializing response body");
-                                return Serializer.DeserializeJson<List<T>>(resp.DataAsString);
+                                return Serializer.DeserializeJson<List<T>>(responseData);
                             }
                             else
                             {
@@ -633,15 +666,17 @@
                 {
                     if (resp != null)
                     {
-                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+                        string responseData = await ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+
+                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + responseData);
 
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
                             Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
+                            if (!String.IsNullOrEmpty(responseData))
                             {
                                 Log(SeverityEnum.Debug, "deserializing response body");
-                                return Serializer.DeserializeJson<T>(resp.DataAsString);
+                                return Serializer.DeserializeJson<T>(responseData);
                             }
                             else
                             {
@@ -686,7 +721,30 @@
                 {
                     if (resp != null)
                     {
-                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+                        string responseData = null;
+                        
+                        // Handle chunked transfer encoding
+                        if (resp.ChunkedTransferEncoding)
+                        {
+                            Log(SeverityEnum.Debug, "reading chunked response from " + url);
+                            var chunks = new List<string>();
+                            ChunkData chunk;
+                            while ((chunk = await resp.ReadChunkAsync(token).ConfigureAwait(false)) != null)
+                            {
+                                if (chunk.Data != null && chunk.Data.Length > 0)
+                                {
+                                    chunks.Add(System.Text.Encoding.UTF8.GetString(chunk.Data));
+                                }
+                                if (chunk.IsFinal) break;
+                            }
+                            responseData = string.Join("", chunks);
+                        }
+                        else
+                        {
+                            responseData = resp.DataAsString;
+                        }
+
+                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + responseData);
 
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
@@ -735,7 +793,30 @@
                 {
                     if (resp != null)
                     {
-                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+                        string responseData = null;
+                        
+                        // Handle chunked transfer encoding
+                        if (resp.ChunkedTransferEncoding)
+                        {
+                            Log(SeverityEnum.Debug, "reading chunked response from " + url);
+                            var chunks = new List<string>();
+                            ChunkData chunk;
+                            while ((chunk = await resp.ReadChunkAsync(token).ConfigureAwait(false)) != null)
+                            {
+                                if (chunk.Data != null && chunk.Data.Length > 0)
+                                {
+                                    chunks.Add(System.Text.Encoding.UTF8.GetString(chunk.Data));
+                                }
+                                if (chunk.IsFinal) break;
+                            }
+                            responseData = string.Join("", chunks);
+                        }
+                        else
+                        {
+                            responseData = resp.DataAsString;
+                        }
+
+                        if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + responseData);
 
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
@@ -780,13 +861,15 @@
                 {
                     if (resp != null)
                     {
+                        string responseData = await ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
                             Log(SeverityEnum.Debug, $"success reported from {url}: {resp.StatusCode}, {resp.ContentLength} bytes");
-                            if (!string.IsNullOrEmpty(resp.DataAsString))
+                            if (!string.IsNullOrEmpty(responseData))
                             {
                                 Log(SeverityEnum.Debug, "deserializing response body");
-                                return Serializer.DeserializeJson<EnumerationResult<T>>(resp.DataAsString);
+                                return Serializer.DeserializeJson<EnumerationResult<T>>(responseData);
                             }
 
                             Log(SeverityEnum.Debug, "empty response body, returning null");
@@ -801,6 +884,43 @@
                     return null;
                 }
             }
+        }
+
+        /// <summary>
+        /// Read response data from RestResponse, handling both chunked and non-chunked responses.
+        /// </summary>
+        /// <param name="resp">RestResponse object.</param>
+        /// <param name="url">URL for logging purposes.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Response data as string.</returns>
+        public async Task<string> ReadResponseDataAsync(RestResponse resp, string url, CancellationToken token = default)
+        {
+            if (resp == null) return null;
+
+            string responseData = null;
+            
+            // Handle chunked transfer encoding
+            if (resp.ChunkedTransferEncoding)
+            {
+                Log(SeverityEnum.Debug, "reading chunked response from " + url);
+                var chunks = new List<string>();
+                ChunkData chunk;
+                while ((chunk = await resp.ReadChunkAsync(token).ConfigureAwait(false)) != null)
+                {
+                    if (chunk.Data != null && chunk.Data.Length > 0)
+                    {
+                        chunks.Add(System.Text.Encoding.UTF8.GetString(chunk.Data));
+                    }
+                    if (chunk.IsFinal) break;
+                }
+                responseData = string.Join("", chunks);
+            }
+            else
+            {
+                responseData = resp.DataAsString;
+            }
+
+            return responseData;
         }
 
         #endregion

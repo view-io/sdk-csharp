@@ -66,15 +66,17 @@ namespace View.Sdk.Storage.Implementations
                 {
                     if (resp != null)
                     {
-                        if (_Sdk.LogResponses) _Sdk.Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+                        string responseData = await _Sdk.ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+
+                        if (_Sdk.LogResponses) _Sdk.Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + responseData);
 
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
                             _Sdk.Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
+                            if (!String.IsNullOrEmpty(responseData))
                             {
                                 _Sdk.Log(SeverityEnum.Debug, "deserializing response body");
-                                return resp.DataAsString;
+                                return responseData;
                             }
                             else
                             {
@@ -120,7 +122,10 @@ namespace View.Sdk.Storage.Implementations
                     if (resp != null && resp.StatusCode >= 200 && resp.StatusCode <= 299)
                     {
                         _Sdk.Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                        return resp.DataAsString;
+                        
+                        string responseData = await _Sdk.ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+                        
+                        return responseData;
                     }
                     else if (resp != null)
                     {
@@ -176,7 +181,10 @@ namespace View.Sdk.Storage.Implementations
                     if (resp != null && resp.StatusCode >= 200 && resp.StatusCode <= 299)
                     {
                         _Sdk.Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                        return _Sdk.Serializer.DeserializeJson<ObjectMetadata>(resp.DataAsString);
+                        
+                        string responseData = await _Sdk.ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+                        
+                        return _Sdk.Serializer.DeserializeJson<ObjectMetadata>(responseData);
                     }
                     else if (resp != null)
                     {
@@ -213,8 +221,9 @@ namespace View.Sdk.Storage.Implementations
                 {
                     if (resp != null && resp.StatusCode >= 200 && resp.StatusCode <= 299)
                     {
+                        string responseData = await _Sdk.ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
                         _Sdk.Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                        return _Sdk.Serializer.DeserializeJson<ObjectMetadata>(resp.DataAsString);
+                        return _Sdk.Serializer.DeserializeJson<ObjectMetadata>(responseData);
                     }
                     else if (resp != null)
                     {
@@ -253,8 +262,9 @@ namespace View.Sdk.Storage.Implementations
                 {
                     if (resp != null && resp.StatusCode >= 200 && resp.StatusCode <= 299)
                     {
+                        string responseData = await _Sdk.ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
                         _Sdk.Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                        return _Sdk.Serializer.DeserializeJson<ObjectMetadata>(resp.DataAsString);
+                        return _Sdk.Serializer.DeserializeJson<ObjectMetadata>(responseData);
                     }
                     else if (resp != null)
                     {
@@ -304,15 +314,17 @@ namespace View.Sdk.Storage.Implementations
                 {
                     if (resp != null)
                     {
-                        if (_Sdk.LogResponses) _Sdk.Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+                        string responseData = await _Sdk.ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+
+                        if (_Sdk.LogResponses) _Sdk.Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + responseData);
 
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
                             _Sdk.Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
+                            if (!String.IsNullOrEmpty(responseData))
                             {
                                 _Sdk.Log(SeverityEnum.Debug, "deserializing response body");
-                                return _Sdk.Serializer.DeserializeJson<List<BucketAclEntry>>(resp.DataAsString);
+                                return _Sdk.Serializer.DeserializeJson<List<BucketAclEntry>>(responseData);
                             }
                             else
                             {
@@ -371,8 +383,9 @@ namespace View.Sdk.Storage.Implementations
                 {
                     if (resp != null && resp.StatusCode >= 200 && resp.StatusCode <= 299)
                     {
+                        string responseData = await _Sdk.ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
                         _Sdk.Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                        return _Sdk.Serializer.DeserializeJson<List<BucketTag>>(resp.DataAsString);
+                        return _Sdk.Serializer.DeserializeJson<List<BucketTag>>(responseData);
                     }
                     else if (resp != null)
                     {

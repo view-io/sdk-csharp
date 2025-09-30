@@ -154,14 +154,16 @@
                         }
                         else
                         {
-                            if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+                            string responseData = await ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+
+                            if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + responseData);
 
                             if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                             {
-                                if (!string.IsNullOrEmpty(resp.DataAsString))
+                                if (!string.IsNullOrEmpty(responseData))
                                 {
                                     Log(SeverityEnum.Debug, "deserializing response body");
-                                    OpenAiCompletionsResult openAiResult = Serializer.DeserializeJson<OpenAiCompletionsResult>(resp.DataAsString);
+                                    OpenAiCompletionsResult openAiResult = Serializer.DeserializeJson<OpenAiCompletionsResult>(responseData);
                                     GenerateCompletionResult completionResult = openAiResult.ToCompletionResult(req, true, resp.StatusCode, null);
 
                                     // Update timing information
@@ -180,7 +182,7 @@
                             }
                             else
                             {
-                                Log(SeverityEnum.Warn, "status " + resp.StatusCode + " received from " + url + ": " + Environment.NewLine + resp.DataAsString);
+                                Log(SeverityEnum.Warn, "status " + resp.StatusCode + " received from " + url + ": " + Environment.NewLine + responseData);
                                 result.Tokens = GenerateErrorTokenStream("Failure reported by the completions provider.");
                                 return result;
                             }

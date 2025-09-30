@@ -94,15 +94,17 @@ namespace View.Sdk.Assistant.Implementations
                 {
                     if (resp != null)
                     {
-                        if (_Sdk.LogResponses) _Sdk.Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + resp.DataAsString);
+                        string responseData = await _Sdk.ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+
+                        if (_Sdk.LogResponses) _Sdk.Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + responseData);
 
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
                             _Sdk.Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
-                            if (!String.IsNullOrEmpty(resp.DataAsString))
+                            if (!String.IsNullOrEmpty(responseData))
                             {
                                 _Sdk.Log(SeverityEnum.Debug, "deserializing response body");
-                                return _Sdk.Serializer.DeserializeJson<AssistantConfiguration>(resp.DataAsString);
+                                return _Sdk.Serializer.DeserializeJson<AssistantConfiguration>(responseData);
                             }
                             else
                             {

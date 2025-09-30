@@ -68,16 +68,18 @@
                     {
                         if (resp != null)
                         {
+                            string responseData = await ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+
                             if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                             {
                                 Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
 
-                                if (!String.IsNullOrEmpty(resp.DataAsString))
+                                if (!String.IsNullOrEmpty(responseData))
                                 {
-                                    if (LogResponses) Log(SeverityEnum.Debug, "response body: " + Environment.NewLine + resp.DataAsString);
+                                    if (LogResponses) Log(SeverityEnum.Debug, "response body: " + Environment.NewLine + responseData);
 
                                     Log(SeverityEnum.Debug, "deserializing response body");
-                                    SemanticCellResult scr = Serializer.DeserializeJson<SemanticCellResult>(resp.DataAsString);
+                                    SemanticCellResult scr = Serializer.DeserializeJson<SemanticCellResult>(responseData);
                                     return scr;
                                 }
                                 else
@@ -90,12 +92,12 @@
                             {
                                 Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
 
-                                if (!String.IsNullOrEmpty(resp.DataAsString))
+                                if (!String.IsNullOrEmpty(responseData))
                                 {
-                                    if (LogResponses) Log(SeverityEnum.Warn, "response body: " + Environment.NewLine + resp.DataAsString);
+                                    if (LogResponses) Log(SeverityEnum.Warn, "response body: " + Environment.NewLine + responseData);
 
                                     Log(SeverityEnum.Debug, "deserializing response body");
-                                    SemanticCellResult scr = Serializer.DeserializeJson<SemanticCellResult>(resp.DataAsString);
+                                    SemanticCellResult scr = Serializer.DeserializeJson<SemanticCellResult>(responseData);
                                     return scr;
                                 }
                                 else

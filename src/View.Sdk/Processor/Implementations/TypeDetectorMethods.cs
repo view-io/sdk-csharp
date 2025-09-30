@@ -57,16 +57,17 @@ namespace View.Sdk.Processor.Implementations
                     {
                         if (resp != null)
                         {
+                            string responseData = await _Sdk.ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
                             if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                             {
                                 _Sdk.Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
 
-                                if (!String.IsNullOrEmpty(resp.DataAsString))
+                                if (!String.IsNullOrEmpty(responseData))
                                 {
-                                    if (_Sdk.LogResponses) _Sdk.Log(SeverityEnum.Debug, "response body: " + Environment.NewLine + resp.DataAsString);
+                                    if (_Sdk.LogResponses) _Sdk.Log(SeverityEnum.Debug, "response body: " + Environment.NewLine + responseData);
 
                                     _Sdk.Log(SeverityEnum.Debug, "deserializing response body");
-                                    TypeResult tr = _Sdk.Serializer.DeserializeJson<TypeResult>(resp.DataAsString);
+                                    TypeResult tr = _Sdk.Serializer.DeserializeJson<TypeResult>(responseData);
                                     return tr;
                                 }
                                 else
@@ -79,11 +80,11 @@ namespace View.Sdk.Processor.Implementations
                             {
                                 _Sdk.Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
 
-                                if (!String.IsNullOrEmpty(resp.DataAsString))
+                                if (!String.IsNullOrEmpty(responseData))
                                 {
-                                    if (_Sdk.LogResponses) _Sdk.Log(SeverityEnum.Warn, "response body: " + Environment.NewLine + resp.DataAsString);
+                                    if (_Sdk.LogResponses) _Sdk.Log(SeverityEnum.Warn, "response body: " + Environment.NewLine + responseData);
 
-                                    TypeResult tr = _Sdk.Serializer.DeserializeJson<TypeResult>(resp.DataAsString);
+                                    TypeResult tr = _Sdk.Serializer.DeserializeJson<TypeResult>(responseData);
                                     return tr;
                                 }
                                 else
