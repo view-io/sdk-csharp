@@ -142,7 +142,6 @@
         /// </summary>
         public string PasswordSha256 { get; set; } = null;
 
-
         #endregion
 
         #region Internal-Members
@@ -306,7 +305,7 @@
                 {
                     if (resp != null)
                     {
-                        string responseData = await ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+                        string responseData = await ReadResponse(resp, url, token).ConfigureAwait(false);
 
                         if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + responseData);
 
@@ -365,7 +364,7 @@
                 {
                     if (resp != null)
                     {
-                        string responseData = await ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+                        string responseData = await ReadResponse(resp, url, token).ConfigureAwait(false);
 
                         if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + responseData);
 
@@ -426,7 +425,7 @@
                 {
                     if (resp != null)
                     {
-                        string responseData = await ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+                        string responseData = await ReadResponse(resp, url, token).ConfigureAwait(false);
 
                         if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + responseData);
 
@@ -549,7 +548,7 @@
                 {
                     if (resp != null)
                     {
-                        string responseData = await ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+                        string responseData = await ReadResponse(resp, url, token).ConfigureAwait(false);
 
                         if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + responseData);
 
@@ -607,7 +606,7 @@
                 {
                     if (resp != null)
                     {
-                        string responseData = await ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+                        string responseData = await ReadResponse(resp, url, token).ConfigureAwait(false);
 
                         if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + responseData);
 
@@ -666,7 +665,7 @@
                 {
                     if (resp != null)
                     {
-                        string responseData = await ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+                        string responseData = await ReadResponse(resp, url, token).ConfigureAwait(false);
 
                         if (LogResponses) Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + responseData);
 
@@ -861,7 +860,7 @@
                 {
                     if (resp != null)
                     {
-                        string responseData = await ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+                        string responseData = await ReadResponse(resp, url, token).ConfigureAwait(false);
 
                         if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
                         {
@@ -888,23 +887,26 @@
 
         /// <summary>
         /// Read response data from RestResponse, handling both chunked and non-chunked responses.
+        /// Do not use this method if you need to iterate over the response chunk by chunk.
+        /// This method encodes incoming byte data as UTF-8 strings and should not be used for scenarios where binary data is required.
         /// </summary>
-        /// <param name="resp">RestResponse object.</param>
-        /// <param name="url">URL for logging purposes.</param>
+        /// <param name="resp">REST response.</param>
+        /// <param name="url">URL from the request, useful for logging.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Response data as string.</returns>
-        public async Task<string> ReadResponseDataAsync(RestResponse resp, string url, CancellationToken token = default)
+        public async Task<string> ReadResponse(RestResponse resp, string url, CancellationToken token = default)
         {
             if (resp == null) return null;
 
-            string responseData = null;
-            
-            // Handle chunked transfer encoding
+            string str = null;
+
             if (resp.ChunkedTransferEncoding)
             {
                 Log(SeverityEnum.Debug, "reading chunked response from " + url);
-                var chunks = new List<string>();
-                ChunkData chunk;
+
+                List<string> chunks = new List<string>();
+                ChunkData chunk = null;
+
                 while ((chunk = await resp.ReadChunkAsync(token).ConfigureAwait(false)) != null)
                 {
                     if (chunk.Data != null && chunk.Data.Length > 0)
@@ -913,14 +915,15 @@
                     }
                     if (chunk.IsFinal) break;
                 }
-                responseData = string.Join("", chunks);
+
+                str = string.Join("", chunks);
             }
             else
             {
-                responseData = resp.DataAsString;
+                str = resp.DataAsString;
             }
 
-            return responseData;
+            return str;
         }
 
         #endregion

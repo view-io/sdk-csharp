@@ -16583,12 +16583,14 @@
             <param name="token">Optional cancellation token.</param>
             <returns>The deserialized <see cref="T:View.Sdk.EnumerationResult`1"/> if successful; otherwise, null.</returns>
         </member>
-        <member name="M:View.Sdk.ViewSdkBase.ReadResponseDataAsync(RestWrapper.RestResponse,System.String,System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.ViewSdkBase.ReadResponse(RestWrapper.RestResponse,System.String,System.Threading.CancellationToken)">
             <summary>
             Read response data from RestResponse, handling both chunked and non-chunked responses.
+            Do not use this method if you need to iterate over the response chunk by chunk.
+            This method encodes incoming byte data as UTF-8 strings and should not be used for scenarios where binary data is required.
             </summary>
-            <param name="resp">RestResponse object.</param>
-            <param name="url">URL for logging purposes.</param>
+            <param name="resp">REST response.</param>
+            <param name="url">URL from the request, useful for logging.</param>
             <param name="token">Cancellation token.</param>
             <returns>Response data as string.</returns>
         </member>

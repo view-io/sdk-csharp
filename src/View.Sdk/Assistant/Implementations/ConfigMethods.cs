@@ -94,7 +94,7 @@ namespace View.Sdk.Assistant.Implementations
                 {
                     if (resp != null)
                     {
-                        string responseData = await _Sdk.ReadResponseDataAsync(resp, url, token).ConfigureAwait(false);
+                        string responseData = await _Sdk.ReadResponse(resp, url, token).ConfigureAwait(false);
 
                         if (_Sdk.LogResponses) _Sdk.Log(SeverityEnum.Debug, "response (status " + resp.StatusCode + "): " + Environment.NewLine + responseData);
 
