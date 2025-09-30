@@ -114,7 +114,7 @@
                         return new GenerateEmbeddingsResult
                         {
                             Success = false,
-                            StatusCode = 0,
+                            StatusCode = resp.StatusCode,
                             Error = new ApiErrorResponse(ApiErrorEnum.NoEmbeddingsConnectivity, null, "No connectivity to embeddings provider at " + url + ".")
                         };
                     }
