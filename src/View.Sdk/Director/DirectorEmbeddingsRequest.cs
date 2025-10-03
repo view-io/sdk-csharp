@@ -47,12 +47,29 @@ namespace View.Sdk.Director
             }
         }
 
+        /// <summary>
+        /// Embeddings rule.
+        /// </summary>
+        public EmbeddingsRule EmbeddingsRule
+        {
+            get
+            {
+                return _EmbeddingsRule;
+            }
+            set
+            {
+                if (value == null) throw new ArgumentNullException(nameof(EmbeddingsRule));
+                _EmbeddingsRule = value;
+            }
+        }
+
         #endregion
 
         #region Private-Members
 
         private string _Model = null;
         private List<string> _Contents = new List<string>();
+        private EmbeddingsRule _EmbeddingsRule = null;
 
         #endregion
 
