@@ -7730,6 +7730,11 @@
             Contents to generate embeddings for.
             </summary>
         </member>
+        <member name="P:View.Sdk.Director.DirectorEmbeddingsRequest.EmbeddingsRule">
+            <summary>
+            Embeddings rule.
+            </summary>
+        </member>
         <member name="M:View.Sdk.Director.DirectorEmbeddingsRequest.#ctor">
             <summary>
             Director embeddings request.
