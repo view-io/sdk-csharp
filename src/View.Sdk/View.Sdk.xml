@@ -4339,6 +4339,38 @@
         <member name="M:View.Sdk.Configuration.Implementations.MetadataRuleMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="T:View.Sdk.Configuration.Implementations.ModelConfigurationMethods">
+            <summary>
+            Model configuration methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.ModelConfigurationMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Model configuration methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.ModelConfigurationMethods.Enumerate(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.ModelConfigurationMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.ModelConfigurationMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.ModelConfigurationMethods.Create(View.Sdk.ModelConfiguration,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.ModelConfigurationMethods.Update(View.Sdk.ModelConfiguration,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.ModelConfigurationMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.ModelConfigurationMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="M:View.Sdk.Configuration.Implementations.NodeMethods.#ctor(View.Sdk.ViewSdkBase)">
             <summary>
             Node methods.
@@ -5317,6 +5349,65 @@
             <param name="token">Cancellation token.</param>
             <returns>Enumeration result containing metadata rules.</returns>
         </member>
+        <member name="T:View.Sdk.Configuration.Interfaces.IModelConfigurationMethods">
+            <summary>
+            Interface for model configuration methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IModelConfigurationMethods.Enumerate(System.Threading.CancellationToken)">
+            <summary>
+            Enumerate model configurations.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result containing model configurations.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IModelConfigurationMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Retrieve many model configurations.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>List of model configurations.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IModelConfigurationMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve a model configuration.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Model configuration.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IModelConfigurationMethods.Create(View.Sdk.ModelConfiguration,System.Threading.CancellationToken)">
+            <summary>
+            Create a model configuration.
+            </summary>
+            <param name="modelConfiguration">Model configuration.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Created model configuration.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IModelConfigurationMethods.Update(View.Sdk.ModelConfiguration,System.Threading.CancellationToken)">
+            <summary>
+            Update a model configuration.
+            </summary>
+            <param name="modelConfiguration">Model configuration.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Updated model configuration.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IModelConfigurationMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a model configuration exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IModelConfigurationMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a model configuration.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
         <member name="T:View.Sdk.Configuration.Interfaces.INodeMethods">
             <summary>
             Interface for node methods.
@@ -6172,6 +6263,11 @@
         <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.DeploymentType">
             <summary>
             Deployment type methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.ModelConfiguration">
+            <summary>
+            Model configuration methods.
             </summary>
         </member>
         <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.#ctor(System.Guid,System.String,System.String,System.String)">

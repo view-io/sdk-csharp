@@ -127,6 +127,11 @@
         /// </summary>
         public IDeploymentTypeMethods DeploymentType { get; set; }
 
+        /// <summary>
+        /// Model configuration methods.
+        /// </summary>
+        public IModelConfigurationMethods ModelConfiguration { get; set; }
+
         #endregion
 
         #region Private-Members
@@ -172,6 +177,7 @@
             RolePermissionMap = new RolePermissionMapMethods(this);
             UserRoleMap = new UserRoleMapMethods(this);
             DeploymentType = new DeploymentTypeMethods(this);
+            ModelConfiguration = new ModelConfigurationMethods(this);
         }
 
         #endregion
