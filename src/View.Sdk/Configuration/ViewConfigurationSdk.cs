@@ -132,6 +132,11 @@
         /// </summary>
         public IModelConfigurationMethods ModelConfiguration { get; set; }
 
+        /// <summary>
+        /// Model endpoint methods.
+        /// </summary>
+        public IModelEndpointMethods ModelEndpoint { get; set; }
+
         #endregion
 
         #region Private-Members
@@ -178,6 +183,7 @@
             UserRoleMap = new UserRoleMapMethods(this);
             DeploymentType = new DeploymentTypeMethods(this);
             ModelConfiguration = new ModelConfigurationMethods(this);
+            ModelEndpoint = new ModelEndpointMethods(this);
         }
 
         #endregion

@@ -146,7 +146,7 @@
             Console.WriteLine("    node    tenant     user     cred    pool       bucket enckey");
             Console.WriteLine("    mdrule  embedrule  whevent  whrule  whtarget   lock   vector      collection ");
             Console.WriteLine("    datarepository     blob     graph   permission role   rolepermmap  userrole  deployment");
-            Console.WriteLine("    modelconfig");
+            Console.WriteLine("    modelconfig        modelendpoint");
             Console.WriteLine("");
             Console.WriteLine("Authentication commands:");
             Console.WriteLine("  auth tenants      Retrieve tenants");
@@ -259,6 +259,10 @@
                     ModelConfiguration modelConfig = BuildObject<ModelConfiguration>();
                     EnumerateResponse(await _Sdk.ModelConfiguration.Create(modelConfig));
                     return;
+                case "modelendpoint":
+                    ModelEndpoint modelEndpoint = BuildObject<ModelEndpoint>();
+                    EnumerateResponse(await _Sdk.ModelEndpoint.Create(modelEndpoint));
+                    return;
                 case "lock":
                     break;
                 default:
@@ -354,6 +358,9 @@
                 case "modelconfig":
                     EnumerateResponse(await _Sdk.ModelConfiguration.Retrieve(guid));
                     return;
+                case "modelendpoint":
+                    EnumerateResponse(await _Sdk.ModelEndpoint.Retrieve(guid));
+                    return;
                 default:
                     return;
             }
@@ -430,6 +437,9 @@
                     return;
                 case "modelconfig":
                     EnumerateResponse(await _Sdk.ModelConfiguration.RetrieveMany());
+                    return;
+                case "modelendpoint":
+                    EnumerateResponse(await _Sdk.ModelEndpoint.RetrieveMany());
                     return;
                 default:
                     return;
@@ -522,6 +532,10 @@
                     ModelConfiguration modelConfig = BuildObject<ModelConfiguration>();
                     EnumerateResponse(await _Sdk.ModelConfiguration.Update(modelConfig));
                     return;
+                case "modelendpoint":
+                    ModelEndpoint modelEndpoint = BuildObject<ModelEndpoint>();
+                    EnumerateResponse(await _Sdk.ModelEndpoint.Update(modelEndpoint));
+                    return;
                 default:
                     return;
             }
@@ -601,6 +615,9 @@
                 case "modelconfig":
                     await _Sdk.ModelConfiguration.Delete(guid);
                     return;
+                case "modelendpoint":
+                    await _Sdk.ModelEndpoint.Delete(guid);
+                    return;
                 default:
                     return;
             }
@@ -678,6 +695,9 @@
                 case "modelconfig":
                     exists = await _Sdk.ModelConfiguration.Exists(guid);
                     break;
+                case "modelendpoint":
+                    exists = await _Sdk.ModelEndpoint.Exists(guid);
+                    break;
                 default:
                     return;
             }
@@ -748,6 +768,9 @@
                     break;
                 case "modelconfig":
                     EnumerateResponse(await _Sdk.ModelConfiguration.Enumerate());
+                    break;
+                case "modelendpoint":
+                    EnumerateResponse(await _Sdk.ModelEndpoint.Enumerate());
                     break;
                 default:
                     return;

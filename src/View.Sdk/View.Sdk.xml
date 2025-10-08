@@ -4350,7 +4350,7 @@
             </summary>
             <param name="sdk">View SDK.</param>
         </member>
-        <member name="M:View.Sdk.Configuration.Implementations.ModelConfigurationMethods.Enumerate(System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Implementations.ModelConfigurationMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:View.Sdk.Configuration.Implementations.ModelConfigurationMethods.RetrieveMany(System.Threading.CancellationToken)">
@@ -4369,6 +4369,38 @@
             <inheritdoc />
         </member>
         <member name="M:View.Sdk.Configuration.Implementations.ModelConfigurationMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:View.Sdk.Configuration.Implementations.ModelEndpointMethods">
+            <summary>
+            Model endpoint methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.ModelEndpointMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Model endpoint methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.ModelEndpointMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.ModelEndpointMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.ModelEndpointMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.ModelEndpointMethods.Create(View.Sdk.ModelEndpoint,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.ModelEndpointMethods.Update(View.Sdk.ModelEndpoint,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.ModelEndpointMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.ModelEndpointMethods.Delete(System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:View.Sdk.Configuration.Implementations.NodeMethods.#ctor(View.Sdk.ViewSdkBase)">
@@ -5354,10 +5386,11 @@
             Interface for model configuration methods.
             </summary>
         </member>
-        <member name="M:View.Sdk.Configuration.Interfaces.IModelConfigurationMethods.Enumerate(System.Threading.CancellationToken)">
+        <member name="M:View.Sdk.Configuration.Interfaces.IModelConfigurationMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
             <summary>
             Enumerate model configurations.
             </summary>
+            <param name="maxKeys">Maximum number of keys to retrieve.</param>
             <param name="token">Cancellation token.</param>
             <returns>Enumeration result containing model configurations.</returns>
         </member>
@@ -5403,6 +5436,66 @@
         <member name="M:View.Sdk.Configuration.Interfaces.IModelConfigurationMethods.Delete(System.Guid,System.Threading.CancellationToken)">
             <summary>
             Delete a model configuration.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="T:View.Sdk.Configuration.Interfaces.IModelEndpointMethods">
+            <summary>
+            Interface for model endpoint methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IModelEndpointMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate model endpoints.
+            </summary>
+            <param name="maxKeys">Maximum number of keys to retrieve.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result containing model endpoints.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IModelEndpointMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Retrieve many model endpoints.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>List of model endpoints.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IModelEndpointMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve a model endpoint.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Model endpoint.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IModelEndpointMethods.Create(View.Sdk.ModelEndpoint,System.Threading.CancellationToken)">
+            <summary>
+            Create a model endpoint.
+            </summary>
+            <param name="modelEndpoint">Model endpoint.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Created model endpoint.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IModelEndpointMethods.Update(View.Sdk.ModelEndpoint,System.Threading.CancellationToken)">
+            <summary>
+            Update a model endpoint.
+            </summary>
+            <param name="modelEndpoint">Model endpoint.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Updated model endpoint.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IModelEndpointMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a model endpoint exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IModelEndpointMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a model endpoint.
             </summary>
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
@@ -6268,6 +6361,11 @@
         <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.ModelConfiguration">
             <summary>
             Model configuration methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.ModelEndpoint">
+            <summary>
+            Model endpoint methods.
             </summary>
         </member>
         <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.#ctor(System.Guid,System.String,System.String,System.String)">
