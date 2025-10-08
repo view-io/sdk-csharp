@@ -137,6 +137,11 @@
         /// </summary>
         public IModelEndpointMethods ModelEndpoint { get; set; }
 
+        /// <summary>
+        /// Model profile methods.
+        /// </summary>
+        public IModelProfileMethods ModelProfile { get; set; }
+
         #endregion
 
         #region Private-Members
@@ -184,6 +189,7 @@
             DeploymentType = new DeploymentTypeMethods(this);
             ModelConfiguration = new ModelConfigurationMethods(this);
             ModelEndpoint = new ModelEndpointMethods(this);
+            ModelProfile = new ModelProfileMethods(this);
         }
 
         #endregion

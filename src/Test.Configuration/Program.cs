@@ -146,7 +146,7 @@
             Console.WriteLine("    node    tenant     user     cred    pool       bucket enckey");
             Console.WriteLine("    mdrule  embedrule  whevent  whrule  whtarget   lock   vector      collection ");
             Console.WriteLine("    datarepository     blob     graph   permission role   rolepermmap  userrole  deployment");
-            Console.WriteLine("    modelconfig        modelendpoint");
+            Console.WriteLine("    modelconfig        modelendpoint    modelprofile");
             Console.WriteLine("");
             Console.WriteLine("Authentication commands:");
             Console.WriteLine("  auth tenants      Retrieve tenants");
@@ -263,6 +263,10 @@
                     ModelEndpoint modelEndpoint = BuildObject<ModelEndpoint>();
                     EnumerateResponse(await _Sdk.ModelEndpoint.Create(modelEndpoint));
                     return;
+                case "modelprofile":
+                    ModelProfile modelProfile = BuildObject<ModelProfile>();
+                    EnumerateResponse(await _Sdk.ModelProfile.Create(modelProfile));
+                    return;
                 case "lock":
                     break;
                 default:
@@ -361,6 +365,9 @@
                 case "modelendpoint":
                     EnumerateResponse(await _Sdk.ModelEndpoint.Retrieve(guid));
                     return;
+                case "modelprofile":
+                    EnumerateResponse(await _Sdk.ModelProfile.Retrieve(guid));
+                    return;
                 default:
                     return;
             }
@@ -440,6 +447,9 @@
                     return;
                 case "modelendpoint":
                     EnumerateResponse(await _Sdk.ModelEndpoint.RetrieveMany());
+                    return;
+                case "modelprofile":
+                    EnumerateResponse(await _Sdk.ModelProfile.RetrieveMany());
                     return;
                 default:
                     return;
@@ -536,6 +546,10 @@
                     ModelEndpoint modelEndpoint = BuildObject<ModelEndpoint>();
                     EnumerateResponse(await _Sdk.ModelEndpoint.Update(modelEndpoint));
                     return;
+                case "modelprofile":
+                    ModelProfile modelProfile = BuildObject<ModelProfile>();
+                    EnumerateResponse(await _Sdk.ModelProfile.Update(modelProfile));
+                    return;
                 default:
                     return;
             }
@@ -618,6 +632,9 @@
                 case "modelendpoint":
                     await _Sdk.ModelEndpoint.Delete(guid);
                     return;
+                case "modelprofile":
+                    await _Sdk.ModelProfile.Delete(guid);
+                    return;
                 default:
                     return;
             }
@@ -698,6 +715,9 @@
                 case "modelendpoint":
                     exists = await _Sdk.ModelEndpoint.Exists(guid);
                     break;
+                case "modelprofile":
+                    exists = await _Sdk.ModelProfile.Exists(guid);
+                    break;
                 default:
                     return;
             }
@@ -771,6 +791,9 @@
                     break;
                 case "modelendpoint":
                     EnumerateResponse(await _Sdk.ModelEndpoint.Enumerate());
+                    break;
+                case "modelprofile":
+                    EnumerateResponse(await _Sdk.ModelProfile.Enumerate());
                     break;
                 default:
                     return;

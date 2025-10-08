@@ -4403,6 +4403,38 @@
         <member name="M:View.Sdk.Configuration.Implementations.ModelEndpointMethods.Delete(System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="T:View.Sdk.Configuration.Implementations.ModelProfileMethods">
+            <summary>
+            Model profile methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.ModelProfileMethods.#ctor(View.Sdk.ViewSdkBase)">
+            <summary>
+            Model profile methods.
+            </summary>
+            <param name="sdk">View SDK.</param>
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.ModelProfileMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.ModelProfileMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.ModelProfileMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.ModelProfileMethods.Create(View.Sdk.ModelProfile,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.ModelProfileMethods.Update(View.Sdk.ModelProfile,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.ModelProfileMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:View.Sdk.Configuration.Implementations.ModelProfileMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="M:View.Sdk.Configuration.Implementations.NodeMethods.#ctor(View.Sdk.ViewSdkBase)">
             <summary>
             Node methods.
@@ -5501,6 +5533,66 @@
             <param name="token">Cancellation token.</param>
             <returns>True if successful.</returns>
         </member>
+        <member name="T:View.Sdk.Configuration.Interfaces.IModelProfileMethods">
+            <summary>
+            Interface for model profile methods.
+            </summary>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IModelProfileMethods.Enumerate(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Enumerate model profiles.
+            </summary>
+            <param name="maxKeys">Maximum number of keys to retrieve.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumeration result containing model profiles.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IModelProfileMethods.RetrieveMany(System.Threading.CancellationToken)">
+            <summary>
+            Retrieve many model profiles.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>List of model profiles.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IModelProfileMethods.Retrieve(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve a model profile.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Model profile.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IModelProfileMethods.Create(View.Sdk.ModelProfile,System.Threading.CancellationToken)">
+            <summary>
+            Create a model profile.
+            </summary>
+            <param name="modelProfile">Model profile.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Created model profile.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IModelProfileMethods.Update(View.Sdk.ModelProfile,System.Threading.CancellationToken)">
+            <summary>
+            Update a model profile.
+            </summary>
+            <param name="modelProfile">Model profile.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Updated model profile.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IModelProfileMethods.Exists(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a model profile exists.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:View.Sdk.Configuration.Interfaces.IModelProfileMethods.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a model profile.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if successful.</returns>
+        </member>
         <member name="T:View.Sdk.Configuration.Interfaces.INodeMethods">
             <summary>
             Interface for node methods.
@@ -6366,6 +6458,11 @@
         <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.ModelEndpoint">
             <summary>
             Model endpoint methods.
+            </summary>
+        </member>
+        <member name="P:View.Sdk.Configuration.ViewConfigurationSdk.ModelProfile">
+            <summary>
+            Model profile methods.
             </summary>
         </member>
         <member name="M:View.Sdk.Configuration.ViewConfigurationSdk.#ctor(System.Guid,System.String,System.String,System.String)">
