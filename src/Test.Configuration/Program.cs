@@ -146,6 +146,7 @@
             Console.WriteLine("    node    tenant     user     cred    pool       bucket enckey");
             Console.WriteLine("    mdrule  embedrule  whevent  whrule  whtarget   lock   vector      collection ");
             Console.WriteLine("    datarepository     blob     graph   permission role   rolepermmap  userrole  deployment");
+            Console.WriteLine("    modelconfig        modelendpoint    modelprofile");
             Console.WriteLine("");
             Console.WriteLine("Authentication commands:");
             Console.WriteLine("  auth tenants      Retrieve tenants");
@@ -254,6 +255,18 @@
                     UserRoleMap userRoleMap = BuildObject<UserRoleMap>();
                     EnumerateResponse(await _Sdk.UserRoleMap.Create(userRoleMap));
                     return;
+                case "modelconfig":
+                    ModelConfiguration modelConfig = BuildObject<ModelConfiguration>();
+                    EnumerateResponse(await _Sdk.ModelConfiguration.Create(modelConfig));
+                    return;
+                case "modelendpoint":
+                    ModelEndpoint modelEndpoint = BuildObject<ModelEndpoint>();
+                    EnumerateResponse(await _Sdk.ModelEndpoint.Create(modelEndpoint));
+                    return;
+                case "modelprofile":
+                    ModelProfile modelProfile = BuildObject<ModelProfile>();
+                    EnumerateResponse(await _Sdk.ModelProfile.Create(modelProfile));
+                    return;
                 case "lock":
                     break;
                 default:
@@ -346,6 +359,15 @@
                 case "userrole":
                     EnumerateResponse(await _Sdk.UserRoleMap.Retrieve(guid));
                     return;
+                case "modelconfig":
+                    EnumerateResponse(await _Sdk.ModelConfiguration.Retrieve(guid));
+                    return;
+                case "modelendpoint":
+                    EnumerateResponse(await _Sdk.ModelEndpoint.Retrieve(guid));
+                    return;
+                case "modelprofile":
+                    EnumerateResponse(await _Sdk.ModelProfile.Retrieve(guid));
+                    return;
                 default:
                     return;
             }
@@ -419,6 +441,15 @@
                     return;
                 case "userrole":
                     EnumerateResponse(await _Sdk.UserRoleMap.RetrieveMany());
+                    return;
+                case "modelconfig":
+                    EnumerateResponse(await _Sdk.ModelConfiguration.RetrieveMany());
+                    return;
+                case "modelendpoint":
+                    EnumerateResponse(await _Sdk.ModelEndpoint.RetrieveMany());
+                    return;
+                case "modelprofile":
+                    EnumerateResponse(await _Sdk.ModelProfile.RetrieveMany());
                     return;
                 default:
                     return;
@@ -507,6 +538,18 @@
                     UserRoleMap userRoleMap = BuildObject<UserRoleMap>();
                     EnumerateResponse(await _Sdk.UserRoleMap.Update(userRoleMap));
                     return;
+                case "modelconfig":
+                    ModelConfiguration modelConfig = BuildObject<ModelConfiguration>();
+                    EnumerateResponse(await _Sdk.ModelConfiguration.Update(modelConfig));
+                    return;
+                case "modelendpoint":
+                    ModelEndpoint modelEndpoint = BuildObject<ModelEndpoint>();
+                    EnumerateResponse(await _Sdk.ModelEndpoint.Update(modelEndpoint));
+                    return;
+                case "modelprofile":
+                    ModelProfile modelProfile = BuildObject<ModelProfile>();
+                    EnumerateResponse(await _Sdk.ModelProfile.Update(modelProfile));
+                    return;
                 default:
                     return;
             }
@@ -583,6 +626,15 @@
                 case "userrole":
                     await _Sdk.UserRoleMap.Delete(guid);
                     return;
+                case "modelconfig":
+                    await _Sdk.ModelConfiguration.Delete(guid);
+                    return;
+                case "modelendpoint":
+                    await _Sdk.ModelEndpoint.Delete(guid);
+                    return;
+                case "modelprofile":
+                    await _Sdk.ModelProfile.Delete(guid);
+                    return;
                 default:
                     return;
             }
@@ -657,6 +709,15 @@
                 case "userrole":
                     exists = await _Sdk.UserRoleMap.Exists(guid);
                     break;
+                case "modelconfig":
+                    exists = await _Sdk.ModelConfiguration.Exists(guid);
+                    break;
+                case "modelendpoint":
+                    exists = await _Sdk.ModelEndpoint.Exists(guid);
+                    break;
+                case "modelprofile":
+                    exists = await _Sdk.ModelProfile.Exists(guid);
+                    break;
                 default:
                     return;
             }
@@ -724,6 +785,15 @@
                     break;
                 case "userrole":
                     EnumerateResponse(await _Sdk.UserRoleMap.Enumerate());
+                    break;
+                case "modelconfig":
+                    EnumerateResponse(await _Sdk.ModelConfiguration.Enumerate());
+                    break;
+                case "modelendpoint":
+                    EnumerateResponse(await _Sdk.ModelEndpoint.Enumerate());
+                    break;
+                case "modelprofile":
+                    EnumerateResponse(await _Sdk.ModelProfile.Enumerate());
                     break;
                 default:
                     return;

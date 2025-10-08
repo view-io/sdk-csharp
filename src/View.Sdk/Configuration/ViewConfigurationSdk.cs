@@ -127,6 +127,21 @@
         /// </summary>
         public IDeploymentTypeMethods DeploymentType { get; set; }
 
+        /// <summary>
+        /// Model configuration methods.
+        /// </summary>
+        public IModelConfigurationMethods ModelConfiguration { get; set; }
+
+        /// <summary>
+        /// Model endpoint methods.
+        /// </summary>
+        public IModelEndpointMethods ModelEndpoint { get; set; }
+
+        /// <summary>
+        /// Model profile methods.
+        /// </summary>
+        public IModelProfileMethods ModelProfile { get; set; }
+
         #endregion
 
         #region Private-Members
@@ -172,6 +187,9 @@
             RolePermissionMap = new RolePermissionMapMethods(this);
             UserRoleMap = new UserRoleMapMethods(this);
             DeploymentType = new DeploymentTypeMethods(this);
+            ModelConfiguration = new ModelConfigurationMethods(this);
+            ModelEndpoint = new ModelEndpointMethods(this);
+            ModelProfile = new ModelProfileMethods(this);
         }
 
         #endregion
