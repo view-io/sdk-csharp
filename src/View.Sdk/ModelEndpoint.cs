@@ -110,6 +110,7 @@
         private string _EndpointUrl = "http://localhost:11434/";
         private int _TimeoutMs = 30000;
         private List<string> _Labels = new List<string>();
+
         #endregion
 
         #region Constructors-and-Factories
