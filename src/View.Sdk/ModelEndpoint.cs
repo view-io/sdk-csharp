@@ -69,21 +69,6 @@
         }
 
         /// <summary>
-        /// Additional data.
-        /// </summary>
-        public string AdditionalData { get; set; } = null;
-
-        /// <summary>
-        /// Active.
-        /// </summary>
-        public bool Active { get; set; } = true;
-
-        /// <summary>
-        /// Created.
-        /// </summary>
-        public DateTime CreatedUtc { get; set; } = DateTime.UtcNow;
-
-        /// <summary>
         /// List of string labels for the backend; these are used in load-balancing decisions.  
         /// When a request is received with a label, only backends with matching labels will be considered.
         /// </summary>
@@ -99,6 +84,21 @@
                 _Labels = value;
             }
         }
+
+        /// <summary>
+        /// Additional data.
+        /// </summary>
+        public string AdditionalData { get; set; } = null;
+
+        /// <summary>
+        /// Active.
+        /// </summary>
+        public bool Active { get; set; } = true;
+
+        /// <summary>
+        /// Created.
+        /// </summary>
+        public DateTime CreatedUtc { get; set; } = DateTime.UtcNow;
 
         #endregion
 
