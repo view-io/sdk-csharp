@@ -1,6 +1,8 @@
 ﻿namespace View.Sdk
 {
     using System;
+    using System.Collections.Generic;
+    using System.Reflection.Emit;
     using System.Text.Json.Serialization;
 
     /// <summary>
@@ -83,13 +85,31 @@
         /// </summary>
         public DateTime CreatedUtc { get; set; } = DateTime.UtcNow;
 
+        /// <summary>
+        /// List of string labels for the backend; these are used in load-balancing decisions.  
+        /// When a request is received with a label, only backends with matching labels will be considered.
+        /// </summary>
+        public List<string> Labels
+        {
+            get
+            {
+                return _Labels;
+            }
+            set
+            {
+                if (value == null) value = new List<string>();
+                _Labels = value;
+            }
+        }
+
+
         #endregion
 
         #region Private-Members
 
         private string _EndpointUrl = "http://localhost:11434/";
         private int _TimeoutMs = 30000;
-
+        private List<string> _Labels = new List<string>();
         #endregion
 
         #region Constructors-and-Factories

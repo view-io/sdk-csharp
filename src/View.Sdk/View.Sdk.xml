@@ -11387,6 +11387,12 @@
             Created.
             </summary>
         </member>
+        <member name="P:View.Sdk.ModelEndpoint.Labels">
+            <summary>
+            List of string labels for the backend; these are used in load-balancing decisions.  
+            When a request is received with a label, only backends with matching labels will be considered.
+            </summary>
+        </member>
         <member name="M:View.Sdk.ModelEndpoint.#ctor">
             <summary>
             Model endpoint.
